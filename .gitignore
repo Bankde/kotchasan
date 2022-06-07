@@ -6,4 +6,4 @@ datas/
 settings/*
 projects/test/
 /nbproject/private/
-docs/.phpdoc/
+/docs/.phpdoc/*

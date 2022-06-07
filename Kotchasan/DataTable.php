@@ -578,8 +578,7 @@ class DataTable extends \Kotchasan\KBase
             }
             $form[] = '<fieldset class=search>';
             $form[] = '<label accesskey=f><input type=text name=search value="'.$this->search.'" placeholder="'.Language::get('Search').'"></label>';
-            $form[] = '<button type=submit>&#xe607;</button>';
-            $form[] = '<button type=submit class=clear_search>&#x78;</button>';
+            $form[] = '<button type=button class=clear_search>&#x78;</button>';
             $form[] = '</fieldset>';
         }
         if (!$this->explain && !empty($form)) {

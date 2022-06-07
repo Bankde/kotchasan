@@ -38,6 +38,7 @@
       this.search = o["search"] || "";
       this.sort = o["sort"] || null;
       this.page = o["page"] || 1;
+      this.submit = null;
       if (this.options.onAddRow) {
         this.options.onAddRow = window[this.options.onAddRow];
         if (!Object.isFunction(this.options.onAddRow)) {
@@ -245,7 +246,12 @@
             temp.input_search = this.parentNode.firstChild.firstChild;
             callClick(this, function() {
               temp.input_search.value = "";
+              if (temp.submit) {
+                temp.submit.click();
+              }
             });
+          } else if (this.type == "submit") {
+            temp.submit = this;
           } else if (this.id != "") {
             callClick(this, function() {
               temp._doButton(this);
