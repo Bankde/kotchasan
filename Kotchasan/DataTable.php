@@ -563,7 +563,7 @@ class DataTable extends \Kotchasan\KBase
         }
         // search
         if ($this->searchForm === true || ($this->searchForm === 'auto' && !empty($this->searchColumns))) {
-            if (!empty($this->search && $this->autoSearch)) {
+            if (!empty($this->search) && $this->autoSearch) {
                 if (isset($this->model)) {
                     $sh = array();
                     foreach ($this->searchColumns as $key) {

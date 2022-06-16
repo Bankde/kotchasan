@@ -201,9 +201,9 @@
       };
       var doSearchChanged = function() {
         if (temp.input_search.value == "") {
-          temp.clear_search.style.display = "none";
+          temp.input_search.parentNode.parentNode.className = 'search';
         } else {
-          temp.clear_search.style.display = "block";
+          temp.input_search.parentNode.parentNode.className = 'search with_text';
         }
       };
       if (this.table) {

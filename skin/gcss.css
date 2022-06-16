@@ -3836,6 +3836,42 @@ aside.tip {
   right: 10px;
   top: 10px;
 }
+.pdpa_consent {
+  z-index: 2147483646;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  justify-content: space-around;
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.pdpa_consent_footer {
+  text-align: right;
+  margin-top: 10px;
+}
+.pdpa_consent_footer a {
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.consent_frm .info {
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+.consent_frm .info aside {
+  color: #666;
+}
+.pdpa_consent,
 .alert {
   -webkit-transition: opacity 0.6s;
   -moz-transition: opacity 0.6s;
@@ -4191,6 +4227,7 @@ th[scope="rowgroup"],
 fieldset.search {
   overflow: hidden;
   height: 2.3em;
+  padding-right: 1.5em;
 }
 fieldset.search input[type="text"] {
   border: none;
@@ -4205,6 +4242,7 @@ fieldset.search label {
   display: inline;
 }
 fieldset.search button {
+  display: none;
   width: 1.5em;
   height: inherit;
   line-height: inherit;
@@ -4212,6 +4250,12 @@ fieldset.search button {
   background-color: #fff;
   float: right;
   font-family: "icomoon";
+}
+fieldset.search.with_text {
+  padding-right: 0;
+}
+fieldset.search.with_text button {
+  display: block;
 }
 fieldset.search button:focus {
   outline: none;

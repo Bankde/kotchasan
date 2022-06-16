@@ -103,7 +103,7 @@ class Template
         if (is_file($filename)) {
             return self::createFromHTML(file_get_contents($filename));
         } else {
-            throw new \InvalidArgumentException('Template file not found');
+            throw new \InvalidArgumentException('File not found '.$filename);
         }
     }
 

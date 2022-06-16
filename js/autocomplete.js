@@ -65,14 +65,18 @@
         }
       }
 
+      function _onSuccess(datas) {
+        if (Object.isFunction(options.onSuccess)) {
+          options.onSuccess.call(datas);
+        }
+      }
+
       var _mouseclick = function() {
         window.setTimeout(function() {
           self.input.focus();
         }, 1);
         _onSelect.call(this);
-        if (Object.isFunction(options.onSuccess)) {
-          options.onSuccess.call(self.input);
-        }
+        _onSuccess(this.datas);
       };
       var _mousemove = function() {
         _movehighlight(this.itemindex);
@@ -188,9 +192,7 @@
               _onSelect.call(this);
             }
           });
-          if (Object.isFunction(options.onSuccess)) {
-            options.onSuccess.call(self.input);
-          }
+          _onSuccess(list[listindex].datas);
         } else if (key == 32) {
           if (this.value == "") {
             _search();
