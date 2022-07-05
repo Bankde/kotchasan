@@ -265,15 +265,18 @@ class PdoMysqlDriver extends Driver
      *
      * @return array
      */
-    public function select($table_name, $condition, $sort = array(), $limit = 0)
+    public function select($table_name, $condition = array(), $sort = array(), $limit = 0)
     {
         $values = array();
-        $condition = $this->buildWhere($condition);
-        if (is_array($condition)) {
-            $values = $condition[1];
-            $condition = $condition[0];
+        $sql = 'SELECT * FROM '.$table_name;
+        if (!empty($condition)) {
+            $condition = $this->buildWhere($condition);
+            if (is_array($condition)) {
+                $values = $condition[1];
+                $condition = $condition[0];
+            }
+            $sql .= ' WHERE '.$condition;
         }
-        $sql = 'SELECT * FROM '.$table_name.' WHERE '.$condition;
         if (!empty($sort)) {
             if (is_string($sort) && preg_match('/^([a-z0-9_]+)\s(asc|desc)$/i', trim($sort), $match)) {
                 $sql .= ' ORDER BY `'.$match[1].'`'.(empty($match[2]) ? '' : ' '.$match[2]);

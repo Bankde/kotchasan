@@ -489,7 +489,7 @@ abstract class Driver extends Query
      *
      * @return array
      */
-    abstract public function select($table_name, $condition, $sort = array(), $limit = 0);
+    abstract public function select($table_name, $condition = array(), $sort = array(), $limit = 0);
 
     /**
      * เลือกฐานข้อมูล
