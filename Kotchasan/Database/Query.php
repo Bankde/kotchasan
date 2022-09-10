@@ -137,7 +137,7 @@ abstract class Query extends \Kotchasan\Database\Db
         $sql = is_array($ret) ? $ret[0] : $ret;
         if (is_array($table)) {
             $sql = ' '.$type.' JOIN ('.$table[0]->text().') AS '.$table[1].' ON '.$sql;
-        } elseif (preg_match('/^([a-zA-Z0-9_]+)([\s]+(as|AS))?[\s]+([A-Z0-9]{1,2})$/', $table, $match)) {
+        } elseif (preg_match('/^([a-zA-Z0-9_]+)([\s]+(as|AS))?[\s]+([A-Z0-9]{1,3})$/', $table, $match)) {
             $sql = ' '.$type.' JOIN '.$this->getFullTableName($match[1]).' AS '.$match[4].' ON '.$sql;
         } elseif (preg_match('/^([a-z0-9_]+)([\s]+(as|AS))?[\s]+([a-z0-9_]+)$/', $table, $match)) {
             $sql = ' '.$type.' JOIN '.$this->getFullTableName($match[1]).' AS `'.$match[4].'` ON '.$sql;
@@ -422,7 +422,7 @@ abstract class Query extends \Kotchasan\Database\Db
             if (strpos($name, '(') !== false && preg_match('/^(.*?)(\s{0,}(as)?\s{0,}`?([a-z0-9_]+)`?)?$/i', $name, $match)) {
                 // (...) as pos
                 $ret = $match[1].(isset($match[4]) ? " AS `$match[4]`" : '');
-            } elseif (preg_match('/^([A-Z]{1,1}[0-9]{0,1})\.([\*a-zA-Z0-9_]+)((\s+(as|AS))?\s+([a-zA-Z0-9_]+))?$/', $name, $match)) {
+            } elseif (preg_match('/^([A-Z]{1,1}[0-9]{0,2})\.([\*a-zA-Z0-9_]+)((\s+(as|AS))?\s+([a-zA-Z0-9_]+))?$/', $name, $match)) {
                 // U.id as user_id U.*
                 $ret = $match[1].'.'.($match[2] == '*' ? '*' : '`'.$match[2].'`').(isset($match[6]) ? ' AS `'.$match[6].'`' : '');
             } elseif (preg_match('/^`?([a-z0-9_]+)`?\.([\*a-z0-9_]+)(([\s]+as)?[\s]+([a-z0-9_]+))?$/i', $name, $match)) {
@@ -523,7 +523,7 @@ abstract class Query extends \Kotchasan\Database\Db
             } else {
                 $table = '('.$table[0].') AS '.$table[1];
             }
-        } elseif (preg_match('/^([a-zA-Z0-9_]+)(\s+(as|AS))?[\s]+([A-Z0-9]{1,2})$/', $table, $match)) {
+        } elseif (preg_match('/^([a-zA-Z0-9_]+)(\s+(as|AS))?[\s]+([A-Z0-9]{1,3})$/', $table, $match)) {
             $table = $this->getFullTableName($match[1]).' AS '.$match[4];
         } elseif (preg_match('/^([a-zA-Z0-9_]+)(\s+(as|AS))?[\s]+([a-zA-Z0-9]+)$/', $table, $match)) {
             $table = $this->getFullTableName($match[1]).' AS `'.$match[4].'`';
@@ -578,7 +578,7 @@ abstract class Query extends \Kotchasan\Database\Db
                     if (empty($item)) {
                         $qs[] = is_string($item) ? "'$item'" : $item;
                     } elseif (is_string($item)) {
-                        if (preg_match('/^([A-Z]{1,1}[0-9]{0,1})\.`?([a-zA-Z0-9_\-]+)`?$/', $item, $match)) {
+                        if (preg_match('/^([A-Z]{1,1}[0-9]{0,2})\.`?([a-zA-Z0-9_\-]+)`?$/', $item, $match)) {
                             $qs[] = "$match[1].`$match[2]`";
                         } elseif (preg_match('/^`([a-zA-Z0-9_\-]+)`$/', $item, $match)) {
                             $qs[] = "`$match[1]`";
@@ -610,7 +610,7 @@ abstract class Query extends \Kotchasan\Database\Db
             } elseif (preg_match('/^[0-9\s\-:]+$/', $value)) {
                 // วันที่
                 $result = "$key $operator '$value'";
-            } elseif (preg_match('/^([A-Z]{1,1}[0-9]{0,1})\.([a-zA-Z0-9_\-]+)$/', $value, $match)) {
+            } elseif (preg_match('/^([A-Z]{1,1}[0-9]{0,2})\.([a-zA-Z0-9_\-]+)$/', $value, $match)) {
                 // U.id
                 if ($operator == 'IN' || $operator == 'NOT IN') {
                     $result = "$key $operator ($match[1].`$match[2]`)";

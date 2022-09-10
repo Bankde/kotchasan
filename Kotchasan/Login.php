@@ -105,7 +105,13 @@ class Login extends \Kotchasan\KBase
                         self::$login_params['password'] = $_SESSION['login']['password'];
                     }
                 } else {
-                    self::$login_params['username'] = null;
+                    $token = self::$request->cookie('login_token')->filter('a-z0-9');
+                    if (strlen($token) == 40) {
+                        // จำการเข้าระบบ
+                        self::$login_params['token'] = $token;
+                    } else {
+                        self::$login_params['username'] = null;
+                    }
                 }
                 self::$from_submit = self::$request->post('login_username')->exists();
             } elseif (self::$request->post('login_password')->exists()) {
@@ -117,6 +123,7 @@ class Login extends \Kotchasan\KBase
             if ($action === 'logout' && !self::$from_submit) {
                 // logout ลบ session และ cookie
                 unset($_SESSION['login']);
+                setcookie('login_token', '', time(), '/', HOST, HTTPS, true);
                 self::$login_message = Language::get('Logout successful');
                 self::$login_params = array();
             } elseif ($action === 'forgot') {
@@ -124,7 +131,7 @@ class Login extends \Kotchasan\KBase
                 $login = $login->forgot(self::$request);
             } else {
                 // ตรวจสอบค่าที่ส่งมา
-                if (empty(self::$login_params['username'])) {
+                if (empty(self::$login_params['username']) && empty(self::$login_params['token'])) {
                     if (self::$from_submit) {
                         self::$login_message = 'Please fill in';
                         self::$login_input = 'login_username';
@@ -146,6 +153,7 @@ class Login extends \Kotchasan\KBase
                         }
                         // logout ลบ session และ cookie
                         unset($_SESSION['login']);
+                        setcookie('login_token', '', time(), '/', HOST, HTTPS, true);
                     }
                 }
             }

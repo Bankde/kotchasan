@@ -61,4 +61,14 @@ abstract class Db extends \Kotchasan\KBase
             return $this->db->settings->$key;
         }
     }
+
+    /**
+     * คืนค่ากำหนดทั้งหมดของฐานข้อมูล
+     *
+     * @return object
+     */
+    public function getAllSettings()
+    {
+        return $this->db->settings;
+    }
 }

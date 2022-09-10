@@ -108,9 +108,9 @@ class Image
      * ฟังก์ชั่น พลิกรูปภาพ (ซ้าย-ขวา คล้ายกระจกเงา)
      * คืนค่า resource ของรูปภาพหลังจากพลิกรูปภาพแล้ว ไม่สำเร็จคืนค่า resource ของรูปภาพต้นฉบับ
      *
-     * @param resource $imgsrc resource ของรูปภาพต้นฉบับ
+     * @param \GdImage $imgsrc resource ของรูปภาพต้นฉบับ
      *
-     * @return resource
+     * @return \GdImage
      */
     public static function flip($imgsrc)
     {
@@ -153,9 +153,9 @@ class Image
      * ฟังก์ชั่น โหลดภาพ jpg และหมุนภาพอัตโนมัติจากข้อมูลของ Exif
      * คืนค่า resource ของรูปภาพหลังจากหมุนแล้ว ถ้าไม่สนับสนุนคืนค่า resource เดิม
      *
-     * @param resource $source resource ของรูปภาพต้นฉบับ
+     * @param string $source resource ของรูปภาพต้นฉบับ
      *
-     * @return resource
+     * @return \GdImage
      */
     public static function orient($source)
     {
@@ -267,7 +267,7 @@ class Image
      * ฟังก์ชั่น วาดลายน้ำที่เป็นตัวอักษรลงบนรูปภาพ
      * คืนค่า resource ของรูปภาพต้นฉบับ
      *
-     * @param resource $imgsrc    resource ของรูปภาพต้นฉบับ
+     * @param \GdImage $imgsrc    resource ของรูปภาพต้นฉบับ
      * @param string   $text      ข้อความที่จะใช้เป็นลายน้ำ
      * @param string   $pos       (optional) ตำแหน่งของลายน้ำเช่น center top bottom right left (default 'top left')
      * @param string   $color     (optional) สีของตัวอักษร เป็น hex เท่านั้น ไม่ต้องมี # (default CCCCCC)

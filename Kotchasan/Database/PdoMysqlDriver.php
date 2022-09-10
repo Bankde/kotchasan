@@ -30,11 +30,11 @@ class PdoMysqlDriver extends Driver
     /**
      * เชื่อมต่อ database
      *
-     * @param array $param
+     * @param mixed $params
      *
      * @return \static
      */
-    public function connect($param)
+    public function connect($params)
     {
         $this->options = array(
             \PDO::ATTR_STRINGIFY_FETCHES => 0,
@@ -42,7 +42,7 @@ class PdoMysqlDriver extends Driver
             \PDO::ATTR_PERSISTENT => 1,
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
         );
-        foreach ($param as $key => $value) {
+        foreach ($params as $key => $value) {
             $this->{$key} = $value;
         }
         if ($this->settings->dbdriver == 'mysql') {
@@ -56,7 +56,7 @@ class PdoMysqlDriver extends Driver
             try {
                 $this->connection = new \PDO($sql, $this->settings->username, $this->settings->password, $this->options);
                 if (defined('SQL_MODE')) {
-                    $this->connection->query("SET SESSION sql_mode='".SQL_MODE."'");
+                    $this->connection->query("SET SESSION sql_mode='".constant('SQL_MODE')."'");
                 }
             } catch (\PDOException $e) {
                 throw new \Exception($e->getMessage(), 500, $e);

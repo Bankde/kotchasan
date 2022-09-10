@@ -515,17 +515,11 @@ a.icon-edit:before {
 .icon-list:before {
   content: "\e69d";
 }
-.icon-print:before {
-  content: "\e69e";
-}
 .icon-alarm:before {
   content: "\e69f";
 }
 .icon-bookmark:before {
   content: "\e6a0";
-}
-.icon-delete:before {
-  content: "\e6a1";
 }
 .icon-expand:before {
   content: "\e6a2";
@@ -687,29 +681,14 @@ a.icon-edit:before {
 .icon-googleplus:before {
   content: "\e90d";
 }
-.icon-instagram:before {
-  content: "\e640";
-}
-.icon-paypal:before {
-  content: "\e90e";
-}
-.icon-pinterest:before {
-  content: "\e658";
-}
 .icon-twitter:before {
   content: "\e911";
-}
-.icon-visa:before {
-  content: "\e912";
 }
 .icon-youtube:before {
   content: "\e913";
 }
 .icon-wechat:before {
   content: "\e914";
-}
-.icon-skype:before {
-  content: "\e915";
 }
 .icon-line:before {
   content: "\e916";
@@ -762,12 +741,6 @@ a.icon-edit:before {
 .icon-qrcode:before {
   content: "\e938";
 }
-.icon-fullscreen:before {
-  content: "\e674";
-}
-.icon-contract:before {
-  content: "\e675";
-}
 .icon-config:before {
   content: "\e681";
 }
@@ -786,6 +759,24 @@ a.icon-edit:before {
 }
 .icon-child:before {
   content: "\e90f";
+}
+.icon-bell:before {
+  content: "\e951";
+}
+.icon-print:before {
+  content: "\e69e";
+}
+.icon-fullscreen:before {
+  content: "\e674";
+}
+.icon-contract:before {
+  content: "\e675";
+}
+.icon-meter:before {
+  content: "\e9a6";
+}
+.icon-delete:before {
+  content: "\e6a1";
 }
 .icon-fontfamily:before {
   content: "A";

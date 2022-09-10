@@ -256,7 +256,11 @@ if (DEBUG != 2) {
         } else {
             $tract = next($tract);
         }
-        \Kotchasan\Log\Logger::create()->error('<br>Exception : <em>'.$e->getMessage().'</em> in <b>'.$tract['file'].'</b> on line <b>'.$tract['line'].'</b>');
+        $err = '<br>Exception : <em>'.$e->getMessage().'</em>';
+        if (isset($tract['file']) && isset($tract['line'])) {
+            $err .= ' in <b>'.$tract['file'].'</b> on line <b>'.$tract['line'].'</b>';
+        }
+        \Kotchasan\Log\Logger::create()->error($err);
     });
 }
 
@@ -375,7 +379,8 @@ spl_autoload_register(function ($className) {
         'Kotchasan\View' => 'View.php',
         'Kotchasan\load' => 'load.php',
         'Kotchasan\ObjectTool' => 'ObjectTool.php',
-        'Kotchasan\InputItemException' => 'InputItemException.php'
+        'Kotchasan\InputItemException' => 'InputItemException.php',
+        'Kotchasan\Xls' => 'Xls.php'
     );
     if (isset($files[$className])) {
         $file = VENDOR_DIR.$files[$className];

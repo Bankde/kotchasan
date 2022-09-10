@@ -427,27 +427,38 @@ class Html extends \Kotchasan\KBase
             if (isset($attributes['options'])) {
                 foreach ($attributes['value'] as $value) {
                     if (isset($attributes['options'][$value])) {
-                        $li .= '<li><span>'.$attributes['options'][$value].'</span><button type="button">x</button><input type="hidden" name="'.$id.'[]" value="'.$value.'"></li>';
+                        $li .= '<li id="'.$id.'_item_'.$value.'"><span>'.$attributes['options'][$value].'</span><button type="button">x</button><input type="hidden" name="'.$id.'[]" value="'.$value.'"></li>';
                     }
                 }
             } else {
-                foreach ($attributes['value'] as $value) {
-                    $li .= '<li><span>'.$value.'</span><button type="button">x</button><input type="hidden" name="'.$id.'[]" value="'.$value.'"></li>';
+                foreach ($attributes['value'] as $k => $value) {
+                    $li .= '<li id="'.$id.'_item_'.$k.'"><span>'.$value.'</span><button type="button">x</button><input type="hidden" name="'.$id.'[]" value="'.$k.'"></li>';
                 }
             }
         }
         foreach ($attributes as $key => $value) {
             if ($key == 'validator') {
-                $js = array();
-                $js[] = '"'.$id.'"';
-                $js[] = '"'.$value[0].'"';
-                $js[] = $value[1];
+                $js = array('"'.$id.'"', '"'.$value[0].'"', $value[1]);
                 if (isset($value[2])) {
                     $js[] = '"'.$value[2].'"';
                     $js[] = empty($value[3]) || $value[3] === null ? 'null' : '"'.$value[3].'"';
                     $js[] = '"'.self::$form->attributes['id'].'"';
                 }
                 self::$form->javascript[] = 'new GValidator('.implode(', ', $js).');';
+            } elseif ($key == 'autocomplete') {
+                $o = array(
+                    'get' => 'get: GInputGroup.prototype.doAutocompleteGet',
+                    'populate' => 'populate: GInputGroup.prototype.doAutocompletePopulate',
+                    'callBack' => 'callBack: GInputGroup.prototype.doAutocompleteCallback'
+                );
+                foreach ($value as $k => $v) {
+                    if ($k == 'url') {
+                        $o['url'] = 'url: "'.$v.'"';
+                    } else {
+                        $o['get'] = $k.': '.$v;
+                    }
+                }
+                self::$form->javascript[] = 'new GAutoComplete("'.$id.'",{'.implode(',', $o).'});';
             } elseif ($key == 'options') {
                 $options = $value;
                 $datalist = $id.'_'.\Kotchasan\Password::uniqid();

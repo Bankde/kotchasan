@@ -40,14 +40,14 @@ class Csv
      * ฟังก์ชั่นนำเข้าข้อมูล CSV
      * คืนค่าข้อมูลที่อ่านได้เป็นแอเรย์
      *
-     * @param string $csv     ชื่อไฟล์รวมพาธ
+     * @param string $csv ชื่อไฟล์รวมพาธ
      * @param array  $columns ข้อมูลคอลัมน์ array('column1' => 'data type', 'column2' => 'data type', ....)
-     * @param array  $keys    ชื่อคอลัมน์สำหรับตรวจข้อมูลซ้ำ null(default) หมายถึงไม่ตรวจสอบ
-     * @param string $charset รหัสภาษาของไฟล์ ค่าเริ่มต้นคือ Windows-874 (ภาษาไทย)
+     * @param array  $keys ชื่อคอลัมน์สำหรับตรวจข้อมูลซ้ำ null(default) หมายถึงไม่ตรวจสอบ
+     * @param string $charset รหัสภาษาของไฟล์ ค่าเริ่มต้นคือ UTF-8
      *
      * @return array
      */
-    public static function import($csv, $columns, $keys = null, $charset = 'Windows-874')
+    public static function import($csv, $columns, $keys = null, $charset = 'UTF-8')
     {
         $obj = new static();
         $obj->columns = $columns;
@@ -68,7 +68,7 @@ class Csv
      *
      * @throws Exception ถ้า Header ของไฟล์ CSV ไม่ถูกต้อง
      */
-    public static function read($file, $onRow, $headers = null, $charset = 'Windows-874')
+    public static function read($file, $onRow, $headers = null, $charset = 'UTF-8')
     {
         $columns = array();
         $f = @fopen($file, 'r');
@@ -81,7 +81,7 @@ class Csv
                         if (count($headers) != count($data)) {
                             throw new \Exception('Invalid CSV Header');
                         } else {
-                            if ($charset == 'UTF-8' || $charset == 'UTF-8BOM') {
+                            if ($charset == 'UTF-8') {
                                 // remove BOM
                                 $data[0] = self::removeBomUtf8($data[0]);
                             } else {
@@ -103,7 +103,7 @@ class Csv
                     $items = array();
                     foreach ($data as $k => $v) {
                         if (isset($columns[$k])) {
-                            if ($charset == 'UTF-8' || $charset == 'UTF-8BOM') {
+                            if ($charset == 'UTF-8') {
                                 $items[$columns[$k]] = $v;
                             } else {
                                 // แปลงเป็น UTF-8
@@ -122,21 +122,22 @@ class Csv
      * สร้างไฟล์ CSV สำหรับดาวน์โหลด
      * คืนค่า true
      *
-     * @param string $file    ชื่อไฟล์ ไม่ต้องมีนามสกุล
-     * @param array  $header  ส่วนหัวของข้อมูล
-     * @param array  $datas   ข้อมูล
-     * @param string $charset ภาษาของ CSV ค่าเริ่มต้นคือ Windows-874 (ภาษาไทย)
+     * @param string $file ชื่อไฟล์ ไม่ต้องมีนามสกุล
+     * @param array $header ส่วนหัวของข้อมูล
+     * @param array $datas ข้อมูล
+     * @param string $charset ภาษาของ CSV ค่าเริ่มต้นคือ UTF-8
+     * @param bool $bom true (default) ใส่ BOM ลงในไฟล์ CSV ถ้าเป็น UTF-8
      *
      * @return bool
      */
-    public static function send($file, $header, $datas, $charset = 'Windows-874')
+    public static function send($file, $header, $datas, $charset = 'UTF-8', $bom = true)
     {
         // header
         header('Content-Type: text/csv;charset="'.$charset.'"');
         header('Content-Disposition: attachment;filename="'.$file.'.csv"');
         // create stream
         $f = fopen('php://output', 'w');
-        if ($charset == 'UTF-8BOM') {
+        if ($charset == 'UTF-8' && $bom) {
             // UTF-8 with BOM
             fwrite($f, "\xEF\xBB\xBF");
         }
@@ -182,7 +183,7 @@ class Csv
      */
     private static function convert($datas, $charset)
     {
-        if ($charset != 'UTF-8' && $charset != 'UTF-8BOM') {
+        if ($charset != 'UTF-8') {
             foreach ($datas as $k => $v) {
                 if ($v != '') {
                     $datas[$k] = iconv('UTF-8', $charset.'//IGNORE', $v);
@@ -231,7 +232,7 @@ class Csv
                     if (preg_match('/^([0-9]{2,2}):([0-9]{2,2}):([0-9]{2,2})$/', $data[$key])) {
                         $save[$key] = $data[$key];
                     }
-                } elseif ($this->charset == 'UTF-8' || $this->charset == 'UTF-8BOM') {
+                } elseif ($this->charset == 'UTF-8') {
                     $save[$key] = \Kotchasan\Text::topic($data[$key]);
                 } else {
                     $save[$key] = iconv($this->charset, 'UTF-8', \Kotchasan\Text::topic($data[$key]));

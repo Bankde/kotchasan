@@ -1729,10 +1729,14 @@ form .item {
   overflow: hidden;
 }
 .three_lines,
-.two_lines {
+.two_lines,
+.one_line {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+.one_line {
+  -webkit-line-clamp: 1;
 }
 .two_lines {
   -webkit-line-clamp: 2;

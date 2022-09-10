@@ -818,10 +818,13 @@ class DataTable extends \Kotchasan\KBase
         $table_nav_float = array();
         if (!empty($this->actions) && is_array($this->actions)) {
             foreach ($this->actions as $item) {
-                if (isset($item['float']) && $item['float']) {
-                    $table_nav_float[] = $this->addAction($item);
-                } else {
-                    $table_nav[] = $this->addAction($item);
+                $action = $this->addAction($item);
+                if ($action !== null) {
+                    if (isset($item['float']) && $item['float']) {
+                        $table_nav_float[] = $this->addAction($item);
+                    } else {
+                        $table_nav[] = $this->addAction($item);
+                    }
                 }
             }
         }
@@ -1136,12 +1139,16 @@ class DataTable extends \Kotchasan\KBase
             $match[2] = trim($match[2].' '.(isset($match[5]) ? $match[5] : ''));
         }
         if (isset($item['options'])) {
-            // select
-            $rows = array();
-            foreach ($item['options'] as $key => $text) {
-                $rows[] = '<option value="'.$key.'">'.$text.'</option>';
+            if (!empty($item['options'])) {
+                // select
+                $rows = array();
+                foreach ($item['options'] as $key => $text) {
+                    $rows[] = '<option value="'.$key.'">'.$text.'</option>';
+                }
+                return '<fieldset><select id="'.$item['id'].'">'.implode('', $rows).'</select><label for="'.$item['id'].'" class="button '.$item['class'].' action"><span>'.$item['text'].'</span></label></fieldset>';
+            } else {
+                return null;
             }
-            return '<fieldset><select id="'.$item['id'].'">'.implode('', $rows).'</select><label for="'.$item['id'].'" class="button '.$item['class'].' action"><span>'.$item['text'].'</span></label></fieldset>';
         } elseif (isset($item['type'])) {
             $prop = array(
                 'type="'.$item['type'].'"'

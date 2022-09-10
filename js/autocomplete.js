@@ -59,7 +59,7 @@
           _hide();
           try {
             self.input.datas = this.datas;
-            options.callBack.call(this.datas);
+            options.callBack.call(this.datas, self.input);
             self.text = self.input.value;
           } catch (e) {}
         }
@@ -88,13 +88,13 @@
         var f, i, r, p, n;
         for (i in datas) {
           if (datas[i]['options']) {
-            r = options.populateLabel.call(datas[i]);
+            r = options.populateLabel.call(datas[i], self.input);
             p = r.toDOM();
             f = p.firstChild;
             $G(f).addClass('optgroup');
             display.appendChild(p);
             for (n in datas[i]['options']) {
-              r = options.populate.call(datas[i]['options'][n]);
+              r = options.populate.call(datas[i]['options'][n], self.input);
               if (r && r != "") {
                 p = r.toDOM();
                 f = p.firstChild;
@@ -107,7 +107,7 @@
               }
             }
           } else {
-            r = options.populate.call(datas[i]);
+            r = options.populate.call(datas[i], self.input);
             if (r && r != "") {
               p = r.toDOM();
               f = p.firstChild;
@@ -278,6 +278,7 @@ function initAutoComplete(id, link, displayFields, icon, options) {
       return '<p><span class="icon-' + (icon || this.icon || "search") + '">' + row + "</span></p>";
     }
   }
+
   var o = {
     get: doGetQuery,
     populate: doPopulate,

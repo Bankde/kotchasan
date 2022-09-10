@@ -264,10 +264,11 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      * @param array  $keys    ชื่อตัวแปรที่ต้องการอ่าน ตัวพิมพ์ใหญ่ เช่น array('POST', 'GET')
      * @param string $name    ชื่อตัวแปร
      * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
+     * @param string  $cookie_or_session_name ชื่อของ cookie หรือ session หากต่างจาก $name
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
-    public function globals($keys, $name, $default = null)
+    public function globals($keys, $name, $default = null, $cookie_or_session_name = null)
     {
         foreach ($keys as $key) {
             if ($key == 'POST') {
@@ -276,8 +277,14 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
                 $datas = $this->getQueryParams();
             } elseif ($key == 'SESSION') {
                 $datas = $_SESSION;
+                if ($cookie_or_session_name !== null) {
+                    $name = $cookie_or_session_name;
+                }
             } elseif ($key == 'COOKIE') {
                 $datas = $this->getCookieParams();
+                if ($cookie_or_session_name !== null) {
+                    $name = $cookie_or_session_name;
+                }
             }
             if (isset($datas[$name])) {
                 return is_array($datas[$name]) ? new \Kotchasan\Inputs($datas[$name], $key) : new \Kotchasan\InputItem($datas[$name], $key);
@@ -411,17 +418,17 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      *
      * @param string $name    ชื่อตัวแปร
      * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
-     * @param mixed  $cookie  false (default) ไม่อ่านจาก cookie, true อ่านจาก cookie ด้วย
+     * @param mixed  $cookie  null (default) ไม่อ่านจาก cookie, string ชื่อ cookie ที่ต้องการ
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
-    public function request($name, $default = null, $cookie = false)
+    public function request($name, $default = null, $cookie = null)
     {
         $from = array('POST', 'GET');
-        if ($cookie) {
+        if ($cookie !== null) {
             $from[] = 'COOKIE';
         }
-        return $this->globals($from, $name, $default);
+        return $this->globals($from, $name, $default, $cookie);
     }
 
     /**

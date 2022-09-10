@@ -29,9 +29,9 @@ final class Database extends KBase
     /**
      * Create Database Connection
      *
-     * @param string|array $name ชื่อของการเชื่อมต่อกำหนดค่าใน config หรือ array ของค่ากำหนดของฐานข้อมูล
+     * @param mixed $name ชื่อของการเชื่อมต่อกำหนดค่าใน config หรือ array ของค่ากำหนดของฐานข้อมูล
      *
-     * @return \static
+     * @return \Kotchasan\Database\Driver
      */
     public static function create($name = 'mysql')
     {

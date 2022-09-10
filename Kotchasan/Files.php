@@ -22,11 +22,24 @@ use Kotchasan\Http\UploadedFile;
 class Files implements \Iterator
 {
     /**
+     * @var int
+     */
+    private $position = 0;
+    /**
      * แอเรย์เก็บรายการ UploadedFile
      *
      * @var array
      */
     private $datas = array();
+
+    /**
+     * init Class
+     */
+    public function __construct()
+    {
+        $this->position = 0;
+        $this->datas = array();
+    }
 
     /**
      * เพื่ม File ลงในคอลเล็คชั่น
@@ -40,7 +53,28 @@ class Files implements \Iterator
      */
     public function add($name, $path, $originalName, $mimeType = null, $size = null, $error = null)
     {
-        $this->datas[$name] = new UploadedFile($path, $originalName, $mimeType, $size, $error);
+        $this->datas[] = array(
+            $name,
+            new UploadedFile($path, $originalName, $mimeType, $size, $error)
+        );
+    }
+
+    /**
+     * inherited from Iterator
+     */
+    #[\ReturnTypeWillChange]
+    public function rewind()
+    {
+        $this->position = 0;
+    }
+
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function valid()
+    {
+        return isset($this->datas[$this->position]);
     }
 
     /**
@@ -51,21 +85,7 @@ class Files implements \Iterator
     #[\ReturnTypeWillChange]
     public function current()
     {
-        $var = current($this->datas);
-        return $var;
-    }
-
-    /**
-     * อ่าน File ที่ต้องการ
-     *
-     * @param string|int $key รายการที่ต้องการ
-     *
-     * @return \Kotchasan\Http\UploadedFile
-     */
-    #[\ReturnTypeWillChange]
-    public function get($key)
-    {
-        return $this->datas[$key];
+        return $this->datas[$this->position][1];
     }
 
     /**
@@ -76,8 +96,7 @@ class Files implements \Iterator
     #[\ReturnTypeWillChange]
     public function key()
     {
-        $var = key($this->datas);
-        return $var;
+        return $this->datas[$this->position][0];
     }
 
     /**
@@ -88,26 +107,25 @@ class Files implements \Iterator
     #[\ReturnTypeWillChange]
     public function next()
     {
-        $var = next($this->datas);
-        return $var;
+        $this->position++;
     }
 
     /**
-     * inherited from Iterator
+     * อ่าน File ที่ต้องการ
+     *
+     * @param string|int $key รายการที่ต้องการ
+     *
+     * @return \Kotchasan\Http\UploadedFile
      */
-    #[\ReturnTypeWillChange]
-    public function rewind()
+    public function get($key)
     {
-        reset($this->datas);
-    }
-
-    /**
-     * @return bool
-     */
-    #[\ReturnTypeWillChange]
-    public function valid()
-    {
-        $key = key($this->datas);
-        return $key !== null && $key !== false;
+        $result = null;
+        foreach ($this->datas as $values) {
+            if ($values[0] === $key) {
+                $result = $values[1];
+                break;
+            }
+        }
+        return $result;
     }
 }
