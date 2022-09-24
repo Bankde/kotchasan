@@ -58,6 +58,7 @@ class Number
      * จัดรูปแบบตัวเลข รองรับการเติม วัน เดือน ปี
      *
      * @assert ('G%04d', 1) [==] "G0001"
+     * @assert ('G-%s-%04d', 1, 'PREFIX') [==] "G-PREFIX-0001"
      * @example G-%Y-%M-%D-%04d    G-64-08-09-0001
      * @example G-%y-%m-%d-%04d    G-21-8-9-0001
      * @example G-%YY-%M-%D-%04d   G-2564-08-09-0001
@@ -65,18 +66,19 @@ class Number
      *
      * @param string $format
      * @param mixed $value
+     * @param string $prefix
      *
      * @return string
      */
-    public static function printf($format, $value)
+    public static function printf($format, $value, $prefix = '')
     {
         $y = date('Y');
         $Y = $y + 543;
         $m = date('m');
         $d = date('d');
         $format = str_replace(
-            array('%YY', '%yy', '%Y', '%y', '%M', '%m', '%D', '%d'),
-            array($Y, $y, substr($Y, 2, 2), substr($y, 2, 2), $m, (int) $m, $d, (int) $d),
+            array('%YY', '%yy', '%Y', '%y', '%M', '%m', '%D', '%d', '%s'),
+            array($Y, $y, substr($Y, 2, 2), substr($y, 2, 2), $m, (int) $m, $d, (int) $d, $prefix),
             $format
         );
         return sprintf($format, $value);
