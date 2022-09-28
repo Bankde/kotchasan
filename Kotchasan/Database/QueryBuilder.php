@@ -3,9 +3,9 @@
  * @filesource Kotchasan/Database/QueryBuilder.php
  *
  * @copyright 2016 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  *
- * @see http://www.kotchasan.com/
+ * @see https://www.kotchasan.com/
  */
 
 namespace Kotchasan\Database;
@@ -180,7 +180,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param string $table     ชื่อตาราง
      * @param mixed  $condition query WHERE
      *
-     * @assert select()->from('user U')->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE  EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
+     * @assert select()->from('user U')->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
      * @assert select()->from('user U')->where(array('U.id', 1))->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE U.`id` = 1 AND EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
      *
      * @return \static
@@ -195,7 +195,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
         if (!isset($this->sqls['exists'])) {
             $this->sqls['exists'] = array();
         }
-        $this->sqls['exists'][] = ' EXISTS (SELECT * FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
+        $this->sqls['exists'][] = 'EXISTS (SELECT * FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
         return $this;
     }
 
@@ -460,6 +460,9 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * ฟังก์ชั่นสร้าง SQL NOT EXISTS
      *
+     * @assert select()->from('user U')->notExists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE NOT EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
+     * @assert select()->from('user U')->where(array('U.id', 1))->notExists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE U.`id` = 1 AND NOT EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
+     *
      * @param string $table     ชื่อตาราง
      * @param mixed  $condition query WHERE
      * @param string $operator  (optional) เช่น AND หรือ OR
@@ -476,7 +479,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
         if (!isset($this->sqls['exists'])) {
             $this->sqls['exists'] = array();
         }
-        $this->sqls['exists'][] = ' NOT EXISTS (SELECT * FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
+        $this->sqls['exists'][] = 'NOT EXISTS (SELECT * FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
         return $this;
     }
 

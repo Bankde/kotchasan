@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kotchasan</title>
+    <title>Kotchasan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -23,7 +23,7 @@
     </head>
 <body id="top">
     <header class="phpdocumentor-header phpdocumentor-section">
-    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">kotchasan</a></h1>
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">Kotchasan</a></h1>
     <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
     <label class="phpdocumentor-header__menu-icon" for="menu-button">
         <i class="fas fa-bars"></i>
@@ -209,7 +209,7 @@ false กำหนดการค้นหาด้วยตัวเอง</dd>
 <dd>ปุ่มที่จะใส่ไว้ด้านหลังของแต่ละแถว</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Kotchasan-DataTable.html#property_columns">$columns</a>
+    <a href="classes/Kotchasan-DataTable.html#property_cols">$cols</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
@@ -247,7 +247,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ตัวเลือกจำนวนการแสดงผล</dd>
+<dd>ตัวเลือกจำนวนการแสดงผลรายการต่อหน้า</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_filters">$filters</a>
@@ -477,6 +477,14 @@ function(tr)</dd>
 function(tr){return true;}</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Kotchasan-DataTable.html#property_onChanged">$onChanged</a>
+    <span>
+                &nbsp;: string            </span>
+</dt>
+<dd>ชื่อฟังก์ชั่น Javascript เรียกหลังจากโหลดข้อมูลด้วย Ajax แล้ว
+function(tbody, items)</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onCreateButton">$onCreateButton</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
@@ -534,6 +542,13 @@ $row int ลำดับที่ของข้อมูล (key)
 $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Kotchasan-DataTable.html#property_params">$params</a>
+    <span>
+                &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+<dd>ข้อมูลแอเรย์สำหรับส่งไปยัง $url เมื่อมีการเรียกโดย Ajax</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_pmButton">$pmButton</a>
     <span>
                 &nbsp;: bool            </span>
@@ -568,6 +583,14 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</d
                 &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>            </span>
 </dt>
 <dd>Uri ปัจจุบันของหน้าเว็บ</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Kotchasan-DataTable.html#property_url">$url</a>
+    <span>
+                &nbsp;: string            </span>
+</dt>
+<dd>URL สำหรับการอ่านข้อมูลด้วย Ajax
+คืนค่ากลับมาเป็น JSON ตามคอลัมน์</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DataTable.html#method___construct">__construct()</a>
@@ -661,7 +684,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</d
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
     </aside>
 
@@ -696,7 +719,7 @@ array(&#039;delete&#039; =&gt; Language::get(&#039;Delete&#039;), &#039;publishe
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">216</span>
+    <span class="phpdocumentor-element-found-in__line">236</span>
 
     </aside>
 
@@ -731,7 +754,7 @@ false กำหนดการค้นหาด้วยตัวเอง</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">270</span>
+    <span class="phpdocumentor-element-found-in__line">290</span>
 
     </aside>
 
@@ -755,16 +778,16 @@ false กำหนดการค้นหาด้วยตัวเอง</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_columns">
-        $columns
-        <a href="classes/Kotchasan-DataTable.html#property_columns" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_cols">
+        $cols
+        <a href="classes/Kotchasan-DataTable.html#property_cols" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">195</span>
+    <span class="phpdocumentor-element-found-in__line">215</span>
 
     </aside>
 
@@ -773,7 +796,7 @@ false กำหนดการค้นหาด้วยตัวเอง</p>
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$columns</span>
+    <span class="phpdocumentor-signature__name">$cols</span>
      = <span class="phpdocumentor-signature__default-value">array()</span></code>
 
     
@@ -797,7 +820,7 @@ false กำหนดการค้นหาด้วยตัวเอง</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">196</span>
 
     </aside>
 
@@ -835,7 +858,7 @@ array(&#039;id&#039;, &#039;!=&#039; , 1) WHERE `id` != 1 AND .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">258</span>
+    <span class="phpdocumentor-element-found-in__line">278</span>
 
     </aside>
 
@@ -869,7 +892,7 @@ array(&#039;id&#039;, &#039;!=&#039; , 1) WHERE `id` != 1 AND .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">324</span>
+    <span class="phpdocumentor-element-found-in__line">344</span>
 
     </aside>
 
@@ -904,11 +927,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">336</span>
+    <span class="phpdocumentor-element-found-in__line">356</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวเลือกจำนวนการแสดงผล</p>
+        <p class="phpdocumentor-summary">ตัวเลือกจำนวนการแสดงผลรายการต่อหน้า</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -937,7 +960,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">183</span>
+    <span class="phpdocumentor-element-found-in__line">203</span>
 
     </aside>
 
@@ -971,7 +994,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">201</span>
+    <span class="phpdocumentor-element-found-in__line">221</span>
 
     </aside>
 
@@ -1004,7 +1027,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
@@ -1038,7 +1061,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">209</span>
 
     </aside>
 
@@ -1071,7 +1094,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">244</span>
+    <span class="phpdocumentor-element-found-in__line">264</span>
 
     </aside>
 
@@ -1104,7 +1127,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">238</span>
+    <span class="phpdocumentor-element-found-in__line">258</span>
 
     </aside>
 
@@ -1138,7 +1161,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">231</span>
+    <span class="phpdocumentor-element-found-in__line">251</span>
 
     </aside>
 
@@ -1171,7 +1194,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">208</span>
+    <span class="phpdocumentor-element-found-in__line">228</span>
 
     </aside>
 
@@ -1205,7 +1228,7 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">225</span>
+    <span class="phpdocumentor-element-found-in__line">245</span>
 
     </aside>
 
@@ -1241,7 +1264,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">251</span>
+    <span class="phpdocumentor-element-found-in__line">271</span>
 
     </aside>
 
@@ -1341,7 +1364,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">264</span>
+    <span class="phpdocumentor-element-found-in__line">284</span>
 
     </aside>
 
@@ -1374,7 +1397,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">118</span>
 
     </aside>
 
@@ -1408,7 +1431,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">120</span>
+    <span class="phpdocumentor-element-found-in__line">133</span>
 
     </aside>
 
@@ -1442,7 +1465,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">140</span>
 
     </aside>
 
@@ -1476,7 +1499,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">93</span>
 
     </aside>
 
@@ -1509,7 +1532,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -1542,7 +1565,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -1610,7 +1633,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">342</span>
+    <span class="phpdocumentor-element-found-in__line">362</span>
 
     </aside>
 
@@ -1643,7 +1666,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">303</span>
+    <span class="phpdocumentor-element-found-in__line">323</span>
 
     </aside>
 
@@ -1676,7 +1699,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">348</span>
+    <span class="phpdocumentor-element-found-in__line">368</span>
 
     </aside>
 
@@ -1709,7 +1732,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
@@ -1742,7 +1765,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
@@ -1808,7 +1831,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">316</span>
+    <span class="phpdocumentor-element-found-in__line">336</span>
 
     </aside>
 
@@ -1874,7 +1897,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">160</span>
+    <span class="phpdocumentor-element-found-in__line">173</span>
 
     </aside>
 
@@ -1909,7 +1932,7 @@ function(tr)</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">145</span>
+    <span class="phpdocumentor-element-found-in__line">158</span>
 
     </aside>
 
@@ -1935,6 +1958,40 @@ function(tr){return true;}</p>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_onChanged">
+        $onChanged
+        <a href="classes/Kotchasan-DataTable.html#property_onChanged" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">187</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">ชื่อฟังก์ชั่น Javascript เรียกหลังจากโหลดข้อมูลด้วย Ajax แล้ว
+function(tbody, items)</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$onChanged</span>
+    </code>
+
+    
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_onCreateButton">
         $onCreateButton
         <a href="classes/Kotchasan-DataTable.html#property_onCreateButton" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1944,7 +2001,7 @@ function(tr){return true;}</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">281</span>
+    <span class="phpdocumentor-element-found-in__line">301</span>
 
     </aside>
 
@@ -1984,7 +2041,7 @@ $items array ข้อมูลในแถว</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">297</span>
+    <span class="phpdocumentor-element-found-in__line">317</span>
 
     </aside>
 
@@ -2021,7 +2078,7 @@ function()</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">289</span>
+    <span class="phpdocumentor-element-found-in__line">309</span>
 
     </aside>
 
@@ -2058,7 +2115,7 @@ function()</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">152</span>
+    <span class="phpdocumentor-element-found-in__line">165</span>
 
     </aside>
 
@@ -2092,7 +2149,7 @@ function(){}</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">167</span>
+    <span class="phpdocumentor-element-found-in__line">180</span>
 
     </aside>
 
@@ -2126,7 +2183,7 @@ function(tr, row)</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">150</span>
 
     </aside>
 
@@ -2156,6 +2213,39 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_params">
+        $params
+        <a href="classes/Kotchasan-DataTable.html#property_params" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">ข้อมูลแอเรย์สำหรับส่งไปยัง $url เมื่อมีการเรียกโดย Ajax</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$params</span>
+     = <span class="phpdocumentor-signature__default-value">array()</span></code>
+
+    
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_pmButton">
         $pmButton
         <a href="classes/Kotchasan-DataTable.html#property_pmButton" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2165,7 +2255,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">86</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -2198,7 +2288,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">310</span>
+    <span class="phpdocumentor-element-found-in__line">330</span>
 
     </aside>
 
@@ -2232,7 +2322,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
@@ -2265,7 +2355,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
@@ -2298,7 +2388,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">330</span>
+    <span class="phpdocumentor-element-found-in__line">350</span>
 
     </aside>
 
@@ -2309,6 +2399,40 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
         <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a></span>
     <span class="phpdocumentor-signature__name">$uri</span>
     </code>
+
+    
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_url">
+        $url
+        <a href="classes/Kotchasan-DataTable.html#property_url" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">49</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">URL สำหรับการอ่านข้อมูลด้วย Ajax
+คืนค่ากลับมาเป็น JSON ตามคอลัมน์</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$url</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -2335,7 +2459,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">355</span>
+    <span class="phpdocumentor-element-found-in__line">375</span>
 
     </aside>
 
@@ -2378,7 +2502,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">466</span>
+    <span class="phpdocumentor-element-found-in__line">486</span>
 
     </aside>
 
@@ -2412,7 +2536,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">455</span>
+    <span class="phpdocumentor-element-found-in__line">475</span>
 
     </aside>
 
@@ -2455,7 +2579,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1100</span>
+    <span class="phpdocumentor-element-found-in__line">1136</span>
 
     </aside>
 
@@ -2498,7 +2622,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1167</span>
+    <span class="phpdocumentor-element-found-in__line">1207</span>
 
     </aside>
 
@@ -2541,7 +2665,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1019</span>
+    <span class="phpdocumentor-element-found-in__line">1055</span>
 
     </aside>
 
@@ -2604,7 +2728,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">864</span>
+    <span class="phpdocumentor-element-found-in__line">900</span>
 
     </aside>
 
@@ -2657,7 +2781,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">994</span>
+    <span class="phpdocumentor-element-found-in__line">1030</span>
 
     </aside>
 
@@ -2737,7 +2861,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">968</span>
+    <span class="phpdocumentor-element-found-in__line">1004</span>
 
     </aside>
 

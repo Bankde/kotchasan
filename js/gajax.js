@@ -2,9 +2,9 @@
  * Javascript Library for Kotchasan Framework
  *
  * @filesource js/gajax.js
- * @link http://www.kotchasan.com/
+ * @link https://www.kotchasan.com/
  * @copyright 2018 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  */
 window.$K = (function() {
   'use strict';

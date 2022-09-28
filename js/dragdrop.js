@@ -3,9 +3,9 @@
  * Javascript drag drop
  *
  * @filesource js/dragdrop.js
- * @link http://www.kotchasan.com/
+ * @link https://www.kotchasan.com/
  * @copyright 2019 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  */
 (function() {
   "use strict";

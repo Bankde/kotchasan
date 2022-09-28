@@ -3,9 +3,9 @@
  * @filesource Kotchasan/Text.php
  *
  * @copyright 2016 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  *
- * @see http://www.kotchasan.com/
+ * @see https://www.kotchasan.com/
  */
 
 namespace Kotchasan;
@@ -111,6 +111,8 @@ class Text
 
     /**
      * แปลง & " ' < > \ { } $ เป็น HTML entities ใช้แทน htmlspecialchars() ของ PHP
+     *
+     * @assert ('&"\'<>\\{}$') [==] '&amp;&quot;&#039;&lt;&gt;&#92;&#x007B;&#x007D;&#36;'
      *
      * @param string $text
      * @param bool $double_encode true (default) แปลง รหัส HTML เช่น &amp; เป็น &amp;amp;, false ไม่แปลง

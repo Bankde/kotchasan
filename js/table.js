@@ -3,9 +3,9 @@
  * Javascript data table for Kotchasan Framework
  *
  * @filesource js/table.js
- * @link http://www.kotchasan.com/
+ * @link https://www.kotchasan.com/
  * @copyright 2016 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  */
 (function() {
   "use strict";
@@ -401,7 +401,7 @@
       forEach($G(tbody).elems("tr"), function() {
         if (temp.options.pmButton) {
           this.id = temp.table.id + "_" + row;
-          forEach($G(this).elems("input"), function() {
+          forEach(this.querySelectorAll("select,input,textarea"), function() {
             this.id = this.name.replace(/([\[\]_]+)/g, "_") + row;
           });
         }

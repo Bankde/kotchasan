@@ -3,9 +3,9 @@
  * Javascript realtime Clock
  *
  * @filesource js/clock.js
- * @link http://www.kotchasan.com/
+ * @link https://www.kotchasan.com/
  * @copyright 2016 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  */
 (function() {
   "use strict";

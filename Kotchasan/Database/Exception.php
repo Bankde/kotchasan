@@ -3,9 +3,9 @@
  * @filesource Kotchasan/Database/Exception.php
  *
  * @copyright 2016 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  *
- * @see http://www.kotchasan.com/
+ * @see https://www.kotchasan.com/
  */
 
 namespace Kotchasan\Database;

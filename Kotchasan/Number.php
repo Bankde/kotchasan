@@ -3,9 +3,9 @@
  * @filesource Kotchasan/Number.php
  *
  * @copyright 2016 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  *
- * @see http://www.kotchasan.com/
+ * @see https://www.kotchasan.com/
  */
 
 namespace Kotchasan;
@@ -43,6 +43,9 @@ class Number
     /**
      * หังก์ชั่นหาร
      * $divisor เท่ากับ 0 คืนค่า 0
+     *
+     * @assert (1, 2) [==] 0.5
+     * @assert (1, 0) [==] 0
      *
      * @param $actual ตัวตั้ง
      * @param $divisor ตัวหาร

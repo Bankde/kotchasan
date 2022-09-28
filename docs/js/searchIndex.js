@@ -796,6 +796,11 @@ Search.appendIndex(
             "summary": "\u0E2D\u0E48\u0E32\u0E19\u0E04\u0E48\u0E32\u0E01\u0E33\u0E2B\u0E19\u0E14\u0E02\u0E2D\u0E07\u0E10\u0E32\u0E19\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25",
             "url": "classes/Kotchasan-Database-Db.html#method_getSetting"
         },                {
+            "fqsen": "\\Kotchasan\\Database\\Db\u003A\u003AgetAllSettings\u0028\u0029",
+            "name": "getAllSettings",
+            "summary": "\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E01\u0E33\u0E2B\u0E19\u0E14\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14\u0E02\u0E2D\u0E07\u0E10\u0E32\u0E19\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25",
+            "url": "classes/Kotchasan-Database-Db.html#method_getAllSettings"
+        },                {
             "fqsen": "\\Kotchasan\\Database\\DbCache",
             "name": "DbCache",
             "summary": "Database\u0020Cache\u0020Class",
@@ -1248,7 +1253,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Database\\Query\u003A\u003A\u0024debugger",
             "name": "debugger",
-            "summary": "true\u0020\u0E41\u0E2A\u0E14\u0E07\u0020Query\u0020\u0E2D\u0E2D\u0E01\u0E17\u0E32\u0E07\u0E2B\u0E19\u0E48\u0E32\u0E08\u0E2D\u0E01\u0E48\u0E2D\u0E19\u0E01\u0E32\u0E23\u0020execute",
+            "summary": "1\u0020\u0E41\u0E2A\u0E14\u0E07\u0020Query\u0020\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E40\u0E14\u0E35\u0E22\u0E27\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E43\u0E2A\u0E48\u0E25\u0E07\u0E43\u0E19\u0020console\n2\u0020\u0E41\u0E2A\u0E14\u0E07\u0020Query\u0020\u0E14\u0E49\u0E32\u0E19\u0E25\u0E48\u0E32\u0E07\u0E08\u0E2D\u0E20\u0E32\u0E1E",
             "url": "classes/Kotchasan-Database-Query.html#property_debugger"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Query\u003A\u003A\u0024sqls",
@@ -1298,7 +1303,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Database\\QueryBuilder\u003A\u003Aexecute\u0028\u0029",
             "name": "execute",
-            "summary": "\u0E1B\u0E23\u0E30\u0E21\u0E27\u0E25\u0E1C\u0E25\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020SQL\n\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0E02\u0E2D\u0E07\u0E1C\u0E25\u0E25\u0E31\u0E1E\u0E17\u0E4C\u0020\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0020\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0E27\u0E48\u0E32\u0E07",
+            "summary": "\u0E1B\u0E23\u0E30\u0E21\u0E27\u0E25\u0E1C\u0E25\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020SQL\n\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08\u0020\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0E02\u0E2D\u0E07\u0E1C\u0E25\u0E25\u0E31\u0E1E\u0E17\u0E4C",
             "url": "classes/Kotchasan-Database-QueryBuilder.html#method_execute"
         },                {
             "fqsen": "\\Kotchasan\\Database\\QueryBuilder\u003A\u003Aexists\u0028\u0029",
@@ -1310,6 +1315,16 @@ Search.appendIndex(
             "name": "explain",
             "summary": "\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E14\u0E39\u0E23\u0E32\u0E22\u0E25\u0E30\u0E40\u0E2D\u0E35\u0E22\u0E14\u0E01\u0E32\u0E23\u0020Query",
             "url": "classes/Kotchasan-Database-QueryBuilder.html#method_explain"
+        },                {
+            "fqsen": "\\Kotchasan\\Database\\QueryBuilder\u003A\u003AcreateView\u0028\u0029",
+            "name": "createView",
+            "summary": "\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0E2A\u0E23\u0E49\u0E32\u0E07\u0020View",
+            "url": "classes/Kotchasan-Database-QueryBuilder.html#method_createView"
+        },                {
+            "fqsen": "\\Kotchasan\\Database\\QueryBuilder\u003A\u003AcreateTmpTable\u0028\u0029",
+            "name": "createTmpTable",
+            "summary": "\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E15\u0E32\u0E23\u0E32\u0E07\u0E0A\u0E31\u0E48\u0E27\u0E04\u0E23\u0E32\u0E27",
+            "url": "classes/Kotchasan-Database-QueryBuilder.html#method_createTmpTable"
         },                {
             "fqsen": "\\Kotchasan\\Database\\QueryBuilder\u003A\u003Afirst\u0028\u0029",
             "name": "first",
@@ -1410,6 +1425,11 @@ Search.appendIndex(
             "name": "update",
             "summary": "UPDATE",
             "url": "classes/Kotchasan-Database-QueryBuilder.html#method_update"
+        },                {
+            "fqsen": "\\Kotchasan\\Database\\QueryBuilder\u003A\u003AemptyTable\u0028\u0029",
+            "name": "emptyTable",
+            "summary": "\u0E25\u0E49\u0E32\u0E07\u0E15\u0E32\u0E23\u0E32\u0E07",
+            "url": "classes/Kotchasan-Database-QueryBuilder.html#method_emptyTable"
         },                {
             "fqsen": "\\Kotchasan\\Database\\QueryBuilder\u003A\u003Awhere\u0028\u0029",
             "name": "where",
@@ -1731,6 +1751,16 @@ Search.appendIndex(
             "summary": "\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14\u0E02\u0E2D\u0E07\u0E15\u0E32\u0E23\u0E32\u0E07\u0E23\u0E39\u0E1B\u0E41\u0E1A\u0E1A\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\n\u0E2B\u0E32\u0E01\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E43\u0E0A\u0E49\u0E15\u0E32\u0E23\u0E32\u0E07\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E01\u0E31\u0E1A\u0020Model\u0020\u0E43\u0E2B\u0E49\u0E01\u0E33\u0E2B\u0E19\u0E14\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14\u0E17\u0E35\u0E48\u0E19\u0E35\u0E48",
             "url": "classes/Kotchasan-DataTable.html#property_datas"
         },                {
+            "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024url",
+            "name": "url",
+            "summary": "URL\u0020\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E2D\u0E48\u0E32\u0E19\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E14\u0E49\u0E27\u0E22\u0020Ajax\n\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E01\u0E25\u0E31\u0E1A\u0E21\u0E32\u0E40\u0E1B\u0E47\u0E19\u0020JSON\u0020\u0E15\u0E32\u0E21\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C",
+            "url": "classes/Kotchasan-DataTable.html#property_url"
+        },                {
+            "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024params",
+            "name": "params",
+            "summary": "\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E2A\u0E48\u0E07\u0E44\u0E1B\u0E22\u0E31\u0E07\u0020\u0024url\u0020\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E21\u0E35\u0E01\u0E32\u0E23\u0E40\u0E23\u0E35\u0E22\u0E01\u0E42\u0E14\u0E22\u0020Ajax",
+            "url": "classes/Kotchasan-DataTable.html#property_params"
+        },                {
             "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024cache",
             "name": "cache",
             "summary": "database\u0020cache",
@@ -1821,6 +1851,11 @@ Search.appendIndex(
             "summary": "\u0E0A\u0E37\u0E48\u0E2D\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0020Javascript\u0020\u0E40\u0E23\u0E35\u0E22\u0E01\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23\u0E41\u0E16\u0E27\u0E43\u0E2B\u0E21\u0E48\nfunction\u0028tr,\u0020row\u0029",
             "url": "classes/Kotchasan-DataTable.html#property_onInitRow"
         },                {
+            "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024onChanged",
+            "name": "onChanged",
+            "summary": "\u0E0A\u0E37\u0E48\u0E2D\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0020Javascript\u0020\u0E40\u0E23\u0E35\u0E22\u0E01\u0E2B\u0E25\u0E31\u0E07\u0E08\u0E32\u0E01\u0E42\u0E2B\u0E25\u0E14\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E14\u0E49\u0E27\u0E22\u0020Ajax\u0020\u0E41\u0E25\u0E49\u0E27\nfunction\u0028tbody,\u0020items\u0029",
+            "url": "classes/Kotchasan-DataTable.html#property_onChanged"
+        },                {
             "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024defaultFilters",
             "name": "defaultFilters",
             "summary": "\u0E25\u0E34\u0E2A\u0E15\u0E4C\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020Query\u0020\u0E2B\u0E25\u0E31\u0E01\u0020\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E04\u0E31\u0E14\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\narray\u0028\u0027id\u0027,\u00201\u0029\u0020WHERE\u0020\u0060id\u0060\u0020\u003D\u00201\u0020AND\u0020...\narray\u0028\u0027id\u0027,\u0020array\u00281,\u00202\u0029\u0029\u0020WHERE\u0020\u0060id\u0060\u0020IN\u0020\u00281,\u00202\u0029\u0020AND\u0020...\narray\u0028\u0027id\u0027,\u0020\u0027\u0021\u003D\u0027\u0020,\u00201\u0029\u0020WHERE\u0020\u0060id\u0060\u0020\u0021\u003D\u00201\u0020AND\u0020.",
@@ -1836,10 +1871,10 @@ Search.appendIndex(
             "summary": "\u0E23\u0E32\u0E22\u0E0A\u0E37\u0E48\u0E2D\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E44\u0E21\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E41\u0E2A\u0E14\u0E07\u0E1C\u0E25",
             "url": "classes/Kotchasan-DataTable.html#property_hideColumns"
         },                {
-            "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024columns",
-            "name": "columns",
+            "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024cols",
+            "name": "cols",
             "summary": "\u0E23\u0E32\u0E22\u0E0A\u0E37\u0E48\u0E2D\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14",
-            "url": "classes/Kotchasan-DataTable.html#property_columns"
+            "url": "classes/Kotchasan-DataTable.html#property_cols"
         },                {
             "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024headers",
             "name": "headers",
@@ -1938,7 +1973,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024entriesList",
             "name": "entriesList",
-            "summary": "\u0E15\u0E31\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E08\u0E33\u0E19\u0E27\u0E19\u0E01\u0E32\u0E23\u0E41\u0E2A\u0E14\u0E07\u0E1C\u0E25",
+            "summary": "\u0E15\u0E31\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E08\u0E33\u0E19\u0E27\u0E19\u0E01\u0E32\u0E23\u0E41\u0E2A\u0E14\u0E07\u0E1C\u0E25\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E15\u0E48\u0E2D\u0E2B\u0E19\u0E49\u0E32",
             "url": "classes/Kotchasan-DataTable.html#property_entriesList"
         },                {
             "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024debug",
@@ -2166,20 +2201,30 @@ Search.appendIndex(
             "summary": "\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0020File\u0020\u0E23\u0E39\u0E1B\u0E41\u0E1A\u0E1A\u0020Array",
             "url": "classes/Kotchasan-Files.html"
         },                {
+            "fqsen": "\\Kotchasan\\Files\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "init\u0020Class",
+            "url": "classes/Kotchasan-Files.html#method___construct"
+        },                {
             "fqsen": "\\Kotchasan\\Files\u003A\u003Aadd\u0028\u0029",
             "name": "add",
             "summary": "\u0E40\u0E1E\u0E37\u0E48\u0E21\u0020File\u0020\u0E25\u0E07\u0E43\u0E19\u0E04\u0E2D\u0E25\u0E40\u0E25\u0E47\u0E04\u0E0A\u0E31\u0E48\u0E19",
             "url": "classes/Kotchasan-Files.html#method_add"
         },                {
+            "fqsen": "\\Kotchasan\\Files\u003A\u003Arewind\u0028\u0029",
+            "name": "rewind",
+            "summary": "inherited\u0020from\u0020Iterator",
+            "url": "classes/Kotchasan-Files.html#method_rewind"
+        },                {
+            "fqsen": "\\Kotchasan\\Files\u003A\u003Avalid\u0028\u0029",
+            "name": "valid",
+            "summary": "",
+            "url": "classes/Kotchasan-Files.html#method_valid"
+        },                {
             "fqsen": "\\Kotchasan\\Files\u003A\u003Acurrent\u0028\u0029",
             "name": "current",
             "summary": "\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020UploadedFile\u0020\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E1B\u0E31\u0E08\u0E08\u0E38\u0E1A\u0E31\u0E19",
             "url": "classes/Kotchasan-Files.html#method_current"
-        },                {
-            "fqsen": "\\Kotchasan\\Files\u003A\u003Aget\u0028\u0029",
-            "name": "get",
-            "summary": "\u0E2D\u0E48\u0E32\u0E19\u0020File\u0020\u0E17\u0E35\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23",
-            "url": "classes/Kotchasan-Files.html#method_get"
         },                {
             "fqsen": "\\Kotchasan\\Files\u003A\u003Akey\u0028\u0029",
             "name": "key",
@@ -2191,15 +2236,15 @@ Search.appendIndex(
             "summary": "\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020UploadedFile\u0020\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E16\u0E31\u0E14\u0E44\u0E1B",
             "url": "classes/Kotchasan-Files.html#method_next"
         },                {
-            "fqsen": "\\Kotchasan\\Files\u003A\u003Arewind\u0028\u0029",
-            "name": "rewind",
-            "summary": "inherited\u0020from\u0020Iterator",
-            "url": "classes/Kotchasan-Files.html#method_rewind"
+            "fqsen": "\\Kotchasan\\Files\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "\u0E2D\u0E48\u0E32\u0E19\u0020File\u0020\u0E17\u0E35\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23",
+            "url": "classes/Kotchasan-Files.html#method_get"
         },                {
-            "fqsen": "\\Kotchasan\\Files\u003A\u003Avalid\u0028\u0029",
-            "name": "valid",
+            "fqsen": "\\Kotchasan\\Files\u003A\u003A\u0024position",
+            "name": "position",
             "summary": "",
-            "url": "classes/Kotchasan-Files.html#method_valid"
+            "url": "classes/Kotchasan-Files.html#property_position"
         },                {
             "fqsen": "\\Kotchasan\\Files\u003A\u003A\u0024datas",
             "name": "datas",
@@ -2870,6 +2915,11 @@ Search.appendIndex(
             "name": "getServerParams",
             "summary": "\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E08\u0E32\u0E01\u0E15\u0E31\u0E27\u0E41\u0E1B\u0E23\u0020\u0024_SERVER",
             "url": "classes/Kotchasan-Http-Request.html#method_getServerParams"
+        },                {
+            "fqsen": "\\Kotchasan\\Http\\Request\u003A\u003AgetBody\u0028\u0029",
+            "name": "getBody",
+            "summary": "\u0E2D\u0E48\u0E32\u0E19\u0020stream",
+            "url": "classes/Kotchasan-Http-Request.html#method_getBody"
         },                {
             "fqsen": "\\Kotchasan\\Http\\Request\u003A\u003AgetUploadedFiles\u0028\u0029",
             "name": "getUploadedFiles",
@@ -3888,7 +3938,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Language\u003A\u003Afind\u0028\u0029",
             "name": "find",
-            "summary": "\u0E04\u0E49\u0E19\u0E2B\u0E32\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E20\u0E32\u0E29\u0E32\u0E17\u0E35\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0020\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u0024default\n\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E23\u0E30\u0E1A\u0E38\u0020\u0024default\u0020\u0028null\u0029\u0020\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u0024key\n\u0E16\u0E49\u0E32\u0E23\u0E30\u0E1A\u0E38\u0020\u0024value_key\u0020\u0E21\u0E32\u0E14\u0E49\u0E27\u0E22\u0E41\u0E25\u0E30\u0020\u0E04\u0E48\u0E32\u0E02\u0E2D\u0E07\u0E20\u0E32\u0E29\u0E32\u0E40\u0E1B\u0E47\u0E19\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0020\u0E08\u0E30\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0E02\u0E2D\u0E07\u0E20\u0E32\u0E29\u0E32\u0E17\u0E35\u0E48\u0020\u0024value_key\n\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E17\u0E35\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020null",
+            "summary": "\u0E04\u0E49\u0E19\u0E2B\u0E32\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E20\u0E32\u0E29\u0E32\u0E17\u0E35\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0020\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u0024default\n\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E23\u0E30\u0E1A\u0E38\u0020\u0024default\u0020\u0028null\u0029\u0020\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u0024key\n\u0E16\u0E49\u0E32\u0E23\u0E30\u0E1A\u0E38\u0020\u0024key\u0020\u0E21\u0E32\u0E14\u0E49\u0E27\u0E22\u0E41\u0E25\u0E30\u0020\u0E04\u0E48\u0E32\u0E02\u0E2D\u0E07\u0E20\u0E32\u0E29\u0E32\u0E40\u0E1B\u0E47\u0E19\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0020\u0E08\u0E30\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0E02\u0E2D\u0E07\u0E20\u0E32\u0E29\u0E32\u0E17\u0E35\u0E48\u0020\u0024key\n\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E17\u0E35\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020null",
             "url": "classes/Kotchasan-Language.html#method_find"
         },                {
             "fqsen": "\\Kotchasan\\Language\u003A\u003Aget\u0028\u0029",
@@ -3915,6 +3965,11 @@ Search.appendIndex(
             "name": "keyExists",
             "summary": "\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E04\u0E35\u0E22\u0E4C\u0E02\u0E2D\u0E07\u0E20\u0E32\u0E29\u0E32\u0E0B\u0E49\u0E33\n\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E25\u0E33\u0E14\u0E31\u0E1A\u0E17\u0E35\u0E48\u0E1E\u0E1A\u0020\u0028\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E41\u0E23\u0E01\u0E04\u0E37\u0E2D\u00200\u0029,\u0020\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u002D1\u0020\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E1E\u0E1A",
             "url": "classes/Kotchasan-Language.html#method_keyExists"
+        },                {
+            "fqsen": "\\Kotchasan\\Language\u003A\u003AarrayKeyExists\u0028\u0029",
+            "name": "arrayKeyExists",
+            "summary": "\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E27\u0E48\u0E32\u0E21\u0E35\u0E15\u0E31\u0E27\u0E41\u0E1B\u0E23\u0E20\u0E32\u0E29\u0E32\u0E17\u0E35\u0E48\u0E40\u0E1B\u0E47\u0E19\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0E43\u0E19\u0E04\u0E35\u0E22\u0E4C\u0E17\u0E35\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E2B\u0E23\u0E37\u0E2D\u0E44\u0E21\u0E48\n\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020true\u0020\u0E16\u0E49\u0E32\u0E21\u0E35\n\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020false\u0020\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E21\u0E35\u0E2B\u0E23\u0E37\u0E2D\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C",
+            "url": "classes/Kotchasan-Language.html#method_arrayKeyExists"
         },                {
             "fqsen": "\\Kotchasan\\Language\u003A\u003AlanguageFolder\u0028\u0029",
             "name": "languageFolder",
@@ -4530,6 +4585,16 @@ Search.appendIndex(
             "name": "createQuery",
             "summary": "build\u0020query\u0020string",
             "url": "classes/Kotchasan-Orm-Recordset.html#method_createQuery"
+        },                {
+            "fqsen": "\\Kotchasan\\Orm\\Recordset\u003A\u003AcreateView\u0028\u0029",
+            "name": "createView",
+            "summary": "\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0E2A\u0E23\u0E49\u0E32\u0E07\u0020View",
+            "url": "classes/Kotchasan-Orm-Recordset.html#method_createView"
+        },                {
+            "fqsen": "\\Kotchasan\\Orm\\Recordset\u003A\u003AcreateTmpTable\u0028\u0029",
+            "name": "createTmpTable",
+            "summary": "\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E15\u0E32\u0E23\u0E32\u0E07\u0E0A\u0E31\u0E48\u0E27\u0E04\u0E23\u0E32\u0E27",
+            "url": "classes/Kotchasan-Orm-Recordset.html#method_createTmpTable"
         },                {
             "fqsen": "\\Kotchasan\\Orm\\Recordset\u003A\u003Acurrent\u0028\u0029",
             "name": "current",
@@ -7063,7 +7128,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Template\u003A\u003ApregReplace\u0028\u0029",
             "name": "pregReplace",
-            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0020preg_replace\u0020\u0E23\u0E2D\u0E07\u0E23\u0E31\u0E1A\u0E16\u0E36\u0E07\u0020PHP7",
+            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0020preg_replace",
             "url": "classes/Kotchasan-Template.html#method_pregReplace"
         },                {
             "fqsen": "\\Kotchasan\\Template\u003A\u003Arender\u0028\u0029",
@@ -7280,6 +7345,21 @@ Search.appendIndex(
             "name": "script",
             "summary": "\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020Javascript\u0020\u0E17\u0E35\u0E48\u0E08\u0E30\u0E41\u0E17\u0E23\u0E01\u0E44\u0E27\u0E49\u0E43\u0E19\u0020head",
             "url": "classes/Kotchasan-View.html#property_script"
+        },                {
+            "fqsen": "\\Kotchasan\\Xls",
+            "name": "Xls",
+            "summary": "Xls\u0020function",
+            "url": "classes/Kotchasan-Xls.html"
+        },                {
+            "fqsen": "\\Kotchasan\\Xls\u003A\u003Asend\u0028\u0029",
+            "name": "send",
+            "summary": "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E44\u0E1F\u0E25\u0E4C\u0020XLS\u0020\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E14\u0E32\u0E27\u0E19\u0E4C\u0E42\u0E2B\u0E25\u0E14\n\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020true",
+            "url": "classes/Kotchasan-Xls.html#method_send"
+        },                {
+            "fqsen": "\\Kotchasan\\Xls\u003A\u003Acell\u0028\u0029",
+            "name": "cell",
+            "summary": "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0020th\u0020\u0E2B\u0E23\u0E37\u0E2D\u0020td",
+            "url": "classes/Kotchasan-Xls.html#method_cell"
         },                {
             "fqsen": "\\",
             "name": "\\",

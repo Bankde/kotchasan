@@ -5376,9 +5376,6 @@ td.buttons .button:last-child {
   body.responsive #logo a {
     display: inline-block;
   }
-  body.responsive #logo a>img {
-    width: 100%;
-  }
   body.responsive .input-groups>[class*="width"] {
     float: none;
     width: auto;

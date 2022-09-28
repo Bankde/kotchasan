@@ -3,9 +3,9 @@
  * @filesource Kotchasan/Form.php
  *
  * @copyright 2016 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  *
- * @see http://www.kotchasan.com/
+ * @see https://www.kotchasan.com/
  */
 
 namespace Kotchasan;
@@ -100,8 +100,8 @@ class Form extends \Kotchasan\KBase
     /**
      * สร้าง input ชนิด color
      *
-     * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="text" class="color" name="test_id" id="test_id" value="#FFF" title="Test"></label>'
-     * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="text" class="color" name="test_id" id="test_id" value="#FFF" title="Test"></span></div>'
+     * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="text" name="test_id" id="test_id" value="#FFF" title="Test" class="color"></label>'
+     * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="text" name="test_id" id="test_id" value="#FFF" title="Test" class="color"></span></div>'
      *
      * @param array $attributes
      *
@@ -121,8 +121,8 @@ class Form extends \Kotchasan\KBase
      * สร้าง input ชนิด text รับค่าเป็นตัวเลขและทศนิยม
      * เช่นจำนวนเงิน
      *
-     * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="text" class="currency" name="test_id" id="test_id" value=1 title="Test"></label>'
-     * @assert (array('id' => 'test_id', 'value' => 100, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-money'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-money"><input type="text" class="currency" name="test_id" id="test_id" value=100 title="Test"></span></div>'
+     * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="text" name="test_id" id="test_id" value=1 title="Test" class="currency"></label>'
+     * @assert (array('id' => 'test_id', 'value' => 100, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-money'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-money"><input type="text" name="test_id" id="test_id" value=100 title="Test" class="currency"></span></div>'
      *
      * @param array $attributes
      *
@@ -198,8 +198,8 @@ class Form extends \Kotchasan\KBase
     /**
      * สร้าง input ชนิด file
      *
-     * @assert (array('id' => 'test_id', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="file" class="g-file" name="test_id" id="test_id" title="Test"></label>'
-     * @assert (array('id' => 'test_id', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-file'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-file"><input type="file" class="g-file" name="test_id" id="test_id" title="Test"></span></div>'
+     * @assert (array('id' => 'test_id', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="file" name="test_id" id="test_id" title="Test" class="g-file"></label>'
+     * @assert (array('id' => 'test_id', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-file'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-file"><input type="file" name="test_id" id="test_id" title="Test" class="g-file"></span></div>'
      *
      * @param array $attributes
      *

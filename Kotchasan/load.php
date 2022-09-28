@@ -6,9 +6,9 @@
  * ต้อง include ไฟล์นี้ก่อนเสมอ
  *
  * @copyright 2016 Goragod.com
- * @license http://www.kotchasan.com/license/
+ * @license https://www.kotchasan.com/license/
  *
- * @see http://www.kotchasan.com/
+ * @see https://www.kotchasan.com/
  */
 
 /**
@@ -71,7 +71,7 @@ if (isset($_SERVER['APPL_PHYSICAL_PATH'])) {
     if (DIRECTORY_SEPARATOR != '/' && $docRoot != '') {
         $docRoot = str_replace('\\', '/', $docRoot);
     }
-} elseif (strpos($_SERVER['SCRIPT_FILENAME'], $_SERVER['DOCUMENT_ROOT']) !== false) {
+} elseif (!empty($_SERVER['SCRIPT_FILENAME']) && !empty($_SERVER['DOCUMENT_ROOT']) && strpos($_SERVER['SCRIPT_FILENAME'], $_SERVER['DOCUMENT_ROOT']) !== false) {
     $docRoot = rtrim(realpath($_SERVER['DOCUMENT_ROOT']), DIRECTORY_SEPARATOR);
     if (DIRECTORY_SEPARATOR != '/' && $docRoot != '') {
         $docRoot = str_replace('\\', '/', $docRoot);
