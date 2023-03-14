@@ -73,7 +73,7 @@ class InputItem
      * @param mixed       $value
      * @param string|null $type  ประเภท Input เช่น GET POST SESSION COOKIE หรือ null ถ้าไม่ได้มาจากรายการข้างต้น
      *
-     * @return \static
+     * @return static
      */
     public static function create($value, $type = null)
     {
@@ -552,8 +552,8 @@ class InputItem
      */
     private function checkValue($value)
     {
-        if (preg_match('/^[A-Z]{1,1}[0-9]{0,1}\.[a-z0-9_]+$/', $value)) {
-            throw new \Kotchasan\InputItemException('Cannot use "'.$value.'"');
+        if (preg_match('/^(SQL\(.+\)|[A-Z][0-9]{0,2}\.[a-z0-9_`]+)$/', $value)) {
+            throw new \Kotchasan\InputItemException('Invalid value "'.$value.'"');
         }
         return $value;
     }

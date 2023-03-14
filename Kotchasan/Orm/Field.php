@@ -76,11 +76,11 @@ class Field extends \Kotchasan\Database\Db
     /**
      * สร้าง record
      *
-     * @return \static
+     * @return static
      */
     public static function create()
     {
-        $obj = new static();
+        $obj = new static;
         return $obj;
     }
 

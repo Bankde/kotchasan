@@ -201,7 +201,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_cfg">$cfg</a>
     <span>
-                &nbsp;: <a href="classes/Kotchasan-Config.html"><abbr title="\Kotchasan\Config">Config</abbr></a>            </span>
+                &nbsp;: object            </span>
 </dt>
 <dd>Config class</dd>
 
@@ -282,7 +282,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_cacheOn">cacheOn()</a>
     <span>
-                        &nbsp;: <abbr title="\static">static</abbr>    </span>
+                        &nbsp;: static    </span>
 </dt>
 <dd>เปิดการใช้งานแคช
 จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล</dd>
@@ -305,7 +305,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-PdoMysqlDriver.html#method_connect">connect()</a>
     <span>
-                        &nbsp;: <abbr title="\static">static</abbr>    </span>
+                        &nbsp;: static    </span>
 </dt>
 <dd>เชื่อมต่อ database</dd>
 
@@ -352,7 +352,9 @@
                         &nbsp;: mixed    </span>
 </dt>
 <dd>คำสั่งสำหรับแสดง Query ออกทางหน้าจอ
-ใช้ในการ debug Query</dd>
+ใช้ในการ debug Query
+1 แสดง Query ข้อความอย่างเดียวสำหรับใส่ลงใน console
+2 แสดง Query ด้านล่างจอภาพ</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_delete">delete()</a>
@@ -809,7 +811,7 @@ update คืนค่า 0
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Config.html"><abbr title="\Kotchasan\Config">Config</abbr></a></span>
+    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">object</span>
     <span class="phpdocumentor-signature__name">$cfg</span>
     </code>
 
@@ -1193,7 +1195,7 @@ update คืนค่า 0
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">cacheOn</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$auto_save</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\static">static</abbr></span></code>
+                <span class="phpdocumentor-signature__name">cacheOn</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$auto_save</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1212,7 +1214,7 @@ update คืนค่า 0
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\static">static</abbr></span>
+    <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
         
     
@@ -1317,7 +1319,7 @@ update คืนค่า 0
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">connect</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\static">static</abbr></span></code>
+                <span class="phpdocumentor-signature__name">connect</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1334,7 +1336,7 @@ update คืนค่า 0
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\static">static</abbr></span>
+    <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
         
     
@@ -1561,12 +1563,14 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
         <p class="phpdocumentor-summary">คำสั่งสำหรับแสดง Query ออกทางหน้าจอ
-ใช้ในการ debug Query</p>
+ใช้ในการ debug Query
+1 แสดง Query ข้อความอย่างเดียวสำหรับใส่ลงใน console
+2 แสดง Query ด้านล่างจอภาพ</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2091,7 +2095,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -2235,7 +2239,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -2900,7 +2904,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -3052,7 +3056,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">103</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
@@ -3106,7 +3110,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">115</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -3151,7 +3155,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">134</span>
+    <span class="phpdocumentor-element-found-in__line">136</span>
 
     </aside>
 
@@ -3215,7 +3219,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">161</span>
+    <span class="phpdocumentor-element-found-in__line">163</span>
 
     </aside>
 
@@ -3260,7 +3264,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">186</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
@@ -3268,7 +3272,7 @@ update คืนค่า 0
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">buildSelect</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<a href="classes/Kotchasan-Database-QueryBuilder.html"><abbr title="\Kotchasan\Database\QueryBuilder">QueryBuilder</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fields</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">buildSelect</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<a href="classes/Kotchasan-Database-QueryBuilder.html"><abbr title="\Kotchasan\Database\QueryBuilder">QueryBuilder</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fields</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -3276,6 +3280,13 @@ update คืนค่า 0
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$fields</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<a href="classes/Kotchasan-Database-QueryBuilder.html"><abbr title="\Kotchasan\Database\QueryBuilder">QueryBuilder</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$alias</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -3303,7 +3314,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">242</span>
+    <span class="phpdocumentor-element-found-in__line">259</span>
 
     </aside>
 
@@ -3348,7 +3359,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">296</span>
+    <span class="phpdocumentor-element-found-in__line">313</span>
 
     </aside>
 
@@ -3410,7 +3421,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">356</span>
+    <span class="phpdocumentor-element-found-in__line">373</span>
 
     </aside>
 
@@ -3580,7 +3591,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">406</span>
+    <span class="phpdocumentor-element-found-in__line">423</span>
 
     </aside>
 
@@ -3623,7 +3634,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">455</span>
+    <span class="phpdocumentor-element-found-in__line">472</span>
 
     </aside>
 
@@ -3666,7 +3677,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">480</span>
+    <span class="phpdocumentor-element-found-in__line">497</span>
 
     </aside>
 
@@ -3711,7 +3722,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">499</span>
+    <span class="phpdocumentor-element-found-in__line">516</span>
 
     </aside>
 
@@ -3815,7 +3826,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">518</span>
+    <span class="phpdocumentor-element-found-in__line">535</span>
 
     </aside>
 
@@ -3923,7 +3934,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">544</span>
+    <span class="phpdocumentor-element-found-in__line">561</span>
 
     </aside>
 

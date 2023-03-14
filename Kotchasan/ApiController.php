@@ -25,11 +25,10 @@ class ApiController extends KBase
      * แม่แบบคอนโทรลเลอร์ สำหรับ API
      *
      * @param Request $request
-     *
-     * @return JSON
      */
     public function index(Request $request)
     {
+        $headers = array('Content-type' => 'application/json; charset=UTF-8');
         if (empty(self::$cfg->api_token) || empty(self::$cfg->api_ips)) {
             // ยังไม่ได้สร้าง Token หรือ ยังไม่ได้อนุญาต IP
             $result = array(
@@ -49,6 +48,11 @@ class ApiController extends KBase
                 if (method_exists($className, $action)) {
                     // เรียกใช้งาน Class
                     $result = createClass($className)->$action($request);
+                    // CORS
+                    if (!empty(self::$cfg->api_cors)) {
+                        $headers['Access-Control-Allow-Origin'] = self::$cfg->api_cors;
+                        $headers['Access-Control-Allow-Headers'] = 'origin, x-requested-with, content-type';
+                    }
                 } else {
                     // error ไม่พบ class หรือ method
                     $result = array(
@@ -72,11 +76,9 @@ class ApiController extends KBase
         }
         // Response คืนค่ากลับเป็น JSON ตาม $result
         $response = new \Kotchasan\Http\Response();
-        $response->withHeaders(array(
-            'Content-type' => 'application/json; charset=UTF-8'
-        ))
+        $response->withHeaders($headers)
             ->withStatus(empty($result['code']) ? 200 : $result['code'])
-            ->withContent(json_encode($result, JSON_UNESCAPED_UNICODE))
+            ->withContent(json_encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
             ->send();
     }
 

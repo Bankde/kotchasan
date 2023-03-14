@@ -59,7 +59,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param string $oprator   defaul AND
      * @param string $id        Primary Key เช่น id (default)
      *
-     * @return \static
+     * @return static
      */
     public function andWhere($condition, $oprator = 'AND', $id = 'id')
     {
@@ -80,7 +80,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param \Kotchasan\Orm\Recordset $src
      *
-     * @return \static
+     * @return static
      */
     public function assignment($src)
     {
@@ -104,7 +104,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param bool $auto_save (options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง
      *
-     * @return \static
+     * @return static
      */
     public function cacheOn($auto_save = true)
     {
@@ -115,7 +115,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * สำเนา Class เป็นอันใหม่
      *
-     * @return \static
+     * @return static
      */
     public function copy()
     {
@@ -145,7 +145,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param string $table
      * @param mixed  $condition query string หรือ array
      *
-     * @return \static
+     * @return static
      */
     public function delete($table, $condition)
     {
@@ -183,7 +183,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @assert select()->from('user U')->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
      * @assert select()->from('user U')->where(array('U.id', 1))->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE U.`id` = 1 AND EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
      *
-     * @return \static
+     * @return static
      */
     public function exists($table, $condition)
     {
@@ -202,7 +202,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * คำสั่งสำหรับดูรายละเอียดการ Query
      *
-     * @return \static
+     * @return static
      */
     public function explain()
     {
@@ -215,7 +215,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param string $table     ชื่อตาราง
      *
-     * @return \static
+     * @return static
      */
     public function createView($table)
     {
@@ -228,7 +228,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param string $table     ชื่อตาราง
      *
-     * @return \static
+     * @return static
      */
     public function createTmpTable($table)
     {
@@ -270,7 +270,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param string $tables ชื่อตาราง table1, table2, table3, ...
      *
-     * @return \static
+     * @return static
      */
     public function from($tables)
     {
@@ -311,7 +311,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param string $fields รายชื่อฟิล์ด เช่น field1, field2, ..
      *
-     * @return \static
+     * @return static
      */
     public function groupBy($fields)
     {
@@ -338,7 +338,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param mixed  $condition query string หรือ array
      * @param string $oprator   defaul AND
      *
-     * @return \static
+     * @return static
      */
     public function having($condition, $oprator = 'AND')
     {
@@ -359,12 +359,14 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * สามารถกำหนดค่า value เป็น query string ได้
      *
      * @assert insert('user', array('id' => 1, 'name' => 'test'))->text() [==] "INSERT INTO `user` (`id`, `name`) VALUES (1, 'test')"
+     * @assert insert('user', array('id' => 1, 'name' => 'SQL(SELECT username FROM user WHERE id=1)'))->text() [==] "INSERT INTO `user` (`id`, `name`) VALUES (1, (SELECT username FROM user WHERE id=1))"
+     * @assert insert('user', array('id' => 1, 'name' => 'SQL()'))->text() [==] "INSERT INTO `user` (`id`, `name`) VALUES (1, 'SQL()')"
      *
      * @param string $table ชื่อตาราง
      * @param mixed  $datas รูปแบบ array(key1=>value1, key2=>value2)
      * @param array  $fields ระบุคอลัมน์ที่ต้องการ หาก $datas เป็น QueryBuilder
      *
-     * @return \static
+     * @return static
      */
     public function insert($table, $datas, $fields = array())
     {
@@ -375,8 +377,9 @@ class QueryBuilder extends \Kotchasan\Database\Query
             $this->sqls['select'] = $datas->text();
         } elseif (is_array($datas)) {
             foreach ($datas as $key => $value) {
-                if ($value[0] == '(' && $value[strlen($value) - 1] == ')') {
-                    $this->sqls['keys'][$key] = $value;
+                if (preg_match('/^SQL\((.+)\)$/', $value, $match)) {
+                    // SQL()
+                    $this->sqls['keys'][$key] = '('.$match[1].')';
                 } else {
                     $this->sqls['keys'][$key] = ':'.$key;
                     $this->values[':'.$key] = $value;
@@ -395,7 +398,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param string $table ชื่อตาราง
      * @param array  $datas รูปแบบ array(key1=>value1, key2=>value2)
      *
-     * @return \static
+     * @return static
      */
     public function insertOrUpdate($table, $datas)
     {
@@ -421,7 +424,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param string       $type  เข่น INNER OUTER LEFT RIGHT
      * @param mixed        $on    query string หรือ array
      *
-     * @return \static
+     * @return static
      */
     public function join($table, $type, $on)
     {
@@ -444,7 +447,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param int $count จำนวนผลลัท์ที่ต้องการ
      * @param int $start รายการเริ่มต้น
      *
-     * @return \static
+     * @return static
      */
     public function limit($count, $start = 0)
     {
@@ -467,7 +470,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param mixed  $condition query WHERE
      * @param string $operator  (optional) เช่น AND หรือ OR
      *
-     * @return \static
+     * @return static
      */
     public function notExists($table, $condition, $operator = 'AND')
     {
@@ -494,7 +497,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param string $oprator   defaul AND
      * @param string $id        Primary Key เช่น id (default)
      *
-     * @return \static
+     * @return static
      */
     public function orWhere($condition, $oprator = 'AND', $id = 'id')
     {
@@ -518,14 +521,14 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @assert order('user.id DESC')->text() [==] " ORDER BY `user`.`id` DESC"
      * @assert order('id ASCD')->text() [==] ""
      *
-     * @param mixed $sorts array('field ASC','field DESC') หรือ 'field ASC', 'field DESC', ...
+     * @param mixed $columns array('field ASC','field DESC') หรือ 'field ASC', 'field DESC', ...
      *
-     * @return \static
+     * @return static
      */
-    public function order($sorts)
+    public function order($columns)
     {
-        $sorts = is_array($sorts) ? $sorts : func_get_args();
-        $ret = $this->buildOrder($sorts);
+        $columns = is_array($columns) ? $columns : func_get_args();
+        $ret = $this->buildOrder($columns);
         if (!empty($ret)) {
             $this->sqls['order'] = $ret;
         }
@@ -552,7 +555,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param string $fields (option) รายชื่อฟิลด์ field1, field2, field3, ...
      *
-     * @return \static
+     * @return static
      */
     public function select($fields = '*')
     {
@@ -582,7 +585,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param mixed $fileds (option) 'field alias'
      *
-     * @return \static
+     * @return static
      */
     public function selectCount($fileds = '* count')
     {
@@ -607,7 +610,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param string $fields (option) รายชื่อฟิลด์ field1, field2, field3, ...
      *
-     * @return \static
+     * @return static
      */
     public function selectDistinct($fields = '*')
     {
@@ -633,7 +636,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param array|string $datas รูปแบบ array(key1 => value1, query_string) หรือ query_string
      *
-     * @return \static
+     * @return static
      */
     public function set($datas)
     {
@@ -649,7 +652,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
                     } elseif ($value instanceof Sql) {
                         $this->sqls['set'][$key] = $field.'='.$value->text();
                     } elseif (is_string($value)) {
-                        if (preg_match('/^([A-Z][0-9]?)\.`?([A-Za-z0-9_]+)`?$/', $value, $match)) {
+                        if (preg_match('/^([A-Z][0-9]{0,2})\.`?([A-Za-z0-9_]+)`?$/', $value, $match)) {
                             $this->sqls['set'][$key] = $field.'='.$match[1].'.`'.$match[2].'`';
                         } elseif (mb_strlen($value) > 2 && $value[0] === '(' && $value[mb_strlen($value) - 1] === ')') {
                             $this->sqls['set'][$key] = $field.'='.$value;
@@ -673,7 +676,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * คืนค่าข้อมูลเป็น Array
      * ฟังก์ชั่นนี้ใช้เรียกก่อนการสอบถามข้อมูล
      *
-     * @return \static
+     * @return static
      */
     public function toArray()
     {
@@ -689,7 +692,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param array $querys แอเรย์ของ QueryBuilder หรือ Query String ที่จะนำม่า UNION
      *
-     * @return \static
+     * @return static
      */
     public function union($querys)
     {
@@ -716,7 +719,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param array $querys แอเรย์ของ QueryBuilder หรือ Query String ที่จะนำม่า UNION ALL
      *
-     * @return \static
+     * @return static
      */
     public function unionAll($querys)
     {
@@ -742,7 +745,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param string $table [$table1, $table2, ....] ชื่อตาราง
      *
-     * @return \static
+     * @return static
      */
     public function update($table)
     {
@@ -760,7 +763,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param string $table ชื่อตาราง
      *
-     * @return \static
+     * @return static
      */
     public function emptyTable($table)
     {
@@ -799,7 +802,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param string $oprator   defaul AND
      * @param string $id        Primary Key เช่น id (default)
      *
-     * @return \static
+     * @return static
      */
     public function where($condition, $oprator = 'AND', $id = 'id')
     {

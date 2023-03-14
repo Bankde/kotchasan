@@ -7,7 +7,7 @@
  * @license https://www.kotchasan.com/license/
  */
 (function() {
-  "use strict";
+  'use strict';
   window.GAutoComplete = GClass.create();
   GAutoComplete.prototype = {
     initialize: function(id, o) {
@@ -45,10 +45,10 @@
         var selItem = null;
         forEach(list, function() {
           if (listindex == this.itemindex) {
-            this.addClass("select");
+            this.addClass('select');
             selItem = this;
           } else {
-            this.removeClass("select");
+            this.removeClass('select');
           }
         });
         return selItem;
@@ -65,9 +65,13 @@
         }
       }
 
-      function _onSuccess(datas) {
+      function _onSuccess() {
         if (Object.isFunction(options.onSuccess)) {
-          options.onSuccess.call(datas);
+          try {
+            var o = {};
+            o[self.input.id || self.input.name] = self.input.value;
+            options.onSuccess.call(o);
+          } catch (e) {}
         }
       }
 
@@ -76,14 +80,14 @@
           self.input.focus();
         }, 1);
         _onSelect.call(this);
-        _onSuccess(this.datas);
+        _onSuccess();
       };
       var _mousemove = function() {
         _movehighlight(this.itemindex);
       };
 
       function _populateitems(datas) {
-        display.innerHTML = "";
+        display.innerHTML = '';
         list = [];
         var f, i, r, p, n;
         for (i in datas) {
@@ -95,12 +99,12 @@
             display.appendChild(p);
             for (n in datas[i]['options']) {
               r = options.populate.call(datas[i]['options'][n], self.input);
-              if (r && r != "") {
+              if (r && r != '') {
                 p = r.toDOM();
                 f = p.firstChild;
                 f.datas = datas[i]['options'][n];
-                $G(f).addEvent("mousedown", _mouseclick);
-                f.addEvent("mousemove", _mousemove);
+                $G(f).addEvent('mousedown', _mouseclick);
+                f.addEvent('mousemove', _mousemove);
                 f.itemindex = list.length;
                 list.push(f);
                 display.appendChild(p);
@@ -108,12 +112,12 @@
             }
           } else {
             r = options.populate.call(datas[i], self.input);
-            if (r && r != "") {
+            if (r && r != '') {
               p = r.toDOM();
               f = p.firstChild;
               f.datas = datas[i];
-              $G(f).addEvent("mousedown", _mouseclick);
-              f.addEvent("mousemove", _mousemove);
+              $G(f).addEvent('mousedown', _mouseclick);
+              f.addEvent('mousemove', _mousemove);
               f.itemindex = list.length;
               list.push(f);
               display.appendChild(p);
@@ -124,7 +128,7 @@
       }
 
       function _hide() {
-        self.input.removeClass("wait");
+        self.input.removeClass('wait');
         self.dropdown.hide();
         showing = false;
       }
@@ -137,12 +141,12 @@
         }
         if (!cancelEvent && options.url) {
           var q = options.get.call(this);
-          if (q && q != "") {
-            self.input.addClass("wait");
+          if (q && q != '') {
+            self.input.addClass('wait');
             self.timer = window.setTimeout(function() {
               req.send(options.url, q, function(xhr) {
-                self.input.removeClass("wait");
-                if (xhr.responseText !== "") {
+                self.input.removeClass('wait');
+                if (xhr.responseText !== '') {
                   var datas = xhr.responseText.toJSON();
                   listindex = 0;
                   if (datas) {
@@ -186,15 +190,15 @@
           cancelEvent = true;
         } else if (key == 13) {
           cancelEvent = true;
-          this.removeClass("wait");
+          this.removeClass('wait');
           forEach(list, function() {
             if (this.itemindex == listindex) {
               _onSelect.call(this);
             }
           });
-          _onSuccess(list[listindex].datas);
+          _onSuccess();
         } else if (key == 32) {
-          if (this.value == "") {
+          if (this.value == '') {
             _search();
             cancelEvent = true;
           }
@@ -203,13 +207,13 @@
           GEvent.stop(evt);
         }
       }
-      this.input.addEvent("click", _search);
-      this.input.addEvent("keyup", _search);
-      this.input.addEvent("keydown", _dokeydown);
-      this.input.addEvent("blur", function() {
+      this.input.addEvent('click', _search);
+      this.input.addEvent('keyup', _search);
+      this.input.addEvent('keydown', _dokeydown);
+      this.input.addEvent('blur', function() {
         _hide();
       });
-      $G(document.body).addEvent("click", function() {
+      $G(document.body).addEvent('click', function() {
         _hide();
       });
     },
@@ -220,34 +224,39 @@
     valid: function() {
       this.input.valid();
       this.text = this.input.value;
+      return this.input;
     },
     invalid: function() {
       this.input.invalid();
       this.text = this.input.value;
+      return this.input;
     },
     reset: function() {
       this.input.reset();
       this.text = this.input.value;
+      return this.input;
     }
   };
 })();
 
 function initAutoComplete(id, link, displayFields, icon, options) {
   var obj,
-    df = displayFields.split(",");
+    df = displayFields.split(',');
 
   function doGetQuery() {
     var q = null,
       value = $E(id).value;
-    if (value != "") {
-      q = id + "=" + encodeURIComponent(value);
+    if (value != '') {
+      q = id + '=' + encodeURIComponent(value);
     }
     return q;
   }
 
   function doCallBack() {
     for (var prop in this) {
-      $G(prop).setValue(this[prop] === null ? "" : this[prop]);
+      if ($E(prop)) {
+        $G(prop).setValue(this[prop] === null ? '' : this[prop]);
+      }
     }
     obj.valid();
   }
@@ -255,11 +264,11 @@ function initAutoComplete(id, link, displayFields, icon, options) {
   function doPopulateItem() {
     var datas = new Array();
     for (var i in df) {
-      if (this[df[i]] !== null && this[df[i]] != "") {
+      if (this[df[i]] !== null && this[df[i]] != '') {
         datas.push(this[df[i]]);
       }
     }
-    return datas.join(" ").unentityify();
+    return datas.join(' ').unentityify();
   }
 
   function doPopulateLabel() {
@@ -269,10 +278,10 @@ function initAutoComplete(id, link, displayFields, icon, options) {
   function doPopulate() {
     if ($E(id)) {
       var row = o.populateItem.call(this);
-      forEach($E(id).value.replace(/[\s]+/, " ").split(" "), function() {
+      forEach($E(id).value.replace(/[\s]+/, ' ').split(' '), function() {
         if (this.length > 0) {
-          var patt = new RegExp("(" + this.preg_quote() + ")", "gi");
-          row = row.replace(patt, "<em>$1</em>");
+          var patt = new RegExp('(' + this.preg_quote() + ')', 'gi');
+          row = row.replace(patt, '<em>$1</em>');
         }
       });
       return '<p><span class="icon-' + (icon || this.icon || "search") + '">' + row + "</span></p>";

@@ -28,6 +28,12 @@ class DataTable extends \Kotchasan\KBase
      */
     private $id;
     /**
+     * class ของตาราง
+     *
+     * @var string
+     */
+    private $class;
+    /**
      * ชื่อ Model ที่ต้องการเรียกข้อมูล
      *
      * @var \Kotchasan\Database\QueryBuilder
@@ -366,6 +372,16 @@ class DataTable extends \Kotchasan\KBase
      * @var bool
      */
     private $explain = false;
+    /**
+     * @var array
+     */
+    private $columns;
+    /**
+     * ปุ่มเพิ่มข้อมูล
+     *
+     * @var array
+     */
+    public $addNew;
 
     /**
      * Initial Class
@@ -716,7 +732,7 @@ class DataTable extends \Kotchasan\KBase
         // property ของ ตาราง
         $prop = array();
         $c = array();
-        if (isset($this->class)) {
+        if (!empty($this->class)) {
             $c[] = $this->class;
         }
         if ($this->border) {
@@ -1029,7 +1045,7 @@ class DataTable extends \Kotchasan\KBase
      */
     private function td($id, $i, $properties, $text, $th)
     {
-        $c = array('data-text' => 'data-text="'.$th.'"');
+        $c = array('data-text' => 'data-text="'.strip_tags($th).'"');
         foreach ($properties as $key => $value) {
             $c[$key] = $key.'="'.$value.'"';
         }

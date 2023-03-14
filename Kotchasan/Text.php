@@ -60,13 +60,10 @@ class Text
         $units = array('Bytes', 'KB', 'MB', 'GB', 'TB');
         if ($bytes <= 0) {
             return '0 Byte';
-        } else {
-            $bytes = max($bytes, 0);
-            $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-            $pow = min($pow, count($units) - 1);
-            $bytes /= pow(1024, $pow);
-            return round($bytes, $precision).' '.$units[$pow];
         }
+        $pow = min((int) log($bytes, 1024), count($units) - 1);
+        $bytes /= pow(1024, $pow);
+        return round($bytes, $precision).' '.$units[$pow];
     }
 
     /**
@@ -153,7 +150,7 @@ class Text
     /**
      * รับค่าสำหรับ password อักขระทุกตัวไม่มีช่องว่าง
      *
-     * @assert (" 0\n12   34\r\r6\t5ทดสอบ@#$&{}!?+_-=*") [==] '0123465ทดสอบ@#$&{}!?+_-=*'
+     * @assert (" 0\n12   34\r\r6\t5ทดสอบ@#$&{}!?+_-=.[]*") [==] '0123465ทดสอบ@#$&{}!?+_-=.[]*'
      *
      * @param string $text
      *
@@ -164,7 +161,7 @@ class Text
         if ($text === null) {
             return '';
         }
-        return preg_replace('/[^\w\@\#\*\$\&\{\}\!\?\+_\-=ก-ฮ]+/', '', $text);
+        return preg_replace('/[^\w\@\#\*\$\&\{\}\!\?\+_\-=\.\[\]ก-ฮ]+/', '', $text);
     }
 
     /**

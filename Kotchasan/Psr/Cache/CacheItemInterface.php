@@ -57,7 +57,7 @@ interface CacheItemInterface
      *
      * @param mixed $value
      *
-     * @return \static
+     * @return static
      */
     public function set($value);
 
@@ -72,7 +72,7 @@ interface CacheItemInterface
      *
      * @param \DateTimeInterface $expiration
      *
-     * @return \static
+     * @return static
      */
     public function expiresAt($expiration);
 
@@ -88,7 +88,7 @@ interface CacheItemInterface
      *
      * @param int|\DateInterval $time
      *
-     * @return \static
+     * @return static
      */
     public function expiresAfter($time);
 }

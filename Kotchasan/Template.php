@@ -57,7 +57,7 @@ class Template
      *
      * @param array $array ชื่อที่ปรากฏใน template รูปแบบ array(key1=>val1,key2=>val2)
      *
-     * @return \static
+     * @return static
      */
     public function add($array)
     {
@@ -80,7 +80,7 @@ class Template
      * @param string $module ชื่อโมดูล
      * @param string $name   ชื่อ template ไม่ต้องระบุนามสกุลของไฟล์
      *
-     * @return \static
+     * @return static
      */
     public static function create($owner, $module, $name)
     {
@@ -96,7 +96,7 @@ class Template
      *
      * @throws \InvalidArgumentException ถ้าไม่พบไฟล์
      *
-     * @return \static
+     * @return static
      */
     public static function createFromFile($filename)
     {
@@ -112,11 +112,11 @@ class Template
      *
      * @param string $html
      *
-     * @return \static
+     * @return static
      */
     public static function createFromHTML($html)
     {
-        $obj = new static();
+        $obj = new static;
         $obj->skin = $html;
         $obj->items = array();
         $obj->num = -1;
@@ -160,7 +160,7 @@ class Template
      *
      * @param string $html โค้ด HTML
      *
-     * @return \static
+     * @return static
      */
     public function insertHTML($html)
     {

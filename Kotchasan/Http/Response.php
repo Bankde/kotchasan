@@ -157,7 +157,7 @@ class Response extends Message implements ResponseInterface
     /**
      * Sends HTTP headers and content
      *
-     * @return \static
+     * @return static
      */
     public function send()
     {
@@ -173,7 +173,7 @@ class Response extends Message implements ResponseInterface
      *
      * @throws \InvalidArgumentException ถ้า $content ไม่ใช่ string
      *
-     * @return \static
+     * @return static
      */
     public function withContent($content)
     {
@@ -190,7 +190,7 @@ class Response extends Message implements ResponseInterface
      * @param int    $code
      * @param string $reasonPhrase
      *
-     * @return \static
+     * @return static
      */
     public function withStatus($code, $reasonPhrase = '')
     {
@@ -203,7 +203,7 @@ class Response extends Message implements ResponseInterface
     /**
      * ส่งออกเนื้อหา
      *
-     * @return \static
+     * @return static
      */
     protected function sendContent()
     {
@@ -216,7 +216,7 @@ class Response extends Message implements ResponseInterface
     /**
      * ส่งออก HTTP headers
      *
-     * @return \static
+     * @return static
      */
     protected function sendHeaders()
     {

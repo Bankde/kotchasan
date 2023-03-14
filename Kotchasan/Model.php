@@ -39,11 +39,11 @@ class Model extends Query
     /**
      * create Model
      *
-     * @return \static
+     * @return static
      */
     public static function create()
     {
-        return new static();
+        return new static;
     }
 
     /**
@@ -53,7 +53,7 @@ class Model extends Query
      */
     public static function createDb()
     {
-        $model = new static();
+        $model = new static;
         return $model->db();
     }
 
@@ -64,7 +64,7 @@ class Model extends Query
      */
     public static function createQuery()
     {
-        $model = new static();
+        $model = new static;
         return $model->db()->createQuery();
     }
 }

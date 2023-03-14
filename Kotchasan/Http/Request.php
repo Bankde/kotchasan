@@ -87,12 +87,17 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      *
      * @param string $name    ชื่อตัวแปร
      * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
+     * @param string $cookie  null (default) ไม่อ่านจาก cookie, string ชื่อ cookie ที่ต้องการ
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
-    public function get($name, $default = null)
+    public function get($name, $default = null, $cookie = null)
     {
-        return $this->createInputItem($this->getQueryParams(), $name, $default, 'GET');
+        $from = array('GET');
+        if ($cookie !== null) {
+            $from[] = 'COOKIE';
+        }
+        return $this->globals($from, $name, $default, $cookie);
     }
 
     /**
@@ -300,15 +305,18 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      */
     public function initSession()
     {
+        // Get the sessid from the query string
         $sessid = $this->get('sess')->toString();
-        if (!empty($sessid) && preg_match('/[a-zA-Z0-9]{20,}/', $sessid)) {
+        // If sessid is valid, set it as the session ID
+        if (!empty($sessid) && preg_match('/^[a-zA-Z0-9]{20,}/', $sessid)) {
             session_id($sessid);
             session_start();
-            // redirect
+            // Redirect to the same URI without the sess parameter
             $redirect = $this->getUri()->withoutParams('sess');
             header('Location: '.$redirect);
             exit;
         }
+        // If USE_SESSION_DATABASE is defined and true, set the custom session handler
         if (defined('USE_SESSION_DATABASE') && USE_SESSION_DATABASE === true) {
             $sess = new \Kotchasan\Session();
             session_set_save_handler(
@@ -319,12 +327,15 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
                 array($sess, '_destroy'),
                 array($sess, '_gc')
             );
+            // Register a shutdown function to write the session data
             register_shutdown_function('session_write_close');
         }
+        // Start the session
         session_start();
+        // Start output buffering if it's not already started
         if (!ob_get_status()) {
             if (extension_loaded('zlib') && !ini_get('zlib.output_compression')) {
-                // เปิดใช้งานการบีบอัดหน้าเว็บไซต์
+                // Enable gzip compression
                 ob_start('ob_gzhandler');
             } else {
                 ob_start();
@@ -392,12 +403,17 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      *
      * @param string $name    ชื่อตัวแปร
      * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
+     * @param string $cookie  null (default) ไม่อ่านจาก cookie, string ชื่อ cookie ที่ต้องการ
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
-    public function post($name, $default = null)
+    public function post($name, $default = null, $cookie = null)
     {
-        return $this->createInputItem($this->getParsedBody(), $name, $default, 'POST');
+        $from = array('POST');
+        if ($cookie !== null) {
+            $from[] = 'COOKIE';
+        }
+        return $this->globals($from, $name, $default, $cookie);
     }
 
     /**
@@ -418,7 +434,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      *
      * @param string $name    ชื่อตัวแปร
      * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
-     * @param mixed  $cookie  null (default) ไม่อ่านจาก cookie, string ชื่อ cookie ที่ต้องการ
+     * @param string $cookie  null (default) ไม่อ่านจาก cookie, string ชื่อ cookie ที่ต้องการ
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
@@ -466,7 +482,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      * @param string $name  ชื่อตัวแปร
      * @param mixed  $value ค่าของตัวแปร
      *
-     * @return \static
+     * @return static
      */
     public function setSession($name, $value)
     {
@@ -480,7 +496,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      * @param string $name  ชื่อของ attributes
      * @param mixed  $value ค่าของ attribute
      *
-     * @return \static
+     * @return static
      */
     public function withAttribute($name, $value)
     {
@@ -494,7 +510,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      *
      * @param array $cookies
      *
-     * @return \static
+     * @return static
      */
     public function withCookieParams(array $cookies)
     {
@@ -508,7 +524,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      *
      * @param mixed $data
      *
-     * @return \static
+     * @return static
      */
     public function withParsedBody($data)
     {
@@ -522,7 +538,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      *
      * @param array $query
      *
-     * @return \static
+     * @return static
      */
     public function withQueryParams(array $query)
     {
@@ -536,7 +552,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      *
      * @param array $uploadedFiles
      *
-     * @return \static
+     * @return static
      */
     public function withUploadedFiles(array $uploadedFiles)
     {
@@ -550,7 +566,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      *
      * @param string|array $names ชื่อของ attributes ที่ต้องการลบ
      *
-     * @return \static
+     * @return static
      */
     public function withoutAttribute($names)
     {

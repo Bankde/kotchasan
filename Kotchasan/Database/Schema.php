@@ -37,11 +37,11 @@ class Schema
      *
      * @param Driver $db
      *
-     * @return \static
+     * @return static
      */
     public static function create(Driver $db)
     {
-        $obj = new static();
+        $obj = new static;
         $obj->db = $db;
         return $obj;
     }

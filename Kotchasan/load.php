@@ -37,7 +37,7 @@ if (DEBUG > 0) {
  *
  * @var string
  */
-define('VERSION', '4.1.2');
+define('VERSION', '4.8.0');
 /*
  * กำหนดการบันทึกการ query ฐานข้อมูล
  * ควรกำหนดเป็น false ขณะใช้งานจริง
@@ -55,6 +55,10 @@ if (DIRECTORY_SEPARATOR != '/') {
     $vendorDir = str_replace('\\', '/', $vendorDir);
 }
 define('VENDOR_DIR', $vendorDir);
+/*
+ * พาธของ Application เช่น D:/htdocs/kotchasan/
+ */
+$appPath = '';
 /*
  * พาธของ Server ตั้งแต่ระดับราก เช่น D:/htdocs/Somtum/
  */
@@ -339,6 +343,7 @@ spl_autoload_register(function ($className) {
         'Psr\Log\NullLogger' => 'Psr/Log/NullLogger.php',
         'Kotchasan\Accordion' => 'Accordion.php',
         'Kotchasan\ArrayTool' => 'ArrayTool.php',
+        'Kotchasan\Barcode' => 'Barcode.php',
         'Kotchasan\CKEditor' => 'CKEditor.php',
         'Kotchasan\Collection' => 'Collection.php',
         'Kotchasan\Country' => 'Country.php',
@@ -361,6 +366,7 @@ spl_autoload_register(function ($className) {
         'Kotchasan\Image' => 'Image.php',
         'Kotchasan\InputItem' => 'InputItem.php',
         'Kotchasan\Inputs' => 'Inputs.php',
+        'Kotchasan\Jwt' => 'Jwt.php',
         'Kotchasan\Language' => 'Language.php',
         'Kotchasan\ListItem' => 'ListItem.php',
         'Kotchasan\Login' => 'Login.php',
@@ -370,6 +376,7 @@ spl_autoload_register(function ($className) {
         'Kotchasan\Number' => 'Number.php',
         'Kotchasan\Password' => 'Password.php',
         'Kotchasan\Pdf' => 'Pdf.php',
+        'Kotchasan\Promptpay' => 'Promptpay.php',
         'Kotchasan\Province' => 'Province.php',
         'Kotchasan\Singleton' => 'Singleton.php',
         'Kotchasan\Tab' => 'Tab.php',
@@ -378,7 +385,6 @@ spl_autoload_register(function ($className) {
         'Kotchasan\Validator' => 'Validator.php',
         'Kotchasan\View' => 'View.php',
         'Kotchasan\load' => 'load.php',
-        'Kotchasan\ObjectTool' => 'ObjectTool.php',
         'Kotchasan\InputItemException' => 'InputItemException.php',
         'Kotchasan\Xls' => 'Xls.php'
     );

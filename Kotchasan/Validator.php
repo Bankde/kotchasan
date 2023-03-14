@@ -25,6 +25,7 @@ class Validator extends \Kotchasan\KBase
      *
      * @assert ('admin@localhost.com') [==] true
      * @assert ('admin@localhost') [==] true
+     * @assert ('Abc01.d_e-f@1081009.com') [==] true
      * @assert ('ทดสอบ@localhost') [==] false
      *
      * @param string $email
@@ -46,7 +47,9 @@ class Validator extends \Kotchasan\KBase
 
     /**
      * ฟังก์ชั่นตรวจสอบไฟล์อัปโหลดว่าเป็นรูปภาพหรือไม่
-     * คืนค่าแอเรย์ [width, height, mime] ของรูปภาพ หรือ  false ถ้าไม่ใช่รูปภาพ
+     * คืนค่าแอเรย์ [ext, width, height, mime] ของรูปภาพ หรือ  false ถ้าไม่ใช่รูปภาพ
+     *
+     * @assert (['gif'], ['name' => 'blank.GIF', 'tmp_name' => ROOT_PATH.'skin/img/blank.gif']) [==] ['ext' => 'gif', 'width' => 1, 'height' => 1, 'mime' => 'image/gif']
      *
      * @param array $excepts     ชนิดของไฟล์ที่ยอมรับเช่น array('jpg', 'gif', 'png')
      * @param array $file_upload รับค่ามาจาก $_FILES
@@ -58,19 +61,20 @@ class Validator extends \Kotchasan\KBase
         // ext
         $imageinfo = explode('.', $file_upload['name']);
         $imageinfo = array('ext' => strtolower(end($imageinfo)));
-        if (in_array($imageinfo['ext'], $excepts)) {
-            // Exif
-            $info = getimagesize($file_upload['tmp_name']);
-            if ($info[0] == 0 || $info[1] == 0 || !Mime::check($excepts, $info['mime'])) {
-                return false;
-            } else {
-                $imageinfo['width'] = $info[0];
-                $imageinfo['height'] = $info[1];
-                $imageinfo['mime'] = $info['mime'];
-                return $imageinfo;
-            }
-        } else {
+        if (!in_array($imageinfo['ext'], $excepts)) {
             return false;
         }
+        // Exif
+        $info = getimagesize($file_upload['tmp_name']);
+        if ($info[0] == 0 || $info[1] == 0) {
+            return false;
+        }
+        if (!Mime::check($excepts, $info['mime'])) {
+            return false;
+        }
+        $imageinfo['width'] = $info[0];
+        $imageinfo['height'] = $info[1];
+        $imageinfo['mime'] = $info['mime'];
+        return $imageinfo;
     }
 }

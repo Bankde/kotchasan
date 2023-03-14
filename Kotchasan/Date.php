@@ -42,8 +42,8 @@ class Date
      * ฟังก์ชั่น คำนวนความแตกต่างของวัน (เช่น อายุ)
      * คืนค่า จำนวนวัน(ติดลบได้) ปี เดือน วัน [days, year, month, day] ที่แตกต่าง
      *
-     * @assert (mktime(0, 0, 0, 2, 1, 2016), mktime(0, 0, 0, 3, 1, 2016)) [==]  array('days' => 29, 'year' => 0,'month' => 1, 'day' => 0)
-     * @assert ('2016-3-1', '2016-2-1') [==]  array('days' => -29, 'year' => 0,'month' => 1, 'day' => 0)
+     * @assert (mktime(0, 0, 0, 2, 1, 2016), mktime(0, 0, 0, 3, 1, 2016)) [==]  array('days' => 29, 'year' => 0,'month' => 0, 'day' => 29)
+     * @assert ('2016-3-1', '2016-2-1') [==]  array('days' => -29, 'year' => 0,'month' => 0, 'day' => 29)
      *
      * @param string|int  $begin_date วันที่เริ่มต้นหรือวันเกิด (Unix timestamp หรือ วันที่ รูปแบบ YYYY-m-d)
      * @param istring|int $end_date   วันที่สิ้นสุดหรือวันนี้ (Unix timestamp หรือ วันที่ รูปแบบ YYYY-m-d)
@@ -52,76 +52,19 @@ class Date
      */
     public static function compare($begin_date, $end_date)
     {
-        if (is_string($begin_date) && preg_match('/([0-9]{1,4})-([0-9]{1,2})-([0-9]{1,2})(\s([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}))?/', $begin_date, $match)) {
-            $begin_date = mktime(0, 0, 0, (int) $match[2], (int) $match[3], (int) $match[1]);
+        if (is_int($begin_date)) {
+            $begin_date = date('Y-m-d H:i:s', $begin_date);
         }
-        if (is_string($end_date) && preg_match('/([0-9]{1,4})-([0-9]{1,2})-([0-9]{1,2})(\s([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}))?/', $end_date, $match)) {
-            $end_date = mktime(0, 0, 0, (int) $match[2], (int) $match[3], (int) $match[1]);
+        if (is_int($end_date)) {
+            $end_date = date('Y-m-d H:i:s', $end_date);
         }
-        if ($end_date == $begin_date) {
-            // เท่ากัน
-            return array(
-                'days' => 0,
-                'year' => 0,
-                'month' => 0,
-                'day' => 0
-            );
-        } else {
-            // จำนวนวันที่แตกต่าง
-            $days = floor(($end_date - $begin_date) / 86400);
-            if ($end_date < $begin_date) {
-                $tmp = $begin_date;
-                $begin_date = $end_date;
-                $end_date = $tmp;
-            }
-        }
-        $Year1 = (int) date('Y', $begin_date);
-        $Month1 = (int) date('m', $begin_date);
-        $Day1 = (int) date('d', $begin_date);
-        $Year2 = (int) date('Y', $end_date);
-        $Month2 = (int) date('m', $end_date);
-        $Day2 = (int) date('d', $end_date);
-        // วันแต่ละเดือน
-        $months = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-        // ปีอธิกสุรทิน
-        if (($Year2 % 4) == 0) {
-            $months[2] = 29;
-        }
-        // ปีอธิกสุรทิน
-        if ((($Year2 % 100) == 0) & (($Year2 % 400) != 0)) {
-            $months[2] = 28;
-        }
-        if (abs($days) < $months[$Month1]) {
-            // ไม่เกิน 1 เดือน
-            return array(
-                'days' => $days,
-                'year' => 0,
-                'month' => 0,
-                'day' => abs($days)
-            );
-        } else {
-            // ห่างกันเกิน 1 เดือน
-            $YearDiff = $Year2 - $Year1;
-            if ($Month2 >= $Month1) {
-                $MonthDiff = $Month2 - $Month1;
-            } else {
-                --$YearDiff;
-                $MonthDiff = 12 + $Month2 - $Month1;
-            }
-            if ($Day1 > $months[$Month2]) {
-                $Day1 = 0;
-            } elseif ($Day1 > $Day2) {
-                $Month2 = $Month2 == 1 ? 13 : $Month2;
-                $Day2 += $months[$Month2 - 1];
-                --$MonthDiff;
-            }
-            return array(
-                'days' => $days,
-                'year' => $YearDiff,
-                'month' => $MonthDiff,
-                'day' => $Day2 - $Day1
-            );
-        }
+        $diff = date_diff(date_create($begin_date), date_create($end_date));
+        return array(
+            'days' => $diff->invert == 1 ? -$diff->days : $diff->days,
+            'year' => $diff->y,
+            'month' => $diff->m,
+            'day' => $diff->d
+        );
     }
 
     /**
@@ -158,7 +101,7 @@ class Date
     {
         // create class
         if (!isset(self::$lang)) {
-            new static();
+            new static;
         }
         $var = $short_date ? self::$lang['DATE_SHORT'] : self::$lang['DATE_LONG'];
         return isset($var[$date]) ? $var[$date] : '';
@@ -192,7 +135,7 @@ class Date
         }
         // create class
         if (!isset(self::$lang)) {
-            new static();
+            new static;
         }
         $format = empty($format) ? 'DATE_FORMAT' : $format;
         $format = Language::get($format);
@@ -250,7 +193,7 @@ class Date
     {
         // create class
         if (!isset(self::$lang)) {
-            new static();
+            new static;
         }
         $var = $short_month ? self::$lang['MONTH_SHORT'] : self::$lang['MONTH_LONG'];
         return isset($var[$month]) ? $var[$month] : '';

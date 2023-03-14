@@ -232,7 +232,7 @@ class Country
             'IC' => array('th' => 'หมู่เกาะคานารี', 'en' => 'Canary Islands', 'local' => 'islas Canarias'),
             'CK' => array('th' => 'หมู่เกาะคุก', 'en' => 'Cook Islands', 'local' => 'Cook Islands'),
             'KY' => array('th' => 'หมู่เกาะเคย์แมน', 'en' => 'Cayman Islands', 'local' => 'Cayman Islands'),
-            'CC' => array('th' => 'หมู่เกาะโคโคส (คีลิง) (Kepulauan Cocos', 'en' => 'Cocos (Keeling) Islands (Kepulauan Cocos', 'local' => 'Keeling)'),
+            'CC' => array('th' => 'หมู่เกาะโคโคส (คีลิง) (Kepulauan Cocos)', 'en' => 'Cocos (Keeling) Islands (Kepulauan Cocos)', 'local' => 'Keeling)'),
             'SB' => array('th' => 'หมู่เกาะโซโลมอน', 'en' => 'Solomon Islands', 'local' => 'Solomon Islands'),
             'TC' => array('th' => 'หมู่เกาะเติกส์และหมู่เกาะเคคอส', 'en' => 'Turks &amp; Caicos Islands', 'local' => 'Turks &amp; Caicos Islands'),
             'MP' => array('th' => 'หมู่เกาะนอร์เทิร์นมาเรียนา', 'en' => 'Northern Mariana Islands', 'local' => 'Northern Mariana Islands'),

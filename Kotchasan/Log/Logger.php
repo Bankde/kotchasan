@@ -60,7 +60,7 @@ class Logger extends AbstractLogger implements LoggerInterface
      *
      * @param array $options
      *
-     * @return \static
+     * @return static
      */
     public static function create(array $options = array())
     {

@@ -56,12 +56,12 @@ class Email extends \Kotchasan\KBase
      * @param string $cc ที่อยู่อีเมล์สำหรับ ส่งแบบ CC คั่นแต่ละรายการด้วย ,
      * @param string $bcc ที่อยู่อีเมล์สำหรับ ส่งแบบ BCC คั่นแต่ละรายการด้วย ,
      *
-     * @return \static
+     * @return static
      */
     public static function send($mailto, $replyto, $subject, $msg, $cc = '', $bcc = '')
     {
         // create class
-        $obj = new static();
+        $obj = new static;
         $obj->error = array();
         // send email
         $charset = empty(self::$cfg->email_charset) ? 'utf-8' : strtolower(self::$cfg->email_charset);

@@ -84,21 +84,19 @@ class Login extends \Kotchasan\KBase
      * มาจากการ submit ตรวจสอบการ login
      * ถ้าไม่มีทั้งสองส่วนด้านบน จะตรวจสอบการ login จาก session
      *
-     * @return \static
+     * @return static
      */
     public static function create()
     {
         // create class
-        $login = new static();
-        // ชื่อฟิลด์สำหรับการรับค่าเป็นรายการแรกของ login_fields
-        $field_name = reset(self::$cfg->login_fields);
+        $login = new static;
         try {
             // อ่านข้อมูลจากฟอร์ม login ฟิลด์ login_username
             self::$login_params['username'] = self::$request->post('login_username')->username();
             if (empty(self::$login_params['username'])) {
-                if (isset($_SESSION['login']) && isset($_SESSION['login'][$field_name])) {
+                if (isset($_SESSION['login']) && isset($_SESSION['login']['username'])) {
                     // session
-                    self::$login_params['username'] = Text::username($_SESSION['login'][$field_name]);
+                    self::$login_params['username'] = Text::username($_SESSION['login']['username']);
                     if (isset($_SESSION['login']['token'])) {
                         self::$login_params['token'] = $_SESSION['login']['token'];
                     } elseif (isset($_SESSION['login']['password'])) {

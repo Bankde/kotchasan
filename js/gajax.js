@@ -219,7 +219,7 @@ window.$K = (function() {
                         }
                       });
                       display.value = files.join(', ');
-                      display.callEvent('change', {
+                      $G(display).callEvent('change', {
                         value: this.value,
                         files: this.files
                       });
@@ -266,6 +266,26 @@ window.$K = (function() {
           }
         }
       });
+      var checkbox_loading = true,
+        wCheckboxChanged = function(e) {
+          this.checkId.disabled = !this.checked;
+          if (!checkbox_loading && this.checked) {
+            this.checkId.focus();
+          }
+        };
+      forEach(element.querySelectorAll('.w_checkbox input[type=checkbox]'), function(elem) {
+        if (!elem.checkId) {
+          var id = elem.name.replace('checkbox_', '');
+          if ($E(id)) {
+            elem.checkId = $E(id);
+            $G(elem).addEvent('change', wCheckboxChanged);
+            wCheckboxChanged.call(elem);
+          }
+        }
+      });
+      window.setTimeout(function() {
+        checkbox_loading = false;
+      }, 1);
     }
   };
   if (typeof Array.prototype.indexOf != 'function') {
@@ -308,7 +328,7 @@ window.$K = (function() {
     } else if (typeof digit == 'number') {
       val = floatval(val).toFixed(digit);
     } else if (typeof val == 'number') {
-      val = new String(val);
+      val = new String(floatval(val));
     }
     var ds = val.split('.'),
       val = ds[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -350,6 +370,19 @@ window.$K = (function() {
       ret.push(k + '=' + json[k]);
     }
     return ret.join(separator ? separator : '&');
+  };
+  window.jwt_decode = function(token) {
+    var base64Url = token.split('.')[1],
+      base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'),
+      jsonPayload = decodeURIComponent(
+        atob(base64)
+        .split("")
+        .map(function(c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+      );
+    return JSON.parse(jsonPayload);
   };
   window.debug = function(val) {
     var p = document.createElement('p'),
@@ -4060,6 +4093,7 @@ window.$K = (function() {
         c.appendChild(c2);
         c2.className = this.previewClass;
         this.img = doc.createElement('img');
+        this.img.alt = '';
         c2.appendChild(this.img);
         new GDragMove(c, this.img);
         c = doc.createElement('figcaption');

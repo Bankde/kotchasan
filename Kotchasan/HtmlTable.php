@@ -113,7 +113,7 @@ class HtmlTable
      *
      * @param array $properties
      *
-     * @return \static
+     * @return static
      */
     public static function create($properties = array())
     {
@@ -231,7 +231,7 @@ class TableRow
      *
      * @param array $properties
      *
-     * @return \static
+     * @return static
      */
     public static function create($properties = array())
     {

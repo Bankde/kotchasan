@@ -68,12 +68,12 @@ class DbCache
     /**
      * Create Class (Singleton)
      *
-     * @return \static
+     * @return static
      */
     public static function create()
     {
         if (null === static::$instance) {
-            static::$instance = new static();
+            static::$instance = new static;
         }
         return static::$instance;
     }
@@ -143,7 +143,7 @@ class DbCache
      *
      * @param type $value
      *
-     * @return \static
+     * @return static
      */
     public function setAction($value)
     {

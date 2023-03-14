@@ -186,7 +186,7 @@
                 <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_cfg">$cfg</a>
     <span>
-                &nbsp;: <a href="classes/Kotchasan-Config.html"><abbr title="\Kotchasan\Config">Config</abbr></a>            </span>
+                &nbsp;: object            </span>
 </dt>
 <dd>Config class</dd>
 
@@ -228,22 +228,13 @@
 คืนค่า false ถ้าไม่มีหรือไม่ใช่แอเรย์</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Kotchasan-Language.html#method_find">find()</a>
-    <span>
-                        &nbsp;: mixed    </span>
-</dt>
-<dd>ค้นหาข้อความภาษาที่ต้องการ ถ้าไม่พบคืนค่า $default
-ถ้าไม่ระบุ $default (null) คืนค่า $key
-ถ้าระบุ $key มาด้วยและ ค่าของภาษาเป็นแอเรย์ จะคืนค่า แอเรย์ของภาษาที่ $key
-ถ้าไม่พบข้อมูลที่เลือกคืนค่า null</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_get">get()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ฟังก์ชั่นอ่านภาษาที่
-ถ้าไม่พบ $key ที่ต้อง
+<dd>ฟังก์ชั่นอ่านตัวแปรภาษา $key
+ถ้าระบุ $value และตัวแปรเป็นแอเรย์ คืนค่าภาษาที่ $key[$value]
+ถ้าไม่พบ $key หรือ $value คืนค่าตามที่กำหนดโดย $default
 $default = null (หรือไม่ระบุ) คืนค่า $key
 $default = อื่นๆ คืนค่า $default</dd>
 
@@ -377,7 +368,7 @@ $default = อื่นๆ คืนค่า $default</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Config.html"><abbr title="\Kotchasan\Config">Config</abbr></a></span>
+    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">object</span>
     <span class="phpdocumentor-signature__name">$cfg</span>
     </code>
 
@@ -538,7 +529,7 @@ $default = อื่นๆ คืนค่า $default</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">219</span>
+    <span class="phpdocumentor-element-found-in__line">200</span>
 
     </aside>
 
@@ -607,49 +598,56 @@ $default = อื่นๆ คืนค่า $default</dd>
             -public
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_find">
-        find()
-        <a href="classes/Kotchasan-Language.html#method_find" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_get">
+        get()
+        <a href="classes/Kotchasan-Language.html#method_get" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ค้นหาข้อความภาษาที่ต้องการ ถ้าไม่พบคืนค่า $default
-ถ้าไม่ระบุ $default (null) คืนค่า $key
-ถ้าระบุ $key มาด้วยและ ค่าของภาษาเป็นแอเรย์ จะคืนค่า แอเรย์ของภาษาที่ $key
-ถ้าไม่พบข้อมูลที่เลือกคืนค่า null</p>
+        <p class="phpdocumentor-summary">ฟังก์ชั่นอ่านตัวแปรภาษา $key
+ถ้าระบุ $value และตัวแปรเป็นแอเรย์ คืนค่าภาษาที่ $key[$value]
+ถ้าไม่พบ $key หรือ $value คืนค่าตามที่กำหนดโดย $default
+$default = null (หรือไม่ระบุ) คืนค่า $key
+$default = อื่นๆ คืนค่า $default</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">find</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$name</span>
+                <span class="phpdocumentor-signature__argument__name">$key</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>ข้อความในภาษาอังกฤษ หรือ คีย์ของภาษา</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$default</span>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>ถ้าไม่ระบุ (null) และไม่พบ $key</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$key</span>
+                <span class="phpdocumentor-signature__argument__name">$value</span>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>ถ้าเป็นแอเรย์และระบุ $value มาด้วย คืนค่าข้อมูลที่ $value</p>
+</section>
+
             </dd>
             </dl>
 
@@ -664,15 +662,6 @@ $default = อื่นๆ คืนค่า $default</dd>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>('XYZ', array()) [==] array()</p>
-</section>
-
-                                    </dd>
-                            <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">assert</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
                                                  <section class="phpdocumentor-description"><p>('YEAR_OFFSET') [==] 543</p>
 </section>
 
@@ -682,7 +671,25 @@ $default = อื่นๆ คืนค่า $default</dd>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
+                                                 <section class="phpdocumentor-description"><p>('XYZ', array()) [==] array()</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
                                                  <section class="phpdocumentor-description"><p>('DATE_LONG', null, 0) [==] 'อาทิตย์'</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>('DATE_LONG', null, 12) [==] 'DATE_LONG'</p>
 </section>
 
                                     </dd>
@@ -709,87 +716,6 @@ $default = อื่นๆ คืนค่า $default</dd>
             -public
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_get">
-        get()
-        <a href="classes/Kotchasan-Language.html#method_get" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">88</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">ฟังก์ชั่นอ่านภาษาที่
-ถ้าไม่พบ $key ที่ต้อง
-$default = null (หรือไม่ระบุ) คืนค่า $key
-$default = อื่นๆ คืนค่า $default</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความในภาษาอังกฤษ หรือ คีย์ของภาษา</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$default</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าไม่ระบุ (null) และไม่พบ $key</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">assert</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>('YEAR_OFFSET') [==] 543</p>
-</section>
-
-                                    </dd>
-                            <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">assert</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>('XYZ', array()) [==] array()</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
     <h4 class="phpdocumentor-element__name" id="method_getItems">
         getItems()
         <a href="classes/Kotchasan-Language.html#method_getItems" class="headerlink"><i class="fas fa-link"></i></a>
@@ -797,7 +723,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">103</span>
+    <span class="phpdocumentor-element-found-in__line">84</span>
 
     </aside>
 
@@ -840,7 +766,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">123</span>
+    <span class="phpdocumentor-element-found-in__line">104</span>
 
     </aside>
 
@@ -884,7 +810,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">168</span>
+    <span class="phpdocumentor-element-found-in__line">149</span>
 
     </aside>
 
@@ -917,7 +843,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">196</span>
+    <span class="phpdocumentor-element-found-in__line">177</span>
 
     </aside>
 
@@ -1005,7 +931,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">232</span>
+    <span class="phpdocumentor-element-found-in__line">213</span>
 
     </aside>
 
@@ -1038,7 +964,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">399</span>
+    <span class="phpdocumentor-element-found-in__line">386</span>
 
     </aside>
 
@@ -1081,7 +1007,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">244</span>
+    <span class="phpdocumentor-element-found-in__line">225</span>
 
     </aside>
 
@@ -1129,7 +1055,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">276</span>
+    <span class="phpdocumentor-element-found-in__line">257</span>
 
     </aside>
 
@@ -1189,7 +1115,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">292</span>
+    <span class="phpdocumentor-element-found-in__line">275</span>
 
     </aside>
 
@@ -1198,7 +1124,7 @@ $default = อื่นๆ คืนค่า $default</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">replace</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$replace</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">replace</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$replace</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1212,7 +1138,7 @@ $default = อื่นๆ คืนค่า $default</p>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$replace</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1231,6 +1157,24 @@ $default = อื่นๆ คืนค่า $default</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
                                                  <section class="phpdocumentor-description"><p>('You want to :action', array(':action' =&gt; 'delete')) [==] 'You want to delete'</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>('You want to %s', 'delete') [==] 'You want to delete'</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>('You want to %s', 1) [==] 'You want to 1'</p>
 </section>
 
                                     </dd>
@@ -1255,7 +1199,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">313</span>
+    <span class="phpdocumentor-element-found-in__line">300</span>
 
     </aside>
 
@@ -1305,7 +1249,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">259</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
     </aside>
 
@@ -1348,7 +1292,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">387</span>
+    <span class="phpdocumentor-element-found-in__line">374</span>
 
     </aside>
 
@@ -1406,7 +1350,7 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">417</span>
+    <span class="phpdocumentor-element-found-in__line">404</span>
 
     </aside>
 

@@ -28,7 +28,7 @@ class Html extends \Kotchasan\KBase
     /**
      * ตัวแปรเก็บ form object
      *
-     * @var \static
+     * @var \Kotchasan\Form
      */
     public static $form;
     /**
@@ -67,7 +67,7 @@ class Html extends \Kotchasan\KBase
      * @param string $tag
      * @param array  $attributes
      *
-     * @return \static
+     * @return static
      */
     public function add($tag, $attributes = array())
     {
@@ -115,7 +115,7 @@ class Html extends \Kotchasan\KBase
      * @param string $tag
      * @param array  $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function create($tag, $attributes = array())
     {
@@ -134,7 +134,7 @@ class Html extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function fieldset($attributes = array())
     {
@@ -162,7 +162,7 @@ class Html extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function form($attributes = array())
     {
@@ -327,7 +327,7 @@ class Html extends \Kotchasan\KBase
      * @param  $tag
      * @param  $attributes
      *
-     * @return \static
+     * @return static
      */
     private function addGroups($tag, $attributes)
     {
@@ -387,7 +387,7 @@ class Html extends \Kotchasan\KBase
     /**
      * @param  $attributes
      *
-     * @return \static
+     * @return static
      */
     private function addInputGroups($attributes)
     {
@@ -498,7 +498,7 @@ class Html extends \Kotchasan\KBase
     /**
      * @param  $attributes
      *
-     * @return \static
+     * @return static
      */
     private function addMenuButton($attributes)
     {
@@ -549,7 +549,7 @@ class Html extends \Kotchasan\KBase
      * @param  $tag
      * @param  $attributes
      *
-     * @return \static
+     * @return static
      */
     private function addRadioOrCheckbox($tag, $attributes)
     {

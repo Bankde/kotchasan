@@ -49,7 +49,7 @@ class Csv
      */
     public static function import($csv, $columns, $keys = null, $charset = 'UTF-8')
     {
-        $obj = new static();
+        $obj = new static;
         $obj->columns = $columns;
         $obj->datas = array();
         $obj->charset = strtoupper($charset);
@@ -83,11 +83,11 @@ class Csv
                         } else {
                             if ($charset == 'UTF-8') {
                                 // remove BOM
-                                $data[0] = self::removeBomUtf8($data[0]);
+                                $data[0] = trim(self::removeBomUtf8($data[0]), " \t\n\r\0\x0B\'\"");
                             } else {
                                 // แปลงเป็น UTF-8
                                 foreach ($data as $k => $v) {
-                                    $data[$k] = iconv($charset, 'UTF-8//IGNORE', $v);
+                                    $data[$k] = trim(iconv($charset, 'UTF-8//IGNORE', $v), " \t\n\r\0\x0B\'\"");
                                 }
                             }
                             // ตรวจสอบ Header

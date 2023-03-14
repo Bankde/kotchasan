@@ -80,7 +80,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @param array $cookies array of key/value pairs representing cookies
      *
-     * @return self
+     * @return static
      */
     public function withCookieParams(array $cookies);
 
@@ -120,7 +120,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @param array $query Array of query string arguments, typically from
      *
-     * @return self
+     * @return static
      */
     public function withQueryParams(array $query);
 
@@ -150,7 +150,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @throws \InvalidArgumentException if an invalid structure is provided
      *
-     * @return self
+     * @return static
      */
     public function withUploadedFiles(array $uploadedFiles);
 
@@ -201,7 +201,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @throws \InvalidArgumentException if an unsupported argument type is
      *
-     * @return self
+     * @return static
      */
     public function withParsedBody($data);
 
@@ -252,7 +252,7 @@ interface ServerRequestInterface extends RequestInterface
      * @param string $name  the attribute name
      * @param mixed  $value the value of the attribute
      *
-     * @return self
+     * @return static
      */
     public function withAttribute($name, $value);
 
@@ -270,7 +270,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @param string $name the attribute name
      *
-     * @return self
+     * @return static
      */
     public function withoutAttribute($name);
 }

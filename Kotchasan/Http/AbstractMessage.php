@@ -126,7 +126,7 @@ abstract class AbstractMessage implements MessageInterface
      *
      * @throws \InvalidArgumentException ถ้าชื่อ header ไม่ถูกต้อง
      *
-     * @return \static
+     * @return static
      */
     public function withAddedHeader($name, $value)
     {
@@ -147,7 +147,7 @@ abstract class AbstractMessage implements MessageInterface
      *
      * @param streamInterface $body
      *
-     * @return \static
+     * @return static
      */
     public function withBody(StreamInterface $body)
     {
@@ -164,7 +164,7 @@ abstract class AbstractMessage implements MessageInterface
      *
      * @throws \InvalidArgumentException for invalid header names or values
      *
-     * @return \static
+     * @return static
      */
     public function withHeader($name, $value)
     {
@@ -181,7 +181,7 @@ abstract class AbstractMessage implements MessageInterface
      *
      * @throws \InvalidArgumentException for invalid header names or values
      *
-     * @return \static
+     * @return static
      */
     public function withHeaders($headers)
     {
@@ -198,7 +198,7 @@ abstract class AbstractMessage implements MessageInterface
      *
      * @param string $version เช่น 1.1, 1.0
      *
-     * @return \static
+     * @return static
      */
     public function withProtocolVersion($version)
     {
@@ -212,7 +212,7 @@ abstract class AbstractMessage implements MessageInterface
      *
      * @param string $name ชื่อ header ที่ต้องการลบ
      *
-     * @return \static
+     * @return static
      */
     public function withoutHeader($name)
     {

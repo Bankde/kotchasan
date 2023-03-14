@@ -8,6 +8,7 @@
  *
  * @see https://www.kotchasan.com/
  */
+define('DEBUG', 2);
 $_SERVER['HTTP_HOST'] = 'localhost';
 $_SERVER['DOCUMENT_ROOT'] = dirname(dirname(__FILE__)).'/';
 // ตัวแปรที่จำเป็นสำหรับ Framework ใช้ระบุ root folder

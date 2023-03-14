@@ -41,7 +41,7 @@ class Sql
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      * @param bool        $distinct    false (default) นับทุกคอลัมน์, true นับเฉพาะคอลัมน์ที่ไม่ซ้ำ
      *
-     * @return \static
+     * @return static
      */
     public static function AVG($column_name, $alias = null, $distinct = false)
     {
@@ -80,7 +80,7 @@ class Sql
      *
      * @throws \InvalidArgumentException ถ้ารูปแบบของ $fields ไม่ใช่แอเรย์
      *
-     * @return \static
+     * @return static
      */
     public static function CONCAT($fields, $alias = null, $separator = null)
     {
@@ -104,7 +104,7 @@ class Sql
      * @param string|null $alias
      * @param bool        $distinct    false (default) นับทุกคอลัมน์, true นับเฉพาะคอลัมน์ที่ไม่ซ้ำ
      *
-     * @return \static
+     * @return static
      */
     public static function COUNT($column_name = '*', $alias = null, $distinct = false)
     {
@@ -121,7 +121,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function DATE($column_name, $alias = null)
     {
@@ -138,7 +138,7 @@ class Sql
      * @param string $column_name2
      * @param string $alias
      *
-     * @return \static
+     * @return static
      */
     public static function DATEDIFF($column_name1, $column_name2, $alias = null)
     {
@@ -155,7 +155,7 @@ class Sql
      * @param string      $format
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function DATE_FORMAT($column_name, $format, $alias = null)
     {
@@ -171,7 +171,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function DAY($column_name, $alias = null)
     {
@@ -186,7 +186,7 @@ class Sql
      * @param string $column_name
      * @param string|null  $alias ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function DISTINCT($column_name, $alias = null)
     {
@@ -203,7 +203,7 @@ class Sql
      * @param string      $format
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function FORMAT($column_name, $format, $alias = null)
     {
@@ -248,7 +248,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function HOUR($column_name, $alias = null)
     {
@@ -308,7 +308,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function MAX($column_name, $alias = null)
     {
@@ -323,7 +323,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function MIN($column_name, $alias = null)
     {
@@ -339,7 +339,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function MINUTE($column_name, $alias = null)
     {
@@ -355,7 +355,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function MONTH($column_name, $alias = null)
     {
@@ -379,11 +379,11 @@ class Sql
      * @param string $operator   (optional) เช่น AND หรือ OR
      * @param string $id         (optional )ชื่อฟิลด์ที่เป็น key
      *
-     * @return \static
+     * @return static
      */
     public static function NEXT($field, $table_name, $condition = null, $alias = null, $operator = 'AND', $id = 'id')
     {
-        $obj = new static();
+        $obj = new static;
         if (empty($condition)) {
             $condition = '';
         } else {
@@ -404,7 +404,7 @@ class Sql
      *
      * @param string|null $alias ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function NOW($alias = null)
     {
@@ -439,7 +439,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function RAND($alias = null)
     {
@@ -455,7 +455,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function SECOND($column_name, $alias = null)
     {
@@ -474,7 +474,7 @@ class Sql
      * @param string|null $alias
      * @param bool        $distinct    false (default) รวมทุกคอลัมน์, true รวมเฉพาะคอลัมน์ที่ไม่ซ้ำ
      *
-     * @return \static
+     * @return static
      */
     public static function SUM($column_name, $alias = '', $distinct = false)
     {
@@ -491,7 +491,7 @@ class Sql
      * @param string $column_name2
      * @param string $alias
      *
-     * @return \static
+     * @return static
      */
     public static function TIMEDIFF($column_name1, $column_name2, $alias = null)
     {
@@ -509,7 +509,7 @@ class Sql
      * @param string $column_name2
      * @param string $alias
      *
-     * @return \static
+     * @return static
      */
     public static function TIMESTAMPDIFF($unit, $column_name1, $column_name2, $alias = null)
     {
@@ -519,37 +519,37 @@ class Sql
     /**
      * สร้างคำสั่ง WHERE
      *
-     * @assert WHERE(1)->text() [==] "`id` = 1"
-     * @assert WHERE('1')->text() [==] "`id` = '1'"
-     * @assert WHERE(0.1)->text() [==] "`id` = 0.1"
-     * @assert WHERE('ทดสอบ')->text() [==] "`id` = 'ทดสอบ'"
-     * @assert WHERE(null)->text() [==] "`id` = NULL"
-     * @assert WHERE(0x64656)->text() [==] "`id` = 411222"
-     * @assert WHERE('SELECT * FROM')->text() [==] "`id` = :id0"
-     * @assert WHERE(Sql::create('EXISTS SELECT FROM WHERE'))->text() [==] "EXISTS SELECT FROM WHERE"
-     * @assert WHERE(array('id', '=', 1))->text() [==] "`id` = 1"
-     * @assert WHERE(array('U.id', '2017-01-01 00:00:00'))->text() [==] "U.`id` = '2017-01-01 00:00:00'"
-     * @assert WHERE(array('id', 'IN', array(1, '2', null)))->text() [==] "`id` IN (1, '2', NULL)"
-     * @assert WHERE(array('id', 'SELECT * FROM'))->text() [==] "`id` = :id0"
-     * @assert WHERE(array('U.`id`', 'NOT IN', Sql::create('SELECT * FROM')))->text() [==] "U.`id` NOT IN SELECT * FROM"
-     * @assert WHERE(array(array('id', 'IN', array(1, '2', null))))->text() [==] "`id` IN (1, '2', NULL)"
-     * @assert WHERE(array(array('U.id', 1), array('U.id', '!=', '1')))->text() [==] "U.`id` = 1 AND U.`id` != '1'"
-     * @assert WHERE(array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))->text() [==] "MONTH(`create_date`) = 1 AND YEAR(`create_date`) = 1"
-     * @assert WHERE(array(array('id', array(1, 'a')), array('id', array('G.id', 'G.`id2`'))))->text() [==] "`id` IN (1, 'a') AND `id` IN (G.`id`, G.`id2`)"
-     * @assert WHERE(array(array('id', array('', 'th'))))->text() [==] "`id` IN ('', 'th')"
-     * @assert WHERE(array(Sql::YEAR('create_date'), Sql::YEAR('`create_date`')))->text() [==] "YEAR(`create_date`) = YEAR(`create_date`)"
-     * @assert WHERE(array('ip', 'NOT IN', array('', '192.168.1.2')))->text() [==] "`ip` NOT IN ('', '192.168.1.2')"
-     * @assert WHERE(array(1, 1))->text() [==] "1 = 1"
+     * @assert (1)->text() [==] "`id` = 1"
+     * @assert ('1')->text() [==] "`id` = '1'"
+     * @assert (0.1)->text() [==] "`id` = 0.1"
+     * @assert ('ทดสอบ')->text() [==] "`id` = 'ทดสอบ'"
+     * @assert (null)->text() [==] "`id` = NULL"
+     * @assert (0x64656)->text() [==] "`id` = 411222"
+     * @assert ('SELECT * FROM')->text() [==] "`id` = :id0"
+     * @assert (Sql::create('EXISTS SELECT FROM WHERE'))->text() [==] "EXISTS SELECT FROM WHERE"
+     * @assert (array('id', '=', 1))->text() [==] "`id` = 1"
+     * @assert (array('U.id', '2017-01-01 00:00:00'))->text() [==] "U.`id` = '2017-01-01 00:00:00'"
+     * @assert (array('id', 'IN', array(1, '2', null)))->text() [==] "`id` IN (1, '2', NULL)"
+     * @assert (array('id', 'SELECT * FROM'))->text() [==] "`id` = :id0"
+     * @assert (array('U.`id`', 'NOT IN', Sql::create('SELECT * FROM')))->text() [==] "U.`id` NOT IN SELECT * FROM"
+     * @assert (array(array('id', 'IN', array(1, '2', null))))->text() [==] "`id` IN (1, '2', NULL)"
+     * @assert (array(array('U.id', 1), array('U.id', '!=', '1')))->text() [==] "U.`id` = 1 AND U.`id` != '1'"
+     * @assert (array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))->text() [==] "MONTH(`create_date`) = 1 AND YEAR(`create_date`) = 1"
+     * @assert (array(array('id', array(1, 'a')), array('id', array('G.id', 'G.`id2`'))))->text() [==] "`id` IN (1, 'a') AND `id` IN (G.`id`, G.`id2`)"
+     * @assert (array(array('id', array('', 'th'))))->text() [==] "`id` IN ('', 'th')"
+     * @assert (array(Sql::YEAR('create_date'), Sql::YEAR('`create_date`')))->text() [==] "YEAR(`create_date`) = YEAR(`create_date`)"
+     * @assert (array('ip', 'NOT IN', array('', '192.168.1.2')))->text() [==] "`ip` NOT IN ('', '192.168.1.2')"
+     * @assert (array(1, 1))->text() [==] "1 = 1"
      *
      * @param mixed  $condition
      * @param string $operator  (optional) เช่น AND หรือ OR
      * @param string $id        (optional )ชื่อฟิลด์ที่เป็น key
      *
-     * @return \static
+     * @return static
      */
     public static function WHERE($condition, $operator = 'AND', $id = 'id')
     {
-        $obj = new static();
+        $obj = new static;
         $obj->sql = $obj->buildWhere($condition, $obj->values, $operator, $id);
         return $obj;
     }
@@ -563,7 +563,7 @@ class Sql
      * @param string      $column_name
      * @param string|null $alias       ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง
      *
-     * @return \static
+     * @return static
      */
     public static function YEAR($column_name, $alias = null)
     {
@@ -604,6 +604,10 @@ class Sql
      * @assert ('field_name') [==] '`field_name`'
      * @assert ('U.id') [==] 'U.`id`'
      * @assert ('U1.id') [==] 'U1.`id`'
+     * @assert ('U99.member_id') [==] 'U99.`member_id`'
+     * @assert ('U99.provinceId1') [==] 'U99.`provinceId1`'
+     * @assert ('U999.provinceId1') [==] "`U999`.`provinceId1`"
+     * @assert ('U999.`provinceId1`') [==] "`U999`.`provinceId1`"
      * @assert ('U1.id DESC') [==] 'U1.`id` DESC'
      * @assert ('table_name.field_name') [==] '`table_name`.`field_name`'
      * @assert ('`table_name`.`field_name`') [==] '`table_name`.`field_name`'
@@ -633,7 +637,7 @@ class Sql
         } elseif (is_string($column_name)) {
             if (preg_match('/^`?([a-z0-9_]{2,})`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
                 return '`'.$match[1].'`'.(empty($match[3]) ? '' : $match[2]);
-            } elseif (preg_match('/^([A-Z][0-9]{0,1}\.)`?([a-zA-Z0-9_]+)`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
+            } elseif (preg_match('/^([A-Z][0-9]{0,2}\.)`?([a-zA-Z0-9_]+)`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
                 return $match[1].'`'.$match[2].'`'.(empty($match[4]) ? '' : $match[3]);
             } elseif (preg_match('/^`?([a-zA-Z0-9_]+)`?\.`?([a-zA-Z0-9_]+)`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
                 // table_name.field_name, table_name.`field_name`, `table_name`.field_name, `table_name`.`field_name`
@@ -715,11 +719,16 @@ class Sql
                 $sql = "'$value'";
             } elseif (preg_match('/0x[0-9]+/is', $value)) {
                 // 0x
-                $sql = ':'.strtolower(preg_replace('/[`\.\s\-_]+/', '', $column_name)).count($values);
+                $sql = ':'.strtolower(preg_replace('/[`\.\s\-_]+/', '', $column_name));
+                if (empty($values) || !is_array($values)) {
+                    $sql .= 0;
+                } else {
+                    $sql .= count($values);
+                }
                 $values[$sql] = $value;
             } else {
-                if (preg_match('/^(([A-Z]{1,1}[0-9]{0,1})|`([a-zA-Z0-9_]+)`)\.`?([a-zA-Z0-9_]+)`?$/', $value, $match)) {
-                    // U.id U.`id` U1.id U1.`id`  `table_name`.`module_id`
+                if (preg_match('/^(([A-Z][0-9]{0,2})|`([a-zA-Z0-9_]+)`)\.`?([a-zA-Z0-9_]+)`?$/', $value, $match)) {
+                    // U.id U.`id` U1.id U99.id U1.`id`  `table_name`.`module_id`
                     $sql = $match[3] == '' ? "$match[2].`$match[4]`" : "`$match[3]`.`$match[4]`";
                 } elseif (preg_match('/^([a-zA-Z0-9_]+)\.`([a-zA-Z0-9_]+)`$/', $value, $match)) {
                     // table_name.`module_id`
@@ -728,7 +737,12 @@ class Sql
                     // ข้อความที่ไม่มีช่องว่างหรือรหัสที่อาจเป็น SQL
                     $sql = "'$value'";
                 } else {
-                    $sql = ':'.strtolower(preg_replace('/[`\.\s\-_]+/', '', $column_name)).count($values);
+                    $sql = ':'.strtolower(preg_replace('/[`\.\s\-_]+/', '', $column_name));
+                    if (empty($values) || !is_array($values)) {
+                        $sql .= 0;
+                    } else {
+                        $sql .= count($values);
+                    }
                     $values[$sql] = $value;
                 }
             }
@@ -817,6 +831,8 @@ class Sql
                 } elseif ($condition[0] instanceof self) {
                     $key = $condition[0]->text();
                     $values = $condition[0]->getValues($values);
+                } elseif (preg_match('/^SQL(\(.*\))$/', $condition[0], $match)) {
+                    $key = '('.$match[1].')';
                 } else {
                     $key = self::fieldName($condition[0]);
                 }
@@ -865,6 +881,8 @@ class Sql
         } elseif ($condition instanceof self) {
             $sql = $condition->text();
             $values = $condition->getValues($values);
+        } elseif (preg_match('/^SQL\((.+)\)$/', $condition, $match)) {
+            $sql = '('.$match[1].')';
         } else {
             // ใช้ $id เป็น column_name
             $sql = self::fieldName($id).' = '.self::quoteValue($id, $condition, $values);

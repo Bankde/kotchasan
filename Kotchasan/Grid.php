@@ -42,7 +42,7 @@ class Grid extends \Kotchasan\Template
      *
      * @param int $cols จำนวนคอลัมน์ มากกว่า 0
      *
-     * @return \static
+     * @return static
      */
     public function setCols($cols)
     {

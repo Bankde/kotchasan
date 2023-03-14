@@ -110,7 +110,7 @@ class DOMParser
      *
      * @param string $url URL ที่ต้องการ parse
      *
-     * @return \static
+     * @return static
      */
     public static function load($url)
     {

@@ -25,14 +25,14 @@ class Form extends \Kotchasan\KBase
      *
      * @var bool
      */
-    public $ajax;
+    public $ajax = false;
     /**
      * ตัวแปรบอกว่ามีการใช้งานฟอร์มร่วมกับ GForm หรือไม่
      * ถ้าใช้งานต้องมีการเรียกใช้ GAjax ด้วย
      *
      * @var bool
      */
-    public $gform;
+    public $gform = true;
     /**
      * Javascript
      *
@@ -60,11 +60,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function button($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         if (isset($attributes['tag']) && $attributes['tag'] == 'input') {
             $obj->tag = 'input';
         } else {
@@ -86,11 +86,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function checkbox($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'checkbox';
         $obj->attributes = $attributes;
@@ -105,11 +105,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function color($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'text';
         $attributes['class'] = 'color';
@@ -126,11 +126,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function currency($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'text';
         $attributes['class'] = 'currency';
@@ -146,11 +146,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function date($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'date';
         $obj->attributes = $attributes;
@@ -165,11 +165,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function datetime($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'datetime';
         $obj->attributes = $attributes;
@@ -184,11 +184,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function email($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'email';
         $obj->attributes = $attributes;
@@ -203,11 +203,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function file($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'file';
         $attributes['class'] = 'g-file';
@@ -244,11 +244,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function hidden($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'hidden';
         $obj->attributes = $attributes;
@@ -263,11 +263,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function number($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'number';
         $obj->attributes = $attributes;
@@ -282,11 +282,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function integer($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'integer';
         $obj->attributes = $attributes;
@@ -296,16 +296,16 @@ class Form extends \Kotchasan\KBase
     /**
      * สร้าง input ชนิด password
      *
-     * @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="password" name="test_id" id="test_id" value="1234" title="Test"></label>'
-     * @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="password" name="test_id" id="test_id" value="1234" title="Test"></span></div>'
+     * @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="password" name="test_id" id="test_id" value=1234 title="Test"></label>'
+     * @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="password" name="test_id" id="test_id" value=1234 title="Test"></span></div>'
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function password($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'password';
         $obj->attributes = $attributes;
@@ -322,11 +322,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function radio($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'radio';
         $obj->attributes = $attributes;
@@ -341,11 +341,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function range($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'range';
         $obj->attributes = $attributes;
@@ -390,6 +390,7 @@ class Form extends \Kotchasan\KBase
                 case 'optgroup':
                 case 'multiple':
                 case 'validator':
+                case 'autofocus':
                 case 'result':
                 case 'checked':
                 case 'datalist':
@@ -408,7 +409,7 @@ class Form extends \Kotchasan\KBase
                 default:
                     if ($k == 'id') {
                         $id = $v;
-                    } elseif (is_int($k)) {
+                    } elseif (is_numeric($k)) {
                         $prop[$v] = $v;
                     } elseif ($v === true) {
                         $prop[$k] = $k;
@@ -429,9 +430,11 @@ class Form extends \Kotchasan\KBase
             }
             $id = trim(preg_replace('/[\[\]]+/', '_', $id), '_');
             $prop['id'] = 'id="'.$id.'"';
+        } else {
+            $id = '';
         }
         if (isset(Html::$form)) {
-            if (isset($id) && Html::$form->gform) {
+            if ($id != '' && Html::$form->gform) {
                 if (isset($validator)) {
                     $js = array();
                     $js[] = '"'.$id.'"';
@@ -469,7 +472,7 @@ class Form extends \Kotchasan\KBase
                     } else {
                         $sel = $value == $k ? ' selected' : '';
                     }
-                    if (is_int($k)) {
+                    if (is_numeric($k)) {
                         $datas[] = '<option value='.$k.$sel.'>'.$v.'</option>';
                     } else {
                         $datas[] = '<option value="'.$k.'"'.$sel.'>'.$v.'</option>';
@@ -496,10 +499,12 @@ class Form extends \Kotchasan\KBase
             if ($this->tag === 'textarea') {
                 $value = str_replace(array('{', '}', '&amp;'), array('&#x007B;', '&#x007D;', '&'), htmlspecialchars($value));
             } elseif ($this->tag != 'button') {
-                if (is_int($value)) {
+                if (is_numeric($value)) {
                     $prop['value'] = 'value='.$value;
-                } else {
+                } elseif (is_string($value)) {
                     $prop['value'] = 'value="'.str_replace('&amp;', '&', htmlspecialchars($value)).'"';
+                } else {
+                    throw new \Exception('Value of "'.(isset($name) ? $name : '').'" must be numbers and letters only.');
                 }
             }
         }
@@ -537,18 +542,24 @@ class Form extends \Kotchasan\KBase
         if (!empty($class)) {
             $prop['class'] = 'class="'.implode(' ', $class).'"';
         }
-        $prop = implode(' ', $prop);
-        if ($this->tag == 'input') {
-            $element = '<'.$this->tag.' '.$prop.'>';
-        } elseif (isset($value)) {
-            $element = '<'.$this->tag.' '.$prop.'>'.$value.'</'.$this->tag.'>';
+        if (empty($prop['checkbox']) || $this->tag === 'select') {
+            $w_checkbox = '';
         } else {
-            $element = '<'.$this->tag.' '.$prop.'></'.$this->tag.'>';
+            $itemClass = empty($itemClass) ? 'w_checkbox' : $itemClass.' w_checkbox';
+            $checked = empty($value) ? '' : ' checked';
+            $w_checkbox = '<input type=checkbox id="checkbox_'.$id.'" name="checkbox_'.$name.'" value=1'.$checked.'>';
+        }
+        if ($this->tag == 'input') {
+            $element = '<'.$this->tag.' '.implode(' ', $prop).'>';
+        } elseif (isset($value)) {
+            $element = '<'.$this->tag.' '.implode(' ', $prop).'>'.$value.'</'.$this->tag.'>';
+        } else {
+            $element = '<'.$this->tag.' '.implode(' ', $prop).'></'.$this->tag.'>';
         }
         if (isset($datalist) && is_array($datalist)) {
             $element .= '<datalist id="'.$list.'">';
             foreach ($datalist as $k => $v) {
-                if (is_int($k)) {
+                if (is_numeric($k)) {
                     $element .= '<option value='.$k.'>'.$v.'</option>';
                 } else {
                     $element .= '<option value="'.$k.'">'.$v.'</option>';
@@ -600,6 +611,7 @@ class Form extends \Kotchasan\KBase
                 if (isset($label) && isset($id)) {
                     $input .= '<label for="'.$id.'">'.$label.'</label>';
                 }
+                $input .= $w_checkbox;
                 $labelClass = isset($labelClass) ? $labelClass : '';
                 if (isset($type) && $type === 'range') {
                     $input .= self::create('div', '', $labelClass, $element);
@@ -616,6 +628,9 @@ class Form extends \Kotchasan\KBase
                 $input .= self::create('div', (empty($id) ? '' : 'result_'.$id), 'comment', $comment);
             }
             $input .= '</div>';
+        }
+        if (!empty($autofocus) && !empty($id)) {
+            $this->javascript[] = '$E("'.$id.'").focus();';
         }
         return $input;
     }
@@ -650,11 +665,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function reset($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         if (isset($attributes['tag']) && $attributes['tag'] == 'input') {
             $obj->tag = 'input';
         } else {
@@ -680,11 +695,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function select($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'select';
         $obj->attributes = $attributes;
         return $obj;
@@ -698,11 +713,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function submit($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         if (isset($attributes['tag']) && $attributes['tag'] == 'input') {
             $obj->tag = 'input';
         } else {
@@ -724,16 +739,16 @@ class Form extends \Kotchasan\KBase
      * สร้าง input ชนิด tel รับค่าตัวเลขเท่านั้น
      * ใช้รับเบอร์โทร
      *
-     * @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="tel" name="test_id" id="test_id" value="0123456789" title="Test"></label>'
-     * @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-phone'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-phone"><input type="tel" name="test_id" id="test_id" value="0123456789" title="Test"></span></div>'
+     * @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="tel" name="test_id" id="test_id" value=0123456789 title="Test"></label>'
+     * @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-phone'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-phone"><input type="tel" name="test_id" id="test_id" value=0123456789 title="Test"></span></div>'
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function tel($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'tel';
         $obj->attributes = $attributes;
@@ -748,11 +763,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes property ของ Input
      *
-     * @return \static
+     * @return static
      */
     public static function text($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'text';
         $obj->attributes = $attributes;
@@ -767,11 +782,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function textarea($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'textarea';
         $obj->attributes = $attributes;
         return $obj;
@@ -785,11 +800,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function time($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'time';
         $obj->attributes = $attributes;
@@ -804,11 +819,11 @@ class Form extends \Kotchasan\KBase
      *
      * @param array $attributes
      *
-     * @return \static
+     * @return static
      */
     public static function url($attributes = array())
     {
-        $obj = new static();
+        $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'url';
         $obj->attributes = $attributes;

@@ -27,15 +27,19 @@ class File
      */
     public static function copyDirectory($dir, $todir)
     {
-        $f = opendir($dir);
+        $f = @opendir($dir);
+        if ($f === false) {
+            return;
+        }
         while (false !== ($text = readdir($f))) {
-            if ($text !== '.' && $text !== '..') {
-                if (is_dir($dir.$text)) {
-                    self::makeDirectory($todir.$text.'/');
-                    self::copyDirectory($dir.$text.'/', $todir.$text.'/');
-                } elseif (is_dir($todir)) {
-                    copy($dir.$text, $todir.$text);
-                }
+            if ($text === '.' || $text === '..') {
+                continue;
+            }
+            if (is_dir($dir.$text)) {
+                self::makeDirectory($todir.$text.'/');
+                self::copyDirectory($dir.$text.'/', $todir.$text.'/');
+            } elseif (is_dir($todir)) {
+                @copy($dir.$text, $todir.$text);
             }
         }
         closedir($f);
@@ -66,21 +70,24 @@ class File
      */
     public static function listFiles($dir, &$result, $filter = array())
     {
-        if (is_dir($dir)) {
-            $f = opendir($dir);
-            if ($f) {
-                while (false !== ($text = readdir($f))) {
-                    if ($text !== '.' && $text !== '..') {
-                        if (is_dir($dir.$text)) {
-                            self::listFiles($dir.$text.'/', $result, $filter);
-                        } elseif (empty($filter) || in_array(self::ext($text), $filter)) {
-                            $result[] = $dir.$text;
-                        }
-                    }
-                }
-                closedir($f);
+        if (!is_dir($dir)) {
+            return;
+        }
+        $f = @opendir($dir);
+        if ($f === false) {
+            return;
+        }
+        while (false !== ($text = readdir($f))) {
+            if ($text === '.' || $text === '..') {
+                continue;
+            }
+            if (is_dir($dir.$text)) {
+                self::listFiles($dir.$text.'/', $result, $filter);
+            } elseif (empty($filter) || in_array(self::ext($text), $filter)) {
+                $result[] = $dir.$text;
             }
         }
+        closedir($f);
     }
 
     /**
@@ -95,14 +102,19 @@ class File
     {
         if (!is_dir($dir)) {
             $oldumask = umask(0);
-            mkdir($dir, $mode);
+            $success = @mkdir($dir, $mode);
             umask($oldumask);
+            if (!$success) {
+                return false;
+            }
         }
         if (!is_writable($dir)) {
             $oldumask = umask(0);
-            $f = @chmod($dir, $mode);
+            $success = @chmod($dir, $mode);
             umask($oldumask);
-            return $f;
+            if (!$success) {
+                return false;
+            }
         }
         return true;
     }
@@ -114,19 +126,21 @@ class File
      */
     public static function removeDirectory($dir)
     {
-        if (is_dir($dir)) {
-            $f = opendir($dir);
-            while (false !== ($text = readdir($f))) {
-                if ($text != '.' && $text != '..') {
-                    if (is_dir($dir.$text)) {
-                        self::removeDirectory($dir.$text.'/');
-                    } else {
-                        @unlink($dir.$text);
-                    }
-                }
-            }
-            closedir($f);
-            @rmdir($dir);
+        if (!is_dir($dir)) {
+            return;
         }
+        $f = opendir($dir);
+        while (false !== ($text = readdir($f))) {
+            if ($text == '.' || $text == '..') {
+                continue;
+            }
+            if (is_dir($dir.$text)) {
+                self::removeDirectory($dir.$text.'/');
+            } else {
+                @unlink($dir.$text);
+            }
+        }
+        closedir($f);
+        @rmdir($dir);
     }
 }

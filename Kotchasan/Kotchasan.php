@@ -8,7 +8,6 @@
  * @see https://www.kotchasan.com/
  */
 
-use Kotchasan\Config;
 use Kotchasan\Http\Request;
 
 /**
@@ -52,9 +51,9 @@ class Kotchasan extends Kotchasan\KBase
     /**
      * สร้าง Application สามารถเรียกใช้ได้ครั้งเดียวเท่านั้น
      *
-     * @param Config|string|null $cfg ถ้าไม่กำหนดมาจะใช้ค่าเริ่มต้นของคชสาร
+     * @param mixed $cfg ชื่อคลาสหรือ Object ของคลาส Config ถ้าไม่กำหนดมาจะใช้ \Kotchasan\Config
      *
-     * @return \static
+     * @return static
      */
     public static function createWebApplication($cfg = null)
     {
@@ -74,9 +73,9 @@ class Kotchasan extends Kotchasan\KBase
     }
 
     /**
-     * create Singleton
+     * create instance (Singleton)
      *
-     * @param Config|string|null $cfg
+     * @param mixed $cfg ชื่อคลาสหรือ Object ของคลาส Config ถ้าไม่กำหนดมาจะใช้ \Kotchasan\Config
      */
     private function __construct($cfg)
     {
@@ -84,7 +83,7 @@ class Kotchasan extends Kotchasan\KBase
         self::$request = new Request(true);
         /* config */
         if (empty($cfg)) {
-            self::$cfg = Config::create();
+            self::$cfg = \Kotchasan\Config::create();
         } elseif (is_string($cfg)) {
             self::$cfg = $cfg::create();
         } else {

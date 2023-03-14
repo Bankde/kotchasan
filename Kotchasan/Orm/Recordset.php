@@ -117,7 +117,7 @@ class Recordset extends Query implements \Iterator
      *
      * @param bool $auto_save (options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง
      *
-     * @return \static
+     * @return static
      */
     public function cacheOn($auto_save = true)
     {
@@ -154,7 +154,7 @@ class Recordset extends Query implements \Iterator
      *
      * @param string $filed ชื่อ Field
      *
-     * @return \static
+     * @return static
      */
     public static function create($filed)
     {
@@ -181,7 +181,7 @@ class Recordset extends Query implements \Iterator
      *
      * @param string $table     ชื่อตาราง
      *
-     * @return \static
+     * @return static
      */
     public function createView($table)
     {
@@ -194,7 +194,7 @@ class Recordset extends Query implements \Iterator
      *
      * @param string $table     ชื่อตาราง
      *
-     * @return \static
+     * @return static
      */
     public function createTmpTable($table)
     {
@@ -438,7 +438,7 @@ class Recordset extends Query implements \Iterator
      * @param string $type  เช่น LEFT, RIGHT, INNER...
      * @param mixed  $on    where condition สำหรับการ join
      *
-     * @return \static
+     * @return static
      */
     public function join($field, $type, $on)
     {
@@ -461,7 +461,7 @@ class Recordset extends Query implements \Iterator
      * @param int $count จำนวนผลลัท์ที่ต้องการ
      * @param int $start รายการเริ่มต้น
      *
-     * @return \static
+     * @return static
      */
     public function limit($count, $start = 0)
     {
@@ -487,7 +487,7 @@ class Recordset extends Query implements \Iterator
      *
      * @param mixed $sort array('field ASC','field DESC') หรือ 'field ASC', 'field DESC', ...
      *
-     * @return \static
+     * @return static
      */
     public function order($sorts)
     {
@@ -539,7 +539,7 @@ class Recordset extends Query implements \Iterator
      * @param int $start ข้อมูลเริ่มต้น
      * @param int $count จำนวนผลลัพธ์ที่ต้องการ
      *
-     * @return \static
+     * @return static
      */
     public function take()
     {
@@ -558,7 +558,7 @@ class Recordset extends Query implements \Iterator
      * คืนค่าข้อมูลเป็น Array
      * ฟังก์ชั่นนี้ใช้เรียกก่อนการสอบถามข้อมูล
      *
-     * @return \static
+     * @return static
      */
     public function toArray()
     {
@@ -649,7 +649,7 @@ class Recordset extends Query implements \Iterator
      * @param mixed  $where
      * @param string $oprator (options) AND (default), OR
      *
-     * @return \static
+     * @return static
      */
     public function where($where = array(), $oprator = 'AND')
     {
@@ -722,7 +722,7 @@ class Recordset extends Query implements \Iterator
      * @param string $type  เช่น LEFT, RIGHT, INNER...
      * @param mixed  $on    where condition สำหรับการ join
      *
-     * @return \static
+     * @return static
      */
     private function doJoin($field, $type, $on)
     {

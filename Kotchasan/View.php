@@ -156,6 +156,8 @@ class View extends \Kotchasan\KBase
      * ส่งออกเป็น HTML
      *
      * @param string|null $template HTML Template ถ้าไม่กำหนด (null) จะใช้ index.html
+     *
+     * @return string
      */
     public function renderHTML($template = null)
     {

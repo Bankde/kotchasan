@@ -13,7 +13,7 @@ namespace Index\Export;
 use Kotchasan\Http\Request;
 
 /**
- * default Controller.
+ * default Controller
  *
  * @author Goragod Wiriya <admin@goragod.com>
  *
@@ -22,7 +22,7 @@ use Kotchasan\Http\Request;
 class Controller extends \Kotchasan\Controller
 {
     /**
-     * ส่งออกเป็น PDF.
+     * ส่งออกเป็น PDF
      *
      * @param Request $request
      */

@@ -24,7 +24,7 @@ class KBase
     /**
      * Config class
      *
-     * @var Config
+     * @var object
      */
     protected static $cfg;
     /**

@@ -157,7 +157,7 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
      *
      * @param string $method
      *
-     * @return \static
+     * @return static
      */
     public function withMethod($method)
     {
@@ -171,7 +171,7 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
      *
      * @param mixed $requestTarget
      *
-     * @return \static
+     * @return static
      */
     public function withRequestTarget($requestTarget)
     {
@@ -186,7 +186,7 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
      * @param \Kotchasan\Http\UriInterface $uri
      * @param bool                         $preserveHost
      *
-     * @return \static
+     * @return static
      */
     public function withUri(\Psr\Http\Message\UriInterface $uri, $preserveHost = false)
     {

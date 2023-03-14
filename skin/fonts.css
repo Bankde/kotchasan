@@ -4,6 +4,7 @@
   src: url("fonts/thsarabunnew-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/thsarabunnew-webfont.woff") format("woff"), url("fonts/thsarabunnew-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "THSarabunNew";
@@ -11,6 +12,7 @@
   src: url("fonts/thsarabunnew_bolditalic-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/thsarabunnew_bolditalic-webfont.woff") format("woff"), url("fonts/thsarabunnew_bolditalic-webfont.ttf") format("truetype");
   font-weight: bold;
   font-style: italic;
+  font-display: swap;
 }
 @font-face {
   font-family: "THSarabunNew";
@@ -18,6 +20,7 @@
   src: url("fonts/thsarabunnew_italic-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/thsarabunnew_italic-webfont.woff") format("woff"), url("fonts/thsarabunnew_italic-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: italic;
+  font-display: swap;
 }
 @font-face {
   font-family: "THSarabunNew";
@@ -25,6 +28,7 @@
   src: url("fonts/thsarabunnew_bold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/thsarabunnew_bold-webfont.woff") format("woff"), url("fonts/thsarabunnew_bold-webfont.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "icomoon";
@@ -32,6 +36,7 @@
   src: url("fonts/icomoon.eot#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf") format("truetype"), url("fonts/icomoon.woff") format("woff"), url("fonts/icomoon.svg#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 .sort_asc:after,
 .sort_desc:after,
@@ -49,6 +54,7 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
 }
 .sort_asc:after,
 .sort_desc:after,

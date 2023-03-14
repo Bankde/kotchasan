@@ -101,7 +101,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-valid'))->render() [==] '<div class="item"><label class="icon-valid"><input type="checkbox" name="test_id" id="test_id" value=1 title="Test">&nbsp;Test</label></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-valid'))->render() [==] '<div class="item"><label class="icon-valid"><input type="checkbox" name="test_id" id="test_id" value=1 title="Test">&nbsp;Test</label></div>'.
      *
      * @covers Kotchasan\Form::checkbox
      */
@@ -129,7 +129,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="text" name="test_id" id="test_id" value="#FFF" title="Test" class="color"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="text" name="test_id" id="test_id" value="#FFF" title="Test" class="color"></span></div>'.
      *
      * @covers Kotchasan\Form::color
      */
@@ -157,7 +157,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => 100, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-money'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-money"><input type="text" name="test_id" id="test_id" value=100 title="Test" class="currency"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => 100, 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-money'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-money"><input type="text" name="test_id" id="test_id" value=100 title="Test" class="currency"></span></div>'.
      *
      * @covers Kotchasan\Form::currency
      */
@@ -185,7 +185,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-calendar'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-calendar"><input type="date" name="test_id" id="test_id" value="#FFF" title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-calendar'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-calendar"><input type="date" name="test_id" id="test_id" value="#FFF" title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::date
      */
@@ -213,7 +213,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '2021-01-01 12:00', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-calendar'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-calendar"><input type="datetime" name="test_id" id="test_id" value="2021-01-01 12:00" title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '2021-01-01 12:00', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-calendar'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-calendar"><input type="datetime" name="test_id" id="test_id" value="2021-01-01 12:00" title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::datetime
      */
@@ -241,7 +241,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-email'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-email"><input type="email" name="test_id" id="test_id" title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-email'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-email"><input type="email" name="test_id" id="test_id" title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::email
      */
@@ -269,7 +269,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-file'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-file"><input type="file" name="test_id" id="test_id" title="Test" class="g-file"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-file'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-file"><input type="file" name="test_id" id="test_id" title="Test" class="g-file"></span></div>'.
      *
      * @covers Kotchasan\Form::file
      */
@@ -311,7 +311,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => 1234, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-number'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-number"><input type="number" name="test_id" id="test_id" value=1234 title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => 1234, 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-number'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-number"><input type="number" name="test_id" id="test_id" value=1234 title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::number
      */
@@ -339,7 +339,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => -100, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-number'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-number"><input type="integer" name="test_id" id="test_id" value=-100 title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => -100, 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-number'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-number"><input type="integer" name="test_id" id="test_id" value=-100 title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::integer
      */
@@ -353,7 +353,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="password" name="test_id" id="test_id" value="1234" title="Test"></label>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="password" name="test_id" id="test_id" value=1234 title="Test"></label>'.
      *
      * @covers Kotchasan\Form::password
      */
@@ -361,13 +361,13 @@ class FormTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            '<label>Test&nbsp;<input type="password" name="test_id" id="test_id" value="1234" title="Test"></label>',
+            '<label>Test&nbsp;<input type="password" name="test_id" id="test_id" value=1234 title="Test"></label>',
             \Kotchasan\Form::password(array('id' => 'test_id', 'value' => '1234', 'label' => 'Test'))->render()
         );
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="password" name="test_id" id="test_id" value="1234" title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="password" name="test_id" id="test_id" value=1234 title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::password
      */
@@ -375,7 +375,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="password" name="test_id" id="test_id" value="1234" title="Test"></span></div>',
+            '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="password" name="test_id" id="test_id" value=1234 title="Test"></span></div>',
             \Kotchasan\Form::password(array('id' => 'test_id', 'value' => '1234', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-color'))->render()
         );
     }
@@ -423,7 +423,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-valid'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-valid"><input type="radio" name="test_id" id="test_id" value=1 title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-valid'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-valid"><input type="radio" name="test_id" id="test_id" value=1 title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::radio
      */
@@ -507,7 +507,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color', 'options' => [0 => 0, 1 => 1]))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><select name="test_id" id="test_id" title="Test"><option value=0 selected>0</option><option value=1>1</option></select></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-color', 'options' => [0 => 0, 1 => 1]))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><select name="test_id" id="test_id" title="Test"><option value=0 selected>0</option><option value=1>1</option></select></span></div>'.
      *
      * @covers Kotchasan\Form::select
      */
@@ -549,7 +549,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="tel" name="test_id" id="test_id" value="0123456789" title="Test"></label>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="tel" name="test_id" id="test_id" value=0123456789 title="Test"></label>'.
      *
      * @covers Kotchasan\Form::tel
      */
@@ -557,13 +557,13 @@ class FormTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            '<label>Test&nbsp;<input type="tel" name="test_id" id="test_id" value="0123456789" title="Test"></label>',
+            '<label>Test&nbsp;<input type="tel" name="test_id" id="test_id" value=0123456789 title="Test"></label>',
             \Kotchasan\Form::tel(array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test'))->render()
         );
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-phone'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-phone"><input type="tel" name="test_id" id="test_id" value="0123456789" title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-phone'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-phone"><input type="tel" name="test_id" id="test_id" value=0123456789 title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::tel
      */
@@ -571,7 +571,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            '<div class="item"><label for="test_id">Test</label><span class="icon-phone"><input type="tel" name="test_id" id="test_id" value="0123456789" title="Test"></span></div>',
+            '<div class="item"><label for="test_id">Test</label><span class="icon-phone"><input type="tel" name="test_id" id="test_id" value=0123456789 title="Test"></span></div>',
             \Kotchasan\Form::tel(array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-phone'))->render()
         );
     }
@@ -591,7 +591,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="text" name="test_id" id="test_id" value="#FFF" title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="text" name="test_id" id="test_id" value="#FFF" title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::text
      */
@@ -619,7 +619,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-file'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-file"><textarea name="test_id" id="test_id" title="Test">#FFF</textarea></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-file'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-file"><textarea name="test_id" id="test_id" title="Test">#FFF</textarea></span></div>'.
      *
      * @covers Kotchasan\Form::textarea
      */
@@ -647,7 +647,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => '00:00', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-clock'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-clock"><input type="time" name="test_id" id="test_id" value="00:00" title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => '00:00', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-clock'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-clock"><input type="time" name="test_id" id="test_id" value="00:00" title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::time
      */
@@ -675,7 +675,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array('id' => 'test_id', 'value' => 'kotchasan.com', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-world'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-world"><input type="url" name="test_id" id="test_id" value="kotchasan.com" title="Test"></span></div>'.
+     * Generated from @assert (array('id' => 'test_id', 'value' => 'kotchasan.com', 'label' => 'Test', 'itemClass' => 'item', 'labelClass' => 'icon-world'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-world"><input type="url" name="test_id" id="test_id" value="kotchasan.com" title="Test"></span></div>'.
      *
      * @covers Kotchasan\Form::url
      */

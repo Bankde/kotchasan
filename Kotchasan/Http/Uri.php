@@ -132,7 +132,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @throws \InvalidArgumentException ถ้า Uri ไม่ถูกต้อง
      *
-     * @return \static
+     * @return static
      */
     public static function createFromGlobals()
     {
@@ -171,7 +171,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @throws \InvalidArgumentException ถ้า $uri ไม่ถูกต้อง
      *
-     * @return \static
+     * @return static
      */
     public static function createFromUri($uri)
     {
@@ -388,7 +388,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @throws \InvalidArgumentException ถ้า fragment ไม่ถูกต้อง
      *
-     * @return \static
+     * @return static
      */
     public function withFragment($fragment)
     {
@@ -407,7 +407,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @param string $host ชื่อ host
      *
-     * @return \static
+     * @return static
      */
     public function withHost($host)
     {
@@ -422,7 +422,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      * @param array $params
      * @param bool  $encode false (default) เชื่อม Querystring ด้วย &, true เชื่อม Querystring ด้วย &amp;
      *
-     * @return \static
+     * @return static
      */
     public function withParams($params, $encode = false)
     {
@@ -442,7 +442,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      * @param string|array $names  ชื่อของ attributes ที่ต้องการลบ
      * @param bool         $encode false (default) เชื่อม Querystring ด้วย &, true เชื่อม Querystring ด้วย &amp;
      *
-     * @return \static
+     * @return static
      */
     public function withoutParams($names, $encode = false)
     {
@@ -465,7 +465,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @param string $path ชื่อ path
      *
-     * @return \static
+     * @return static
      */
     public function withPath($path)
     {
@@ -482,7 +482,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @throws \InvalidArgumentException ถ้า port ไม่ถูกต้อง
      *
-     * @return \static
+     * @return static
      */
     public function withPort($port)
     {
@@ -499,7 +499,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @throws \InvalidArgumentException ถ้า query string ไม่ถูกต้อง
      *
-     * @return \static
+     * @return static
      */
     public function withQuery($query)
     {
@@ -518,7 +518,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @param array $query array('q1' => 'value1', 'q2' => 'value2')
      *
-     * @return \static
+     * @return static
      */
     public function withoutQuery($query)
     {
@@ -542,7 +542,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @throws \InvalidArgumentException ถ้าไม่ใช่ ค่าว่าง http หรือ https
      *
-     * @return \static
+     * @return static
      */
     public function withScheme($scheme)
     {
@@ -558,7 +558,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      * @param string $user
      * @param string $password
      *
-     * @return \static
+     * @return static
      */
     public function withUserInfo($user, $password = null)
     {

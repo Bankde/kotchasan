@@ -32,7 +32,7 @@ class PdoMysqlDriver extends Driver
      *
      * @param mixed $params
      *
-     * @return \static
+     * @return static
      */
     public function connect($params)
     {

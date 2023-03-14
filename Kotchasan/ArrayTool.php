@@ -22,56 +22,50 @@ class ArrayTool
     /**
      * คืนค่ารายการที่มีคอลัมน์ตามที่กำหนด
      *
+     * @assert (array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'three')), 'name') [==] array(0 => 'one', 1 => 'two', 2 => 'three')
+     * @assert (array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'three')), 'name', 'id') [==] array(1 => 'one', 2 => 'two', 3 => 'three')
      * @assert (array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'three')), 'name') [==] array(0 => 'one', 1 => 'two', 2 => 'three')
      * @assert (array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'three')), 'name', 'id') [==] array(1 => 'one', 2 => 'two', 3 => 'three')
+     * @assert ((object)array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'three')), 'name', 'id') [==] array(1 => 'one', 2 => 'two', 3 => 'three')
      *
-     * @param array  $array
+     * @param mixed $source array or object or array of object
      * @param string $column_key ชื่อคอลัมน์ที่ต้องการ
-     * @param mixed  $index_key  null คืนค่า index ของ $array, string คืนค่า index จากคอลัมน์ที่กำหนด
+     * @param mixed $index_key  null คืนค่า index ของ $source, string คืนค่า index จากคอลัมน์ที่กำหนด
      *
      * @return array
      */
-    public static function columns($array, $column_key, $index_key = null)
+    public static function columns($source, $column_key, $index_key = null)
     {
         $result = array();
-        if ($index_key == null) {
-            foreach ($array as $i => $item) {
-                if (isset($item[$column_key])) {
-                    $result[$i] = $item[$column_key];
-                }
-            }
-        } else {
-            foreach ($array as $i => $item) {
-                if (isset($item[$column_key])) {
-                    $result[$item[$index_key]] = $item[$column_key];
-                }
+        foreach ($source as $key => $item) {
+            if (is_object($item) && isset($item->$column_key)) {
+                $result[$index_key !== null ? $item->$index_key : $key] = $item->$column_key;
+            } elseif (is_array($item) && isset($item[$column_key])) {
+                $result[$index_key !== null ? $item[$index_key] : $key] = $item[$column_key];
             }
         }
         return $result;
     }
 
     /**
-     * ลบรายการที่ id สามารถลบได้หลายรายการโดยคั่นแต่ละรายการด้วย ,
+     * ลบแอเรย์คีย์ตามคีย์ที่ระบุ สามารถระบุคีย์ในรูป แอเรย์ ตัวเลข
      * รักษาคีย์ของรายการเดิมไว้
      * คืนค่า array ใหม่หลังจากลบแล้ว
      *
      * @assert (array(0, 1, 2, 3, 4, 5), '0,2') [==] array(1 => 1, 3 => 3, 4 => 4, 5 => 5)
+     * @assert (array(0, 1, 2, 3, 4, 5), array(0, 2)) [==] array(1 => 1, 3 => 3, 4 => 4, 5 => 5)
+     * @assert (array(0, 1, 2, 3, 4, 5), 2) [==] array(0 => 0, 1 => 1, 3 => 3, 4 => 4, 5 => 5)
+     * @assert (array('one' => 1, 'two' => 2, 'three' => 3), 'two') [==] array('one' => 1, 'three' => 3)
      *
-     * @param array  $array
-     * @param string $ids   รายการที่ต้องการลบ 1 หรือ 1,2,3
+     * @param array $array
+     * @param mixed $ids รายการที่ต้องการลบ 1 หรือ '1,2,3' หรือ [1,2,3]
      *
      * @return array
      */
     public static function delete($array, $ids)
     {
-        $temp = array();
-        $ids = explode(',', $ids);
-        foreach ($array as $k => $v) {
-            if (!in_array($k, $ids)) {
-                $temp[$k] = $v;
-            }
-        }
-        return $temp;
+        $ids = is_array($ids) ? $ids : explode(',', $ids);
+        return array_diff_key($array, array_flip($ids));
     }
 
     /**
@@ -140,14 +134,22 @@ class ArrayTool
      * อ่านคีย์รายการแรก
      * ไม่พบ คืนค่า null
      *
-     * @param array $array
+     * @assert (array('one', 'two', 'three')) [==] 0
+     * @assert (array('one' => 1, 'two' => 2, 'three' => 3)) [==] 'one'
+     * @assert ((object)array('one' => 1, 'two' => 2, 'three' => 3)) [==] 'one'
+     * @assert (array()) [==] null
+     * @assert (0) [==] null
+     *
+     * @param mixed $source
      *
      * @return mixed
      */
-    public static function getFirstKey($array)
+    public static function getFirstKey($source)
     {
-        foreach ($array as $key => $value) {
-            return $key;
+        if (is_array($source) || is_object($source)) {
+            foreach ($source as $key => $value) {
+                return $key;
+            }
         }
         return null;
     }
@@ -157,8 +159,10 @@ class ArrayTool
      * ถ้าไม่พบ $find ข้อมูลจะแทรกรายการสุดท้าย
      *
      * @assert (array('one' => 1, 'two' => 2), 'two', 'three', 3) [==] array('one' => 1, 'two' => 2, 'three' => 3)
+     * @assert (array(1 => 'one', 2 => 'two'), 1, 3, 'three') [==] array(1 => 'one', 3 => 'three', 2 => 'two')
      * @assert (array(1 => 'one', 2 => 'two'), 2, 3, 'three') [==] array(1 => 'one', 2 => 'two', 3 => 'three')
      * @assert (array(1 => 'one', 2 => 'two'), 3, 3, 'three') [==] array(1 => 'one', 2 => 'two', 3 => 'three')
+     * @assert (array(1 => 'one', 2 => 'two'), '1', 3, 'three') [==] array(1 => 'one', 2 => 'two', 3 => 'three')
      *
      * @param array      $source แอเรย์ต้นฉบับ
      * @param int|string $find   คีย์ของแอเรย์ต้นฉบับจุดที่จะแทรก ข้อมูลต้องเป็นชนิดเดียวกันกับคีย์ของแอเรย์ต้นฉบับ
@@ -170,14 +174,15 @@ class ArrayTool
     public static function insertAfter($source, $find, $key, $value)
     {
         $result = array();
+        $inserted = false;
         foreach ($source as $k => $v) {
             $result[$k] = $v;
-            if ($find && $find === $k) {
+            if ($k === $find) {
                 $result[$key] = $value;
-                $find = null;
+                $inserted = true;
             }
         }
-        if ($find !== null) {
+        if (!$inserted) {
             $result[$key] = $value;
         }
         return $result;
@@ -190,6 +195,10 @@ class ArrayTool
      * @assert (array('one' => 1, 'three' => 3), 'three', 'two', 2) [==] array('one' => 1, 'two' => 2, 'three' => 3)
      * @assert (array(1 => 'one', 3 => 'three'), 3, 2, 'two') [==] array(1 => 'one', 2 => 'two', 3 => 'three')
      * @assert (array(1 => 'one', 3 => 'three'), 2, 2, 'two') [==] array(1 => 'one', 3 => 'three', 2 => 'two')
+     * @assert (array(1 => 'one', 2 => 'two'), 1, 3, 'three') [==] array(3 => 'three', 1 => 'one', 2 => 'two')
+     * @assert (array(1 => 'one', 2 => 'two'), 2, 3, 'three') [==] array(1 => 'one', 3 => 'three', 2 => 'two')
+     * @assert (array(1 => 'one', 2 => 'two'), 3, 3, 'three') [==] array(1 => 'one', 2 => 'two', 3 => 'three')
+     * @assert (array(1 => 'one', 2 => 'two'), '1', 3, 'three') [==] array(1 => 'one', 2 => 'two', 3 => 'three')
      *
      * @param array      $source แอเรย์ต้นฉบับ
      * @param int|string $find   คีย์ของแอเรย์ต้นฉบับจุดที่จะแทรก ข้อมูลต้องเป็นชนิดเดียวกันกับคีย์ของแอเรย์ต้นฉบับ
@@ -201,14 +210,15 @@ class ArrayTool
     public static function insertBefore($source, $find, $key, $value)
     {
         $result = array();
+        $inserted = false;
         foreach ($source as $k => $v) {
-            if ($find && $find === $k) {
+            if ($k === $find) {
                 $result[$key] = $value;
-                $find = null;
+                $inserted = true;
             }
             $result[$k] = $v;
         }
-        if ($find !== null) {
+        if (!$inserted) {
             $result[$key] = $value;
         }
         return $result;
@@ -218,38 +228,49 @@ class ArrayTool
      * ฟังก์ชั่นรวมแอเรย์ รักษาแอเรย์ต้นฉบับไว้ และแทนที่ข้อมูลด้วยข้อมูลใหม่
      *
      * @assert (array(1 => 1, 2 => 2, 3 => 'three'), array(1 => 'one', 2 => 'two')) [==] array(1 => 'one', 2 => 'two', 3 => 'three')
+     * @assert ((object)array('one' => 1), array('two' => 2)) [==] (object)array('one' => 1, 'two' => 2)
+     * @assert ((object)array('one' => 1), (object)array('two' => 2)) [==] (object)array('one' => 1, 'two' => 2)
      *
-     * @param array        $source  แอเร์ยต้นฉบับ
-     * @param array|object $replace ข้อมูลที่จะนำมาแทนที่ลงในแอเร์ยต้นฉบับ
+     * @param mixed $source  แอเร์ยต้นฉบับ
+     * @param mixed $replace ข้อมูลที่จะนำมาแทนที่ลงในแอเร์ยต้นฉบับ
      *
      * @return array
      */
     public static function replace($source, $replace)
     {
+        $isArray = is_array($source);
         foreach ($replace as $key => $value) {
-            $source[$key] = $value;
+            if ($isArray) {
+                $source[$key] = $value;
+            } else {
+                $source->$key = $value;
+            }
         }
         return $source;
     }
 
     /**
-     * ค้นหาแอเรย์ จากคอลัมน์
+     * ค้นหาแอเรย์ จากคอลัมน์ หรือ ค้นหา object จาก property
      * คืนค่าทุกรายการที่พบ รักษา index ตาม array ของต้นฉบับและ คืนค่าแอเรย์ว่างถ้าไม่พบ
      *
      * @assert (array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'one')), 'name', 'one') [==] array(0 => array('id' => 1, 'name' => 'one'), 2 => array('id' => 3, 'name' => 'one'))
      * @assert (array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'one')), 'id', 'one') [==] array()
+     * @assert (array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), (object)array('id' => 3, 'name' => 'one')), 'name', 'one') [==] array(0 => (object)array('id' => 1, 'name' => 'one'), 2 => (object)array('id' => 3, 'name' => 'one'))
+     * @assert (array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), (object)array('id' => 3, 'name' => 'one')), 'id', 'one') [==] array()
      *
-     * @param array $input  ข้อมูลแอเรย์
+     * @param array $array  array or array of object
      * @param mixed $key    คอลัมน์ที่ต้องการค้นหา
      * @param mixed $search ข้อความค้นหา
      *
      * @return array
      */
-    public static function search($input, $key, $search)
+    public static function search($array, $key, $search)
     {
         $result = array();
-        foreach ($input as $i => $values) {
-            if (isset($values[$key]) && $values[$key] == $search) {
+        foreach ($array as $i => $values) {
+            if (is_array($values) && isset($values[$key]) && $values[$key] == $search) {
+                $result[$i] = $values;
+            } elseif (is_object($values) && isset($values->$key) && $values->$key == $search) {
                 $result[$i] = $values;
             }
         }
@@ -294,48 +315,33 @@ class ArrayTool
      */
     public static function sort($array, $sort_key = 'id', $sort_desc = false)
     {
-        if (!empty($array)) {
-            $temp_array[key($array)] = array_shift($array);
-            foreach ($array as $key => $val) {
-                $offset = 0;
-                $found = false;
-                foreach ($temp_array as $tmp_val) {
-                    $v1 = isset($val[$sort_key]) ? strtolower(self::toString('', $val[$sort_key])) : '';
-                    $v2 = isset($tmp_val[$sort_key]) ? strtolower(self::toString('', $tmp_val[$sort_key])) : '';
-                    if (!$found && $v1 > $v2) {
-                        $temp_array = array_merge((array) array_slice($temp_array, 0, $offset), array($key => $val), array_slice($temp_array, $offset));
-                        $found = true;
-                    }
-                    ++$offset;
-                }
-                if (!$found) {
-                    $temp_array = array_merge($temp_array, array($key => $val));
-                }
-            }
-            if ($sort_desc) {
-                return $temp_array;
-            } else {
-                return array_reverse($temp_array);
-            }
-        }
-        return $array;
+        usort($array, function ($a, $b) use ($sort_key) {
+            $v1 = isset($a[$sort_key]) ? strtolower(self::toString('', $a[$sort_key])) : '';
+            $v2 = isset($b[$sort_key]) ? strtolower(self::toString('', $b[$sort_key])) : '';
+            return $v1 == $v2 ? 0 : ($v1 < $v2 ? -1 : 1);
+        });
+        return $sort_desc ? array_reverse($array) : $array;
     }
 
     /**
-     * แปลงแอเรย์ $array เป็น string คั่นด้วย $glue
+     * แปลง Value ของ $source เป็น string คั่นด้วย $glue ไม่สนใจ Key
+     * ถ้า $source ไม่ใช่ Array หรือ Object คืนค่า $source
      *
      * @assert ('|', array('a' => 'A', 'b' => array('b', 'B'), 'c' => array('c' => array('c', 'C')))) [==] "A|b|B|c|C"
+     * @assert ('|', (object)array('a' => 'A', 'b' => array('b', 'B'), 'c' => array('c' => array('c', 'C')))) [==] "A|b|B|c|C"
+     * @assert ('|', 'one') [==] 'one'
+     * @assert ('|', 1) [==] 1
      *
-     * @param string $glue  ตัวคั่นข้อมูล
-     * @param array  $array แอเรย์ที่ต้องการนำมาเชื่อม
+     * @param mixed $glue  ตัวคั่นข้อมูล
+     * @param mixed $source แอเรย์หรืออ๊อปเจ็คที่ต้องการนำมาเชื่อม
      *
      * @return string
      */
-    public static function toString($glue, $array)
+    public static function toString($glue, $source)
     {
-        if (is_array($array)) {
+        if (is_array($source) || is_object($source)) {
             $result = array();
-            foreach ($array as $key => $value) {
+            foreach ($source as $key => $value) {
                 if (is_array($value)) {
                     $result[] = self::toString($glue, $value);
                 } else {
@@ -344,7 +350,7 @@ class ArrayTool
             }
             return implode($glue, $result);
         } else {
-            return $array;
+            return (string) $source;
         }
     }
 
@@ -383,21 +389,32 @@ class ArrayTool
      * ตรวจสอบว่ามี $needle ใน $haystack หรือไม่
      * ถ้ามีคืนค่า true ถ้าไม่มีคืนค่า false
      *
+     * @assert (array('12.4'), array('1.10', 12.4, 1.13)) [==] true
+     * @assert (array('12.4'), array('1.10', 12.4, 1.13), true) [==] false
+     * @assert (array(1, 2), array('1', 2)) [==] true
+     * @assert (array('1', 2), array(1, 2)) [==] true
+     * @assert (array(1), array('1', 2), true) [==] false
+     * @assert (array('1'), array(1, 2), true) [==] false
      * @assert (array(1, 2), array(1, 2)) [==] true
      * @assert (array(2), array(1, 2, 3)) [==] true
      * @assert (array(1, 2), array(3, 4)) [==] false
      * @assert (array(), array(3, 4)) [==] false
      * @assert (array(), array()) [==] false
+     * @assert (array('q', array('p', 'h')), array(array('p', 'h'), array('p', 'r'), 'o')) [==] true
+     * @assert (array('r', 'h'), array(array('p', 'h'), array('p', 'r'), 'o')) [==] false
+     * @assert (array('f', 'i'), array(array('p', 'h'), array('p', 'r'), 'o')) [==] false
+     * @assert (array('o'), array(array('p', 'h'), array('p', 'r'), 'o')) [==] true
      *
      * @param array $needle แอเรย์ที่ต้องการตรวจสอบ
      * @param array $haystack แอเรย์ต้นฉบับ
+     * @param bool $strick false (default) ไม่สนใจประเภทของข้อมูล, true ต้องเป็นข้อมูลประเภทเดียวกัน
      *
      * @return bool
      */
-    public static function in_array($needle, $haystack)
+    public static function in_array($needle, $haystack, $strick = false)
     {
         foreach ($needle as $v) {
-            if (in_array($v, $haystack)) {
+            if (in_array($v, $haystack, $strick)) {
                 return true;
             }
         }

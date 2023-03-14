@@ -39,58 +39,39 @@ final class Language extends \Kotchasan\KBase
     private static $languages = null;
 
     /**
-     * ค้นหาข้อความภาษาที่ต้องการ ถ้าไม่พบคืนค่า $default
-     * ถ้าไม่ระบุ $default (null) คืนค่า $key
-     * ถ้าระบุ $key มาด้วยและ ค่าของภาษาเป็นแอเรย์ จะคืนค่า แอเรย์ของภาษาที่ $key
-     * ถ้าไม่พบข้อมูลที่เลือกคืนค่า null
-     *
-     * @assert ('XYZ', array()) [==] array()
-     * @assert ('YEAR_OFFSET') [==] 543
-     * @assert ('DATE_LONG', null, 0) [==] 'อาทิตย์'
-     * @assert ('not found', 'default') [==] 'default'
-     *
-     * @param string $name
-     * @param mixed  $default
-     * @param mixed  $key
-     */
-    public static function find($name, $default = null, $key = null)
-    {
-        if (null === self::$languages) {
-            new static();
-        }
-        if (isset(self::$languages->{$name})) {
-            $item = self::$languages->$name;
-            if (is_array($item)) {
-                if ($key !== null && isset($item[$key])) {
-                    return $item[$key];
-                }
-            } else {
-                return $item;
-            }
-        }
-        return $default === null ? $name : $default;
-    }
-
-    /**
-     * ฟังก์ชั่นอ่านภาษาที่
-     * ถ้าไม่พบ $key ที่ต้อง
+     * ฟังก์ชั่นอ่านตัวแปรภาษา $key
+     * ถ้าระบุ $value และตัวแปรเป็นแอเรย์ คืนค่าภาษาที่ $key[$value]
+     * ถ้าไม่พบ $key หรือ $value คืนค่าตามที่กำหนดโดย $default
      * $default = null (หรือไม่ระบุ) คืนค่า $key
      * $default = อื่นๆ คืนค่า $default
      *
      * @assert ('YEAR_OFFSET') [==] 543
      * @assert ('XYZ', array()) [==] array()
+     * @assert ('DATE_LONG', null, 0) [==] 'อาทิตย์'
+     * @assert ('DATE_LONG', null, 12) [==] 'DATE_LONG'
+     * @assert ('not found', 'default') [==] 'default'
      *
      * @param string $key ข้อความในภาษาอังกฤษ หรือ คีย์ของภาษา
      * @param mixed $default ถ้าไม่ระบุ (null) และไม่พบ $key
+     * @param mixed $value ถ้าเป็นแอเรย์และระบุ $value มาด้วย คืนค่าข้อมูลที่ $value
      *
      * @return mixed
      */
-    public static function get($key, $default = null)
+    public static function get($key, $default = null, $value = null)
     {
         if (null === self::$languages) {
-            new static();
+            new static;
         }
-        return isset(self::$languages->{$key}) ? self::$languages->{$key} : ($default === null ? $key : $default);
+        if (isset(self::$languages->{$key})) {
+            $item = self::$languages->{$key};
+            if ($value !== null && is_array($item)) {
+                return isset($item[$value]) ? $item[$value] : ($default === null ? $key : $default);
+            } else {
+                return $item;
+            }
+        } else {
+            return $default === null ? $key : $default;
+        }
     }
 
     /**
@@ -103,7 +84,7 @@ final class Language extends \Kotchasan\KBase
     public static function getItems(array $keys = array())
     {
         if (null === self::$languages) {
-            new static();
+            new static;
         }
         $result = array();
         foreach ($keys as $i => $key) {
@@ -219,7 +200,7 @@ final class Language extends \Kotchasan\KBase
     public static function arrayKeyExists($name, $key)
     {
         if (null === self::$languages) {
-            new static();
+            new static;
         }
         return is_array(self::$languages->{$name}) && isset(self::$languages->{$name}[$key]);
     }
@@ -244,7 +225,7 @@ final class Language extends \Kotchasan\KBase
     public static function name()
     {
         if (null === self::$languages) {
-            new static();
+            new static;
         }
         return self::$language_name;
     }
@@ -283,21 +264,27 @@ final class Language extends \Kotchasan\KBase
      * และแทนที่ข้อความ ที่ $replace array(':key' => 'value', ':key' => 'value')
      *
      * @assert ('You want to :action', array(':action' => 'delete')) [==] 'You want to delete'
+     * @assert ('You want to %s', 'delete') [==] 'You want to delete'
+     * @assert ('You want to %s', 1) [==] 'You want to 1'
      *
      * @param string $key
-     * @param array  $replace
+     * @param mixed $replace
      *
      * @return mixed
      */
     public static function replace($key, $replace)
     {
         if (null === self::$languages) {
-            new static();
+            new static;
         }
         $value = isset(self::$languages->$key) ? self::$languages->$key : $key;
-        foreach ($replace as $k => $v) {
-            $v = isset(self::$languages->$v) ? self::$languages->$v : $v;
-            $value = str_replace($k, $v, $value);
+        if (is_array($replace) || is_object($replace)) {
+            foreach ($replace as $k => $v) {
+                $v = isset(self::$languages->$v) ? self::$languages->$v : $v;
+                $value = str_replace($k, $v, $value);
+            }
+        } else {
+            $value = str_replace('%s', $replace, $value);
         }
         return $value;
     }

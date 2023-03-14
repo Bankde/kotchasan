@@ -140,12 +140,12 @@ class Config
     /**
      * เรียกใช้งาน Class แบบสามารถเรียกได้ครั้งเดียวเท่านั้น
      *
-     * @return \static
+     * @return static
      */
     public static function create()
     {
         if (null === self::$instance) {
-            self::$instance = new static();
+            self::$instance = new static;
         }
         return self::$instance;
     }
@@ -233,7 +233,7 @@ class Config
     /**
      * เรียกใช้งาน Class แบบสามารถเรียกได้ครั้งเดียวเท่านั้น
      *
-     * @return \static
+     * @return static
      */
     protected function __construct()
     {

@@ -194,7 +194,7 @@ interface UriInterface
      *
      * @throws \InvalidArgumentException for invalid or unsupported schemes
      *
-     * @return self a new instance with the specified scheme
+     * @return static a new instance with the specified scheme
      */
     public function withScheme($scheme);
 
@@ -211,7 +211,7 @@ interface UriInterface
      * @param string      $user     the user name to use for authority
      * @param null|string $password the password associated with $user
      *
-     * @return self a new instance with the specified user information
+     * @return static a new instance with the specified user information
      */
     public function withUserInfo($user, $password = null);
 
@@ -227,7 +227,7 @@ interface UriInterface
      *
      * @throws \InvalidArgumentException for invalid hostnames
      *
-     * @return self a new instance with the specified host
+     * @return static a new instance with the specified host
      */
     public function withHost($host);
 
@@ -249,7 +249,7 @@ interface UriInterface
      *
      * @throws \InvalidArgumentException for invalid ports
      *
-     * @return self a new instance with the specified port
+     * @return static a new instance with the specified port
      */
     public function withPort($port);
 
@@ -275,7 +275,7 @@ interface UriInterface
      *
      * @throws \InvalidArgumentException for invalid paths
      *
-     * @return self a new instance with the specified path
+     * @return static a new instance with the specified path
      */
     public function withPath($path);
 
@@ -294,7 +294,7 @@ interface UriInterface
      *
      * @throws \InvalidArgumentException for invalid query strings
      *
-     * @return self a new instance with the specified query string
+     * @return static a new instance with the specified query string
      */
     public function withQuery($query);
 
@@ -311,7 +311,7 @@ interface UriInterface
      *
      * @param string $fragment the fragment to use with the new instance
      *
-     * @return self a new instance with the specified fragment
+     * @return static a new instance with the specified fragment
      */
     public function withFragment($fragment);
 

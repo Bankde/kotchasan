@@ -79,10 +79,12 @@ class Xls
     }
 
     /**
-     * สร้าง th หรือ td
+     * คืนค่า th หรือ td
      *
-     * @param string $type th,td
+     * @param string $type th หรือ td
      * @param array $item
+     *
+     * @return string
      */
     public static function cell($type, $item)
     {

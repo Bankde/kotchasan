@@ -55,10 +55,11 @@ class CacheItem implements CacheItemInterface
      *
      * @param int|\DateInterval $time
      *
-     * @return \static
+     * @return static
      */
     public function expiresAfter($time)
     {
+        return $this;
     }
 
     /**
@@ -66,10 +67,11 @@ class CacheItem implements CacheItemInterface
      *
      * @param \DateTimeInterface $expiration
      *
-     * @return \static
+     * @return static
      */
     public function expiresAt($expiration)
     {
+        return $this;
     }
 
     /**
@@ -108,7 +110,7 @@ class CacheItem implements CacheItemInterface
      *
      * @param mixed $value
      *
-     * @return \static
+     * @return static
      */
     public function set($value)
     {

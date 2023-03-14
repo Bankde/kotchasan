@@ -203,7 +203,7 @@ class ListItem
      *
      * @param string $file ชื่อไฟล์ที่ต้องการโหลดรวม path
      *
-     * @return \static
+     * @return static
      */
     public function loadFromFile($file)
     {

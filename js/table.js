@@ -527,6 +527,21 @@
           callClick(this, sClick);
         }
       });
+      forEach(el.querySelectorAll('.icon-copy'), function() {
+        callClick(this, function() {
+          if (this.value) {
+            copyToClipboard(this.value);
+          } else if (this.title) {
+            copyToClipboard(this.title);
+          } else if (this.innerHTML) {
+            copyToClipboard(this.innerHTML.strip_tags());
+          } else {
+            return false;
+          }
+          document.body.msgBox(trans('successfully copied to clipboard'));
+          return false;
+        });
+      });
     },
     setSort: function(sort, patt) {
       var hs;

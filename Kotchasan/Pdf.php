@@ -198,7 +198,6 @@ class Pdf extends \PDF\FPDF
         if ($border == 1) {
             $border = 'RLTB';
         }
-        $startY = $this->y;
         $this->y += $tPadding;
         $cw = &$this->CurrentFont['cw'];
         if ($w == 0) {

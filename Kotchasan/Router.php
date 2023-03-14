@@ -44,7 +44,7 @@ class Router extends \Kotchasan\KBase
      *
      * @throws \InvalidArgumentException หากไม่พบคลาสเป้าหมาย
      *
-     * @return \static
+     * @return static
      */
     public function init($className)
     {

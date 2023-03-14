@@ -95,7 +95,7 @@ abstract class Driver extends Query
      *
      * @param bool $auto_save (options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง
      *
-     * @return \static
+     * @return static
      */
     public function cacheOn($auto_save = true)
     {
