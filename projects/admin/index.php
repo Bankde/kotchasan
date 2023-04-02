@@ -1,6 +1,6 @@
 <?php
 /**
- * @filesource projects/admin/index.php.
+ * @filesource projects/admin/index.php
  *
  * @author Goragod Wiriya <admin@goragod.com>
  * @copyright 2016 Goragod.com

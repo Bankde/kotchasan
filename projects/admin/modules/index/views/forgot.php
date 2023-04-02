@@ -33,18 +33,18 @@ class View extends \Kotchasan\View
             'id' => 'forgot_frm',
             'class' => 'login',
             'autocomplete' => 'off',
-            'gform' => false,
+            'gform' => false
         ));
         // h1
         $form->add('h1', array(
             'class' => 'icon-password',
-            'innerHTML' => Language::get('Request new password'),
+            'innerHTML' => Language::get('Request new password')
         ));
         // message
         if (!empty(Login::$login_message)) {
             $form->add('p', array(
                 'class' => empty(Login::$login_input) ? 'message' : 'error',
-                'innerHTML' => Login::$login_message,
+                'innerHTML' => Login::$login_message
             ));
         }
         // fieldset
@@ -54,12 +54,12 @@ class View extends \Kotchasan\View
             'id' => 'email',
             'labelClass' => 'g-input icon-email',
             'placeholder' => Language::get('Email'),
-            'value' => isset(Login::$text_email) ? Login::$text_email : '',
+            'value' => isset(Login::$login_params['username']) ? Login::$login_params['username'] : '',
             'autofocus',
             'required',
             'accesskey' => 'e',
             'maxlength' => 255,
-            'comment' => Language::get('New password will be sent to the email address registered. If you do not remember or do not receive emails. Please contact your system administrator (Please check in the Junk Box)'),
+            'comment' => Language::get('New password will be sent to the email address registered. If you do not remember or do not receive emails. Please contact your system administrator (Please check in the Junk Box)')
         ));
         // input-groups (div สำหรับจัดกลุ่ม input)
         $group = $fieldset->add('groups');
@@ -68,23 +68,23 @@ class View extends \Kotchasan\View
             'href' => self::$request->getUri()->withParams(array('action' => 'login'), true),
             'class' => 'td',
             'title' => Language::get('Administrator area'),
-            'innerHTML' => ''.Language::get('Sign in').' ?',
+            'innerHTML' => ''.Language::get('Sign in').' ?'
         ));
         // submit
         $fieldset->add('submit', array(
             'class' => 'button ok large wide',
-            'value' => Language::get('Get new password'),
+            'value' => Language::get('Get new password')
         ));
         $fieldset->add('hidden', array(
             'id' => 'action',
-            'value' => 'forgot',
+            'value' => 'forgot'
         ));
-
+        // คืนค่า HTML
         return $form->render();
     }
 
     /**
-     * title bar.
+     * title bar
      */
     public function title()
     {

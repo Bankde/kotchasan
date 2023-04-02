@@ -785,6 +785,8 @@ select[size] {
 }
 option {
   padding: 0.3em 0.5em;
+  color: initial;
+  background-color: initial;
 }
 optgroup>option {
   padding-left: 2em;

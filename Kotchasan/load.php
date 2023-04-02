@@ -37,7 +37,7 @@ if (DEBUG > 0) {
  *
  * @var string
  */
-define('VERSION', '4.8.0');
+define('VERSION', '4.9.0');
 /*
  * กำหนดการบันทึกการ query ฐานข้อมูล
  * ควรกำหนดเป็น false ขณะใช้งานจริง

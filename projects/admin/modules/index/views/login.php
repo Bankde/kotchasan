@@ -33,23 +33,23 @@ class View extends \Kotchasan\View
             'id' => 'login_frm',
             'class' => 'login',
             'autocomplete' => 'off',
-            'gform' => false,
+            'gform' => false
         ));
         // h1
         $form->add('h1', array(
             'class' => 'icon-customer',
-            'innerHTML' => Language::get('Administrator Area'),
+            'innerHTML' => Language::get('Administrator Area')
         ));
         // message
         if (isset(Login::$login_message)) {
             $form->add('p', array(
                 'class' => empty(Login::$login_input) ? 'message' : 'error',
-                'innerHTML' => Login::$login_message,
+                'innerHTML' => Login::$login_message
             ));
         }
         // fieldset
         $fieldset = $form->add('fieldset', array(
-            'title' => 'Please enter Username and Password (admin+admin)',
+            'title' => 'Please enter Username and Password (admin+admin)'
         ));
         // username
         $fieldset->add('text', array(
@@ -58,7 +58,7 @@ class View extends \Kotchasan\View
             'placeholder' => Language::get('Username'),
             'accesskey' => 'e',
             'maxlength' => 255,
-            'value' => isset(Login::$text_username) ? Login::$text_username : '',
+            'value' => isset(Login::$login_params['username']) ? Login::$login_params['username'] : ''
         ));
         // password
         $fieldset->add('password', array(
@@ -66,7 +66,7 @@ class View extends \Kotchasan\View
             'labelClass' => 'g-input icon-password',
             'autocomplete' => 'off',
             'placeholder' => Language::get('Password'),
-            'value' => isset(Login::$text_password) ? Login::$text_password : '',
+            'value' => isset(Login::$login_params['password']) ? Login::$login_params['password'] : ''
         ));
         // input-groups (div สำหรับจัดกลุ่ม input)
         $group = $fieldset->add('groups');
@@ -75,20 +75,19 @@ class View extends \Kotchasan\View
             'href' => self::$request->getUri()->withParams(array('action' => 'forgot'), true),
             'class' => 'td',
             'title' => Language::get('Request new password'),
-            'innerHTML' => ''.Language::get('Forgot').' ?',
+            'innerHTML' => ''.Language::get('Forgot').' ?'
         ));
         // submit
         $fieldset->add('submit', array(
             'class' => 'button ok large wide',
-            'value' => Language::get('Sign in'),
+            'value' => Language::get('Sign in')
         ));
-        // คืนค่า form
-
+        // คืนค่า HTML
         return $form->render();
     }
 
     /**
-     * title bar.
+     * title bar
      */
     public function title()
     {

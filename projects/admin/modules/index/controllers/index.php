@@ -32,7 +32,7 @@ class Controller extends \Kotchasan\Controller
         // session cookie
         $request->initSession();
         // ตรวจสอบการ login
-        Login::create();
+        Login::create($request);
         if (Login::isMember()) {
             echo '<a href="?action=logout">Logout</a><br>';
             var_dump($_SESSION);
