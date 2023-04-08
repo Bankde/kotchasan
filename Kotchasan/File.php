@@ -123,8 +123,9 @@ class File
      * ลบไดเรคทอรี่และไฟล์ หรือ ไดเร็คทอรี่ในนั้นทั้งหมด
      *
      * @param string $dir ไดเรคทอรี่ที่ต้องการลบ มี / ต่อท้ายด้วย
+     * @param bool $removeSelf true (default) ลบไดเร็คทอรี่ที่ระบด้วย, false ลบเฉพาะไฟล์และไดเร็คทอรี่ในนั้น
      */
-    public static function removeDirectory($dir)
+    public static function removeDirectory($dir, $removeSelf = true)
     {
         if (!is_dir($dir)) {
             return;
@@ -141,6 +142,8 @@ class File
             }
         }
         closedir($f);
-        @rmdir($dir);
+        if ($removeSelf) {
+            @rmdir($dir);
+        }
     }
 }

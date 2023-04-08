@@ -19,7 +19,7 @@ use Kotchasan\Http\Request;
  *
  * @since 1.0
  */
-class ApiController extends KBase
+class ApiController extends \Kotchasan\KBase
 {
     /**
      * แม่แบบคอนโทรลเลอร์ สำหรับ API

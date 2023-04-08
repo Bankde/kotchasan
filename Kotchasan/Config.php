@@ -17,6 +17,7 @@ namespace Kotchasan;
  *
  * @since 1.0
  */
+#[\AllowDynamicProperties]
 class Config
 {
     /**

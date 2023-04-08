@@ -844,7 +844,7 @@ class DataTable extends \Kotchasan\KBase
                 }
             }
         }
-        if (!empty($table_nav_float)) {;
+        if (!empty($table_nav_float)) {
             $table_nav[] = '<div class=float_bottom_menu>'.implode('', $table_nav_float).'</div>';
         }
         if (!empty($this->addNew) && is_array($this->addNew)) {

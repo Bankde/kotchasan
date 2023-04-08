@@ -30,14 +30,14 @@ if (DEBUG > 0) {
     error_reporting(-1);
 } else {
     /* ขณะใช้งานจริง */
-    error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
+    error_reporting(E_ALL&~E_NOTICE&~E_STRICT);
 }
 /*
  * Framework Version
  *
  * @var string
  */
-define('VERSION', '4.9.0');
+define('VERSION', '4.9.2');
 /*
  * กำหนดการบันทึกการ query ฐานข้อมูล
  * ควรกำหนดเป็น false ขณะใช้งานจริง

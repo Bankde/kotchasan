@@ -142,7 +142,7 @@
     </aside>
 
             <p class="phpdocumentor-summary">Class Jwt
-A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
+คลาสสำหรับการเข้ารหัส ถอดรหัส JWT และมีการ verify ด้วย</p>
 
 
 
@@ -181,7 +181,21 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-                <dt class="phpdocumentor-table-of-contents__entry -property -public">
+                <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Kotchasan-Jwt.html#property_hash_hmac_algos">$hash_hmac_algos</a>
+    <span>
+                &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+<dd>อัลกอริทึมที่รองรับโดย hash_hmac</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Kotchasan-Jwt.html#property_algorithm">$algorithm</a>
+    <span>
+                &nbsp;: string            </span>
+</dt>
+<dd>อัลกอริทึมที่ใช้ในการเข้ารหัส ด้วย hash_hmac</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Jwt.html#property_expireTime">$expireTime</a>
     <span>
                 &nbsp;: int            </span>
@@ -189,15 +203,21 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 <dd>เวลาหมดอายุของ JWT
 3600 = 1 ชม.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Jwt.html#property_secretKey">$secretKey</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>Secret key สำหรับการเข้ารหัส JWT
-ควรกำหนดก่อนการเรียกใช้ JWT หากต้องการให้มีการ verify</dd>
+<dd>Secret key สำหรับการเข้ารหัส JWT</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Kotchasan-Jwt.html#method_create">create()</a>
+    <span>
+                        &nbsp;: static    </span>
+</dt>
+<dd>สร้างคลาส JWT</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Jwt.html#method_decode">decode()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
@@ -218,6 +238,13 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 </dt>
 <dd>ฟังก์ชันสำหรับถอดรหัส JWT และตรวจสอบความถูกต้องของข้อมูลด้วย
 อัลกอริทึม HS256</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a href="classes/Kotchasan-Jwt.html#method___construct">__construct()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Class constructor</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Jwt.html#method_base64UrlDecode">base64UrlDecode()</a>
@@ -256,8 +283,74 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
         class="
             phpdocumentor-element
             -property
-            -public
-            -static                                            "
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_hash_hmac_algos">
+        $hash_hmac_algos
+        <a href="classes/Kotchasan-Jwt.html#property_hash_hmac_algos" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">54</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">อัลกอริทึมที่รองรับโดย hash_hmac</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$hash_hmac_algos</span>
+     = <span class="phpdocumentor-signature__default-value">array(&#039;HS256&#039; =&gt; &#039;sha256&#039;, &#039;HS384&#039; =&gt; &#039;sha384&#039;, &#039;HS512&#039; =&gt; &#039;sha512&#039;)</span></code>
+
+    
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_algorithm">
+        $algorithm
+        <a href="classes/Kotchasan-Jwt.html#property_algorithm" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">47</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">อัลกอริทึมที่ใช้ในการเข้ารหัส ด้วย hash_hmac</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$algorithm</span>
+    </code>
+
+    
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
 >
     <h4 class="phpdocumentor-element__name" id="property_expireTime">
         $expireTime
@@ -268,7 +361,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
@@ -276,13 +369,15 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 3600 = 1 ชม.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$expireTime</span>
-     = <span class="phpdocumentor-signature__default-value">0</span></code>
+    </code>
 
         <section class="phpdocumentor-description"><p>0 = ไม่มีวันหมดอายุ (ค่าเริ่มต้น)
-ถ้ามีการระบุเวลาหมดอายุ เมื่อมีการ verify จะมีการตรวจสอบเวลาหมดอายุด้วย</p>
+ถ้ามีการระบุเวลาหมดอายุ เมื่อมีการ verify จะมีการตรวจสอบเวลาหมดอายุด้วย
+โดยจะมีการเพิ่มข้อมูล expired เพื่อเก็บเวลาหมดอายุ ลงใน Payload โดยอัตโนมัติ
+และลบออกเมื่อมีการถอดรหัสกลับ ไม่ควรกำหนด expired ลงใน Payload ที่ต้องการเข้ารหัสด้วยตัวเอง</p>
 </section>
 
     
@@ -293,8 +388,8 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
         class="
             phpdocumentor-element
             -property
-            -public
-            -static                                            "
+            -private
+                                                        "
 >
     <h4 class="phpdocumentor-element__name" id="property_secretKey">
         $secretKey
@@ -305,18 +400,17 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Secret key สำหรับการเข้ารหัส JWT
-ควรกำหนดก่อนการเรียกใช้ JWT หากต้องการให้มีการ verify</p>
+        <p class="phpdocumentor-summary">Secret key สำหรับการเข้ารหัส JWT</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$secretKey</span>
-     = <span class="phpdocumentor-signature__default-value">&#039;my_secret_key&#039;</span></code>
+    </code>
 
     
     
@@ -336,6 +430,68 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
             -public
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_create">
+        create()
+        <a href="classes/Kotchasan-Jwt.html#method_create" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">86</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">สร้างคลาส JWT</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$secretKey</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;my_secret_key&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expireTime</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$algo</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;HS256&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$secretKey</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;my_secret_key&#039;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Secret key สำหรับการเข้ารหัส JWT</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$expireTime</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>เวลาหมดอายุของ JWT 0 = ไม่มีวันหมดอายุ (ค่าเริ่มต้น), &gt; 0 กำหนดเวลาหมดอายุเป็นวินาที</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$algo</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;HS256&#039;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">static</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_decode">
         decode()
         <a href="classes/Kotchasan-Jwt.html#method_decode" class="headerlink"><i class="fas fa-link"></i></a>
@@ -343,7 +499,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">130</span>
 
     </aside>
 
@@ -351,7 +507,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">decode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jwt</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">decode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jwt</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -392,7 +548,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
+                                                        "
 >
     <h4 class="phpdocumentor-element__name" id="method_encode">
         encode()
@@ -401,7 +557,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
@@ -409,7 +565,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">encode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">encode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -450,7 +606,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
+                                                        "
 >
     <h4 class="phpdocumentor-element__name" id="method_verify">
         verify()
@@ -459,7 +615,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">104</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
@@ -468,7 +624,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">verify</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jwt</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">verify</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jwt</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -518,7 +674,70 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
         class="phpdocumentor-element
             -method
             -private
-                                    -static                    "
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/Kotchasan-Jwt.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">67</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Class constructor</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$secretKey</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expireTime</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$algo</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$secretKey</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Secret key สำหรับการเข้ารหัส JWT</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$expireTime</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>เวลาหมดอายุของ JWT 0 = ไม่มีวันหมดอายุ (ค่าเริ่มต้น), &gt; 0 กำหนดเวลาหมดอายุเป็นวินาที</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$algo</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>อัลกอริทึมที่ใช้ในการเข้ารหัส รองรับตาม $hash_hmac_algos</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
 >
     <h4 class="phpdocumentor-element__name" id="method_base64UrlDecode">
         base64UrlDecode()
@@ -527,7 +746,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">171</span>
+    <span class="phpdocumentor-element-found-in__line">229</span>
 
     </aside>
 
@@ -535,7 +754,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">base64UrlDecode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">base64UrlDecode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -561,7 +780,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
         class="phpdocumentor-element
             -method
             -private
-                                    -static                    "
+                                                        "
 >
     <h4 class="phpdocumentor-element__name" id="method_base64UrlEncode">
         base64UrlEncode()
@@ -570,7 +789,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">155</span>
+    <span class="phpdocumentor-element-found-in__line">214</span>
 
     </aside>
 
@@ -578,7 +797,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">base64UrlEncode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">base64UrlEncode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -604,7 +823,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
         class="phpdocumentor-element
             -method
             -private
-                                    -static                    "
+                                                        "
 >
     <h4 class="phpdocumentor-element__name" id="method_generateSignature">
         generateSignature()
@@ -613,7 +832,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Jwt.php"><a href="files/kotchasan-jwt.html"><abbr title="Kotchasan/Jwt.php">Jwt.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">138</span>
+    <span class="phpdocumentor-element-found-in__line">199</span>
 
     </aside>
 
@@ -621,7 +840,7 @@ A class for encoding, decoding, and verifying JSON Web Tokens (JWT).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">generateSignature</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$header</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">generateSignature</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$header</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>

@@ -4316,20 +4316,30 @@ Search.appendIndex(
             "summary": "\u0E04\u0E25\u0E32\u0E2A\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0020Login",
             "url": "classes/Kotchasan-Login.html"
         },                {
-            "fqsen": "\\Kotchasan\\Login\u003A\u003AcheckLogin\u0028\u0029",
-            "name": "checkLogin",
-            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0020login\n\u0E40\u0E02\u0E49\u0E32\u0E23\u0E30\u0E1A\u0E1A\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E2A\u0E21\u0E32\u0E0A\u0E34\u0E01,\u0020\u0E44\u0E21\u0E48\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08\u0020\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14",
-            "url": "classes/Kotchasan-Login.html#method_checkLogin"
-        },                {
             "fqsen": "\\Kotchasan\\Login\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0020login\u0020\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E21\u0E35\u0E01\u0E32\u0E23\u0E40\u0E23\u0E35\u0E22\u0E01\u0E43\u0E0A\u0E49\u0020class\u0020new\u0020Login\naction\u003Dlogout\u0020\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E23\u0E30\u0E1A\u0E1A\n\u0E21\u0E32\u0E08\u0E32\u0E01\u0E01\u0E32\u0E23\u0020submit\u0020\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0020login\n\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E21\u0E35\u0E17\u0E31\u0E49\u0E07\u0E2A\u0E2D\u0E07\u0E2A\u0E48\u0E27\u0E19\u0E14\u0E49\u0E32\u0E19\u0E1A\u0E19\u0020\u0E08\u0E30\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0020login\u0020\u0E08\u0E32\u0E01\u0020session",
+            "summary": "\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0020login\u0020\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E21\u0E35\u0E01\u0E32\u0E23\u0E40\u0E23\u0E35\u0E22\u0E01\u0E43\u0E0A\u0E49\u0020class\u0020new\u0020Login\naction\u003Dlogout\u0020\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E23\u0E30\u0E1A\u0E1A\naction\u003Dforgot\u0020\u0E02\u0E2D\u0E23\u0E2B\u0E31\u0E2A\u0E1C\u0E48\u0E32\u0E19\u0E43\u0E2B\u0E21\u0E48\n\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E21\u0E35\u0E17\u0E31\u0E49\u0E07\u0E2A\u0E2D\u0E07\u0E2A\u0E48\u0E27\u0E19\u0E14\u0E49\u0E32\u0E19\u0E1A\u0E19\u0020\u0E08\u0E30\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0020login\u0020\u0E08\u0E32\u0E01\u0020session",
             "url": "classes/Kotchasan-Login.html#method_create"
+        },                {
+            "fqsen": "\\Kotchasan\\Login\u003A\u003Alogout\u0028\u0029",
+            "name": "logout",
+            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E23\u0E30\u0E1A\u0E1A",
+            "url": "classes/Kotchasan-Login.html#method_logout"
         },                {
             "fqsen": "\\Kotchasan\\Login\u003A\u003Aforgot\u0028\u0029",
             "name": "forgot",
             "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E2A\u0E48\u0E07\u0E2D\u0E35\u0E40\u0E21\u0E25\u0E25\u0E37\u0E21\u0E23\u0E2B\u0E31\u0E2A\u0E1C\u0E48\u0E32\u0E19",
             "url": "classes/Kotchasan-Login.html#method_forgot"
+        },                {
+            "fqsen": "\\Kotchasan\\Login\u003A\u003Alogin\u0028\u0029",
+            "name": "login",
+            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0E40\u0E02\u0E49\u0E32\u0E23\u0E30\u0E1A\u0E1A",
+            "url": "classes/Kotchasan-Login.html#method_login"
+        },                {
+            "fqsen": "\\Kotchasan\\Login\u003A\u003AcheckLogin\u0028\u0029",
+            "name": "checkLogin",
+            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0020login\n\u0E40\u0E02\u0E49\u0E32\u0E23\u0E30\u0E1A\u0E1A\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E41\u0E2D\u0E40\u0E23\u0E22\u0E4C\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E2A\u0E21\u0E32\u0E0A\u0E34\u0E01,\u0020\u0E44\u0E21\u0E48\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08\u0020\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14",
+            "url": "classes/Kotchasan-Login.html#method_checkLogin"
         },                {
             "fqsen": "\\Kotchasan\\Login\u003A\u003AisAdmin\u0028\u0029",
             "name": "isAdmin",
@@ -7413,8 +7423,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Jwt",
             "name": "Jwt",
-            "summary": "Class\u0020Jwt\nA\u0020class\u0020for\u0020encoding,\u0020decoding,\u0020and\u0020verifying\u0020JSON\u0020Web\u0020Tokens\u0020\u0028JWT\u0029.",
+            "summary": "Class\u0020Jwt\n\u0E04\u0E25\u0E32\u0E2A\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E40\u0E02\u0E49\u0E32\u0E23\u0E2B\u0E31\u0E2A\u0020\u0E16\u0E2D\u0E14\u0E23\u0E2B\u0E31\u0E2A\u0020JWT\u0020\u0E41\u0E25\u0E30\u0E21\u0E35\u0E01\u0E32\u0E23\u0020verify\u0020\u0E14\u0E49\u0E27\u0E22",
             "url": "classes/Kotchasan-Jwt.html"
+        },                {
+            "fqsen": "\\Kotchasan\\Jwt\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Class\u0020constructor",
+            "url": "classes/Kotchasan-Jwt.html#method___construct"
+        },                {
+            "fqsen": "\\Kotchasan\\Jwt\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E25\u0E32\u0E2A\u0020JWT",
+            "url": "classes/Kotchasan-Jwt.html#method_create"
         },                {
             "fqsen": "\\Kotchasan\\Jwt\u003A\u003Aencode\u0028\u0029",
             "name": "encode",
@@ -7448,13 +7468,23 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Jwt\u003A\u003A\u0024secretKey",
             "name": "secretKey",
-            "summary": "Secret\u0020key\u0020\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E40\u0E02\u0E49\u0E32\u0E23\u0E2B\u0E31\u0E2A\u0020JWT\n\u0E04\u0E27\u0E23\u0E01\u0E33\u0E2B\u0E19\u0E14\u0E01\u0E48\u0E2D\u0E19\u0E01\u0E32\u0E23\u0E40\u0E23\u0E35\u0E22\u0E01\u0E43\u0E0A\u0E49\u0020JWT\u0020\u0E2B\u0E32\u0E01\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E43\u0E2B\u0E49\u0E21\u0E35\u0E01\u0E32\u0E23\u0020verify",
+            "summary": "Secret\u0020key\u0020\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E40\u0E02\u0E49\u0E32\u0E23\u0E2B\u0E31\u0E2A\u0020JWT",
             "url": "classes/Kotchasan-Jwt.html#property_secretKey"
         },                {
             "fqsen": "\\Kotchasan\\Jwt\u003A\u003A\u0024expireTime",
             "name": "expireTime",
             "summary": "\u0E40\u0E27\u0E25\u0E32\u0E2B\u0E21\u0E14\u0E2D\u0E32\u0E22\u0E38\u0E02\u0E2D\u0E07\u0020JWT\n3600\u0020\u003D\u00201\u0020\u0E0A\u0E21.",
             "url": "classes/Kotchasan-Jwt.html#property_expireTime"
+        },                {
+            "fqsen": "\\Kotchasan\\Jwt\u003A\u003A\u0024algorithm",
+            "name": "algorithm",
+            "summary": "\u0E2D\u0E31\u0E25\u0E01\u0E2D\u0E23\u0E34\u0E17\u0E36\u0E21\u0E17\u0E35\u0E48\u0E43\u0E0A\u0E49\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E02\u0E49\u0E32\u0E23\u0E2B\u0E31\u0E2A\u0020\u0E14\u0E49\u0E27\u0E22\u0020hash_hmac",
+            "url": "classes/Kotchasan-Jwt.html#property_algorithm"
+        },                {
+            "fqsen": "\\Kotchasan\\Jwt\u003A\u003A\u0024hash_hmac_algos",
+            "name": "hash_hmac_algos",
+            "summary": "\u0E2D\u0E31\u0E25\u0E01\u0E2D\u0E23\u0E34\u0E17\u0E36\u0E21\u0E17\u0E35\u0E48\u0E23\u0E2D\u0E07\u0E23\u0E31\u0E1A\u0E42\u0E14\u0E22\u0020hash_hmac",
+            "url": "classes/Kotchasan-Jwt.html#property_hash_hmac_algos"
         },                {
             "fqsen": "\\Kotchasan\\Promptpay",
             "name": "Promptpay",
