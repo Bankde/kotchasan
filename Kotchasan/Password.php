@@ -22,19 +22,28 @@ class Password
     /**
      * ฟังก์ชั่น ถอดรหัสข้อความ
      * คืนค่าข้อความที่ถอดรหัสแล้ว
+     * ไม่สำเร็จ Error
      *
      * @assert (Password::encode("ทดสอบภาษาไทย", 12345678), 12345678) [==] "ทดสอบภาษาไทย"
      * @assert (Password::encode(1234, 12345678), 12345678) [==] 1234
+     * @assert ('12345678', 12345678) [throws] \Exception
      *
      * @param string $string ข้อความที่เข้ารหัสจาก encode()
      * @param string $password คีย์สำหรับการเข้ารหัส
      *
      * @return string
+     *
+     * @throws Exception ถ้า $string ไม่ถูกต้อง
      */
     public static function decode($string, $password)
     {
-        list($data, $iv) = explode('::', base64_decode($string), 2);
-        return openssl_decrypt($data, 'aes-256-cbc', $password, 0, $iv);
+        $base64 = base64_decode($string);
+        $ds = explode('::', $base64, 2);
+        if (isset($ds[0]) && isset($ds[1])) {
+            return openssl_decrypt($ds[0], 'aes-256-cbc', $password, 0, $ds[1]);
+        }
+        // $string ไม่ถูกต้อง ไม่สามารถถอดรหัสได้
+        throw new \Exception('Invalid string');
     }
 
     /**

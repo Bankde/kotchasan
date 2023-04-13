@@ -30,7 +30,7 @@ if (DEBUG > 0) {
     error_reporting(-1);
 } else {
     /* ขณะใช้งานจริง */
-    error_reporting(E_ALL&~E_NOTICE&~E_STRICT);
+    error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
 }
 /*
  * Framework Version
@@ -216,7 +216,7 @@ function debug($expression)
     if (is_array($expression) || is_object($expression)) {
         \Kotchasan::$debugger[] = json_encode((array) $expression);
     } else {
-        \Kotchasan::$debugger[] = '"'.str_replace(array('/', '"'), array('\/', '\"'), $expression).'"';
+        \Kotchasan::$debugger[] = '"'.str_replace(array('/', '"'), array('\/', '\"'), strval($expression)).'"';
     }
 }
 
