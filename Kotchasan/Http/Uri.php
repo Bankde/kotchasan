@@ -154,8 +154,10 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
         if ($pos !== false) {
             $port = (int) substr($host, $pos + 1);
             $host = strstr($host, ':', true);
+        } elseif (isset($_SERVER['SERVER_PORT'])) {
+            $port = (int) $_SERVER['SERVER_PORT'];
         } else {
-            $port = isset($_SERVER['SERVER_PORT']) ? (int) $_SERVER['SERVER_PORT'] : 80;
+            $port = $scheme === 'https://' ? 443 : 80;
         }
         $path = empty($_SERVER['REQUEST_URI']) ? '/' : parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $query = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
@@ -372,12 +374,13 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @param string $url          URL ที่ต้องการส่งกลับ เช่น index.php
      * @param array  $query_string (option) query string ที่ต้องการส่งกลับไปด้วย array('key' => 'value', ...)
+     * @param bool  $encode false เชื่อม Querystring ด้วย &, true เชื่อม Querystring ด้วย &amp;
      *
      * @return string
      */
-    public function postBack($url, $query_string = array())
+    public function postBack($url, $query_string = array(), $encode = false)
     {
-        return $this->createBack($url, $_POST, $query_string);
+        return $this->createBack($url, $_POST, $query_string, $encode);
     }
 
     /**
@@ -574,10 +577,11 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      * @param string $url          URL ที่ต้องการส่งกลับ เช่น index.php
      * @param array  $source       query string จาก $_POST หรือ $_GET
      * @param array  $query_string query string ที่ต้องการส่งกลับไปด้วย array('key' => 'value', ...)
+     * @param bool  $encode false เชื่อม Querystring ด้วย &, true เชื่อม Querystring ด้วย &amp;
      *
      * @return string
      */
-    private function createBack($url, $source, $query_string)
+    private function createBack($url, $source, $query_string, $encode = false)
     {
         foreach ($source as $key => $value) {
             if ($value !== '' && !preg_match('/.*?(username|password|token|time).*?/', $key) && preg_match('/^_{1,}(.*)$/', $key, $match)) {
@@ -595,7 +599,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
                 $query_str[$key] = $value;
             }
         }
-        return $url.(strpos($url, '?') === false ? '?' : '&').$this->paramsToQuery($query_str, false);
+        return $url.(strpos($url, '?') === false ? '?' : '&').$this->paramsToQuery($query_str, $encode);
     }
 
     /**

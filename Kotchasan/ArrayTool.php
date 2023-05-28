@@ -315,12 +315,15 @@ class ArrayTool
      */
     public static function sort($array, $sort_key = 'id', $sort_desc = false)
     {
-        usort($array, function ($a, $b) use ($sort_key) {
-            $v1 = isset($a[$sort_key]) ? strtolower(self::toString('', $a[$sort_key])) : '';
-            $v2 = isset($b[$sort_key]) ? strtolower(self::toString('', $b[$sort_key])) : '';
-            return $v1 == $v2 ? 0 : ($v1 < $v2 ? -1 : 1);
-        });
-        return $sort_desc ? array_reverse($array) : $array;
+        if (!empty($array) && is_array($array)) {
+            usort($array, function ($a, $b) use ($sort_key) {
+                $v1 = isset($a[$sort_key]) ? strtolower(self::toString('', $a[$sort_key])) : '';
+                $v2 = isset($b[$sort_key]) ? strtolower(self::toString('', $b[$sort_key])) : '';
+                return $v1 == $v2 ? 0 : ($v1 < $v2 ? -1 : 1);
+            });
+            return $sort_desc ? array_reverse($array) : $array;
+        }
+        return $array;
     }
 
     /**

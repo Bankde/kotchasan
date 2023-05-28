@@ -57,7 +57,11 @@
                 for (var prop in items) {
                   sel = $E(self.prefix + prop);
                   if (sel) {
-                    $G(sel).setOptions(items[prop], sel.value);
+                    if (sel.options) {
+                      $G(sel).setOptions(items[prop], sel.value);
+                    } else {
+                      sel.value = items[prop];
+                    }
                   }
                 }
                 if (sel) {

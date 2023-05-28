@@ -421,8 +421,8 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      */
     public function removeToken()
     {
-        $token = $this->globals(array('POST', 'GET'), 'token', null)->toString();
-        if ($token !== null) {
+        $token = $this->request('token')->toString();
+        if (!empty($token)) {
             unset($_SESSION[$token]);
         }
     }

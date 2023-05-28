@@ -624,6 +624,9 @@ abstract class Query extends \Kotchasan\Database\Db
                 // value เป็น ตัวเลข จุดทศนิยม เครื่องหมาย - / , และ true, false
                 // เช่น ตัวเลข, จำนวนเงิน, boolean
                 $result = "$key $operator ".(is_string($value) ? "'$value'" : $value);
+            } elseif (preg_match('/^SQL\((.+)\)$/', $value, $match)) {
+                // SQL()
+                $result = '('.$match[1].')';
             } elseif (preg_match('/^[0-9\s\-:]+$/', $value)) {
                 // วันที่
                 $result = "$key $operator '$value'";

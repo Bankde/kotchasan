@@ -92,7 +92,7 @@ class Xls
         $prop = '';
         if (is_array($item)) {
             foreach ($item as $k => $v) {
-                if ($k == 'value') {
+                if ($k === 'value') {
                     $value = $v;
                 } else {
                     $prop .= ' '.$k.'="'.$v.'"';

@@ -275,7 +275,7 @@ window.$K = (function() {
         };
       forEach(element.querySelectorAll('.w_checkbox input[type=checkbox]'), function(elem) {
         if (!elem.checkId) {
-          var id = elem.name.replace('checkbox_', '');
+          var id = elem.name.replace('checkbox_', '').replace('[', '').replace(']', '');
           if ($E(id)) {
             elem.checkId = $E(id);
             $G(elem).addEvent('change', wCheckboxChanged);
@@ -376,11 +376,11 @@ window.$K = (function() {
       base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'),
       jsonPayload = decodeURIComponent(
         atob(base64)
-        .split("")
-        .map(function(c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
+          .split("")
+          .map(function(c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join("")
       );
     return JSON.parse(jsonPayload);
   };
@@ -1012,9 +1012,9 @@ window.$K = (function() {
         p = p.offsetParent;
       }
       if (this.getBoundingClientRect) {
-        return { top: t, left: this.getBoundingClientRect().left };
+        return {top: t, left: this.getBoundingClientRect().left};
       } else {
-        return { top: t, left: l };
+        return {top: t, left: l};
       }
     },
     getDimensions: function() {
@@ -1068,7 +1068,7 @@ window.$K = (function() {
           s.visibility = ov;
         }
       }
-      return { width: ow, height: oh };
+      return {width: ow, height: oh};
     },
     getOffsetParent: function() {
       var e = this.offsetParent;
@@ -1086,9 +1086,9 @@ window.$K = (function() {
           textLength = range.text.length;
         range.moveStart('character', -this.value.length);
         var caretAt = range.text.length;
-        return { start: caretAt, end: caretAt + textLength };
+        return {start: caretAt, end: caretAt + textLength};
       } else if (this.selectionStart || this.selectionStart == '0') {
-        return { start: this.selectionStart, end: this.selectionEnd };
+        return {start: this.selectionStart, end: this.selectionEnd};
       }
     },
     setCaretPosition: function(start, length) {
@@ -1295,7 +1295,7 @@ window.$K = (function() {
       return result;
     },
     sendKey: function(keyCode) {
-      return this.callEvent('keypress', { keyCode: keyCode });
+      return this.callEvent('keypress', {keyCode: keyCode});
     },
     callEvent: function(t, params) {
       var evt;
@@ -2259,26 +2259,26 @@ window.$K = (function() {
         if (this.options.scrollto == 'bottom') {
           this.scrollerTop =
             this.scrollerTop > size.height ?
-            0 - this.scroller.getHeight() :
-            this.scrollerTop + this.options.duration;
+              0 - this.scroller.getHeight() :
+              this.scrollerTop + this.options.duration;
           this.scroller.style.top = this.scrollerTop + 'px';
         } else if (this.options.scrollto == 'left') {
           this.scrollerLeft =
             this.scrollerLeft + this.scroller.getWidth() < 0 ?
-            size.width :
-            this.scrollerLeft - this.options.duration;
+              size.width :
+              this.scrollerLeft - this.options.duration;
           this.scroller.style.left = this.scrollerLeft + 'px';
         } else if (this.options.scrollto == 'right') {
           this.scrollerLeft =
             this.scrollerLeft > size.width ?
-            0 - this.scroller.getWidth() :
-            this.scrollerLeft + this.options.duration;
+              0 - this.scroller.getWidth() :
+              this.scrollerLeft + this.options.duration;
           this.scroller.style.left = this.scrollerLeft + 'px';
         } else {
           this.scrollerTop =
             this.scrollerTop + this.scroller.getHeight() < 0 ?
-            size.height :
-            this.scrollerTop - this.options.duration;
+              size.height :
+              this.scrollerTop - this.options.duration;
           this.scroller.style.top = this.scrollerTop + 'px';
         }
       }
@@ -2779,7 +2779,7 @@ window.$K = (function() {
       this.maxlength = floatval(this.input.maxlength);
       var self = this;
       if ($K.isMobile()) {
-        this.panel = new GDropdown(this.input, { float: false });
+        this.panel = new GDropdown(this.input, {float: false});
         this.input.readOnly = true;
         this.input.addEvent('click', function(e) {
           self.input.setCaretPosition(self.input.value.length, 1);
@@ -2881,9 +2881,9 @@ window.$K = (function() {
               var startPos = self.input.selectionStart,
                 endPos = self.input.selectionEnd,
                 value =
-                self.input.value.substring(0, startPos) +
-                text +
-                self.input.value.substring(endPos, self.input.value.length);
+                  self.input.value.substring(0, startPos) +
+                  text +
+                  self.input.value.substring(endPos, self.input.value.length);
               if (self.maxlength == 0 || value.length <= self.maxlength) {
                 self.input.value = value;
                 self.input.selectionStart = startPos + text.length;
@@ -2969,8 +2969,8 @@ window.$K = (function() {
         }
         var l = Math.max(
           vpo.left + dm.width > document.viewport.getWidth() ?
-          vpo.left + this.src.getWidth() - dm.width :
-          vpo.left, document.viewport.getscrollLeft() + 5
+            vpo.left + this.src.getWidth() - dm.width :
+            vpo.left, document.viewport.getscrollLeft() + 5
         );
         this.dropdown.style.left = l + 'px';
       } else {
@@ -3020,7 +3020,7 @@ window.$K = (function() {
       this.placeholder.className = 'placeholder';
       this.placeholder.style.position = 'absolute';
       this.input.appendChild(this.placeholder);
-      this.calendar = new GDropdown(this.input, { float: 'auto' });
+      this.calendar = new GDropdown(this.input, {float: 'auto'});
       this.mdate = null;
       this.xdate = null;
       this.mode = 0;
@@ -3073,9 +3073,9 @@ window.$K = (function() {
       });
       $G(document.body).addEvent('click', function(e) {
         if (!(
-            $G(GEvent.element(e)).hasClass('input-gcalendar') ||
-            $G(GEvent.element(e).parentNode).hasClass('input-gcalendar')
-          )) {
+          $G(GEvent.element(e)).hasClass('input-gcalendar') ||
+          $G(GEvent.element(e).parentNode).hasClass('input-gcalendar')
+        )) {
           self.calendar.hide();
         }
       });
@@ -3691,22 +3691,22 @@ window.$K = (function() {
         if (rgb) {
           this.r =
             rgb[1].length == 2 ?
-            parseInt(rgb[1], 16) :
-            parseInt(rgb[1] + rgb[1], 16);
+              parseInt(rgb[1], 16) :
+              parseInt(rgb[1] + rgb[1], 16);
           this.g =
             rgb[2].length == 2 ?
-            parseInt(rgb[2], 16) :
-            parseInt(rgb[2] + rgb[2], 16);
+              parseInt(rgb[2], 16) :
+              parseInt(rgb[2] + rgb[2], 16);
           this.b =
             rgb[3].length == 2 ?
-            parseInt(rgb[3], 16) :
-            parseInt(rgb[3] + rgb[3], 16);
+              parseInt(rgb[3], 16) :
+              parseInt(rgb[3] + rgb[3], 16);
           this.a =
             rgb[4] == '' ?
-            null :
-            rgb[4].length == 2 ?
-            parseInt(rgb[4], 16) :
-            parseInt(rgb[4] + rgb[4], 16);
+              null :
+              rgb[4].length == 2 ?
+                parseInt(rgb[4], 16) :
+                parseInt(rgb[4] + rgb[4], 16);
         } else {
           this.r = 0;
           this.g = 0;
@@ -3743,22 +3743,22 @@ window.$K = (function() {
       return (
         '#' +
         this.r
-        .toString(16)
-        .toUpperCase()
-        .leftPad(2, '0') +
-        this.g
-        .toString(16)
-        .toUpperCase()
-        .leftPad(2, '0') +
-        this.b
-        .toString(16)
-        .toUpperCase()
-        .leftPad(2, '0') +
-        (this.a !== null && this.a !== 1 ?
-          this.a
           .toString(16)
           .toUpperCase()
-          .leftPad(2, '0') :
+          .leftPad(2, '0') +
+        this.g
+          .toString(16)
+          .toUpperCase()
+          .leftPad(2, '0') +
+        this.b
+          .toString(16)
+          .toUpperCase()
+          .leftPad(2, '0') +
+        (this.a !== null && this.a !== 1 ?
+          this.a
+            .toString(16)
+            .toUpperCase()
+            .leftPad(2, '0') :
           '')
       );
     },
@@ -3809,7 +3809,7 @@ window.$K = (function() {
       this.onchanged = onchanged || $K.emptyFunction;
       this.color = '';
       this.color_format = /^((transparent)|(\#[0-9a-fA-F]{6,6}))$/i;
-      this.ddcolor = new GDropdown(this.input, { float: 'auto' });
+      this.ddcolor = new GDropdown(this.input, {float: 'auto'});
       var self = this;
       this.input.addEvent('click', function(e) {
         self.createColors();
