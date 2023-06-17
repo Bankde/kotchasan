@@ -3241,7 +3241,7 @@ div.gcalendar td.month {
   font-style: normal;
   display: block;
   position: relative;
-  font-size: 80%;
+  font-size: 12px;
 }
 .event-calendar .label_holiday,
 .event-calendar td>div>address {
@@ -3251,6 +3251,10 @@ div.gcalendar td.month {
 .event-calendar td>div>a {
   padding: 0 2px;
   cursor: pointer;
+}
+.event-calendar td>div>a:hover {
+  box-shadow: -1px -1px rgba(0,0,0,0.2);
+  transform: translate(1px,1px);
 }
 .event-calendar td>div>address {
   display: none;

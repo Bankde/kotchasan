@@ -136,6 +136,9 @@ var GGraphs = (function(document) {
       self.datas.rows.push(d);
       self.max = Math.max(max, self.max);
       self.min = self.min == null ? min : Math.min(min, self.min);
+      if (self.min == self.max) {
+        self.max = self.min + self.options.rows;
+      }
     });
     let range = this.max - this.min,
       rowHeight = Math.ceil(range / this.options.rows),

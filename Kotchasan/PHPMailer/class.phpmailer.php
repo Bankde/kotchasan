@@ -1869,7 +1869,8 @@ class PHPMailer
      */
     public function addrFormat($addr)
     {
-        if (empty($addr[1])) { // No name provided
+        if (empty($addr[1])) {
+            // No name provided
             return $this->secureHeader($addr[0]);
         } else {
             return $this->encodeHeader($this->secureHeader($addr[1]), 'phrase').' <'.$this->secureHeader(
@@ -2864,7 +2865,8 @@ class PHPMailer
     {
         if (function_exists('mb_strlen')) {
             return strlen($str) > mb_strlen($str, $this->CharSet);
-        } else { // Assume no multibytes (we can't handle without mbstring functions anyway)
+        } else {
+            // Assume no multibytes (we can't handle without mbstring functions anyway)
             return false;
         }
     }

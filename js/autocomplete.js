@@ -207,15 +207,12 @@
           GEvent.stop(evt);
         }
       }
+
       this.input.addEvent('click', _search);
       this.input.addEvent('keyup', _search);
       this.input.addEvent('keydown', _dokeydown);
-      this.input.addEvent('blur', function() {
-        _hide();
-      });
-      $G(document.body).addEvent('click', function() {
-        _hide();
-      });
+      this.input.addEvent('blur', _hide);
+      $G(document.body).addEvent('click', _hide);
     },
     setText: function(value) {
       this.input.value = value;
