@@ -4,8 +4,8 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya <admin@goragod.com>
+ * @package Kotchasan
  */
 
 namespace Index\World;
@@ -13,9 +13,7 @@ namespace Index\World;
 /**
  * คลาสสำหรับเชื่อมต่อกับฐานข้อมูลของ GCMS.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Model extends \Kotchasan\Orm\Field
 {

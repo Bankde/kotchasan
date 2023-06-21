@@ -4,8 +4,8 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya <admin@goragod.com>
+ * @package Kotchasan
  */
 
 namespace Index\Index;
@@ -16,9 +16,7 @@ use Kotchasan\Login;
 /**
  * default Controller.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Controller extends \Kotchasan\Controller
 {

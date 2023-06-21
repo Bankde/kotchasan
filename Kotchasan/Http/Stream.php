@@ -4,7 +4,7 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya
+ * @author Goragod Wiriya <admin@goragod.com>
  * @package Kotchasan
  */
 
@@ -15,9 +15,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Data stream class (PSR-7)
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Stream implements StreamInterface
 {

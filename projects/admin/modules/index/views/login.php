@@ -4,8 +4,8 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya <admin@goragod.com>
+ * @package Kotchasan
  */
 
 namespace Index\Login;
@@ -17,9 +17,7 @@ use Kotchasan\Login;
 /**
  * Login Form.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class View extends \Kotchasan\View
 {

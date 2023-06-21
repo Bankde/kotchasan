@@ -4,7 +4,7 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya
+ * @author Goragod Wiriya <admin@goragod.com>
  * @package Kotchasan
  */
 
@@ -19,9 +19,7 @@ use Kotchasan\Text;
 /**
  * Kotchasan Database driver Class (base class)
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 abstract class Driver extends Query
 {

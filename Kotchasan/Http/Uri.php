@@ -4,7 +4,7 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya
+ * @author Goragod Wiriya <admin@goragod.com>
  * @package Kotchasan
  */
 
@@ -13,9 +13,7 @@ namespace Kotchasan\Http;
 /**
  * Class สำหรับจัดการ Uri (PSR-7)
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
 {

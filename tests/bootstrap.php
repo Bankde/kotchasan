@@ -1,8 +1,6 @@
 <?php
 /**
  * tests/bootstrap.php.
- *
- * @author Goragod Wiriya <admin@goragod.com>
  * @copyright 2015 Goragod.com
  * @license https://www.kotchasan.com/license/
  *

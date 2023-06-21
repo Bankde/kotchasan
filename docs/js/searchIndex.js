@@ -6213,7 +6213,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Province",
             "name": "Province",
-            "summary": "",
+            "summary": "This\u0020class\u0020provides\u0020a\u0020list\u0020of\u0020provinces\u0020in\u0020Thailand\u0020and\u0020Laos.",
             "url": "classes/Kotchasan-Province.html"
         },                {
             "fqsen": "\\Kotchasan\\Province\u003A\u003Ainit\u0028\u0029",
@@ -6928,7 +6928,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Router",
             "name": "Router",
-            "summary": "Kotchasan\u0020base\u0020class",
+            "summary": "Router\u0020class\u0020for\u0020website\u0020page\u0020routing.",
             "url": "classes/Kotchasan-Router.html"
         },                {
             "fqsen": "\\Kotchasan\\Router\u003A\u003Ainit\u0028\u0029",

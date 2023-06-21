@@ -4,7 +4,7 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya
+ * @author Goragod Wiriya <admin@goragod.com>
  * @package Kotchasan
  */
 
@@ -17,9 +17,7 @@ use Psr\Cache\CacheItemInterface;
 /**
  * Filesystem cache driver
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class FileCache extends Cache
 {

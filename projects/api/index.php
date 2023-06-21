@@ -1,12 +1,10 @@
 <?php
 /**
  * @filesource projects/api/index.php.
- *
- * @author Goragod Wiriya <admin@goragod.com>
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya <admin@goragod.com>
+ * @package Kotchasan
  */
 /**
  * 0 (default )บันทึกข้อผิดพลาดร้ายแรงลง error_log .php

@@ -4,82 +4,81 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya
+ * @author Goragod Wiriya <admin@goragod.com>
  * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * Class Jwt
- * คลาสสำหรับการเข้ารหัส ถอดรหัส JWT และมีการ verify ด้วย
+ * JWT encoding, decoding, and verification class
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Jwt
 {
     /**
-     * Secret key สำหรับการเข้ารหัส JWT
+     * Secret key for JWT encoding
      *
      * @var string
      */
     private $secretKey;
 
     /**
-     * เวลาหมดอายุของ JWT
-     * 3600 = 1 ชม.
-     * 0 = ไม่มีวันหมดอายุ (ค่าเริ่มต้น)
-     * ถ้ามีการระบุเวลาหมดอายุ เมื่อมีการ verify จะมีการตรวจสอบเวลาหมดอายุด้วย
-     * โดยจะมีการเพิ่มข้อมูล expired เพื่อเก็บเวลาหมดอายุ ลงใน Payload โดยอัตโนมัติ
-     * และลบออกเมื่อมีการถอดรหัสกลับ ไม่ควรกำหนด expired ลงใน Payload ที่ต้องการเข้ารหัสด้วยตัวเอง
+     * JWT expiration time
+     * 3600 = 1 hour.
+     * 0 = no expiration time (default).
+     * If an expiration time is specified, it will be checked during verification.
+     * The expired time will be added to the payload automatically during encoding,
+     * and removed when decoding.
+     * It is not recommended to specify the expiration time in the payload that needs to be encoded separately.
      *
      * @var int
      */
     private $expireTime;
 
     /**
-     * อัลกอริทึมที่ใช้ในการเข้ารหัส ด้วย hash_hmac
+     * Algorithm used for encoding with hash_hmac
      *
      * @var string
      */
     private $algorithm;
 
     /**
-     * อัลกอริทึมที่รองรับโดย hash_hmac
+     * Algorithms supported by hash_hmac
      *
      * @var array
      */
-    protected $hash_hmac_algos = array(
+    protected $hashHmacAlgorithms = [
         'HS256' => 'sha256',
         'HS384' => 'sha384',
         'HS512' => 'sha512'
-    );
+    ];
 
     /**
      * Class constructor
      *
-     * @param string $secretKey Secret key สำหรับการเข้ารหัส JWT
-     * @param int $expireTime เวลาหมดอายุของ JWT 0 = ไม่มีวันหมดอายุ (ค่าเริ่มต้น), > 0 กำหนดเวลาหมดอายุเป็นวินาที
-     * @param int $algo อัลกอริทึมที่ใช้ในการเข้ารหัส รองรับตาม $hash_hmac_algos
+     * @param string $secretKey Secret key for JWT encoding
+     * @param int $expireTime JWT expiration time 0 = no expiration time (default), > 0 specifies expiration time in seconds
+     * @param int $algo Algorithm used for encoding, supported by $hashHmacAlgorithms
      */
     private function __construct($secretKey, $expireTime, $algo)
     {
-        if (isset($this->hash_hmac_algos[$algo])) {
+        if (isset($this->hashHmacAlgorithms[$algo])) {
             $this->algorithm = $algo;
         } else {
-            throw new \Exception('Algorithm `'.$algo.'` not support');
+            throw new \Exception('Algorithm `'.$algo.'` is not supported');
         }
         $this->secretKey = $secretKey;
         $this->expireTime = $expireTime;
     }
 
     /**
-     * สร้างคลาส JWT
+     * Create a Jwt instance
      *
-     * @param string $secretKey Secret key สำหรับการเข้ารหัส JWT
-     * @param int $expireTime เวลาหมดอายุของ JWT 0 = ไม่มีวันหมดอายุ (ค่าเริ่มต้น), > 0 กำหนดเวลาหมดอายุเป็นวินาที
+     * @param string $secretKey Secret key for JWT encoding
+     * @param int $expireTime JWT expiration time 0 = no expiration time (default), > 0 specifies expiration time in seconds
+     * @param string $algo Algorithm used for encoding, supported by $hashHmacAlgorithms
      *
      * @return static
      */
@@ -89,123 +88,142 @@ class Jwt
     }
 
     /**
-     * เข้ารหัส JWT อัลกอริทึม HS256
+     * Encodes the payload into a JWT.
      *
      * @assert (array('name' => 'ภาษาไทย', 'id' => 1234567890)) [==] 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiXHUwZTIwXHUwZTMyXHUwZTI5XHUwZTMyXHUwZTQ0XHUwZTE3XHUwZTIyIiwiaWQiOjEyMzQ1Njc4OTB9.fAdzmsl4AIGAyNGt7MfNum9DUIxn6DGMhdn1hw4PwwE'
      *
-     * @param array $payload
+     * @param array $payload The payload data to be encoded.
      *
-     * @return string
+     * @return string The encoded JWT.
      */
     public function encode($payload)
     {
-        // Header
+        // Prepare the JWT header
         $header = [
-            'typ' => 'JWT',
-            'alg' => $this->algorithm
+            'typ' => 'JWT', // JWT type
+            'alg' => $this->algorithm // Algorithm used for encoding
         ];
-        // เข้ารหัส Header
-        $header_encoded = $this->base64UrlEncode(json_encode($header));
-        // มีการระบุอายุของ JWT
+
+        // Encode the header
+        $headerEncoded = $this->base64UrlEncode(json_encode($header));
+
+        // Check if JWT expiration time is specified
         if ($this->expireTime > 0) {
-            $payload['expired'] = time() + $this->expireTime;
+            $payload['expired'] = time() + $this->expireTime; // Add expiration time to payload
         }
-        // เข้ารหัส Payload
-        $payload_encoded = $this->base64UrlEncode(json_encode($payload));
-        // สร้าง Signature
-        $signature = $this->generateSignature($header_encoded, $payload_encoded);
-        // รวม Header, Payload และ Signature เข้าด้วยกัน และคืนค่า
-        return "$header_encoded.$payload_encoded.$signature";
+
+        // Encode the payload
+        $payloadEncoded = $this->base64UrlEncode(json_encode($payload));
+
+        // Generate the signature
+        $signature = $this->generateSignature($headerEncoded, $payloadEncoded);
+
+        // Combine the header, payload, and signature into a JWT and return
+        return "$headerEncoded.$payloadEncoded.$signature";
     }
 
     /**
-     * ฟังก์ชันสำหรับถอดรหัส JWT
+     * Decodes a JWT and retrieves the payload.
      *
      * @assert ('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiXHUwZTIwXHUwZTMyXHUwZTI5XHUwZTMyXHUwZTQ0XHUwZTE3XHUwZTIyIiwiaWQiOjEyMzQ1Njc4OTB9.fAdzmsl4AIGAyNGt7MfNum9DUIxn6DGMhdn1hw4PwwE') [==] array('name' => 'ภาษาไทย', 'id' => 1234567890)
      *
-     * @param string $jwt
+     * @param string $jwt The JWT to decode.
      *
-     * @return array
+     * @return array The decoded payload data.
+     * @throws \Exception If the token format is invalid.
      */
     public function decode($jwt)
     {
-        // แยกข้อมูล JWT เป็นส่วน Header, Payload และ Signature
+        // Split the JWT into Header, Payload, and Signature parts
         $parts = explode('.', $jwt);
-        // ตรวจสอบว่ามีส่วน Header, Payload และ Signature ทั้ง 3 ส่วนหรือไม่
+
+        // Check if all three parts (Header, Payload, and Signature) are present
         if (count($parts) !== 3) {
             throw new \Exception('Invalid token format');
         }
-        // ถอดรหัส Payload
+
+        // Decode the Payload
         $decodedPayload = $this->base64UrlDecode($parts[1]);
-        // แปลงข้อมูลจาก JSON
+
+        // Convert the decoded payload from JSON to an associative array
         $payloadData = json_decode($decodedPayload, true);
-        // มีการระบุอายุของ JWT ลบเวลาหมดอายุออก
+
+        // Remove the expiration time if it is specified in the payload
         if ($this->expireTime > 0) {
             unset($payloadData['expired']);
         }
-        // คืนค่า Payload
+
+        // Return the decoded payload
         return $payloadData;
     }
 
     /**
-     * ฟังก์ชันสำหรับถอดรหัส JWT และตรวจสอบความถูกต้องของข้อมูลด้วย
-     * อัลกอริทึม HS256
+     * Verifies the integrity and validity of a JWT.
      *
      * @assert ('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiXHUwZTIwXHUwZTMyXHUwZTI5XHUwZTMyXHUwZTQ0XHUwZTE3XHUwZTIyIiwiaWQiOjEyMzQ1Njc4OTB9.fAdzmsl4AIGAyNGt7MfNum9DUIxn6DGMhdn1hw4PwwE') [==] array('name' => 'ภาษาไทย', 'id' => 1234567890)
      * @assert ('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiXHUwZTIwXHUwZTMyXHUwZTI5XHUwZTMyXHUwZTQ0XHAwZTE3XHUwZTIyIiwiaWQiOjEyMzQ1Njc4OTB9.fAdzmsl4AIGAyNGt7MfNum9DUIxn6DGMhdn1hw4PwwE') [throws] \Exception
      *
-     * @param string $jwt
+     * @param string $jwt The JWT to verify.
      *
-     * @return array
+     * @return array The decoded payload data.
+     * @throws \Exception If the token format is invalid, the signature is invalid, or the token has expired.
      */
     public function verify($jwt)
     {
-        // แยกข้อมูล JWT เป็นส่วน Header, Payload และ Signature
+        // Split the JWT into Header, Payload, and Signature parts
         $parts = explode('.', $jwt);
-        // ตรวจสอบว่ามีส่วน Header, Payload และ Signature ทั้ง 3 ส่วนหรือไม่
+
+        // Check if all three parts (Header, Payload, and Signature) are present
         if (count($parts) !== 3) {
             throw new \Exception('Invalid token format');
         }
-        // สร้าง Signature จาก Header และ Payload ที่ได้รับมา
+
+        // Generate the expected signature based on the received Header and Payload
         $signatureExpected = $this->generateSignature($parts[0], $parts[1]);
-        // ตรวจสอบว่า Signature ที่ได้ตรงกับ Signature ที่อยู่ใน JWT หรือไม่
+
+        // Check if the expected signature matches the signature in the JWT
         if ($signatureExpected !== $parts[2]) {
             throw new \Exception('Invalid signature');
         }
-        // ถอดรหัส Payload ด้วย base64UrlDecode()
+
+        // Decode the Payload
         $decodedPayload = $this->base64UrlDecode($parts[1]);
-        // แปลงข้อมูลจาก JSON
+
+        // Convert the decoded payload from JSON to an associative array
         $payloadData = json_decode($decodedPayload, true);
+
         if ($this->expireTime > 0) {
-            // ตรวจสอบว่า Payload หมดอายุหรือยัง (ถ้าระบุเวลาหมดอายุไว้)
+            // Check if the Payload has expired (if expiration time is specified)
             if ($payloadData['expired'] < time()) {
                 throw new \Exception('Token has expired');
             }
-            // ลบเวลาหมดอายุออก
-            unset($payload['expired']);
+
+            // Remove the expiration time
+            unset($payloadData['expired']);
         }
-        // คืนค่า Payload
+
+        // Return the decoded payload
         return $payloadData;
     }
 
     /**
-     * ฟังก์ชันสร้าง Signature เข้ารหัสแบบ sha256
+     * Generates a signature using the specified algorithm.
      *
-     * @param string $headerEncoded
-     * @param string $payloadEncoded
+     * @param string $header The JWT header.
+     * @param string $payload The JWT payload.
      *
-     * @return string
+     * @return string The generated signature.
      */
     private function generateSignature($header, $payload)
     {
-        // นำ Secret Key มาเข้ารหัส
-        $signature = hash_hmac($this->hash_hmac_algos[$this->algorithm], "$header.$payload", $this->secretKey, true);
-        // คืนค่าข้อมูลที่เข้ารหัสแล้ว
-        return static::base64UrlEncode($signature);
+        // Encode the secret key
+        $signature = hash_hmac($this->hashHmacAlgorithms[$this->algorithm], "$header.$payload", $this->secretKey, true);
+        // Return the encoded data
+        return $this->base64UrlEncode($signature);
     }
 
     /**
-     * ฟังก์ชันเข้ารหัสด้วย Base64
+     * Encodes data using Base64.
      *
      * @param string $data
      *
@@ -213,14 +231,14 @@ class Jwt
      */
     private function base64UrlEncode($data)
     {
-        // แทนที่เครื่องหมาย + ด้วย - และ / ด้วย _
+        // Replace '+' with '-' and '/' with '_'
         $base64Url = strtr(base64_encode($data), '+/', '-_');
-        // ลบเครื่องหมาย = ด้านท้ายออก และคืนค่า
+        // Remove trailing '=' and return the result
         return rtrim($base64Url, '=');
     }
 
     /**
-     * ฟังก์ชันถอดรหัส base64UrlEncode
+     * Decodes data encoded with base64UrlEncode.
      *
      * @param string $data
      *
@@ -228,9 +246,9 @@ class Jwt
      */
     private function base64UrlDecode($data)
     {
-        // เติมเครื่องหมาย = ด้านหลังข้อมูลให้ครบตามรูปแบบของ Base64
+        // Pad the data with trailing '=' to match Base64 format
         $data = str_pad($data, strlen($data) % 4, '=', STR_PAD_RIGHT);
-        // แทนที่เครื่องหมาย - ด้วย + และ _ ด้วย / และคืนค่า
+        // Replace '-' with '+' and '_' with '/' and return the result
         return base64_decode(strtr($data, '-_', '+/'));
     }
 }

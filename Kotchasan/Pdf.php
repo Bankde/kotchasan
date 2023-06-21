@@ -4,8 +4,8 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya <admin@goragod.com>
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
@@ -13,9 +13,7 @@ namespace Kotchasan;
 /**
  * Pdf Class
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Pdf extends \PDF\FPDF
 {

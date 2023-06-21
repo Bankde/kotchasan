@@ -4,8 +4,8 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya <admin@goragod.com>
+ * @package Kotchasan
  */
 
 namespace Index\Index;
@@ -15,9 +15,7 @@ use Kotchasan\Http\Request;
 /**
  * render HTML.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class View extends \Kotchasan\View
 {
@@ -41,7 +39,7 @@ class View extends \Kotchasan\View
             // เวลาปัจจุบัน ใส่ลงใน template
             '/{MKTIME}/' => $mktime,
             // ผลลัพท์ที่ได้จากการเรียก API
-            '/{RESULT}/' => isset($array['result']) ? $array['result'] : '',
+            '/{RESULT}/' => isset($array['result']) ? $array['result'] : ''
         ));
         // โหลด template index.html
         $template = file_get_contents('modules/index/views/index.html');

@@ -4,8 +4,8 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya <admin@goragod.com>
+ * @package Kotchasan
  */
 
 namespace Index\Index;
@@ -15,9 +15,7 @@ use Kotchasan\Http\Request;
 /**
  * Model สำหรับรับค่าจาก Ajax.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Model
 {
@@ -82,7 +80,7 @@ class Model
                     // ข้อมูล JSON สำหรับส่งกลับไปแสดงผล
                     $json = array(
                         // คืนค่าคำสั่ง SQL ที่สร้าง
-                        'sql' => $query->text(),
+                        'sql' => $query->text()
                     );
                 }
                 // คืนค่าเป็น JSON
