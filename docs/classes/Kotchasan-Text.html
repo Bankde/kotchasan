@@ -99,6 +99,8 @@
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+
                         </section>
             
     <section class="phpdocumentor-sidebar__category">
@@ -127,7 +129,7 @@
             <div class="phpdocumentor-element__package">
             in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan.html">Kotchasan</a></li>
                             </ul>
         </div>
     
@@ -137,7 +139,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -151,20 +153,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -185,110 +178,98 @@
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่น ตัดสตริงค์ตามความยาวที่กำหนด
-หากข้อความที่นำมาตัดยาวกว่าที่กำหนด จะตัดข้อความที่เกินออก และเติม .. ข้างท้าย</dd>
+<dd>Truncates a string to the specified length.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_formatFileSize">formatFileSize()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่น แปลงขนาดของไฟล์จาก byte เป็น kb mb
-คืนค่าขนาดของไฟล์เป็น KB MB</dd>
+<dd>Converts the size of a file from bytes to KB, MB, etc.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_highlighter">highlighter()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่น HTML highlighter
-แปลง BBCode
-แปลงข้อความ http เป็นลิงค์
-คืนค่าข้อความ</dd>
+<dd>HTML highlighter function.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_htmlspecialchars">htmlspecialchars()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลง &amp; &quot; &#039; &lt; &gt; \ { } $ เป็น HTML entities ใช้แทน htmlspecialchars() ของ PHP</dd>
+<dd>Converts special characters to HTML entities.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_oneLine">oneLine()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่น ลบช่องว่าง และ ตัวอักษรขึ้นบรรทัดใหม่ ที่ติดกันเกินกว่า 1 ตัว
-คืนค่าข้อความที่ไม่มีตัวอักษรขึ้นบรรทัดใหม่</dd>
+<dd>Returns a one-line version of the given text, with optional length limit.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_password">password()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>รับค่าสำหรับ password อักขระทุกตัวไม่มีช่องว่าง</dd>
+<dd>Returns a password-safe version of the given text.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_removeNonCharacters">removeNonCharacters()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ลบตัวอักษรที่ไม่สามารถพิมพ์ได้ออก
-ตั้งแต่ chr(128)-chr(255) หรือ \x80-\xFF ขึ้นไปจะถูกลบออก</dd>
+<dd>Removes non-character bytes from the given text.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_repeat">repeat()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นคืนค่าข้อความซ้ำๆตามจำนวนที่กำหนด</dd>
+<dd>Repeats a string a specified number of times.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_replace">replace()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แทนที่ข้อความด้วยข้อมูลจากแอเรย์ รองรับข้อมูลรูปแบบแอเรย์ย่อยๆ</dd>
+<dd>Replaces keys in a string with corresponding values.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_toEditor">toEditor()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่น เข้ารหัส อักขระพิเศษ และ {} ก่อนจะส่งให้กับ textarea หรือ editor ตอนแก้ไข
-&amp; &quot; &#039; &lt; &gt; { } ไม่แปลง รหัส HTML เช่น &amp;amp; &amp;#38;</dd>
+<dd>Convert special characters to their HTML entities for editor display.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_topic">topic()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลง tag และ ลบช่องว่างไม่เกิน 1 ช่อง ไม่ขึ้นบรรทัดใหม่
-เช่นหัวข้อของบทความ</dd>
+<dd>Clean and format a topic text.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_unhtmlspecialchars">unhtmlspecialchars()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลง htmlspecialchars กลับเป็นอักขระปกติ</dd>
+<dd>Convert HTML entities back to their corresponding characters.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_url">url()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลง tag ไม่แปลง &amp;amp;
-และลบช่องว่างหัวท้าย
-สำหรับ URL หรือ email</dd>
+<dd>Sanitize a URL string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Text.html#method_username">username()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นรับค่าสำหรับใช้เป็น username
-รองรับอีเมล ตัวเลข (หมายเลขโทรศัพท์) @ - _ . เท่านั้น</dd>
+<dd>Sanitize a username string.</dd>
 
         </dl>
 
@@ -316,18 +297,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น ตัดสตริงค์ตามความยาวที่กำหนด
-หากข้อความที่นำมาตัดยาวกว่าที่กำหนด จะตัดข้อความที่เกินออก และเติม .. ข้างท้าย</p>
+        <p class="phpdocumentor-summary">Truncates a string to the specified length.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">cut</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$len</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If the source string is longer than the specified length,
+it will be truncated and '...' will be appended.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -335,7 +318,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความ</p>
+                    <section class="phpdocumentor-description"><p>The source string</p>
 </section>
 
             </dd>
@@ -344,7 +327,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ความยาวของข้อความที่ต้องการ (จำนวนตัวอักษรรวมจุด)</p>
+                    <section class="phpdocumentor-description"><p>The desired length of the string (including the '...')</p>
 </section>
 
             </dd>
@@ -395,18 +378,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น แปลงขนาดของไฟล์จาก byte เป็น kb mb
-คืนค่าขนาดของไฟล์เป็น KB MB</p>
+        <p class="phpdocumentor-summary">Converts the size of a file from bytes to KB, MB, etc.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">formatFileSize</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bytes</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">2</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the file size as a string in KB, MB, etc.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -414,7 +398,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ขนาดของไฟล์ เป็น byte</p>
+                    <section class="phpdocumentor-description"><p>The file size in bytes</p>
 </section>
 
             </dd>
@@ -423,7 +407,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">2</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>จำนวนหลักหลังจุดทศนิยม (default 2)</p>
+                    <section class="phpdocumentor-description"><p>The number of decimal places (default 2)</p>
 </section>
 
             </dd>
@@ -501,20 +485,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น HTML highlighter
-แปลง BBCode
-แปลงข้อความ http เป็นลิงค์
-คืนค่าข้อความ</p>
+        <p class="phpdocumentor-summary">HTML highlighter function.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">highlighter</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$detail</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Converts BBCode.
+Converts URLs to links.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -522,7 +506,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความ</p>
+                    <section class="phpdocumentor-description"><p>The input text</p>
 </section>
 
             </dd>
@@ -553,13 +537,16 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง &amp; &quot; &#039; &lt; &gt; \ { } $ เป็น HTML entities ใช้แทน htmlspecialchars() ของ PHP</p>
+        <p class="phpdocumentor-summary">Converts special characters to HTML entities.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">htmlspecialchars</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$double_encode</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function replaces special characters like &quot;&amp;&quot;, &quot;&lt;&quot;, &quot;&gt;&quot;, etc.
+with their corresponding HTML entities.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -567,14 +554,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The input text</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$double_encode</span>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true (default) แปลง รหัส HTML เช่น &amp; เป็น &amp;amp;, false ไม่แปลง</p>
+                    <section class="phpdocumentor-description"><p>Whether to double encode existing entities (default true)</p>
 </section>
 
             </dd>
@@ -616,18 +605,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">142</span>
+    <span class="phpdocumentor-element-found-in__line">152</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น ลบช่องว่าง และ ตัวอักษรขึ้นบรรทัดใหม่ ที่ติดกันเกินกว่า 1 ตัว
-คืนค่าข้อความที่ไม่มีตัวอักษรขึ้นบรรทัดใหม่</p>
+        <p class="phpdocumentor-summary">Returns a one-line version of the given text, with optional length limit.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">oneLine</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$len</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function removes any leading/trailing whitespace, line breaks, tabs, and multiple spaces,
+and then optionally cuts the text to the specified length.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -635,7 +626,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความ</p>
+                    <section class="phpdocumentor-description"><p>The input text</p>
 </section>
 
             </dd>
@@ -644,7 +635,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>จำนวนตัวอักษรสูงสุดที่ต้องการ, (default) คืนค่าทั้งหมด</p>
+                    <section class="phpdocumentor-description"><p>The maximum length of the one-line text (default 0, no limit)</p>
 </section>
 
             </dd>
@@ -686,17 +677,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">176</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รับค่าสำหรับ password อักขระทุกตัวไม่มีช่องว่าง</p>
+        <p class="phpdocumentor-summary">Returns a password-safe version of the given text.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">password</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function removes any characters that are not word characters,
+along with specific allowed characters (@, #, *, $, &amp;, {, }, !, ?, +, _, -, =, ., [, ], ก-ฮ).</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -704,7 +698,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The input text</p>
+</section>
+
             </dd>
             </dl>
 
@@ -744,18 +740,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">177</span>
+    <span class="phpdocumentor-element-found-in__line">198</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลบตัวอักษรที่ไม่สามารถพิมพ์ได้ออก
-ตั้งแต่ chr(128)-chr(255) หรือ \x80-\xFF ขึ้นไปจะถูกลบออก</p>
+        <p class="phpdocumentor-summary">Removes non-character bytes from the given text.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">removeNonCharacters</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function uses a regular expression to match and remove any bytes that are not valid UTF-8 characters.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -763,7 +760,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The input text</p>
+</section>
+
             </dd>
             </dl>
 
@@ -803,11 +802,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">192</span>
+    <span class="phpdocumentor-element-found-in__line">217</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นคืนค่าข้อความซ้ำๆตามจำนวนที่กำหนด</p>
+        <p class="phpdocumentor-summary">Repeats a string a specified number of times.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -821,7 +820,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความหรือตัวอักษรที่ต้องการทำซ้ำ</p>
+                    <section class="phpdocumentor-description"><p>The string to repeat</p>
 </section>
 
             </dd>
@@ -830,7 +829,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>จำนวนที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The number of times to repeat the string</p>
 </section>
 
             </dd>
@@ -856,7 +855,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The repeated string</p>
+</section>
+
     
 </article>
                     <article
@@ -872,11 +873,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">211</span>
+    <span class="phpdocumentor-element-found-in__line">236</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แทนที่ข้อความด้วยข้อมูลจากแอเรย์ รองรับข้อมูลรูปแบบแอเรย์ย่อยๆ</p>
+        <p class="phpdocumentor-summary">Replaces keys in a string with corresponding values.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -890,7 +891,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>The source string to replace keys in</p>
 </section>
 
             </dd>
@@ -899,7 +900,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความที่จะนำมาแทนที่ รูปแบบ array($key1 =&gt; $value1, $key2 =&gt; $value2) ข้อความใน $source ที่ตรงกับ $key จะถูกแทนที่ด้วย $value</p>
+                    <section class="phpdocumentor-description"><p>An associative array of keys and values</p>
 </section>
 
             </dd>
@@ -925,7 +926,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The modified string with replaced keys</p>
+</section>
+
     
 </article>
                     <article
@@ -941,12 +944,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">232</span>
+    <span class="phpdocumentor-element-found-in__line">261</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น เข้ารหัส อักขระพิเศษ และ {} ก่อนจะส่งให้กับ textarea หรือ editor ตอนแก้ไข
-&amp; &quot; &#039; &lt; &gt; { } ไม่แปลง รหัส HTML เช่น &amp;amp; &amp;#38;</p>
+        <p class="phpdocumentor-summary">Convert special characters to their HTML entities for editor display.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -960,7 +962,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความ</p>
+                    <section class="phpdocumentor-description"><p>The input text</p>
 </section>
 
             </dd>
@@ -986,7 +988,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The text with special characters converted to HTML entities</p>
+</section>
+
     
 </article>
                     <article
@@ -1002,12 +1006,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">253</span>
+    <span class="phpdocumentor-element-found-in__line">289</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง tag และ ลบช่องว่างไม่เกิน 1 ช่อง ไม่ขึ้นบรรทัดใหม่
-เช่นหัวข้อของบทความ</p>
+        <p class="phpdocumentor-summary">Clean and format a topic text.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1021,14 +1024,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The input text</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$double_encode</span>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true (default) แปลง รหัส HTML เช่น &amp; เป็น &amp;amp;, false ไม่แปลง</p>
+                    <section class="phpdocumentor-description"><p>Whether to double encode special characters (default: true)</p>
 </section>
 
             </dd>
@@ -1072,7 +1077,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The cleaned and formatted topic text</p>
+</section>
+
     
 </article>
                     <article
@@ -1088,11 +1095,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">267</span>
+    <span class="phpdocumentor-element-found-in__line">313</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง htmlspecialchars กลับเป็นอักขระปกติ</p>
+        <p class="phpdocumentor-summary">Convert HTML entities back to their corresponding characters.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1106,7 +1113,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The input text</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1130,7 +1139,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The text with HTML entities converted back to characters</p>
+</section>
+
     
 </article>
                     <article
@@ -1146,27 +1157,26 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">286</span>
+    <span class="phpdocumentor-element-found-in__line">341</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง tag ไม่แปลง &amp;amp;
-และลบช่องว่างหัวท้าย
-สำหรับ URL หรือ email</p>
+        <p class="phpdocumentor-summary">Sanitize a URL string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">url</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">url</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$text</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The input URL string</p>
+</section>
 
             </dd>
             </dl>
@@ -1209,7 +1219,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The sanitized URL string</p>
+</section>
+
     
 </article>
                     <article
@@ -1225,12 +1237,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Text.php"><a href="files/kotchasan-text.html"><abbr title="Kotchasan/Text.php">Text.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">306</span>
+    <span class="phpdocumentor-element-found-in__line">367</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นรับค่าสำหรับใช้เป็น username
-รองรับอีเมล ตัวเลข (หมายเลขโทรศัพท์) @ - _ . เท่านั้น</p>
+        <p class="phpdocumentor-summary">Sanitize a username string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1244,7 +1255,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The input username string</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1277,7 +1290,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The sanitized username string</p>
+</section>
+
     
 </article>
             </section>

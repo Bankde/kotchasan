@@ -99,6 +99,8 @@
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+
                         </section>
             
     <section class="phpdocumentor-sidebar__category">
@@ -130,7 +132,7 @@
             <div class="phpdocumentor-element__package">
             in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan.html">Kotchasan</a></li>
                             </ul>
         </div>
     
@@ -140,11 +142,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Validator.php"><a href="files/kotchasan-validator.html"><abbr title="Kotchasan/Validator.php">Validator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">คลาสสำหรับตรวจสอบความถูกต้องของตัวแปรต่างๆ</p>
+            <p class="phpdocumentor-summary">Class for validating various variables.</p>
 
 
 
@@ -154,20 +156,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -202,16 +195,14 @@
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบความถูกของอีเมล
-คืนค่า true ถ้ารูปแบบอีเมลถูกต้อง</dd>
+<dd>Validates an email address.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Validator.html#method_isImage">isImage()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|bool    </span>
 </dt>
-<dd>ฟังก์ชั่นตรวจสอบไฟล์อัปโหลดว่าเป็นรูปภาพหรือไม่
-คืนค่าแอเรย์ [ext, width, height, mime] ของรูปภาพ หรือ  false ถ้าไม่ใช่รูปภาพ</dd>
+<dd>Checks if an uploaded file is an image.</dd>
 
         </dl>
 
@@ -311,18 +302,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Validator.php"><a href="files/kotchasan-validator.html"><abbr title="Kotchasan/Validator.php">Validator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบความถูกของอีเมล
-คืนค่า true ถ้ารูปแบบอีเมลถูกต้อง</p>
+        <p class="phpdocumentor-summary">Validates an email address.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">email</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$email</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if the email format is correct.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -397,18 +389,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Validator.php"><a href="files/kotchasan-validator.html"><abbr title="Kotchasan/Validator.php">Validator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นตรวจสอบไฟล์อัปโหลดว่าเป็นรูปภาพหรือไม่
-คืนค่าแอเรย์ [ext, width, height, mime] ของรูปภาพ หรือ  false ถ้าไม่ใช่รูปภาพ</p>
+        <p class="phpdocumentor-summary">Checks if an uploaded file is an image.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">isImage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$excepts</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file_upload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns an array [ext, width, height, mime] of the image if it is an image,
+or false if it is not an image.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -416,7 +410,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชนิดของไฟล์ที่ยอมรับเช่น array('jpg', 'gif', 'png')</p>
+                    <section class="phpdocumentor-description"><p>Accepted file types, e.g. array('jpg', 'gif', 'png')</p>
 </section>
 
             </dd>
@@ -425,7 +419,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รับค่ามาจาก $_FILES</p>
+                    <section class="phpdocumentor-description"><p>Value from $_FILES</p>
 </section>
 
             </dd>

@@ -99,6 +99,8 @@
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+
                         </section>
             
     <section class="phpdocumentor-sidebar__category">
@@ -140,37 +142,14 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Router.php"><a href="files/kotchasan-router.html"><abbr title="Kotchasan/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Router class</p>
+            <p class="phpdocumentor-summary">Kotchasan base class</p>
 
 
 
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
-                                             
-                                    </dd>
-                        </dl>
 
 
 
@@ -202,21 +181,21 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>กฏของ Router สำหรับการแยกหน้าเว็บไซต์</dd>
+<dd>Rules for website page routing.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Router.html#method_init">init()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>Initial Router</dd>
+<dd>Initialize the Router.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Router.html#method_parseRoutes">parseRoutes()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>แยก path คืนค่าเป็น query string</dd>
+<dd>Parse the path and return it as a query string.</dd>
 
         </dl>
 
@@ -312,28 +291,28 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Router.php"><a href="files/kotchasan-router.html"><abbr title="Kotchasan/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กฏของ Router สำหรับการแยกหน้าเว็บไซต์</p>
+        <p class="phpdocumentor-summary">Rules for website page routing.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$rules</span>
-     = <span class="phpdocumentor-signature__default-value">array(
+     = <span class="phpdocumentor-signature__default-value">[
     // index.php/module/model/folder/_dir/_method
-    &#039;/^[a-z0-9]+\.php\/([a-z]+)\/(model)(\/([\/a-z0-9_]+)\/([a-z0-9_]+))?$/i&#039; =&gt; array(&#039;module&#039;, &#039;_mvc&#039;, &#039;&#039;, &#039;_dir&#039;, &#039;_method&#039;),
+    &#039;/^[a-z0-9]+\.php\/([a-z]+)\/(model)(\/([\/a-z0-9_]+)\/([a-z0-9_]+))?$/i&#039; =&gt; [&#039;module&#039;, &#039;_mvc&#039;, &#039;&#039;, &#039;_dir&#039;, &#039;_method&#039;],
     // index/model/_dir
-    &#039;/([a-z]+)\/(model|controller|view)\/([a-z0-9_]+)/i&#039; =&gt; array(&#039;module&#039;, &#039;_mvc&#039;, &#039;_dir&#039;),
+    &#039;/([a-z]+)\/(model|controller|view)\/([a-z0-9_]+)/i&#039; =&gt; [&#039;module&#039;, &#039;_mvc&#039;, &#039;_dir&#039;],
     // module/alias
-    &#039;/^([a-z]+)\/(.*)$/&#039; =&gt; array(&#039;module&#039;, &#039;alias&#039;),
+    &#039;/^([a-z]+)\/(.*)$/&#039; =&gt; [&#039;module&#039;, &#039;alias&#039;],
     // module, module.php
-    &#039;/^([a-z0-9_]+)(\.php)?$/&#039; =&gt; array(&#039;module&#039;),
+    &#039;/^([a-z0-9_]+)(\.php)?$/&#039; =&gt; [&#039;module&#039;],
     // alias
-    &#039;/^(.*)$/&#039; =&gt; array(&#039;alias&#039;),
-)</span></code>
+    &#039;/^(.*)$/&#039; =&gt; [&#039;alias&#039;],
+]</span></code>
 
     
     
@@ -360,11 +339,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Router.php"><a href="files/kotchasan-router.html"><abbr title="Kotchasan/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Initial Router</p>
+        <p class="phpdocumentor-summary">Initialize the Router.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -378,7 +357,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คลาสที่จะรับค่าจาก Router</p>
+                    <section class="phpdocumentor-description"><p>The class to receive values from the Router.</p>
 </section>
 
             </dd>
@@ -396,7 +375,7 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>หากไม่พบคลาสเป้าหมาย</p>
+                                                 <section class="phpdocumentor-description"><p>If the target class is not found.</p>
 </section>
 
                                     </dd>
@@ -421,25 +400,26 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Router.php"><a href="files/kotchasan-router.html"><abbr title="Kotchasan/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แยก path คืนค่าเป็น query string</p>
+        <p class="phpdocumentor-summary">Parse the path and return it as a query string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">parseRoutes</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modules</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">parseRoutes</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modules</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$path</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The path, e.g., /a/b/c.html</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
@@ -447,7 +427,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query string</p>
+                    <section class="phpdocumentor-description"><p>Query string</p>
 </section>
 
             </dd>

@@ -4,8 +4,8 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
@@ -13,16 +13,16 @@ namespace Kotchasan;
 use Kotchasan\Database\Query;
 
 /**
- * Model base class
+ * This class serves as the base class for all models in the application.
+ * It extends the Query class and provides common functionality for interacting with the database.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Model extends Query
 {
     /**
-     * ชื่อของการเชื่อมต่อ ใช้สำหรับโหลด config จาก settings/database.php
+     * The name of the database connection to be used.
+     * This is used to load the connection settings from settings/database.php.
      *
      * @var string
      */
@@ -37,7 +37,7 @@ class Model extends Query
     }
 
     /**
-     * create Model
+     * Create a new instance of the model.
      *
      * @return static
      */
@@ -47,7 +47,7 @@ class Model extends Query
     }
 
     /**
-     * create Database connection
+     * Create a new database connection instance.
      *
      * @return \Kotchasan\Database\Driver
      */
@@ -58,7 +58,7 @@ class Model extends Query
     }
 
     /**
-     * create QueryBuilder
+     * Create a new QueryBuilder instance.
      *
      * @return \Kotchasan\Database\QueryBuilder
      */

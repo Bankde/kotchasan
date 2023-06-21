@@ -4,37 +4,35 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * Xls function
+ * This class provides functions for creating and sending XLS files for download.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Xls
 {
     /**
-     * สร้างไฟล์ XLS สำหรับดาวน์โหลด
-     * คืนค่า true
+     * Sends the XLS file for download.
      *
-     * @param string $file ชื่อไฟล์ ไม่ต้องมีนามสกุล
-     * @param array $header ส่วนหัวของข้อมูล
-     * @param array $datas ข้อมูล
+     * @param string $file   The file name without extension.
+     * @param array  $header The header section of the data.
+     * @param array  $datas  The data.
      *
-     * @return bool
+     * @return bool Returns true on success.
      */
     public static function send($file, $header, $datas)
     {
-        // header
+        // Set headers
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'.$file.'.xls"');
         header("Pragma:no-cache");
+
         // XLS Template
         echo '<html xmlns:o="urn:schemas-microsoft-com:office:office"';
         echo ' xmlns:x="urn:schemas-microsoft-com:office:excel"';
@@ -46,6 +44,7 @@ class Xls
         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
         echo '</head>';
         echo '<body><table><thead><tr>';
+
         $n = 0;
         foreach ($header as $k => $items) {
             if ($k === 'rows') {
@@ -64,7 +63,9 @@ class Xls
                 echo self::cell('th', $items);
             }
         }
+
         echo '</tr></thead><tbody>';
+
         foreach ($datas as $items) {
             echo '<tr>';
             foreach ($items as $item) {
@@ -72,24 +73,27 @@ class Xls
             }
             echo '</tr>';
         }
+
         echo '</tbody></table></body>';
         echo '</html>';
-        // คืนค่า สำเร็จ
+
+        // Return success
         return true;
     }
 
     /**
-     * คืนค่า th หรือ td
+     * Returns the th or td cell.
      *
-     * @param string $type th หรือ td
-     * @param array $item
+     * @param string $type The type of cell (th or td).
+     * @param array  $item The cell item.
      *
-     * @return string
+     * @return string The formatted cell HTML.
      */
     public static function cell($type, $item)
     {
         $value = '';
         $prop = '';
+
         if (is_array($item)) {
             foreach ($item as $k => $v) {
                 if ($k === 'value') {

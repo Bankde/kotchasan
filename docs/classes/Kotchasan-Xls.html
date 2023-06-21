@@ -99,6 +99,8 @@
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+
                         </section>
             
     <section class="phpdocumentor-sidebar__category">
@@ -127,7 +129,7 @@
             <div class="phpdocumentor-element__package">
             in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan.html">Kotchasan</a></li>
                             </ul>
         </div>
     
@@ -137,11 +139,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Xls.php"><a href="files/kotchasan-xls.html"><abbr title="Kotchasan/Xls.php">Xls.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Xls function</p>
+            <p class="phpdocumentor-summary">This class provides functions for creating and sending XLS files for download.</p>
 
 
 
@@ -151,20 +153,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -185,15 +178,14 @@
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่า th หรือ td</dd>
+<dd>Returns the th or td cell.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Xls.html#method_send">send()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>สร้างไฟล์ XLS สำหรับดาวน์โหลด
-คืนค่า true</dd>
+<dd>Sends the XLS file for download.</dd>
 
         </dl>
 
@@ -221,11 +213,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Xls.php"><a href="files/kotchasan-xls.html"><abbr title="Kotchasan/Xls.php">Xls.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า th หรือ td</p>
+        <p class="phpdocumentor-summary">Returns the th or td cell.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -239,7 +231,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>th หรือ td</p>
+                    <section class="phpdocumentor-description"><p>The type of cell (th or td).</p>
 </section>
 
             </dd>
@@ -248,7 +240,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The cell item.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -257,7 +251,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The formatted cell HTML.</p>
+</section>
+
     
 </article>
                     <article
@@ -273,12 +269,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Xls.php"><a href="files/kotchasan-xls.html"><abbr title="Kotchasan/Xls.php">Xls.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างไฟล์ XLS สำหรับดาวน์โหลด
-คืนค่า true</p>
+        <p class="phpdocumentor-summary">Sends the XLS file for download.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -292,7 +287,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อไฟล์ ไม่ต้องมีนามสกุล</p>
+                    <section class="phpdocumentor-description"><p>The file name without extension.</p>
 </section>
 
             </dd>
@@ -301,7 +296,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ส่วนหัวของข้อมูล</p>
+                    <section class="phpdocumentor-description"><p>The header section of the data.</p>
 </section>
 
             </dd>
@@ -310,7 +305,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูล</p>
+                    <section class="phpdocumentor-description"><p>The data.</p>
 </section>
 
             </dd>
@@ -321,7 +316,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns true on success.</p>
+</section>
+
     
 </article>
             </section>

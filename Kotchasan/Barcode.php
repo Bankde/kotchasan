@@ -4,8 +4,8 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
@@ -148,7 +148,7 @@ class Barcode
      *
      * @param $code
      */
-    static private function Barcode128($code)
+    private static function Barcode128($code)
     {
         $len = strlen($code);
         if ($len == 0) {

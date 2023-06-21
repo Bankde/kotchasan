@@ -4,24 +4,22 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * รายชื่อจังหวัด ไทย ลาว
+ * This class provides a list of provinces in Thailand and Laos.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Province
 {
     /**
-     * โหลดจังหวัดตามประเทศที่เลือก
-     * ไม่มี ใช้ประเทศไทย
+     * Load provinces based on the selected country.
+     * If not specified, it uses Thailand as the default country.
      *
      * @param string $country
      *
@@ -37,10 +35,10 @@ class Province
     }
 
     /**
-     * list รายชื่อจังหวัดทั้งหมด  ตามภาษา (ถ้าไม่มีใช้ภาษาอังกฤษ)
-     * สามารถนำไปใช้โดย Form ได้ทันที
+     * Get a list of all provinces.
+     * It returns the names of provinces in the specified language (defaults to English).
      *
-     * @param string $country ค่าเริ่มต้น TH (ไทย), LA (ลาว)
+     * @param string $country (default: 'TH')
      *
      * @return array
      */
@@ -63,7 +61,7 @@ class Province
     }
 
     /**
-     * คืนค่ารายการประเทศที่มีการติดดตั้ง
+     * Get a list of countries with installed provinces.
      *
      * @return array
      */
@@ -73,13 +71,15 @@ class Province
     }
 
     /**
-     * อ่านชื่อจังหวัดจาก ISO ตามภาษา (ถ้าไม่มีใช้ภาษาอังกฤษ)
-     * คืนค่าว่างถ้าไม่พบ
+     * Get the name of a province based on its ISO code and language.
+     * If the language is not specified, it uses the current language.
+     * Returns an empty string if the province is not found.
      *
      * @assert (10) [==] 'กรุงเทพมหานคร'
      *
      * @param int    $iso
      * @param string $lang
+     * @param string $country (default: 'TH')
      *
      * @return string
      */
@@ -182,7 +182,7 @@ class Province
     }
 
     /**
-     * รายชื่อจังหวัด ลาว เรียงลำดับตามชื่อลาว
+     * List of provinces in Laos, sorted by Lao name.
      *
      * @return array
      */

@@ -4,35 +4,34 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * ฟังก์ชั่นตัวเลข
+ * This class provides functions for working with numbers.
+ * It includes formatting numbers, performing divisions, and formatting numbers with date placeholders.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Number
 {
     /**
-     * ฟังก์ชั่น เติม comma รองรับจุดทศนิยม
-     * ถ้าไม่มีทศนิยมคืนค่า จำนวนเต็ม
-     * ไม่ปัดเศษ
+     * Format a number with comma as thousands separator (supports decimal values).
+     * If there are no decimal places, return an integer value.
+     * No rounding is performed.
      *
      * @assert (100) [==] "100"
      * @assert (100.1) [==] "100.1"
      * @assert (1000.12) [==] "1,000.12"
      * @assert (1000.1555) [==] "1,000.1555"
      *
-     * @param float  $value
-     * @param string $thousands_sep (optional) เครื่องหมายหลักพัน (default ,)
+     * @param float  $value The number to be formatted
+     * @param string $thousands_sep (optional) Thousands separator (default ',')
      *
-     * @return string
+     * @return string The formatted number
      */
     public static function format($value, $thousands_sep = ',')
     {
@@ -41,24 +40,24 @@ class Number
     }
 
     /**
-     * หังก์ชั่นหาร
-     * $divisor เท่ากับ 0 คืนค่า 0
+     * Perform division.
+     * If the divisor is equal to 0, return 0.
      *
      * @assert (1, 2) [==] 0.5
      * @assert (1, 0) [==] 0
      *
-     * @param $actual ตัวตั้ง
-     * @param $divisor ตัวหาร
+     * @param $dividend The dividend
+     * @param $divisor The divisor
      *
-     * @return mixed
+     * @return mixed The result of the division
      */
-    public static function division($actual, $divisor)
+    public static function division($dividend, $divisor)
     {
-        return $divisor == 0 ? 0 : $actual / $divisor;
+        return $divisor == 0 ? 0 : $dividend / $divisor;
     }
 
     /**
-     * จัดรูปแบบตัวเลข รองรับการเติม วัน เดือน ปี
+     * Format a number with placeholders for date values (year, month, day).
      *
      * @assert ('G%04d', 1) [==] "G0001"
      * @assert ('G-%s-%04d', 1, 'PREFIX') [==] "G-PREFIX-0001"
@@ -67,11 +66,11 @@ class Number
      * @example G-%YY-%M-%D-%04d   G-2564-08-09-0001
      * @example G-%yy-%m-%d-%04d   G-2021-8-9-0001
      *
-     * @param string $format
-     * @param mixed $value
-     * @param string $prefix
+     * @param string $format The format string
+     * @param mixed  $value The number to be formatted
+     * @param string $prefix (optional) A prefix to be added to the format string
      *
-     * @return string
+     * @return string The formatted number with date placeholders
      */
     public static function printf($format, $value, $prefix = '')
     {

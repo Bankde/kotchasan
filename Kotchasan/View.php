@@ -4,54 +4,57 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * View base class
+ * This class provides basic functionalities for views.
+ * It is responsible for rendering HTML templates, managing CSS and JavaScript files, and handling headers.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class View extends \Kotchasan\KBase
 {
     /**
-     * ตัวแปรเก็บเนื่อหาของเว็บไซต์ ที่จะแทนที่หลังจาก render แล้ว
+     * Array to store the contents of the website to be replaced after rendering.
      *
      * @var array
      */
-    protected $after_contents = array();
+    protected $afterContents = array();
+
     /**
-     * ตัวแปรเก็บเนื่อหาของเว็บไซต์
+     * Array to store the contents of the website.
      *
      * @var array
      */
     protected $contents = array();
+
     /**
-     * รายการ header
+     * Array to store the headers.
      *
      * @var array
      */
     protected $headers = array();
+
     /**
-     * meta tag
+     * Array to store meta tags.
      *
      * @var array
      */
     protected $metas = array();
+
     /**
-     * คำสั่ง Javascript ที่จะแทรกไว้ใน head
+     * Array to store JavaScript code to be inserted in the head section.
      *
      * @var array
      */
-    protected $script = array();
+    protected $scripts = array();
 
     /**
-     * create class
+     * Creates an instance of the View class.
      *
      * @return static
      */
@@ -61,19 +64,19 @@ class View extends \Kotchasan\KBase
     }
 
     /**
-     * ใส่ไฟล์ CSS ลงใน header
+     * Adds a CSS file to the header.
      *
-     * @param string $url
+     * @param string $url The URL of the CSS file.
      */
     public function addCSS($url)
     {
-        $this->metas[$url] = '<link rel=stylesheet href="'.$url.'">';
+        $this->metas[$url] = '<link rel="stylesheet" href="'.$url.'">';
     }
 
     /**
-     * ใส่ไฟล์ Javascript ลงใน header
+     * Adds a JavaScript file to the header.
      *
-     * @param string $url
+     * @param string $url The URL of the JavaScript file.
      */
     public function addJavascript($url)
     {
@@ -81,38 +84,37 @@ class View extends \Kotchasan\KBase
     }
 
     /**
-     * เพิ่มคำสั่ง Javascript ใส่ลงใน head ก่อนปิด head
+     * Adds JavaScript code to be inserted in the head section before closing the head tag.
      *
-     * @param string $script
+     * @param string $script The JavaScript code.
      */
     public function addScript($script)
     {
-        $this->script[] = $script;
+        $this->scripts[] = $script;
     }
 
     /**
-     * ฟังก์ชั่น แทนที่ query string ด้วยข้อมูลจาก GET สำหรับส่งต่อไปยัง URL ถัดไป
-     * array ส่งมาจาก preg_replace
-     * string กำหนดเอง
-     * คืนค่า query string ใหม่ ลบ id=0
+     * Replaces the query string with data from the GET request for forwarding to the next URL.
+     * The function takes either an array (returned from preg_replace) or a string.
+     * Returns the new query string with the 'id=0' removed.
      *
      * @assert (array(2 => 'module=retmodule&id=0')) [==] "http://localhost/?module=retmodule&amp;page=1&amp;sort=id"  [[$_SERVER['QUERY_STRING'] = '_module=test&1234&_page=1&_sort=id&action=login&id=1']]
      * @assert ('module=retmodule&5678') [==] "http://localhost/?module=retmodule&amp;page=1&amp;sort=id&amp;id=1&amp;5678"
      *
-     * @param array|string $f รับค่าจากตัวแปร $f มาสร้าง query string
+     * @param array|string $f The value from the variable $f used to create the query string.
      *
-     * @return string
+     * @return string The new query string.
      */
     public static function back($f)
     {
         $uri = self::$request->getUri();
-        $query_url = array();
+        $queryUrl = array();
         foreach (explode('&', $uri->getQuery()) as $item) {
             if (preg_match('/^(_)?(.*)=([^$]{1,})$/', $item, $match)) {
                 if ($match[2] == 'action' && ($match[3] == 'login' || $match[3] == 'logout')) {
-                    // ไม่ใช้รายการ action=login, action=logout
+                    // Exclude action=login and action=logout from the query_url
                 } else {
-                    $query_url[$match[2]] = $match[3];
+                    $queryUrl[$match[2]] = $match[3];
                 }
             }
         }
@@ -123,74 +125,74 @@ class View extends \Kotchasan\KBase
             foreach (explode('&', $f) as $item) {
                 if (preg_match('/^([a-zA-Z0-9_\-]+)(=(.*))?$/', $item, $match)) {
                     if (!isset($match[3])) {
-                        // ไม่มี value
-                        $query_url[$match[1]] = null;
+                        // No value
+                        $queryUrl[$match[1]] = null;
                     } elseif ($match[3] === '0') {
-                        // ไม่ใช้รายการที่หลังเครื่องหมาย = เท่ากับ 0
-                        unset($query_url[$match[1]]);
+                        // Exclude items with no value after the equal sign
+                        unset($queryUrl[$match[1]]);
                     } else {
-                        $query_url[$match[1]] = $match[3];
+                        $queryUrl[$match[1]] = $match[3];
                     }
                 }
             }
         }
-        return (string) $uri->withQuery($uri->paramsToQuery($query_url, true));
+        return (string) $uri->withQuery($uri->paramsToQuery($queryUrl, true));
     }
 
     /**
-     * ส่งออกเนื้อหา และ header ตามที่กำหนด
+     * Outputs the content and headers as specified.
      *
-     * @param string $content เนื้อหา
+     * @param string $content The content to be output.
      */
     public function output($content)
     {
-        // send header
+        // Send headers
         foreach ($this->headers as $key => $value) {
             header("$key: $value");
         }
-        // output content
+        // Output content
         echo $content;
     }
 
     /**
-     * ส่งออกเป็น HTML
+     * Renders the content as HTML.
      *
-     * @param string|null $template HTML Template ถ้าไม่กำหนด (null) จะใช้ index.html
+     * @param string|null $template The HTML template to be used. If not specified (null), 'index.html' will be used.
      *
-     * @return string
+     * @return string The rendered HTML content.
      */
     public function renderHTML($template = null)
     {
-        // default for template
+        // Default template values
         $this->contents['/{WEBTITLE}/'] = self::$cfg->web_title;
         $this->contents['/{WEBDESCRIPTION}/'] = self::$cfg->web_description;
         $this->contents['/{WEBURL}/'] = WEB_URL;
         $this->contents['/{SKIN}/'] = Template::get();
-        foreach ($this->after_contents as $key => $value) {
+        foreach ($this->afterContents as $key => $value) {
             $this->contents[$key] = $value;
         }
         $head = '';
         if (!empty($this->metas)) {
             $head .= implode("\n", $this->metas);
         }
-        if (!empty($this->script)) {
-            $head .= "\n<script>\n".implode("\n", $this->script)."\n</script>";
+        if (!empty($this->scripts)) {
+            $head .= "\n<script>\n".implode("\n", $this->scripts)."\n</script>";
         }
         if ($head != '') {
             $this->contents['/(<head.*)(<\/head>)/isu'] = '$1'.$head.'$2';
         }
-        // แทนที่ลงใน Template
+        // Replace in the template
         if ($template === null) {
-            // ถ้าไม่ได้กำหนดมาใช้ index.html
+            // If no template is specified, use 'index.html'
             $template = Template::load('', '', 'index');
         }
         return Template::pregReplace(array_keys($this->contents), array_values($this->contents), $template);
     }
 
     /**
-     * ใส่เนื้อหาลงใน $contens
+     * Sets the content in $contents.
      *
-     * @param array $array ชื่อที่ปรากฏใน template รูปแบบ array(key1 => val1, key2 => val2)
+     * @param array $array An array of names to be used in the template (e.g., array(key1 => val1, key2 => val2)).
      */
     public function setContents($array)
     {
@@ -200,21 +202,21 @@ class View extends \Kotchasan\KBase
     }
 
     /**
-     * ใส่เนื้อหาลงใน $contens หลัง render แล้ว
+     * Sets the content in $contents after rendering.
      *
-     * @param array $array ชื่อที่ปรากฏใน template รูปแบบ array(key1 => val1, key2 => val2)
+     * @param array $array An array of names to be used in the template (e.g., array(key1 => val1, key2 => val2)).
      */
     public function setContentsAfter($array)
     {
         foreach ($array as $key => $value) {
-            $this->after_contents[$key] = $value;
+            $this->afterContents[$key] = $value;
         }
     }
 
     /**
-     * กำหนด header ให้กับเอกสาร
+     * Sets headers for the document.
      *
-     * @param array $array
+     * @param array $array An array of headers (e.g., array(key1 => val1, key2 => val2)).
      */
     public function setHeaders($array)
     {
@@ -224,46 +226,14 @@ class View extends \Kotchasan\KBase
     }
 
     /**
-     * ใส่ Tag ลงใน Head ของ HTML
+     * Adds meta tags to the HTML head.
      *
-     * @param array $array
+     * @param array $array An array of meta tags (e.g., array(key1 => val1, key2 => val2)).
      */
     public function setMetas($array)
     {
         foreach ($array as $key => $value) {
             $this->metas[$key] = $value;
         }
-    }
-
-    /**
-     * อ่านค่าจาก Array
-     * คืนค่า $source[$key]
-     * ถ้าไม่มี คืนค่า $default
-     *
-     * @param array $array
-     * @param mixed $key
-     * @param mixed $default
-     *
-     * @return mixed
-     */
-    public static function array_value($array, $key, $default = '')
-    {
-        return isset($array[$key]) ? $array[$key] : $default;
-    }
-
-    /**
-     * อ่านค่าจาก Object
-     * คืนค่า $source->{$key}
-     * ถ้าไม่มี คืนค่า $default
-     *
-     * @param array|object $source
-     * @param string|int $key
-     * @param string|int $default
-     *
-     * @return mixed
-     */
-    public static function object_value($source, $key, $default = '')
-    {
-        return isset($source->{$key}) ? $source->{$key} : $default;
     }
 }

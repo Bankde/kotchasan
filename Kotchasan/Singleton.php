@@ -4,30 +4,32 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * Singleton base class
+ * This class provides the base functionality for creating singleton classes.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 abstract class Singleton
 {
     /**
-     * @var Singleton สำหรับเรียกใช้ class นี้เพียงครั้งเดียวเท่านั้น
+     * @var Singleton|null The instance of the class.
+     *                     This variable holds the single instance of the class.
      */
     private static $instance = null;
 
     /**
-     * เรียกใช้งาน Class แบบสามารถเรียกได้ครั้งเดียวเท่านั้น
+     * Get the instance of the class.
      *
-     * @return static
+     * This method returns the instance of the class.
+     * If the instance doesn't exist, it creates a new one.
+     *
+     * @return static The instance of the class.
      */
     public static function &getInstance()
     {
@@ -38,23 +40,49 @@ abstract class Singleton
     }
 
     /**
-     * method เรียกเมื่อมีการโหลด Class
+     * Initialize the class.
+     *
+     * This method is called when the class is loaded.
+     *
+     * @return void
      */
     abstract protected function init();
 
+    /**
+     * Clone method.
+     *
+     * This method is private to prevent cloning of the instance.
+     *
+     * @return void
+     */
     private function __clone()
     {
-        // do nothing
+        // Do nothing
     }
 
+    /**
+     * Constructor.
+     *
+     * This method is private to prevent direct instantiation of the class.
+     * It initializes the class by calling the `init` method.
+     *
+     * @return void
+     */
     private function __construct()
     {
-        // initial class
+        // Initial class
         static::init();
     }
 
+    /**
+     * Wakeup method.
+     *
+     * This method is private to prevent deserialization of the instance.
+     *
+     * @return void
+     */
     private function __wakeup()
     {
-        // do nothing
+        // Do nothing
     }
 }

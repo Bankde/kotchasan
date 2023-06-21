@@ -4,80 +4,79 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * Router class
+ * Router class for website page routing.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Router extends \Kotchasan\KBase
 {
     /**
-     * กฏของ Router สำหรับการแยกหน้าเว็บไซต์
+     * Rules for website page routing.
      *
      * @var array
      */
-    protected $rules = array(
+    protected $rules = [
         // index.php/module/model/folder/_dir/_method
-        '/^[a-z0-9]+\.php\/([a-z]+)\/(model)(\/([\/a-z0-9_]+)\/([a-z0-9_]+))?$/i' => array('module', '_mvc', '', '_dir', '_method'),
+        '/^[a-z0-9]+\.php\/([a-z]+)\/(model)(\/([\/a-z0-9_]+)\/([a-z0-9_]+))?$/i' => ['module', '_mvc', '', '_dir', '_method'],
         // index/model/_dir
-        '/([a-z]+)\/(model|controller|view)\/([a-z0-9_]+)/i' => array('module', '_mvc', '_dir'),
+        '/([a-z]+)\/(model|controller|view)\/([a-z0-9_]+)/i' => ['module', '_mvc', '_dir'],
         // module/alias
-        '/^([a-z]+)\/(.*)$/' => array('module', 'alias'),
+        '/^([a-z]+)\/(.*)$/' => ['module', 'alias'],
         // module, module.php
-        '/^([a-z0-9_]+)(\.php)?$/' => array('module'),
+        '/^([a-z0-9_]+)(\.php)?$/' => ['module'],
         // alias
-        '/^(.*)$/' => array('alias')
-    );
+        '/^(.*)$/' => ['alias']
+    ];
 
     /**
-     * Initial Router
+     * Initialize the Router.
      *
-     * @param string $className คลาสที่จะรับค่าจาก Router
-     *
-     * @throws \InvalidArgumentException หากไม่พบคลาสเป้าหมาย
-     *
+     * @param string $className The class to receive values from the Router.
+     * @throws \InvalidArgumentException If the target class is not found.
      * @return static
      */
     public function init($className)
     {
-        // ตรวจสอบโมดูล
+        // Check for modules
         $modules = $this->parseRoutes(self::$request->getUri()->getPath(), self::$request->getQueryParams());
+
         if (isset($modules['module']) && isset($modules['_mvc']) && isset($modules['_dir'])) {
-            // คลาสจาก URL
-            $className = str_replace(' ', '\\', ucwords($modules['module'].' '.str_replace(array('\\', '/'), ' ', $modules['_dir']).' '.$modules['_mvc']));
+            // Class from URL
+            $className = str_replace(' ', '\\', ucwords($modules['module'].' '.str_replace(['\\', '/'], ' ', $modules['_dir']).' '.$modules['_mvc']));
             $method = empty($modules['_method']) ? 'index' : $modules['_method'];
         } elseif (isset($modules['_class']) && isset($modules['_method'])) {
-            // ระบุ Class และ Method มาตรงๆ
-            // ต้องเขียนกฏของ Router เองให้รัดกุม
+            // Specify the Class and Method directly
+            // Custom Router rules must be written to constrain it
             $className = str_replace('/', '\\', $modules['_class']);
             $method = $modules['_method'];
         } else {
-            // ไม่ระบุเมธอดมา เรียกเมธอด index
+            // No specified method, call the index method
             $method = empty($modules['_method']) ? 'index' : $modules['_method'];
         }
+
         if (!class_exists($className)) {
             throw new \InvalidArgumentException('Class '.$className.' not found');
         } elseif (method_exists($className, $method)) {
-            // สร้างคลาส
+            // Create the class
             $obj = new $className();
-            // เรียกเมธอด
+            // Call the method
             $obj->$method(self::$request->withQueryParams($modules));
         } else {
             throw new \InvalidArgumentException('Method '.$method.' not found in '.$className);
         }
+
         return $this;
     }
 
     /**
-     * แยก path คืนค่าเป็น query string
+     * Parse the path and return it as a query string.
      *
      * @assert ('/print.php/css/view/index', array()) [==] array( '_mvc' => 'view', '_dir' => 'index', 'module' => 'css')
      * @assert ('/index/model/updateprofile.php', array()) [==] array( '_mvc' => 'model', '_dir' => 'updateprofile', 'module' => 'index')
@@ -90,22 +89,24 @@ class Router extends \Kotchasan\KBase
      * @assert ('/index.php', array('_action' => 'one')) [==] array('_action' => 'one')
      * @assert ('/admin_index.php', array('_action' => 'one')) [==] array('_action' => 'one', 'module' => 'admin_index')
      *
-     * @param  string   path     เช่น /a/b/c.html
-     * @param array $modules query string
+     * @param string $path The path, e.g., /a/b/c.html
+     * @param array $modules Query string
      *
      * @return array
      */
     public function parseRoutes($path, $modules)
     {
         $base_path = preg_quote(BASE_PATH, '/');
-        // แยกเอาฉพาะ path ที่ส่งมา ไม่รวม path ของ application และ นามสกุล
+        // Extract only the path excluding the application path and file extension
         if (preg_match('/^'.$base_path.'(.*)(\.html?|\/)$/u', $path, $match)) {
             $my_path = $match[1];
         } elseif (preg_match('/^'.$base_path.'(.*)$/u', $path, $match)) {
             $my_path = $match[1];
         }
+
         if (!empty($my_path) && !preg_match('/^[a-z0-9]+\.php$/i', $my_path)) {
             $my_path = rawurldecode($my_path);
+
             foreach ($this->rules as $patt => $items) {
                 if (preg_match($patt, $my_path, $match)) {
                     foreach ($items as $i => $key) {
@@ -117,6 +118,7 @@ class Router extends \Kotchasan\KBase
                 }
             }
         }
+
         return $modules;
     }
 }

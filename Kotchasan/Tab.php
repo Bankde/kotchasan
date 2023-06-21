@@ -4,77 +4,78 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * Tab
+ * Tab class to handle the creation and rendering of tabs.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Tab
 {
     /**
-     * @var array
+     * @var array $datas Array of tab items
      */
     private $datas;
+
     /**
-     * @var string
+     * @var string $id Tab ID (must be unique)
      */
     private $id;
+
     /**
-     * @var string
+     * @var string $select Selected tab ID
      */
     private $select;
+
     /**
-     * @var array
+     * @var array $urls Array of URL components
      */
     private $urls;
 
     /**
-     * Construct
+     * Constructor
      *
-     * @param string $id    ID ของ Tab ห้ามซ้ำกับอันอื่น
-     * @param string $url   URL ของหน้านี้ ใช้เป็นค่าเริ่มต้นของเมนู
-     * @param array  $items รายการเริ่มต้น
+     * @param string $id    Tab ID (must be unique)
+     * @param string $url   URL of the current page (used as the default URL for the menu)
+     * @param array  $items Array of initial tab items
      */
-    public function __construct($id, $url, $items = array())
+    public function __construct($id, $url, $items = [])
     {
         $this->id = $id;
         $this->urls = explode('?', $url);
         if (count($this->urls) == 1) {
             $this->urls[1] = '';
         } else {
-            $this->urls[1] = str_replace(array('&', '&amp;amp;'), '&amp;', $this->urls[1]);
+            $this->urls[1] = str_replace(['&', '&amp;amp;'], '&amp;', $this->urls[1]);
         }
-        $this->datas = empty($items) ? array() : $items;
+        $this->datas = empty($items) ? [] : $items;
     }
 
     /**
-     * เพิ่มรายการ Tab
+     * Add a tab item
      *
-     * @param string $id     ID ของแท็บ ใช้สำหรับเลือกแท็บ
-     * @param string $title  ข้อความในเมนูแท็บ
-     * @param string $url    URL เมื่อคลิกแท็บ ถ้าไม่กำหนดจะใช้ URL ตอนสร้างแท็บ
-     * @param string $target ค่าเริ่มต้น null คือไม่มี target
+     * @param string      $id     Tab ID (used for selection)
+     * @param string      $title  Text of the tab menu
+     * @param string|null $url    URL to be opened when the tab is clicked
+     * @param string|null $target Target attribute for the tab link
      */
     public function add($id, $title, $url = '', $target = null)
     {
-        $this->datas[] = array(
+        $this->datas[] = [
             'title' => $title,
             'url' => $url,
             'id' => $id,
             'target' => $target
-        );
+        ];
     }
 
     /**
-     * คืนค่าชื่อแท็บที่ถูกเลือก
+     * Get the ID of the selected tab
      *
      * @return string
      */
@@ -84,9 +85,9 @@ class Tab
     }
 
     /**
-     * สร้างโค้ด HTML
+     * Generate the HTML code for rendering the tabs
      *
-     * @param string $select ID ของ Tab ที่เลือก ถ้าเป็นค่าว่างจะเลือกรายการแรกสุด
+     * @param string $select ID of the selected tab (if empty, the first item will be selected)
      *
      * @return string
      */
@@ -94,10 +95,10 @@ class Tab
     {
         $html = '<div class="inline"><div class="writetab"><ul id="'.$this->id.'">';
         foreach ($this->datas as $i => $item) {
-            $prop = array();
+            $prop = [];
             if (empty($item['url'])) {
                 if (isset($item['id'])) {
-                    if ($this->urls[1] == '') {
+                    if ($this->urls[1] === '') {
                         $prop[] = 'href="'.$this->urls[0].'?tab='.$item['id'].'"';
                     } else {
                         $prop[] = 'href="'.$this->urls[0].'?'.$this->urls[1].'&amp;tab='.$item['id'].'"';
@@ -110,7 +111,7 @@ class Tab
             if (!empty($item['target'])) {
                 $prop[] = 'target="'.$item['target'].'"';
             }
-            if ($select == $item['id'] || ($i == 0 && $select == '')) {
+            if ($select === $item['id'] || ($i === 0 && $select === '')) {
                 $sel = ' class=select';
                 $this->select = $item['id'];
             } else {

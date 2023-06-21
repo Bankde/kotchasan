@@ -3,9 +3,9 @@
  * @filesource Kotchasan/Orm/Field.php
  *
  * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/desktop
- *
- * @see https://www.kotchasan.com/
+ * @license https://www.kotchasan.com/license/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan\Orm;

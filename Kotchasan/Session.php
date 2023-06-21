@@ -4,25 +4,34 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
+/**
+ * Session handling class.
+ * This class provides methods for handling sessions using a database.
+ *
+ * @see https://www.kotchasan.com/
+ */
 class Session extends \Kotchasan\Model
 {
     /**
-     * @var Object
+     * @var Object $database Database object
      */
     private $database;
+
     /**
-     * @var string
+     * @var string $table Table name for sessions
      */
     private $table;
 
     /**
-     * @return bool
+     * Open the session.
+     *
+     * @return bool Always returns true
      */
     public function _open()
     {
@@ -33,7 +42,9 @@ class Session extends \Kotchasan\Model
     }
 
     /**
-     * @return bool
+     * Close the session.
+     *
+     * @return bool Always returns true
      */
     public function _close()
     {
@@ -41,25 +52,25 @@ class Session extends \Kotchasan\Model
     }
 
     /**
-     * @param string $sess_id
+     * Read the session data.
      *
-     * @return string
+     * @param string $sess_id Session ID
+     *
+     * @return string Session data
      */
     public function _read($sess_id)
     {
         $search = $this->database->first($this->table, array('sess_id', $sess_id), true);
-        if ($search) {
-            return $search->data;
-        } else {
-            return '';
-        }
+        return $search ? $search->data : '';
     }
 
     /**
-     * @param string $sess_id
-     * @param string $data
+     * Write the session data.
      *
-     * @return bool
+     * @param string $sess_id Session ID
+     * @param string $data    Session data
+     *
+     * @return bool Always returns true
      */
     public function _write($sess_id, $data)
     {
@@ -81,9 +92,11 @@ class Session extends \Kotchasan\Model
     }
 
     /**
-     * @param string $sess_id
+     * Destroy the session.
      *
-     * @return bool
+     * @param string $sess_id Session ID
+     *
+     * @return bool Always returns true
      */
     public function _destroy($sess_id)
     {
@@ -92,9 +105,11 @@ class Session extends \Kotchasan\Model
     }
 
     /**
-     * @param $max
+     * Garbage collection for the session.
      *
-     * @return bool
+     * @param int $max Maximum session age in seconds
+     *
+     * @return bool Always returns true
      */
     public function _gc($max)
     {

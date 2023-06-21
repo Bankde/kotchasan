@@ -4,36 +4,36 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * Password Class
+ * This class provides functions for password encryption and decryption.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Password
 {
     /**
-     * ฟังก์ชั่น ถอดรหัสข้อความ
-     * คืนค่าข้อความที่ถอดรหัสแล้ว
-     * ไม่สำเร็จ Error
+     * Decrypts a string.
+     *
+     * Decodes the given string using the provided password.
+     * Returns the decrypted string.
+     * Throws an exception if decryption fails.
      *
      * @assert (Password::encode("ทดสอบภาษาไทย", 12345678), 12345678) [==] "ทดสอบภาษาไทย"
      * @assert (Password::encode(1234, 12345678), 12345678) [==] 1234
      * @assert ('12345678', 12345678) [throws] \Exception
      *
-     * @param string $string ข้อความที่เข้ารหัสจาก encode()
-     * @param string $password คีย์สำหรับการเข้ารหัส
+     * @param string $string The encoded string to be decrypted (output of encode() function).
+     * @param string $password The encryption key.
      *
-     * @return string
+     * @return string The decrypted string.
      *
-     * @throws Exception ถ้า $string ไม่ถูกต้อง
+     * @throws Exception If $string is invalid.
      */
     public static function decode($string, $password)
     {
@@ -42,18 +42,20 @@ class Password
         if (isset($ds[0]) && isset($ds[1])) {
             return openssl_decrypt($ds[0], 'aes-256-cbc', $password, 0, $ds[1]);
         }
-        // $string ไม่ถูกต้อง ไม่สามารถถอดรหัสได้
+        // Invalid string. Decryption failed.
         throw new \Exception('Invalid string');
     }
 
     /**
-     * ฟังก์ชั่น เข้ารหัสข้อความ
-     * คืนค่าข้อความที่เข้ารหัสแล้ว
+     * Encrypts a string.
      *
-     * @param string $string ข้อความที่ต้องการเข้ารหัส
-     * @param string $password คีย์สำหรับการเข้ารหัส
+     * Encodes the given string using the provided password.
+     * Returns the encrypted string.
      *
-     * @return string
+     * @param string $string The string to be encrypted.
+     * @param string $password The encryption key.
+     *
+     * @return string The encrypted string.
      */
     public static function encode($string, $password)
     {
@@ -63,32 +65,32 @@ class Password
     }
 
     /**
-     * สร้าง Sign สำหรับส่งให้ API
+     * Generates a sign for API communication.
      *
-     * @param array $params
-     * @param string $secret
+     * @param array $params The parameters array.
+     * @param string $secret The secret key.
      *
-     * @return string
+     * @return string The generated sign.
      */
     public static function generateSign($params, $secret)
     {
-        // เรียงลำดับตามคีย์
+        // Sort the parameters by key
         ksort($params);
-        // นำข้อมูลมาต่อกัน
+        // Concatenate the data
         $data = '';
         foreach ($params as $k => $v) {
             $data .= $k.$v;
         }
-        // คืนค่าข้อความเข้ารหัส
+        // Return the hashed string
         return strtoupper(hash_hmac('sha256', $data, $secret));
     }
 
     /**
-     * สร้าง password แบบสุ่ม
+     * Generates a random password.
      *
-     * @param int $length ความยาวของ password ที่ต้องการ
+     * @param int $length The desired length of the password.
      *
-     * @return string
+     * @return string The generated password.
      */
     public static function uniqid($length = 13)
     {

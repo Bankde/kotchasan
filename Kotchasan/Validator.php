@@ -4,24 +4,23 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * คลาสสำหรับตรวจสอบความถูกต้องของตัวแปรต่างๆ
+ * Class for validating various variables.
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Validator extends \Kotchasan\KBase
 {
     /**
-     * ตรวจสอบความถูกของอีเมล
-     * คืนค่า true ถ้ารูปแบบอีเมลถูกต้อง
+     * Validates an email address.
+     *
+     * Returns true if the email format is correct.
      *
      * @assert ('admin@localhost.com') [==] true
      * @assert ('admin@localhost') [==] true
@@ -35,7 +34,7 @@ class Validator extends \Kotchasan\KBase
     public static function email($email)
     {
         if (function_exists('idn_to_ascii') && preg_match('/(.*)@(.*)/', $email, $match)) {
-            // โดเมนภาษาไทย
+            // Thai domain
             $email = $match[1].'@'.idn_to_ascii($match[2], 0, INTL_IDNA_VARIANT_UTS46);
         }
         if (preg_match('/^[a-zA-Z0-9\._\-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/sD', $email)) {
@@ -46,22 +45,24 @@ class Validator extends \Kotchasan\KBase
     }
 
     /**
-     * ฟังก์ชั่นตรวจสอบไฟล์อัปโหลดว่าเป็นรูปภาพหรือไม่
-     * คืนค่าแอเรย์ [ext, width, height, mime] ของรูปภาพ หรือ  false ถ้าไม่ใช่รูปภาพ
+     * Checks if an uploaded file is an image.
+     *
+     * Returns an array [ext, width, height, mime] of the image if it is an image,
+     * or false if it is not an image.
      *
      * @assert (['gif'], ['name' => 'blank.GIF', 'tmp_name' => ROOT_PATH.'skin/img/blank.gif']) [==] ['ext' => 'gif', 'width' => 1, 'height' => 1, 'mime' => 'image/gif']
      *
-     * @param array $excepts     ชนิดของไฟล์ที่ยอมรับเช่น array('jpg', 'gif', 'png')
-     * @param array $file_upload รับค่ามาจาก $_FILES
+     * @param array $excepts     Accepted file types, e.g. array('jpg', 'gif', 'png')
+     * @param array $file_upload Value from $_FILES
      *
      * @return array|bool
      */
     public static function isImage($excepts, $file_upload)
     {
         // ext
-        $imageinfo = explode('.', $file_upload['name']);
-        $imageinfo = array('ext' => strtolower(end($imageinfo)));
-        if (!in_array($imageinfo['ext'], $excepts)) {
+        $imageInfo = explode('.', $file_upload['name']);
+        $imageInfo = ['ext' => strtolower(end($imageInfo))];
+        if (!in_array($imageInfo['ext'], $excepts)) {
             return false;
         }
         // Exif
@@ -72,9 +73,9 @@ class Validator extends \Kotchasan\KBase
         if (!Mime::check($excepts, $info['mime'])) {
             return false;
         }
-        $imageinfo['width'] = $info[0];
-        $imageinfo['height'] = $info[1];
-        $imageinfo['mime'] = $info['mime'];
-        return $imageinfo;
+        $imageInfo['width'] = $info[0];
+        $imageInfo['height'] = $info[1];
+        $imageInfo['mime'] = $info['mime'];
+        return $imageInfo;
     }
 }

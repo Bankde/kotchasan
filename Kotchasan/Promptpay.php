@@ -4,59 +4,60 @@
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @author Goragod Wiriya
+ * @package Kotchasan
  */
 
 namespace Kotchasan;
 
 /**
- * สร้าง paload สำหรับการชำระเงินด้วย QR Code (Prompt Pay)
- * ตามมาตรฐาน EMV®
- * อ้างอิงข้อมูลจาก https://www.bot.or.th/Thai/PaymentSystems/StandardPS/Documents/ThaiQRCode_Payment_Standard.pdf
+ * Promptpay QR Code Payment Payload Generator
+ * based on EMV® QR Code Specification
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
+ * @see https://www.kotchasan.com/
  */
 class Promptpay
 {
     /**
      * Country Code
-     * TH = ไทย
+     * TH = Thailand
      *
      * @var string
      */
     public $countryCode = 'TH';
+
     /**
      * Transaction Currency Code
-     * 764 = บาท
+     * 764 = Thai Baht
      *
      * @var int
      */
     public $currencyCode = 764;
+
     /**
      * Merchant identifier
      *
      * @var string
      */
     public $applicationID = 'A000000677010111';
+
     /**
      * Transaction Amount
      *
      * @var int
      */
     private $amount;
+
     /**
-     * ผู้รับเงิน
-     * เบอร์โทร, เลขประชาชน, เลขภาษี, E-Wallet ID
+     * Recipient ID (Phone number, National ID, Tax ID, E-Wallet ID)
      *
      * @var string
      */
     private $merchant_id;
+
     /**
-     * รหัสประเทศของเบอร์โทรศัพท์
-     * 66 = ไทย
+     * Phone country code
+     * 66 = Thailand
      *
      * @var int
      */
@@ -65,8 +66,8 @@ class Promptpay
     /**
      * Class constructor
      *
-     * @param string $merchant_id เบอร์โทรศัพท์, เลข Prompt Pay หรือ e-Wallet ID
-     * @param int $amount จำนวนเงิน
+     * @param string $merchant_id Recipient ID (Phone number, Prompt Pay, or E-Wallet ID)
+     * @param int $amount Transaction amount
      */
     protected function __construct($merchant_id, $amount)
     {
@@ -75,8 +76,7 @@ class Promptpay
     }
 
     /**
-     * สร้างข้อมูลสำหรับการชำระเงินด้วย QR Code (Prompt Pay)
-     * ตามมาตรฐาน EMV®
+     * Create Promptpay object
      *
      * @assert ('0123456789')->payload() [==] '00020101021129370016A000000677010111011300661234567895802TH530376463047CC1'
      * @assert ('660123456789')->payload() [==] '00020101021129370016A000000677010111011300661234567895802TH530376463047CC1'
@@ -84,8 +84,8 @@ class Promptpay
      * @assert ('66123456789')->payload() [==] '00020101021129370016A000000677010111011300661234567895802TH530376463047CC1'
      * @assert ('123456789012')->payload() [==] '00020101021129370016A000000677010111011301234567890125802TH530376463048AF8'
      *
-     * @param string $merchant_id เบอร์โทรศัพท์, เลข Prompt Pay หรือ e-Wallet ID
-     * @param int $amount จำนวนเงิน
+     * @param string $merchant_id Recipient ID (Phone number, Prompt Pay, or E-Wallet ID)
+     * @param int|null $amount Transaction amount
      *
      * @return static
      */
@@ -95,22 +95,28 @@ class Promptpay
     }
 
     /**
-     * คืนค่า payload นำไปใช้สร้าง QR Code
+     * Generate payload for Prompt Pay QR code payment
+     * based on EMV® QR Code Specification
      *
-     * @return string
+     * @param string $merchant_id Recipient ID (Phone number, Prompt Pay, or E-Wallet ID)
+     * @param int|null $amount Transaction amount
+     *
+     * @return string Generated payload string
      */
     public function payload()
     {
         // Payload Format Indicator
         $datas = $this->format('00', 1, 2);
+
         // Point of Initiation method
         if ($this->amount > 0) {
-            // ระบุจำนวนเงิน
+            // Specify the amount
             $datas .= $this->format('01', '12');
         } else {
-            // ชำระแบบระบุจำนวนเงินเอง
+            // Pay with a self-specified amount
             $datas .= $this->format('01', '11');
         }
+
         // Merchant identifier
         if (preg_match('/^([1-9]{0,2})0?([0-9]{9,10})$/', $this->merchant_id, $match)) {
             // Mobile number
@@ -131,46 +137,52 @@ class Promptpay
                 $merchant_id = $this->format('04', $this->merchant_id);
             }
         }
+
         $datas .= $this->format('29', $this->format('00', $this->applicationID).$merchant_id);
+
         // Country Code
         $datas .= $this->format('58', $this->countryCode);
+
         // Transaction Currency Code
         $datas .= $this->format('53', $this->currencyCode);
+
         if ($this->amount > 0) {
             // Transaction Amount
             $datas .= $this->format('54', number_format($this->amount, 2, '.', ''));
         }
+
         // Check SUM (CRC)
         $datas .= '6304';
         $datas .= $this->hashString($datas);
-        // คืนค่า payload
+
+        // Return the payload
         return $datas;
     }
 
     /**
-     * ฟิล์ดข้อมูล
-     * ID 2 หลัก ตามด้วยความยาวข้อมูล 2 หลัก และข้อมูล
-     * เติม 0 ด้านหน้าข้อมูลจนครบตามที่กำหนด ถ้ามีการระบุ $length
+     * Format the data field with an ID, length, and optional padding.
      *
-     * @param string $id
-     * @param mixed $data
+     * @param string $id     The ID field.
+     * @param mixed  $data   The data field.
+     * @param int    $length The length of the data field.
      *
-     * @return string
+     * @return string The formatted field.
      */
     private function format($id, $data, $length = 0)
     {
         if ($length > 0) {
+            // Pad the data field with leading zeros
             $data = sprintf('%0'.$length.'d', $data);
         }
         return $id.sprintf('%02d', strlen($data)).$data;
     }
 
     /**
-     * สร้างข้อมูล Check SUM ด้วยวิธีการ CRC-16
+     * Generate the checksum (CRC) using the CRC-16 algorithm.
      *
-     * @param string $data
+     * @param string $data The input data.
      *
-     * @return string
+     * @return string The generated checksum.
      */
     private function hashString($data)
     {
@@ -178,11 +190,11 @@ class Promptpay
     }
 
     /**
-     * คำนวณ hash ด้วยวิธีการ CRC-16 (Cyclic Redundancy Check 16-bit)
+     * Calculate the hash (CRC-16) for an array of bytes.
      *
-     * @param array $data
+     * @param array $data The input data.
      *
-     * @return string
+     * @return int The calculated hash value.
      */
     private function hashBytes($data)
     {

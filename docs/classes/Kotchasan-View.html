@@ -99,6 +99,8 @@
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+
                         </section>
             
     <section class="phpdocumentor-sidebar__category">
@@ -130,7 +132,7 @@
             <div class="phpdocumentor-element__package">
             in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan.html">Kotchasan</a></li>
                             </ul>
         </div>
     
@@ -140,12 +142,14 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">View base class</p>
+            <p class="phpdocumentor-summary">This class provides basic functionalities for views.</p>
 
+    <section class="phpdocumentor-description"><p>It is responsible for rendering HTML templates, managing CSS and JavaScript files, and handling headers.</p>
+</section>
 
 
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -154,20 +158,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -184,11 +179,11 @@
 
 <dl class="phpdocumentor-table-of-contents">
                 <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Kotchasan-View.html#property_after_contents">$after_contents</a>
+    <a href="classes/Kotchasan-View.html#property_afterContents">$afterContents</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ตัวแปรเก็บเนื่อหาของเว็บไซต์ ที่จะแทนที่หลังจาก render แล้ว</dd>
+<dd>Array to store the contents of the website to be replaced after rendering.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_cfg">$cfg</a>
@@ -202,21 +197,21 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ตัวแปรเก็บเนื่อหาของเว็บไซต์</dd>
+<dd>Array to store the contents of the website.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-View.html#property_headers">$headers</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายการ header</dd>
+<dd>Array to store the headers.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-View.html#property_metas">$metas</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>meta tag</dd>
+<dd>Array to store meta tags.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_request">$request</a>
@@ -226,109 +221,88 @@
 <dd>Server request class</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Kotchasan-View.html#property_script">$script</a>
+    <a href="classes/Kotchasan-View.html#property_scripts">$scripts</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>คำสั่ง Javascript ที่จะแทรกไว้ใน head</dd>
+<dd>Array to store JavaScript code to be inserted in the head section.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_addCSS">addCSS()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ใส่ไฟล์ CSS ลงใน header</dd>
+<dd>Adds a CSS file to the header.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_addJavascript">addJavascript()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ใส่ไฟล์ Javascript ลงใน header</dd>
+<dd>Adds a JavaScript file to the header.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_addScript">addScript()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>เพิ่มคำสั่ง Javascript ใส่ลงใน head ก่อนปิด head</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Kotchasan-View.html#method_array_value">array_value()</a>
-    <span>
-                        &nbsp;: mixed    </span>
-</dt>
-<dd>อ่านค่าจาก Array
-คืนค่า $source[$key]
-ถ้าไม่มี คืนค่า $default</dd>
+<dd>Adds JavaScript code to be inserted in the head section before closing the head tag.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_back">back()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่น แทนที่ query string ด้วยข้อมูลจาก GET สำหรับส่งต่อไปยัง URL ถัดไป
-array ส่งมาจาก preg_replace
-string กำหนดเอง
-คืนค่า query string ใหม่ ลบ id=0</dd>
+<dd>Replaces the query string with data from the GET request for forwarding to the next URL.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_create">create()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>create class</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Kotchasan-View.html#method_object_value">object_value()</a>
-    <span>
-                        &nbsp;: mixed    </span>
-</dt>
-<dd>อ่านค่าจาก Object
-คืนค่า $source-&gt;{$key}
-ถ้าไม่มี คืนค่า $default</dd>
+<dd>Creates an instance of the View class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_output">output()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ส่งออกเนื้อหา และ header ตามที่กำหนด</dd>
+<dd>Outputs the content and headers as specified.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_renderHTML">renderHTML()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ส่งออกเป็น HTML</dd>
+<dd>Renders the content as HTML.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_setContents">setContents()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ใส่เนื้อหาลงใน $contens</dd>
+<dd>Sets the content in $contents.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_setContentsAfter">setContentsAfter()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ใส่เนื้อหาลงใน $contens หลัง render แล้ว</dd>
+<dd>Sets the content in $contents after rendering.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_setHeaders">setHeaders()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>กำหนด header ให้กับเอกสาร</dd>
+<dd>Sets headers for the document.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-View.html#method_setMetas">setMetas()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ใส่ Tag ลงใน Head ของ HTML</dd>
+<dd>Adds meta tags to the HTML head.</dd>
 
         </dl>
 
@@ -349,25 +323,25 @@ string กำหนดเอง
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_after_contents">
-        $after_contents
-        <a href="classes/Kotchasan-View.html#property_after_contents" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_afterContents">
+        $afterContents
+        <a href="classes/Kotchasan-View.html#property_afterContents" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวแปรเก็บเนื่อหาของเว็บไซต์ ที่จะแทนที่หลังจาก render แล้ว</p>
+        <p class="phpdocumentor-summary">Array to store the contents of the website to be replaced after rendering.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$after_contents</span>
+    <span class="phpdocumentor-signature__name">$afterContents</span>
      = <span class="phpdocumentor-signature__default-value">array()</span></code>
 
     
@@ -428,7 +402,7 @@ string กำหนดเอง
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวแปรเก็บเนื่อหาของเว็บไซต์</p>
+        <p class="phpdocumentor-summary">Array to store the contents of the website.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -457,11 +431,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายการ header</p>
+        <p class="phpdocumentor-summary">Array to store the headers.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -490,11 +464,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">meta tag</p>
+        <p class="phpdocumentor-summary">Array to store meta tags.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -547,25 +521,25 @@ string กำหนดเอง
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_script">
-        $script
-        <a href="classes/Kotchasan-View.html#property_script" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_scripts">
+        $scripts
+        <a href="classes/Kotchasan-View.html#property_scripts" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คำสั่ง Javascript ที่จะแทรกไว้ใน head</p>
+        <p class="phpdocumentor-summary">Array to store JavaScript code to be inserted in the head section.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$script</span>
+    <span class="phpdocumentor-signature__name">$scripts</span>
      = <span class="phpdocumentor-signature__default-value">array()</span></code>
 
     
@@ -593,11 +567,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ใส่ไฟล์ CSS ลงใน header</p>
+        <p class="phpdocumentor-summary">Adds a CSS file to the header.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -611,7 +585,9 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The URL of the CSS file.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -636,11 +612,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ใส่ไฟล์ Javascript ลงใน header</p>
+        <p class="phpdocumentor-summary">Adds a JavaScript file to the header.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -654,7 +630,9 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The URL of the JavaScript file.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -679,11 +657,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เพิ่มคำสั่ง Javascript ใส่ลงใน head ก่อนปิด head</p>
+        <p class="phpdocumentor-summary">Adds JavaScript code to be inserted in the head section before closing the head tag.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -697,66 +675,9 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
+                    <section class="phpdocumentor-description"><p>The JavaScript code.</p>
+</section>
 
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_array_value">
-        array_value()
-        <a href="classes/Kotchasan-View.html#method_array_value" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">249</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">อ่านค่าจาก Array
-คืนค่า $source[$key]
-ถ้าไม่มี คืนค่า $default</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">array_value</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$array</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$array</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$default</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
             </dd>
             </dl>
 
@@ -781,20 +702,20 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">106</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น แทนที่ query string ด้วยข้อมูลจาก GET สำหรับส่งต่อไปยัง URL ถัดไป
-array ส่งมาจาก preg_replace
-string กำหนดเอง
-คืนค่า query string ใหม่ ลบ id=0</p>
+        <p class="phpdocumentor-summary">Replaces the query string with data from the GET request for forwarding to the next URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">back</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$f</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>The function takes either an array (returned from preg_replace) or a string.
+Returns the new query string with the 'id=0' removed.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -802,7 +723,7 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รับค่าจากตัวแปร $f มาสร้าง query string</p>
+                    <section class="phpdocumentor-description"><p>The value from the variable $f used to create the query string.</p>
 </section>
 
             </dd>
@@ -837,7 +758,9 @@ string กำหนดเอง
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The new query string.</p>
+</section>
+
     
 </article>
                     <article
@@ -853,11 +776,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">create class</p>
+        <p class="phpdocumentor-summary">Creates an instance of the View class.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -877,65 +800,6 @@ string กำหนดเอง
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_object_value">
-        object_value()
-        <a href="classes/Kotchasan-View.html#method_object_value" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">265</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">อ่านค่าจาก Object
-คืนค่า $source-&gt;{$key}
-ถ้าไม่มี คืนค่า $default</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">object_value</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$source</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|object</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$default</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
                                                         "
 >
     <h4 class="phpdocumentor-element__name" id="method_output">
@@ -945,11 +809,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">145</span>
+    <span class="phpdocumentor-element-found-in__line">147</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ส่งออกเนื้อหา และ header ตามที่กำหนด</p>
+        <p class="phpdocumentor-summary">Outputs the content and headers as specified.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -963,7 +827,7 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>เนื้อหา</p>
+                    <section class="phpdocumentor-description"><p>The content to be output.</p>
 </section>
 
             </dd>
@@ -990,11 +854,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">162</span>
+    <span class="phpdocumentor-element-found-in__line">164</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ส่งออกเป็น HTML</p>
+        <p class="phpdocumentor-summary">Renders the content as HTML.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1008,7 +872,7 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>HTML Template ถ้าไม่กำหนด (null) จะใช้ index.html</p>
+                    <section class="phpdocumentor-description"><p>The HTML template to be used. If not specified (null), 'index.html' will be used.</p>
 </section>
 
             </dd>
@@ -1019,7 +883,9 @@ string กำหนดเอง
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The rendered HTML content.</p>
+</section>
+
     
 </article>
                     <article
@@ -1035,11 +901,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">195</span>
+    <span class="phpdocumentor-element-found-in__line">197</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ใส่เนื้อหาลงใน $contens</p>
+        <p class="phpdocumentor-summary">Sets the content in $contents.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1053,7 +919,7 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อที่ปรากฏใน template รูปแบบ array(key1 =&gt; val1, key2 =&gt; val2)</p>
+                    <section class="phpdocumentor-description"><p>An array of names to be used in the template (e.g., array(key1 =&gt; val1, key2 =&gt; val2)).</p>
 </section>
 
             </dd>
@@ -1080,11 +946,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">207</span>
+    <span class="phpdocumentor-element-found-in__line">209</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ใส่เนื้อหาลงใน $contens หลัง render แล้ว</p>
+        <p class="phpdocumentor-summary">Sets the content in $contents after rendering.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1098,7 +964,7 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อที่ปรากฏใน template รูปแบบ array(key1 =&gt; val1, key2 =&gt; val2)</p>
+                    <section class="phpdocumentor-description"><p>An array of names to be used in the template (e.g., array(key1 =&gt; val1, key2 =&gt; val2)).</p>
 </section>
 
             </dd>
@@ -1125,11 +991,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">219</span>
+    <span class="phpdocumentor-element-found-in__line">221</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนด header ให้กับเอกสาร</p>
+        <p class="phpdocumentor-summary">Sets headers for the document.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1143,7 +1009,9 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>An array of headers (e.g., array(key1 =&gt; val1, key2 =&gt; val2)).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1168,11 +1036,11 @@ string กำหนดเอง
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/View.php"><a href="files/kotchasan-view.html"><abbr title="Kotchasan/View.php">View.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">231</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ใส่ Tag ลงใน Head ของ HTML</p>
+        <p class="phpdocumentor-summary">Adds meta tags to the HTML head.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1186,7 +1054,9 @@ string กำหนดเอง
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>An array of meta tags (e.g., array(key1 =&gt; val1, key2 =&gt; val2)).</p>
+</section>
+
             </dd>
             </dl>
 
