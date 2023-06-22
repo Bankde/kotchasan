@@ -13,61 +13,55 @@ namespace Kotchasan;
 use Kotchasan\Http\Request;
 
 /**
- * คลาสสำหรับตรวจสอบการ Login
+ * This class is responsible for handling user login functionality.
  *
  * @see https://www.kotchasan.com/
  */
-class Login extends \Kotchasan\KBase
+class Login extends KBase
 {
     /**
-     * ตัวแปรบอกว่ามาจากการ submit
-     * true มาจากการ submit
-     * false default
+     * Indicates whether the login request is submitted.
      *
      * @var bool
      */
     public static $from_submit = false;
+
     /**
-     * ชื่อ Input ที่ต้องการให้ active
-     * login_username หรือ login_password
+     * The name of the input field to be focused.
+     * Can be 'login_username' or 'login_password'.
      *
      * @var string
      */
     public static $login_input;
+
     /**
-     * ข้อความจาก Login Class
+     * The login message.
      *
      * @var string
      */
     public static $login_message;
+
     /**
-     * ตัวแปรเก็บข้อมูลที่ส่งมา
-     * เช่น username, password
+     * The login parameters submitted by the user.
      *
      * @var array
      */
-    public static $login_params = array();
+    public static $login_params = [];
 
     /**
-     * ตรวจสอบการ login เมื่อมีการเรียกใช้ class new Login
-     * action=logout ออกจากระบบ
-     * action=forgot ขอรหัสผ่านใหม่
-     * ถ้าไม่มีทั้งสองส่วนด้านบน จะตรวจสอบการ login จาก session
+     * Validates the login request and performs the login process.
      *
-     * @param Request $request
-     *
+     * @param Request $request The HTTP request object.
      * @return static
      */
     public static function create(Request $request)
     {
         try {
-            // create class
             $obj = new static;
-            // อ่านข้อมูลจากฟอร์ม login ฟิลด์ login_username
             self::$login_params['username'] = $request->post('login_username')->username();
+
             if (empty(self::$login_params['username'])) {
                 if (isset($_SESSION['login'])) {
-                    // session
                     if (isset($_SESSION['login']['username'])) {
                         self::$login_params['username'] = Text::username($_SESSION['login']['username']);
                     }
@@ -75,23 +69,18 @@ class Login extends \Kotchasan\KBase
                         self::$login_params['password'] = Text::password($_SESSION['login']['password']);
                     }
                 }
-                // ตรวจสอบว่ามาจาก form login หรือไม่
                 self::$from_submit = $request->post('login_username')->exists();
             } elseif ($request->post('login_password')->exists()) {
-                // มีทั้ง username และ password จากการ submit
                 self::$login_params['password'] = $request->post('login_password')->password();
                 self::$from_submit = true;
             }
-            // ค่าที่ส่งมา
+
             $action = $request->request('action')->toString();
             if ($action === 'logout' && !self::$from_submit) {
-                // ออกจากระบบ
                 $obj->logout($request);
             } elseif ($action === 'forgot') {
-                // ขอรหัสผ่านใหม่
                 $obj->forgot($request);
             } else {
-                // เข้าระบบ ตรวจสอบค่าที่ส่งมา
                 if (empty(self::$login_params['username']) && self::$from_submit) {
                     self::$login_message = Language::get('Please fill up this form');
                     self::$login_input = 'login_username';
@@ -99,94 +88,95 @@ class Login extends \Kotchasan\KBase
                     self::$login_message = Language::get('Please fill up this form');
                     self::$login_input = 'login_password';
                 } elseif (!self::$from_submit || (self::$from_submit && $request->isReferer())) {
-                    // เข้าระบบ
                     $obj->login($request, self::$login_params);
                 }
             }
         } catch (InputItemException $e) {
             self::$login_message = $e->getMessage();
         }
+
         return $obj;
     }
 
     /**
-     * ฟังก์ชั่นออกจากระบบ
+     * Logs out the user by clearing the session and displaying a success message.
      *
-     * @param Request $request
+     * @param Request $request The HTTP request object.
+     * @return void
      */
     public function logout(Request $request)
     {
-        // ลบ session และ cookie
         unset($_SESSION['login']);
         self::$login_message = Language::get('Logout successful');
-        self::$login_params = array();
+        self::$login_params = [];
     }
 
     /**
-     * ฟังก์ชั่นส่งอีเมลลืมรหัสผ่าน
+     * Initiates the password recovery process.
      *
-     * @param Request $request
+     * @param Request $request The HTTP request object.
+     * @return void
      */
     public function forgot(Request $request)
     {
-
+        // Password recovery logic goes here
     }
 
     /**
-     * ฟังก์ชั่นตรวจสอบการเข้าระบบ
+     * Validates the login credentials and performs the login process.
      *
-     * @param Request $request
-     * @param array $params
+     * @param Request $request     The HTTP request object.
+     * @param array   $loginParams The login parameters.
+     *
+     * @return void
      */
-    public function login(Request $request, $params)
+    public function login(Request $request, $loginParams)
     {
-        // ตรวจสอบการ login กับฐานข้อมูล
-        $login_result = $this->checkLogin($params);
+        // Check login against the database
+        $login_result = $this->checkLogin($loginParams);
         if (is_array($login_result)) {
-            // save login session
+            // Save login session
             $_SESSION['login'] = $login_result;
         } else {
             if (is_string($login_result)) {
-                // ข้อความผิดพลาด
+                // Error message
                 self::$login_input = self::$login_input == 'password' ? 'login_password' : 'login_username';
                 self::$login_message = $login_result;
             }
-            // logout ลบ session และ cookie
+            // Logout: remove session and cookie
             unset($_SESSION['login']);
         }
     }
 
     /**
-     * ฟังก์ชั่นตรวจสอบการ login
-     * เข้าระบบสำเร็จคืนค่าแอเรย์ข้อมูลสมาชิก, ไม่สำเร็จ คืนค่าข้อความผิดพลาด
+     * Validates the login credentials against the configured username and password.
      *
-     * @param array $params ข้อมูลการ login ที่ส่งมา $params = array('username' => '', 'password' => '');
+     * @param array $loginParams The login parameters. e.g., array('username' => '', 'password' => '');
      *
-     * @return string|array
+     * @return string|array Returns a string error message if login fails, or an array with login information.
      */
-    public function checkLogin($params)
+    public function checkLogin($loginParams)
     {
-        if ($params['username'] !== self::$cfg->get('username')) {
+        if ($loginParams['username'] !== self::$cfg->get('username')) {
             self::$login_input = 'username';
             return 'not a registered user';
-        } elseif ($params['password'] !== self::$cfg->get('password')) {
+        } elseif ($loginParams['password'] !== self::$cfg->get('password')) {
             self::$login_input = 'password';
             return 'password incorrect';
         }
-        // คืนค่า user ที่ login
+        // Return the logged-in user information
         return array(
-            'username' => $params['username'],
-            'password' => $params['password'],
-            // สถานะ แอดมิน
+            'username' => $loginParams['username'],
+            'password' => $loginParams['password'],
+            // Status: Admin
             'status' => 1
         );
     }
 
     /**
-     * ฟังก์ชั่นตรวจสอบสถานะแอดมิน
-     * คืนค่าข้อมูลสมาชิก (แอเรย์) ถ้าเป็นผู้ดูแลระบบและเข้าระบบแล้ว ไม่ใช่คืนค่า null
+     * Checks if the user is an admin.
      *
-     * @return array|null
+     * @return array|null Returns the login information if the user is an admin, or null otherwise.
      */
     public static function isAdmin()
     {
@@ -195,10 +185,9 @@ class Login extends \Kotchasan\KBase
     }
 
     /**
-     * ฟังก์ชั่นตรวจสอบการเข้าระบบ
-     * คืนค่าข้อมูลสมาชิก (แอเรย์) ถ้าเป็นสมาชิกและเข้าระบบแล้ว ไม่ใช่คืนค่า null
+     * Checks if the user is a member.
      *
-     * @return array|null
+     * @return array|null Returns the login information if the user is a member, or null otherwise.
      */
     public static function isMember()
     {
@@ -206,20 +195,21 @@ class Login extends \Kotchasan\KBase
     }
 
     /**
-     * ตรวจสอบสถานะสมาชิก
-     * แอดมินสูงสุด (status=1) ทำได้ทุกอย่าง
-     * คืนค่าข้อมูลสมาชิก (แอเรย์) ถ้าไม่สามารถทำรายการได้คืนค่า null
+     * Check the status of a login.
      *
-     * @param array        $login
-     * @param array|int $statuses
+     * If the login is empty or the status does not match the provided statuses,
+     * null is returned. If the status matches, the login is returned.
      *
-     * @return array|null
+     * @param array $login    The login information.
+     * @param mixed $statuses The allowed status(es) to check against.
+     *
+     * @return array|null The login information if the status matches, null otherwise.
      */
     public static function checkStatus($login, $statuses)
     {
         if (!empty($login)) {
             if ($login['status'] == 1) {
-                // แอดมิน
+                // Admin
                 return $login;
             } elseif (is_array($statuses)) {
                 if (in_array($login['status'], $statuses)) {
@@ -229,7 +219,7 @@ class Login extends \Kotchasan\KBase
                 return $login;
             }
         }
-        // ไม่มีสิทธิ
+        // No privileges
         return null;
     }
 }

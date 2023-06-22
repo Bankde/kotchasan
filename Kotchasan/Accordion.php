@@ -11,31 +11,39 @@
 namespace Kotchasan;
 
 /**
- * Accordion
+ * Accordion class for creating HTML accordions.
  *
  * @see https://www.kotchasan.com/
  */
 class Accordion
 {
     /**
+     * Array of accordion items.
+     *
      * @var mixed
      */
     private $datas;
+
     /**
+     * ID of the accordion. Must be unique.
+     *
      * @var mixed
      */
     private $id;
+
     /**
+     * Type of accordion (radio or checkbox).
+     *
      * @var mixed
      */
     private $type;
 
     /**
-     * Construct
+     * Constructor.
      *
-     * @param string $id     ID ของ Accordian ห้ามซ้ำกับอันอื่น
-     * @param array  $items  รายการเริ่มต้น array(array('title1' => 'detail1'), array('title2' => 'detail2'))
-     * @param bool   $onetab true สามารถเปิดได้ทีละเท็บ, false (ค่าเริ่มต้น) สามารถเปิด-ปิดแท็บได้อิสระ
+     * @param string $id     ID of the accordion (must be unique).
+     * @param array  $items  Initial items array (array(array('title1' => 'detail1'), array('title2' => 'detail2'))).
+     * @param bool   $onetab true to allow opening only one tab at a time, false (default) to allow opening and closing tabs independently.
      */
     public function __construct($id, $items = array(), $onetab = false)
     {
@@ -45,12 +53,12 @@ class Accordion
     }
 
     /**
-     * เพิ่มรายการ Accordion
+     * Add an item to the accordion.
      *
-     * @param string $title
-     * @param string $detail
-     * @param bool   $select    true แสดงรายการนี้, ค่าเริ่มต้นคือไม่ (false)
-     * @param string $className คลาสส่วนห่อหุ้มข้อมูล ถ้าไม่ระบใช้ค่าเริ่มต้น article
+     * @param string $title      Title of the item.
+     * @param string $detail     Details of the item.
+     * @param bool   $select     true to display this item, false (default) otherwise.
+     * @param string $className  CSS class for the item's content container. Use "article" as default if not specified.
      */
     public function add($title, $detail, $select = false, $className = 'article')
     {
@@ -62,9 +70,9 @@ class Accordion
     }
 
     /**
-     * สร้างโค้ด HTML
+     * Generate the HTML code for the accordion.
      *
-     * @return string
+     * @return string HTML code for the accordion.
      */
     public function render()
     {

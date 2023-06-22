@@ -2,6 +2,9 @@
 /**
  * @filesource Kotchasan/Barcode.php
  *
+ * Barcode generation class.
+ * This class generates barcode images using the Barcode 128 encoding.
+ *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
@@ -11,88 +14,97 @@
 namespace Kotchasan;
 
 /**
- * Barcode
+ * Barcode generation class.
+ * This class generates barcode images using the Barcode 128 encoding.
  *
  * @see https://www.kotchasan.com/
  */
 class Barcode
 {
     /**
-     * ความสูงของ barcode
+     * The height of the barcode.
      *
      * @var int
      */
     private $height;
+
     /**
-     * ความกว้างของ barcode แต่ละแท่ง (2D)
+     * The width of each bar in the barcode (2D).
      *
      * @var int
      */
     private $bar_width = 1;
+
     /**
-     * ความกว้างรวมของ barcode
+     * The total width of the barcode.
      *
      * @var int
      */
     private $width = 0;
+
     /**
-     * ข้อมูล barcode
+     * The barcode data.
      *
      * @var array
      */
     private $datas;
+
     /**
+     * The barcode code.
+     *
      * @var string
      */
     private $code;
+
     /**
-     * ไฟล์ฟ้อนต์
+     * The font file path.
      *
      * @var string
      */
     public $font = ROOT_PATH.'skin/fonts/thsarabunnew-webfont.ttf';
+
     /**
-     * ขนาดของตัวอักษรของ label (พิกเซล)
-     * 0 (ค่าเริ่มต้น) หมายถึงไม่แสดง label
+     * The font size of the label text (in pixels).
+     * 0 (default) means no label.
      *
      * @var int
      */
     private $fontSize = 0;
 
     /**
-     * Class constructor
+     * Class constructor.
      *
-     * @param string $code รหัส barcode
-     * @param int $height ความสูงของ barcode (พิกเซล)
-     * @param int $fontSize ขนาดของตัวอักษรของ label (พิกเซล), 0 (ค่าเริ่มต้น) หมายถึงไม่แสดง label
+     * @param string $code     The barcode code.
+     * @param int    $height   The height of the barcode (in pixels).
+     * @param int    $fontSize The font size of the label text (in pixels), 0 (default) means no label.
      */
     protected function __construct($code, $height, $fontSize = 0)
     {
         $this->code = (string) $code;
-        // get barcode data
+        // Get barcode data
         $data = self::Barcode128($this->code);
         if ($data === '') {
-            // error
+            // Error
             $this->datas = array();
             $this->width = 1;
         } else {
-            // split to array (2D)
+            // Split to array (2D)
             $this->datas = str_split($data, 1);
-            // ความกว้างของ barcode
+            // Calculate barcode width
             $this->width = count($this->datas) * $this->bar_width;
         }
-        // ความสูงของ barcode
+        // Set barcode height
         $this->height = $height;
-        // แสดงรหัส barcode ในรูปแบบข้อความ
+        // Show barcode code as text label
         $this->fontSize = $fontSize;
     }
 
     /**
-     * creat Barcode
+     * Create a Barcode instance.
      *
-     * @param string $code รหัส barcode
-     * @param int $height ความสูงของ barcode ค่าเริ่มต้น 30 พิกเซล
-     * @param int $fontSize ขนาดของตัวอักษรของ label (พิกเซล), 0 (ค่าเริ่มต้น) หมายถึงไม่แสดง label
+     * @param string $code     The barcode code.
+     * @param int    $height   The height of the barcode (in pixels). Default is 30.
+     * @param int    $fontSize The font size of the label text (in pixels), 0 (default) means no label.
      *
      * @return static
      */
@@ -102,31 +114,31 @@ class Barcode
     }
 
     /**
-     * คืนค่า PNG Data สำหรับใส่ลงใน img
+     * Generate a PNG image of the barcode.
      *
-     * @return string
+     * @return string The PNG image data.
      */
     public function toPng()
     {
-        // สร้างรูปภาพตามขนาดของ barcode
+        // Create image with barcode dimensions
         $img = imagecreatetruecolor($this->width, $this->height);
-        // สีตัวอักษร
+        // Set text color
         $black = ImageColorAllocate($img, 0, 0, 0);
-        // สีพื้น
+        // Set background color
         $white = ImageColorAllocate($img, 255, 255, 255);
-        // ระบายพื้นหลัง
+        // Fill the background
         imagefilledrectangle($img, 0, 0, $this->width, $this->height, $white);
         if (!empty($this->datas)) {
             if ($this->fontSize > 0) {
-                // ขนาดของ code
+                // Get the dimensions of the code
                 $p = imagettfbbox($this->fontSize, 0, $this->font, $this->code);
                 $barHeight = $this->height + $p[5] - 3;
-                // แสดง code
+                // Display the code
                 imagettftext($img, $this->fontSize, 0, floor(($this->width - $p[2]) / 2), $this->height, $black, $this->font, $this->code);
             } else {
                 $barHeight = $this->height;
             }
-            // วาด bar
+            // Draw bars
             foreach ($this->datas as $i => $data) {
                 $x1 = $i * $this->bar_width;
                 $x2 = ($i * $this->bar_width) + $this->bar_width;
@@ -137,7 +149,7 @@ class Barcode
         ob_start();
         imagepng($img);
         imagedestroy($img);
-        // ส่งคืนรูปภาพ
+        // Return the image data
         return ob_get_clean();
     }
 
@@ -150,10 +162,10 @@ class Barcode
     {
         $len = strlen($code);
         if ($len == 0) {
-            // ไม่มีอักขระ
+            // If the code is empty, return an empty string
             return '';
         }
-        // 128 encoding
+        // Mapping of characters to their corresponding Code 128 encoding
         $characters = array(
             ' ' => '11011001100', '!' => '11001101100', '"' => '11001100110', '#' => '10010011000',
             '$' => '10010001100', '%' => '10001001100', '&' => '10011001000', "'" => '10011000100',
@@ -181,21 +193,29 @@ class Barcode
             '|' => '10101111000', '}' => '10100011110', '~' => '10001011110', 'DEL' => '10111101000',
             'FNC 3' => '10111100010', 'FNC 2' => '11110101000', 'SHIFT' => '11110100010', 'CODE C' => '10111011110',
             'CODE B' => '10111101110', 'CODE A' => '11101011110', 'FNC 1' => '11110101110', 'Start A' => '11010000100',
-            'Start B' => '11010010000', 'Start C' => '11010011100', 'Stop' => '11000111010');
-        // อักขระทั้งหมดจาก key
+            'Start B' => '11010010000', 'Start C' => '11010011100', 'Stop' => '11000111010'
+        );
+
+        // Get the array of valid characters
         $validCharacters = array_keys($characters);
-        // ตรวจสอบอักขระไม่รองรับ
+
+        // Check if the code contains unsupported characters
         $i = 0;
         while ($i < $len) {
             if (!isset($characters[$code[$i]])) {
+                // If an unsupported character is found, return an empty string
                 return '';
             }
             $i++;
         }
+
+        // Create an array of character codes from the valid characters
         $charactersCode = array_flip($validCharacters);
-        // 128 encoding
+
+        // Get the Code 128 encoding for each character
         $encoding = array_values($characters);
-        // Type C
+
+        // Determine the barcode type (Type C or Type B)
         $typeC = preg_match('/^[0-9]{2,4}/', $code);
         if ($typeC) {
             $sum = 105;
@@ -206,7 +226,8 @@ class Barcode
             // Start type B
             $result = $characters['Start B'];
         }
-        // Data, Check SUM
+
+        // Process the data and calculate the checksum
         $i = 0;
         $isum = 0;
         while ($i < $len) {
@@ -239,11 +260,11 @@ class Barcode
             $result .= $encoding[$value];
             $sum += ++$isum * $value;
         }
-        // Check SUM
-        $result .= $encoding[$sum % 103];
-        // Stop pattern (7 bars/spaces)
-        $result .= $characters['Stop'].'11';
-        // return code
+
+        // Add the checksum and stop pattern to the result
+        $result .= $encoding[$sum % 103].$characters['Stop'].'11';
+
+        // Return the generated barcode code
         return $result;
     }
 }

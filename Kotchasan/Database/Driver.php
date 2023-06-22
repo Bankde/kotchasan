@@ -24,45 +24,37 @@ use Kotchasan\Text;
 abstract class Driver extends Query
 {
     /**
-     * cache class
-     *
-     * @var Cache
+     * @var Cache cache class
      */
     protected $cache;
+
     /**
-     * Cacheitem
-     *
-     * @var Item
+     * @var Item Cacheitem
      */
     protected $cache_item;
+
     /**
-     * database connection
-     *
-     * @var object
+     * @var object database connection
      */
     protected $connection = null;
+
     /**
-     * database error message
-     *
-     * @var string
+     * @var string database error message
      */
     protected $error_message = '';
+
     /**
-     * นับจำนวนการ query
-     *
-     * @var int
+     * @var int number of queries
      */
     protected static $query_count = 0;
+
     /**
-     * เก็บ Object ที่เป็นผลลัพท์จากการ query
-     *
-     * @var resource|object
+     * @var resource|object result object from query
      */
     protected $result_id;
+
     /**
-     * ตัวแปรเก็บ query สำหรับการ execute
-     *
-     * @var array
+     * @var array query statements for execution
      */
     protected $sqls;
 
@@ -75,12 +67,14 @@ abstract class Driver extends Query
     }
 
     /**
-     * อ่านสถานะของแคช
-     * 0 ไม่ใช้แคช
-     * 1 โหลดและบันทึกแคชอัตโนมัติ
-     * 2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ
+     * Get the cache action.
      *
-     * @return int
+     * Returns the cache action status:
+     * - 0: Cache is not used.
+     * - 1: Load and automatically save cache.
+     * - 2: Load data from cache, but do not automatically save cache.
+     *
+     * @return int The cache action status
      */
     public function cacheGetAction()
     {
@@ -88,10 +82,9 @@ abstract class Driver extends Query
     }
 
     /**
-     * เปิดการใช้งานแคช
-     * จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล
+     * Enable caching.
      *
-     * @param bool $auto_save (options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง
+     * @param bool $auto_save (optional) Whether to automatically save the cache results (default: true)
      *
      * @return static
      */
@@ -102,12 +95,11 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นบันทึก Cache
-     * สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false
+     * Save cache data.
      *
-     * @param array $datas ข้อมูลที่จะบันทึก
+     * @param array $datas The data to be saved
      *
-     * @return bool
+     * @return bool True if the cache is saved successfully, false otherwise
      */
     public function cacheSave($datas)
     {
@@ -118,7 +110,7 @@ abstract class Driver extends Query
     }
 
     /**
-     * close database
+     * Close the database connection.
      */
     public function close()
     {
@@ -126,9 +118,9 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นอ่านค่า resource ID ของการเชื่อมต่อปัจจุบัน
+     * Get the current database connection.
      *
-     * @return resource
+     * @return resource The database connection
      */
     public function connection()
     {
@@ -136,9 +128,9 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นสร้าง query builder
+     * Create a new query builder instance.
      *
-     * @return \Kotchasan\Database\QueryBuilder
+     * @return \Kotchasan\Database\QueryBuilder The query builder instance
      */
     public function createQuery()
     {
@@ -146,15 +138,16 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-     * คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข ไม่พบคืนค่าแอเรย์ว่าง
+     * Process an SQL query command to retrieve data.
      *
+     * Returns an array of records that match the conditions.
+     * If no records are found, an empty array is returned.
      *
-     * @param string $sql     query string
-     * @param bool   $toArray default false คืนค่าผลลัทเป็น Object, true คืนค่าเป็น Array
-     * @param array  $values  ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query
+     * @param string $sql     The query string
+     * @param bool   $toArray Optional. Default is false. Set to true to return results as an array, otherwise returns results as objects.
+     * @param array  $values  Optional. If specified, prepares the query using these values instead of executing the query directly.
      *
-     * @return array
+     * @return array An array of records that match the conditions
      */
     public function customQuery($sql, $toArray = false, $values = array())
     {
@@ -168,29 +161,27 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นตรวจสอบว่ามี database หรือไม่
-     * คืนค่า true หากมีฐานข้อมูลนี้อยู่ ไม่พบคืนค่า false
+     * Checks if a database exists.
      *
-     * @param string $database ชื่อฐานข้อมูล
+     * @param string $database The name of the database to check
      *
-     * @return bool
+     * @return bool Returns true if the database exists, false otherwise
      */
     public function databaseExists($database)
     {
         $search = $this->doCustomQuery("SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='$database'");
-        return $search && count($search) == 1 ? true : false;
+        return $search && count($search) == 1;
     }
 
     /**
-     * ฟังก์ชั่นลบ record
-     * สำเร็จคืนค่าจำนวนแถวที่มีผล ไม่สำเร็จคืนค่า false
+     * Deletes records from a table based on the given condition.
      *
-     * @param string $table_name ชื่อตาราง
-     * @param mixed  $condition  query WHERE
-     * @param int    $limit      จำนวนรายการที่ต้องการลบ 1 (default) รายการแรกที่เจอ, หมายถึงลบทุกรายการ
-     * @param string $operator   AND (default) หรือ OR
+     * @param string       $table_name The name of the table to delete records from
+     * @param array|string $condition  The condition for deleting records (can be an array or a string)
+     * @param int          $limit      Optional. The maximum number of records to delete (default: 1)
+     * @param string       $operator   Optional. The operator used to combine multiple conditions (default: 'AND')
      *
-     * @return int|bool
+     * @return bool Returns true if the delete operation is successful, false otherwise
      */
     public function delete($table_name, $condition, $limit = 1, $operator = 'AND')
     {
@@ -209,12 +200,11 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นลบข้อมูลทั้งหมดในตาราง
-     * คืนค่า true ถ้าสำเร็จ
+     * Empties a table by deleting all its records.
      *
-     * @param string $table_name table name
+     * @param string $table_name The name of the table to empty
      *
-     * @return bool
+     * @return bool Returns true if the table is successfully emptied, false otherwise
      */
     public function emptyTable($table_name)
     {
@@ -222,23 +212,26 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นประมวลผลคำสั่ง SQL จาก query builder
+     * Executes one or multiple SQL queries and returns the result.
      *
-     * @param array $sqls
-     * @param array $values ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query
-     * @param int $debugger แสดงผล Query
+     * @param mixed  $sqls     The SQL query or an array of SQL queries to execute
+     * @param array  $values   An array of parameter values to bind to the query (optional)
+     * @param int    $debugger Debugging mode: 0 - disabled, 1 - echo debug info, 2 - collect debug info (optional)
      *
-     * @return mixed
+     * @return mixed Returns the result of the executed query/queries
      */
     public function execQuery($sqls, $values = array(), $debugger = 0)
     {
         $sql = $this->makeQuery($sqls);
+
         if (isset($sqls['values'])) {
             $values = ArrayTool::replace($sqls['values'], $values);
         }
+
         if ($debugger > 0) {
             $debug = debug_backtrace();
-            $line = $debug[2]['file'].' on  line '.$debug[2]['line'];
+            $line = $debug[2]['file'].' on line '.$debug[2]['line'];
+
             if ($debugger == 1) {
                 echo $line."\n".$sql."\n";
                 if (!empty($values)) {
@@ -256,45 +249,45 @@ abstract class Driver extends Query
                 }
             }
         }
+
         if ($sqls['function'] == 'customQuery') {
             $result = $this->customQuery($sql, true, $values);
         } else {
             $result = $this->query($sql, $values);
         }
+
         return $result;
     }
 
     /**
-     * จำนวนฟิลด์ทั้งหมดในผลลัพท์จากการ query
+     * Returns the number of fields in the query result.
      *
-     * @return int
+     * @return int The number of fields
      */
     abstract public function fieldCount();
 
     /**
-     * ตรวจสอบคอลัมน์ของตารางว่ามีหรือไม่
-     * คืนค่า true ถ้ามี คืนค่า false ถ้าไม่มี
+     * Checks if a column exists in the table.
      *
-     * @param string $table_name  ชื่อตาราง
-     * @param string $column_name ชื่อคอลัมน์
+     * @param string $table_name  The table name
+     * @param string $column_name The column name
      *
-     * @return bool
+     * @return bool True if the column exists, false otherwise
      */
     public function fieldExists($table_name, $column_name)
     {
         $result = $this->customQuery("SHOW COLUMNS FROM `$table_name` LIKE '$column_name'");
-        return empty($result) ? false : true;
+        return !empty($result);
     }
 
     /**
-     * ฟังก์ชั่น query ข้อมูล คืนค่าข้อมูลทุกรายการที่ตรงตามเงื่อนไข
-     * คืนค่า แอเรย์ของ object ไม่พบคืนค่าแอรย์ว่าง
+     * Queries data and returns all items matching the condition.
      *
-     * @param string $table_name ชื่อตาราง
-     * @param mixed  $condition  query WHERE
-     * @param array  $sort       เรียงลำดับ
+     * @param string $table_name The table name
+     * @param mixed  $condition  The query WHERE condition
+     * @param array  $sort       Sorting options
      *
-     * @return array
+     * @return array An array of objects representing the retrieved data, or an empty array if not found
      */
     public function find($table_name, $condition, $sort = array())
     {
@@ -306,13 +299,12 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่น query ข้อมูล คืนค่าข้อมูลรายการเดียว
-     * คืนค่า object ของข้อมูล ไม่พบคืนค่า false
+     * Queries data and returns the first item matching the condition.
      *
-     * @param string $table_name ชื่อตาราง
-     * @param mixed  $condition  query WHERE
+     * @param string $table_name The table name
+     * @param mixed  $condition  The query WHERE condition
      *
-     * @return mixed
+     * @return mixed An object representing the retrieved data, or false if not found
      */
     public function first($table_name, $condition)
     {
@@ -321,9 +313,9 @@ abstract class Driver extends Query
     }
 
     /**
-     * คืนค่าข้อความผิดพลาดของฐานข้อมูล
+     * Returns the error message of the database.
      *
-     * @return string
+     * @return string The error message
      */
     public function getError()
     {
@@ -331,20 +323,20 @@ abstract class Driver extends Query
     }
 
     /**
-     * รายชื่อฟิลด์ทั้งหมดจากผลัพท์จองการ query
+     * Returns the list of all fields from the query result.
      *
-     * @return array
+     * @return array An array containing the names of all fields
      */
     abstract public function getFields();
 
     /**
-     * ฟังก์ชั่นคืนค่า ID ล่าสุดของตาราง + 1
-     * ใช้สำหรับอ่าน ID ถัดไปของตาราง (Auto Increment)
+     * Returns the next ID of the table (Auto Increment).
+     * Used to retrieve the next ID value for a table.
      *
-     * @param string $table_name ชื่อตาราง
-     * @param string $primary_key ชื่อคอลัมน์ที่ต้องการอ่าน
+     * @param string $table_name  The table name
+     * @param string $primary_key The column name to read
      *
-     * @return int
+     * @return int The next ID value
      */
     public function getNextId($table_name, $primary_key = 'id')
     {
@@ -353,12 +345,12 @@ abstract class Driver extends Query
     }
 
     /**
-     * ตรวจสอบว่ามี $index ในตารางหรือไม่
-     * คืนค่า true ถ้ามี คืนค่า false ถ้าไม่มี
+     * Check if an index exists in a table.
+     * Returns true if the index exists, false otherwise.
      *
-     * @param string $database_name
-     * @param string $table_name
-     * @param string $index
+     * @param string $database_name The database name.
+     * @param string $table_name    The table name.
+     * @param string $index         The index name.
      *
      * @return bool
      */
@@ -369,68 +361,64 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นเพิ่มข้อมูลใหม่ลงในตาราง
-     * สำเร็จ คืนค่า id ที่เพิ่ม ผิดพลาด คืนค่า false
+     * Insert new data into a table.
+     * Returns the ID of the inserted data if successful, or false if an error occurs.
      *
-     * @param string $table_name ชื่อตาราง
-     * @param array  $save       ข้อมูลที่ต้องการบันทึก
+     * @param string $table_name The table name.
+     * @param array  $save       The data to be saved.
      *
      * @return int|bool
      */
     abstract public function insert($table_name, $save);
 
     /**
-     * ฟังก์ชั่นเพิ่มข้อมูลใหม่ลงในตาราง
-     * ถ้ามีข้อมูลเดิมอยู่แล้วจะเป็นการอัปเดต
-     * (ข้อมูลเดิมตาม KEY ที่เป็น UNIQUE)
-     * insert คืนค่า id ที่เพิ่ม
-     * update คืนค่า 0
-     * ผิดพลาด คืนค่า null
+     * Insert new data into a table or update existing data if a unique key constraint is violated.
+     * Returns the ID of the inserted data, 0 if an update occurred, or null if an error occurs.
      *
-     * @param string       $table_name ชื่อตาราง
-     * @param array|object $save       ข้อมูลที่ต้องการบันทึก รูปแบบ array('key1'=>'value1', 'key2'=>'value2', ...)
+     * @param string       $table_name The table name.
+     * @param array|object $save       The data to be saved in the format array('key1'=>'value1', 'key2'=>'value2', ...).
      *
      * @return int|null
      */
     abstract public function insertOrUpdate($table_name, $save);
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง sql query
-     * คืนค่า sql command
+     * Generate an SQL query command.
+     * Returns the SQL command.
      *
-     * @param array $sqls คำสั่ง sql จาก query builder
+     * @param array $sqls The SQL commands from the query builder.
      *
      * @return string
      */
     abstract public function makeQuery($sqls);
 
     /**
-     * ประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-     * คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข หรือคืนค่า false หามีข้อผิดพลาด
+     * Execute an SQL query for retrieving data.
+     * Returns an array of data that match the conditions, or false if an error occurs.
      *
-     * @param string $sql    query string
-     * @param array  $values ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query
+     * @param string $sql    The query string.
+     * @param array  $values If specified, it will use prepared statements instead of directly querying the database.
      *
      * @return array|bool
      */
     abstract protected function doCustomQuery($sql, $values = array());
 
     /**
-     * ประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-     * สำเร็จคืนค่าจำนวนแถวที่มีผล ไม่สำเร็จคืนค่า false
+     * Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.
+     * Returns the number of affected rows if successful, or false if an error occurs.
      *
-     * @param string $sql
-     * @param array  $values ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query
+     * @param string $sql    The query string.
+     * @param array  $values If specified, it will use prepared statements instead of directly querying the database.
      *
      * @return int|bool
      */
     abstract protected function doQuery($sql, $values = array());
 
     /**
-     * ปรับปรุงตาราง
-     * คืนค่า true ถ้าสำเร็จ
+     * Optimize a table.
+     * Returns true if successful.
      *
-     * @param string $table_name table name
+     * @param string $table_name The table name.
      *
      * @return bool
      */
@@ -440,11 +428,11 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-     * สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false
+     * Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.
+     * Returns true if successful, or false if an error occurs.
      *
-     * @param string $sql
-     * @param array  $values ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query
+     * @param string $sql    The query string.
+     * @param array  $values If specified, it will use prepared statements instead of directly querying the database.
      *
      * @return bool
      */
@@ -454,7 +442,7 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นอ่านจำนวน query ทั้งหมดที่ทำงาน
+     * Get the total count of executed SQL queries.
      *
      * @return int
      */
@@ -464,10 +452,10 @@ abstract class Driver extends Query
     }
 
     /**
-     * ซ่อมแซมตาราง
-     * คืนค่า true ถ้าสำเร็จ
+     * Repair a table.
+     * Returns true if successful.
      *
-     * @param string $table_name table name
+     * @param string $table_name The table name.
      *
      * @return bool
      */
@@ -477,33 +465,33 @@ abstract class Driver extends Query
     }
 
     /**
-     * เรียกดูข้อมูล
-     * คืนค่าผลลัพท์ในรูป array ถ้าไม่สำเร็จ คืนค่าแอเรย์ว่าง
+     * Retrieve data from a table.
+     * Returns the result in an array format. If unsuccessful, returns an empty array.
      *
-     * @param string $table_name ชื่อตาราง
-     * @param mixed  $condition  query WHERE
-     * @param array  $sort       เรียงลำดับ
-     * @param int    $limit      จำนวนข้อมูลที่ต้องการ
+     * @param string $table_name The table name.
+     * @param mixed  $condition  The WHERE condition for the query.
+     * @param array  $sort       The sorting order.
+     * @param int    $limit      The number of data to retrieve.
      *
      * @return array
      */
     abstract public function select($table_name, $condition = array(), $sort = array(), $limit = 0);
 
     /**
-     * เลือกฐานข้อมูล
-     * คืนค่า false หากไม่สำเร็จ
+     * Select a database.
+     * Returns false if unsuccessful.
      *
-     * @param string $database
+     * @param string $database The database name.
      *
      * @return bool
      */
     abstract public function selectDB($database);
 
     /**
-     * ฟังก์ชั่นตรวจสอบว่ามีตาราง หรือไม่
-     * คืนค่า true หากมีตารางนี้อยู่ ไม่พบคืนค่า false
+     * Check if a table exists.
+     * Returns true if the table exists, false otherwise.
      *
-     * @param string $table_name ชื่อตาราง
+     * @param string $table_name The table name.
      *
      * @return bool
      */
@@ -514,23 +502,23 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นแก้ไขข้อมูล
-     * สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false
+     * Update data in a table.
+     * Returns true if successful, false otherwise.
      *
-     * @param string $table_name ชื่อตาราง
-     * @param mixed  $condition  query WHERE
-     * @param array  $save       ข้อมูลที่ต้องการบันทึก รูปแบบ array('key1'=>'value1', 'key2'=>'value2', ...)
+     * @param string $table_name The table name.
+     * @param mixed  $condition  The WHERE condition for the query.
+     * @param array  $save       The data to be saved in the format array('key1'=>'value1', 'key2'=>'value2', ...).
      *
      * @return bool
      */
     abstract public function update($table_name, $condition, $save);
 
     /**
-     * อัปเดตข้อมูลทุก record
-     * สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false
+     * Update data for all records in a table.
+     * Returns true if successful, false otherwise.
      *
-     * @param string $table_name table name
-     * @param array  $save       ข้อมูลที่ต้องการบันทึก array('key1'=>'value1', 'key2'=>'value2', ...)
+     * @param string $table_name The table name.
+     * @param array  $save       The data to be saved in the format array('key1'=>'value1', 'key2'=>'value2', ...).
      *
      * @return bool
      */
@@ -540,11 +528,11 @@ abstract class Driver extends Query
     }
 
     /**
-     * ฟังก์ชั่นบันทึกการ query sql
+     * Log the SQL query.
      *
-     * @param string $type
-     * @param string $sql
-     * @param array  $values (options)
+     * @param string $type    The type of query.
+     * @param string $sql     The SQL query string.
+     * @param array  $values  (Optional) The values for prepared statements.
      */
     protected function log($type, $sql, $values = array())
     {
@@ -558,7 +546,7 @@ abstract class Driver extends Query
                     }
                 }
             }
-            // บันทึก log
+            // Log the data
             Logger::create()->info(implode('', $datas));
         }
     }

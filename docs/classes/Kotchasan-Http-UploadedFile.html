@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -131,6 +137,7 @@
             in package
             <ul class="phpdocumentor-breadcrumbs">
                                     <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan.html">Kotchasan</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan-Http.html">Http</a></li>
                             </ul>
         </div>
     
@@ -143,11 +150,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Class สำหรับจัดการไฟล์อัปโหลด</p>
+            <p class="phpdocumentor-summary">Class for handling uploaded files.</p>
 
 
 
@@ -157,20 +164,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -202,78 +200,77 @@
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>ข้อผิดพลาดการอัปโหลด UPLOAD_ERR_XXX</dd>
+<dd>The upload error code (UPLOAD_ERR_XXX).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Http-UploadedFile.html#property_ext">$ext</a>
     <span>
-                &nbsp;: string            </span>
+                &nbsp;: string|null            </span>
 </dt>
-<dd>นามสกุลของไฟล์อัปโหลด</dd>
+<dd>The file extension of the uploaded file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Http-UploadedFile.html#property_isMoved">$isMoved</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>ใช้สำหรับบอกว่ามีการย้ายไฟล์ไปแล้ว</dd>
+<dd>Indicates whether the file has been moved.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Http-UploadedFile.html#property_mime">$mime</a>
     <span>
-                &nbsp;: string            </span>
+                &nbsp;: string|null            </span>
 </dt>
-<dd>MIME Type</dd>
+<dd>The MIME type of the file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Http-UploadedFile.html#property_name">$name</a>
     <span>
-                &nbsp;: string            </span>
+                &nbsp;: string|null            </span>
 </dt>
-<dd>ชื่อไฟล์ที่อัปโหลด</dd>
+<dd>The name of the uploaded file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Http-UploadedFile.html#property_sapi">$sapi</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>Indicates if the upload is from a SAPI environment</dd>
+<dd>Indicates if the upload is from a SAPI environment.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Http-UploadedFile.html#property_size">$size</a>
     <span>
-                &nbsp;: int            </span>
+                &nbsp;: int|null            </span>
 </dt>
-<dd>ขนาดไฟล์อัปโหลด</dd>
+<dd>The size of the uploaded file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Http-UploadedFile.html#property_stream">$stream</a>
     <span>
-                &nbsp;: <a href="classes/Kotchasan-Http-Stream.html"><abbr title="\Kotchasan\Http\Stream">Stream</abbr></a>            </span>
+                &nbsp;: <a href="classes/Kotchasan-Http-Stream.html"><abbr title="\Kotchasan\Http\Stream">Stream</abbr></a>|null            </span>
 </dt>
-<dd>file stream</dd>
+<dd>The file stream.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Http-UploadedFile.html#property_tmp_name">$tmp_name</a>
     <span>
-                &nbsp;: string            </span>
+                &nbsp;: string|null            </span>
 </dt>
-<dd>ไฟล์อัปโหลด รวมพาธ</dd>
+<dd>The path to the uploaded file.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ไฟล์อัปโหลด</dd>
+<dd>Creates a new UploadedFile instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_copyTo">copyTo()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>สำเนาไฟล์อัปโหลดไปยังที่อยู่ใหม่
-คืนค่า true ถ้าอัปโหลดเรียบร้อย</dd>
+<dd>Copies the uploaded file to a new location.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_cropImage">cropImage()</a>
@@ -336,80 +333,70 @@
     <span>
                         &nbsp;: int|null    </span>
 </dt>
-<dd>อ่านขนาดของไฟล์อัปโหลด</dd>
+<dd>Retrieves the size of the uploaded file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_getStream">getStream()</a>
     <span>
                         &nbsp;: <abbr title="\Kotchasan\Http\StreamInterface">StreamInterface</abbr>    </span>
 </dt>
-<dd>ส่งออกไฟล์อัปโหลดเป็น Stream</dd>
+<dd>Retrieves the uploaded file as a stream.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_getTempFileName">getTempFileName()</a>
     <span>
                         &nbsp;: string|null    </span>
 </dt>
-<dd>อ่านไฟล์รวม path จากตัวแปร tmp_name</dd>
+<dd>Retrieves the path of the uploaded file, including the temporary directory.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_getUploadSize">getUploadSize()</a>
     <span>
                         &nbsp;: string|int    </span>
 </dt>
-<dd>อ่านการตั้งค่าขนาดของไฟลอัปโหลด</dd>
+<dd>Retrieves the configured maximum upload file size.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_hasError">hasError()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามีข้อผิดพลาดการอัปโหลดหรือไม่
-คืนค่า false ถ้าไม่มีไฟล์อัปโหลดหรืออัปโหลดสำเร็จ, คืนค่า true ถ้ามีข้อผิดพลาด</dd>
+<dd>Checks if an error occurred during the upload process.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_hasUploadFile">hasUploadFile()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบไฟล์อัปโหลด
-คืนค่า true ถ้ามีไฟล์อัปโหลด</dd>
+<dd>Checks if an upload file exists.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_moveTo">moveTo()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ย้ายไฟล์อัปโหลดไปยังที่อยู่ใหม่
-คืนค่า true ถ้าอัปโหลดเรียบร้อย</dd>
+<dd>Moves the uploaded file to the specified target path.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_resizeImage">resizeImage()</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;|bool    </span>
+                        &nbsp;: string    </span>
 </dt>
-<dd>ปรับขนาดของรูปภาพอัปโหลด โดยรักษาอัตราส่วนของภาพตามความกว้างที่ต้องการ
-หากรูปภาพมีขนาดเล็กกว่าที่กำหนด จะเป็นการ copy file
-หากรูปภาพมีความสูง หรือความกว้างมากกว่า $width
-จะถูกปรับขนาดให้มีขนาดไม่เกิน $width (ทั้งความสูงและความกว้าง)
-และเปลี่ยนชนิดของภาพเป็น jpg
-คืนค่าแอเรย์ [name, width, height, mime] ของรูปภาพปลายทาง หรือ false ถ้าไม่สามารถดำเนินการได้</dd>
+<dd>Resizes an image.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_validFileExt">validFileExt()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบนามสกุลของไฟล์อัปโหลด
-คืนค่า true ถ้านามสกุลของไฟล์อัปโหลดอยู่ใน $exts</dd>
+<dd>Checks if the file extension is valid.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Http-UploadedFile.html#method_check">check()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังชั่นตรวจสอบไฟล์อัปโหลด
-คืนค่า true ถ้าสามารถอัปโหลดได้</dd>
+<dd>Checks if the uploaded file is valid and the target directory is writable.</dd>
 
         </dl>
 
@@ -439,11 +426,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ข้อผิดพลาดการอัปโหลด UPLOAD_ERR_XXX</p>
+        <p class="phpdocumentor-summary">The upload error code (UPLOAD_ERR_XXX).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -472,15 +459,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">นามสกุลของไฟล์อัปโหลด</p>
+        <p class="phpdocumentor-summary">The file extension of the uploaded file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$ext</span>
     </code>
 
@@ -509,7 +496,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">ใช้สำหรับบอกว่ามีการย้ายไฟล์ไปแล้ว</p>
+        <p class="phpdocumentor-summary">Indicates whether the file has been moved.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -538,15 +525,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">MIME Type</p>
+        <p class="phpdocumentor-summary">The MIME type of the file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$mime</span>
     </code>
 
@@ -571,15 +558,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อไฟล์ที่อัปโหลด</p>
+        <p class="phpdocumentor-summary">The name of the uploaded file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$name</span>
     </code>
 
@@ -604,11 +591,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Indicates if the upload is from a SAPI environment</p>
+        <p class="phpdocumentor-summary">Indicates if the upload is from a SAPI environment.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -637,15 +624,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ขนาดไฟล์อัปโหลด</p>
+        <p class="phpdocumentor-summary">The size of the uploaded file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">int</span>
+        <span class="phpdocumentor-signature__type">int|null</span>
     <span class="phpdocumentor-signature__name">$size</span>
     </code>
 
@@ -670,15 +657,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">file stream</p>
+        <p class="phpdocumentor-summary">The file stream.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Http-Stream.html"><abbr title="\Kotchasan\Http\Stream">Stream</abbr></a></span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Http-Stream.html"><abbr title="\Kotchasan\Http\Stream">Stream</abbr></a>|null</span>
     <span class="phpdocumentor-signature__name">$stream</span>
     </code>
 
@@ -703,15 +690,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ไฟล์อัปโหลด รวมพาธ</p>
+        <p class="phpdocumentor-summary">The path to the uploaded file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$tmp_name</span>
     </code>
 
@@ -740,15 +727,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">91</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ไฟล์อัปโหลด</p>
+        <p class="phpdocumentor-summary">Creates a new UploadedFile instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$originalName</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mimeType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$error</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sapi</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$originalName</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mimeType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$error</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sapi</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -758,7 +745,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไฟล์อัปโหลด รวมพาธ</p>
+                    <section class="phpdocumentor-description"><p>The path to the uploaded file.</p>
 </section>
 
             </dd>
@@ -767,34 +754,34 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อไฟล์ที่อัปโหลด</p>
+                    <section class="phpdocumentor-description"><p>The original name of the uploaded file.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$mimeType</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>MIME Type</p>
+                    <section class="phpdocumentor-description"><p>The MIME type of the uploaded file.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$size</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ขนาดไฟล์อัปโหลด</p>
+                    <section class="phpdocumentor-description"><p>The size of the uploaded file.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$error</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อผิดพลาดการอัปโหลด UPLOAD_ERR_XXX</p>
+                    <section class="phpdocumentor-description"><p>The upload error code (UPLOAD_ERR_XXX).</p>
 </section>
 
             </dd>
@@ -803,7 +790,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>indicates if the upload is in a SAPI environment</p>
+                    <section class="phpdocumentor-description"><p>Indicates if the upload is in a SAPI environment.</p>
 </section>
 
             </dd>
@@ -830,12 +817,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">112</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สำเนาไฟล์อัปโหลดไปยังที่อยู่ใหม่
-คืนค่า true ถ้าอัปโหลดเรียบร้อย</p>
+        <p class="phpdocumentor-summary">Copies the uploaded file to a new location.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -849,7 +835,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ที่อยู่ปลายทางที่ต้องการย้าย</p>
+                    <section class="phpdocumentor-description"><p>The destination path to which the file should be moved.</p>
 </section>
 
             </dd>
@@ -867,7 +853,7 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\RuntimeException">RuntimeException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ข้อผิดพลาดการอัปโหลด</p>
+                                                 <section class="phpdocumentor-description"><p>If an error occurs while copying the file.</p>
 </section>
 
                                     </dd>
@@ -877,7 +863,7 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ไดเรคทอรี่ไม่สามารถเขียนได้</p>
+                                                 <section class="phpdocumentor-description"><p>If the target directory is not writable.</p>
 </section>
 
                                     </dd>
@@ -886,7 +872,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True on success, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -902,7 +890,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">144</span>
+    <span class="phpdocumentor-element-found-in__line">150</span>
 
     </aside>
 
@@ -1013,7 +1001,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">163</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 
     </aside>
 
@@ -1060,7 +1048,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">173</span>
+    <span class="phpdocumentor-element-found-in__line">179</span>
 
     </aside>
 
@@ -1093,7 +1081,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">187</span>
+    <span class="phpdocumentor-element-found-in__line">193</span>
 
     </aside>
 
@@ -1126,7 +1114,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">197</span>
+    <span class="phpdocumentor-element-found-in__line">203</span>
 
     </aside>
 
@@ -1159,7 +1147,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">208</span>
+    <span class="phpdocumentor-element-found-in__line">214</span>
 
     </aside>
 
@@ -1193,7 +1181,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">220</span>
+    <span class="phpdocumentor-element-found-in__line">226</span>
 
     </aside>
 
@@ -1241,11 +1229,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">256</span>
+    <span class="phpdocumentor-element-found-in__line">262</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านขนาดของไฟล์อัปโหลด</p>
+        <p class="phpdocumentor-summary">Retrieves the size of the uploaded file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1258,7 +1246,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The size of the uploaded file in bytes, or null if the size is unknown.</p>
+</section>
+
     
 </article>
                     <article
@@ -1274,11 +1264,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">268</span>
+    <span class="phpdocumentor-element-found-in__line">274</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ส่งออกไฟล์อัปโหลดเป็น Stream</p>
+        <p class="phpdocumentor-summary">Retrieves the uploaded file as a stream.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1298,7 +1288,7 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\RuntimeException">RuntimeException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้าไม่พบไฟล์</p>
+                                                 <section class="phpdocumentor-description"><p>If the file has already been moved or if the file is not found.</p>
 </section>
 
                                     </dd>
@@ -1307,7 +1297,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><abbr title="\Kotchasan\Http\StreamInterface">StreamInterface</abbr></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The uploaded file stream.</p>
+</section>
+
     
 </article>
                     <article
@@ -1323,11 +1315,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">284</span>
+    <span class="phpdocumentor-element-found-in__line">290</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านไฟล์รวม path จากตัวแปร tmp_name</p>
+        <p class="phpdocumentor-summary">Retrieves the path of the uploaded file, including the temporary directory.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1340,7 +1332,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The path of the uploaded file, or null if the file is not available.</p>
+</section>
+
     
 </article>
                     <article
@@ -1356,11 +1350,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">296</span>
+    <span class="phpdocumentor-element-found-in__line">302</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านการตั้งค่าขนาดของไฟลอัปโหลด</p>
+        <p class="phpdocumentor-summary">Retrieves the configured maximum upload file size.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1374,7 +1368,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false (default) คืนค่าเป็นข้อความเช่น 2M, true คืนค่าเป็นตัวเลข (byte)</p>
+                    <section class="phpdocumentor-description"><p>False (default) to return the size as a string (e.g., '2M'), true to return the size in bytes.</p>
 </section>
 
             </dd>
@@ -1385,7 +1379,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The maximum upload file size as a string or an integer (bytes).</p>
+</section>
+
     
 </article>
                     <article
@@ -1401,12 +1397,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">314</span>
+    <span class="phpdocumentor-element-found-in__line">319</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามีข้อผิดพลาดการอัปโหลดหรือไม่
-คืนค่า false ถ้าไม่มีไฟล์อัปโหลดหรืออัปโหลดสำเร็จ, คืนค่า true ถ้ามีข้อผิดพลาด</p>
+        <p class="phpdocumentor-summary">Checks if an error occurred during the upload process.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1419,7 +1414,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if an error occurred, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -1435,12 +1432,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">328</span>
+    <span class="phpdocumentor-element-found-in__line">332</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบไฟล์อัปโหลด
-คืนค่า true ถ้ามีไฟล์อัปโหลด</p>
+        <p class="phpdocumentor-summary">Checks if an upload file exists.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1453,7 +1449,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if an upload file exists, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -1469,12 +1467,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">344</span>
+    <span class="phpdocumentor-element-found-in__line">347</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ย้ายไฟล์อัปโหลดไปยังที่อยู่ใหม่
-คืนค่า true ถ้าอัปโหลดเรียบร้อย</p>
+        <p class="phpdocumentor-summary">Moves the uploaded file to the specified target path.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1488,7 +1485,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ที่อยู่ปลายทางที่ต้องการย้าย</p>
+                    <section class="phpdocumentor-description"><p>The path where the file will be moved.</p>
 </section>
 
             </dd>
@@ -1504,9 +1501,9 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\RuntimeException">RuntimeException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ข้อผิดพลาดหากที่อยู่ปลายทางไม่สามารถเขียนได้</p>
+                                                 <section class="phpdocumentor-description"><p>If the file has already been moved or an error occurred during the move operation.</p>
 </section>
 
                                     </dd>
@@ -1514,9 +1511,9 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\RuntimeException">RuntimeException</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ข้อผิดพลาดการอัปโหลด</p>
+                                                 <section class="phpdocumentor-description"><p>If the target directory is not writable.</p>
 </section>
 
                                     </dd>
@@ -1525,7 +1522,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the file was successfully moved, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -1541,20 +1540,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">388</span>
+    <span class="phpdocumentor-element-found-in__line">389</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ปรับขนาดของรูปภาพอัปโหลด โดยรักษาอัตราส่วนของภาพตามความกว้างที่ต้องการ
-หากรูปภาพมีขนาดเล็กกว่าที่กำหนด จะเป็นการ copy file
-หากรูปภาพมีความสูง หรือความกว้างมากกว่า $width
-จะถูกปรับขนาดให้มีขนาดไม่เกิน $width (ทั้งความสูงและความกว้าง)
-และเปลี่ยนชนิดของภาพเป็น jpg
-คืนค่าแอเรย์ [name, width, height, mime] ของรูปภาพปลายทาง หรือ false ถ้าไม่สามารถดำเนินการได้</p>
+        <p class="phpdocumentor-summary">Resizes an image.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">resizeImage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$exts</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$target</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$width</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$watermark</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span></code>
+                <span class="phpdocumentor-signature__name">resizeImage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$exts</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$target</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$width</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$watermark</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1564,7 +1558,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>นามสกุลของไฟล์รูปภาพที่ยอมรับ เช่น [jpg, gif, png]</p>
+                    <section class="phpdocumentor-description"><p>An array of valid file extensions.</p>
 </section>
 
             </dd>
@@ -1573,7 +1567,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>path ของไฟล์รูปภาพปลายทาง</p>
+                    <section class="phpdocumentor-description"><p>The target directory for saving the resized image.</p>
 </section>
 
             </dd>
@@ -1582,7 +1576,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อไฟล์ของรูปภาพปลายทาง</p>
+                    <section class="phpdocumentor-description"><p>The name of the resized image.</p>
 </section>
 
             </dd>
@@ -1591,7 +1585,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ขนาดสูงสุดของรูปภาพที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The desired width of the resized image.</p>
 </section>
 
             </dd>
@@ -1600,18 +1594,46 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) ข้อความลายน้ำ</p>
+                    <section class="phpdocumentor-description"><p>Optional watermark to be applied on the resized image.</p>
 </section>
 
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\RuntimeException">RuntimeException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If unable to create the image.</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If the file extension or target directory is invalid.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span>
+    <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The path to the resized image.</p>
+</section>
+
     
 </article>
                     <article
@@ -1631,8 +1653,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบนามสกุลของไฟล์อัปโหลด
-คืนค่า true ถ้านามสกุลของไฟล์อัปโหลดอยู่ใน $exts</p>
+        <p class="phpdocumentor-summary">Checks if the file extension is valid.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1646,7 +1667,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการนามสกุลของไฟล์อัปโหลดที่ยอมรับ เช่น [jpg, gif, png]</p>
+                    <section class="phpdocumentor-description"><p>An array of valid file extensions.</p>
 </section>
 
             </dd>
@@ -1657,7 +1678,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the file extension is valid, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -1673,12 +1696,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/UploadedFile.php"><a href="files/kotchasan-http-uploadedfile.html"><abbr title="Kotchasan/Http/UploadedFile.php">UploadedFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">424</span>
+    <span class="phpdocumentor-element-found-in__line">423</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังชั่นตรวจสอบไฟล์อัปโหลด
-คืนค่า true ถ้าสามารถอัปโหลดได้</p>
+        <p class="phpdocumentor-summary">Checks if the uploaded file is valid and the target directory is writable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1692,7 +1714,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>นามสกุลของไฟล์รูปภาพที่ยอมรับ เช่น [jpg, gif, png]</p>
+                    <section class="phpdocumentor-description"><p>An array of valid file extensions.</p>
 </section>
 
             </dd>
@@ -1701,7 +1723,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไดเรคทอรี่ปลายทาง</p>
+                    <section class="phpdocumentor-description"><p>The target directory.</p>
 </section>
 
             </dd>
@@ -1719,7 +1741,7 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\RuntimeException">RuntimeException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้าชนิดของไฟล์อัปโหลดไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the type of file is invalid.</p>
 </section>
 
                                     </dd>
@@ -1729,7 +1751,7 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้าไดเร็คทอรี่ไม่สามารถเขียนได้</p>
+                                                 <section class="phpdocumentor-description"><p>If the target directory is not writable.</p>
 </section>
 
                                     </dd>
@@ -1738,7 +1760,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the file is valid and the directory is writable, false otherwise.</p>
+</section>
+
     
 </article>
             </section>

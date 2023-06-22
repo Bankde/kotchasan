@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -150,8 +156,10 @@
 
     </aside>
 
-            <p class="phpdocumentor-summary">Recordset base class</p>
+            <p class="phpdocumentor-summary">Recordset base class.</p>
 
+    <section class="phpdocumentor-description"><p>This class provides methods for querying and manipulating database records.</p>
+</section>
 
 
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -160,20 +168,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -205,14 +204,14 @@
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>Config class</dd>
+<dd>Config class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Db.html#property_db">$db</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Database-Driver.html"><abbr title="\Kotchasan\Database\Driver">Driver</abbr></a>            </span>
 </dt>
-<dd>database connection</dd>
+<dd>Database connection.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Query.html#property_debugger">$debugger</a>
@@ -227,7 +226,7 @@
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>            </span>
 </dt>
-<dd>Server request class</dd>
+<dd>Server request class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Query.html#property_sqls">$sqls</a>
@@ -241,109 +240,105 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ข้อมูล</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Orm-Recordset.html#property_field">$field</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a>            </span>
 </dt>
-<dd>คลาส Field</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Orm-Recordset.html#property_fields">$fields</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายชื่อฟิลด์</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Orm-Recordset.html#property_firstRecord">$firstRecord</a>
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>รายการเริ่มต้นสำหรับการ query เพื่อแบ่งหน้า</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Orm-Recordset.html#property_perPage">$perPage</a>
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>จำนวนรายการต่อหน้า สำหรับใช้ในการแบ่งหน้า</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Orm-Recordset.html#property_toArray">$toArray</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>กำหนดผลลัพท์ของ Recordset
-true ผลลัพท์เป็น Array
-false ผลลัพท์เป็น Model</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Orm-Recordset.html#property_values">$values</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ถ้ามีข้อมูลในตัวแปรนี้ จะใช้การ prepare แทน exexute</dd>
+<dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>create new Recordset</dd>
+<dd>Create a new Recordset instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_all">all()</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;|<abbr title="\static">static</abbr>    </span>
+                        &nbsp;: array&lt;string|int, mixed&gt;|static    </span>
 </dt>
-<dd>query ข้อมูลทุกรายการ
-SELECT .</dd>
+<dd>Retrieve all records.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_cacheOn">cacheOn()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>เปิดการใช้งานแคช
-จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล</dd>
+<dd>Enable caching.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_count">count()</a>
     <span>
                         &nbsp;: int    </span>
 </dt>
-<dd>สอบถามจำนวน record ใช้สำหรับการแบ่งหน้า</dd>
+<dd>Get the record count.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_create">create()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>create new Recordset</dd>
+<dd>Create a new instance of the Recordset class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_createQuery">createQuery()</a>
     <span>
-                        &nbsp;: string    </span>
+                        &nbsp;: mixed    </span>
 </dt>
-<dd>build query string</dd>
+<dd>Build the SELECT query string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_createTmpTable">createTmpTable()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>คำสั่งสร้างตารางชั่วคราว</dd>
+<dd>Create a temporary table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_createView">createView()</a>
     <span>
-                        &nbsp;: static    </span>
+                        &nbsp;: bool    </span>
 </dt>
-<dd>คำสั่งสร้าง View</dd>
+<dd>Create a view based on the specified table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_current">current()</a>
@@ -357,15 +352,14 @@ SELECT .</dd>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|object    </span>
 </dt>
-<dd>ฟังก์ชั่นประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข</dd>
+<dd>Execute a custom SQL query to retrieve data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Db.html#method_db">db()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Database-Driver.html"><abbr title="\Kotchasan\Database\Driver">Driver</abbr></a>    </span>
 </dt>
-<dd>อ่าน database connection</dd>
+<dd>Get the database connection.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Query.html#method_debug">debug()</a>
@@ -382,69 +376,63 @@ SELECT .</dd>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ลบ record กำหนดโดย $condition
-คืนค่า true ถ้าสำเร็จ</dd>
+<dd>Delete records based on the specified condition.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_emptyTable">emptyTable()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นลบข้อมูลทั้งหมดในตาราง
-คืนค่า true ถ้าสำเร็จ</dd>
+<dd>Function to delete all data in the table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_execute">execute()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|<abbr title="\static">static</abbr>    </span>
 </dt>
-<dd>query ข้อมูลที่มีการแบ่งหน้า
-SELECT .</dd>
+<dd>Execute a query with pagination.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_fieldExists">fieldExists()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นตรวจสอบว่ามีฟิลด์ หรือไม่
-คืนค่า true หากมีฟิลด์นี้อยู่ ไม่พบคืนค่า false</dd>
+<dd>Check if a field exists.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_find">find()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a>    </span>
 </dt>
-<dd>สอบถามข้อมูลที่ $primaryKey คืนค่าข้อมูลรายการเดียว</dd>
+<dd>Retrieve a single record by $primaryKey.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_first">first()</a>
     <span>
                         &nbsp;: bool|array&lt;string|int, mixed&gt;|<a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a>    </span>
 </dt>
-<dd>Query ข้อมูลรายการเดียว
-ไม่พบคืนค่า false พบคืนค่า record ของข้อมูลรายการเดียว
-SELECT .... LIMIT 1</dd>
+<dd>Query for a single record.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Db.html#method_getAllSettings">getAllSettings()</a>
     <span>
                         &nbsp;: object    </span>
 </dt>
-<dd>คืนค่ากำหนดทั้งหมดของฐานข้อมูล</dd>
+<dd>Get all database settings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_getField">getField()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a>    </span>
 </dt>
-<dd>คืนค่าอ๊อปเจ็ค Field ของ Recordset</dd>
+<dd>Get the Field object of the Recordset.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_getFields">getFields()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>รายชื่อฟิลด์ทั้งหมดของ Model</dd>
+<dd>Get all the field names of the Model.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Query.html#method_getFullTableName">getFullTableName()</a>
@@ -459,7 +447,7 @@ SELECT .... LIMIT 1</dd>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>อ่านค่ากำหนดของฐานข้อมูล</dd>
+<dd>Get the value of a database setting.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Query.html#method_getTableName">getTableName()</a>
@@ -474,23 +462,21 @@ SELECT .... LIMIT 1</dd>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่า value สำหรับการ execute</dd>
+<dd>Get the values for execution.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_group">group()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นสำหรับจัดกลุ่มคำสั่ง และ เชื่อมแต่ละกลุ่มด้วย $oprator
-คืนค่า query ภายใต้ ()</dd>
+<dd>Function for grouping commands and connecting each group with an operator.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_insert">insert()</a>
     <span>
                         &nbsp;: int|bool    </span>
 </dt>
-<dd>insert ข้อมูล
-สำเร็จ คืนค่า id ที่เพิ่ม ผิดพลาด คืนค่า false</dd>
+<dd>Insert data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_join">join()</a>
@@ -504,58 +490,56 @@ SELECT .... LIMIT 1</dd>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>Inherited from Iterator.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_limit">limit()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>จำกัดผลลัพท์ และกำหนดรายการเริ่มต้น</dd>
+<dd>Limit the number of results and specify the starting record.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_next">next()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>Inherited from Iterator.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_order">order()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>สร้าง query เรียงลำดับ</dd>
+<dd>Create a query with sorting.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_query">query()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false</dd>
+<dd>Process SQL statements that do not require a result, such as CREATE, INSERT, and UPDATE.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_recordCount">recordCount()</a>
     <span>
                         &nbsp;: int    </span>
 </dt>
-<dd>สอบถามจำนวน record ทั้งหมดที่ query แล้ว</dd>
+<dd>Get the total number of records queried.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_rewind">rewind()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>inherited from Iterator</dd>
+<dd>Inherited from Iterator.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_take">take()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>จำกัดจำนวนผลลัพท์
-LIMIT $start, $count</dd>
+<dd>Limit the number of results.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Query.html#method_text">text()</a>
@@ -569,50 +553,42 @@ LIMIT $start, $count</dd>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>คืนค่าข้อมูลเป็น Array
-ฟังก์ชั่นนี้ใช้เรียกก่อนการสอบถามข้อมูล</dd>
+<dd>Retrieve data as an array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_toQueryBuilder">toQueryBuilder()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Database-QueryBuilder.html"><abbr title="\Kotchasan\Database\QueryBuilder">QueryBuilder</abbr></a>    </span>
 </dt>
-<dd>ส่งออกฐานข้อมูลเป็น QueryBuilder</dd>
+<dd>Export the database query as a QueryBuilder instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_update">update()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>อัปเดตข้อมูล
-สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false</dd>
+<dd>Update data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_updateAll">updateAll()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>อัปเดตข้อมูลทุก record
-สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false</dd>
+<dd>Update data for all records.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_valid">valid()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>Determine if there are more records to iterate over.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_where">where()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>WHERE ...
-int ค้นหาจาก primaryKey เช่น id=1 หมายถึง WHERE `id`=1
-string เช่น QUERY ต่างๆ `email`=&#039;xxx.com&#039; หมายถึง WHERE `email`=&#039;xxx.com&#039;
-array เช่น (&#039;id&#039;, 1) หมายถึง WHERE `id`=1
-array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) หมายถึง WHERE `email`!=&#039;xxx.com&#039;
-ถ้าเป็น array สามารถรุบได้หลายค่าโดยแต่ละค่าจะเชื่อมด้วย $oprator</dd>
+<dd>Add a WHERE clause to the query.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Kotchasan-Database-Query.html#method_aliasName">aliasName()</a>
@@ -715,22 +691,21 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>สร้าง query จาก config</dd>
+<dd>Build a query based on the provided configuration.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_doExecute">doExecute()</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;|<abbr title="\static">static</abbr>    </span>
+                        &nbsp;: array&lt;string|int, mixed&gt;|static    </span>
 </dt>
-<dd>query ข้อมูลที่มีการแบ่งหน้า
-SELECT .</dd>
+<dd>Execute a query with pagination.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Orm-Recordset.html#method_doJoin">doJoin()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>INNER JOIN table ON .</dd>
+<dd>Perform a JOIN operation on the query.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Database-Query.html#method_whereValue">whereValue()</a>
@@ -767,11 +742,11 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Config class</p>
+        <p class="phpdocumentor-summary">Config class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -804,7 +779,7 @@ SELECT .</dd>
 
     </aside>
 
-        <p class="phpdocumentor-summary">database connection</p>
+        <p class="phpdocumentor-summary">Database connection.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -833,7 +808,7 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
@@ -867,11 +842,11 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Server request class</p>
+        <p class="phpdocumentor-summary">Server request class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -900,7 +875,7 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -933,12 +908,11 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ข้อมูล</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
@@ -946,7 +920,9 @@ SELECT .</dd>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The data records.</p>
+</section>
+
     
 
 </article>
@@ -966,12 +942,11 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คลาส Field</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a></span>
@@ -979,7 +954,9 @@ SELECT .</dd>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The field class instance.</p>
+</section>
+
     
 
 </article>
@@ -999,20 +976,21 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อฟิลด์</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$fields</span>
-     = <span class="phpdocumentor-signature__default-value">array()</span></code>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The field names.</p>
+</section>
+
     
 
 </article>
@@ -1032,12 +1010,11 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายการเริ่มต้นสำหรับการ query เพื่อแบ่งหน้า</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">int</span>
@@ -1045,7 +1022,9 @@ SELECT .</dd>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The starting record for pagination.</p>
+</section>
+
     
 
 </article>
@@ -1065,12 +1044,11 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">จำนวนรายการต่อหน้า สำหรับใช้ในการแบ่งหน้า</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">int</span>
@@ -1078,7 +1056,9 @@ SELECT .</dd>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The number of records per page for pagination.</p>
+</section>
+
     
 
 </article>
@@ -1098,14 +1078,11 @@ SELECT .</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดผลลัพท์ของ Recordset
-true ผลลัพท์เป็น Array
-false ผลลัพท์เป็น Model</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">bool</span>
@@ -1113,7 +1090,9 @@ false ผลลัพท์เป็น Model</p>
      = <span class="phpdocumentor-signature__default-value">false</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>Determines the type of result: true for array, false for model.</p>
+</section>
+
     
 
 </article>
@@ -1133,12 +1112,11 @@ false ผลลัพท์เป็น Model</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ถ้ามีข้อมูลในตัวแปรนี้ จะใช้การ prepare แทน exexute</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
@@ -1146,7 +1124,9 @@ false ผลลัพท์เป็น Model</p>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>If values are set, it will use prepare instead of execute.</p>
+</section>
+
     
 
 </article>
@@ -1170,11 +1150,11 @@ false ผลลัพท์เป็น Model</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">create new Recordset</p>
+        <p class="phpdocumentor-summary">Create a new Recordset instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1188,7 +1168,7 @@ false ผลลัพท์เป็น Model</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อของ Field</p>
+                    <section class="phpdocumentor-description"><p>The name of the Field class.</p>
 </section>
 
             </dd>
@@ -1215,28 +1195,27 @@ false ผลลัพท์เป็น Model</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">query ข้อมูลทุกรายการ
-SELECT .</p>
+        <p class="phpdocumentor-summary">Retrieve all records.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">all</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fields</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|<abbr title="\static">static</abbr></span></code>
+                <span class="phpdocumentor-signature__name">all</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fields</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|static</span></code>
 
-        <section class="phpdocumentor-description"><p>..</p>
+        <section class="phpdocumentor-description"><p>Executes the SELECT query and returns the result as an array or model objects.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$fields</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(options) null หมายถึง SELECT ตามที่กำหนดโดย field</p>
+                    <section class="phpdocumentor-description"><p>(optional) The fields to select. Default is null (select all fields).</p>
 </section>
 
             </dd>
@@ -1245,9 +1224,11 @@ SELECT .</p>
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|<abbr title="\static">static</abbr></span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The result as an array or model objects.</p>
+</section>
+
     
 </article>
                     <article
@@ -1263,18 +1244,19 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">122</span>
+    <span class="phpdocumentor-element-found-in__line">114</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เปิดการใช้งานแคช
-จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล</p>
+        <p class="phpdocumentor-summary">Enable caching.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">cacheOn</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$auto_save</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Enables caching and specifies whether to automatically save the cache.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1282,7 +1264,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง</p>
+                    <section class="phpdocumentor-description"><p>(optional) Specifies whether to automatically save the cache. Default is true.</p>
 </section>
 
             </dd>
@@ -1309,24 +1291,28 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">133</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สอบถามจำนวน record ใช้สำหรับการแบ่งหน้า</p>
+        <p class="phpdocumentor-summary">Get the record count.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">count</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Executes a COUNT query and returns the number of records matching the conditions.</p>
+</section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The number of records matching the conditions.</p>
+</section>
+
     
 </article>
                     <article
@@ -1342,25 +1328,25 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">153</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">create new Recordset</p>
+        <p class="phpdocumentor-summary">Create a new instance of the Recordset class.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filed</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$field</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$filed</span>
+                <span class="phpdocumentor-signature__argument__name">$field</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อ Field</p>
+                    <section class="phpdocumentor-description"><p>The name of the Field class.</p>
 </section>
 
             </dd>
@@ -1371,7 +1357,9 @@ SELECT .</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the Recordset class.</p>
+</section>
+
     
 </article>
                     <article
@@ -1387,15 +1375,15 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">169</span>
+    <span class="phpdocumentor-element-found-in__line">164</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">build query string</p>
+        <p class="phpdocumentor-summary">Build the SELECT query string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">createQuery</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$count</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">createQuery</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$count</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1421,7 +1409,7 @@ SELECT .</p>
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
         
     
@@ -1439,11 +1427,11 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">199</span>
+    <span class="phpdocumentor-element-found-in__line">194</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คำสั่งสร้างตารางชั่วคราว</p>
+        <p class="phpdocumentor-summary">Create a temporary table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1457,7 +1445,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name.</p>
 </section>
 
             </dd>
@@ -1484,15 +1472,15 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">186</span>
+    <span class="phpdocumentor-element-found-in__line">181</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คำสั่งสร้าง View</p>
+        <p class="phpdocumentor-summary">Create a view based on the specified table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">createView</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                <span class="phpdocumentor-signature__name">createView</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1502,7 +1490,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The name of the table.</p>
 </section>
 
             </dd>
@@ -1511,9 +1499,11 @@ SELECT .</p>
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the view is created successfully, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -1529,7 +1519,7 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">208</span>
+    <span class="phpdocumentor-element-found-in__line">203</span>
 
     </aside>
 
@@ -1561,18 +1551,19 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">225</span>
+    <span class="phpdocumentor-element-found-in__line">220</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข</p>
+        <p class="phpdocumentor-summary">Execute a custom SQL query to retrieve data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">customQuery</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sql</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$toArray</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$values</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|object</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the result as an array or object based on the $toArray parameter.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1580,7 +1571,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query string</p>
+                    <section class="phpdocumentor-description"><p>The query string.</p>
 </section>
 
             </dd>
@@ -1589,7 +1580,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(option) default true คืนค่าเป็น Array, false คืนค่าผลลัทเป็น Object</p>
+                    <section class="phpdocumentor-description"><p>(optional) True to return the result as an array, false to return as an object. Default is true.</p>
 </section>
 
             </dd>
@@ -1598,7 +1589,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query</p>
+                    <section class="phpdocumentor-description"><p>(optional) If specified, it will use prepared statements instead of direct query execution.</p>
 </section>
 
             </dd>
@@ -1609,7 +1600,9 @@ SELECT .</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|object</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The result data.</p>
+</section>
+
     
 </article>
                     <article
@@ -1629,7 +1622,7 @@ SELECT .</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่าน database connection</p>
+        <p class="phpdocumentor-summary">Get the database connection.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1642,7 +1635,9 @@ SELECT .</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Database-Driver.html"><abbr title="\Kotchasan\Database\Driver">Driver</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The database connection.</p>
+</section>
+
     
 </article>
                     <article
@@ -1658,7 +1653,7 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -1704,18 +1699,19 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">240</span>
+    <span class="phpdocumentor-element-found-in__line">235</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลบ record กำหนดโดย $condition
-คืนค่า true ถ้าสำเร็จ</p>
+        <p class="phpdocumentor-summary">Delete records based on the specified condition.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">delete</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$all</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oprator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                <span class="phpdocumentor-signature__name">delete</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$all</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if successful.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1723,7 +1719,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>int (primaryKey), string (SQL QUERY), array</p>
+                    <section class="phpdocumentor-description"><p>The condition for deletion. It can be an int (primaryKey), string (SQL QUERY), or array.</p>
 </section>
 
             </dd>
@@ -1732,16 +1728,16 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false (default) ลบรายการเดียว, true ลบทุกรายการที่ตรงตามเงื่อนไข</p>
+                    <section class="phpdocumentor-description"><p>(optional) If false (default), delete a single record. If true, delete all records that match the condition.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$oprator</span>
+                <span class="phpdocumentor-signature__argument__name">$operator</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>สำหรับเชื่อมแต่ละ $condition เข้าด้วยกัน AND (default), OR</p>
+                    <section class="phpdocumentor-description"><p>(optional) The operator to join each $condition. Use 'AND' (default) or 'OR'.</p>
 </section>
 
             </dd>
@@ -1752,7 +1748,9 @@ SELECT .</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the deletion is successful, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -1768,25 +1766,28 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">260</span>
+    <span class="phpdocumentor-element-found-in__line">255</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นลบข้อมูลทั้งหมดในตาราง
-คืนค่า true ถ้าสำเร็จ</p>
+        <p class="phpdocumentor-summary">Function to delete all data in the table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">emptyTable</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if successful.</p>
+</section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the operation is successful, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -1802,18 +1803,17 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">273</span>
+    <span class="phpdocumentor-element-found-in__line">268</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">query ข้อมูลที่มีการแบ่งหน้า
-SELECT .</p>
+        <p class="phpdocumentor-summary">Execute a query with pagination.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">execute</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fields</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|<abbr title="\static">static</abbr></span></code>
 
-        <section class="phpdocumentor-description"><p>..</p>
+        <section class="phpdocumentor-description"><p>SELECT ...</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1823,7 +1823,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(options) null หมายถึง SELECT ตามที่กำหนดโดย field</p>
+                    <section class="phpdocumentor-description"><p>(optional) If null, SELECT all fields. Otherwise, specify the fields to select.</p>
 </section>
 
             </dd>
@@ -1850,18 +1850,19 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">297</span>
+    <span class="phpdocumentor-element-found-in__line">292</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นตรวจสอบว่ามีฟิลด์ หรือไม่
-คืนค่า true หากมีฟิลด์นี้อยู่ ไม่พบคืนค่า false</p>
+        <p class="phpdocumentor-summary">Check if a field exists.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">fieldExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$field</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if the field exists, false otherwise.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1869,7 +1870,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อฟิลด์</p>
+                    <section class="phpdocumentor-description"><p>The field name.</p>
 </section>
 
             </dd>
@@ -1880,7 +1881,9 @@ SELECT .</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the field exists, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -1896,11 +1899,11 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">312</span>
+    <span class="phpdocumentor-element-found-in__line">307</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สอบถามข้อมูลที่ $primaryKey คืนค่าข้อมูลรายการเดียว</p>
+        <p class="phpdocumentor-summary">Retrieve a single record by $primaryKey.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1914,7 +1917,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการที่ค้นหา</p>
+                    <section class="phpdocumentor-description"><p>The ID of the record to retrieve.</p>
 </section>
 
             </dd>
@@ -1925,7 +1928,9 @@ SELECT .</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The record of the specified ID.</p>
+</section>
+
     
 </article>
                     <article
@@ -1941,19 +1946,20 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">326</span>
+    <span class="phpdocumentor-element-found-in__line">321</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Query ข้อมูลรายการเดียว
-ไม่พบคืนค่า false พบคืนค่า record ของข้อมูลรายการเดียว
-SELECT .... LIMIT 1</p>
+        <p class="phpdocumentor-summary">Query for a single record.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">first</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fields</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool|array&lt;string|int, mixed&gt;|<a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a></span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns false if not found, the record data if found.
+SELECT .... LIMIT 1</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1961,7 +1967,7 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(options) null หมายถึง SELECT ตามที่กำหนดโดย field</p>
+                    <section class="phpdocumentor-description"><p>(optional) If null, SELECT all fields. Otherwise, specify the fields to select.</p>
 </section>
 
             </dd>
@@ -1972,7 +1978,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool|array&lt;string|int, mixed&gt;|<a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>False if not found, the record data if found.</p>
+</section>
+
     
 </article>
                     <article
@@ -1992,7 +2000,7 @@ SELECT .... LIMIT 1</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่ากำหนดทั้งหมดของฐานข้อมูล</p>
+        <p class="phpdocumentor-summary">Get all database settings.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2005,7 +2013,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">object</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The database settings object.</p>
+</section>
+
     
 </article>
                     <article
@@ -2021,11 +2031,11 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">361</span>
+    <span class="phpdocumentor-element-found-in__line">356</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าอ๊อปเจ็ค Field ของ Recordset</p>
+        <p class="phpdocumentor-summary">Get the Field object of the Recordset.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2038,7 +2048,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The Field object.</p>
+</section>
+
     
 </article>
                     <article
@@ -2054,11 +2066,11 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">371</span>
+    <span class="phpdocumentor-element-found-in__line">366</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อฟิลด์ทั้งหมดของ Model</p>
+        <p class="phpdocumentor-summary">Get all the field names of the Model.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2071,7 +2083,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The array of field names.</p>
+</section>
+
     
 </article>
                     <article
@@ -2087,7 +2101,7 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
@@ -2137,7 +2151,7 @@ SELECT .... LIMIT 1</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านค่ากำหนดของฐานข้อมูล</p>
+        <p class="phpdocumentor-summary">Get the value of a database setting.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2151,7 +2165,9 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The setting key.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2160,7 +2176,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The value of the setting.</p>
+</section>
+
     
 </article>
                     <article
@@ -2176,7 +2194,7 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
@@ -2222,11 +2240,11 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">384</span>
+    <span class="phpdocumentor-element-found-in__line">379</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า value สำหรับการ execute</p>
+        <p class="phpdocumentor-summary">Get the values for execution.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2239,7 +2257,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The values for execution.</p>
+</section>
+
     
 </article>
                     <article
@@ -2255,18 +2275,19 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">398</span>
+    <span class="phpdocumentor-element-found-in__line">393</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นสำหรับจัดกลุ่มคำสั่ง และ เชื่อมแต่ละกลุ่มด้วย $oprator
-คืนค่า query ภายใต้ ()</p>
+        <p class="phpdocumentor-summary">Function for grouping commands and connecting each group with an operator.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">group</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oprator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">group</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the grouped query within ().</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2274,16 +2295,16 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คำสั่ง รูปแบบ array('field1', 'condition', 'field2')</p>
+                    <section class="phpdocumentor-description"><p>The commands in the format array('field1', 'condition', 'field2').</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$oprator</span>
+                <span class="phpdocumentor-signature__argument__name">$operator</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>AND หรือ OR</p>
+                    <section class="phpdocumentor-description"><p>The operator (AND or OR).</p>
 </section>
 
             </dd>
@@ -2294,7 +2315,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The grouped query.</p>
+</section>
+
     
 </article>
                     <article
@@ -2310,18 +2333,19 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">418</span>
+    <span class="phpdocumentor-element-found-in__line">413</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">insert ข้อมูล
-สำเร็จ คืนค่า id ที่เพิ่ม ผิดพลาด คืนค่า false</p>
+        <p class="phpdocumentor-summary">Insert data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">insert</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$field</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the ID of the inserted data on success, false on failure.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2329,7 +2353,9 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The field object to be inserted.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2338,7 +2364,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int|bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The ID of the inserted data if successful, false if an error occurred.</p>
+</section>
+
     
 </article>
                     <article
@@ -2354,7 +2382,7 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">443</span>
+    <span class="phpdocumentor-element-found-in__line">438</span>
 
     </aside>
 
@@ -2374,7 +2402,7 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>field class ของตารางที่ join</p>
+                    <section class="phpdocumentor-description"><p>The field class of the table to join.</p>
 </section>
 
             </dd>
@@ -2383,7 +2411,7 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>เช่น LEFT, RIGHT, INNER...</p>
+                    <section class="phpdocumentor-description"><p>The type of join (e.g., LEFT, RIGHT, INNER...).</p>
 </section>
 
             </dd>
@@ -2392,7 +2420,7 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>where condition สำหรับการ join</p>
+                    <section class="phpdocumentor-description"><p>The join condition.</p>
 </section>
 
             </dd>
@@ -2419,11 +2447,12 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">451</span>
+    <span class="phpdocumentor-element-found-in__line">446</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Inherited from Iterator.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">key</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -2451,11 +2480,11 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">466</span>
+    <span class="phpdocumentor-element-found-in__line">461</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">จำกัดผลลัพท์ และกำหนดรายการเริ่มต้น</p>
+        <p class="phpdocumentor-summary">Limit the number of results and specify the starting record.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2469,7 +2498,7 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>จำนวนผลลัท์ที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The number of results to limit.</p>
 </section>
 
             </dd>
@@ -2478,7 +2507,7 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการเริ่มต้น</p>
+                    <section class="phpdocumentor-description"><p>The starting record.</p>
 </section>
 
             </dd>
@@ -2505,11 +2534,12 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">478</span>
+    <span class="phpdocumentor-element-found-in__line">473</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Inherited from Iterator.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">next</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -2537,11 +2567,11 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">492</span>
+    <span class="phpdocumentor-element-found-in__line">487</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้าง query เรียงลำดับ</p>
+        <p class="phpdocumentor-summary">Create a query with sorting.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2555,7 +2585,8 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>An array of sort orders ('field ASC', 'field DESC') or multiple arguments 'field ASC', 'field DESC', ...</p>
+</section>
 
             </dd>
             </dl>
@@ -2581,18 +2612,19 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">511</span>
+    <span class="phpdocumentor-element-found-in__line">506</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false</p>
+        <p class="phpdocumentor-summary">Process SQL statements that do not require a result, such as CREATE, INSERT, and UPDATE.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">query</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sql</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$values</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true on success, false on failure.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2600,14 +2632,16 @@ SELECT .... LIMIT 1</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The SQL statement to be processed.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$values</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query</p>
+                    <section class="phpdocumentor-description"><p>If specified, it forces the use of prepared statements instead of query.</p>
 </section>
 
             </dd>
@@ -2618,7 +2652,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if successful, false if an error occurred.</p>
+</section>
+
     
 </article>
                     <article
@@ -2634,11 +2670,11 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">521</span>
+    <span class="phpdocumentor-element-found-in__line">516</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สอบถามจำนวน record ทั้งหมดที่ query แล้ว</p>
+        <p class="phpdocumentor-summary">Get the total number of records queried.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2651,7 +2687,9 @@ SELECT .... LIMIT 1</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The total number of records.</p>
+</section>
+
     
 </article>
                     <article
@@ -2667,11 +2705,11 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">529</span>
+    <span class="phpdocumentor-element-found-in__line">524</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">inherited from Iterator</p>
+        <p class="phpdocumentor-summary">Inherited from Iterator.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2700,18 +2738,19 @@ SELECT .... LIMIT 1</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">544</span>
+    <span class="phpdocumentor-element-found-in__line">539</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">จำกัดจำนวนผลลัพท์
-LIMIT $start, $count</p>
+        <p class="phpdocumentor-summary">Limit the number of results.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">take</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>LIMIT $start, $count.</p>
+</section>
+
     
     
 
@@ -2734,7 +2773,7 @@ LIMIT $start, $count</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
     </aside>
 
@@ -2767,18 +2806,19 @@ LIMIT $start, $count</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">563</span>
+    <span class="phpdocumentor-element-found-in__line">558</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าข้อมูลเป็น Array
-ฟังก์ชั่นนี้ใช้เรียกก่อนการสอบถามข้อมูล</p>
+        <p class="phpdocumentor-summary">Retrieve data as an array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function should be called before querying data.</p>
+</section>
+
     
     
 
@@ -2801,11 +2841,11 @@ LIMIT $start, $count</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">574</span>
+    <span class="phpdocumentor-element-found-in__line">569</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ส่งออกฐานข้อมูลเป็น QueryBuilder</p>
+        <p class="phpdocumentor-summary">Export the database query as a QueryBuilder instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2818,7 +2858,9 @@ LIMIT $start, $count</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Database-QueryBuilder.html"><abbr title="\Kotchasan\Database\QueryBuilder">QueryBuilder</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The QueryBuilder instance.</p>
+</section>
+
     
 </article>
                     <article
@@ -2834,12 +2876,11 @@ LIMIT $start, $count</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">588</span>
+    <span class="phpdocumentor-element-found-in__line">582</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อัปเดตข้อมูล
-สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false</p>
+        <p class="phpdocumentor-summary">Update data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2853,14 +2894,18 @@ LIMIT $start, $count</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The condition for the update.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$save</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<a href="classes/Kotchasan-Orm-Field.html"><abbr title="\Kotchasan\Orm\Field">Field</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The data to be saved.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2869,7 +2914,9 @@ LIMIT $start, $count</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if successful, false if an error occurred.</p>
+</section>
+
     
 </article>
                     <article
@@ -2885,12 +2932,11 @@ LIMIT $start, $count</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">625</span>
+    <span class="phpdocumentor-element-found-in__line">618</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อัปเดตข้อมูลทุก record
-สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false</p>
+        <p class="phpdocumentor-summary">Update data for all records.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2904,7 +2950,7 @@ LIMIT $start, $count</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่ต้องการบันทึก array('key1'=&gt;'value1', 'key2'=&gt;'value2', ...)</p>
+                    <section class="phpdocumentor-description"><p>The data to be saved (array('key1' =&gt; 'value1', 'key2' =&gt; 'value2', ...)).</p>
 </section>
 
             </dd>
@@ -2915,7 +2961,9 @@ LIMIT $start, $count</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if successful, false if an error occurred.</p>
+</section>
+
     
 </article>
                     <article
@@ -2931,11 +2979,12 @@ LIMIT $start, $count</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">633</span>
+    <span class="phpdocumentor-element-found-in__line">628</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Determine if there are more records to iterate over.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">valid</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -2947,7 +2996,9 @@ LIMIT $start, $count</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The validity of the current record.</p>
+</section>
+
     
 </article>
                     <article
@@ -2963,20 +3014,15 @@ LIMIT $start, $count</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">654</span>
+    <span class="phpdocumentor-element-found-in__line">644</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">WHERE ...
-int ค้นหาจาก primaryKey เช่น id=1 หมายถึง WHERE `id`=1
-string เช่น QUERY ต่างๆ `email`=&#039;xxx.com&#039; หมายถึง WHERE `email`=&#039;xxx.com&#039;
-array เช่น (&#039;id&#039;, 1) หมายถึง WHERE `id`=1
-array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) หมายถึง WHERE `email`!=&#039;xxx.com&#039;
-ถ้าเป็น array สามารถรุบได้หลายค่าโดยแต่ละค่าจะเชื่อมด้วย $oprator</p>
+        <p class="phpdocumentor-summary">Add a WHERE clause to the query.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">where</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$where</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oprator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                <span class="phpdocumentor-signature__name">where</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$where</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -2986,14 +3032,16 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The condition(s) for the WHERE clause.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$oprator</span>
+                <span class="phpdocumentor-signature__argument__name">$operator</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(options) AND (default), OR</p>
+                    <section class="phpdocumentor-description"><p>(optional) The operator to use for multiple conditions (AND by default).</p>
 </section>
 
             </dd>
@@ -3004,7 +3052,9 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The updated Recordset instance.</p>
+</section>
+
     
 </article>
                     <article
@@ -3020,7 +3070,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">103</span>
 
     </aside>
 
@@ -3074,7 +3124,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
@@ -3119,7 +3169,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">136</span>
+    <span class="phpdocumentor-element-found-in__line">134</span>
 
     </aside>
 
@@ -3183,7 +3233,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">163</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
@@ -3228,7 +3278,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
@@ -3278,7 +3328,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">259</span>
+    <span class="phpdocumentor-element-found-in__line">257</span>
 
     </aside>
 
@@ -3323,7 +3373,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">313</span>
+    <span class="phpdocumentor-element-found-in__line">311</span>
 
     </aside>
 
@@ -3385,7 +3435,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">373</span>
+    <span class="phpdocumentor-element-found-in__line">371</span>
 
     </aside>
 
@@ -3447,7 +3497,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">423</span>
+    <span class="phpdocumentor-element-found-in__line">421</span>
 
     </aside>
 
@@ -3490,7 +3540,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">472</span>
+    <span class="phpdocumentor-element-found-in__line">470</span>
 
     </aside>
 
@@ -3533,7 +3583,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">497</span>
+    <span class="phpdocumentor-element-found-in__line">495</span>
 
     </aside>
 
@@ -3578,7 +3628,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">516</span>
+    <span class="phpdocumentor-element-found-in__line">514</span>
 
     </aside>
 
@@ -3623,7 +3673,7 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">535</span>
+    <span class="phpdocumentor-element-found-in__line">533</span>
 
     </aside>
 
@@ -3668,11 +3718,11 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">673</span>
+    <span class="phpdocumentor-element-found-in__line">663</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้าง query จาก config</p>
+        <p class="phpdocumentor-summary">Build a query based on the provided configuration.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -3686,14 +3736,18 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The query method to build.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$param</span>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The parameters for the query.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -3718,20 +3772,17 @@ array เช่น (&#039;email&#039;, &#039;!=&#039;, &#039;xxx.com&#039;) ห�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">702</span>
+    <span class="phpdocumentor-element-found-in__line">691</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">query ข้อมูลที่มีการแบ่งหน้า
-SELECT .</p>
+        <p class="phpdocumentor-summary">Execute a query with pagination.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">doExecute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$end</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|<abbr title="\static">static</abbr></span></code>
+                <span class="phpdocumentor-signature__name">doExecute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$end</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|static</span></code>
 
-        <section class="phpdocumentor-description"><p>..</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -3739,23 +3790,29 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The start index of the query results.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$end</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The end index of the query results.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|<abbr title="\static">static</abbr></span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The query results or the updated Recordset instance.</p>
+</section>
+
     
 </article>
                     <article
@@ -3771,19 +3828,17 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Orm/Recordset.php"><a href="files/kotchasan-orm-recordset.html"><abbr title="Kotchasan/Orm/Recordset.php">Recordset.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">727</span>
+    <span class="phpdocumentor-element-found-in__line">716</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">INNER JOIN table ON .</p>
+        <p class="phpdocumentor-summary">Perform a JOIN operation on the query.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">doJoin</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$field</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$on</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                <span class="phpdocumentor-signature__name">doJoin</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$field</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$on</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-        <section class="phpdocumentor-description"><p>..</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -3791,7 +3846,7 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>field class ของตารางที่ join</p>
+                    <section class="phpdocumentor-description"><p>The name of the field or table to join.</p>
 </section>
 
             </dd>
@@ -3800,16 +3855,16 @@ SELECT .</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>เช่น LEFT, RIGHT, INNER...</p>
+                    <section class="phpdocumentor-description"><p>The type of join operation (e.g., INNER, LEFT, RIGHT).</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$on</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>where condition สำหรับการ join</p>
+                    <section class="phpdocumentor-description"><p>The join condition(s).</p>
 </section>
 
             </dd>
@@ -3820,7 +3875,9 @@ SELECT .</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The updated Recordset instance.</p>
+</section>
+
     
 </article>
                     <article
@@ -3836,7 +3893,7 @@ SELECT .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">561</span>
+    <span class="phpdocumentor-element-found-in__line">559</span>
 
     </aside>
 

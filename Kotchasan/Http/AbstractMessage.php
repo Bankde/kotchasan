@@ -5,7 +5,7 @@
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * @package Kotchasan\Http
  */
 
 namespace Kotchasan\Http;
@@ -14,41 +14,46 @@ use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * HTTP messages base class (PSR-7)
+ * AbstractMessage Class
  *
- * @see https://www.kotchasan.com/
+ * This class represents an abstract HTTP message base class (PSR-7).
+ * It implements the MessageInterface.
+ *
+ * @package Kotchasan\Http
  */
 abstract class AbstractMessage implements MessageInterface
 {
     /**
-     * @var array
+     * @var array The headers of the message.
      */
     protected $headers = array();
+
     /**
-     * @var string
+     * @var string The protocol version of the message.
      */
     protected $protocol = '1.1';
+
     /**
-     * @var StreamInterface
+     * @var StreamInterface The body of the message.
      */
     protected $stream;
 
     /**
-     * init Class
+     * Initializes the class.
      *
-     * @param bool $with_header true คืนค่า HTTP Header ด้วย, false (default) ไม่รวม HTTP Header
+     * @param bool $withHeader Whether to include the HTTP header or not. Default is false.
      */
-    public function __construct($with_header = false)
+    public function __construct($withHeader = false)
     {
-        if ($with_header) {
+        if ($withHeader) {
             $this->headers = $this->getRequestHeaders();
         }
     }
 
     /**
-     * อ่าน stream
+     * Get the body of the message.
      *
-     * @return StreamInterface
+     * @return StreamInterface The message body.
      */
     public function getBody()
     {
@@ -56,12 +61,11 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * อ่าน header ที่ต้องการ ผลลัพท์เป็น array
-     * คืนค่าแอเรย์ของ header ถ้าไม่พบคืนค่าแอเรย์ว่าง
+     * Get the specified header as an array.
      *
-     * @param string $name
+     * @param string $name The name of the header.
      *
-     * @return string[]
+     * @return string[] The values of the header as an array, or an empty array if not found.
      */
     public function getHeader($name)
     {
@@ -69,12 +73,11 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * อ่าน header ที่ต้องการ ผลลัพท์เป็น string
-     * คืนค่ารายการ header ทั้งหมดที่พบเชื่อมต่อด้วย ลูกน้ำ (,) หรือคืนค่าข้อความว่าง หากไม่พบ
+     * Get the specified header as a string.
      *
-     * @param string $name
+     * @param string $name The name of the header.
      *
-     * @return string
+     * @return string The concatenated values of the header, separated by commas, or an empty string if not found.
      */
     public function getHeaderLine($name)
     {
@@ -83,9 +86,9 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * คืนค่า header ทั้งหมด ผลลัพท์เป็น array
+     * Get all the headers.
      *
-     * @return array
+     * @return array The headers of the message.
      */
     public function getHeaders()
     {
@@ -93,10 +96,9 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * คืนค่าเวอร์ชั่นของโปรโตคอล
-     * เช่น 1.1, 1.0
+     * Get the protocol version of the message.
      *
-     * @return string
+     * @return string The protocol version.
      */
     public function getProtocolVersion()
     {
@@ -104,12 +106,11 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * ตรวจสอบว่ามี header หรือไม่
-     * คืนค่า true ถ้ามี
+     * Check if a header exists.
      *
-     * @param string $name
+     * @param string $name The name of the header.
      *
-     * @return bool
+     * @return bool True if the header exists, false otherwise.
      */
     public function hasHeader($name)
     {
@@ -117,12 +118,12 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * เพิ่ม header ใหม่
+     * Add a new header.
      *
-     * @param string          $name  ชื่อของ Header
-     * @param string|string[] $value ค่าของ Header เป็น string หรือ แอเรย์ของ string
+     * @param string          $name  The name of the header.
+     * @param string|string[] $value The value(s) of the header as a string or an array of strings.
      *
-     * @throws \InvalidArgumentException ถ้าชื่อ header ไม่ถูกต้อง
+     * @throws \InvalidArgumentException If the header name is invalid.
      *
      * @return static
      */
@@ -141,9 +142,9 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * กำหนด stream
+     * Set the message body.
      *
-     * @param streamInterface $body
+     * @param StreamInterface $body The message body.
      *
      * @return static
      */
@@ -155,12 +156,12 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * กำหนด header แทนที่รายการเดิม
+     * Set a header, replacing any existing values.
      *
-     * @param string          $name  ชื่อของ Header
-     * @param string|string[] $value ค่าของ Header เป็น string หรือ แอเรย์ของ string
+     * @param string          $name  The name of the header.
+     * @param string|string[] $value The value(s) of the header as a string or an array of strings.
      *
-     * @throws \InvalidArgumentException for invalid header names or values
+     * @throws \InvalidArgumentException for invalid header names or values.
      *
      * @return static
      */
@@ -173,11 +174,11 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * กำหนด header พร้อมกันหลายรายการ แทนที่รายการเดิม
+     * Set multiple headers, replacing any existing values.
      *
-     * @param array $headers array($key => $value, $key => $value...)
+     * @param array $headers An array of headers in the format: array($key => $value, $key => $value...)
      *
-     * @throws \InvalidArgumentException for invalid header names or values
+     * @throws \InvalidArgumentException for invalid header names or values.
      *
      * @return static
      */
@@ -192,9 +193,9 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * กำหนดเวอร์ชั่นของโปรโตคอล
+     * Set the protocol version of the message.
      *
-     * @param string $version เช่น 1.1, 1.0
+     * @param string $version The protocol version (e.g., 1.1, 1.0).
      *
      * @return static
      */
@@ -206,9 +207,9 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * ลบ header
+     * Remove a header.
      *
-     * @param string $name ชื่อ header ที่ต้องการลบ
+     * @param string $name The name of the header to remove.
      *
      * @return static
      */
@@ -220,11 +221,11 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * ตรวจสอบความถูกต้องของ header
+     * Check the validity of a header.
      *
-     * @param string $name
+     * @param string $name The name of the header.
      *
-     * @throws \InvalidArgumentException ถ้า header ไม่ถูกต้อง
+     * @throws \InvalidArgumentException If the header is invalid.
      */
     protected function filterHeader($name)
     {
@@ -234,9 +235,9 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * ฟังก์ชั่นคืนค่า HTTP Header
+     * Function to retrieve HTTP headers.
      *
-     * @return array
+     * @return array An array of HTTP headers.
      */
     protected function getRequestHeaders()
     {

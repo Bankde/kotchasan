@@ -11,7 +11,7 @@
 namespace Kotchasan;
 
 /**
- * คลาสสำหรับจัดการข้อผิดพลาดของ API
+ * Exception class for handling API errors.
  *
  * @see https://www.kotchasan.com/
  */

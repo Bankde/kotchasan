@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -134,6 +140,7 @@
             in package
             <ul class="phpdocumentor-breadcrumbs">
                                     <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan.html">Kotchasan</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan-Http.html">Http</a></li>
                             </ul>
         </div>
     
@@ -146,11 +153,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Class สำหรับจัดการ URL</p>
+            <p class="phpdocumentor-summary">Class for managing URLs</p>
 
 
 
@@ -160,20 +167,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -210,7 +208,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#property_method">$method</a>
     <span>
-                &nbsp;: string            </span>
+                &nbsp;: string|null            </span>
 </dt>
 <dd></dd>
 
@@ -224,7 +222,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#property_requestTarget">$requestTarget</a>
     <span>
-                &nbsp;: string            </span>
+                &nbsp;: string|null            </span>
 </dt>
 <dd></dd>
 
@@ -238,7 +236,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#property_uri">$uri</a>
     <span>
-                &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>            </span>
+                &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>|null            </span>
 </dt>
 <dd></dd>
 
@@ -247,180 +245,175 @@
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>init Class</dd>
+<dd>Initializes the class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_createUriWithGet">createUriWithGet()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>    </span>
 </dt>
-<dd>สร้างคลาสจากลิงค์ และ รวมค่าที่มาจาก $_GET ด้วย</dd>
+<dd>Create a class from a link and merge values from $_GET</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_createUriWithGlobals">createUriWithGlobals()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>    </span>
 </dt>
-<dd>สร้างคลาสจากลิงค์ และ รวมค่าที่มาจาก $_GET และ $_POST ด้วย</dd>
+<dd>Create a class from a link and merge values from $_GET and $_POST</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_createUriWithPost">createUriWithPost()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>    </span>
 </dt>
-<dd>สร้างคลาสจากลิงค์ และ รวมค่าที่มาจาก $_POST ด้วย</dd>
+<dd>Create a class from a link and merge values from $_POST</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_getBody">getBody()</a>
     <span>
                         &nbsp;: <a href="classes/Psr-Http-Message-StreamInterface.html"><abbr title="\Psr\Http\Message\StreamInterface">StreamInterface</abbr></a>    </span>
 </dt>
-<dd>อ่าน stream</dd>
+<dd>Get the body of the message.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_getHeader">getHeader()</a>
     <span>
                         &nbsp;: array&lt;string|int, string&gt;    </span>
 </dt>
-<dd>อ่าน header ที่ต้องการ ผลลัพท์เป็น array
-คืนค่าแอเรย์ของ header ถ้าไม่พบคืนค่าแอเรย์ว่าง</dd>
+<dd>Get the specified header as an array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_getHeaderLine">getHeaderLine()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>อ่าน header ที่ต้องการ ผลลัพท์เป็น string
-คืนค่ารายการ header ทั้งหมดที่พบเชื่อมต่อด้วย ลูกน้ำ (,) หรือคืนค่าข้อความว่าง หากไม่พบ</dd>
+<dd>Get the specified header as a string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_getHeaders">getHeaders()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่า header ทั้งหมด ผลลัพท์เป็น array</dd>
+<dd>Get all the headers.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_getMethod">getMethod()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>อ่านค่า HTTP method
-returns the request method</dd>
+<dd>Get the HTTP method</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_getProtocolVersion">getProtocolVersion()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่าเวอร์ชั่นของโปรโตคอล
-เช่น 1.1, 1.0</dd>
+<dd>Get the protocol version of the message.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_getRequestTarget">getRequestTarget()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>อ่านค่า request target</dd>
+<dd>Get the request target</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_getUri">getUri()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>    </span>
 </dt>
-<dd>อ่าน Uri</dd>
+<dd>Get the URI</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_hasHeader">hasHeader()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามี header หรือไม่
-คืนค่า true ถ้ามี</dd>
+<dd>Check if a header exists.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_map">map()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>รวมแอเรย์ $_GET $_POST เป็นข้อมูลเดียวกัน</dd>
+<dd>Merge arrays $_GET and $_POST into a single data array</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_withAddedHeader">withAddedHeader()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>เพิ่ม header ใหม่</dd>
+<dd>Add a new header.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_withBody">withBody()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนด stream</dd>
+<dd>Set the message body.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_withHeader">withHeader()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนด header แทนที่รายการเดิม</dd>
+<dd>Set a header, replacing any existing values.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_withHeaders">withHeaders()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนด header พร้อมกันหลายรายการ แทนที่รายการเดิม</dd>
+<dd>Set multiple headers, replacing any existing values.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_withMethod">withMethod()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดค่า HTTP method</dd>
+<dd>Set the HTTP method</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_withoutHeader">withoutHeader()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>ลบ header</dd>
+<dd>Remove a header.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_withProtocolVersion">withProtocolVersion()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดเวอร์ชั่นของโปรโตคอล</dd>
+<dd>Set the protocol version of the message.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_withRequestTarget">withRequestTarget()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดค่า request target</dd>
+<dd>Set the request target</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-AbstractRequest.html#method_withUri">withUri()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดค่า Uri</dd>
+<dd>Set the URI</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_filterHeader">filterHeader()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ตรวจสอบความถูกต้องของ header</dd>
+<dd>Check the validity of a header.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Kotchasan-Http-AbstractMessage.html#method_getRequestHeaders">getRequestHeaders()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่นคืนค่า HTTP Header</dd>
+<dd>Function to retrieve HTTP headers.</dd>
 
         </dl>
 
@@ -450,7 +443,7 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -462,7 +455,9 @@ returns the request method</dd>
      = <span class="phpdocumentor-signature__default-value">array()</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The headers of the message.</p>
+</section>
+
     
 
 </article>
@@ -482,19 +477,21 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$method</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The HTTP method</p>
+</section>
+
     
 
 </article>
@@ -514,7 +511,7 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -526,7 +523,9 @@ returns the request method</dd>
      = <span class="phpdocumentor-signature__default-value">&#039;1.1&#039;</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The protocol version of the message.</p>
+</section>
+
     
 
 </article>
@@ -546,19 +545,21 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$requestTarget</span>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The request target</p>
+</section>
+
     
 
 </article>
@@ -578,7 +579,7 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -590,7 +591,9 @@ returns the request method</dd>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The body of the message.</p>
+</section>
+
     
 
 </article>
@@ -617,12 +620,14 @@ returns the request method</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a></span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>|null</span>
     <span class="phpdocumentor-signature__name">$uri</span>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The URI</p>
+</section>
+
     
 
 </article>
@@ -646,25 +651,25 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">init Class</p>
+        <p class="phpdocumentor-summary">Initializes the class.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$with_header</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$withHeader</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$with_header</span>
+                <span class="phpdocumentor-signature__argument__name">$withHeader</span>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true คืนค่า HTTP Header ด้วย, false (default) ไม่รวม HTTP Header</p>
+                    <section class="phpdocumentor-description"><p>Whether to include the HTTP header or not. Default is false.</p>
 </section>
 
             </dd>
@@ -695,7 +700,7 @@ returns the request method</dd>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างคลาสจากลิงค์ และ รวมค่าที่มาจาก $_GET ด้วย</p>
+        <p class="phpdocumentor-summary">Create a class from a link and merge values from $_GET</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -709,7 +714,7 @@ returns the request method</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;index.php&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ค่าเริ่มต้นคือ index.php</p>
+                    <section class="phpdocumentor-description"><p>The URI, default is 'index.php'</p>
 </section>
 
             </dd>
@@ -718,7 +723,7 @@ returns the request method</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการแอเรย์ของ $_GET ที่ไม่ต้องการให้รวมอยู่ใน URL</p>
+                    <section class="phpdocumentor-description"><p>An array of keys from $_GET to exclude from the URL</p>
 </section>
 
             </dd>
@@ -749,7 +754,7 @@ returns the request method</dd>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างคลาสจากลิงค์ และ รวมค่าที่มาจาก $_GET และ $_POST ด้วย</p>
+        <p class="phpdocumentor-summary">Create a class from a link and merge values from $_GET and $_POST</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -763,7 +768,7 @@ returns the request method</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;index.php&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ค่าเริ่มต้นคือ index.php</p>
+                    <section class="phpdocumentor-description"><p>The URI, default is 'index.php'</p>
 </section>
 
             </dd>
@@ -772,7 +777,7 @@ returns the request method</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการแอเรย์ของ $_GET และ $_POST ที่ไม่ต้องการให้รวมอยู่ใน URL</p>
+                    <section class="phpdocumentor-description"><p>An array of keys from $_GET and $_POST to exclude from the URL</p>
 </section>
 
             </dd>
@@ -803,7 +808,7 @@ returns the request method</dd>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างคลาสจากลิงค์ และ รวมค่าที่มาจาก $_POST ด้วย</p>
+        <p class="phpdocumentor-summary">Create a class from a link and merge values from $_POST</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -817,7 +822,7 @@ returns the request method</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;index.php&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ค่าเริ่มต้นคือ index.php</p>
+                    <section class="phpdocumentor-description"><p>The URI, default is 'index.php'</p>
 </section>
 
             </dd>
@@ -826,7 +831,7 @@ returns the request method</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการแอเรย์ของ $_POST ที่ไม่ต้องการให้รวมอยู่ใน URL</p>
+                    <section class="phpdocumentor-description"><p>An array of keys from $_POST to exclude from the URL</p>
 </section>
 
             </dd>
@@ -853,11 +858,11 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่าน stream</p>
+        <p class="phpdocumentor-summary">Get the body of the message.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -870,7 +875,9 @@ returns the request method</dd>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Psr-Http-Message-StreamInterface.html"><abbr title="\Psr\Http\Message\StreamInterface">StreamInterface</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The message body.</p>
+</section>
+
     
 </article>
                     <article
@@ -886,12 +893,11 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่าน header ที่ต้องการ ผลลัพท์เป็น array
-คืนค่าแอเรย์ของ header ถ้าไม่พบคืนค่าแอเรย์ว่าง</p>
+        <p class="phpdocumentor-summary">Get the specified header as an array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -905,7 +911,9 @@ returns the request method</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the header.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -914,7 +922,9 @@ returns the request method</dd>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The values of the header as an array, or an empty array if not found.</p>
+</section>
+
     
 </article>
                     <article
@@ -930,12 +940,11 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">81</span>
+    <span class="phpdocumentor-element-found-in__line">82</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่าน header ที่ต้องการ ผลลัพท์เป็น string
-คืนค่ารายการ header ทั้งหมดที่พบเชื่อมต่อด้วย ลูกน้ำ (,) หรือคืนค่าข้อความว่าง หากไม่พบ</p>
+        <p class="phpdocumentor-summary">Get the specified header as a string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -949,7 +958,9 @@ returns the request method</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the header.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -958,7 +969,9 @@ returns the request method</dd>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The concatenated values of the header, separated by commas, or an empty string if not found.</p>
+</section>
+
     
 </article>
                     <article
@@ -974,11 +987,11 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">93</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า header ทั้งหมด ผลลัพท์เป็น array</p>
+        <p class="phpdocumentor-summary">Get all the headers.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -991,7 +1004,9 @@ returns the request method</dd>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The headers of the message.</p>
+</section>
+
     
 </article>
                     <article
@@ -1007,12 +1022,11 @@ returns the request method</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">96</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านค่า HTTP method
-returns the request method</p>
+        <p class="phpdocumentor-summary">Get the HTTP method</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1025,7 +1039,9 @@ returns the request method</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The request method</p>
+</section>
+
     
 </article>
                     <article
@@ -1045,8 +1061,7 @@ returns the request method</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าเวอร์ชั่นของโปรโตคอล
-เช่น 1.1, 1.0</p>
+        <p class="phpdocumentor-summary">Get the protocol version of the message.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1059,7 +1074,9 @@ returns the request method</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The protocol version.</p>
+</section>
+
     
 </article>
                     <article
@@ -1075,11 +1092,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">112</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านค่า request target</p>
+        <p class="phpdocumentor-summary">Get the request target</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1092,7 +1109,9 @@ returns the request method</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The request target</p>
+</section>
+
     
 </article>
                     <article
@@ -1108,11 +1127,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">125</span>
+    <span class="phpdocumentor-element-found-in__line">124</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่าน Uri</p>
+        <p class="phpdocumentor-summary">Get the URI</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1125,7 +1144,9 @@ returns the request method</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The URI</p>
+</section>
+
     
 </article>
                     <article
@@ -1141,12 +1162,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">116</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามี header หรือไม่
-คืนค่า true ถ้ามี</p>
+        <p class="phpdocumentor-summary">Check if a header exists.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1160,7 +1180,9 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the header.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1169,7 +1191,9 @@ returns the request method</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the header exists, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -1185,11 +1209,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">140</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รวมแอเรย์ $_GET $_POST เป็นข้อมูลเดียวกัน</p>
+        <p class="phpdocumentor-summary">Merge arrays $_GET and $_POST into a single data array</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1203,7 +1227,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ตัวแปรเก็บผลลัพท์ สำหรับนำไปใช้งานต่อ</p>
+                    <section class="phpdocumentor-description"><p>A variable to store the result for further use</p>
 </section>
 
             </dd>
@@ -1212,7 +1236,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ตัวแปรที่ต้องการรวม เช่น $_GET $_POST</p>
+                    <section class="phpdocumentor-description"><p>The array to merge, e.g., $_GET or $_POST</p>
 </section>
 
             </dd>
@@ -1221,7 +1245,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการคีย์ของแอเรย์ ที่ไม่ต้องการให้รวมอยู่ในผลลัพท์</p>
+                    <section class="phpdocumentor-description"><p>A list of keys from the array that should not be included in the result</p>
 </section>
 
             </dd>
@@ -1248,11 +1272,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">131</span>
+    <span class="phpdocumentor-element-found-in__line">130</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เพิ่ม header ใหม่</p>
+        <p class="phpdocumentor-summary">Add a new header.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1266,7 +1290,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อของ Header</p>
+                    <section class="phpdocumentor-description"><p>The name of the header.</p>
 </section>
 
             </dd>
@@ -1275,7 +1299,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, string&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ค่าของ Header เป็น string หรือ แอเรย์ของ string</p>
+                    <section class="phpdocumentor-description"><p>The value(s) of the header as a string or an array of strings.</p>
 </section>
 
             </dd>
@@ -1293,7 +1317,7 @@ returns the request method</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้าชื่อ header ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the header name is invalid.</p>
 </section>
 
                                     </dd>
@@ -1318,25 +1342,27 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">152</span>
+    <span class="phpdocumentor-element-found-in__line">151</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนด stream</p>
+        <p class="phpdocumentor-summary">Set the message body.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">withBody</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Kotchasan\Http\streamInterface">streamInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$body</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                <span class="phpdocumentor-signature__name">withBody</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Psr-Http-Message-StreamInterface.html"><abbr title="\Psr\Http\Message\StreamInterface">StreamInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$body</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$body</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Kotchasan\Http\streamInterface">streamInterface</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Psr-Http-Message-StreamInterface.html"><abbr title="\Psr\Http\Message\StreamInterface">StreamInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The message body.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1361,11 +1387,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">169</span>
+    <span class="phpdocumentor-element-found-in__line">168</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนด header แทนที่รายการเดิม</p>
+        <p class="phpdocumentor-summary">Set a header, replacing any existing values.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1379,7 +1405,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อของ Header</p>
+                    <section class="phpdocumentor-description"><p>The name of the header.</p>
 </section>
 
             </dd>
@@ -1388,7 +1414,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, string&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ค่าของ Header เป็น string หรือ แอเรย์ของ string</p>
+                    <section class="phpdocumentor-description"><p>The value(s) of the header as a string or an array of strings.</p>
 </section>
 
             </dd>
@@ -1406,7 +1432,7 @@ returns the request method</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>for invalid header names or values</p>
+                                                 <section class="phpdocumentor-description"><p>for invalid header names or values.</p>
 </section>
 
                                     </dd>
@@ -1431,11 +1457,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">186</span>
+    <span class="phpdocumentor-element-found-in__line">185</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนด header พร้อมกันหลายรายการ แทนที่รายการเดิม</p>
+        <p class="phpdocumentor-summary">Set multiple headers, replacing any existing values.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1449,7 +1475,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>array($key =&gt; $value, $key =&gt; $value...)</p>
+                    <section class="phpdocumentor-description"><p>An array of headers in the format: array($key =&gt; $value, $key =&gt; $value...)</p>
 </section>
 
             </dd>
@@ -1467,7 +1493,7 @@ returns the request method</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>for invalid header names or values</p>
+                                                 <section class="phpdocumentor-description"><p>for invalid header names or values.</p>
 </section>
 
                                     </dd>
@@ -1492,11 +1518,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">162</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดค่า HTTP method</p>
+        <p class="phpdocumentor-summary">Set the HTTP method</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1510,7 +1536,9 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The HTTP method</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1535,11 +1563,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">217</span>
+    <span class="phpdocumentor-element-found-in__line">216</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลบ header</p>
+        <p class="phpdocumentor-summary">Remove a header.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1553,7 +1581,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อ header ที่ต้องการลบ</p>
+                    <section class="phpdocumentor-description"><p>The name of the header to remove.</p>
 </section>
 
             </dd>
@@ -1580,11 +1608,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">203</span>
+    <span class="phpdocumentor-element-found-in__line">202</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดเวอร์ชั่นของโปรโตคอล</p>
+        <p class="phpdocumentor-summary">Set the protocol version of the message.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1598,7 +1626,7 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>เช่น 1.1, 1.0</p>
+                    <section class="phpdocumentor-description"><p>The protocol version (e.g., 1.1, 1.0).</p>
 </section>
 
             </dd>
@@ -1625,11 +1653,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">175</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดค่า request target</p>
+        <p class="phpdocumentor-summary">Set the request target</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1643,7 +1671,9 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The request target</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1668,11 +1698,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractRequest.php"><a href="files/kotchasan-http-abstractrequest.html"><abbr title="Kotchasan/Http/AbstractRequest.php">AbstractRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">191</span>
+    <span class="phpdocumentor-element-found-in__line">190</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดค่า Uri</p>
+        <p class="phpdocumentor-summary">Set the URI</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1686,14 +1716,18 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Kotchasan\Http\UriInterface">UriInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The URI</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$preserveHost</span>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Whether to preserve the host header</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1718,11 +1752,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">231</span>
+    <span class="phpdocumentor-element-found-in__line">230</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบความถูกต้องของ header</p>
+        <p class="phpdocumentor-summary">Check the validity of a header.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1736,7 +1770,9 @@ returns the request method</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the header.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1752,7 +1788,7 @@ returns the request method</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้า header ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the header is invalid.</p>
 </section>
 
                                     </dd>
@@ -1777,11 +1813,11 @@ returns the request method</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/AbstractMessage.php"><a href="files/kotchasan-http-abstractmessage.html"><abbr title="Kotchasan/Http/AbstractMessage.php">AbstractMessage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">243</span>
+    <span class="phpdocumentor-element-found-in__line">242</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นคืนค่า HTTP Header</p>
+        <p class="phpdocumentor-summary">Function to retrieve HTTP headers.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1794,7 +1830,9 @@ returns the request method</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array of HTTP headers.</p>
+</section>
+
     
 </article>
             </section>

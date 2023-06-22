@@ -11,7 +11,7 @@
 namespace Kotchasan;
 
 /**
- * คลาสสำหรับจัดการข้อผิดพลาดของ InputItem
+ * Exception class for handling InputItem errors.
  *
  * @see https://www.kotchasan.com/
  */

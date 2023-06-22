@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -142,7 +148,7 @@
 <dl class="phpdocumentor-table-of-contents">
     
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Kotchasan.html"><abbr title="\Kotchasan">Kotchasan</abbr></a></dt>
-        <dd>Kotchasan PHP Framework</dd>
+        <dd>The main class of the Kotchasan framework.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/PHPMailer.html"><abbr title="\PHPMailer">PHPMailer</abbr></a></dt>
         <dd>PHPMailer - PHP email creation and transport class.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/phpmailerException.html"><abbr title="\phpmailerException">phpmailerException</abbr></a></dt>
@@ -232,44 +238,44 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/default.html#constant_VERSION">VERSION</a>
     <span>
-        &nbsp;= &#039;4.9.2&#039;                    </span>
+        &nbsp;= &#039;5.0.0&#039;                    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/default.html#constant_WEB_URL">WEB_URL</a>
     <span>
-        &nbsp;= $scheme . $host . $contextPrefix . str_replace($docRoot, &#039;&#039;, ROOT_PATH)                    </span>
+        &nbsp;= (HTTPS ? &#039;https://&#039; : $scheme) . $host . $contextPrefix . str_replace($docRoot, &#039;&#039;, ROOT_PATH)                    </span>
 </dt>
 <dd></dd>
 
                         <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a href="namespaces/default.html#function_createClass">createClass()</a>
     <span>
-                        &nbsp;: object    </span>
+                        &nbsp;: object|null    </span>
 </dt>
-<dd>ฟังก์ชั่นใช้สำหรับสร้างคลาส</dd>
+<dd>Create a new instance of a class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a href="namespaces/default.html#function_doShutdown">doShutdown()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ฟังก์ชั่นเรียกเมื่อมีการเรียกคำสั่ง debug และสิ้นสุดการประมวลผลแล้ว</dd>
+<dd>Shutdown function to output debug messages to the browser console.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a href="namespaces/default.html#function_debug">debug()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>แสดงข้อมูลตัวแปรออกทาง Console ของบราวเวอร์ (debug)</dd>
+<dd>Output debug information to the browser console.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a href="namespaces/default.html#function_getClassPath">getClassPath()</a>
     <span>
-                        &nbsp;: string|null    </span>
+                        &nbsp;: string    </span>
 </dt>
-<dd>ตรวจสอบและคืนค่าชื่อไฟล์รวมพาธของคลาส</dd>
+<dd>Get the file path of a class based on its name.</dd>
 
     </dl>
 
@@ -288,7 +294,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -317,7 +323,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">149</span>
+    <span class="phpdocumentor-element-found-in__line">160</span>
 
     </aside>
 
@@ -346,7 +352,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -404,7 +410,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">145</span>
 
     </aside>
 
@@ -433,7 +439,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">122</span>
+    <span class="phpdocumentor-element-found-in__line">131</span>
 
     </aside>
 
@@ -462,7 +468,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -491,7 +497,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">175</span>
+    <span class="phpdocumentor-element-found-in__line">179</span>
 
     </aside>
 
@@ -520,7 +526,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">166</span>
+    <span class="phpdocumentor-element-found-in__line">176</span>
 
     </aside>
 
@@ -549,7 +555,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -578,7 +584,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -587,7 +593,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
     <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">VERSION</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;4.9.2&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;5.0.0&#039;</span>
 </code>
 
 
@@ -607,7 +613,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">156</span>
+    <span class="phpdocumentor-element-found-in__line">168</span>
 
     </aside>
 
@@ -616,7 +622,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
     <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">WEB_URL</span>
-    = <span class="phpdocumentor-signature__default-value">$scheme . $host . $contextPrefix . str_replace($docRoot, &#039;&#039;, ROOT_PATH)</span>
+    = <span class="phpdocumentor-signature__default-value">(HTTPS ? &#039;https://&#039; : $scheme) . $host . $contextPrefix . str_replace($docRoot, &#039;&#039;, ROOT_PATH)</span>
 </code>
 
 
@@ -642,15 +648,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">186</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นใช้สำหรับสร้างคลาส</p>
+        <p class="phpdocumentor-summary">Create a new instance of a class.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility"></span>
-                <span class="phpdocumentor-signature__name">createClass</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$className</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$param</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">object</span></code>
+                <span class="phpdocumentor-signature__name">createClass</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$className</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$param</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">object|null</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -660,7 +666,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคลาส</p>
+                    <section class="phpdocumentor-description"><p>The class name</p>
 </section>
 
             </dd>
@@ -669,16 +675,19 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"></section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">object</span>
+    <span class="phpdocumentor-signature__response_type">object|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An instance of the class or null if the class doesn't exist</p>
+</section>
+
     
 </article>
                     <article class="phpdocumentor-element -function - ">
@@ -689,11 +698,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">194</span>
+    <span class="phpdocumentor-element-found-in__line">197</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นเรียกเมื่อมีการเรียกคำสั่ง debug และสิ้นสุดการประมวลผลแล้ว</p>
+        <p class="phpdocumentor-summary">Shutdown function to output debug messages to the browser console.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility"></span>
@@ -717,11 +726,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">208</span>
+    <span class="phpdocumentor-element-found-in__line">211</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แสดงข้อมูลตัวแปรออกทาง Console ของบราวเวอร์ (debug)</p>
+        <p class="phpdocumentor-summary">Output debug information to the browser console.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility"></span>
@@ -735,7 +744,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"></section>
+
             </dd>
             </dl>
 
@@ -755,15 +765,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/load.php"><a href="files/kotchasan-load.html"><abbr title="Kotchasan/load.php">load.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">278</span>
+    <span class="phpdocumentor-element-found-in__line">288</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบและคืนค่าชื่อไฟล์รวมพาธของคลาส</p>
+        <p class="phpdocumentor-summary">Get the file path of a class based on its name.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility"></span>
-                <span class="phpdocumentor-signature__name">getClassPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$className</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+                <span class="phpdocumentor-signature__name">getClassPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$className</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -773,16 +783,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The class name</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|null</span>
+    <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-            <section class="phpdocumentor-description"><p>คืนค่าไฟล์รวมพาธของคลาส ถ้าไม่พบคืนค่า null</p>
+            <section class="phpdocumentor-description"><p>The file path of the class or an empty string if the class is not found</p>
 </section>
 
     

@@ -5,36 +5,38 @@
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * @package Kotchasan\Http
  */
 
 namespace Kotchasan\Http;
 
 /**
- * Class สำหรับจัดการ URL
+ * Class for managing URLs
  *
  * @see https://www.kotchasan.com/
  */
 class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\RequestInterface
 {
     /**
-     * @var string
+     * @var string|null The HTTP method
      */
     protected $method = null;
+
     /**
-     * @var string
+     * @var string|null The request target
      */
     protected $requestTarget;
+
     /**
-     * @var \Kotchasan\Http\Uri
+     * @var \Kotchasan\Http\Uri|null The URI
      */
     protected $uri;
 
     /**
-     * สร้างคลาสจากลิงค์ และ รวมค่าที่มาจาก $_GET ด้วย
+     * Create a class from a link and merge values from $_GET
      *
-     * @param string $uri     ค่าเริ่มต้นคือ index.php
-     * @param array  $exclude รายการแอเรย์ของ $_GET ที่ไม่ต้องการให้รวมอยู่ใน URL
+     * @param string $uri The URI, default is 'index.php'
+     * @param array $exclude An array of keys from $_GET to exclude from the URL
      *
      * @return Uri
      */
@@ -49,10 +51,10 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     }
 
     /**
-     * สร้างคลาสจากลิงค์ และ รวมค่าที่มาจาก $_GET และ $_POST ด้วย
+     * Create a class from a link and merge values from $_GET and $_POST
      *
-     * @param string $uri     ค่าเริ่มต้นคือ index.php
-     * @param array  $exclude รายการแอเรย์ของ $_GET และ $_POST ที่ไม่ต้องการให้รวมอยู่ใน URL
+     * @param string $uri The URI, default is 'index.php'
+     * @param array $exclude An array of keys from $_GET and $_POST to exclude from the URL
      *
      * @return Uri
      */
@@ -68,10 +70,10 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     }
 
     /**
-     * สร้างคลาสจากลิงค์ และ รวมค่าที่มาจาก $_POST ด้วย
+     * Create a class from a link and merge values from $_POST
      *
-     * @param string $uri     ค่าเริ่มต้นคือ index.php
-     * @param array  $exclude รายการแอเรย์ของ $_POST ที่ไม่ต้องการให้รวมอยู่ใน URL
+     * @param string $uri The URI, default is 'index.php'
+     * @param array $exclude An array of keys from $_POST to exclude from the URL
      *
      * @return Uri
      */
@@ -86,10 +88,9 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     }
 
     /**
-     * อ่านค่า HTTP method
-     * returns the request method
+     * Get the HTTP method
      *
-     * @return string
+     * @return string The request method
      */
     public function getMethod()
     {
@@ -103,9 +104,9 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     }
 
     /**
-     * อ่านค่า request target
+     * Get the request target
      *
-     * @return string
+     * @return string The request target
      */
     public function getRequestTarget()
     {
@@ -116,9 +117,9 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     }
 
     /**
-     * อ่าน Uri
+     * Get the URI
      *
-     * @return \Kotchasan\Http\Uri
+     * @return \Kotchasan\Http\Uri The URI
      */
     public function getUri()
     {
@@ -129,11 +130,11 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     }
 
     /**
-     * รวมแอเรย์ $_GET $_POST เป็นข้อมูลเดียวกัน
+     * Merge arrays $_GET and $_POST into a single data array
      *
-     * @param array $result  ตัวแปรเก็บผลลัพท์ สำหรับนำไปใช้งานต่อ
-     * @param array $array   ตัวแปรที่ต้องการรวม เช่น $_GET $_POST
-     * @param array $exclude รายการคีย์ของแอเรย์ ที่ไม่ต้องการให้รวมอยู่ในผลลัพท์
+     * @param array &$result A variable to store the result for further use
+     * @param array $array The array to merge, e.g., $_GET or $_POST
+     * @param array $exclude A list of keys from the array that should not be included in the result
      */
     public static function map(&$result, $array, $exclude = array())
     {
@@ -151,9 +152,9 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     }
 
     /**
-     * กำหนดค่า HTTP method
+     * Set the HTTP method
      *
-     * @param string $method
+     * @param string $method The HTTP method
      *
      * @return static
      */
@@ -165,9 +166,9 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     }
 
     /**
-     * กำหนดค่า request target
+     * Set the request target
      *
-     * @param mixed $requestTarget
+     * @param mixed $requestTarget The request target
      *
      * @return static
      */
@@ -179,10 +180,10 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     }
 
     /**
-     * กำหนดค่า Uri
+     * Set the URI
      *
-     * @param \Kotchasan\Http\UriInterface $uri
-     * @param bool                         $preserveHost
+     * @param \Kotchasan\Http\UriInterface $uri The URI
+     * @param bool $preserveHost Whether to preserve the host header
      *
      * @return static
      */

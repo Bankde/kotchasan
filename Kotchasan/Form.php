@@ -18,45 +18,50 @@ namespace Kotchasan;
 class Form extends \Kotchasan\KBase
 {
     /**
-     * ตับแปรบอกว่ามีการใช้ form แบบ Ajax หรือไม่
-     * ถ้าใช้งานต้องมีการเรียกใช้ GAjax ด้วย
+     * Variable to indicate whether Ajax form is being used or not.
+     * GAjax must be called if this is set to true.
      *
      * @var bool
      */
     public $ajax = false;
+
     /**
-     * ตัวแปรบอกว่ามีการใช้งานฟอร์มร่วมกับ GForm หรือไม่
-     * ถ้าใช้งานต้องมีการเรียกใช้ GAjax ด้วย
+     * Variable to indicate whether the form is being used with GForm or not.
+     * GAjax must be called if this is set to true.
      *
      * @var bool
      */
     public $gform = true;
+
     /**
-     * Javascript
+     * JavaScript
      *
      * @var string
      */
     public $javascript;
+
     /**
-     * tag attributes
+     * Tag attributes
      *
      * @var array
      */
     private $attributes;
+
     /**
-     * ชื่อ tag
+     * Tag name
      *
      * @var string
      */
     private $tag;
 
     /**
-     * สร้าง input button หรือ button
+     * Create a button element.
      *
      * @assert (array('id' => 'test_id', 'value' => 'Test', 'disabled' => true))->render() [==] '<button disabled type="button" name="test_id" id="test_id">Test</button>'
      * @assert (array('id' => 'test_id', 'value' => 'Test', 'disabled' => true, 'tag' => 'input'))->render() [==] '<input disabled type="button" name="test_id" id="test_id" value="Test">'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -75,7 +80,7 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด checkbox
+     * Create an input element of type "checkbox".
      *
      * @assert (array('id' => 'test_id', 'value' => 1))->render() [==] '<input type="checkbox" name="test_id" id="test_id" value=1>'
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label><input type="checkbox" name="test_id" id="test_id" value=1 title="Test">Test</label>'
@@ -83,6 +88,7 @@ class Form extends \Kotchasan\KBase
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-valid'))->render() [==] '<div class="item"><label class="icon-valid"><input type="checkbox" name="test_id" id="test_id" value=1 title="Test">&nbsp;Test</label></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -96,12 +102,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด color
+     * Create an input element of type "color".
      *
      * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="text" name="test_id" id="test_id" value="#FFF" title="Test" class="color"></label>'
      * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="text" name="test_id" id="test_id" value="#FFF" title="Test" class="color"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -116,13 +123,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด text รับค่าเป็นตัวเลขและทศนิยม
-     * เช่นจำนวนเงิน
+     * Create an input element for handling currency values.
      *
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="text" name="test_id" id="test_id" value=1 title="Test" class="currency"></label>'
      * @assert (array('id' => 'test_id', 'value' => 100, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-money'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-money"><input type="text" name="test_id" id="test_id" value=100 title="Test" class="currency"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -137,12 +144,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด date
+     * Create an input element of type "date".
      *
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="date" name="test_id" id="test_id" value=1 title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-calendar'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-calendar"><input type="date" name="test_id" id="test_id" value="#FFF" title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -156,12 +164,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด datetime
+     * Create an input element of type "datetime".
      *
      * @assert (array('id' => 'test_id', 'value' => '2021-01-01 12:00', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="datetime" name="test_id" id="test_id" value="2021-01-01 12:00" title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => '2021-01-01 12:00', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-calendar'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-calendar"><input type="datetime" name="test_id" id="test_id" value="2021-01-01 12:00" title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -175,12 +184,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด email
+     * Create an input element of type "email".
      *
      * @assert (array('id' => 'test_id', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="email" name="test_id" id="test_id" title="Test"></label>'
      * @assert (array('id' => 'test_id', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-email'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-email"><input type="email" name="test_id" id="test_id" title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -194,12 +204,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด file
+     * Create an input element of type "file".
      *
      * @assert (array('id' => 'test_id', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="file" name="test_id" id="test_id" title="Test" class="g-file"></label>'
      * @assert (array('id' => 'test_id', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-file'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-file"><input type="file" name="test_id" id="test_id" title="Test" class="g-file"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -214,33 +225,40 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * ฟังก์ชั่นสร้าง input ชนิด hidden สำหรับใช้ในฟอร์ม
-     * ใช้ประโยชน์ในการสร้าง URL เพื่อส่งกลับไปยังหน้าเดิมหลังจาก submit แล้ว
+     * Retrieve input values from query parameters and parsed body.
      *
-     * @return array
+     * @return array An array of hidden input elements.
      */
     public static function get2Input()
     {
         $hiddens = array();
+
+        // Retrieve input values from query parameters
         foreach (self::$request->getQueryParams() as $key => $value) {
+            // Exclude empty values and keys containing sensitive information
             if ($value != '' && !preg_match('/.*?(username|password|token|time).*?/', $key) && preg_match('/^[_]+([^0-9]+)$/', $key, $match)) {
                 $hiddens[$match[1]] = '<input type="hidden" name="_'.$match[1].'" value="'.htmlspecialchars($value).'">';
             }
         }
+
+        // Retrieve input values from parsed body
         foreach (self::$request->getParsedBody() as $key => $value) {
+            // Exclude empty values and keys containing sensitive information
             if ($value != '' && !preg_match('/.*?(username|password|token|time).*?/', $key) && preg_match('/^[_]+([^0-9]+)$/', $key, $match)) {
                 $hiddens[$match[1]] = '<input type="hidden" name="_'.$match[1].'" value="'.htmlspecialchars($value).'">';
             }
         }
+
         return $hiddens;
     }
 
     /**
-     * สร้าง input ชนิด hidden
+     * Create an input element of type "hidden".
      *
      * @assert (array('id' => 'test_id', 'value' => 1))->render() [==] '<input type="hidden" name="test_id" id="test_id" value=1>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -254,12 +272,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด number รับค่าเป็นตัวเลขเท่านั้น
+     * Create an input element of type "number".
      *
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="number" name="test_id" id="test_id" value=1 title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => 1234, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-number'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-number"><input type="number" name="test_id" id="test_id" value=1234 title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -273,12 +292,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด number สามารถติดลบได้
+     * Create an input element of type "integer" that allows negative values.
      *
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="integer" name="test_id" id="test_id" value=1 title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => -100, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-number'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-number"><input type="integer" name="test_id" id="test_id" value=-100 title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -292,12 +312,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด password
+     * Create an input element of type "password".
      *
      * @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="password" name="test_id" id="test_id" value=1234 title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => '1234', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="password" name="test_id" id="test_id" value=1234 title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -311,7 +332,7 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด radio
+     * Create an input element of type "radio".
      *
      * @assert (array('id' => 'test_id', 'value' => 1))->render() [==] '<input type="radio" name="test_id" id="test_id" value=1>'
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label><input type="radio" name="test_id" id="test_id" value=1 title="Test">Test</label>'
@@ -319,6 +340,7 @@ class Form extends \Kotchasan\KBase
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-valid'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-valid"><input type="radio" name="test_id" id="test_id" value=1 title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -332,12 +354,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด range
+     * Create an input element of type "range".
      *
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="range" name="test_id" id="test_id" value=1 title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test', 'itemClass' => 'item'))->render() [==] '<div class="item"><label for="test_id">Test</label><div><input type="range" name="test_id" id="test_id" value=1 title="Test"></div></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -351,21 +374,23 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * ฟังก์ชั่นสร้าง Form Element
-     * id, name, type property ต่างๆของinput
-     * options สำหรับ select เท่านั้น เช่น array('value1'=> 'name1', 'value2'=>'name2', ...)
-     * datalist สำหรับ input ชนิด text เช่น array('value1'=> 'name1', 'value2'=>'name2', ...)
-     * label ข้อความแสดงใน label ของ input
-     * labelClass class ของ label
-     * comment ถ้ากำหนดจะแสดงคำอธิบายของ input
-     * ถ้าไม่กำหนดทั้ง label และ labelClass จะเป็นการสร้าง input อย่างเดียว
-     * array('name1' => 'value1', 'name2' => 'value2', ....)
+     * Function for generating form elements.
      *
-     * @param string $tag
-     * @param array  $param   property ของ Input
-     * @param string $options ตัวเลือก options ของ select
+     * The function supports the following parameters:
+     * - id, name, type: properties of the input element.
+     * - options: for select elements only, an array of options in the format array('value1' => 'name1', 'value2' => 'name2', ...).
+     * - datalist: for text input elements, an array of options in the format array('value1' => 'name1', 'value2' => 'name2', ...).
+     * - label: the label text to display for the input element.
+     * - labelClass: the CSS class of the label.
+     * - comment: if specified, displays a description of the input.
      *
-     * @return string
+     * If neither label nor labelClass is specified, only the input element will be created.
+     *
+     * @param string $tag The HTML tag for the element.
+     * @param array  $param The properties of the input element.
+     * @param string $options The options for select elements.
+     *
+     * @return string The generated HTML for the form element.
      */
     public function render()
     {
@@ -634,14 +659,14 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง element มี id และ class
+     * Creates an HTML element with the specified attributes and inner HTML.
      *
-     * @param string $elem
-     * @param string $id
-     * @param string $class
-     * @param string $innerHTML
+     * @param string $elem The HTML element tag name
+     * @param string $id The value of the 'id' attribute
+     * @param string $class The value of the 'class' attribute
+     * @param string $innerHTML The inner HTML content of the element
      *
-     * @return string
+     * @return string The generated HTML element
      */
     private static function create($elem, $id, $class, $innerHTML)
     {
@@ -656,12 +681,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input หรือ button ชนิด reset
+     * Creates a reset button element.
      *
      * @assert (array('id' => 'test_id', 'value' => 'Test', 'disabled' => true))->render() [==] '<button disabled type="reset" name="test_id" id="test_id">Test</button>'
      * @assert (array('id' => 'test_id', 'value' => 'Test', 'disabled' => true, 'tag' => 'input'))->render() [==] '<input disabled type="reset" name="test_id" id="test_id" value="Test">'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -686,12 +712,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง select
+     * Creates a select dropdown element.
      *
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test', 'options' => [0 => 0, 1 => 1]))->render() [==] '<label>Test&nbsp;<select name="test_id" id="test_id" title="Test"><option value=0>0</option><option value=1 selected>1</option></select></label>'
      * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color', 'options' => [0 => 0, 1 => 1]))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><select name="test_id" id="test_id" title="Test"><option value=0 selected>0</option><option value=1>1</option></select></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -704,12 +731,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้างปุ่ม submit
+     * Creates a submit button or input field.
      *
      * @assert (array('id' => 'test_id', 'value' => 'Test', 'disabled' => true))->render() [==] '<button disabled type="submit" name="test_id" id="test_id">Test</button>'
      * @assert (array('id' => 'test_id', 'value' => 'Test', 'disabled' => true, 'tag' => 'input'))->render() [==] '<input disabled type="submit" name="test_id" id="test_id" value="Test">'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -734,13 +762,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด tel รับค่าตัวเลขเท่านั้น
-     * ใช้รับเบอร์โทร
+     * Create an input element of type "tel".
      *
      * @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="tel" name="test_id" id="test_id" value=0123456789 title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => '0123456789', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-phone'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-phone"><input type="tel" name="test_id" id="test_id" value=0123456789 title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -754,12 +782,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด text
+     * Create an input element of type "text".
      *
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="text" name="test_id" id="test_id" value=1 title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-color'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-color"><input type="text" name="test_id" id="test_id" value="#FFF" title="Test"></span></div>'
      *
-     * @param array $attributes property ของ Input
+     * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -773,12 +802,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง textarea
+     * Create an input element of type "textarea".
      *
      * @assert (array('id' => 'test_id', 'value' => 1, 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<textarea name="test_id" id="test_id" title="Test">1</textarea></label>'
      * @assert (array('id' => 'test_id', 'value' => '#FFF', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-file'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-file"><textarea name="test_id" id="test_id" title="Test">#FFF</textarea></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -791,12 +821,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด time
+     * Create an input element of type "time".
      *
      * @assert (array('id' => 'test_id', 'value' => '00:00', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="time" name="test_id" id="test_id" value="00:00" title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => '00:00', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-clock'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-clock"><input type="time" name="test_id" id="test_id" value="00:00" title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */
@@ -810,12 +841,13 @@ class Form extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง input ชนิด url
+     * Create an input element of type "url".
      *
      * @assert (array('id' => 'test_id', 'value' => 'kotchasan.com', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="url" name="test_id" id="test_id" value="kotchasan.com" title="Test"></label>'
      * @assert (array('id' => 'test_id', 'value' => 'kotchasan.com', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-world'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-world"><input type="url" name="test_id" id="test_id" value="kotchasan.com" title="Test"></span></div>'
      *
      * @param array $attributes
+     *        An array of attributes for the input field.
      *
      * @return static
      */

@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -143,7 +149,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -157,20 +163,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -191,35 +188,35 @@
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a>            </span>
 </dt>
-<dd>cache class</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Driver.html#property_cache_item">$cache_item</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a>            </span>
 </dt>
-<dd>Cacheitem</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_cfg">$cfg</a>
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>Config class</dd>
+<dd>Config class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Driver.html#property_connection">$connection</a>
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>database connection</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Db.html#property_db">$db</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Database-Driver.html"><abbr title="\Kotchasan\Database\Driver">Driver</abbr></a>            </span>
 </dt>
-<dd>database connection</dd>
+<dd>Database connection.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Query.html#property_debugger">$debugger</a>
@@ -234,35 +231,35 @@
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>database error message</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Driver.html#property_query_count">$query_count</a>
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>นับจำนวนการ query</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_request">$request</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>            </span>
 </dt>
-<dd>Server request class</dd>
+<dd>Server request class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Driver.html#property_result_id">$result_id</a>
     <span>
                 &nbsp;: resource|object            </span>
 </dt>
-<dd>เก็บ Object ที่เป็นผลลัพท์จากการ query</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Driver.html#property_sqls">$sqls</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ตัวแปรเก็บ query สำหรับการ execute</dd>
+<dd>ตัวแปรเก็บคำสั่ง SQL</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method___construct">__construct()</a>
@@ -276,70 +273,63 @@
     <span>
                         &nbsp;: int    </span>
 </dt>
-<dd>อ่านสถานะของแคช
-0 ไม่ใช้แคช
-1 โหลดและบันทึกแคชอัตโนมัติ
-2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ</dd>
+<dd>Get the cache action.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_cacheOn">cacheOn()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>เปิดการใช้งานแคช
-จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล</dd>
+<dd>Enable caching.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_cacheSave">cacheSave()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นบันทึก Cache
-สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false</dd>
+<dd>Save cache data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_close">close()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>close database</dd>
+<dd>Close the database connection.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_connection">connection()</a>
     <span>
                         &nbsp;: resource    </span>
 </dt>
-<dd>ฟังก์ชั่นอ่านค่า resource ID ของการเชื่อมต่อปัจจุบัน</dd>
+<dd>Get the current database connection.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_createQuery">createQuery()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Database-QueryBuilder.html"><abbr title="\Kotchasan\Database\QueryBuilder">QueryBuilder</abbr></a>    </span>
 </dt>
-<dd>ฟังก์ชั่นสร้าง query builder</dd>
+<dd>Create a new query builder instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_customQuery">customQuery()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่นประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข ไม่พบคืนค่าแอเรย์ว่าง</dd>
+<dd>Process an SQL query command to retrieve data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_databaseExists">databaseExists()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นตรวจสอบว่ามี database หรือไม่
-คืนค่า true หากมีฐานข้อมูลนี้อยู่ ไม่พบคืนค่า false</dd>
+<dd>Checks if a database exists.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Db.html#method_db">db()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Database-Driver.html"><abbr title="\Kotchasan\Database\Driver">Driver</abbr></a>    </span>
 </dt>
-<dd>อ่าน database connection</dd>
+<dd>Get the database connection.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Query.html#method_debug">debug()</a>
@@ -354,77 +344,72 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_delete">delete()</a>
     <span>
-                        &nbsp;: int|bool    </span>
+                        &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นลบ record
-สำเร็จคืนค่าจำนวนแถวที่มีผล ไม่สำเร็จคืนค่า false</dd>
+<dd>Deletes records from a table based on the given condition.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_emptyTable">emptyTable()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นลบข้อมูลทั้งหมดในตาราง
-คืนค่า true ถ้าสำเร็จ</dd>
+<dd>Empties a table by deleting all its records.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_execQuery">execQuery()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ฟังก์ชั่นประมวลผลคำสั่ง SQL จาก query builder</dd>
+<dd>Executes one or multiple SQL queries and returns the result.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_fieldCount">fieldCount()</a>
     <span>
                         &nbsp;: int    </span>
 </dt>
-<dd>จำนวนฟิลด์ทั้งหมดในผลลัพท์จากการ query</dd>
+<dd>Returns the number of fields in the query result.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_fieldExists">fieldExists()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบคอลัมน์ของตารางว่ามีหรือไม่
-คืนค่า true ถ้ามี คืนค่า false ถ้าไม่มี</dd>
+<dd>Checks if a column exists in the table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_find">find()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่น query ข้อมูล คืนค่าข้อมูลทุกรายการที่ตรงตามเงื่อนไข
-คืนค่า แอเรย์ของ object ไม่พบคืนค่าแอรย์ว่าง</dd>
+<dd>Queries data and returns all items matching the condition.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_first">first()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ฟังก์ชั่น query ข้อมูล คืนค่าข้อมูลรายการเดียว
-คืนค่า object ของข้อมูล ไม่พบคืนค่า false</dd>
+<dd>Queries data and returns the first item matching the condition.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Db.html#method_getAllSettings">getAllSettings()</a>
     <span>
                         &nbsp;: object    </span>
 </dt>
-<dd>คืนค่ากำหนดทั้งหมดของฐานข้อมูล</dd>
+<dd>Get all database settings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_getError">getError()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่าข้อความผิดพลาดของฐานข้อมูล</dd>
+<dd>Returns the error message of the database.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_getFields">getFields()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>รายชื่อฟิลด์ทั้งหมดจากผลัพท์จองการ query</dd>
+<dd>Returns the list of all fields from the query result.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Query.html#method_getFullTableName">getFullTableName()</a>
@@ -439,15 +424,14 @@
     <span>
                         &nbsp;: int    </span>
 </dt>
-<dd>ฟังก์ชั่นคืนค่า ID ล่าสุดของตาราง + 1
-ใช้สำหรับอ่าน ID ถัดไปของตาราง (Auto Increment)</dd>
+<dd>Returns the next ID of the table (Auto Increment).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Db.html#method_getSetting">getSetting()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>อ่านค่ากำหนดของฐานข้อมูล</dd>
+<dd>Get the value of a database setting.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Query.html#method_getTableName">getTableName()</a>
@@ -462,91 +446,77 @@
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามี $index ในตารางหรือไม่
-คืนค่า true ถ้ามี คืนค่า false ถ้าไม่มี</dd>
+<dd>Check if an index exists in a table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_insert">insert()</a>
     <span>
                         &nbsp;: int|bool    </span>
 </dt>
-<dd>ฟังก์ชั่นเพิ่มข้อมูลใหม่ลงในตาราง
-สำเร็จ คืนค่า id ที่เพิ่ม ผิดพลาด คืนค่า false</dd>
+<dd>Insert new data into a table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_insertOrUpdate">insertOrUpdate()</a>
     <span>
                         &nbsp;: int|null    </span>
 </dt>
-<dd>ฟังก์ชั่นเพิ่มข้อมูลใหม่ลงในตาราง
-ถ้ามีข้อมูลเดิมอยู่แล้วจะเป็นการอัปเดต
-(ข้อมูลเดิมตาม KEY ที่เป็น UNIQUE)
-insert คืนค่า id ที่เพิ่ม
-update คืนค่า 0
-ผิดพลาด คืนค่า null</dd>
+<dd>Insert new data into a table or update existing data if a unique key constraint is violated.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_makeQuery">makeQuery()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นสร้างคำสั่ง sql query
-คืนค่า sql command</dd>
+<dd>Generate an SQL query command.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_optimizeTable">optimizeTable()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ปรับปรุงตาราง
-คืนค่า true ถ้าสำเร็จ</dd>
+<dd>Optimize a table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_query">query()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false</dd>
+<dd>Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_queryCount">queryCount()</a>
     <span>
                         &nbsp;: int    </span>
 </dt>
-<dd>ฟังก์ชั่นอ่านจำนวน query ทั้งหมดที่ทำงาน</dd>
+<dd>Get the total count of executed SQL queries.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_repairTable">repairTable()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ซ่อมแซมตาราง
-คืนค่า true ถ้าสำเร็จ</dd>
+<dd>Repair a table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_select">select()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>เรียกดูข้อมูล
-คืนค่าผลลัพท์ในรูป array ถ้าไม่สำเร็จ คืนค่าแอเรย์ว่าง</dd>
+<dd>Retrieve data from a table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_selectDB">selectDB()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>เลือกฐานข้อมูล
-คืนค่า false หากไม่สำเร็จ</dd>
+<dd>Select a database.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_tableExists">tableExists()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นตรวจสอบว่ามีตาราง หรือไม่
-คืนค่า true หากมีตารางนี้อยู่ ไม่พบคืนค่า false</dd>
+<dd>Check if a table exists.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Query.html#method_text">text()</a>
@@ -560,16 +530,14 @@ update คืนค่า 0
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่นแก้ไขข้อมูล
-สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false</dd>
+<dd>Update data in a table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Driver.html#method_updateAll">updateAll()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>อัปเดตข้อมูลทุก record
-สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false</dd>
+<dd>Update data for all records in a table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Kotchasan-Database-Query.html#method_aliasName">aliasName()</a>
@@ -637,16 +605,14 @@ update คืนค่า 0
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|bool    </span>
 </dt>
-<dd>ประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข หรือคืนค่า false หามีข้อผิดพลาด</dd>
+<dd>Execute an SQL query for retrieving data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Kotchasan-Database-Driver.html#method_doQuery">doQuery()</a>
     <span>
                         &nbsp;: int|bool    </span>
 </dt>
-<dd>ประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-สำเร็จคืนค่าจำนวนแถวที่มีผล ไม่สำเร็จคืนค่า false</dd>
+<dd>Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Kotchasan-Database-Query.html#method_fieldName">fieldName()</a>
@@ -681,7 +647,7 @@ update คืนค่า 0
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ฟังก์ชั่นบันทึกการ query sql</dd>
+<dd>Log the SQL query.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Kotchasan-Database-Query.html#method_quoteTableName">quoteTableName()</a>
@@ -725,12 +691,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">cache class</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a></span>
@@ -738,7 +703,9 @@ update คืนค่า 0
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>cache class</p>
+</section>
+
     
 
 </article>
@@ -758,12 +725,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Cacheitem</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a></span>
@@ -771,7 +737,9 @@ update คืนค่า 0
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>Cacheitem</p>
+</section>
+
     
 
 </article>
@@ -791,11 +759,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Config class</p>
+        <p class="phpdocumentor-summary">Config class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -824,12 +792,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">database connection</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">object</span>
@@ -837,7 +804,9 @@ update คืนค่า 0
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>database connection</p>
+</section>
+
     
 
 </article>
@@ -861,7 +830,7 @@ update คืนค่า 0
 
     </aside>
 
-        <p class="phpdocumentor-summary">database connection</p>
+        <p class="phpdocumentor-summary">Database connection.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -890,7 +859,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
@@ -924,12 +893,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">database error message</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">string</span>
@@ -937,7 +905,9 @@ update คืนค่า 0
      = <span class="phpdocumentor-signature__default-value">&#039;&#039;</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>database error message</p>
+</section>
+
     
 
 </article>
@@ -957,12 +927,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">นับจำนวนการ query</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
     <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">int</span>
@@ -970,7 +939,9 @@ update คืนค่า 0
      = <span class="phpdocumentor-signature__default-value">0</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>number of queries</p>
+</section>
+
     
 
 </article>
@@ -990,11 +961,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Server request class</p>
+        <p class="phpdocumentor-summary">Server request class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1023,12 +994,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เก็บ Object ที่เป็นผลลัพท์จากการ query</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">resource|object</span>
@@ -1036,7 +1006,9 @@ update คืนค่า 0
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>result object from query</p>
+</section>
+
     
 
 </article>
@@ -1056,11 +1028,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวแปรเก็บ query สำหรับการ execute</p>
+        <p class="phpdocumentor-summary">ตัวแปรเก็บคำสั่ง SQL</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1069,7 +1041,9 @@ update คืนค่า 0
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>query statements for execution</p>
+</section>
+
     
 
 </article>
@@ -1093,7 +1067,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -1126,27 +1100,33 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านสถานะของแคช
-0 ไม่ใช้แคช
-1 โหลดและบันทึกแคชอัตโนมัติ
-2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ</p>
+        <p class="phpdocumentor-summary">Get the cache action.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">cacheGetAction</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the cache action status:</p>
+<ul>
+<li>0: Cache is not used.</li>
+<li>1: Load and automatically save cache.</li>
+<li>2: Load data from cache, but do not automatically save cache.</li>
+</ul>
+</section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The cache action status</p>
+</section>
+
     
 </article>
                     <article
@@ -1162,12 +1142,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เปิดการใช้งานแคช
-จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล</p>
+        <p class="phpdocumentor-summary">Enable caching.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1181,7 +1160,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง</p>
+                    <section class="phpdocumentor-description"><p>(optional) Whether to automatically save the cache results (default: true)</p>
 </section>
 
             </dd>
@@ -1208,12 +1187,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">114</span>
+    <span class="phpdocumentor-element-found-in__line">104</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นบันทึก Cache
-สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false</p>
+        <p class="phpdocumentor-summary">Save cache data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1227,7 +1205,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่จะบันทึก</p>
+                    <section class="phpdocumentor-description"><p>The data to be saved</p>
 </section>
 
             </dd>
@@ -1238,7 +1216,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the cache is saved successfully, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1254,11 +1234,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">125</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">close database</p>
+        <p class="phpdocumentor-summary">Close the database connection.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1287,11 +1267,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">125</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นอ่านค่า resource ID ของการเชื่อมต่อปัจจุบัน</p>
+        <p class="phpdocumentor-summary">Get the current database connection.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1304,7 +1284,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">resource</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The database connection</p>
+</section>
+
     
 </article>
                     <article
@@ -1320,11 +1302,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">145</span>
+    <span class="phpdocumentor-element-found-in__line">135</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นสร้าง query builder</p>
+        <p class="phpdocumentor-summary">Create a new query builder instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1337,7 +1319,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Database-QueryBuilder.html"><abbr title="\Kotchasan\Database\QueryBuilder">QueryBuilder</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The query builder instance</p>
+</section>
+
     
 </article>
                     <article
@@ -1353,18 +1337,20 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">161</span>
+    <span class="phpdocumentor-element-found-in__line">152</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข ไม่พบคืนค่าแอเรย์ว่าง</p>
+        <p class="phpdocumentor-summary">Process an SQL query command to retrieve data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">customQuery</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sql</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$toArray</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$values</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns an array of records that match the conditions.
+If no records are found, an empty array is returned.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1372,7 +1358,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query string</p>
+                    <section class="phpdocumentor-description"><p>The query string</p>
 </section>
 
             </dd>
@@ -1381,7 +1367,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>default false คืนค่าผลลัทเป็น Object, true คืนค่าเป็น Array</p>
+                    <section class="phpdocumentor-description"><p>Optional. Default is false. Set to true to return results as an array, otherwise returns results as objects.</p>
 </section>
 
             </dd>
@@ -1390,7 +1376,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query</p>
+                    <section class="phpdocumentor-description"><p>Optional. If specified, prepares the query using these values instead of executing the query directly.</p>
 </section>
 
             </dd>
@@ -1401,7 +1387,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array of records that match the conditions</p>
+</section>
+
     
 </article>
                     <article
@@ -1417,12 +1405,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">180</span>
+    <span class="phpdocumentor-element-found-in__line">170</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นตรวจสอบว่ามี database หรือไม่
-คืนค่า true หากมีฐานข้อมูลนี้อยู่ ไม่พบคืนค่า false</p>
+        <p class="phpdocumentor-summary">Checks if a database exists.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1436,7 +1423,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อฐานข้อมูล</p>
+                    <section class="phpdocumentor-description"><p>The name of the database to check</p>
 </section>
 
             </dd>
@@ -1447,7 +1434,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns true if the database exists, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1467,7 +1456,7 @@ update คืนค่า 0
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่าน database connection</p>
+        <p class="phpdocumentor-summary">Get the database connection.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1480,7 +1469,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Database-Driver.html"><abbr title="\Kotchasan\Database\Driver">Driver</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The database connection.</p>
+</section>
+
     
 </article>
                     <article
@@ -1496,7 +1487,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -1542,16 +1533,15 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">197</span>
+    <span class="phpdocumentor-element-found-in__line">186</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นลบ record
-สำเร็จคืนค่าจำนวนแถวที่มีผล ไม่สำเร็จคืนค่า false</p>
+        <p class="phpdocumentor-summary">Deletes records from a table based on the given condition.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">delete</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$limit</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|bool</span></code>
+                <span class="phpdocumentor-signature__name">delete</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$limit</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1561,16 +1551,16 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The name of the table to delete records from</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$condition</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query WHERE</p>
+                    <section class="phpdocumentor-description"><p>The condition for deleting records (can be an array or a string)</p>
 </section>
 
             </dd>
@@ -1579,7 +1569,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">1</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>จำนวนรายการที่ต้องการลบ 1 (default) รายการแรกที่เจอ, หมายถึงลบทุกรายการ</p>
+                    <section class="phpdocumentor-description"><p>Optional. The maximum number of records to delete (default: 1)</p>
 </section>
 
             </dd>
@@ -1588,7 +1578,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>AND (default) หรือ OR</p>
+                    <section class="phpdocumentor-description"><p>Optional. The operator used to combine multiple conditions (default: 'AND')</p>
 </section>
 
             </dd>
@@ -1597,9 +1587,11 @@ update คืนค่า 0
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int|bool</span>
+    <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns true if the delete operation is successful, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1615,12 +1607,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">221</span>
+    <span class="phpdocumentor-element-found-in__line">209</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นลบข้อมูลทั้งหมดในตาราง
-คืนค่า true ถ้าสำเร็จ</p>
+        <p class="phpdocumentor-summary">Empties a table by deleting all its records.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1634,7 +1625,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>table name</p>
+                    <section class="phpdocumentor-description"><p>The name of the table to empty</p>
 </section>
 
             </dd>
@@ -1645,7 +1636,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns true if the table is successfully emptied, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1661,32 +1654,34 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">235</span>
+    <span class="phpdocumentor-element-found-in__line">223</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นประมวลผลคำสั่ง SQL จาก query builder</p>
+        <p class="phpdocumentor-summary">Executes one or multiple SQL queries and returns the result.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">execQuery</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sqls</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$values</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$debugger</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">execQuery</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sqls</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$values</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$debugger</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$sqls</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The SQL query or an array of SQL queries to execute</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$values</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query</p>
+                    <section class="phpdocumentor-description"><p>An array of parameter values to bind to the query (optional)</p>
 </section>
 
             </dd>
@@ -1695,7 +1690,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แสดงผล Query</p>
+                    <section class="phpdocumentor-description"><p>Debugging mode: 0 - disabled, 1 - echo debug info, 2 - collect debug info (optional)</p>
 </section>
 
             </dd>
@@ -1706,7 +1701,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns the result of the executed query/queries</p>
+</section>
+
     
 </article>
                     <article
@@ -1722,11 +1719,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">274</span>
+    <span class="phpdocumentor-element-found-in__line">267</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">จำนวนฟิลด์ทั้งหมดในผลลัพท์จากการ query</p>
+        <p class="phpdocumentor-summary">Returns the number of fields in the query result.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1739,7 +1736,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The number of fields</p>
+</section>
+
     
 </article>
                     <article
@@ -1755,12 +1754,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">285</span>
+    <span class="phpdocumentor-element-found-in__line">277</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบคอลัมน์ของตารางว่ามีหรือไม่
-คืนค่า true ถ้ามี คืนค่า false ถ้าไม่มี</p>
+        <p class="phpdocumentor-summary">Checks if a column exists in the table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1774,7 +1772,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name</p>
 </section>
 
             </dd>
@@ -1783,7 +1781,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคอลัมน์</p>
+                    <section class="phpdocumentor-description"><p>The column name</p>
 </section>
 
             </dd>
@@ -1794,7 +1792,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the column exists, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1810,12 +1810,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">301</span>
+    <span class="phpdocumentor-element-found-in__line">292</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น query ข้อมูล คืนค่าข้อมูลทุกรายการที่ตรงตามเงื่อนไข
-คืนค่า แอเรย์ของ object ไม่พบคืนค่าแอรย์ว่าง</p>
+        <p class="phpdocumentor-summary">Queries data and returns all items matching the condition.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1829,7 +1828,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name</p>
 </section>
 
             </dd>
@@ -1838,7 +1837,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query WHERE</p>
+                    <section class="phpdocumentor-description"><p>The query WHERE condition</p>
 </section>
 
             </dd>
@@ -1847,7 +1846,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>เรียงลำดับ</p>
+                    <section class="phpdocumentor-description"><p>Sorting options</p>
 </section>
 
             </dd>
@@ -1858,7 +1857,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array of objects representing the retrieved data, or an empty array if not found</p>
+</section>
+
     
 </article>
                     <article
@@ -1874,12 +1875,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">319</span>
+    <span class="phpdocumentor-element-found-in__line">309</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น query ข้อมูล คืนค่าข้อมูลรายการเดียว
-คืนค่า object ของข้อมูล ไม่พบคืนค่า false</p>
+        <p class="phpdocumentor-summary">Queries data and returns the first item matching the condition.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1893,7 +1893,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name</p>
 </section>
 
             </dd>
@@ -1902,7 +1902,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query WHERE</p>
+                    <section class="phpdocumentor-description"><p>The query WHERE condition</p>
 </section>
 
             </dd>
@@ -1913,7 +1913,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An object representing the retrieved data, or false if not found</p>
+</section>
+
     
 </article>
                     <article
@@ -1933,7 +1935,7 @@ update คืนค่า 0
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่ากำหนดทั้งหมดของฐานข้อมูล</p>
+        <p class="phpdocumentor-summary">Get all database settings.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1946,7 +1948,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">object</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The database settings object.</p>
+</section>
+
     
 </article>
                     <article
@@ -1962,11 +1966,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">330</span>
+    <span class="phpdocumentor-element-found-in__line">320</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าข้อความผิดพลาดของฐานข้อมูล</p>
+        <p class="phpdocumentor-summary">Returns the error message of the database.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1979,7 +1983,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The error message</p>
+</section>
+
     
 </article>
                     <article
@@ -1995,11 +2001,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">340</span>
+    <span class="phpdocumentor-element-found-in__line">330</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อฟิลด์ทั้งหมดจากผลัพท์จองการ query</p>
+        <p class="phpdocumentor-summary">Returns the list of all fields from the query result.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2012,7 +2018,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array containing the names of all fields</p>
+</section>
+
     
 </article>
                     <article
@@ -2028,7 +2036,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
@@ -2074,18 +2082,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">351</span>
+    <span class="phpdocumentor-element-found-in__line">341</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นคืนค่า ID ล่าสุดของตาราง + 1
-ใช้สำหรับอ่าน ID ถัดไปของตาราง (Auto Increment)</p>
+        <p class="phpdocumentor-summary">Returns the next ID of the table (Auto Increment).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">getNextId</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$primary_key</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Used to retrieve the next ID value for a table.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2093,7 +2102,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name</p>
 </section>
 
             </dd>
@@ -2102,7 +2111,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคอลัมน์ที่ต้องการอ่าน</p>
+                    <section class="phpdocumentor-description"><p>The column name to read</p>
 </section>
 
             </dd>
@@ -2113,7 +2122,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The next ID value</p>
+</section>
+
     
 </article>
                     <article
@@ -2133,7 +2144,7 @@ update คืนค่า 0
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านค่ากำหนดของฐานข้อมูล</p>
+        <p class="phpdocumentor-summary">Get the value of a database setting.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2147,7 +2158,9 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The setting key.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2156,7 +2169,9 @@ update คืนค่า 0
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The value of the setting.</p>
+</section>
+
     
 </article>
                     <article
@@ -2172,7 +2187,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
@@ -2218,18 +2233,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">367</span>
+    <span class="phpdocumentor-element-found-in__line">357</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามี $index ในตารางหรือไม่
-คืนค่า true ถ้ามี คืนค่า false ถ้าไม่มี</p>
+        <p class="phpdocumentor-summary">Check if an index exists in a table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">indexExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$database_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$index</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if the index exists, false otherwise.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2237,21 +2253,27 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The database name.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$table_name</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The table name.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$index</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The index name.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2276,18 +2298,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">382</span>
+    <span class="phpdocumentor-element-found-in__line">372</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นเพิ่มข้อมูลใหม่ลงในตาราง
-สำเร็จ คืนค่า id ที่เพิ่ม ผิดพลาด คืนค่า false</p>
+        <p class="phpdocumentor-summary">Insert new data into a table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
     <span class="phpdocumentor-signature__abstract">abstract</span>            <span class="phpdocumentor-signature__name">insert</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$save</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the ID of the inserted data if successful, or false if an error occurs.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2295,7 +2318,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name.</p>
 </section>
 
             </dd>
@@ -2304,7 +2327,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่ต้องการบันทึก</p>
+                    <section class="phpdocumentor-description"><p>The data to be saved.</p>
 </section>
 
             </dd>
@@ -2331,22 +2354,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">397</span>
+    <span class="phpdocumentor-element-found-in__line">383</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นเพิ่มข้อมูลใหม่ลงในตาราง
-ถ้ามีข้อมูลเดิมอยู่แล้วจะเป็นการอัปเดต
-(ข้อมูลเดิมตาม KEY ที่เป็น UNIQUE)
-insert คืนค่า id ที่เพิ่ม
-update คืนค่า 0
-ผิดพลาด คืนค่า null</p>
+        <p class="phpdocumentor-summary">Insert new data into a table or update existing data if a unique key constraint is violated.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
     <span class="phpdocumentor-signature__abstract">abstract</span>            <span class="phpdocumentor-signature__name">insertOrUpdate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$save</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the ID of the inserted data, 0 if an update occurred, or null if an error occurs.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2354,7 +2374,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name.</p>
 </section>
 
             </dd>
@@ -2363,7 +2383,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่ต้องการบันทึก รูปแบบ array('key1'=&gt;'value1', 'key2'=&gt;'value2', ...)</p>
+                    <section class="phpdocumentor-description"><p>The data to be saved in the format array('key1'=&gt;'value1', 'key2'=&gt;'value2', ...).</p>
 </section>
 
             </dd>
@@ -2390,18 +2410,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">407</span>
+    <span class="phpdocumentor-element-found-in__line">393</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นสร้างคำสั่ง sql query
-คืนค่า sql command</p>
+        <p class="phpdocumentor-summary">Generate an SQL query command.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
     <span class="phpdocumentor-signature__abstract">abstract</span>            <span class="phpdocumentor-signature__name">makeQuery</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sqls</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the SQL command.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2409,7 +2430,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คำสั่ง sql จาก query builder</p>
+                    <section class="phpdocumentor-description"><p>The SQL commands from the query builder.</p>
 </section>
 
             </dd>
@@ -2436,18 +2457,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">439</span>
+    <span class="phpdocumentor-element-found-in__line">425</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ปรับปรุงตาราง
-คืนค่า true ถ้าสำเร็จ</p>
+        <p class="phpdocumentor-summary">Optimize a table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">optimizeTable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if successful.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2455,7 +2477,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>table name</p>
+                    <section class="phpdocumentor-description"><p>The table name.</p>
 </section>
 
             </dd>
@@ -2482,18 +2504,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">453</span>
+    <span class="phpdocumentor-element-found-in__line">439</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false</p>
+        <p class="phpdocumentor-summary">Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">query</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sql</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$values</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if successful, or false if an error occurs.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2501,14 +2524,16 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The query string.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$values</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query</p>
+                    <section class="phpdocumentor-description"><p>If specified, it will use prepared statements instead of directly querying the database.</p>
 </section>
 
             </dd>
@@ -2535,11 +2560,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">463</span>
+    <span class="phpdocumentor-element-found-in__line">449</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นอ่านจำนวน query ทั้งหมดที่ทำงาน</p>
+        <p class="phpdocumentor-summary">Get the total count of executed SQL queries.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2568,18 +2593,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">476</span>
+    <span class="phpdocumentor-element-found-in__line">462</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ซ่อมแซมตาราง
-คืนค่า true ถ้าสำเร็จ</p>
+        <p class="phpdocumentor-summary">Repair a table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">repairTable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if successful.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2587,7 +2613,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>table name</p>
+                    <section class="phpdocumentor-description"><p>The table name.</p>
 </section>
 
             </dd>
@@ -2614,18 +2640,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">492</span>
+    <span class="phpdocumentor-element-found-in__line">478</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เรียกดูข้อมูล
-คืนค่าผลลัพท์ในรูป array ถ้าไม่สำเร็จ คืนค่าแอเรย์ว่าง</p>
+        <p class="phpdocumentor-summary">Retrieve data from a table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
     <span class="phpdocumentor-signature__abstract">abstract</span>            <span class="phpdocumentor-signature__name">select</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sort</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$limit</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the result in an array format. If unsuccessful, returns an empty array.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2633,7 +2660,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name.</p>
 </section>
 
             </dd>
@@ -2642,7 +2669,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query WHERE</p>
+                    <section class="phpdocumentor-description"><p>The WHERE condition for the query.</p>
 </section>
 
             </dd>
@@ -2651,7 +2678,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>เรียงลำดับ</p>
+                    <section class="phpdocumentor-description"><p>The sorting order.</p>
 </section>
 
             </dd>
@@ -2660,7 +2687,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>จำนวนข้อมูลที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The number of data to retrieve.</p>
 </section>
 
             </dd>
@@ -2687,18 +2714,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">502</span>
+    <span class="phpdocumentor-element-found-in__line">488</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เลือกฐานข้อมูล
-คืนค่า false หากไม่สำเร็จ</p>
+        <p class="phpdocumentor-summary">Select a database.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
     <span class="phpdocumentor-signature__abstract">abstract</span>            <span class="phpdocumentor-signature__name">selectDB</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$database</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns false if unsuccessful.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2706,7 +2734,9 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The database name.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2731,18 +2761,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">512</span>
+    <span class="phpdocumentor-element-found-in__line">498</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นตรวจสอบว่ามีตาราง หรือไม่
-คืนค่า true หากมีตารางนี้อยู่ ไม่พบคืนค่า false</p>
+        <p class="phpdocumentor-summary">Check if a table exists.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">tableExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if the table exists, false otherwise.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2750,7 +2781,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name.</p>
 </section>
 
             </dd>
@@ -2777,7 +2808,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
     </aside>
 
@@ -2810,18 +2841,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">528</span>
+    <span class="phpdocumentor-element-found-in__line">514</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นแก้ไขข้อมูล
-สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false</p>
+        <p class="phpdocumentor-summary">Update data in a table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
     <span class="phpdocumentor-signature__abstract">abstract</span>            <span class="phpdocumentor-signature__name">update</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$save</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if successful, false otherwise.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2829,7 +2861,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name.</p>
 </section>
 
             </dd>
@@ -2838,7 +2870,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query WHERE</p>
+                    <section class="phpdocumentor-description"><p>The WHERE condition for the query.</p>
 </section>
 
             </dd>
@@ -2847,7 +2879,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่ต้องการบันทึก รูปแบบ array('key1'=&gt;'value1', 'key2'=&gt;'value2', ...)</p>
+                    <section class="phpdocumentor-description"><p>The data to be saved in the format array('key1'=&gt;'value1', 'key2'=&gt;'value2', ...).</p>
 </section>
 
             </dd>
@@ -2874,18 +2906,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">539</span>
+    <span class="phpdocumentor-element-found-in__line">525</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อัปเดตข้อมูลทุก record
-สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false</p>
+        <p class="phpdocumentor-summary">Update data for all records in a table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">updateAll</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$save</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns true if successful, false otherwise.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2893,7 +2926,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>table name</p>
+                    <section class="phpdocumentor-description"><p>The table name.</p>
 </section>
 
             </dd>
@@ -2902,7 +2935,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่ต้องการบันทึก array('key1'=&gt;'value1', 'key2'=&gt;'value2', ...)</p>
+                    <section class="phpdocumentor-description"><p>The data to be saved in the format array('key1'=&gt;'value1', 'key2'=&gt;'value2', ...).</p>
 </section>
 
             </dd>
@@ -2929,7 +2962,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">103</span>
 
     </aside>
 
@@ -2983,7 +3016,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
@@ -3028,7 +3061,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">136</span>
+    <span class="phpdocumentor-element-found-in__line">134</span>
 
     </aside>
 
@@ -3092,7 +3125,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">163</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
@@ -3137,7 +3170,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
@@ -3187,7 +3220,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">259</span>
+    <span class="phpdocumentor-element-found-in__line">257</span>
 
     </aside>
 
@@ -3232,7 +3265,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">313</span>
+    <span class="phpdocumentor-element-found-in__line">311</span>
 
     </aside>
 
@@ -3294,7 +3327,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">373</span>
+    <span class="phpdocumentor-element-found-in__line">371</span>
 
     </aside>
 
@@ -3356,18 +3389,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">418</span>
+    <span class="phpdocumentor-element-found-in__line">404</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข หรือคืนค่า false หามีข้อผิดพลาด</p>
+        <p class="phpdocumentor-summary">Execute an SQL query for retrieving data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
     <span class="phpdocumentor-signature__abstract">abstract</span>            <span class="phpdocumentor-signature__name">doCustomQuery</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sql</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$values</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns an array of data that match the conditions, or false if an error occurs.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -3375,7 +3409,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query string</p>
+                    <section class="phpdocumentor-description"><p>The query string.</p>
 </section>
 
             </dd>
@@ -3384,7 +3418,7 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query</p>
+                    <section class="phpdocumentor-description"><p>If specified, it will use prepared statements instead of directly querying the database.</p>
 </section>
 
             </dd>
@@ -3411,18 +3445,19 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">429</span>
+    <span class="phpdocumentor-element-found-in__line">415</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-สำเร็จคืนค่าจำนวนแถวที่มีผล ไม่สำเร็จคืนค่า false</p>
+        <p class="phpdocumentor-summary">Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
     <span class="phpdocumentor-signature__abstract">abstract</span>            <span class="phpdocumentor-signature__name">doQuery</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sql</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$values</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the number of affected rows if successful, or false if an error occurs.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -3430,14 +3465,16 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The query string.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$values</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query</p>
+                    <section class="phpdocumentor-description"><p>If specified, it will use prepared statements instead of directly querying the database.</p>
 </section>
 
             </dd>
@@ -3464,7 +3501,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">423</span>
+    <span class="phpdocumentor-element-found-in__line">421</span>
 
     </aside>
 
@@ -3507,7 +3544,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">472</span>
+    <span class="phpdocumentor-element-found-in__line">470</span>
 
     </aside>
 
@@ -3550,7 +3587,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">497</span>
+    <span class="phpdocumentor-element-found-in__line">495</span>
 
     </aside>
 
@@ -3595,7 +3632,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">516</span>
+    <span class="phpdocumentor-element-found-in__line">514</span>
 
     </aside>
 
@@ -3640,11 +3677,11 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Driver.php"><a href="files/kotchasan-database-driver.html"><abbr title="Kotchasan/Database/Driver.php">Driver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">551</span>
+    <span class="phpdocumentor-element-found-in__line">537</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นบันทึกการ query sql</p>
+        <p class="phpdocumentor-summary">Log the SQL query.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -3658,21 +3695,25 @@ update คืนค่า 0
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The type of query.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$sql</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The SQL query string.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$values</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(options)</p>
+                    <section class="phpdocumentor-description"><p>(Optional) The values for prepared statements.</p>
 </section>
 
             </dd>
@@ -3699,7 +3740,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">535</span>
+    <span class="phpdocumentor-element-found-in__line">533</span>
 
     </aside>
 
@@ -3744,7 +3785,7 @@ update คืนค่า 0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">561</span>
+    <span class="phpdocumentor-element-found-in__line">559</span>
 
     </aside>
 

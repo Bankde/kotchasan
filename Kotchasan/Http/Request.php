@@ -5,13 +5,13 @@
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * @package Kotchasan\Http
  */
 
 namespace Kotchasan\Http;
 
 /**
- * คลาสสำหรับจัดการตัวแปรต่างๆจาก Server
+ * Class for handling various variables from the server.
  *
  * @see https://www.kotchasan.com/
  */
@@ -21,41 +21,46 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      * @var array
      */
     private $attributes = array();
+
     /**
      * $_COOKIE
      *
      * @var array
      */
     private $cookieParams;
+
     /**
      * $_POST
      *
      * @var array
      */
     private $parsedBody;
+
     /**
      * $_GET
      *
      * @var array
      */
     private $queryParams;
+
     /**
      * $_SERVER
      *
      * @var array
      */
     private $serverParams;
+
     /**
      * @var Kotchasan\Files
      */
     private $uploadedFiles;
 
     /**
-     * อ่านค่าจากตัวแปร COOKIE
-     * คืนค่า InputItem หรือ Collection ของ InputItem
+     * Reads a value from the COOKIE variable.
+     * Returns an InputItem or a collection of InputItem.
      *
-     * @param string $name    ชื่อตัวแปร
-     * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
+     * @param string $name    The name of the variable.
+     * @param mixed  $default The default value if the variable is not found.
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
@@ -65,9 +70,9 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * ฟังก์ชั่นสร้าง token
+     * Generates a token.
      *
-     * @return string
+     * @return string The generated token.
      */
     public function createToken()
     {
@@ -80,12 +85,12 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * อ่านค่าจากตัวแปร GET
-     * คืนค่า InputItem หรือ Collection ของ InputItem
+     * Reads a value from the GET variable.
+     * Returns an InputItem or a collection of InputItem.
      *
-     * @param string $name    ชื่อตัวแปร
-     * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
-     * @param string $cookie  null (default) ไม่อ่านจาก cookie, string ชื่อ cookie ที่ต้องการ
+     * @param string $name    The name of the variable.
+     * @param mixed  $default The default value if the variable is not found.
+     * @param string $cookie  null (default) to not read from the cookie, string specifying the cookie name to read from.
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
@@ -99,9 +104,9 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * คืนค่ารายการภาษาที่รองรับ จาก HTTP header
+     * Returns the list of acceptable languages from the HTTP header.
      *
-     * @return array
+     * @return array The list of acceptable languages.
      */
     public function getAcceptableLanguages()
     {
@@ -130,12 +135,12 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * อ่านค่า attributes ที่ต้องการ
+     * Retrieves the attribute with the given name.
      *
-     * @param string $name    ชื่อของ attributes
-     * @param mixed  $default คืนค่า $default ถ้าไม่พบ
+     * @param string $name    The attribute name.
+     * @param mixed  $default The default value if the attribute is not found.
      *
-     * @return mixed
+     * @return mixed The attribute value.
      */
     public function getAttribute($name, $default = null)
     {
@@ -143,9 +148,9 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * คืนค่า attributes ทั้งหมด
+     * Retrieves the attributes.
      *
-     * @return array
+     * @return array The attributes.
      */
     public function getAttributes()
     {
@@ -153,10 +158,9 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * ฟังก์ชั่น อ่าน ip ของ client
-     * คืนค่า IP ที่อ่านได้
+     * Retrieves the parsed body parameters, if any.
      *
-     * @return string|null
+     * @return array|null The parsed body parameters.
      */
     public function getClientIp()
     {
@@ -174,7 +178,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * คืนค่าจากตัวแปร $_COOKIE
+     * Get values from the $_COOKIE variable.
      *
      * @return array
      */
@@ -187,7 +191,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * คืนค่าจากตัวแปร $_POST
+     * Get values from the $_POST variable.
      *
      * @return null|array|object
      */
@@ -200,7 +204,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * คืนค่าจากตัวแปร $_GET
+     * Get values from the $_GET variable.
      *
      * @return null|array|object
      */
@@ -213,7 +217,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * คืนค่าจากตัวแปร $_SERVER
+     * Get values from the $_SERVER variable.
      *
      * @return array
      */
@@ -226,7 +230,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * อ่าน stream
+     * Read the stream.
      *
      * @return StreamInterface
      */
@@ -236,7 +240,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * คืนค่าไฟล์อัปโหลด FILES
+     * Get uploaded files from $_FILES.
      *
      * @return \Kotchasan\Files
      */
@@ -260,30 +264,30 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * อ่านค่าจากตัวแปร GLOBALS เช่น $_POST $_GET $_SESSION $_COOKIE ตามที่ระบุใน $keys ตามลำดับ
-     * เช่น array('POST', 'GET') หมายถึงอ่านจาก $_POST ก่อน ถ้าไม่พบจะอ่านจาก $_GET
-     * และถ้าไม่พบอีกจะคืนค่า $default
+     * Read values from the GLOBALS variables ($_POST, $_GET, $_SESSION, $_COOKIE) according to the specified keys.
+     * For example, if the keys are ['POST', 'GET'], it will read from $_POST first and if not found, it will read from $_GET.
+     * If the value is still not found, it will return the default value.
      *
-     * @param array  $keys    ชื่อตัวแปรที่ต้องการอ่าน ตัวพิมพ์ใหญ่ เช่น array('POST', 'GET')
-     * @param string $name    ชื่อตัวแปร
-     * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
-     * @param string  $cookie_or_session_name ชื่อของ cookie หรือ session หากต่างจาก $name
+     * @param array  $keys                   The names of the variables to read (uppercase), e.g., ['POST', 'GET'].
+     * @param string $name                   The name of the variable.
+     * @param mixed  $default                The default value if the variable is not found.
+     * @param string $cookie_or_session_name The name of the cookie or session if it's different from $name.
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
     public function globals($keys, $name, $default = null, $cookie_or_session_name = null)
     {
         foreach ($keys as $key) {
-            if ($key == 'POST') {
+            if ($key === 'POST') {
                 $datas = $this->getParsedBody();
-            } elseif ($key == 'GET') {
+            } elseif ($key === 'GET') {
                 $datas = $this->getQueryParams();
-            } elseif ($key == 'SESSION') {
+            } elseif ($key === 'SESSION') {
                 $datas = $_SESSION;
                 if ($cookie_or_session_name !== null) {
                     $name = $cookie_or_session_name;
                 }
-            } elseif ($key == 'COOKIE') {
+            } elseif ($key === 'COOKIE') {
                 $datas = $this->getCookieParams();
                 if ($cookie_or_session_name !== null) {
                     $name = $cookie_or_session_name;
@@ -297,7 +301,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * ฟังก์ชั่นเริ่มต้นใช้งาน session
+     * Initialize session.
      *
      * @return bool
      */
@@ -318,12 +322,12 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
         if (defined('USE_SESSION_DATABASE') && USE_SESSION_DATABASE === true) {
             $sess = new \Kotchasan\Session();
             session_set_save_handler(
-                array($sess, '_open'),
-                array($sess, '_close'),
-                array($sess, '_read'),
-                array($sess, '_write'),
-                array($sess, '_destroy'),
-                array($sess, '_gc')
+                [$sess, '_open'],
+                [$sess, '_close'],
+                [$sess, '_read'],
+                [$sess, '_write'],
+                [$sess, '_destroy'],
+                [$sess, '_gc']
             );
             // Register a shutdown function to write the session data
             register_shutdown_function('session_write_close');
@@ -343,8 +347,8 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * ตรวจสอบว่าเรียกมาโดย Ajax หรือไม่
-     * คืนค่า true ถ้าเรียกมาจาก Ajax (XMLHttpRequest)
+     * Check if the request is made via Ajax.
+     * Return true if the request is an Ajax request (XMLHttpRequest).
      *
      * @return bool
      */
@@ -354,8 +358,8 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * ฟังก์ชั่น ตรวจสอบ referer
-     * คืนค่า true ถ้า referer มาจากเว็บไซต์นี้
+     * Check if the referer is from the same website.
+     * Return true if the referer is from the same website.
      *
      * @return bool
      */
@@ -372,11 +376,11 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * ฟังก์ชั่น ตรวจสอบ token ที่มาจากฟอร์ม และ ตรวจสอบ Referer ด้วย
-     * รับค่าที่มาจาก $_POST เท่านั้น
-     * ฟังก์ชั่นนี้ต้องเรียกต่อจาก initSession() เสมอ
-     * อายุของ token กำหนดที่ TOKEN_LIMIT
-     * คืนค่า true ถ้า token ถูกต้องและไม่หมดอายุ
+     * Check the token from the form and validate the referer.
+     * Only accepts values from $_POST.
+     * This function must be called after initSession() every time.
+     * The token has a lifetime defined by TOKEN_LIMIT.
+     * Return true if the token is valid and not expired.
      *
      * @return bool
      */
@@ -395,19 +399,19 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * อ่านค่าจากตัวแปร $_POST
-     * ถ้าไม่พบเลยคืนค่า $default
-     * คืนค่า InputItem หรือ แอเรย์ของ InputItem
+     * Read a value from the $_POST variable.
+     * If not found, return the $default value.
+     * Return an InputItem or an array of InputItem.
      *
-     * @param string $name    ชื่อตัวแปร
-     * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
-     * @param string $cookie  null (default) ไม่อ่านจาก cookie, string ชื่อ cookie ที่ต้องการ
+     * @param string      $name    The variable name.
+     * @param mixed       $default The default value if the variable is not found.
+     * @param string|null $cookie  null (default) to not read from cookie, string the name of the cookie to read from.
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
     public function post($name, $default = null, $cookie = null)
     {
-        $from = array('POST');
+        $from = ['POST'];
         if ($cookie !== null) {
             $from[] = 'COOKIE';
         }
@@ -415,7 +419,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * ลบ token
+     * Remove the token.
      */
     public function removeToken()
     {
@@ -426,19 +430,19 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * อ่านค่าจากตัวแปร $_POST $_GET $_COOKIE(options) ตามลำดับ
-     * คืนค่ารายการแรกที่พบ ถ้าไม่พบเลยคืนค่า $default
-     * คืนค่า InputItem หรือ แอเรย์ของ InputItem
+     * Read a value from the $_POST, $_GET, $_COOKIE (optional) variables in order.
+     * Return the first item found, if not found, return the $default value.
+     * Return an InputItem or an array of InputItem.
      *
-     * @param string $name    ชื่อตัวแปร
-     * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
-     * @param string $cookie  null (default) ไม่อ่านจาก cookie, string ชื่อ cookie ที่ต้องการ
+     * @param string      $name    The variable name.
+     * @param mixed       $default The default value if the variable is not found.
+     * @param string|null $cookie  null (default) to not read from cookie, string the name of the cookie to read from.
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
     public function request($name, $default = null, $cookie = null)
     {
-        $from = array('POST', 'GET');
+        $from = ['POST', 'GET'];
         if ($cookie !== null) {
             $from[] = 'COOKIE';
         }
@@ -446,11 +450,11 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * อ่านค่าจากตัวแปร $_SERVER
-     * ถ้าไม่พบเลยคืนค่า $default
+     * Read a value from the $_SERVER variable.
+     * If not found, return the $default value.
      *
-     * @param string $name    ชื่อตัวแปร
-     * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
+     * @param string $name    The variable name.
+     * @param mixed  $default The default value if the variable is not found.
      *
      * @return mixed
      */
@@ -460,12 +464,12 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * อ่านค่าจากตัวแปร $_SESSION
-     * ถ้าไม่พบเลยคืนค่า $default
-     * คืนค่า InputItem หรือ Collection ของ InputItem
+     * Read a value from the $_SESSION variable.
+     * If not found, return the $default value.
+     * Return an InputItem or a Collection of InputItem.
      *
-     * @param string $name    ชื่อตัวแปร
-     * @param mixed  $default ค่าเริ่มต้นหากไม่พบตัวแปร
+     * @param string $name    The variable name.
+     * @param mixed  $default The default value if the variable is not found.
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
@@ -475,10 +479,10 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * กำหนดค่าตัวแปร $_SESSION
+     * Set the value of $_SESSION variable.
      *
-     * @param string $name  ชื่อตัวแปร
-     * @param mixed  $value ค่าของตัวแปร
+     * @param string $name  The variable name.
+     * @param mixed  $value The value of the variable.
      *
      * @return static
      */
@@ -489,10 +493,10 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * กำหนดค่า attributes
+     * Set the value of attributes.
      *
-     * @param string $name  ชื่อของ attributes
-     * @param mixed  $value ค่าของ attribute
+     * @param string $name  The name of the attribute.
+     * @param mixed  $value The value of the attribute.
      *
      * @return static
      */
@@ -504,9 +508,9 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * กำหนดค่า cookieParams
+     * Set the value of cookieParams.
      *
-     * @param array $cookies
+     * @param array $cookies The cookie parameters.
      *
      * @return static
      */
@@ -518,9 +522,9 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * กำหนดค่า parsedBody
+     * Set the value of parsedBody.
      *
-     * @param mixed $data
+     * @param mixed $data The parsed body data.
      *
      * @return static
      */
@@ -532,9 +536,9 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * กำหนดค่า queryParams
+     * Set the value of queryParams.
      *
-     * @param array $query
+     * @param array $query The query parameters.
      *
      * @return static
      */
@@ -546,9 +550,9 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * กำหนดค่า uploadedFiles
+     * Set the value of uploadedFiles.
      *
-     * @param array $uploadedFiles
+     * @param array $uploadedFiles The uploaded files.
      *
      * @return static
      */
@@ -560,9 +564,9 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * ลบ attributes
+     * Removes attributes.
      *
-     * @param string|array $names ชื่อของ attributes ที่ต้องการลบ
+     * @param string|array $names The names of the attributes to remove.
      *
      * @return static
      */
@@ -580,13 +584,13 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * อ่านค่าจาก $source
-     * คืนค่า InputItem หรือ Collection ของ InputItem
+     * Reads a value from the $source.
+     * Returns an InputItem or a Collection of InputItem.
      *
-     * @param array       $source  ตัวแปร GET POST
-     * @param string      $name    ชื่อตัวแปร
-     * @param mixed       $default ค่าเริ่มต้นหากไม่พบตัวแปร
-     * @param string|null $type    ประเภท Input เช่น GET POST SESSION COOKIE หรือ null ถ้าไม่ได้มาจากรายการข้างต้น
+     * @param array       $source  The GET or POST variables.
+     * @param string      $name    The variable name.
+     * @param mixed       $default The default value if the variable is not found.
+     * @param string|null $type    The type of input (e.g., GET, POST, SESSION, COOKIE) or null if not from the listed sources.
      *
      * @return \Kotchasan\InputItem|\Kotchasan\Inputs
      */
@@ -601,11 +605,11 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     }
 
     /**
-     * key ของ Input ต่างๆเป็น ตัวเลข ภาษาอังกฤษ และ [ ] _ - เท่านั้น
+     * Filters the keys of the requests.
      *
-     * @param array $source
+     * @param array $source The source array.
      *
-     * @return array
+     * @return array The filtered array.
      */
     public static function filterRequestKey($source)
     {

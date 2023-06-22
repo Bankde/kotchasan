@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -139,11 +145,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Mime.php"><a href="files/kotchasan-mime.html"><abbr title="Kotchasan/Mime.php">Mime.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">MIME type for a file extension</p>
+            <p class="phpdocumentor-summary">Class responsible for handling MIME types and file extensions.</p>
 
 
 
@@ -153,20 +159,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -187,32 +184,28 @@
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่น ตรวจสอบ $typies ว่าตรงกับ $mime หรือไม่
-ใช้สำหรับการตรวจสอบไฟล์อัปโหลด
-คืนค่า true หาก $mime และ $typies สอดคล้องกัน</dd>
+<dd>Check if the MIME type matches the accepted types.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Mime.html#method_get">get()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;|null    </span>
 </dt>
-<dd>Get the MIME type for a file extension
-คืนค่า null ถ้าไม่พบ</dd>
+<dd>Get the MIME type for a file extension.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Mime.html#method_getAccept">getAccept()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่น อ่าน mimetype ของไฟล์ สำหรับส่งให้ input ชนิด file
-คืนค่า mimetype ของไฟล์ คั่นแต่ละรายการด้วย , เช่น image/jpeg,image/png,image/gif</dd>
+<dd>Get the accept string for input of type &quot;file&quot;.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Kotchasan-Mime.html#method_typies">typies()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a href="classes/Kotchasan-Mime.html#method_getMimeTypes">getMimeTypes()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd></dd>
+<dd>Get an array of MIME types.</dd>
 
         </dl>
 
@@ -240,19 +233,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Mime.php"><a href="files/kotchasan-mime.html"><abbr title="Kotchasan/Mime.php">Mime.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1050</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น ตรวจสอบ $typies ว่าตรงกับ $mime หรือไม่
-ใช้สำหรับการตรวจสอบไฟล์อัปโหลด
-คืนค่า true หาก $mime และ $typies สอดคล้องกัน</p>
+        <p class="phpdocumentor-summary">Check if the MIME type matches the accepted types.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">check</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$typies</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mime</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Used for validating uploaded files.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -260,7 +253,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชนิดของไฟล์ที่ยอมรับ เช่น array(jpg, gif, png)</p>
+                    <section class="phpdocumentor-description"><p>The accepted file types.</p>
 </section>
 
             </dd>
@@ -269,7 +262,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชนิดของไฟล์ที่ต้องการตรวจสอบ เช่น image/png ซึ่งปกติจะได้จากการอัปโหลด เช่น $file[mime]</p>
+                    <section class="phpdocumentor-description"><p>The MIME type to check, usually obtained from the uploaded file.</p>
 </section>
 
             </dd>
@@ -295,7 +288,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the MIME type matches any of the accepted types, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -311,18 +306,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Mime.php"><a href="files/kotchasan-mime.html"><abbr title="Kotchasan/Mime.php">Mime.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1021</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Get the MIME type for a file extension
-คืนค่า null ถ้าไม่พบ</p>
+        <p class="phpdocumentor-summary">Get the MIME type for a file extension.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$exts</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns null if not found.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -330,7 +326,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The file extension(s).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -363,7 +361,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The MIME type(s) corresponding to the given extension(s).</p>
+</section>
+
     
 </article>
                     <article
@@ -379,18 +379,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Mime.php"><a href="files/kotchasan-mime.html"><abbr title="Kotchasan/Mime.php">Mime.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1071</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น อ่าน mimetype ของไฟล์ สำหรับส่งให้ input ชนิด file
-คืนค่า mimetype ของไฟล์ คั่นแต่ละรายการด้วย , เช่น image/jpeg,image/png,image/gif</p>
+        <p class="phpdocumentor-summary">Get the accept string for input of type &quot;file&quot;.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">getAccept</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$typies</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns a comma-separated string of MIME types.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -398,7 +399,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชนิดของไฟล์ เช่น array(jpg, gif, png)</p>
+                    <section class="phpdocumentor-description"><p>The file types.</p>
 </section>
 
             </dd>
@@ -424,40 +425,44 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The accept string for the given file types.</p>
+</section>
+
     
 </article>
                     <article
         class="phpdocumentor-element
             -method
-            -public
+            -private
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_typies">
-        typies()
-        <a href="classes/Kotchasan-Mime.html#method_typies" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getMimeTypes">
+        getMimeTypes()
+        <a href="classes/Kotchasan-Mime.html#method_getMimeTypes" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Mime.php"><a href="files/kotchasan-mime.html"><abbr title="Kotchasan/Mime.php">Mime.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get an array of MIME types.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">typies</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+    <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">getMimeTypes</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array of MIME types.</p>
+</section>
+
     
 </article>
             </section>

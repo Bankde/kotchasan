@@ -13,184 +13,209 @@ namespace Kotchasan;
 use Kotchasan\Http\Uri;
 
 /**
- * คลาสสำหรับจัดการแสดงผลข้อมูลจาก Model ในรูปแบบตาราง
+ * Class for managing data presentation from a Model in table format.
  *
  * @see https://www.kotchasan.com/
  */
 class DataTable extends \Kotchasan\KBase
 {
     /**
-     * id ของตาราง
+     * Table ID.
      *
      * @var string
      */
     private $id;
+
     /**
-     * class ของตาราง
+     * Table class.
      *
      * @var string
      */
     private $class;
+
     /**
-     * ชื่อ Model ที่ต้องการเรียกข้อมูล
+     * Name of the Model to retrieve data from.
      *
      * @var \Kotchasan\Database\QueryBuilder
      */
     private $model;
+
     /**
-     * ข้อมูลทั้งหมดของตารางรูปแบบแอเรย์
-     * หากไม่ได้ใช้ตารางเชื่อมต่อกับ Model ให้กำหนดข้อมูลทั้งหมดที่นี่
+     * All data of the table in array format.
+     * If the table does not connect to a Model, specify the data here.
      *
      * @var array
      */
     private $datas;
+
     /**
-     * URL สำหรับการอ่านข้อมูลด้วย Ajax
-     * คืนค่ากลับมาเป็น JSON ตามคอลัมน์
+     * URL for reading data using Ajax.
+     * Returns JSON data based on columns.
      *
      * @var string
      */
     private $url = null;
+
     /**
-     * ข้อมูลแอเรย์สำหรับส่งไปยัง $url เมื่อมีการเรียกโดย Ajax
+     * Array data to be sent to $url when called by Ajax.
      *
      * @var array
      */
     private $params = array();
+
     /**
-     * database cache
+     * Database cache.
      *
      * @var bool
      */
     private $cache = false;
+
     /**
-     * รายชื่อฟิลด์ที่จะ query
+     * List of fields to query.
      *
      * @var array
      */
     private $fields = array();
+
     /**
-     * คอลัมน์ของ checkbox
-     * -1 ไม่แสดง checkbox
+     * Column index of the checkbox.
+     * -1 to hide the checkbox.
      *
      * @var int
      */
     private $checkCol = -1;
+
     /**
-     * กำหนดการแสดงผล checkbox
-     * ถ้าเป็น true จะซ่อน checkbox เสมอ
+     * Determines whether to hide the checkbox.
+     * If set to true, the checkbox will always be hidden.
      *
      * @var bool
      */
     public $hideCheckbox = false;
+
     /**
-     * แสดงตารางกว้าง 100%
+     * Displays the table with 100% width.
      *
      * @var bool
      */
     private $fullWidth = true;
+
     /**
-     * แสดงเส้นกรอบ
+     * Displays the table with borders.
      *
      * @var bool
      */
     private $border = false;
+
     /**
-     * แสดงปุ่ม สำหรับเพิ่มและลบแถว
+     * Displays buttons for adding and deleting rows.
      *
      * @var bool
      */
     private $pmButton = false;
+
     /**
-     * แสดงตารางแบบ responsive
+     * Displays the table in responsive mode.
      *
      * @var bool
      */
     private $responsive = false;
+
     /**
-     * แสดงส่วนหัวของตาราง
+     * Displays the table caption.
      *
      * @var bool
      */
     private $showCaption = true;
+
     /**
-     * URL สำหรับรับค่าจาก action ต่างๆ เช่นการลบ
-     * เช่น index/[controller|model]/className/method.php
+     * URL for receiving actions such as delete.
+     * Format: index/[controller|model]/className/method.php
      *
      * @var string
      */
     private $action;
+
     /**
-     * ถ้ากำหนดรายการนี้จะแสดง checkbox และ ปุ่ม action
-     * array('delete' => Language::get('Delete'), 'published' => Language::get('Published'))
-     * หมายถึงแสดง select สำหรับ ลบ และ เผยแพร่
+     * If specified, checkboxes and action buttons will be shown.
+     * Example: array('delete' => Language::get('Delete'), 'published' => Language::get('Published'))
+     * This means a select option will be shown for deleting and publishing.
      *
      * @var array
      */
     public $actions = array();
+
     /**
-     * ชื่อฟังก์ชั่น Javascript เรียกหลังจากทำการส่งค่าจาก action ไปประมวลผลแล้ว
-     * เช่น doFormSubmit
+     * Name of the Javascript function to call after sending data from action.
+     * Example: doFormSubmit
      *
      * @var string
      */
     private $actionCallback;
+
     /**
-     * ชื่อฟังก์ชั่น Javascript เรียกหลังจากคลิก action
-     * เช่น confirmAction(text, action, id)
+     * Name of the JavaScript function called after clicking an action.
+     * For example, confirmAction(text, action, id)
      *
      * @var string
      */
     private $actionConfirm;
+
     /**
-     * method สำหรับจัดการข้อมูลแต่ละแถวก่อนการแสดงผล
+     * Method to handle each row's data before displaying.
      * function($item, $index, $prop)
-     * $item array ข้อมูล
-     * $row int ลำดับที่ของข้อมูล (key)
-     * $prop array property ของ tr เช่น $prop[0]['id'] = xxx
+     * $item: array of data
+     * $row: index of the row (key)
+     * $prop: array of properties for the tr element, e.g., $prop[0]['id'] = xxx
      *
      * @var array array($this, methodName)
      */
     private $onRow;
+
     /**
-     * ชื่อฟังก์ชั่น Javascript เรียกก่อนที่จะมีการลบแถว (pmButton)
-     * ถ้าฟังก์ชั่นคืนค่า true มา ถึงจะมีการลบแถว
+     * Name of the JavaScript function called before deleting a row (pmButton).
+     * If the function returns true, the row will be deleted.
      * function(tr){return true;}
      *
      * @var string
      */
     private $onBeforeDelete;
+
     /**
-     * ชื่อฟังก์ชั่น Javascript เรียกเมื่อมีการลบแถวแล้ว (pmButton)
+     * Name of the JavaScript function called after deleting a row (pmButton).
      * function(){}
      *
      * @var string
      */
     private $onDelete;
+
     /**
-     * ชื่อฟังก์ชั่น Javascript เรียกเมื่อมีการเพิ่มแถวใหม่ (pmButton)
-     * ฟังก์ชั่นนี้จะมีการเรียกใช้ก่อนเรียกใช้ $onInitRow
+     * Name of the JavaScript function called when adding a new row (pmButton).
+     * This function is called before $onInitRow.
      * function(tr)
      *
      * @var string
      */
     private $onAddRow;
+
     /**
-     * ชื่อฟังก์ชั่น Javascript เรียกเพื่อจัดการแถวใหม่
+     * Name of the JavaScript function called to handle a new row.
      * function(tr, row)
      *
      * @var string
      */
     private $onInitRow;
+
     /**
-     * ชื่อฟังก์ชั่น Javascript เรียกหลังจากโหลดข้อมูลด้วย Ajax แล้ว
+     * Name of the JavaScript function called after loading data via Ajax.
      * function(tbody, items)
      *
      * @var string
      */
     private $onChanged;
+
     /**
-     * ลิสต์คำสั่ง Query หลัก สำหรับคัดเลือกข้อมูล
+     * List of main query commands for data selection.
      * array('id', 1) WHERE `id` = 1 AND ...
      * array('id', array(1, 2)) WHERE `id` IN (1, 2) AND ...
      * array('id', '!=' , 1) WHERE `id` != 1 AND ...
@@ -198,206 +223,240 @@ class DataTable extends \Kotchasan\KBase
      * @var array
      */
     public $defaultFilters = array();
+
     /**
-     * ฟิลเตอร์ข้อมูลแสดงผล
-     * ถ้ากำหนดรายการนี้จะแสดงตัวเลือกการ filter ด้านบนตาราง
+     * Data display filters.
+     * If this list is specified, it will display filter options above the table.
      *
      * @var array
      */
     public $filters = array();
+
     /**
-     * รายชื่อคอลัมน์ที่ไม่ต้องแสดงผล
+     * List of columns that should not be displayed.
      *
      * @var array
      */
     public $hideColumns = array();
+
     /**
-     * รายชื่อคอลัมน์ทั้งหมด
+     * List of all columns.
      *
      * @var array
      */
     public $cols = array();
+
     /**
-     * รายชื่อส่วนหัวของตอลัมน์
+     * List of header names for columns.
      *
      * @var array
      */
     public $headers = array();
+
     /**
-     * รายชื่อฟิลด์ที่สามารถค้นหาได้
-     * ถ้ากำหนดรายการนี้จะแสดงกล่องค้นหา
+     * List of fields that can be searched.
+     * If this list is specified, it will display a search box.
      *
      * @var array
      */
     public $searchColumns = array();
+
     /**
-     * กำหนดวิธีการค้นหาจากช่อง search
-     * true (default) ค้นหาจาก $searchColumns โดยอัตโนมัติ
-     * false กำหนดการค้นหาด้วยตัวเอง
+     * Specify the search behavior from the search box.
+     * true (default): Automatically search based on $searchColumns.
+     * false: Manually specify the search behavior.
      *
      * @var bool
      */
     public $autoSearch = true;
+
     /**
-     * การแสดงฟอร์มค้นหา
-     * auto (default) แสดงฟอร์มค้นหา ถ้ามี $searchColumns ระบุมา
-     * true แสดงฟอร์มค้นหาเสมอ
-     * false ไม่ต้องแสดงฟอร์มค้นหา
+     * Determines the display of the search form.
+     * - 'auto' (default): Shows the search form if $searchColumns are specified.
+     * - true: Always shows the search form.
+     * - false: Doesn't show the search form.
      *
-     * @var bool
+     * @var bool|string
      */
     public $searchForm = 'auto';
+
     /**
-     * ข้อความค้นหา
+     * The search text.
      *
      * @var string
      */
     public $search = '';
+
     /**
-     * จำนวนรายการต่อหน้า
-     * ถ้ากำหนดรายการนี้จะแสดงรายการแบ่งหน้า และตัวเลือกแสดงรายการต่อหน้า
+     * The number of items per page.
+     * If specified, the table will be paginated and display options for the number of items per page.
      *
      * @var int|null
      */
     public $perPage = null;
+
     /**
-     * หน้าที่กำลังแสดงผล
+     * The current page being displayed.
      *
      * @var int
      */
     public $page = 1;
+
     /**
-     * ชื่อคอลัมน์ที่ใช้เรียงลำดับ
-     * ค่าเริ่มต้น null สำหรับการรับค่าอัตโนมัติ
+     * The column name used for sorting.
+     * Default is null for automatic value retrieval.
      *
      * @var string|null
      */
     public $sort = null;
+
     /**
-     * ชื่อคอลัมน์ที่ใช้เรียงลำดับเริ่มต้น
-     * ถ้ามีการกำหนดค่าจะเรียงลำดับตามรายการนี้ก่อนเสมอ
+     * The default column name used for sorting.
+     * If specified, the table will be initially sorted based on this column.
      *
      * @var string|null
      */
     public $defaultSort = null;
+
     /**
-     * ข้อมูลการเรียงลำดับที่กำลังใช้งานอยู่
+     * The active sorting information.
      *
      * @var array
      */
     protected $sorts = array();
+
     /**
-     * ปุ่มที่จะใส่ไว้ด้านหลังของแต่ละแถว
+     * Buttons to be added at the end of each row.
      *
      * @var array
      */
     public $buttons = array();
+
     /**
-     * method สำหรับเตรียมการแสดงผล button
-     * ถ้าคืนค่า false กลับมาจะไม่มีการสรางปุ่ม
+     * A method for preparing button rendering.
+     * If it returns false, no buttons will be created.
      * function($btn, $attributes, $items)
-     * $btn string id ของ button
-     * $attributes array property ของปุ่ม
-     * $items array ข้อมูลในแถว
+     * $btn: The button ID.
+     * $attributes: The button properties.
+     * $items: The data in the row.
      *
      * @var array array($this, methodName)
      */
     private $onCreateButton;
+
     /**
-     * method เรียกเมื่อต้องการสร้าง header
-     * คืนค่า tag tr ที่อยู่ภายใน header
+     * A method to call when creating the header.
+     * Returns the <tr> tag within the header.
      * function()
      *
      * @var array array($this, methodName)
      */
     private $onCreateHeader;
+
     /**
-     * method เรียกเมื่อต้องการสร้าง footer
-     * คืนค่า tag tr ที่อยู่ภายใน footer
+     * A method to call when creating the footer.
+     * Returns the <tr> tag within the footer.
      * function()
      *
      * @var array array($this, methodName)
      */
     private $onCreateFooter;
+
     /**
-     * กำหนดคอลัมน์ หากยอมให้สามารถจัดลำดับตารางด้วยการลากได้
+     * Specifies the column that allows drag and drop for table reordering.
      *
      * @var int
      */
     private $dragColumn = -1;
+
     /**
-     * ชื่อคีย์หลักของข้อมูล
-     * สำหรับอ่าน id ของ แถว
+     * The primary key column name for data identification.
+     * Used to read the ID of each row.
      *
      * @var string
      */
     private $primaryKey = 'id';
+
     /**
-     * Javascript
+     * Javascript code.
      *
      * @var array
      */
     private $javascript = array();
+
     /**
-     * เปิดใช้งาน Javascript ของตาราง
-     * true เปิดใช้งาน GTable
-     * false ปิดใช้งาน GTable แต่ยังแทรก Javascript อื่นๆได้
+     * Enables the usage of DataTable's JavaScript.
+     * - true: Enables the usage of GTable.
+     * - false: Disables GTable but still allows other JavaScript to be inserted.
      *
      * @var bool
      */
     public $enableJavascript = true;
+
     /**
-     * Uri ปัจจุบันของหน้าเว็บ
+     * The current URI of the web page.
      *
      * @var Uri
      */
     private $uri;
+
     /**
-     * ตัวเลือกจำนวนการแสดงผลรายการต่อหน้า
+     * Options for the number of entries to be displayed per page.
      *
      * @var array
      */
     public $entriesList = array(10, 20, 30, 40, 50, 100);
+
     /**
-     * แสดง Query ออกทางจอภาพ
+     * Displays the query on the screen.
      *
      * @var bool
      */
     private $debug = false;
+
     /**
-     * แสดง Explain ของ Query
+     * Displays the query's explain plan.
      *
      * @var bool
      */
     private $explain = false;
+
     /**
      * @var array
      */
     private $columns;
+
     /**
-     * ปุ่มเพิ่มข้อมูล
+     * The button for adding new data.
      *
      * @var array
      */
     public $addNew;
 
     /**
-     * Initial Class
+     * Constructor.
      *
-     * @param array $param
+     * @param array $param The parameters to initialize the object.
      */
     public function __construct($param)
     {
         $this->id = 'datatable';
+
+        // Assign the values from the $param array to the class properties
         foreach ($param as $key => $value) {
             $this->{$key} = $value;
         }
+
+        // Check if $uri is empty and set it to the current request URI if so
         if (empty($this->uri)) {
             $this->uri = self::$request->getUri();
-        } elseif (is_string($this->uri)) {
+        }
+        // Convert $uri to a Uri object if it's a string
+        elseif (is_string($this->uri)) {
             $this->uri = Uri::createFromUri($this->uri);
         }
-        // รายการต่อหน้า มาจากการเลือกภายในตาราง
+
+        // Pagination: Get the number of entries per page from the table selection
         if ($this->perPage !== null) {
             $count = self::$request->globals(array('POST', 'GET'), 'count', $this->perPage)->toInt();
             if (in_array($count, $this->entriesList)) {
@@ -405,27 +464,31 @@ class DataTable extends \Kotchasan\KBase
                 $this->uri = $this->uri->withParams(array('count' => $count));
             }
         }
-        // header ของตาราง มาจาก model หรือมาจากข้อมูล หรือ มาจากการกำหนดเอง
+
+        // Table header: Get the header from the model, data, or manual configuration
         if (isset($this->model)) {
-            // แปลงฐานข้อมูลเป็น Model
+            // Convert the database to a Model object
             $model = new \Kotchasan\Model();
             $model = $model->db()->createQuery()->select();
-            // อ่านข้อมูลรายการแรกเพื่อใช้ชื่อฟิลด์เป็นหัวตาราง
+
+            // Read the first item to use its field names as table headers
             if (is_string($this->model)) {
-                // model เป็น Recordset, create Recordset
+                // If the model is a Recordset, create a Recordset object
                 $rs = new \Kotchasan\Orm\Recordset($this->model);
-                // แปลง Recordset เป็น QueryBuilder
+                // Convert the Recordset to a QueryBuilder object
                 $this->model = $model->from(array($rs->toQueryBuilder(), 'Z9'));
             } else {
                 $this->model = $model->from(array($this->model, 'Z9'));
             }
-            // อ่านข้อมูลรายการแรก
+
+            // Read the first item
             if ($this->explain) {
                 $first = $this->model->copy()->explain()->first();
             } else {
                 $first = $this->model->copy()->first($this->fields);
             }
-            // อ่านคอลัมน์ของตาราง
+
+            // Read the columns of the table
             if ($first) {
                 foreach ($first as $k => $v) {
                     $this->columns[$k] = array('text' => $k);
@@ -440,7 +503,7 @@ class DataTable extends \Kotchasan\KBase
                 }
             }
         } elseif (isset($this->datas)) {
-            // อ่านคอลัมน์จากข้อมูลรายการแรก
+            // Read the columns from the first data item
             $this->columns = array();
             if (!empty($this->datas)) {
                 foreach (reset($this->datas) as $key => $value) {
@@ -448,18 +511,23 @@ class DataTable extends \Kotchasan\KBase
                 }
             }
         }
-        // สำหรับตรวจสอบว่าสามารถเรียงลำดับได้หรือไม่ ตาม header ที่ส่งมา
+
+        // Check if sorting is enabled based on the headers
         $autoSort = false;
-        // จัดการ header, ตรวจสอบกับค่ากำหนดมา เรียงลำดับ header ตาม columns
+
+        // Handle headers, check against the provided values, sort headers based on columns
         if (!empty($this->columns)) {
             $headers = array();
+
             foreach ($this->columns as $field => $attributes) {
                 if (!in_array($field, $this->hideColumns)) {
                     if (isset($this->headers[$field])) {
                         $headers[$field] = $this->headers[$field];
+
                         if (!isset($headers[$field]['text'])) {
                             $headers[$field]['text'] = $field;
                         }
+
                         if (isset($headers[$field]['sort'])) {
                             $autoSort = true;
                         }
@@ -468,23 +536,27 @@ class DataTable extends \Kotchasan\KBase
                     }
                 }
             }
+
             $this->headers = $headers;
         }
-        // รับค่าการเรียงลำดับถ้ามีการกำหนด sort ไว้
+
+        // Get the sorting value if sort is specified
         if ($autoSort) {
             $this->sort = self::$request->globals(array('POST', 'GET'), 'sort', $this->sort)->topic();
         }
+
         if (!empty($this->sort)) {
             $this->uri = $this->uri->withParams(array('sort' => $this->sort));
         }
-        // search
+
+        // Search
         $this->search = self::$request->globals(array('POST', 'GET'), 'search')->text();
     }
 
     /**
-     * กำหนด Javascript
+     * Adds a JavaScript script to the table.
      *
-     * @param string $script
+     * @param string $script The JavaScript script to add.
      */
     public function script($script)
     {
@@ -492,36 +564,48 @@ class DataTable extends \Kotchasan\KBase
     }
 
     /**
-     * สร้างตาราง และเริ่มต้นทำงานตาราง
-     * คืนค่าเป็นโค้ด HTML ของ DataTable
+     * Render the component.
+     *
+     * This function is responsible for rendering the component.
+     * It generates the necessary HTML code based on the provided data.
      *
      * @return string
      */
     public function render()
     {
+        // Check if actions are present and the checkCol is not set
+        // If true, set the checkCol to 1
         if (!empty($this->actions) && $this->checkCol == -1) {
             $this->checkCol = 1;
         }
+
         $url_query = array();
         $hidden_fields = array();
         $query_string = array();
+
+        // Parse the query string and populate the $query_string array
         parse_str($this->uri->getQuery(), $query_string);
         self::$request->map($url_query, $query_string);
+
         foreach ($url_query as $key => $value) {
-            // Input สำหรับการเรียกไปยังหน้าถัดไป
+            // Exclude certain keys from the input for the next page
+            // These keys are filtered using a regular expression
             if (!preg_match('/.*?([0-9]+|username|password|token|time|search|count|page|action).*?/', $key)) {
                 $hidden_fields[$key] = '<input type="hidden" name="'.$key.'" value="'.htmlspecialchars($value).'">';
             }
         }
+
         if (isset($this->model)) {
-            // รายการ Query หลัก (AND)
+            // Build the main query list (AND)
             $qs = array();
             foreach ($this->defaultFilters as $array) {
                 $qs[] = $array;
             }
         }
+
         $c = array('datatable');
-        // ตรวจสอบเมนูย่อยใน buttons เพื่อเพิ่มพื้นที่ด้านล่างตาราง
+
+        // Check for submenus in buttons to add space below the table
         if (!empty($this->buttons)) {
             foreach ($this->buttons as $item) {
                 if (!empty($item['submenus'])) {
@@ -530,9 +614,10 @@ class DataTable extends \Kotchasan\KBase
                 }
             }
         }
-        // create HTML
+        // Create HTML
         $content = array('<div class="'.implode(' ', $c).'" id="'.$this->id.'">');
-        // form
+
+        // Form
         $form = array();
         if ($this->perPage !== null) {
             $entries = Language::get('entries');
@@ -551,7 +636,7 @@ class DataTable extends \Kotchasan\KBase
                 'options' => $options
             ));
         }
-        // รายการ Query กำหนดโดย User (AND)
+        // Iterate through the $this->filters array and add filters to the form
         foreach ($this->filters as $key => $items) {
             $form[] = $this->addFilter($items);
             if (isset($items['name'])) {
@@ -560,7 +645,7 @@ class DataTable extends \Kotchasan\KBase
             if (!isset($items['default'])) {
                 $items['default'] = '';
             }
-            // ไม่ Query รายการ default
+            // Add query items to the main query list (AND) if they meet certain conditions
             if (!empty($items['options']) && isset($items['value']) && $items['value'] !== $items['default'] && in_array($items['value'], array_keys($items['options']), true)) {
                 if (isset($items['onFilter'])) {
                     $q = call_user_func($items['onFilter'], $key, $items['value']);
@@ -575,7 +660,7 @@ class DataTable extends \Kotchasan\KBase
         if ($this->model && !empty($qs)) {
             $this->model->andWhere($qs);
         }
-        // search
+        // Search
         if ($this->searchForm === true || ($this->searchForm === 'auto' && !empty($this->searchColumns))) {
             if (!empty($this->search) && $this->autoSearch) {
                 if (isset($this->model)) {
@@ -585,7 +670,7 @@ class DataTable extends \Kotchasan\KBase
                     }
                     $this->model->andWhere($sh, 'OR');
                 } elseif (isset($this->datas)) {
-                    // filter ข้อมูลจาก array
+                    // Array filter
                     $this->datas = ArrayTool::filter($this->datas, $this->search);
                 }
                 $this->uri = $this->uri->withParams(array('search' => $this->search));
@@ -596,7 +681,7 @@ class DataTable extends \Kotchasan\KBase
             $form[] = '</fieldset>';
         }
         if (!$this->explain && !empty($form)) {
-            // ปุ่ม Go
+            // GO button
             $form[] = '<fieldset class=go>';
             $form[] = '<button type=submit class="button go">'.Language::get('Go').'</button>';
             $form[] = implode('', $hidden_fields);
@@ -605,12 +690,12 @@ class DataTable extends \Kotchasan\KBase
         }
         if (isset($this->model)) {
             if ($this->explain) {
-                // explain mode
+                // Explain mode
                 $count = 0;
             } else {
-                // field select
+                // Fields select
                 $this->model->select($this->fields);
-                // จำนวนข้อมูลทั้งหมด (Query Builder)
+                // Datas count (Query Builder)
                 $model = new \Kotchasan\Model();
                 $query = $model->db()->createQuery()
                     ->selectCount()
@@ -622,22 +707,22 @@ class DataTable extends \Kotchasan\KBase
                 $count = empty($result) ? 0 : $result[0]['count'];
             }
         } elseif (!empty($this->datas)) {
-            // จำนวนข้อมูลทั้งหมดจาก array
+            // Datas count
             $count = count($this->datas);
         } else {
-            // ไม่มีข้อมูล
+            // Empty
             $count = 0;
         }
-        // การแบ่งหน้า
+        // Pagination
         if ($this->perPage > 0) {
-            // หน้าที่เลือก
+            // Display page
             $this->page = max(1, self::$request->globals(array('POST', 'GET'), 'page', 1)->toInt());
-            // ตรวจสอบหน้าที่เลือกสูงสุด
+            // Max pages
             $totalpage = round($count / $this->perPage);
             $totalpage += ($totalpage * $this->perPage < $count) ? 1 : 0;
             $this->page = max(1, $this->page > $totalpage ? $totalpage : $this->page);
             $start = $this->perPage * ($this->page - 1);
-            // คำนวณรายการที่แสดง
+            // Current page
             $s = $start < 0 ? 0 : $start + 1;
             $e = min($count, $s + $this->perPage - 1);
         } else {
@@ -648,7 +733,8 @@ class DataTable extends \Kotchasan\KBase
             $e = $count;
             $this->perPage = 0;
         }
-        // table caption
+
+        // Table caption
         if ($this->showCaption) {
             if (empty($this->search)) {
                 $caption = Language::get('All :count entries, displayed :start to :end, page :page of :total pages');
@@ -657,7 +743,8 @@ class DataTable extends \Kotchasan\KBase
             }
             $caption = str_replace(array(':search', ':count', ':start', ':end', ':page', ':total'), array($this->search, number_format($count), number_format($s), number_format($e), number_format($this->page), number_format($totalpage)), $caption);
         }
-        // เรียงลำดับ
+
+        // Sort
         $orders = array();
         if (!empty($this->defaultSort)) {
             foreach (explode(',', $this->defaultSort) as $sort) {
@@ -668,6 +755,7 @@ class DataTable extends \Kotchasan\KBase
                 }
             }
         }
+
         if (!empty($this->sort)) {
             $sorts = array();
             foreach (explode(',', $this->sort) as $sort) {
@@ -702,32 +790,35 @@ class DataTable extends \Kotchasan\KBase
             $this->datas = ArrayTool::sort($this->datas, $sort, $this->sorts[$sort]);
         }
         if (isset($this->model)) {
+            // Explain mode
             if ($this->explain) {
                 $this->model->explain();
             }
+            // Database debugger
             if ($this->debug === true) {
-                // debug Query
                 $this->debug = $this->model->toArray()->limit($this->perPage, $start)->text();
             }
-            // query ข้อมูล
+
+            // Execute model
             $this->datas = $this->model->toArray()->limit($this->perPage, $start)->execute();
-            // รายการสุดท้าย
+
+            // first and last item index
             $end = $this->perPage + 1;
-            // รายการแรก
             $start = -1;
         } elseif (isset($this->datas)) {
+            // Array debugger
             if ($this->debug === true) {
-                // debug ข้อมูลแอเรย์
                 $this->debug = var_export($this->datas, true);
             }
-            // รายการสุดท้าย
+
+            // first and last item index
             $end = $start + $this->perPage - 1;
-            // รายการแรก
             $start = $start - 2;
         } else {
             $end = 0;
         }
-        // property ของ ตาราง
+
+        // Table properties
         $prop = array();
         $c = array();
         if (!empty($this->class)) {
@@ -870,13 +961,15 @@ class DataTable extends \Kotchasan\KBase
             if (!empty($table_nav)) {
                 $content[] = '<div class="table_nav clear action">'.implode('', $table_nav).'</div>';
             }
-            // แบ่งหน้า
+            // Pagination
             if ($this->perPage > 0) {
                 $content[] = '<div class="splitpage">'.$this->uri->pagination($totalpage, $this->page).'</div>';
             }
         }
         $content[] = '</div>';
+        // Check if JavaScript is enabled and the explain flag is not set
         if ($this->enableJavascript && !$this->explain) {
+            // Create an array containing various properties to be used in JavaScript
             $script = array(
                 'page' => $this->page,
                 'search' => $this->search,
@@ -896,39 +989,51 @@ class DataTable extends \Kotchasan\KBase
                 'cols' => $this->cols,
                 'debug' => is_string($this->debug) ? $this->debug : ''
             );
+            // Add JavaScript code to initialize a GTable object with the given properties
             $this->javascript[] = 'var table = new GTable("'.$this->id.'", '.json_encode($script).');';
         }
+
+        // Create a script tag and add each JavaScript code from the $javascript array as a separate line
         if (!empty($this->javascript)) {
             $content[] = "<script>\n".implode("\n", $this->javascript)."\n</script>";
         }
+
+        // Return the generated HTML code
         return implode("\n", $content);
     }
 
     /**
-     * render tbody
+     * Generates HTML markup for the table body (<tbody>).
      *
-     * @param int $start ข้อมูลเริ่มต้น (เริ่มที่ 1)
-     *
-     * @return string
+     * @param int $start The start index of the rows to be included in the tbody.
+     * @param int $end The end index of the rows to be included in the tbody.
+     * @return string The generated HTML for the table body.
      */
     private function tbody($start, $end)
     {
         $row = array();
         $n = 0;
+
         foreach ($this->datas as $o => $items) {
             if ($this->perPage <= 0 || ($n > $start && $n < $end)) {
                 $src_items = $items;
-                // id ของข้อมูล
+
+                // Get the ID of the data
                 $id = isset($items[$this->primaryKey]) ? $items[$this->primaryKey] : $o;
+
+                // Properties of the table row
                 $prop = (object) array(
                     'id' => $this->id.'_'.$id
                 );
+
                 $buttons = array();
+
                 if (!$this->explain) {
+                    // Generate buttons
                     if (!empty($this->buttons)) {
                         foreach ($this->buttons as $btn => $attributes) {
                             if (isset($this->onCreateButton)) {
-                                // event ปุ่มหลัก
+                                // Event for main buttons
                                 $attributes = call_user_func($this->onCreateButton, $btn, $attributes, $items);
                             }
                             if ($attributes && $attributes !== false) {
@@ -936,31 +1041,41 @@ class DataTable extends \Kotchasan\KBase
                             }
                         }
                     }
+
+                    // Event for row
                     if (isset($this->onRow)) {
                         $items = call_user_func($this->onRow, $items, $o, $prop);
                     }
+
+                    // Drag column class
                     if (isset($this->dragColumn)) {
                         $prop->class = (empty($prop->class) ? 'sort' : $prop->class.' sort');
                     }
                 }
-                // แถว
+
+                // Table row
                 $p = array();
                 foreach ($prop as $k => $v) {
                     $p[] = $k.'="'.$v.'"';
                 }
                 $row[] = '<tr '.implode(' ', $p).'>';
-                // แสดงผลข้อมูล
+
+                // Display data
                 $i = 0;
                 foreach ($this->headers as $field => $attributes) {
                     if (!empty($field) && !in_array($field, $this->hideColumns)) {
                         if (!$this->explain) {
+                            // Checkbox column
                             if (!$this->hideCheckbox && $i == $this->checkCol) {
                                 $row[] = '<td headers="r'.$id.'" class="check-column"><a id="check_'.$id.'" class="icon-uncheck"></a></td>';
                             }
+
+                            // Drag column
                             if ($i == $this->dragColumn) {
                                 $row[] = '<td class=center><a id="move_'.$id.'" title="'.Language::get('Drag and drop to reorder').'" class="icon-move"></a></td>';
                             }
                         }
+
                         $properties = isset($this->cols[$field]) ? $this->cols[$field] : array();
                         $text = isset($items[$field]) ? $items[$field] : '';
                         $th = isset($attributes['text']) ? $attributes['text'] : $field;
@@ -968,11 +1083,15 @@ class DataTable extends \Kotchasan\KBase
                         ++$i;
                     }
                 }
+
                 if (!$this->explain) {
+                    // Checkbox column
                     if (!$this->hideCheckbox && $i == $this->checkCol) {
                         $row[] = '<td headers="r'.$id.'" class="check-column"><a id="check_'.$id.'" class="icon-uncheck"></a></td>';
                         ++$i;
                     }
+
+                    // Buttons column
                     if (!empty($this->buttons)) {
                         if (!empty($buttons)) {
                             $patt = array();
@@ -995,89 +1114,106 @@ class DataTable extends \Kotchasan\KBase
                             $row[] = $this->td($id, $i, array(), '', '');
                         }
                     }
+
+                    // Plus/minus buttons column
                     if ($this->pmButton) {
                         $row[] = '<td class="icons"><div><a class="icon-plus" title="'.Language::get('Add').'"></a><a class="icon-minus" title="'.Language::get('Remove').'"></a></div></td>';
                     }
                 }
+
                 $row[] = '</tr>';
             }
+
             ++$n;
         }
+
         return implode("\n", $row);
     }
 
     /**
-     * render th
+     * Generates HTML markup for a table header cell (<th>).
      *
-     * @param int    $i          ลำดับคอลัมน์
-     * @param string $column     ชื่อคอลัมน์
-     * @param array  $properties properties ของ th
+     * @param int $i The column index.
+     * @param string $column The column name or identifier.
+     * @param array $properties The properties of the table header cell.
      *
-     * @return string
+     * @return string The generated HTML for the table header cell.
      */
     private function th($i, $column, $properties)
     {
         $c = array();
         $c['id'] = 'id="c'.$i.'"';
+
         if (!empty($properties['sort'])) {
+            // Check if a valid sort type is specified
             $sort = isset($this->sorts[$properties['sort']]) ? $this->sorts[$properties['sort']] : 'none';
             $properties['class'] = 'sort_'.$sort.' col_'.$column.(empty($properties['class']) ? '' : ' '.$properties['class']);
         }
+
         foreach ($properties as $key => $value) {
             if ($key !== 'sort' && $key !== 'text') {
                 $c[$key] = $key.'="'.$value.'"';
             }
         }
+
         return '<th '.implode(' ', $c).'>'.(isset($properties['text']) ? $properties['text'] : $column).'</th>';
     }
 
     /**
-     * render td
+     * Generates HTML markup for a table cell (<td>) or header cell (<th>).
      *
-     * @param int    $id         id ของ แถว
-     * @param int    $i          ลำดับคอลัมน์
-     * @param array  $properties ชื่อคอลัมน์
-     * @param string $text       ข้อความใน td
+     * @param string $id The cell ID.
+     * @param int $i The cell index.
+     * @param array $properties The properties of the cell.
+     * @param string $text The cell content.
+     * @param string $th The content of the corresponding table header cell.
      *
-     * @return string
+     * @return string The generated HTML for the table cell.
      */
     private function td($id, $i, $properties, $text, $th)
     {
         $c = array('data-text' => 'data-text="'.strip_tags($th).'"');
+
         foreach ($properties as $key => $value) {
             $c[$key] = $key.'="'.$value.'"';
         }
+
         $c = implode(' ', $c);
+
         if ($i == 0) {
+            // Table header cell
             $c .= ' id="r'.$id.'" headers="c'.$i.'"';
             return '<th '.$c.'>'.$text.'</th>';
         } else {
+            // Table data cell
             $c .= ' headers="c'.$i.' r'.$id.'"';
             return '<td '.$c.'>'.$text.'</td>';
         }
     }
 
     /**
-     * render button
+     * Generates HTML markup for a button element.
      *
-     * @param string $btn ชื่อ button
-     * @param array $properties properties ของ button
-     * @param array $items ข้อมูลในแถว
+     * @param string $btn The button identifier.
+     * @param array $properties The properties of the button.
+     * @param array $items The items associated with the button.
      *
-     * @return string
+     * @return string The generated HTML for the button element.
      */
     private function button($btn, $properties, $items)
     {
         if (isset($properties['submenus'])) {
+            // Button with submenus
             $innerHTML = '';
             $li = '';
             $attributes = array();
+
             foreach ($properties as $name => $item) {
                 if ($name == 'submenus') {
                     foreach ($item as $btn => $menu) {
                         $prop = array();
                         if (isset($this->onCreateButton)) {
-                            // event ปุ่ม submenus
+                            // Submenu button event
                             $menu = call_user_func($this->onCreateButton, $btn, $menu, $items);
                         }
                         if ($menu && $menu !== false) {
@@ -1100,15 +1236,20 @@ class DataTable extends \Kotchasan\KBase
                     $attributes[$name] = $name.'="'.$item.'"';
                 }
             }
+
             if (!isset($attributes['class'])) {
                 $attributes['class'] = 'class="menubutton"';
             }
+
             if (!isset($attributes['tabindex'])) {
                 $attributes['tabindex'] = 'tabindex="0"';
             }
+
             return '<div '.implode(' ', $attributes).'>'.$innerHTML.'<ul>'.$li.'</ul></div>';
         } else {
+            // Regular button
             $prop = array();
+
             foreach ($properties as $key => $value) {
                 if ($key === 'id') {
                     $prop[$key] = $key.'="'.$btn.'_'.$value.'"';
@@ -1116,22 +1257,27 @@ class DataTable extends \Kotchasan\KBase
                     $prop[$key] = $key.'="'.$value.'"';
                 }
             }
+
             if (!empty($properties['class']) && preg_match('/(.*)\s?(icon\-[a-z0-9\-_]+)($|\s(.*))/', $properties['class'], $match)) {
                 $class = array();
+
                 foreach (array(1, 4) as $i) {
                     if (!empty($match[$i])) {
                         $class[] = $match[$i];
                     }
                 }
+
                 if (empty($properties['text'])) {
                     $class[] = 'notext';
                     $prop['class'] = 'class="'.implode(' ', $class).'"';
                     return '<a '.implode(' ', $prop).'><span class="'.$match[2].'"></span></a>';
                 } else {
                     $prop['class'] = 'class="'.implode(' ', $class).'"';
+
                     if (!isset($prop['title'])) {
                         $prop['title'] = 'title="'.strip_tags($properties['text']).'"';
                     }
+
                     return '<a '.implode(' ', $prop).'><span class="'.$match[2].' button_w_text"><span class=mobile>'.$properties['text'].'</span></span></a>';
                 }
             } else {
@@ -1141,20 +1287,21 @@ class DataTable extends \Kotchasan\KBase
     }
 
     /**
-     * สร้าง select หรือ button ด้านล่างตาราง (actions)
+     * Adds an action element based on the provided item configuration.
      *
-     * @param array $item
+     * @param array $item The item configuration for the action element.
      *
-     * @return string
+     * @return string|null The generated HTML for the action element, or null if no action is defined.
      */
     private function addAction($item)
     {
         if (isset($item['class']) && preg_match('/^((.*)\s+)?(icon-[a-z0-9\-_]+)(\s+(.*))?$/', $item['class'], $match)) {
             $match[2] = trim($match[2].' '.(isset($match[5]) ? $match[5] : ''));
         }
+
         if (isset($item['options'])) {
             if (!empty($item['options'])) {
-                // select
+                // Select
                 $rows = array();
                 foreach ($item['options'] as $key => $text) {
                     $rows[] = '<option value="'.$key.'">'.$text.'</option>';
@@ -1170,6 +1317,7 @@ class DataTable extends \Kotchasan\KBase
             $prop2 = array(
                 'button' => 'class="button action"'
             );
+
             foreach ($item as $key => $value) {
                 if ($key == 'id') {
                     $prop[] = 'id="'.$value.'"';
@@ -1180,14 +1328,17 @@ class DataTable extends \Kotchasan\KBase
                     $prop[] = $key.'="'.$value.'"';
                 }
             }
+
             return '<fieldset><input '.implode(' ', $prop).'><label '.implode(' ', $prop2).'><span>'.$item['text'].'</span></label></fieldset>';
         } else {
-            // link, button
+            // Link or button
             $prop = array();
             $text = isset($item['text']) ? $item['text'] : '';
+
             if ($text != '' && !isset($item['title'])) {
                 $item['title'] = strip_tags($text);
             }
+
             if (isset($item['class'])) {
                 if (empty($match[3])) {
                     $prop[] = 'class="'.$item['class'].'"';
@@ -1196,27 +1347,29 @@ class DataTable extends \Kotchasan\KBase
                     $prop[] = 'class="'.$match[2].'"';
                 }
             }
+
             foreach ($item as $k => $v) {
                 if ($k != 'class' && $k != 'text' && $k != 'float') {
                     $prop[] = $k.'="'.$v.'"';
                 }
             }
+
             if (isset($item['href'])) {
-                // link
+                // Link
                 return '<a '.implode(' ', $prop).'>'.$text.'</a>';
             } else {
-                // button
+                // Button
                 return '<button '.implode(' ', $prop).' type="button">'.$text.'</button>';
             }
         }
     }
 
     /**
-     * สร้าง select ด้านบนตาราง (filters)
+     * Adds a filter element based on the provided item configuration.
      *
-     * @param array $item
+     * @param array $item The item configuration for the filter element.
      *
-     * @return string
+     * @return string The generated HTML for the filter element.
      */
     private function addFilter($item)
     {

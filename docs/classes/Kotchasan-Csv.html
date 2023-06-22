@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -139,11 +145,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">CSV function</p>
+            <p class="phpdocumentor-summary">CSV Utility Class</p>
 
 
 
@@ -153,20 +159,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -215,45 +212,42 @@
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่นนำเข้าข้อมูล CSV
-คืนค่าข้อมูลที่อ่านได้เป็นแอเรย์</dd>
+<dd>Import CSV data</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Csv.html#method_read">read()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: void    </span>
 </dt>
-<dd>อ่านไฟล์ CSV ทีละแถวส่งไปยังฟังก์ชั่น $onRow
-แถวแรกของข้อมูลคือ Header ต้องระบุเสมอ</dd>
+<dd>Read a CSV file and process each row of data</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Csv.html#method_send">send()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>สร้างไฟล์ CSV สำหรับดาวน์โหลด
-คืนค่า true</dd>
+<dd>Generate and send a CSV file as a download</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Csv.html#method_convert">convert()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>แปลงข้อมูลเป็นภาษาที่เลือก</dd>
+<dd>Convert data array to the specified character encoding</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Csv.html#method_importDatas">importDatas()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: void    </span>
 </dt>
-<dd>ฟังก์ชั่นรับค่าจากการอ่าน CSV</dd>
+<dd>Import data and process into a specific format</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Csv.html#method_removeBomUtf8">removeBomUtf8()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>remove BOM</dd>
+<dd>Remove the Byte Order Mark (BOM) from a UTF-8 encoded string</dd>
 
         </dl>
 
@@ -283,7 +277,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -315,7 +309,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
@@ -347,7 +341,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -379,7 +373,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -415,12 +409,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นนำเข้าข้อมูล CSV
-คืนค่าข้อมูลที่อ่านได้เป็นแอเรย์</p>
+        <p class="phpdocumentor-summary">Import CSV data</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -434,7 +427,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อไฟล์รวมพาธ</p>
+                    <section class="phpdocumentor-description"><p>File path</p>
 </section>
 
             </dd>
@@ -443,7 +436,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลคอลัมน์ array('column1' =&gt; 'data type', 'column2' =&gt; 'data type', ....)</p>
+                    <section class="phpdocumentor-description"><p>Column data array('column1' =&gt; 'data type', 'column2' =&gt; 'data type', ....)</p>
 </section>
 
             </dd>
@@ -452,7 +445,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคอลัมน์สำหรับตรวจข้อมูลซ้ำ null(default) หมายถึงไม่ตรวจสอบ</p>
+                    <section class="phpdocumentor-description"><p>Column names for duplicate data checking. Null(default) means no checking.</p>
 </section>
 
             </dd>
@@ -461,7 +454,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;UTF-8&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รหัสภาษาของไฟล์ ค่าเริ่มต้นคือ UTF-8</p>
+                    <section class="phpdocumentor-description"><p>File character encoding. Default is UTF-8.</p>
 </section>
 
             </dd>
@@ -472,7 +465,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Imported data array</p>
+</section>
+
     
 </article>
                     <article
@@ -488,16 +483,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านไฟล์ CSV ทีละแถวส่งไปยังฟังก์ชั่น $onRow
-แถวแรกของข้อมูลคือ Header ต้องระบุเสมอ</p>
+        <p class="phpdocumentor-summary">Read a CSV file and process each row of data</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">read</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$onRow</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$headers</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$charset</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;UTF-8&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">read</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">callable&nbsp;</span><span class="phpdocumentor-signature__argument__name">$onRow</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$headers</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$charset</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;UTF-8&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -507,16 +501,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อไฟล์รวมพาธ</p>
+                    <section class="phpdocumentor-description"><p>Path to the CSV file</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$onRow</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">callable</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ฟังก์ชั่นรับค่าแต่ละแถว function($data)}</p>
+                    <section class="phpdocumentor-description"><p>Callback function to be executed for each row of data</p>
 </section>
 
             </dd>
@@ -525,16 +519,17 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์เก็บชื่อคอลัมน์สำหรับการทดสอบความถูกต้อง ถ้าไม่ระบุจะไม่ตรวจสอบ</p>
+                    <section class="phpdocumentor-description"><p>Array of expected header values for validation (optional)</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$charset</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;UTF-8&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Character encoding of the CSV file (default: UTF-8)</p>
+</section>
 
             </dd>
             </dl>
@@ -549,16 +544,16 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Kotchasan\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้า Header ของไฟล์ CSV ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If an error occurs, such as an invalid CSV header or missing column</p>
 </section>
 
                                     </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -576,12 +571,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">133</span>
+    <span class="phpdocumentor-element-found-in__line">136</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างไฟล์ CSV สำหรับดาวน์โหลด
-คืนค่า true</p>
+        <p class="phpdocumentor-summary">Generate and send a CSV file as a download</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -595,7 +589,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อไฟล์ ไม่ต้องมีนามสกุล</p>
+                    <section class="phpdocumentor-description"><p>File name (without extension)</p>
 </section>
 
             </dd>
@@ -604,7 +598,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ส่วนหัวของข้อมูล</p>
+                    <section class="phpdocumentor-description"><p>Array of header values for the CSV file</p>
 </section>
 
             </dd>
@@ -613,7 +607,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูล</p>
+                    <section class="phpdocumentor-description"><p>Array of data rows for the CSV file</p>
 </section>
 
             </dd>
@@ -622,7 +616,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;UTF-8&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ภาษาของ CSV ค่าเริ่มต้นคือ UTF-8</p>
+                    <section class="phpdocumentor-description"><p>Character encoding of the CSV file (default: UTF-8)</p>
 </section>
 
             </dd>
@@ -631,7 +625,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true (default) ใส่ BOM ลงในไฟล์ CSV ถ้าเป็น UTF-8</p>
+                    <section class="phpdocumentor-description"><p>Whether to include the Byte Order Mark (BOM) in the CSV file (default: true)</p>
 </section>
 
             </dd>
@@ -642,7 +636,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns true if successful, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -658,11 +654,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">184</span>
+    <span class="phpdocumentor-element-found-in__line">194</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลงข้อมูลเป็นภาษาที่เลือก</p>
+        <p class="phpdocumentor-summary">Convert data array to the specified character encoding</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -676,14 +672,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Data array to convert</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$charset</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Target character encoding</p>
+</section>
+
             </dd>
             </dl>
 
@@ -692,7 +692,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Converted data array</p>
+</section>
+
     
 </article>
                     <article
@@ -708,15 +710,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">201</span>
+    <span class="phpdocumentor-element-found-in__line">213</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นรับค่าจากการอ่าน CSV</p>
+        <p class="phpdocumentor-summary">Import data and process into a specific format</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">importDatas</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">importDatas</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -726,14 +728,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The data array to be imported</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -751,25 +755,27 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Csv.php"><a href="files/kotchasan-csv.html"><abbr title="Kotchasan/Csv.php">Csv.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">167</span>
+    <span class="phpdocumentor-element-found-in__line">177</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">remove BOM</p>
+        <p class="phpdocumentor-summary">Remove the Byte Order Mark (BOM) from a UTF-8 encoded string</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">removeBomUtf8</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$s</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">removeBomUtf8</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$s</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$s</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>UTF-8 encoded string</p>
+</section>
+
             </dd>
             </dl>
 
@@ -778,7 +784,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>String with BOM removed</p>
+</section>
+
     
 </article>
             </section>

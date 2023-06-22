@@ -11,7 +11,9 @@
 namespace Kotchasan\Database;
 
 /**
- * คลาสสำหรับจัดการข้อผิดพลาดของ Database
+ * Database Exception class
+ *
+ * Exception class for handling database errors.
  *
  * @see https://www.kotchasan.com/
  */

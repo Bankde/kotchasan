@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -142,11 +148,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ApiController.php"><a href="files/kotchasan-apicontroller.html"><abbr title="Kotchasan/ApiController.php">ApiController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">API Controller base class</p>
+            <p class="phpdocumentor-summary">API Controller base class for handling API requests.</p>
 
 
 
@@ -156,20 +162,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -190,57 +187,49 @@
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>Config class</dd>
+<dd>Config class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_request">$request</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>            </span>
 </dt>
-<dd>Server request class</dd>
+<dd>Server request class instance.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ApiController.html#method_index">index()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>แม่แบบคอนโทรลเลอร์ สำหรับ API</dd>
+<dd>API Controller index action.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ApiController.html#method_validateMethod">validateMethod()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบ Method
-สำเร็จ คืนค่า true
-ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Method not allowed</dd>
+<dd>Validate the HTTP method.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ApiController.html#method_validateSign">validateSign()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบ sign
-สำเร็จ คืนค่า true
-ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Invalid sign</dd>
+<dd>Validate the sign.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ApiController.html#method_validateToken">validateToken()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบ Token
-สำเร็จ คืนค่า true
-ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Invalid token</dd>
+<dd>Validate the API token.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ApiController.html#method_validateTokenBearer">validateTokenBearer()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบ Token Bearer
-สำเร็จ คืนค่า true
-ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Invalid token</dd>
+<dd>Validate the Bearer token.</dd>
 
         </dl>
 
@@ -270,11 +259,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Config class</p>
+        <p class="phpdocumentor-summary">Config class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -303,11 +292,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Server request class</p>
+        <p class="phpdocumentor-summary">Server request class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -340,11 +329,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ApiController.php"><a href="files/kotchasan-apicontroller.html"><abbr title="Kotchasan/ApiController.php">ApiController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แม่แบบคอนโทรลเลอร์ สำหรับ API</p>
+        <p class="phpdocumentor-summary">API Controller index action.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -358,7 +347,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The HTTP request object.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -383,13 +374,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ApiController.php"><a href="files/kotchasan-apicontroller.html"><abbr title="Kotchasan/ApiController.php">ApiController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">150</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบ Method
-สำเร็จ คืนค่า true
-ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Method not allowed</p>
+        <p class="phpdocumentor-summary">Validate the HTTP method.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -403,14 +392,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The HTTP request object.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$method</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Method เช่น POST GET PUT DELETE OPTIONS</p>
+                    <section class="phpdocumentor-description"><p>The expected HTTP method (e.g., POST, GET, PUT, DELETE, OPTIONS).</p>
 </section>
 
             </dd>
@@ -421,7 +412,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the method is valid, otherwise throws an ApiException with a &quot;Method not allowed&quot; error.</p>
+</section>
+
     
 </article>
                     <article
@@ -437,27 +430,27 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ApiController.php"><a href="files/kotchasan-apicontroller.html"><abbr title="Kotchasan/ApiController.php">ApiController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">119</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบ sign
-สำเร็จ คืนค่า true
-ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Invalid sign</p>
+        <p class="phpdocumentor-summary">Validate the sign.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">validateSign</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">validateSign</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$params</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The parameters to validate.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -466,7 +459,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the sign is valid, otherwise throws an ApiException with an &quot;Invalid sign&quot; error.</p>
+</section>
+
     
 </article>
                     <article
@@ -482,13 +477,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ApiController.php"><a href="files/kotchasan-apicontroller.html"><abbr title="Kotchasan/ApiController.php">ApiController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">94</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบ Token
-สำเร็จ คืนค่า true
-ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Invalid token</p>
+        <p class="phpdocumentor-summary">Validate the API token.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -502,7 +495,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The token to validate.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -511,7 +506,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the token is valid, otherwise throws an ApiException with an &quot;Invalid token&quot; error.</p>
+</section>
+
     
 </article>
                     <article
@@ -527,13 +524,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ApiController.php"><a href="files/kotchasan-apicontroller.html"><abbr title="Kotchasan/ApiController.php">ApiController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">111</span>
+    <span class="phpdocumentor-element-found-in__line">104</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบ Token Bearer
-สำเร็จ คืนค่า true
-ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Invalid token</p>
+        <p class="phpdocumentor-summary">Validate the Bearer token.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -547,7 +542,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The HTTP request object.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -556,7 +553,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the token is valid, otherwise throws an ApiException with an &quot;Invalid token&quot; error.</p>
+</section>
+
     
 </article>
             </section>

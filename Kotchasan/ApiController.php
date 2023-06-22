@@ -13,38 +13,37 @@ namespace Kotchasan;
 use Kotchasan\Http\Request;
 
 /**
- * API Controller base class
+ * API Controller base class for handling API requests.
  *
  * @see https://www.kotchasan.com/
  */
 class ApiController extends \Kotchasan\KBase
 {
     /**
-     * แม่แบบคอนโทรลเลอร์ สำหรับ API
+     * API Controller index action.
      *
-     * @param Request $request
+     * @param Request $request The HTTP request object.
      */
     public function index(Request $request)
     {
         $headers = array('Content-type' => 'application/json; charset=UTF-8');
         if (empty(self::$cfg->api_token) || empty(self::$cfg->api_ips)) {
-            // ยังไม่ได้สร้าง Token หรือ ยังไม่ได้อนุญาต IP
+            // Token or IP authorization not set up
             $result = array(
                 'code' => 503,
                 'message' => 'Unavailable API'
             );
         } elseif (in_array('0.0.0.0', self::$cfg->api_ips) || in_array($request->getClientIp(), self::$cfg->api_ips)) {
             try {
-                // รับค่าที่ส่งมาจาก Router
+                // Get values from the router
                 $module = $request->get('module')->filter('a-z0-9');
                 $method = $request->get('method')->filter('a-z');
                 $action = $request->get('action')->filter('a-z');
-                // แปลงเป็นชื่อคลาส สำหรับ Model เช่น
-                // api.php/v1/user/create ได้เป็น V1\User\Model::create
+                // Convert to class name for the model, e.g., api.php/v1/user/create becomes V1\User\Model::create
                 $className = ucfirst($module).'\\'.ucfirst($method).'\\Model';
-                // ตรวจสอบ method
+                // Check if method exists
                 if (method_exists($className, $action)) {
-                    // เรียกใช้งาน Class
+                    // Instantiate class and call method
                     $result = createClass($className)->$action($request);
                     // CORS
                     if (!empty(self::$cfg->api_cors)) {
@@ -52,7 +51,7 @@ class ApiController extends \Kotchasan\KBase
                         $headers['Access-Control-Allow-Headers'] = 'origin, x-requested-with, content-type';
                     }
                 } else {
-                    // error ไม่พบ class หรือ method
+                    // Error: class or method not found
                     $result = array(
                         'code' => 404,
                         'message' => 'Object Not Found'
@@ -66,13 +65,13 @@ class ApiController extends \Kotchasan\KBase
                 );
             }
         } else {
-            // ไม่อนุญาต IP
+            // IP not allowed
             $result = array(
                 'code' => 403,
                 'message' => 'Forbidden'
             );
         }
-        // Response คืนค่ากลับเป็น JSON ตาม $result
+        // Return JSON response based on $result
         $response = new \Kotchasan\Http\Response();
         $response->withHeaders($headers)
             ->withStatus(empty($result['code']) ? 200 : $result['code'])
@@ -81,13 +80,11 @@ class ApiController extends \Kotchasan\KBase
     }
 
     /**
-     * ตรวจสอบ Token
-     * สำเร็จ คืนค่า true
-     * ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Invalid token
+     * Validate the API token.
      *
-     * @param string $token
+     * @param string $token The token to validate.
      *
-     * @return bool
+     * @return bool True if the token is valid, otherwise throws an ApiException with an "Invalid token" error.
      */
     public static function validateToken($token)
     {
@@ -98,13 +95,11 @@ class ApiController extends \Kotchasan\KBase
     }
 
     /**
-     * ตรวจสอบ Token Bearer
-     * สำเร็จ คืนค่า true
-     * ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Invalid token
+     * Validate the Bearer token.
      *
-     * @param Request $request
+     * @param Request $request The HTTP request object.
      *
-     * @return bool
+     * @return bool True if the token is valid, otherwise throws an ApiException with an "Invalid token" error.
      */
     public static function validateTokenBearer(Request $request)
     {
@@ -115,13 +110,11 @@ class ApiController extends \Kotchasan\KBase
     }
 
     /**
-     * ตรวจสอบ sign
-     * สำเร็จ คืนค่า true
-     * ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Invalid sign
+     * Validate the sign.
      *
-     * @param $params
+     * @param array $params The parameters to validate.
      *
-     * @return bool
+     * @return bool True if the sign is valid, otherwise throws an ApiException with an "Invalid sign" error.
      */
     public static function validateSign($params)
     {
@@ -136,14 +129,12 @@ class ApiController extends \Kotchasan\KBase
     }
 
     /**
-     * ตรวจสอบ Method
-     * สำเร็จ คืนค่า true
-     * ไม่สำเร็จคืนค่าข้อผิดพลาด ApiException Method not allowed
+     * Validate the HTTP method.
      *
-     * @param Request $request
-     * @param string $method Method เช่น POST GET PUT DELETE OPTIONS
+     * @param Request $request The HTTP request object.
+     * @param string  $method  The expected HTTP method (e.g., POST, GET, PUT, DELETE, OPTIONS).
      *
-     * @return bool
+     * @return bool True if the method is valid, otherwise throws an ApiException with a "Method not allowed" error.
      */
     public static function validateMethod(Request $request, $method)
     {

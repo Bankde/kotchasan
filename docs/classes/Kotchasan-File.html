@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -143,7 +149,7 @@
 
     </aside>
 
-            <p class="phpdocumentor-summary">คลาสสำหรับจัดการไฟล์และไดเร็คทอรี่</p>
+            <p class="phpdocumentor-summary">Class for managing files and directories.</p>
 
 
 
@@ -153,20 +159,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -187,36 +184,35 @@
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>สำเนาไดเร็คทอรี่</dd>
+<dd>Copy a directory recursively.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-File.html#method_ext">ext()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>อ่านนามสกุลของไฟล์เช่น config.php คืนค่า php
-คืนค่า ext ของไฟล์ ตัวอักษรตัวพิมพ์เล็ก</dd>
+<dd>Get the file extension of a file (e.g., &#039;config.php&#039; returns &#039;php&#039;).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-File.html#method_listFiles">listFiles()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>อ่านรายชื่อไฟล์ภายใต้ไดเร็คทอรี่รวมไดเร็คทอรี่ย่อย</dd>
+<dd>Get the list of files in a directory and its subdirectories.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-File.html#method_makeDirectory">makeDirectory()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>สร้างและตรวจสอบไดเร็คทอรี่ ให้เขียนได้</dd>
+<dd>Create and validate a directory for writing.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-File.html#method_removeDirectory">removeDirectory()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ลบไดเรคทอรี่และไฟล์ หรือ ไดเร็คทอรี่ในนั้นทั้งหมด</dd>
+<dd>Recursively delete a directory and its files, or only the files inside the directory.</dd>
 
         </dl>
 
@@ -248,30 +244,30 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">สำเนาไดเร็คทอรี่</p>
+        <p class="phpdocumentor-summary">Copy a directory recursively.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">copyDirectory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dir</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$todir</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">copyDirectory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sourceDir</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$destDir</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$dir</span>
+                <span class="phpdocumentor-signature__argument__name">$sourceDir</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไดเร็คทอรี่ต้นทาง มี / ปิดท้ายด้วย</p>
+                    <section class="phpdocumentor-description"><p>Source directory path (with trailing slash)</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$todir</span>
+                <span class="phpdocumentor-signature__argument__name">$destDir</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไดเร็คทอรี่ปลายทาง มี / ปิดท้ายด้วย</p>
+                    <section class="phpdocumentor-description"><p>Destination directory path (with trailing slash)</p>
 </section>
 
             </dd>
@@ -302,8 +298,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านนามสกุลของไฟล์เช่น config.php คืนค่า php
-คืนค่า ext ของไฟล์ ตัวอักษรตัวพิมพ์เล็ก</p>
+        <p class="phpdocumentor-summary">Get the file extension of a file (e.g., &#039;config.php&#039; returns &#039;php&#039;).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -317,33 +312,20 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไฟล์</p>
+                    <section class="phpdocumentor-description"><p>File path</p>
 </section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">assert</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>('index.php.sql') [==] 'sql'</p>
-</section>
-
-                                    </dd>
-                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>File extension (lowercase)</p>
+</section>
+
     
 </article>
                     <article
@@ -363,7 +345,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านรายชื่อไฟล์ภายใต้ไดเร็คทอรี่รวมไดเร็คทอรี่ย่อย</p>
+        <p class="phpdocumentor-summary">Get the list of files in a directory and its subdirectories.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -377,7 +359,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไดเร็คทอรี่ มี / ปิดท้ายด้วย</p>
+                    <section class="phpdocumentor-description"><p>Directory path (with trailing slash)</p>
 </section>
 
             </dd>
@@ -386,7 +368,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คืนค่ารายการไฟล์ที่พบ</p>
+                    <section class="phpdocumentor-description"><p>Array to store the found files</p>
 </section>
 
             </dd>
@@ -395,7 +377,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(option) ไฟล์ฟิลเตอร์ ตัวพิมพ์เล็ก เช่น array('jpg','gif') แอเรย์ว่างหมายถึงทุกนามสกุล</p>
+                    <section class="phpdocumentor-description"><p>(optional) File extensions to filter (lowercase). An empty array means all extensions.</p>
 </section>
 
             </dd>
@@ -422,11 +404,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/File.php"><a href="files/kotchasan-file.html"><abbr title="Kotchasan/File.php">File.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">101</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างและตรวจสอบไดเร็คทอรี่ ให้เขียนได้</p>
+        <p class="phpdocumentor-summary">Create and validate a directory for writing.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -440,14 +422,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Directory path</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$mode</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">0755</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) default 0755</p>
+                    <section class="phpdocumentor-description"><p>(optional) Directory permission mode (default: 0755)</p>
 </section>
 
             </dd>
@@ -458,7 +442,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the directory exists or is created successfully and is writable, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -474,11 +460,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/File.php"><a href="files/kotchasan-file.html"><abbr title="Kotchasan/File.php">File.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">134</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลบไดเรคทอรี่และไฟล์ หรือ ไดเร็คทอรี่ในนั้นทั้งหมด</p>
+        <p class="phpdocumentor-summary">Recursively delete a directory and its files, or only the files inside the directory.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -492,7 +478,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไดเรคทอรี่ที่ต้องการลบ มี / ต่อท้ายด้วย</p>
+                    <section class="phpdocumentor-description"><p>Directory path to delete (with trailing slash)</p>
 </section>
 
             </dd>
@@ -501,7 +487,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true (default) ลบไดเร็คทอรี่ที่ระบด้วย, false ลบเฉพาะไฟล์และไดเร็คทอรี่ในนั้น</p>
+                    <section class="phpdocumentor-description"><p>True (default) to delete the directory itself, false to delete only the files inside</p>
 </section>
 
             </dd>

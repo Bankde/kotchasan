@@ -11,14 +11,14 @@
 namespace Kotchasan;
 
 /**
- * แปลงตัวเลขเป็นจำนวนเงิน บาท ดอลล่าร์
+ * Convert numbers to currency format (Baht, Dollar)
  *
  * @see https://www.kotchasan.com/
  */
 class Currency
 {
     /**
-     * แปลงจำนวนเงินเป็นตัวหนังสือ
+     * Convert number to text (English)
      *
      * @assert (13.00) [==] 'thirteen Baht'
      * @assert (101.55) [==] 'one hundred one Baht and fifty-five Satang'
@@ -51,7 +51,7 @@ class Currency
     }
 
     /**
-     * ตัวเลขเป็นตัวหนังสือ (ไทย)
+     * Convert number to text (Thai Baht)
      *
      * @assert (13.00) [==] 'สิบสามบาทถ้วน'
      * @assert (101.55) [==] 'หนึ่งร้อยเอ็ดบาทห้าสิบห้าสตางค์'
@@ -129,64 +129,67 @@ class Currency
     }
 
     /**
-     * ฟังก์ชั่นคำนวณภาษี
-     * $vat_ex = true ราคาสินค้ารวม VAT เช่น ราคาสินค้า 100 + VAT 7 = ราคาขาย 107
-     * $vat_ex = false ราคาสินค้ารวม VAT เช่น ราคาขาย 100 = ราคาสินค้า 93 + VAT 7
-     * คืนค่า VAT จากราคาขาย
+     * Calculate the VAT amount based on the given amount and VAT rate.
      *
      * @assert (1000, 7, true) [==] 70
      * @assert (1000, 7, false) [==] 65.420560747663558
      *
-     * @param float $amount ราคาขาย
-     * @param float $vat    VAT
-     * @param bool  $vat_ex
+     * @param float $amount The amount to calculate VAT for.
+     * @param float $vat The VAT rate.
+     * @param bool $vat_ex Indicates whether the amount is VAT-exclusive (true) or VAT-inclusive (false).
      *
-     * @return float
+     * @return float The VAT amount.
      */
     public static function calcVat($amount, $vat, $vat_ex = true)
     {
         if ($vat_ex) {
-            $result = (($vat * $amount) / 100);
+            // Calculate VAT amount for VAT-exclusive amount
+            $result = ($vat * $amount) / 100;
         } else {
+            // Calculate VAT amount for VAT-inclusive amount
             $result = $amount - ($amount * (100 / (100 + $vat)));
         }
+
         return $result;
     }
 
     /**
-     * ฟังก์ชั่น แปลงตัวเลขเป็นจำนวนเงิน
-     * คืนค่าข้อความจำนวนเงิน
+     * Format a number with specified decimal digits and thousands separator.
      *
      * @assert (1000000.444) [==] '1,000,000.44'
      * @assert (1000000.555) [==] '1,000,000.56'
      * @assert (1000000.55455, 3, ',', false) [==] '1,000,000.554'
      * @assert (1000000.55455, 3) [==] '1,000,000.555'
      *
-     * @param float $amount จำนวนเงิน
-     * @param int $digit จำนวนทศนิยม (optional) ค่าเริ่มต้น 2 หลัก
-     * @param string $thousands_sep (optional) เครื่องหมายหลักพัน (default ,)
-     * @param bool $round (optional) true (default) หลังจุดทศนิยมในหลักที่เกินตั้งแต่ 5 ขึ้นไปปัดขึ้น (round), false ตัดหลักที่เกินทิ้ง (floor)
+     * @param float $amount The number to format.
+     * @param int $digit The number of decimal digits to include. Default is 2.
+     * @param string $thousands_sep The character used as a thousands separator. Default is ','.
+     * @param bool $round Whether to round the number or not. Default is true.
      *
-     * @return string
+     * @return string The formatted number as a string.
      */
     public static function format($amount, $digit = 2, $thousands_sep = ',', $round = true)
     {
+        // Check if rounding is disabled and the number has more decimal digits than specified
         if (!$round && preg_match('/^([0-9]+)(\.[0-9]{'.$digit.','.$digit.'})[0-9]+$/', (string) $amount, $match)) {
+            // Concatenate the integer part and the specified decimal digits without rounding
             return number_format((float) $match[1].$match[2], $digit, '.', $thousands_sep);
         } else {
+            // Round the number according to the specified decimal digits and format it
             return number_format((float) $amount, $digit, '.', $thousands_sep);
         }
     }
 
     /**
-     * ตัวเลขเป็นตัวหนังสือ (eng)
+     * Format a number into its English word representation.
      *
-     * @param int $number
+     * @param int $number The number to format.
      *
-     * @return string
+     * @return string The English word representation of the number.
      */
     private static function engFormat($number)
     {
+        // Define an array of English words for numbers 0 to 90
         $amount_words = array(
             0 => 'zero',
             1 => 'one',
@@ -217,16 +220,21 @@ class Currency
             80 => 'eighty',
             90 => 'ninety'
         );
+
+        // Check if the number exists in the $amount_words array
         if (isset($amount_words[$number])) {
             return $amount_words[$number];
         }
-        // 0-99
+
+        // Handle numbers from 0 to 99
         if ($number < 100) {
+            // Recursively format the tens place and ones place
             $prefix = self::engFormat(floor($number / 10) * 10);
             $suffix = self::engFormat($number % 10);
             return $prefix.'-'.$suffix;
         }
-        // 100-999,999,999,999,999
+
+        // Handle numbers from 100 to 999,999,999,999,999
         $amount_units = array(
             1000 => [100, ' hundred'],
             1000000 => [1000, ' thousand'],
@@ -236,6 +244,7 @@ class Currency
         );
         foreach ($amount_units as $amount => $units) {
             if ($number < $amount) {
+                // Recursively format the whole part and the remaining part
                 $string = self::engFormat(floor($number / $units[0])).$units[1];
                 if ($number % $units[0]) {
                     $string .= ' '.self::engFormat($number % $units[0]);
@@ -243,7 +252,8 @@ class Currency
                 return $string;
             }
         }
-        // > 999,999,999,999,999
+
+        // Handle numbers greater than 999,999,999,999,999
         $string = self::engFormat(floor($number / 1000000000000000)).' quadrillion';
         if ($number % 1000000000000000) {
             $string .= ' '.self::engFormat($number % 1000000000000000);

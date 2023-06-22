@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -139,11 +145,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Currency.php"><a href="files/kotchasan-currency.html"><abbr title="Kotchasan/Currency.php">Currency.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">แปลงตัวเลขเป็นจำนวนเงิน บาท ดอลล่าร์</p>
+            <p class="phpdocumentor-summary">Convert numbers to currency format (Baht, Dollar)</p>
 
 
 
@@ -153,20 +159,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -187,39 +184,35 @@
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลงจำนวนเงินเป็นตัวหนังสือ</dd>
+<dd>Convert number to text (English)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Currency.html#method_bahtThai">bahtThai()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ตัวเลขเป็นตัวหนังสือ (ไทย)</dd>
+<dd>Convert number to text (Thai Baht)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Currency.html#method_calcVat">calcVat()</a>
     <span>
                         &nbsp;: float    </span>
 </dt>
-<dd>ฟังก์ชั่นคำนวณภาษี
-$vat_ex = true ราคาสินค้ารวม VAT เช่น ราคาสินค้า 100 + VAT 7 = ราคาขาย 107
-$vat_ex = false ราคาสินค้ารวม VAT เช่น ราคาขาย 100 = ราคาสินค้า 93 + VAT 7
-คืนค่า VAT จากราคาขาย</dd>
+<dd>Calculate the VAT amount based on the given amount and VAT rate.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Currency.html#method_format">format()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่น แปลงตัวเลขเป็นจำนวนเงิน
-คืนค่าข้อความจำนวนเงิน</dd>
+<dd>Format a number with specified decimal digits and thousands separator.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Currency.html#method_engFormat">engFormat()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ตัวเลขเป็นตัวหนังสือ (eng)</dd>
+<dd>Format a number into its English word representation.</dd>
 
         </dl>
 
@@ -247,11 +240,11 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Currency.php"><a href="files/kotchasan-currency.html"><abbr title="Kotchasan/Currency.php">Currency.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลงจำนวนเงินเป็นตัวหนังสือ</p>
+        <p class="phpdocumentor-summary">Convert number to text (English)</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -413,11 +406,11 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Currency.php"><a href="files/kotchasan-currency.html"><abbr title="Kotchasan/Currency.php">Currency.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวเลขเป็นตัวหนังสือ (ไทย)</p>
+        <p class="phpdocumentor-summary">Convert number to text (Thai Baht)</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -561,14 +554,11 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Currency.php"><a href="files/kotchasan-currency.html"><abbr title="Kotchasan/Currency.php">Currency.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">148</span>
+    <span class="phpdocumentor-element-found-in__line">143</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นคำนวณภาษี
-$vat_ex = true ราคาสินค้ารวม VAT เช่น ราคาสินค้า 100 + VAT 7 = ราคาขาย 107
-$vat_ex = false ราคาสินค้ารวม VAT เช่น ราคาขาย 100 = ราคาสินค้า 93 + VAT 7
-คืนค่า VAT จากราคาขาย</p>
+        <p class="phpdocumentor-summary">Calculate the VAT amount based on the given amount and VAT rate.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -582,7 +572,7 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
                 : <span class="phpdocumentor-signature__argument__return-type">float</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ราคาขาย</p>
+                    <section class="phpdocumentor-description"><p>The amount to calculate VAT for.</p>
 </section>
 
             </dd>
@@ -591,7 +581,7 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
                 : <span class="phpdocumentor-signature__argument__return-type">float</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>VAT</p>
+                    <section class="phpdocumentor-description"><p>The VAT rate.</p>
 </section>
 
             </dd>
@@ -600,7 +590,9 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Indicates whether the amount is VAT-exclusive (true) or VAT-inclusive (false).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -633,7 +625,9 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">float</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The VAT amount.</p>
+</section>
+
     
 </article>
                     <article
@@ -649,12 +643,11 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Currency.php"><a href="files/kotchasan-currency.html"><abbr title="Kotchasan/Currency.php">Currency.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">171</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น แปลงตัวเลขเป็นจำนวนเงิน
-คืนค่าข้อความจำนวนเงิน</p>
+        <p class="phpdocumentor-summary">Format a number with specified decimal digits and thousands separator.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -668,7 +661,7 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
                 : <span class="phpdocumentor-signature__argument__return-type">float</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>จำนวนเงิน</p>
+                    <section class="phpdocumentor-description"><p>The number to format.</p>
 </section>
 
             </dd>
@@ -677,7 +670,7 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">2</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>จำนวนทศนิยม (optional) ค่าเริ่มต้น 2 หลัก</p>
+                    <section class="phpdocumentor-description"><p>The number of decimal digits to include. Default is 2.</p>
 </section>
 
             </dd>
@@ -686,7 +679,7 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;,&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) เครื่องหมายหลักพัน (default ,)</p>
+                    <section class="phpdocumentor-description"><p>The character used as a thousands separator. Default is ','.</p>
 </section>
 
             </dd>
@@ -695,7 +688,7 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) true (default) หลังจุดทศนิยมในหลักที่เกินตั้งแต่ 5 ขึ้นไปปัดขึ้น (round), false ตัดหลักที่เกินทิ้ง (floor)</p>
+                    <section class="phpdocumentor-description"><p>Whether to round the number or not. Default is true.</p>
 </section>
 
             </dd>
@@ -748,7 +741,9 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The formatted number as a string.</p>
+</section>
+
     
 </article>
                     <article
@@ -768,7 +763,7 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวเลขเป็นตัวหนังสือ (eng)</p>
+        <p class="phpdocumentor-summary">Format a number into its English word representation.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -782,7 +777,9 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The number to format.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -791,7 +788,9 @@ $vat_ex = false ราคาสินค้ารวม VAT เช่น รา�
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The English word representation of the number.</p>
+</section>
+
     
 </article>
             </section>

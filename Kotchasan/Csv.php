@@ -11,7 +11,7 @@
 namespace Kotchasan;
 
 /**
- * CSV function
+ * CSV Utility Class
  *
  * @see https://www.kotchasan.com/
  */
@@ -35,15 +35,14 @@ class Csv
     private $keys;
 
     /**
-     * ฟังก์ชั่นนำเข้าข้อมูล CSV
-     * คืนค่าข้อมูลที่อ่านได้เป็นแอเรย์
+     * Import CSV data
      *
-     * @param string $csv ชื่อไฟล์รวมพาธ
-     * @param array  $columns ข้อมูลคอลัมน์ array('column1' => 'data type', 'column2' => 'data type', ....)
-     * @param array  $keys ชื่อคอลัมน์สำหรับตรวจข้อมูลซ้ำ null(default) หมายถึงไม่ตรวจสอบ
-     * @param string $charset รหัสภาษาของไฟล์ ค่าเริ่มต้นคือ UTF-8
+     * @param string $csv  File path
+     * @param array  $columns  Column data array('column1' => 'data type', 'column2' => 'data type', ....)
+     * @param array  $keys  Column names for duplicate data checking. Null(default) means no checking.
+     * @param string $charset  File character encoding. Default is UTF-8.
      *
-     * @return array
+     * @return array  Imported data array
      */
     public static function import($csv, $columns, $keys = null, $charset = 'UTF-8')
     {
@@ -57,22 +56,25 @@ class Csv
     }
 
     /**
-     * อ่านไฟล์ CSV ทีละแถวส่งไปยังฟังก์ชั่น $onRow
-     * แถวแรกของข้อมูลคือ Header ต้องระบุเสมอ
+     * Read a CSV file and process each row of data
      *
-     * @param string   $file  ชื่อไฟล์รวมพาธ
-     * @param mixed $onRow ฟังก์ชั่นรับค่าแต่ละแถว function($data){}
-     * @param array $headers แอเรย์เก็บชื่อคอลัมน์สำหรับการทดสอบความถูกต้อง ถ้าไม่ระบุจะไม่ตรวจสอบ
+     * @param string   $file      Path to the CSV file
+     * @param callable $onRow     Callback function to be executed for each row of data
+     * @param array    $headers   Array of expected header values for validation (optional)
+     * @param string   $charset   Character encoding of the CSV file (default: UTF-8)
      *
-     * @throws Exception ถ้า Header ของไฟล์ CSV ไม่ถูกต้อง
+     * @throws \Exception If an error occurs, such as an invalid CSV header or missing column
+     *
+     * @return void
      */
     public static function read($file, $onRow, $headers = null, $charset = 'UTF-8')
     {
         $columns = array();
         $f = @fopen($file, 'r');
         if ($f) {
-            // charset
+            // Convert charset to uppercase
             $charset = strtoupper($charset);
+
             while (($data = fgetcsv($f)) !== false) {
                 if (empty($columns)) {
                     if (is_array($headers)) {
@@ -80,15 +82,16 @@ class Csv
                             throw new \Exception('Invalid CSV Header');
                         } else {
                             if ($charset == 'UTF-8') {
-                                // remove BOM
+                                // Remove BOM
                                 $data[0] = trim(self::removeBomUtf8($data[0]), " \t\n\r\0\x0B\'\"");
                             } else {
-                                // แปลงเป็น UTF-8
+                                // Convert to UTF-8
                                 foreach ($data as $k => $v) {
                                     $data[$k] = trim(iconv($charset, 'UTF-8//IGNORE', $v), " \t\n\r\0\x0B\'\"");
                                 }
                             }
-                            // ตรวจสอบ Header
+
+                            // Check header values
                             foreach ($headers as $k) {
                                 if (!in_array($k, $data)) {
                                     throw new \Exception('Column '.$k.' not found');
@@ -104,63 +107,72 @@ class Csv
                             if ($charset == 'UTF-8') {
                                 $items[$columns[$k]] = $v;
                             } else {
-                                // แปลงเป็น UTF-8
+                                // Convert to UTF-8
                                 $items[$columns[$k]] = iconv($charset, 'UTF-8//IGNORE', $v);
                             }
                         }
                     }
+
+                    // Call the provided callback function with the processed row data
                     call_user_func($onRow, $items);
                 }
             }
+
             fclose($f);
         }
     }
 
     /**
-     * สร้างไฟล์ CSV สำหรับดาวน์โหลด
-     * คืนค่า true
+     * Generate and send a CSV file as a download
      *
-     * @param string $file ชื่อไฟล์ ไม่ต้องมีนามสกุล
-     * @param array $header ส่วนหัวของข้อมูล
-     * @param array $datas ข้อมูล
-     * @param string $charset ภาษาของ CSV ค่าเริ่มต้นคือ UTF-8
-     * @param bool $bom true (default) ใส่ BOM ลงในไฟล์ CSV ถ้าเป็น UTF-8
+     * @param string $file     File name (without extension)
+     * @param array  $header   Array of header values for the CSV file
+     * @param array  $datas    Array of data rows for the CSV file
+     * @param string $charset  Character encoding of the CSV file (default: UTF-8)
+     * @param bool   $bom      Whether to include the Byte Order Mark (BOM) in the CSV file (default: true)
      *
-     * @return bool
+     * @return bool  Returns true if successful, false otherwise
      */
     public static function send($file, $header, $datas, $charset = 'UTF-8', $bom = true)
     {
-        // header
+        // Set response headers for the CSV file download
         header('Content-Type: text/csv;charset="'.$charset.'"');
         header('Content-Disposition: attachment;filename="'.$file.'.csv"');
-        // create stream
+
+        // Create a stream for output
         $f = fopen('php://output', 'w');
+
+        // Add BOM for UTF-8 if requested
         if ($charset == 'UTF-8' && $bom) {
-            // UTF-8 with BOM
             fwrite($f, "\xEF\xBB\xBF");
         }
-        // charset
+
+        // Convert charset to uppercase
         $charset = strtoupper($charset);
-        // csv header
+
+        // Write the CSV header if it's not empty
         if (!empty($header)) {
             fputcsv($f, self::convert($header, $charset));
         }
-        // content
+
+        // Write the CSV content row by row
         foreach ($datas as $item) {
             fputcsv($f, self::convert($item, $charset));
         }
-        // close
+
+        // Close the stream
         fclose($f);
-        // คืนค่า สำเร็จ
+
+        // Return success
         return true;
     }
 
     /**
-     * remove BOM
+     * Remove the Byte Order Mark (BOM) from a UTF-8 encoded string
      *
-     * @param $s
+     * @param string $s  UTF-8 encoded string
      *
-     * @return string
+     * @return string  String with BOM removed
      */
     private static function removeBomUtf8($s)
     {
@@ -172,12 +184,12 @@ class Csv
     }
 
     /**
-     * แปลงข้อมูลเป็นภาษาที่เลือก
+     * Convert data array to the specified character encoding
      *
-     * @param array  $datas
-     * @param string $charset
+     * @param array  $datas  Data array to convert
+     * @param string $charset  Target character encoding
      *
-     * @return array
+     * @return array  Converted data array
      */
     private static function convert($datas, $charset)
     {
@@ -192,9 +204,11 @@ class Csv
     }
 
     /**
-     * ฟังก์ชั่นรับค่าจากการอ่าน CSV
+     * Import data and process into a specific format
      *
-     * @param array $data
+     * @param array $data The data array to be imported
+     *
+     * @return void
      */
     private function importDatas($data)
     {

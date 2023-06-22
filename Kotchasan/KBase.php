@@ -13,7 +13,7 @@ namespace Kotchasan;
 use Kotchasan\Http\Request;
 
 /**
- * Kotchasan base class
+ * The base class for Kotchasan framework.
  *
  * @see https://www.kotchasan.com/
  */
@@ -21,13 +21,14 @@ use Kotchasan\Http\Request;
 class KBase
 {
     /**
-     * Config class
+     * Config class instance.
      *
      * @var object
      */
     protected static $cfg;
+
     /**
-     * Server request class
+     * Server request class instance.
      *
      * @var Request
      */

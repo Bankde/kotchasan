@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -139,11 +145,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Date.php"><a href="files/kotchasan-date.html"><abbr title="Kotchasan/Date.php">Date.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">คลาสจัดการเกี่ยวกับวันที่และเวลา</p>
+            <p class="phpdocumentor-summary">Class for managing dates and times.</p>
 
 
 
@@ -153,20 +159,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -194,54 +191,49 @@
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>class constructer</dd>
+<dd>Class constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Date.html#method_compare">compare()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่น คำนวนความแตกต่างของวัน (เช่น อายุ)
-คืนค่า จำนวนวัน(ติดลบได้) ปี เดือน วัน [days, year, month, day] ที่แตกต่าง</dd>
+<dd>Calculates the difference between two dates (e.g., age).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Date.html#method_dateName">dateName()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลงตัวเลขเป็นชื่อวันตามภาษาที่ใช้งานอยู่
-คืนค่า อาทิตย์...6 เสาร์</dd>
+<dd>Converts a number to the name of the day in the current language.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Date.html#method_format">format()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นแปลงเวลาเป็นวันที่ตามรูปแบบที่กำหนด สามารถคืนค่าวันเดือนปี พศ. ได้ ขึ้นกับไฟล์ภาษา
-คืนค่า วันที่และเวลาตามรูปแบบที่กำหนดโดย $format</dd>
+<dd>Converts a time to a date in the specified format.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Date.html#method_monthName">monthName()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลงตัวเลขเป็นชื่อเดือนตามภาษาที่ใช้งานอยู่
-คืนค่า 1 มกราคม...12 ธันวาคม</dd>
+<dd>Converts a number to the name of the month in the current language.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Date.html#method_parse">parse()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|bool    </span>
 </dt>
-<dd>แยกวันที่ออกเป็น array
-คืนค่า array(y, m, d, h, i, s) หรือ array(y, m, d) หากเป้นวันที่อย่างเดียว หรือ false หากไม่ใช่วันที่</dd>
+<dd>Parses a date string into an array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Date.html#method_timeDiff">timeDiff()</a>
     <span>
                         &nbsp;: int    </span>
 </dt>
-<dd>คืนค่าเวลาที่แตกต่าง หน่วย msec</dd>
+<dd>Returns the time difference in milliseconds.</dd>
 
         </dl>
 
@@ -271,7 +263,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Date.php"><a href="files/kotchasan-date.html"><abbr title="Kotchasan/Date.php">Date.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -307,11 +299,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Date.php"><a href="files/kotchasan-date.html"><abbr title="Kotchasan/Date.php">Date.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">class constructer</p>
+        <p class="phpdocumentor-summary">Class constructor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -340,18 +332,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Date.php"><a href="files/kotchasan-date.html"><abbr title="Kotchasan/Date.php">Date.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น คำนวนความแตกต่างของวัน (เช่น อายุ)
-คืนค่า จำนวนวัน(ติดลบได้) ปี เดือน วัน [days, year, month, day] ที่แตกต่าง</p>
+        <p class="phpdocumentor-summary">Calculates the difference between two dates (e.g., age).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">compare</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$begin_date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Kotchasan\istring">istring</abbr>|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$end_date</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the number of days (can be negative), years, months, and days [days, year, month, day].</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -359,7 +352,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>วันที่เริ่มต้นหรือวันเกิด (Unix timestamp หรือ วันที่ รูปแบบ YYYY-m-d)</p>
+                    <section class="phpdocumentor-description"><p>The start date or birth date (Unix timestamp or date in the format YYYY-m-d)</p>
 </section>
 
             </dd>
@@ -368,7 +361,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Kotchasan\istring">istring</abbr>|int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>วันที่สิ้นสุดหรือวันนี้ (Unix timestamp หรือ วันที่ รูปแบบ YYYY-m-d)</p>
+                    <section class="phpdocumentor-description"><p>The end date or today's date (Unix timestamp or date in the format YYYY-m-d)</p>
 </section>
 
             </dd>
@@ -419,18 +412,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Date.php"><a href="files/kotchasan-date.html"><abbr title="Kotchasan/Date.php">Date.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลงตัวเลขเป็นชื่อวันตามภาษาที่ใช้งานอยู่
-คืนค่า อาทิตย์...6 เสาร์</p>
+        <p class="phpdocumentor-summary">Converts a number to the name of the day in the current language.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">dateName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$date</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$short_date</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the name of the day (e.g., Sunday...Saturday).</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -447,7 +441,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true (default) วันที่แบบสั้น เช่น อ., false ชื่อเดือนแบบเต็ม เช่น อาทิตย์</p>
+                    <section class="phpdocumentor-description"><p>true (default) for short day name format (e.g., อ.), false for full month name format (e.g., อาทิตย์)</p>
 </section>
 
             </dd>
@@ -498,18 +492,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Date.php"><a href="files/kotchasan-date.html"><abbr title="Kotchasan/Date.php">Date.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">123</span>
+    <span class="phpdocumentor-element-found-in__line">121</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นแปลงเวลาเป็นวันที่ตามรูปแบบที่กำหนด สามารถคืนค่าวันเดือนปี พศ. ได้ ขึ้นกับไฟล์ภาษา
-คืนค่า วันที่และเวลาตามรูปแบบที่กำหนดโดย $format</p>
+        <p class="phpdocumentor-summary">Converts a time to a date in the specified format.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">format</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$time</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the date and time in the specified format.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -517,7 +512,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>int เวลารูปแบบ Unix timestamp, string เวลารูปแบบ Y-m-d หรือ Y-m-d H:i:s ถ้าไม่ระบุหรือระบุ หมายถึงวันนี้</p>
+                    <section class="phpdocumentor-description"><p>int for Unix timestamp, string for Y-m-d or Y-m-d H:i:s format (if not specified or empty, it means today)</p>
 </section>
 
             </dd>
@@ -526,7 +521,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รูปแบบของวันที่ที่ต้องการ (ถ้าไม่ระบุจะใช้รูปแบบที่มาจากระบบภาษา DATE_FORMAT)</p>
+                    <section class="phpdocumentor-description"><p>The desired format of the date (if not specified, it uses the format from the language file DATE_FORMAT)</p>
 </section>
 
             </dd>
@@ -586,18 +581,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Date.php"><a href="files/kotchasan-date.html"><abbr title="Kotchasan/Date.php">Date.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">192</span>
+    <span class="phpdocumentor-element-found-in__line">190</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลงตัวเลขเป็นชื่อเดือนตามภาษาที่ใช้งานอยู่
-คืนค่า 1 มกราคม...12 ธันวาคม</p>
+        <p class="phpdocumentor-summary">Converts a number to the name of the month in the current language.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">monthName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$month</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$short_month</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the name of the month (e.g., January...December).</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -614,7 +610,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true (default) ชื่อเดือนแบบสั้น เช่น มค., false ชื่อเดือนแบบเต็ม เช่น มกราคม</p>
+                    <section class="phpdocumentor-description"><p>true (default) for short month name format (e.g., มค.), false for full month name format (e.g., มกราคม)</p>
 </section>
 
             </dd>
@@ -665,18 +661,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Date.php"><a href="files/kotchasan-date.html"><abbr title="Kotchasan/Date.php">Date.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">210</span>
+    <span class="phpdocumentor-element-found-in__line">208</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แยกวันที่ออกเป็น array
-คืนค่า array(y, m, d, h, i, s) หรือ array(y, m, d) หากเป้นวันที่อย่างเดียว หรือ false หากไม่ใช่วันที่</p>
+        <p class="phpdocumentor-summary">Parses a date string into an array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">parse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$date</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns an array containing year, month, day, hour, minute, second, or an empty array if it's not a date.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -684,7 +681,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The date string to parse</p>
+</section>
+
             </dd>
             </dl>
 
@@ -709,11 +708,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Date.php"><a href="files/kotchasan-date.html"><abbr title="Kotchasan/Date.php">Date.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าเวลาที่แตกต่าง หน่วย msec</p>
+        <p class="phpdocumentor-summary">Returns the time difference in milliseconds.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>

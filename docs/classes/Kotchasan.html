@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -141,11 +147,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Kotchasan.php"><a href="files/kotchasan-kotchasan.html"><abbr title="Kotchasan/Kotchasan.php">Kotchasan.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Kotchasan PHP Framework</p>
+            <p class="phpdocumentor-summary">The main class of the Kotchasan framework.</p>
 
 
 
@@ -155,20 +161,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -189,70 +186,70 @@
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>default charset (แนะนำ utf-8)</dd>
+<dd>Default charset (recommended utf-8).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan.html#property_debugger">$debugger</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>เก็บข้อมูลการ DEBUG</dd>
+<dd>Stores DEBUG information.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan.html#property_defaultController">$defaultController</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>Controller หลัก</dd>
+<dd>The main controller.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan.html#property_defaultRouter">$defaultRouter</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>Router หลัก</dd>
+<dd>The main router.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_cfg">$cfg</a>
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>Config class</dd>
+<dd>Config class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_request">$request</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>            </span>
 </dt>
-<dd>Server request class</dd>
+<dd>Server request class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan.html#property_instance">$instance</a>
     <span>
                 &nbsp;: <abbr title="\Singleton">Singleton</abbr>            </span>
 </dt>
-<dd></dd>
+<dd>Singleton instance of the class.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan.html#method_createWebApplication">createWebApplication()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>สร้าง Application สามารถเรียกใช้ได้ครั้งเดียวเท่านั้น</dd>
+<dd>Creates a web application instance. Can only be called once.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan.html#method_run">run()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>แสดงผลหน้าเว็บไซต์</dd>
+<dd>Runs the web page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>create instance (Singleton)</dd>
+<dd>Class constructor (private, Singleton).</dd>
 
         </dl>
 
@@ -282,11 +279,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Kotchasan.php"><a href="files/kotchasan-kotchasan.html"><abbr title="Kotchasan/Kotchasan.php">Kotchasan.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">default charset (แนะนำ utf-8)</p>
+        <p class="phpdocumentor-summary">Default charset (recommended utf-8).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -315,11 +312,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Kotchasan.php"><a href="files/kotchasan-kotchasan.html"><abbr title="Kotchasan/Kotchasan.php">Kotchasan.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เก็บข้อมูลการ DEBUG</p>
+        <p class="phpdocumentor-summary">Stores DEBUG information.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -349,11 +346,11 @@ ull</span></code>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Kotchasan.php"><a href="files/kotchasan-kotchasan.html"><abbr title="Kotchasan/Kotchasan.php">Kotchasan.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Controller หลัก</p>
+        <p class="phpdocumentor-summary">The main controller.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -386,7 +383,7 @@ ull</span></code>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Router หลัก</p>
+        <p class="phpdocumentor-summary">The main router.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -415,11 +412,11 @@ ull</span></code>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Config class</p>
+        <p class="phpdocumentor-summary">Config class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -448,11 +445,11 @@ ull</span></code>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Server request class</p>
+        <p class="phpdocumentor-summary">Server request class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -481,11 +478,12 @@ ull</span></code>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Kotchasan.php"><a href="files/kotchasan-kotchasan.html"><abbr title="Kotchasan/Kotchasan.php">Kotchasan.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Singleton instance of the class.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
     <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type"><abbr title="\Singleton">Singleton</abbr></span>
@@ -494,9 +492,7 @@ ull</span></code>
 ull</span></code>
 
     
-        <section class="phpdocumentor-description"><p>สำหรับเรียกใช้ class นี้เพียงครั้งเดียวเท่านั้น</p>
-</section>
-
+    
     
 
 </article>
@@ -520,11 +516,11 @@ ull</span></code>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Kotchasan.php"><a href="files/kotchasan-kotchasan.html"><abbr title="Kotchasan/Kotchasan.php">Kotchasan.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้าง Application สามารถเรียกใช้ได้ครั้งเดียวเท่านั้น</p>
+        <p class="phpdocumentor-summary">Creates a web application instance. Can only be called once.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -538,7 +534,7 @@ ull</span></code>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคลาสหรือ Object ของคลาส Config ถ้าไม่กำหนดมาจะใช้ \Kotchasan\Config</p>
+                    <section class="phpdocumentor-description"><p>Name of the class or an object of the Config class. If not specified, \Kotchasan\Config will be used.</p>
 </section>
 
             </dd>
@@ -565,11 +561,11 @@ ull</span></code>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Kotchasan.php"><a href="files/kotchasan-kotchasan.html"><abbr title="Kotchasan/Kotchasan.php">Kotchasan.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แสดงผลหน้าเว็บไซต์</p>
+        <p class="phpdocumentor-summary">Runs the web page.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -598,11 +594,11 @@ ull</span></code>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Kotchasan.php"><a href="files/kotchasan-kotchasan.html"><abbr title="Kotchasan/Kotchasan.php">Kotchasan.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">84</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">create instance (Singleton)</p>
+        <p class="phpdocumentor-summary">Class constructor (private, Singleton).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -616,7 +612,7 @@ ull</span></code>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคลาสหรือ Object ของคลาส Config ถ้าไม่กำหนดมาจะใช้ \Kotchasan\Config</p>
+                    <section class="phpdocumentor-description"><p>Name of the class or an object of the Config class. If not specified, \Kotchasan\Config will be used.</p>
 </section>
 
             </dd>

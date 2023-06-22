@@ -11,14 +11,16 @@
 namespace Kotchasan\Database;
 
 /**
- * PDO MySQL Database Adapter Class
+ * PDO MySQL Database Adapter Class.
+ *
+ * This class provides a PDO-based database adapter for MySQL.
  *
  * @see https://www.kotchasan.com/
  */
 class PdoMysqlDriver extends Driver
 {
     /**
-     * close database
+     * Close the database connection.
      */
     public function close()
     {
@@ -26,33 +28,40 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
-     * เชื่อมต่อ database
+     * Connect to the database.
      *
-     * @param mixed $params
+     * @param mixed $params Connection parameters.
      *
      * @return static
+     * @throws \InvalidArgumentException if the database configuration is invalid.
+     * @throws \Exception if there's an error connecting to the database.
      */
     public function connect($params)
     {
-        $this->options = array(
+        $this->options = [
             \PDO::ATTR_STRINGIFY_FETCHES => 0,
             \PDO::ATTR_EMULATE_PREPARES => 0,
             \PDO::ATTR_PERSISTENT => 1,
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
-        );
+        ];
+
         foreach ($params as $key => $value) {
             $this->{$key} = $value;
         }
+
         if ($this->settings->dbdriver == 'mysql') {
             $this->options[\PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES '.$this->settings->char_set;
             $this->options[\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = 1;
         }
-        $sql = $this->settings->dbdriver.':host='.$this->settings->hostname;
-        $sql .= empty($this->settings->port) ? '' : ';port='.$this->settings->port;
-        $sql .= empty($this->settings->dbname) ? '' : ';dbname='.$this->settings->dbname;
+
+        $dsn = $this->settings->dbdriver.':host='.$this->settings->hostname;
+        $dsn .= empty($this->settings->port) ? '' : ';port='.$this->settings->port;
+        $dsn .= empty($this->settings->dbname) ? '' : ';dbname='.$this->settings->dbname;
+
         if (isset($this->settings->username) && isset($this->settings->password)) {
             try {
-                $this->connection = new \PDO($sql, $this->settings->username, $this->settings->password, $this->options);
+                $this->connection = new \PDO($dsn, $this->settings->username, $this->settings->password, $this->options);
+
                 if (defined('SQL_MODE')) {
                     $this->connection->query("SET SESSION sql_mode='".constant('SQL_MODE')."'");
                 }
@@ -62,13 +71,14 @@ class PdoMysqlDriver extends Driver
         } else {
             throw new \InvalidArgumentException('Database configuration is invalid');
         }
+
         return $this;
     }
 
     /**
-     * จำนวนฟิลด์ทั้งหมดในผลลัพท์จากการ query
+     * Get the number of fields in the query result.
      *
-     * @param resource $res ผลลัพท์จากการ query
+     * @return int
      */
     public function fieldCount()
     {
@@ -80,30 +90,31 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
-     * รายชื่อฟิลด์ทั้งหมดจากผลัพท์จองการ query
+     * Get the list of fields from the query result.
      *
      * @return array
      */
     public function getFields()
     {
-        $filed_list = array();
+        $fieldList = [];
+
         for ($i = 0, $c = $this->fieldCount(); $i < $c; ++$i) {
             $result = @$this->result_id->getColumnMeta($i);
             if ($result) {
-                $filed_list[$result['name']] = $result;
+                $fieldList[$result['name']] = $result;
             }
         }
-        return $filed_list;
+
+        return $fieldList;
     }
 
     /**
-     * ฟังก์ชั่นเพิ่มข้อมูลใหม่ลงในตาราง
-     * สำเร็จ คืนค่า id ที่เพิ่ม ผิดพลาด คืนค่า null
+     * Insert a new row into a table.
      *
-     * @param string       $table_name ชื่อตาราง
-     * @param array|object $save       ข้อมูลที่ต้องการบันทึก รูปแบบ array('key1'=>'value1', 'key2'=>'value2', ...)
+     * @param string $table The name of the table.
+     * @param $data  The data to be inserted. Format array('key1'=>'value1', 'key2'=>'value2', ...)
      *
-     * @return int|null
+     * @return int|bool The ID of the inserted row or false on failure.
      */
     public function insert($table_name, $save)
     {
@@ -121,28 +132,27 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
-     * ฟังก์ชั่นเพิ่มข้อมูลใหม่ลงในตาราง
-     * ถ้ามีข้อมูลเดิมอยู่แล้วจะเป็นการอัปเดต
-     * (ข้อมูลเดิมตาม KEY ที่เป็น UNIQUE)
-     * insert คืนค่า id ที่เพิ่ม
-     * update คืนค่า 0
-     * ผิดพลาด คืนค่า null
+     * Insert a new row into a table or update an existing row if a unique key constraint is violated.
      *
-     * @param string       $table_name ชื่อตาราง
-     * @param array|object $save       ข้อมูลที่ต้องการบันทึก รูปแบบ array('key1'=>'value1', 'key2'=>'value2', ...)
+     * @param string $table_name The name of the table.
+     * @param array $save The data to be inserted or updated.
      *
-     * @return int|null
+     * @return int The ID of the inserted row.
+     * @throws \Exception if there's an error executing the query.
      */
     public function insertOrUpdate($table_name, $save)
     {
         $updates = array();
         $params = array();
+
         foreach ($save as $key => $value) {
             $updates[] = '`'.$key.'`=:U'.$key;
             $params[':U'.$key] = $value;
         }
+
         $sql = $this->makeInsert($table_name, $save, $params);
         $sql .= ' ON DUPLICATE KEY UPDATE '.implode(', ', $updates);
+
         try {
             $query = $this->connection->prepare($sql);
             $query->execute($params);
@@ -155,8 +165,7 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง sql query
-     * คืนค่า sql command
+     * Generate an SQL query command based on the given query builder parameters.
      *
      * @assert (array('update' => '`user`', 'where' => '`id` = 1', 'set' => array('`id` = 1', "`email` = 'admin@localhost'"))) [==] "UPDATE `user` SET `id` = 1, `email` = 'admin@localhost' WHERE `id` = 1"
      * @assert (array('insert' => '`user`', 'keys' => array('id' => ':id', 'email' => ':email'))) [==] "INSERT INTO `user` (`id`, `email`) VALUES (:id, :email)"
@@ -165,9 +174,9 @@ class PdoMysqlDriver extends Driver
      * @assert (array('select'=>'*', 'from'=>'`user`','where'=>'`id` = 1', 'order' => '`id`', 'start' => 1, 'limit' => 10, 'group' => '`id`')) [==] "SELECT * FROM `user` WHERE `id` = 1 GROUP BY `id` ORDER BY `id` LIMIT 1,10"
      * @assert (array('delete' => '`user`', 'where' => '`id` = 1')) [==] "DELETE FROM `user` WHERE `id` = 1"
      *
-     * @param array $sqls คำสั่ง sql จาก query builder
+     * @param array $sqls The SQL commands from the query builder.
      *
-     * @return string
+     * @return string The generated SQL command.
      */
     public function makeQuery($sqls)
     {
@@ -180,6 +189,7 @@ class PdoMysqlDriver extends Driver
         } else {
             $sql = '';
         }
+
         if (isset($sqls['insert'])) {
             if (isset($sqls['select'])) {
                 $sql .= 'INSERT INTO '.$sqls['insert'];
@@ -192,6 +202,7 @@ class PdoMysqlDriver extends Driver
                 $sql .= 'INSERT INTO '.$sqls['insert'].' (`'.implode('`, `', $keys);
                 $sql .= '`) VALUES ('.implode(', ', $sqls['keys']).')';
             }
+
             if (isset($sqls['orupdate'])) {
                 $sql .= ' ON DUPLICATE KEY UPDATE '.implode(', ', $sqls['orupdate']);
             }
@@ -220,89 +231,104 @@ class PdoMysqlDriver extends Driver
                     $sql .= 'DELETE FROM '.$sqls['delete'];
                 }
             }
+
             if (isset($sqls['join'])) {
                 foreach ($sqls['join'] as $join) {
                     $sql .= $join;
                 }
             }
+
             if (isset($sqls['set'])) {
                 $sql .= ' SET '.implode(', ', $sqls['set']);
             }
+
             if (isset($sqls['where'])) {
                 $sql .= ' WHERE '.$sqls['where'];
+
                 if (isset($sqls['exists'])) {
                     $sql .= ' AND '.implode(' AND ', $sqls['exists']);
                 }
             } elseif (isset($sqls['exists'])) {
                 $sql .= ' WHERE '.implode(' AND ', $sqls['exists']);
             }
+
             if (isset($sqls['group'])) {
                 $sql .= ' GROUP BY '.$sqls['group'];
             }
+
             if (isset($sqls['having'])) {
                 $sql .= ' HAVING '.$sqls['having'];
             }
+
             if (isset($sqls['order'])) {
                 $sql .= ' ORDER BY '.$sqls['order'];
             }
+
             if (isset($sqls['limit'])) {
                 $sql .= ' LIMIT '.(empty($sqls['start']) ? '' : $sqls['start'].',').$sqls['limit'];
             }
         }
+
         return $sql;
     }
 
     /**
-     * เรียกดูข้อมูล
-     * คืนค่าผลลัพท์ในรูป array ถ้าไม่สำเร็จ คืนค่าแอเรย์ว่าง
+     * Retrieve data from the specified table.
      *
-     * @param string $table_name ชื่อตาราง
-     * @param mixed  $condition  query WHERE
-     * @param array  $sort       เรียงลำดับ
-     * @param int    $limit      จำนวนข้อมูลที่ต้องการ
+     * @param string $table_name The table name.
+     * @param mixed  $condition  The query WHERE condition.
+     * @param array  $sort       The sorting criteria.
+     * @param int    $limit      The number of data to retrieve.
      *
-     * @return array
+     * @return array The resulting data in array format. Returns an empty array if unsuccessful.
      */
     public function select($table_name, $condition = array(), $sort = array(), $limit = 0)
     {
         $values = array();
         $sql = 'SELECT * FROM '.$table_name;
+
         if (!empty($condition)) {
             $condition = $this->buildWhere($condition);
+
             if (is_array($condition)) {
                 $values = $condition[1];
                 $condition = $condition[0];
             }
+
             $sql .= ' WHERE '.$condition;
         }
+
         if (!empty($sort)) {
             if (is_string($sort) && preg_match('/^([a-z0-9_]+)\s(asc|desc)$/i', trim($sort), $match)) {
                 $sql .= ' ORDER BY `'.$match[1].'`'.(empty($match[2]) ? '' : ' '.$match[2]);
             } elseif (is_array($sort)) {
                 $qs = array();
+
                 foreach ($sort as $item) {
                     if (preg_match('/^([a-z0-9_]+)\s(asc|desc)$/i', trim($item), $match)) {
                         $qs[] = '`'.$match[1].'`'.(empty($match[2]) ? '' : ' '.$match[2]);
                     }
                 }
+
                 if (count($qs) > 0) {
                     $sql .= ' ORDER BY '.implode(', ', $qs);
                 }
             }
         }
+
         if (is_int($limit) && $limit > 0) {
             $sql .= ' LIMIT '.$limit;
         }
+
         return $this->doCustomQuery($sql, $values);
     }
 
     /**
-     * เลือกฐานข้อมูล
-     * คืนค่า false หากไม่สำเร็จ
+     * Selects a database.
      *
-     * @param string $database
+     * @param string $database The name of the database.
      *
-     * @return bool
+     * @return bool Returns true on success, false on failure.
      */
     public function selectDB($database)
     {
@@ -313,19 +339,19 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
-     * ฟังก์ชั่นแก้ไขข้อมูล
-     * สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false
+     * Updates data in the specified table.
      *
-     * @param string       $table_name ชื่อตาราง
-     * @param mixed        $condition  query WHERE
-     * @param array|object $save       ข้อมูลที่ต้องการบันทึก รูปแบบ array('key1'=>'value1', 'key2'=>'value2', ...)
+     * @param string       $table_name The table name.
+     * @param mixed        $condition  The query WHERE condition.
+     * @param array|object $save       The data to be saved in the format array('key1'=>'value1', 'key2'=>'value2', ...)
      *
-     * @return bool
+     * @return bool Returns true on success, false on failure.
      */
     public function update($table_name, $condition, $save)
     {
         $sets = array();
         $values = array();
+
         foreach ($save as $key => $value) {
             if ($value instanceof QueryBuilder) {
                 $sets[] = '`'.$key.'` = ('.$value->text().')';
@@ -338,9 +364,11 @@ class PdoMysqlDriver extends Driver
                 $values[$k] = $value;
             }
         }
+
         $q = Sql::WHERE($condition);
         $sql = 'UPDATE '.$table_name.' SET '.implode(', ', $sets).' WHERE '.$q->text();
         $values = $q->getValues($values);
+
         try {
             $query = $this->connection->prepare($sql);
             $query->execute($values);
@@ -353,13 +381,12 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
-     * ประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-     * คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข หรือคืนค่า false หามีข้อผิดพลาด
+     * Executes an SQL query to retrieve data and returns the result as an array of matching records.
      *
-     * @param string $sql    query string
-     * @param array  $values ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query
+     * @param string $sql    The SQL query string.
+     * @param array  $values If specified, it will use prepared statements instead of direct query execution.
      *
-     * @return array|bool
+     * @return array|bool Returns an array of records that match the condition on success, or false on failure.
      */
     protected function doCustomQuery($sql, $values = array())
     {
@@ -398,13 +425,12 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
-     * ประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-     * สำเร็จคืนค่าจำนวนแถวที่มีผล ไม่สำเร็จคืนค่า false
+     * Executes an SQL query that does not require a result set, such as CREATE, INSERT, or UPDATE statements.
      *
-     * @param string $sql
-     * @param array  $values ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query
+     * @param string $sql    The SQL query string.
+     * @param array  $values If specified, it will use prepared statements instead of direct query execution.
      *
-     * @return int|bool
+     * @return int|bool Returns the number of affected rows on success, or false on failure.
      */
     protected function doQuery($sql, $values = array())
     {
@@ -424,13 +450,13 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง SQL สำหรับการ INSERT ข้อมูล
+     * Generates an SQL INSERT statement for saving data.
      *
-     * @param string       $table_name ชื่อตาราง
-     * @param array|object $save       ข้อมูลที่ต้องการบันทึก รูปแบบ array('key1'=>'value1', 'key2'=>'value2', ...)
-     * @param array        $params     ตัวแปร Array สำหรับรับค่า params ส่งให้ execute
+     * @param string       $table_name The table name.
+     * @param array|object $save       The data to be saved in the format array('key1'=>'value1', 'key2'=>'value2', ...).
+     * @param array        $params     An array variable to receive parameter values for execution.
      *
-     * @return string
+     * @return string Returns the generated INSERT statement.
      */
     private function makeInsert($table_name, $save, &$params)
     {

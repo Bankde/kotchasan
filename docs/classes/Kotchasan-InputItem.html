@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -145,6 +151,8 @@
 
             <p class="phpdocumentor-summary">Input Object</p>
 
+    <section class="phpdocumentor-description"><p>Represents an input item from various sources such as GET, POST, SESSION, or COOKIE.</p>
+</section>
 
 
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -153,20 +161,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -187,264 +186,241 @@
     <span>
                 &nbsp;: string|null            </span>
 </dt>
-<dd>ตัวแปรบอกประเภท Input เช่น GET POST SESSION COOKIE</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-InputItem.html#property_value">$value</a>
     <span>
                 &nbsp;: mixed            </span>
 </dt>
-<dd>ตัวแปรเก็บค่าของ Object</dd>
+<dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>Class Constructer</dd>
+<dd>Class Constructor</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_all">all()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>คืนค่าตามข้อมูลที่ส่งมา</dd>
+<dd>Get the raw input value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_color">color()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่า ค่าสี String หรือ แอเรย์ของ String</dd>
+<dd>Get the color value. Returns a string or an array of strings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_create">create()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>สร้าง Object</dd>
+<dd>Create an InputItem object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_date">date()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;|null    </span>
 </dt>
-<dd>วันที่และเวลา
-คืนค่า null ถ้าข้อมูลวันที่ว่างเปล่าหรือมีรูปแบบไม่ถูกต้อง</dd>
+<dd>Get the date and time value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_description">description()</a>
     <span>
-                        &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
+                        &nbsp;: string    </span>
 </dt>
-<dd>ลบ tag, BBCode ออก ให้เหลือแต่ข้อความล้วน
-ลบช่องว่างไม่เกิน 1 ช่อง ไม่ขึ้นบรรทัดใหม่
-และลบช่องว่างหัวท้าย
-ใช้เป็น description</dd>
+<dd>Get the sanitized and truncated text.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_detail">detail()</a>
     <span>
-                        &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
+                        &nbsp;: string    </span>
 </dt>
-<dd>ลบ PHP tag และแปลง \ { } สำหรับใช้รับข้อมูลจาก editor
-เช่นเนื้อหาของบทความ</dd>
+<dd>Remove PHP tags and escape characters for text input from an editor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_exists">exists()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามีตัวแปรส่งมาหรือไม่
-คืนค่า true ถ้ามีตัวแปรส่งมา</dd>
+<dd>Check if the input variable exists.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_filter">filter()</a>
     <span>
-                        &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
+                        &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นแทนที่อักขระที่ไม่ต้องการ</dd>
+<dd>Filter the input value based on a regular expression pattern.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_isCookie">isCookie()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามาจาก $_COOKIE หรือไม่
-คืนค่า true ถ้ามาจาก $_COOKIE</dd>
+<dd>Check if the input is from a COOKIE variable.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_isGet">isGet()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามาจาก $_GET หรือไม่
-คืนค่า true ถ้ามาจาก $_GET</dd>
+<dd>Check if the input is from a GET variable.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_isPost">isPost()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามาจาก $_POST หรือไม่
-คืนค่า true ถ้ามาจาก $_POST</dd>
+<dd>Check if the input is from a POST variable.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_isSession">isSession()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามาจาก $_SESSION หรือไม่
-คืนค่า true ถ้ามาจาก $_SESSION</dd>
+<dd>Check if the input is from a SESSION variable.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_keywords">keywords()</a>
     <span>
-                        &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
+                        &nbsp;: string    </span>
 </dt>
-<dd>ลบ tags และ ลบช่องว่างไม่เกิน 1 ช่อง ไม่ขึ้นบรรทัดใหม่
-และลบช่องว่างหัวท้าย
-ใช้เป็น tags หรือ keywords</dd>
+<dd>Get the sanitized and truncated keywords from the input value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_number">number()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ตัวเลข หรือ แอเรย์ของ ตัวเลข</dd>
+<dd>Extracts numbers or an array of numbers from the input.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_password">password()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>รับค่าสำหรับ password อักขระทุกตัวไม่มีช่องว่าง</dd>
+<dd>Validates and filters the input as a password.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_quote">quote()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่นรับข้อความ ยอมรับอักขระทั้งหมด
-และแปลง &#039; เป็น &amp;#39;
-และลบช่องว่างหัวท้าย</dd>
+<dd>Accepts text input and converts single quotes to HTML entity &#039;&amp;#39;&#039;,
+and trims leading and trailing spaces.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_text">text()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่น แปลง &amp; &quot; &#039; &lt; &gt; \ เป็น HTML entities
-และลบช่องว่างหัวท้าย
-ใช้แปลงค่าที่รับจาก input ที่ไม่ยอมรับ tag</dd>
+<dd>Accepts text input and converts special characters &#039;&amp;&#039;, &#039;&quot;&#039;, &quot;&#039;&quot;, &#039;&lt;&#039;, &#039;&gt;&#039;, and &#039;\&#039;
+to their corresponding HTML entities, and trims leading and trailing spaces.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_textarea">textarea()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>แปลง &lt; &gt; \ { } เป็น HTML entities และแปลง \n เป็น &lt;br&gt;
-และลบช่องว่างหัวท้าย
-ใช้รับข้อมูลที่มาจาก textarea</dd>
+<dd>Converts &#039;&lt;&#039;, &#039;&gt;&#039;, &#039;\&#039;, &#039;{&#039;, &#039;}&#039;, and &#039;\n&#039; to their corresponding HTML entities,
+converts &#039;\n&#039; to &#039;&lt;br&gt;&#039;, and trims leading and trailing spaces.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_time">time()</a>
     <span>
-                        &nbsp;: string|array&lt;string|int, mixed&gt;|null    </span>
+                        &nbsp;: string|null    </span>
 </dt>
-<dd>เวลา
-คืนค่า null ถ้าข้อมูลเวลาว่างเปล่า หรือเท่าบ --:--</dd>
+<dd>Get the time value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_toArray">toArray()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่าเป็น array เท่านั้น
-ถ้าไม่ใช่แอเรย์จะ error</dd>
+<dd>Converts the input value to an array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_toBoolean">toBoolean()</a>
     <span>
                         &nbsp;: bool|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่าเป็น boolean หรือ แอเรย์ของ boolean</dd>
+<dd>Converts the input value to a boolean or an array of booleans.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_toDouble">toDouble()</a>
     <span>
                         &nbsp;: float|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่าเป็น double</dd>
+<dd>Converts the input value to a double.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_toFloat">toFloat()</a>
     <span>
                         &nbsp;: float|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่าเป็น float หรือ แอเรย์ของ float</dd>
+<dd>Converts the input value to a float or an array of floats.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_toInt">toInt()</a>
     <span>
                         &nbsp;: int|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่าเป็น integer หรือ แอเรย์ของ integer</dd>
+<dd>Converts the input value to an integer or an array of integers.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_toObject">toObject()</a>
     <span>
                         &nbsp;: object|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่าเป็น Object หรือ แอเรย์ของ Object</dd>
+<dd>Converts the input value to an object or an array of objects.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_topic">topic()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>แปลง tag และ ลบช่องว่างไม่เกิน 1 ช่อง ไม่ขึ้นบรรทัดใหม่
-เช่นหัวข้อของบทความ</dd>
+<dd>Converts tags and removes extra spaces (not exceeding 1 space) without line breaks.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_toString">toString()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;|null    </span>
 </dt>
-<dd>คืนค่าเป็น string หรือ แอเรย์ของ string หรือ null
-***ฟังก์ชั่นนี้ใช้สำหรับรับค่าเป็น string โดยไม่ผ่านการตรวจสอบใดๆทั้งสิ้น
-ควรใช้อย่างระมัดระวัง***</dd>
+<dd>Converts the input value to a string, an array of strings, or null.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_url">url()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>แปลง tag ไม่แปลง &amp;amp;
-และลบช่องว่างหัวท้าย
-สำหรับ URL หรือ email</dd>
+<dd>Converts tags without converting &amp;amp; and removes trailing spaces.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-InputItem.html#method_username">username()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>รับค่าอีเมลและหมายเลขโทรศัพท์เท่านั้น</dd>
+<dd>Accepts email addresses and phone numbers only.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-InputItem.html#method_checkValue">checkValue()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ตรวจสอบว่าเป็นชื่อคอลัมน์หรือไม่
-เช่น U.user_id U1.user_id</dd>
+<dd>Check the validity of a value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-InputItem.html#method_cut">cut()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ตัดสตริงค์</dd>
+<dd>Truncate a string to a specified length.</dd>
 
         </dl>
 
@@ -474,12 +450,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวแปรบอกประเภท Input เช่น GET POST SESSION COOKIE</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">string|null</span>
@@ -487,7 +462,9 @@
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The input type (e.g., GET, POST, SESSION, COOKIE)</p>
+</section>
+
     
 
 </article>
@@ -507,12 +484,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวแปรเก็บค่าของ Object</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">mixed</span>
@@ -520,7 +496,9 @@
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The input value</p>
+</section>
+
     
 
 </article>
@@ -544,11 +522,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Class Constructer</p>
+        <p class="phpdocumentor-summary">Class Constructor</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -562,7 +540,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>null (default)</p>
+                    <section class="phpdocumentor-description"><p>The input value (default: null)</p>
 </section>
 
             </dd>
@@ -571,7 +549,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ประเภท Input เช่น GET POST SESSION COOKIE หรือ null ถ้าไม่ได้มาจากรายการข้างต้น</p>
+                    <section class="phpdocumentor-description"><p>The input type (e.g., GET, POST, SESSION, COOKIE) (default: null)</p>
 </section>
 
             </dd>
@@ -598,11 +576,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าตามข้อมูลที่ส่งมา</p>
+        <p class="phpdocumentor-summary">Get the raw input value.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -615,7 +593,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The raw input value</p>
+</section>
+
     
 </article>
                     <article
@@ -631,11 +611,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า ค่าสี String หรือ แอเรย์ของ String</p>
+        <p class="phpdocumentor-summary">Get the color value. Returns a string or an array of strings.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -672,7 +652,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The color value</p>
+</section>
+
     
 </article>
                     <article
@@ -688,11 +670,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้าง Object</p>
+        <p class="phpdocumentor-summary">Create an InputItem object.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -706,14 +688,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The input value</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$type</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ประเภท Input เช่น GET POST SESSION COOKIE หรือ null ถ้าไม่ได้มาจากรายการข้างต้น</p>
+                    <section class="phpdocumentor-description"><p>The input type (e.g., GET, POST, SESSION, COOKIE) (default: null)</p>
 </section>
 
             </dd>
@@ -724,7 +708,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The created InputItem object</p>
+</section>
+
     
 </article>
                     <article
@@ -740,18 +726,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">101</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">วันที่และเวลา
-คืนค่า null ถ้าข้อมูลวันที่ว่างเปล่าหรือมีรูปแบบไม่ถูกต้อง</p>
+        <p class="phpdocumentor-summary">Get the date and time value.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">date</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strict</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns null if the date value is empty or not in the correct format.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -759,7 +746,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true ตรวจสอบความถูกต้องของวันที่ด้วย, false (default) ไม่ต้องตรวจสอบ</p>
+                    <section class="phpdocumentor-description"><p>True to validate the date value strictly, false to skip validation (default: false)</p>
 </section>
 
             </dd>
@@ -857,7 +844,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The date and time value</p>
+</section>
+
     
 </article>
                     <article
@@ -877,16 +866,15 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลบ tag, BBCode ออก ให้เหลือแต่ข้อความล้วน
-ลบช่องว่างไม่เกิน 1 ช่อง ไม่ขึ้นบรรทัดใหม่
-และลบช่องว่างหัวท้าย
-ใช้เป็น description</p>
+        <p class="phpdocumentor-summary">Get the sanitized and truncated text.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">description</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$len</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">description</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$len</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Removes tags and unwanted characters from the text.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -894,7 +882,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ความยาวของ description หมายถึงคืนค่าทั้งหมด</p>
+                    <section class="phpdocumentor-description"><p>The maximum length of the text (default: 0)</p>
 </section>
 
             </dd>
@@ -1008,9 +996,11 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The sanitized and truncated text</p>
+</section>
+
     
 </article>
                     <article
@@ -1026,16 +1016,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">195</span>
+    <span class="phpdocumentor-element-found-in__line">196</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลบ PHP tag และแปลง \ { } สำหรับใช้รับข้อมูลจาก editor
-เช่นเนื้อหาของบทความ</p>
+        <p class="phpdocumentor-summary">Remove PHP tags and escape characters for text input from an editor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">detail</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">detail</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
     
@@ -1066,9 +1055,11 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The sanitized text</p>
+</section>
+
     
 </article>
                     <article
@@ -1088,8 +1079,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามีตัวแปรส่งมาหรือไม่
-คืนค่า true ถ้ามีตัวแปรส่งมา</p>
+        <p class="phpdocumentor-summary">Check if the input variable exists.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1102,7 +1092,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the input variable exists, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1122,11 +1114,11 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นแทนที่อักขระที่ไม่ต้องการ</p>
+        <p class="phpdocumentor-summary">Filter the input value based on a regular expression pattern.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">filter</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$replace</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">filter</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$replace</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1136,7 +1128,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Regular Expression อักขระที่ยอมรับ เช่น \d\s-:</p>
+                    <section class="phpdocumentor-description"><p>The regular expression pattern to filter the input value</p>
 </section>
 
             </dd>
@@ -1145,7 +1137,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความแทนที่</p>
+                    <section class="phpdocumentor-description"><p>The replacement string for filtered characters (default: '')</p>
 </section>
 
             </dd>
@@ -1187,9 +1179,11 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The filtered input value</p>
+</section>
+
     
 </article>
                     <article
@@ -1205,12 +1199,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">241</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามาจาก $_COOKIE หรือไม่
-คืนค่า true ถ้ามาจาก $_COOKIE</p>
+        <p class="phpdocumentor-summary">Check if the input is from a COOKIE variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1223,7 +1216,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the input is from a COOKIE variable, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1239,12 +1234,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">252</span>
+    <span class="phpdocumentor-element-found-in__line">250</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามาจาก $_GET หรือไม่
-คืนค่า true ถ้ามาจาก $_GET</p>
+        <p class="phpdocumentor-summary">Check if the input is from a GET variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1257,7 +1251,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the input is from a GET variable, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1273,12 +1269,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">263</span>
+    <span class="phpdocumentor-element-found-in__line">260</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามาจาก $_POST หรือไม่
-คืนค่า true ถ้ามาจาก $_POST</p>
+        <p class="phpdocumentor-summary">Check if the input is from a POST variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1291,7 +1286,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the input is from a POST variable, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1307,12 +1304,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">274</span>
+    <span class="phpdocumentor-element-found-in__line">270</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามาจาก $_SESSION หรือไม่
-คืนค่า true ถ้ามาจาก $_SESSION</p>
+        <p class="phpdocumentor-summary">Check if the input is from a SESSION variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1325,7 +1321,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the input is from a SESSION variable, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1341,19 +1339,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">291</span>
+    <span class="phpdocumentor-element-found-in__line">287</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลบ tags และ ลบช่องว่างไม่เกิน 1 ช่อง ไม่ขึ้นบรรทัดใหม่
-และลบช่องว่างหัวท้าย
-ใช้เป็น tags หรือ keywords</p>
+        <p class="phpdocumentor-summary">Get the sanitized and truncated keywords from the input value.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">keywords</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$len</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">keywords</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$len</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Removes tags, whitespace, and unwanted characters from the input value.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1361,7 +1359,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ความยาวของ keywords หมายถึงคืนค่าทั้งหมด</p>
+                    <section class="phpdocumentor-description"><p>The maximum length of the keywords (default: 0)</p>
 </section>
 
             </dd>
@@ -1394,9 +1392,11 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The sanitized and truncated keywords</p>
+</section>
+
     
 </article>
                     <article
@@ -1412,11 +1412,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">309</span>
+    <span class="phpdocumentor-element-found-in__line">306</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวเลข หรือ แอเรย์ของ ตัวเลข</p>
+        <p class="phpdocumentor-summary">Extracts numbers or an array of numbers from the input.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1462,7 +1462,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The extracted numbers or an array of extracted numbers</p>
+</section>
+
     
 </article>
                     <article
@@ -1478,24 +1480,30 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">319</span>
+    <span class="phpdocumentor-element-found-in__line">320</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รับค่าสำหรับ password อักขระทุกตัวไม่มีช่องว่าง</p>
+        <p class="phpdocumentor-summary">Validates and filters the input as a password.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">password</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function is used to validate and filter the input as a password. It ensures that
+the value consists of non-space characters only. The resulting value is filtered using
+the <code class="prettyprint">Text::password()</code> function.</p>
+</section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The validated and filtered password</p>
+</section>
+
     
 </article>
                     <article
@@ -1511,19 +1519,21 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">334</span>
+    <span class="phpdocumentor-element-found-in__line">337</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นรับข้อความ ยอมรับอักขระทั้งหมด
-และแปลง &#039; เป็น &amp;#39;
-และลบช่องว่างหัวท้าย</p>
+        <p class="phpdocumentor-summary">Accepts text input and converts single quotes to HTML entity &#039;&amp;#39;&#039;,
+and trims leading and trailing spaces.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">quote</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function accepts text input and converts single quotes to the HTML entity '''.
+It also trims leading and trailing spaces from the input value.</p>
+</section>
+
     
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -1554,7 +1564,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The processed text</p>
+</section>
+
     
 </article>
                     <article
@@ -1570,19 +1582,23 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">352</span>
+    <span class="phpdocumentor-element-found-in__line">360</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น แปลง &amp; &quot; &#039; &lt; &gt; \ เป็น HTML entities
-และลบช่องว่างหัวท้าย
-ใช้แปลงค่าที่รับจาก input ที่ไม่ยอมรับ tag</p>
+        <p class="phpdocumentor-summary">Accepts text input and converts special characters &#039;&amp;&#039;, &#039;&quot;&#039;, &quot;&#039;&quot;, &#039;&lt;&#039;, &#039;&gt;&#039;, and &#039;\&#039;
+to their corresponding HTML entities, and trims leading and trailing spaces.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">text</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function accepts text input and converts the special characters '&amp;', '&quot;', &quot;'&quot;, '&lt;',
+'&gt;', and '' to their corresponding HTML entities. It also trims leading and trailing
+spaces from the input value. This function is useful for sanitizing input that does not
+allow HTML tags.</p>
+</section>
+
     
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -1613,7 +1629,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The processed text</p>
+</section>
+
     
 </article>
                     <article
@@ -1629,19 +1647,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">367</span>
+    <span class="phpdocumentor-element-found-in__line">375</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง &lt; &gt; \ { } เป็น HTML entities และแปลง \n เป็น &lt;br&gt;
-และลบช่องว่างหัวท้าย
-ใช้รับข้อมูลที่มาจาก textarea</p>
+        <p class="phpdocumentor-summary">Converts &#039;&lt;&#039;, &#039;&gt;&#039;, &#039;\&#039;, &#039;{&#039;, &#039;}&#039;, and &#039;\n&#039; to their corresponding HTML entities,
+converts &#039;\n&#039; to &#039;&lt;br&gt;&#039;, and trims leading and trailing spaces.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">textarea</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Used for receiving data from a textarea input.</p>
+</section>
+
     
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -1672,7 +1691,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The processed textarea input</p>
+</section>
+
     
 </article>
                     <article
@@ -1688,18 +1709,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">134</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เวลา
-คืนค่า null ถ้าข้อมูลเวลาว่างเปล่า หรือเท่าบ --:--</p>
+        <p class="phpdocumentor-summary">Get the time value.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">time</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strict</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span></code>
+                <span class="phpdocumentor-signature__name">time</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strict</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns null if the time value is empty or in the wrong format.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1707,7 +1729,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true ตรวจสอบความถูกต้องของวันที่ด้วย, false (default) ไม่ต้องตรวจสอบ</p>
+                    <section class="phpdocumentor-description"><p>True to validate the time value strictly, false to skip validation (default: false)</p>
 </section>
 
             </dd>
@@ -1776,9 +1798,11 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span>
+    <span class="phpdocumentor-signature__response_type">string|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The time value</p>
+</section>
+
     
 </article>
                     <article
@@ -1794,18 +1818,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">475</span>
+    <span class="phpdocumentor-element-found-in__line">492</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าเป็น array เท่านั้น
-ถ้าไม่ใช่แอเรย์จะ error</p>
+        <p class="phpdocumentor-summary">Converts the input value to an array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function returns the input value as an array.
+If the value is not an array, an error is thrown.</p>
+</section>
+
     
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -1822,12 +1848,24 @@
 </section>
 
                                     </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Kotchasan-InputItemException.html"><abbr title="\Kotchasan\InputItemException">InputItemException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>if the value is not an array</p>
+</section>
+
+                                    </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The converted array value</p>
+</section>
+
     
 </article>
                     <article
@@ -1843,17 +1881,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">390</span>
+    <span class="phpdocumentor-element-found-in__line">401</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าเป็น boolean หรือ แอเรย์ของ boolean</p>
+        <p class="phpdocumentor-summary">Converts the input value to a boolean or an array of booleans.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">toBoolean</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool|array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function returns 1 if the input value is not empty, and 0 otherwise.</p>
+</section>
+
     
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -1911,7 +1951,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The converted boolean value</p>
+</section>
+
     
 </article>
                     <article
@@ -1927,17 +1969,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">404</span>
+    <span class="phpdocumentor-element-found-in__line">418</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าเป็น double</p>
+        <p class="phpdocumentor-summary">Converts the input value to a double.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">toDouble</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float|array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function converts the input value to a double. If the value is null,
+it returns 0. The function removes any commas from the value before conversion.</p>
+</section>
+
     
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -1977,7 +2022,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">float|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The converted double value</p>
+</section>
+
     
 </article>
                     <article
@@ -1993,11 +2040,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">420</span>
+    <span class="phpdocumentor-element-found-in__line">434</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าเป็น float หรือ แอเรย์ของ float</p>
+        <p class="phpdocumentor-summary">Converts the input value to a float or an array of floats.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2034,7 +2081,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">float|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The converted float value</p>
+</section>
+
     
 </article>
                     <article
@@ -2050,11 +2099,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">433</span>
+    <span class="phpdocumentor-element-found-in__line">447</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าเป็น integer หรือ แอเรย์ของ integer</p>
+        <p class="phpdocumentor-summary">Converts the input value to an integer or an array of integers.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2091,7 +2140,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The converted integer value</p>
+</section>
+
     
 </article>
                     <article
@@ -2107,11 +2158,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">445</span>
+    <span class="phpdocumentor-element-found-in__line">459</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าเป็น Object หรือ แอเรย์ของ Object</p>
+        <p class="phpdocumentor-summary">Converts the input value to an object or an array of objects.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2139,7 +2190,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">object|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The converted object value</p>
+</section>
+
     
 </article>
                     <article
@@ -2155,18 +2208,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">491</span>
+    <span class="phpdocumentor-element-found-in__line">508</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง tag และ ลบช่องว่างไม่เกิน 1 ช่อง ไม่ขึ้นบรรทัดใหม่
-เช่นหัวข้อของบทความ</p>
+        <p class="phpdocumentor-summary">Converts tags and removes extra spaces (not exceeding 1 space) without line breaks.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">topic</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$double_encode</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Used for article titles.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2174,7 +2228,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true (default) แปลง รหัส HTML เช่น &amp; เป็น &amp;amp;, false ไม่แปลง</p>
+                    <section class="phpdocumentor-description"><p>true (default) to convert HTML entities like &amp; to &amp;amp;, false otherwise</p>
 </section>
 
             </dd>
@@ -2209,7 +2263,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The processed topic string</p>
+</section>
+
     
 </article>
                     <article
@@ -2225,19 +2281,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">462</span>
+    <span class="phpdocumentor-element-found-in__line">476</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าเป็น string หรือ แอเรย์ของ string หรือ null
-***ฟังก์ชั่นนี้ใช้สำหรับรับค่าเป็น string โดยไม่ผ่านการตรวจสอบใดๆทั้งสิ้น
-ควรใช้อย่างระมัดระวัง***</p>
+        <p class="phpdocumentor-summary">Converts the input value to a string, an array of strings, or null.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p><em><strong>Caution: This function converts the value to a string without any validation.
+Use with caution.</strong></em></p>
+</section>
+
     
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -2286,7 +2343,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The converted string value</p>
+</section>
+
     
 </article>
                     <article
@@ -2302,19 +2361,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">508</span>
+    <span class="phpdocumentor-element-found-in__line">524</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง tag ไม่แปลง &amp;amp;
-และลบช่องว่างหัวท้าย
-สำหรับ URL หรือ email</p>
+        <p class="phpdocumentor-summary">Converts tags without converting &amp;amp; and removes trailing spaces.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">url</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Used for URLs or emails.</p>
+</section>
+
     
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -2363,7 +2422,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The processed URL string</p>
+</section>
+
     
 </article>
                     <article
@@ -2379,11 +2440,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">522</span>
+    <span class="phpdocumentor-element-found-in__line">538</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รับค่าอีเมลและหมายเลขโทรศัพท์เท่านั้น</p>
+        <p class="phpdocumentor-summary">Accepts email addresses and phone numbers only.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2429,7 +2490,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The processed username string</p>
+</section>
+
     
 </article>
                     <article
@@ -2445,18 +2508,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">553</span>
+    <span class="phpdocumentor-element-found-in__line">576</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่าเป็นชื่อคอลัมน์หรือไม่
-เช่น U.user_id U1.user_id</p>
+        <p class="phpdocumentor-summary">Check the validity of a value.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                 <span class="phpdocumentor-signature__name">checkValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Validates the value against a regular expression pattern. If the value matches
+the pattern, an exception is thrown indicating an invalid value.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2464,7 +2529,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The value to be checked</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2480,7 +2547,7 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/Kotchasan-InputItemException.html"><abbr title="\Kotchasan\InputItemException">InputItemException</abbr></a></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้า $value เป็นชื่อคอลัมน์</p>
+                                                 <section class="phpdocumentor-description"><p>If the value is invalid</p>
 </section>
 
                                     </dd>
@@ -2489,7 +2556,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The validated value</p>
+</section>
+
     
 </article>
                     <article
@@ -2505,17 +2574,21 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/InputItem.php"><a href="files/kotchasan-inputitem.html"><abbr title="Kotchasan/InputItem.php">InputItem.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">535</span>
+    <span class="phpdocumentor-element-found-in__line">555</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัดสตริงค์</p>
+        <p class="phpdocumentor-summary">Truncate a string to a specified length.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                 <span class="phpdocumentor-signature__name">cut</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$str</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$len</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Truncates the given string to the specified length. If the length parameter
+is provided and the string is not empty, the string will be shortened to the
+specified length using <code class="prettyprint">mb_substr()</code>.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2523,14 +2596,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The string to be truncated</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$len</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ความยาวที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The maximum length of the truncated string</p>
 </section>
 
             </dd>
@@ -2541,7 +2616,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The truncated string</p>
+</section>
+
     
 </article>
             </section>

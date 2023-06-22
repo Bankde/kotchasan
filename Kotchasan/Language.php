@@ -11,37 +11,29 @@
 namespace Kotchasan;
 
 /**
- * Class สำหรับการโหลดภาษา
+ * Class for language loading.
  *
  * @see https://www.kotchasan.com/
  */
 final class Language extends \Kotchasan\KBase
 {
     /**
-     * ภาษาทั้งหมดที่ติดตั้ง
-     *
-     * @var array
+     * @var array Installed languages.
      */
     private static $installed_languages;
+
     /**
-     * ชื่อภาษาที่กำลังใช้งานอยู่
-     *
-     * @var string
+     * @var string Name of the currently used language.
      */
     private static $language_name;
+
     /**
-     * รายการภาษา
-     *
-     * @var object
+     * @var object Language data.
      */
     private static $languages = null;
 
     /**
-     * ฟังก์ชั่นอ่านตัวแปรภาษา $key
-     * ถ้าระบุ $value และตัวแปรเป็นแอเรย์ คืนค่าภาษาที่ $key[$value]
-     * ถ้าไม่พบ $key หรือ $value คืนค่าตามที่กำหนดโดย $default
-     * $default = null (หรือไม่ระบุ) คืนค่า $key
-     * $default = อื่นๆ คืนค่า $default
+     * Retrieves the language variable with the specified key.
      *
      * @assert ('YEAR_OFFSET') [==] 543
      * @assert ('XYZ', array()) [==] array()
@@ -49,11 +41,11 @@ final class Language extends \Kotchasan\KBase
      * @assert ('DATE_LONG', null, 12) [==] 'DATE_LONG'
      * @assert ('not found', 'default') [==] 'default'
      *
-     * @param string $key ข้อความในภาษาอังกฤษ หรือ คีย์ของภาษา
-     * @param mixed $default ถ้าไม่ระบุ (null) และไม่พบ $key
-     * @param mixed $value ถ้าเป็นแอเรย์และระบุ $value มาด้วย คืนค่าข้อมูลที่ $value
+     * @param string $key     The language variable key or English text.
+     * @param mixed  $default The default value to return if the key is not found.
+     * @param mixed  $value   If an array variable is specified and $value is set, returns the language value at $key[$value].
      *
-     * @return mixed
+     * @return mixed The language value or the default value if the key is not found.
      */
     public static function get($key, $default = null, $value = null)
     {
@@ -73,11 +65,11 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * อ่านภาษาหลายรายการ ตามที่กำหนดโดย $keys
+     * Retrieves multiple language items based on the specified keys.
      *
-     * @param array $keys
+     * @param array $keys An array of language variable keys or English texts.
      *
-     * @return array
+     * @return array An array of language values.
      */
     public static function getItems(array $keys = array())
     {
@@ -92,12 +84,11 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * โหลดไฟล์ภาษาทั้งหมดที่ติดตั้ง
-     * คืนค่าข้อมูลภาษาทั้งหมด
+     * Loads all installed language files.
      *
-     * @param string $type
+     * @param string $type The file type (php or js).
      *
-     * @return array
+     * @return array An array of language data.
      */
     public static function installed($type)
     {
@@ -140,9 +131,9 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * รายชื่อภาษาที่ติดตั้ง
+     * Retrieves an array of installed languages.
      *
-     * @return array
+     * @return array An array of installed languages.
      */
     public static function installedLanguage()
     {
@@ -160,17 +151,16 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * ตรวจสอบคีย์ของภาษาซ้ำ
-     * คืนค่าลำดับที่พบ (รายการแรกคือ 0), คืนค่า -1 ถ้าไม่พบ
+     * Checks if a language key exists in the given array of languages.
      *
      * @assert (array(array('id' => 0, 'key' => 'One'), array('id' => 100, 'key' => 'Two')), 'One') [==] 0
      * @assert (array(array('id' => 0, 'key' => 'One'), array('id' => 100, 'key' => 'Two')), 'two') [==] 100
      * @assert (array(array('id' => 0, 'key' => 'One'), array('id' => 100, 'key' => 'Two')), 'O') [==] -1
      *
-     * @param array  $languages ข้อมูลภาษาที่ต้องการตรวจสอบ
-     * @param string $key       รายการที่ต้องการตรวจสอบ
+     * @param array  $languages An array of language data.
+     * @param string $key       The language key to check.
      *
-     * @return int
+     * @return int The index of the found key, or -1 if not found.
      */
     public static function keyExists($languages, $key)
     {
@@ -183,17 +173,16 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * ตรวจสอบว่ามีตัวแปรภาษาที่เป็นแอเรย์ในคีย์ที่เลือกหรือไม่
-     * คืนค่า true ถ้ามี
-     * คืนค่า false ถ้าไม่มีหรือไม่ใช่แอเรย์
+     * Checks if a language variable specified by name exists and is an array with a given key.
      *
      * @assert ('DATE_LONG', 1) [==] true
      * @assert ('DATE_LONG', 7) [==] false
      *
-     * @param string $name
-     * @param string|int $key
+     * @param array  $datas The language data.
+     * @param string $name  The name of the language variable.
+     * @param string $key   The key to check.
      *
-     * @return bool
+     * @return bool True if the language variable exists and is an array with the given key, false otherwise.
      */
     public static function arrayKeyExists($name, $key)
     {
@@ -204,9 +193,9 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * ฟังก์ชั่นอ่านชื่อโฟลเดอร์เก็บไฟล์ภาษา
+     * Retrieves the folder path where language files are stored.
      *
-     * @return string
+     * @return string The folder path where language files are stored.
      */
     public static function languageFolder()
     {
@@ -214,11 +203,11 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * อ่านชื่อภาษาที่กำลังใช้งานอยู่
+     * Retrieves the name of the currently active language.
      *
      * @assert () [==] 'th'
      *
-     * @return string
+     * @return string The name of the currently active language.
      */
     public static function name()
     {
@@ -229,11 +218,11 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * กำหนดภาษาที่ต้องการ
+     * Sets the language to be used.
      *
-     * @param string $language
+     * @param string $language The language to be set.
      *
-     * @return string
+     * @return string The name of the language.
      */
     public static function setName($language)
     {
@@ -244,11 +233,11 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * ฟังก์ชั่นแปลภาษาที่รับค่ามาจากการ parse Theme
+     * Function that translates the language received from Theme parsing.
      *
      * @assert (array(1 => 'not found')) [==] 'not found'
      *
-     * @param array $match ตัวแปรรับค่ามาจากการ parse Theme
+     * @param array $match The variable received from Theme parsing.
      *
      * @return string
      */
@@ -258,15 +247,14 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * คืนค่าภาษาตาม $key
-     * และแทนที่ข้อความ ที่ $replace array(':key' => 'value', ':key' => 'value')
+     * Retrieves the language value based on the given key and replaces placeholders with values from the $replace array.
      *
      * @assert ('You want to :action', array(':action' => 'delete')) [==] 'You want to delete'
      * @assert ('You want to %s', 'delete') [==] 'You want to delete'
      * @assert ('You want to %s', 1) [==] 'You want to 1'
      *
-     * @param string $key
-     * @param mixed $replace
+     * @param string $key     The language key.
+     * @param mixed  $replace The values to replace placeholders.
      *
      * @return mixed
      */
@@ -288,10 +276,10 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * บันทึกไฟล์ภาษา
+     * Saves the language file.
      *
-     * @param array  $languages
-     * @param string $type
+     * @param array  $languages The language data to be saved.
+     * @param string $type      The type of file to save ('php' or 'js').
      *
      * @return string
      */
@@ -361,13 +349,13 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * แปลภาษา
+     * Translates the given content by replacing language placeholders.
      *
      * @assert ('ภาษา {LNG_DATE_FORMAT} ไทย') [==] 'ภาษา d M Y เวลา H:i น. ไทย'
      *
-     * @param string $content
+     * @param string $content The content to be translated.
      *
-     * @return string
+     * @return string The translated content.
      */
     public static function trans($content)
     {
@@ -377,13 +365,13 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * โหลดภาษาตามที่เลือก
+     * Loads the language file based on the selected language.
      *
-     * @param string $lang
+     * @param string $lang The language to be loaded.
      */
     public static function load($lang)
     {
-        // โฟลเดอร์ ภาษา
+        // Language folder
         $language_folder = self::languageFolder();
         if (is_file($language_folder.$lang.'.php')) {
             $language = include $language_folder.$lang.'.php';
@@ -395,22 +383,22 @@ final class Language extends \Kotchasan\KBase
     }
 
     /**
-     * โหลดภาษา
+     * Loads the language.
      *
-     * @param string $lang ภาษาที่ต้องการ ถ้าไม่ระบุจะอ่านจาก cookie my_lang
+     * @param string|null $lang The language to be used. If not specified, it will read from the 'my_lang' cookie.
      */
     private function __construct($lang = null)
     {
-        // โฟลเดอร์ ภาษา
+        // Language folder
         $language_folder = self::languageFolder();
-        // ภาษาที่เลือก
+        // Selected language
         if ($lang === null) {
             $lang = self::$request->get('lang', self::$request->cookie('my_lang', '')->toString())->filter('a-z');
         }
         if (empty($lang)) {
             if (defined('INIT_LANGUAGE')) {
                 if (INIT_LANGUAGE === 'auto') {
-                    // ภาษาจาก Browser
+                    // Language from browser
                     $languages = self::$request->getAcceptableLanguages();
                     if (!empty($languages) && preg_match('/^([a-z]{2,2}).*?$/', strtolower($languages[0]), $match)) {
                         $lang = $match[1];
@@ -418,12 +406,12 @@ final class Language extends \Kotchasan\KBase
                         $lang = 'th';
                     }
                 } else {
-                    // ใช้ภาษาเริ่มต้นจากที่กำหนดมา
+                    // Use the specified initial language
                     $lang = INIT_LANGUAGE;
                 }
             }
         }
-        // ตรวจสอบภาษา ใช้ภาษาแรกที่เจอ
+        // Check language and use the first one found
         foreach (ArrayTool::replace(array($lang => $lang), self::$cfg->languages) as $item) {
             if (!empty($item)) {
                 if (is_file($language_folder.$item.'.php')) {
@@ -431,7 +419,7 @@ final class Language extends \Kotchasan\KBase
                     if (isset($language)) {
                         self::$languages = (object) $language;
                         self::$language_name = $item;
-                        // บันทึกภาษาที่กำลังใช้งานอยู่ลงใน cookie
+                        // Save the currently used language in a cookie
                         setcookie('my_lang', $item, time() + 2592000, '/');
                         break;
                     }
@@ -439,7 +427,7 @@ final class Language extends \Kotchasan\KBase
             }
         }
         if (null === self::$languages) {
-            // default language
+            // Default language
             self::$language_name = 'th';
             self::$languages = (object) array(
                 'DATE_FORMAT' => 'd M Y เวลา H:i น.',
@@ -493,7 +481,7 @@ final class Language extends \Kotchasan\KBase
             );
         }
         if (!defined('LANGUAGE')) {
-            /* ลงทะเบียนภาษาที่ใช้งานอยู่ */
+            /* Register the currently used language */
             define('LANGUAGE', self::$language_name);
         }
     }

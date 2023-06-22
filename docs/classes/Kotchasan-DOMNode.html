@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -139,11 +145,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">คลาสสำหรับ Dom Node</p>
+            <p class="phpdocumentor-summary">Class representing a DOM Node.</p>
 
 
 
@@ -153,20 +159,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -187,106 +184,98 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายการคุณสมบัติของโหนด</dd>
+<dd>List of node attributes.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DOMNode.html#property_childNodes">$childNodes</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายการของโหนดที่อยู่ภายใน
-&lt;parentNode&gt;&lt;childNode&gt;&lt;/childNode&gt;&lt;childNode&gt;&lt;/childNode&gt;&lt;/parentNode&gt;</dd>
+<dd>List of child nodes.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DOMNode.html#property_level">$level</a>
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>ลำดับของโหนด ชั้นนอกสุดคือ 0</dd>
+<dd>Node level. The outermost level is 0.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DOMNode.html#property_nextSibling">$nextSibling</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-DOMNode.html"><abbr title="\Kotchasan\DOMNode">DOMNode</abbr></a>            </span>
 </dt>
-<dd>โหนดถัดไป (ลำดับเดียวกัน) ถ้าเป็นโหนดสุดท้ายจะเป็น null
-&lt;node&gt;&lt;/node&gt;&lt;nextSibling&gt;&lt;/nextSibling&gt;</dd>
+<dd>Next sibling node. If it&#039;s the last node, it will be null.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DOMNode.html#property_nodeName">$nodeName</a>
     <span>
                 &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
+<dd>Node name.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DOMNode.html#property_nodeValue">$nodeValue</a>
     <span>
                 &nbsp;: string|null            </span>
 </dt>
-<dd>ข้อความภายในโหนด ถ้าเป็น tag ค่านี้จะเป็น null
-&lt;node&gt;nodeValue&lt;/node&gt;</dd>
+<dd>Node value. It will be null if the node is a tag.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DOMNode.html#property_parentNode">$parentNode</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-DOMNode.html"><abbr title="\Kotchasan\DOMNode">DOMNode</abbr></a>            </span>
 </dt>
-<dd>โหนดแม่
-&lt;parentNode&gt;&lt;childNode&gt;&lt;/childNode&gt;&lt;/parentNode&gt;</dd>
+<dd>Parent node.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DOMNode.html#property_previousSibling">$previousSibling</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-DOMNode.html"><abbr title="\Kotchasan\DOMNode">DOMNode</abbr></a>            </span>
 </dt>
-<dd>โหนดก่อนหน้า (ลำดับเดียวกัน) ถ้าเป็นโหนดแรกจะเป็น null
-&lt;previousSibling&gt;&lt;/previousSibling&gt;&lt;node&gt;&lt;/node&gt;</dd>
+<dd>Previous sibling node. If it&#039;s the first node, it will be null.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DOMNode.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>class constructor</dd>
+<dd>Class constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DOMNode.html#method_hasChildNodes">hasChildNodes()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามีโหนดลูกหรือไม่
-คืนค่า true ถ้ามีโหนดลูก, false ถ้าไม่มี</dd>
+<dd>Check if the node has child nodes.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DOMNode.html#method_hasClass">hasClass()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามีคลาสอยู่หรือไม่
-คืนค่า true ถ้ามี</dd>
+<dd>Check if the node has a specific class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DOMNode.html#method_isInlineElement">isInlineElement()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่าเป็น element แบบ Inline หรือไม่
-คืนค่า true ถ้าเป็น Inline Elements หรือ false ถ้าเป็น Block-level Elements</dd>
+<dd>Check if the element is an inline element.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DOMNode.html#method_nodeText">nodeText()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่า ข้อความทั้งหมดภายในโหนด</dd>
+<dd>Get the concatenated text content of the node and its descendants.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DOMNode.html#method_unentities">unentities()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลงรหัส HTML เป็นข้อความ เช่น &amp;lt; เป็น &lt;</dd>
+<dd>Convert HTML entities to their corresponding characters.</dd>
 
         </dl>
 
@@ -316,11 +305,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายการคุณสมบัติของโหนด</p>
+        <p class="phpdocumentor-summary">List of node attributes.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -349,12 +338,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายการของโหนดที่อยู่ภายใน
-&lt;parentNode&gt;&lt;childNode&gt;&lt;/childNode&gt;&lt;childNode&gt;&lt;/childNode&gt;&lt;/parentNode&gt;</p>
+        <p class="phpdocumentor-summary">List of child nodes.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -362,7 +350,9 @@
     <span class="phpdocumentor-signature__name">$childNodes</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p><parentNode><childNode></childNode><childNode></childNode></parentNode></p>
+</section>
+
     
     
 
@@ -387,7 +377,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลำดับของโหนด ชั้นนอกสุดคือ 0</p>
+        <p class="phpdocumentor-summary">Node level. The outermost level is 0.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -416,12 +406,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">โหนดถัดไป (ลำดับเดียวกัน) ถ้าเป็นโหนดสุดท้ายจะเป็น null
-&lt;node&gt;&lt;/node&gt;&lt;nextSibling&gt;&lt;/nextSibling&gt;</p>
+        <p class="phpdocumentor-summary">Next sibling node. If it&#039;s the last node, it will be null.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -429,7 +418,9 @@
     <span class="phpdocumentor-signature__name">$nextSibling</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p><node></node><nextSibling></nextSibling></p>
+</section>
+
     
     
 
@@ -450,11 +441,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Node name.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
@@ -482,12 +474,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ข้อความภายในโหนด ถ้าเป็น tag ค่านี้จะเป็น null
-&lt;node&gt;nodeValue&lt;/node&gt;</p>
+        <p class="phpdocumentor-summary">Node value. It will be null if the node is a tag.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -495,7 +486,9 @@
     <span class="phpdocumentor-signature__name">$nodeValue</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p><node>nodeValue</node></p>
+</section>
+
     
     
 
@@ -516,12 +509,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">โหนดแม่
-&lt;parentNode&gt;&lt;childNode&gt;&lt;/childNode&gt;&lt;/parentNode&gt;</p>
+        <p class="phpdocumentor-summary">Parent node.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -529,7 +521,9 @@
     <span class="phpdocumentor-signature__name">$parentNode</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p><parentNode><childNode></childNode></parentNode></p>
+</section>
+
     
     
 
@@ -550,12 +544,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">โหนดก่อนหน้า (ลำดับเดียวกัน) ถ้าเป็นโหนดแรกจะเป็น null
-&lt;previousSibling&gt;&lt;/previousSibling&gt;&lt;node&gt;&lt;/node&gt;</p>
+        <p class="phpdocumentor-summary">Previous sibling node. If it&#039;s the first node, it will be null.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -563,7 +556,9 @@
     <span class="phpdocumentor-signature__name">$previousSibling</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p><previousSibling></previousSibling><node></node></p>
+</section>
+
     
     
 
@@ -588,11 +583,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">82</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">class constructor</p>
+        <p class="phpdocumentor-summary">Class constructor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -606,7 +601,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อ tag ถ้าไม่มีชื่อ tag หมายถึงข้อความเปล่าๆ</p>
+                    <section class="phpdocumentor-description"><p>The tag name. If there is no tag name, it represents empty text.</p>
 </section>
 
             </dd>
@@ -615,7 +610,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-DOMNode.html"><abbr title="\Kotchasan\DOMNode">DOMNode</abbr></a>|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>โหนดแม่ ถ้าเป็นโหนดแรกคือ null</p>
+                    <section class="phpdocumentor-description"><p>The parent node. If it's the first node, it will be null.</p>
 </section>
 
             </dd>
@@ -624,7 +619,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คุณสมบัติของโหนก (properties)</p>
+                    <section class="phpdocumentor-description"><p>The node attributes (properties).</p>
 </section>
 
             </dd>
@@ -633,7 +628,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความภายในโหนด ถ้าเป็น tag ค่านี้จะเป็น null</p>
+                    <section class="phpdocumentor-description"><p>The text content of the node. It will be null if the node is a tag.</p>
 </section>
 
             </dd>
@@ -660,12 +655,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามีโหนดลูกหรือไม่
-คืนค่า true ถ้ามีโหนดลูก, false ถ้าไม่มี</p>
+        <p class="phpdocumentor-summary">Check if the node has child nodes.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -678,7 +672,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if it has child nodes, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -694,12 +690,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">112</span>
+    <span class="phpdocumentor-element-found-in__line">120</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามีคลาสอยู่หรือไม่
-คืนค่า true ถ้ามี</p>
+        <p class="phpdocumentor-summary">Check if the node has a specific class.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -713,7 +708,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคลาสที่ต้องการตรวจสอบ</p>
+                    <section class="phpdocumentor-description"><p>The class name to check.</p>
 </section>
 
             </dd>
@@ -724,7 +719,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if it has the class, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -740,12 +737,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">131</span>
+    <span class="phpdocumentor-element-found-in__line">138</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่าเป็น element แบบ Inline หรือไม่
-คืนค่า true ถ้าเป็น Inline Elements หรือ false ถ้าเป็น Block-level Elements</p>
+        <p class="phpdocumentor-summary">Check if the element is an inline element.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -758,7 +754,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if it's an inline element, false if it's a block-level element.</p>
+</section>
+
     
 </article>
                     <article
@@ -774,11 +772,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">156</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า ข้อความทั้งหมดภายในโหนด</p>
+        <p class="phpdocumentor-summary">Get the concatenated text content of the node and its descendants.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -791,7 +789,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The concatenated text content.</p>
+</section>
+
     
 </article>
                     <article
@@ -807,11 +807,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DOMNode.php"><a href="files/kotchasan-domnode.html"><abbr title="Kotchasan/DOMNode.php">DOMNode.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">201</span>
+    <span class="phpdocumentor-element-found-in__line">184</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลงรหัส HTML เป็นข้อความ เช่น &amp;lt; เป็น &lt;</p>
+        <p class="phpdocumentor-summary">Convert HTML entities to their corresponding characters.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -825,7 +825,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The HTML string to convert.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -834,7 +836,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The converted string.</p>
+</section>
+
     
 </article>
             </section>

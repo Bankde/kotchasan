@@ -11,13 +11,93 @@
 namespace Kotchasan;
 
 /**
- * MIME type for a file extension
+ * Class responsible for handling MIME types and file extensions.
  *
  * @see https://www.kotchasan.com/
  */
 class Mime
 {
-    public static function typies()
+    /**
+     * Get the MIME type for a file extension.
+     *
+     * Returns null if not found.
+     *
+     * @assert (array('jpg','gif','png')) [==]  array('jpg' => 'image/jpeg', 'gif' => 'image/gif', 'png' => 'image/png')
+     * @assert ('jpg') [==] 'image/jpeg'
+     *
+     * @param string|array $exts The file extension(s).
+     *
+     * @return string|array|null The MIME type(s) corresponding to the given extension(s).
+     */
+    public static function get($exts)
+    {
+        $mime_types = self::getMimeTypes();
+        if (is_array($exts)) {
+            $result = array();
+            foreach ($exts as $ext) {
+                if (isset($mime_types[$ext])) {
+                    $result[$ext] = $mime_types[$ext];
+                }
+            }
+            return $result;
+        } elseif (isset($mime_types[$exts])) {
+            return $mime_types[$exts];
+        }
+        return null;
+    }
+
+    /**
+     * Check if the MIME type matches the accepted types.
+     *
+     * Used for validating uploaded files.
+     *
+     * @assert (array('jpg','gif','png'), 'image/png') [==] true
+     *
+     * @param array  $typies The accepted file types.
+     * @param string $mime   The MIME type to check, usually obtained from the uploaded file.
+     *
+     * @return bool True if the MIME type matches any of the accepted types, false otherwise.
+     */
+    public static function check($typies, $mime)
+    {
+        $mime_types = self::getMimeTypes();
+        foreach ($typies as $t) {
+            if ($mime == $mime_types[$t]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Get the accept string for input of type "file".
+     *
+     * Returns a comma-separated string of MIME types.
+     *
+     * @assert (array('jpg','gif','png')) [==] "image/jpeg,image/gif,image/png"
+     *
+     * @param array $typies The file types.
+     *
+     * @return string The accept string for the given file types.
+     */
+    public static function getAccept($typies)
+    {
+        $mime_types = self::getMimeTypes();
+        $accept = array();
+        foreach ($typies as $ext) {
+            if (isset($mime_types[$ext])) {
+                $accept[] = $mime_types[$ext];
+            }
+        }
+        return implode(',', $accept);
+    }
+
+    /**
+     * Get an array of MIME types.
+     *
+     * @return array An array of MIME types.
+     */
+    private static function getMimeTypes()
     {
         return array(
             'ez' => 'application/andrew-inset',
@@ -1003,78 +1083,5 @@ class Mime
             'smv' => 'video/x-smv',
             'ice' => 'x-conference/x-cooltalk'
         );
-    }
-
-    /**
-     * Get the MIME type for a file extension
-     * คืนค่า null ถ้าไม่พบ
-     *
-     * @assert (array('jpg','gif','png')) [==]  array('jpg' => 'image/jpeg', 'gif' => 'image/gif', 'png' => 'image/png')
-     * @assert ('jpg') [==] 'image/jpeg'
-     *
-     * @param string|array $exts
-     *
-     * @return string|array|null
-     */
-    public static function get($exts)
-    {
-        $mime_types = self::typies();
-        if (is_array($exts)) {
-            $result = array();
-            foreach ($exts as $ext) {
-                if (isset($mime_types[$ext])) {
-                    $result[$ext] = $mime_types[$ext];
-                }
-            }
-            return $result;
-        } elseif (isset($mime_types[$exts])) {
-            return $mime_types[$exts];
-        }
-        return null;
-    }
-
-    /**
-     * ฟังก์ชั่น ตรวจสอบ $typies ว่าตรงกับ $mime หรือไม่
-     * ใช้สำหรับการตรวจสอบไฟล์อัปโหลด
-     * คืนค่า true หาก $mime และ $typies สอดคล้องกัน
-     *
-     * @assert (array('jpg','gif','png'), 'image/png') [==] true
-     *
-     * @param array  $typies ชนิดของไฟล์ที่ยอมรับ เช่น array(jpg, gif, png)
-     * @param string $mime   ชนิดของไฟล์ที่ต้องการตรวจสอบ เช่น image/png ซึ่งปกติจะได้จากการอัปโหลด เช่น $file[mime]
-     *
-     * @return bool
-     */
-    public static function check($typies, $mime)
-    {
-        $mime_types = self::typies();
-        foreach ($typies as $t) {
-            if ($mime == $mime_types[$t]) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * ฟังก์ชั่น อ่าน mimetype ของไฟล์ สำหรับส่งให้ input ชนิด file
-     * คืนค่า mimetype ของไฟล์ คั่นแต่ละรายการด้วย , เช่น image/jpeg,image/png,image/gif
-     *
-     * @assert (array('jpg','gif','png')) [==] "image/jpeg,image/gif,image/png"
-     *
-     * @param array $typies ชนิดของไฟล์ เช่น array(jpg, gif, png)
-     *
-     * @return string
-     */
-    public static function getAccept($typies)
-    {
-        $mime_types = self::typies();
-        $accept = array();
-        foreach ($typies as $ext) {
-            if (isset($mime_types[$ext])) {
-                $accept[] = $mime_types[$ext];
-            }
-        }
-        return implode(',', $accept);
     }
 }

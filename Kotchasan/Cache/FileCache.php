@@ -15,40 +15,40 @@ use Kotchasan\File;
 use Psr\Cache\CacheItemInterface;
 
 /**
- * Filesystem cache driver
+ * This class provides functionality for caching data to the filesystem.
  *
  * @see https://www.kotchasan.com/
  */
 class FileCache extends Cache
 {
     /**
-     * ไดเร็คทอรี่แคช
+     * Cache directory path
      *
      * @var string /root/to/dir/cache/
      */
     protected $cache_dir = null;
     /**
-     * อายุของแคช (วินาที) 0 หมายถึงไม่มีการแคช
+     * Cache expiration time in seconds (0 means no cache)
      *
      * @var int
      */
     protected $cache_expire = 0;
 
     /**
-     * class constructor
+     * Class constructor
      *
-     * @throws Exception ถ้าไม่สามารถสร้างแคชได้
+     * @throws Exception if the cache directory cannot be created
      */
     public function __construct()
     {
         $this->cache_expire = self::$cfg->get('cache_expire', 0);
         if (!empty($this->cache_expire)) {
-            //  cache directory
+            // Cache directory
             $this->cache_dir = ROOT_PATH.'datas/cache/';
             if (!File::makeDirectory($this->cache_dir)) {
                 throw new \Exception('Folder '.str_replace(ROOT_PATH, '', $this->cache_dir).' cannot be created.');
             }
-            // clear old cache every day
+            // Clear old cache every day
             $d = is_file($this->cache_dir.'index.php') ? (int) file_get_contents($this->cache_dir.'index.php') : 0;
             if ($d != (int) date('d')) {
                 $this->clear();
@@ -64,10 +64,9 @@ class FileCache extends Cache
     }
 
     /**
-     * เคลียร์แคช
-     * คืนค่า true ถ้าลบเรียบร้อย, หรือ false ถ้าไม่สำเร็จ
+     * Clear the cache
      *
-     * @return bool
+     * @return bool true if the cache is cleared successfully, false otherwise
      */
     public function clear()
     {
@@ -79,12 +78,11 @@ class FileCache extends Cache
     }
 
     /**
-     * ลบแคชหลายๆรายการ
-     * คืนค่า true ถ้าสำเร็จ, false ถ้าไม่สำเร็จ
+     * Delete multiple cache items
      *
      * @param array $keys
      *
-     * @return bool
+     * @return bool true if the deletion is successful, false otherwise
      */
     public function deleteItems(array $keys)
     {
@@ -97,7 +95,7 @@ class FileCache extends Cache
     }
 
     /**
-     * อ่านแคชหลายรายการ
+     * Get multiple cache items
      *
      * @param array $keys
      *
@@ -105,20 +103,19 @@ class FileCache extends Cache
      */
     public function getItems(array $keys = array())
     {
-        $resuts = array();
+        $results = array();
         foreach ($keys as $key) {
             $file = $this->fetchStreamUri($key);
             if ($this->isExpired($file)) {
                 $item = new Item($key);
-                $resuts[$key] = $item->set(json_decode(preg_replace('/^<\?php\sexit\?>/', '', file_get_contents($file), 1), true));
+                $results[$key] = $item->set(json_decode(preg_replace('/^<\?php\sexit\?>/', '', file_get_contents($file), 1), true));
             }
         }
-        return $resuts;
+        return $results;
     }
 
     /**
-     * ตรวจสอบแคช
-     * คืนค่า true ถ้ามี
+     * Check if a cache item exists
      *
      * @param string $key
      *
@@ -130,21 +127,20 @@ class FileCache extends Cache
     }
 
     /**
-     * บันทึกแคช
-     * สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false
+     * Save a cache item
      *
      * @param CacheItemInterface $item
      *
-     * @throws Exception ถ้าไม่สามารถสร้างแคชได้
+     * @throws Exception if the cache file cannot be created
      *
-     * @return bool
+     * @return bool true if the cache item is saved successfully, false otherwise
      */
     public function save(CacheItemInterface $item)
     {
         if ($this->cache_dir && !empty($this->cache_expire)) {
             $f = @fopen($this->fetchStreamUri($item->getKey()), 'wb');
             if (!$f) {
-                throw new \Exception('resource cache file cannot be created.');
+                throw new \Exception('Resource cache file cannot be created.');
             } else {
                 fwrite($f, '<?php exit?>'.json_encode($item->get()));
                 fclose($f);
@@ -155,10 +151,10 @@ class FileCache extends Cache
     }
 
     /**
-     * ลบไฟล์ทั้งหมดในไดเร็คทอรี่ (cache)
+     * Clear all files in the cache directory
      *
      * @param string $dir
-     * @param array  $error เก็บรายชื่อไฟล์ที่ไม่สามารถลบได้
+     * @param array  $error
      */
     private function clearCache($dir, &$error)
     {
@@ -180,7 +176,7 @@ class FileCache extends Cache
     }
 
     /**
-     * อ่านค่า full path ของไฟล์แคช
+     * Get the full path of the cache file
      *
      * @param string $key
      *
@@ -192,8 +188,7 @@ class FileCache extends Cache
     }
 
     /**
-     * ตรวจสอบวันหมดอายุของไฟล์แคช
-     * คืนค่า true ถ้าแคชสามารถใช้งานได้
+     * Check if a cache file has expired
      *
      * @param string $file
      *

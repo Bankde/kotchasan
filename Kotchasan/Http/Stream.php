@@ -5,7 +5,7 @@
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * @package Kotchasan\Http
  */
 
 namespace Kotchasan\Http;
@@ -13,56 +13,63 @@ namespace Kotchasan\Http;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Data stream class (PSR-7)
+ * PSR-7 compliant data stream class.
+ *
+ * Represents a stream of data as defined by the PSR-7 StreamInterface.
  *
  * @see https://www.kotchasan.com/
  */
 class Stream implements StreamInterface
 {
     /**
-     * stream metadata
+     * Stream metadata.
      *
      * @var array
      */
     protected $meta;
+
     /**
-     * stream readable
+     * Flag indicating if the stream is readable.
      *
      * @var bool
      */
     protected $readable;
+
     /**
-     * stream seekable
+     * Flag indicating if the stream is seekable.
      *
      * @var bool
      */
     protected $seekable;
+
     /**
-     * stream size
+     * Stream size.
      *
      * @var null|int
      */
     protected $size;
+
     /**
-     * stream resource
+     * Stream resource.
      *
      * @var resource
      */
     protected $stream;
+
     /**
-     * stream writable
+     * Flag indicating if the stream is writable.
      *
      * @var bool
      */
     protected $writable;
 
     /**
-     * Create a new Stream
+     * Creates a new Stream instance.
      *
-     * @param resource $stream
-     * @param string   $mode
+     * @param resource|string $stream The stream resource or a string representing a file path or URL.
+     * @param string $mode The mode in which to open the stream.
      *
-     * @throws InvalidArgumentException $stream ไม่ใช่ resource
+     * @throws \InvalidArgumentException If the stream is not a valid resource.
      */
     public function __construct($stream, $mode = 'r')
     {
@@ -73,16 +80,20 @@ class Stream implements StreamInterface
             $stream = fopen($stream, $mode);
             restore_error_handler();
         }
+
         if (!is_resource($stream)) {
             throw new \InvalidArgumentException('Stream must be a resource');
         }
+
         $this->stream = $stream;
     }
 
     /**
-     * อ่านข้อมูลทั้งหมดของ stream ส่งออกเป็น string
+     * Gets the contents of the stream as a string.
      *
-     * @return string
+     * @throws \RuntimeException If unable to read the stream contents.
+     *
+     * @return string The stream contents.
      */
     public function __toString()
     {
@@ -93,11 +104,14 @@ class Stream implements StreamInterface
             } catch (\RuntimeException $e) {
             }
         }
+
         return '';
     }
 
     /**
-     * ยกเลิก stream คืนหน่วยความจำ
+     * Closes the stream and releases its resources.
+     *
+     * @return void
      */
     public function close()
     {
@@ -110,10 +124,9 @@ class Stream implements StreamInterface
     }
 
     /**
-     * reset ข้อมูลของ Class กลับเป็นค่าเริ่มต้น
-     * คืนค่า resource เดิม
+     * Detaches the stream resource and returns it.
      *
-     * @return resource|null
+     * @return resource|null The detached stream resource.
      */
     public function detach()
     {
@@ -124,14 +137,14 @@ class Stream implements StreamInterface
         $this->size = null;
         $this->stream = null;
         $this->writable = null;
+
         return $tmp;
     }
 
     /**
-     * ตรวจสอบว่า pointer อยู่ที่จุดสุดท้ายของ stream หรือยัง
-     * คืนค่า true ถ้าอยู่ที่จุดสิ้นสุดของไฟล์
+     * Checks if the end of the stream has been reached.
      *
-     * @return bool
+     * @return bool True if the end of the stream has been reached, false otherwise.
      */
     public function eof()
     {
@@ -139,36 +152,36 @@ class Stream implements StreamInterface
     }
 
     /**
-     * อ่านข้อมูลทั้งหมดจาก stream
+     * Gets the contents of the stream as a string.
      *
-     * @throws \RuntimeException ถ้าไม่สามารถอ่านได้
+     * @throws \RuntimeException If unable to read the stream contents.
      *
-     * @return string
+     * @return string The stream contents.
      */
     public function getContents()
     {
         $contents = stream_get_contents($this->stream);
+
         if ($contents === false) {
             throw new \RuntimeException('Unable to read stream contents');
         }
+
         return $contents;
     }
 
     /**
-     * อ่านข้อมูลประจำตัวของ stream
-     * array คืนค่าข้อมูลทั้งหมด ถ้าไม่ระบุ $key
-     * mixed คืนค่าข้อมูลจาก $key ที่กำหนด
-     * null ไม่พบ $key หรือไม่ใช่ stream
+     * Gets the metadata of the stream or a specific key of the metadata.
      *
-     * @param string $key
+     * @param string|null $key The metadata key to retrieve.
      *
-     * @return array|mixed|null
+     * @return array|mixed|null The metadata as an array, a specific metadata value, or null if the key is not found.
      */
     public function getMetadata($key = null)
     {
         if ($this->meta === null) {
             $this->meta = is_resource($this->stream) ? stream_get_meta_data($this->stream) : null;
         }
+
         if ($key === null) {
             return $this->meta;
         } else {
@@ -177,10 +190,9 @@ class Stream implements StreamInterface
     }
 
     /**
-     * อ่านขนาดของ stream
-     * คืนค่าขนาดเป็น byte หรือ null ถ้าไม่รู้ขนาด
+     * Gets the size of the stream in bytes.
      *
-     * @return int|null
+     * @return int|null The size of the stream in bytes, or null if the size is unknown.
      */
     public function getSize()
     {
@@ -192,14 +204,14 @@ class Stream implements StreamInterface
                 $this->size = null;
             }
         }
+
         return $this->size;
     }
 
     /**
-     * ตรวจสอบว่าสามารถอ่านข้อมูล stream ได้หรือไม่
-     * คืนค่า true ถ้าอ่านได้
+     * Checks if the stream is readable.
      *
-     * @return bool
+     * @return bool True if the stream is readable, false otherwise.
      */
     public function isReadable()
     {
@@ -207,28 +219,28 @@ class Stream implements StreamInterface
             $mode = $this->getMetadata('mode');
             $this->readable = $mode === null ? false : (strstr($mode, 'r') || strstr($mode, '+'));
         }
+
         return $this->readable;
     }
 
     /**
-     * อ่านความสามารถในการกำหนดตำแหน่งของ pointer
-     * คืนค่า true ถ้าสามารถ seek ได้
+     * Checks if the stream is seekable.
      *
-     * @return bool
+     * @return bool True if the stream is seekable, false otherwise.
      */
     public function isSeekable()
     {
         if ($this->seekable === null) {
             $this->seekable = $this->getMetadata('seekable');
         }
+
         return $this->seekable;
     }
 
     /**
-     * ตรวจสอบว่าสามารถเขียน stream ได้หรือไม่
-     * คืนค่า true ถ้าเขียนได้
+     * Checks if the stream is writable.
      *
-     * @return bool
+     * @return bool True if the stream is writable, false otherwise.
      */
     public function isWritable()
     {
@@ -236,29 +248,36 @@ class Stream implements StreamInterface
             $mode = $this->getMetadata('mode');
             $this->writable = $mode === null ? false : (strstr($mode, 'x') || strstr($mode, 'w') || strstr($mode, 'c') || strstr($mode, 'a') || strstr($mode, '+'));
         }
+
         return $this->writable;
     }
 
     /**
-     * อ่านข้อมูล stream ตามจำนวนที่กำหนด
+     * Reads data from the stream.
      *
-     * @param int $length จำนวนที่ต้องการ
+     * @param int $length The number of bytes to read.
      *
-     * @throws \RuntimeException ถ้าไม่สามารถอ่านได้
+     * @throws \RuntimeException If unable to read the stream.
      *
-     * @return string
+     * @return string The data read from the stream.
      */
     public function read($length)
     {
-        $data = is_resource($this->stream) ? fread($this->stream, $length) : false;
-        if ($data === false) {
-            throw new \RuntimeException('Unable to read stream contents');
+        if (!$this->isReadable()) {
+            throw new \RuntimeException('Stream is not readable');
         }
+
+        $data = fread($this->stream, $length);
+
+        if ($data === false) {
+            throw new \RuntimeException('Unable to read from stream');
+        }
+
         return $data;
     }
 
     /**
-     * เลื่อน pointer ไปยังจุดเริ่มต้นของ stream
+     * Seeks to a specific position in the stream.
      *
      * @throws \RuntimeException on failure
      */

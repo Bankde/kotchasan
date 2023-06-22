@@ -11,47 +11,41 @@
 namespace Kotchasan;
 
 /**
- * HTML table
+ * HTML table class
  *
  * @see https://www.kotchasan.com/
  */
 class HtmlTable
 {
     /**
-     * caption ของ ตาราง
-     *
-     * @var string
+     * @var string The caption of the table
      */
     private $caption;
+
     /**
-     * แอเรย์เก็บ property ของตาราง
-     *
-     * @var array
+     * @var array The properties of the table
      */
     private $properties;
+
     /**
-     * แอเรย์ของ TableRow เก็บแถวของตาราง (tbody)
-     *
-     * @var array
+     * @var array The rows of the table (tbody)
      */
     private $tbody;
+
     /**
-     * แอเรย์ของ TableRow เก็บแถวของตาราง (tfoot)
-     *
-     * @var array
+     * @var array The rows of the table (tfoot)
      */
     private $tfoot;
+
     /**
-     * แอเรย์เก็บข้อมูลส่วน thead
-     *
-     * @var array
+     * @var array The headers of the table (thead)
      */
     private $thead;
 
     /**
-     * class constructure
+     * Constructor.
      *
-     * @param array $properties
+     * @param array $properties The properties of the table
      */
     public function __construct($properties = array())
     {
@@ -62,9 +56,9 @@ class HtmlTable
     }
 
     /**
-     * กำหนด caption ของตาราง
+     * Set the caption of the table.
      *
-     * @param string $text
+     * @param string $text The caption text
      */
     public function addCaption($text)
     {
@@ -72,9 +66,9 @@ class HtmlTable
     }
 
     /**
-     * แทรกแถวของ tfoot
+     * Add a footer row to the table (tfoot).
      *
-     * @param TableRow $row
+     * @param TableRow $row The TableRow object representing the row
      */
     public function addFooter(TableRow $row)
     {
@@ -82,9 +76,9 @@ class HtmlTable
     }
 
     /**
-     * แทรกแถวของ thead
+     * Add a header row to the table (thead).
      *
-     * @param array $headers
+     * @param array $headers The header data for the row
      */
     public function addHeader($headers)
     {
@@ -92,10 +86,10 @@ class HtmlTable
     }
 
     /**
-     * แทรกแถวของ tbody
+     * Add a data row to the table (tbody).
      *
-     * @param array $rows
-     * @param array $attributes
+     * @param array $rows       The data for the row
+     * @param array $attributes The attributes of the row
      */
     public function addRow($rows, $attributes = array())
     {
@@ -107,11 +101,11 @@ class HtmlTable
     }
 
     /**
-     * สร้างตาราง
+     * Create a new HtmlTable object.
      *
-     * @param array $properties
+     * @param array $properties The properties of the table
      *
-     * @return static
+     * @return HtmlTable The created HtmlTable object
      */
     public static function create($properties = array())
     {
@@ -120,9 +114,9 @@ class HtmlTable
     }
 
     /**
-     * แสดงผลตาราง
+     * Render the table to HTML.
      *
-     * @return string
+     * @return string The HTML representation of the table
      */
     public function render()
     {
@@ -134,6 +128,7 @@ class HtmlTable
         if (!empty($this->caption)) {
             $table[] = '<caption>'.$this->caption.'</caption>';
         }
+
         // thead
         if (!empty($this->thead)) {
             $thead = array();
@@ -156,6 +151,7 @@ class HtmlTable
                 $table[] = "<thead>\n".implode("\n", $thead)."\n</thead>";
             }
         }
+
         // tfoot
         if (!empty($this->tfoot)) {
             $rows = array();
@@ -166,6 +162,7 @@ class HtmlTable
                 $table[] = "<tfoot>\n".implode("\n", $rows)."\n</tfoot>";
             }
         }
+
         // tbody
         if (!empty($this->tbody)) {
             $rows = array();
@@ -176,35 +173,33 @@ class HtmlTable
                 $table[] = "<tbody>\n".implode("\n", $rows)."\n</tbody>";
             }
         }
+
         $table[] = "</table>\n";
         return implode("\n", $table);
     }
 }
 
 /**
- * HTML table row
+ * HTML table row class
  *
  * @see https://www.kotchasan.com/
  */
 class TableRow
 {
     /**
-     * property ของแถว
-     *
-     * @var array
+     * @var array The properties of the row
      */
     private $properties;
+
     /**
-     * แอเรย์เก็บรายการ cell ในแถว
-     *
-     * @var array
+     * @var array The cells of the row
      */
     private $tds;
 
     /**
-     * class constructure
+     * Constructor.
      *
-     * @param array $properties
+     * @param array $properties The properties of the row
      */
     public function __construct($properties = array())
     {
@@ -213,9 +208,9 @@ class TableRow
     }
 
     /**
-     * เพิ่ม cell ลงในแถว
+     * Add a cell to the row.
      *
-     * @param array $td
+     * @param array $td The data for the cell
      */
     public function addCell($td)
     {
@@ -223,11 +218,11 @@ class TableRow
     }
 
     /**
-     * สร้างแถวสำหรับ tbody
+     * Create a new TableRow object.
      *
-     * @param array $properties
+     * @param array $properties The properties of the row
      *
-     * @return static
+     * @return TableRow The created TableRow object
      */
     public static function create($properties = array())
     {
@@ -236,9 +231,9 @@ class TableRow
     }
 
     /**
-     * แสดงผลแถว
+     * Render the row to HTML.
      *
-     * @return string
+     * @return string The HTML representation of the row
      */
     public function render()
     {

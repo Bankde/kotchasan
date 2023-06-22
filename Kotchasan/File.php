@@ -2,6 +2,8 @@
 /**
  * @filesource Kotchasan/File.php
  *
+ * File and Directory management class.
+ *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
@@ -11,47 +13,47 @@
 namespace Kotchasan;
 
 /**
- * คลาสสำหรับจัดการไฟล์และไดเร็คทอรี่
+ * Class for managing files and directories.
  *
  * @see https://www.kotchasan.com/
  */
 class File
 {
     /**
-     * สำเนาไดเร็คทอรี่
+     * Copy a directory recursively.
      *
-     * @param string $dir   ไดเร็คทอรี่ต้นทาง มี / ปิดท้ายด้วย
-     * @param string $todir ไดเร็คทอรี่ปลายทาง มี / ปิดท้ายด้วย
+     * @param string $sourceDir Source directory path (with trailing slash)
+     * @param string $destDir   Destination directory path (with trailing slash)
      */
-    public static function copyDirectory($dir, $todir)
+    public static function copyDirectory($sourceDir, $destDir)
     {
-        $f = @opendir($dir);
-        if ($f === false) {
+        $sourceHandle = @opendir($sourceDir);
+        if ($sourceHandle === false) {
             return;
         }
-        while (false !== ($text = readdir($f))) {
-            if ($text === '.' || $text === '..') {
+
+        while (false !== ($file = readdir($sourceHandle))) {
+            if ($file === '.' || $file === '..') {
                 continue;
             }
-            if (is_dir($dir.$text)) {
-                self::makeDirectory($todir.$text.'/');
-                self::copyDirectory($dir.$text.'/', $todir.$text.'/');
-            } elseif (is_dir($todir)) {
-                @copy($dir.$text, $todir.$text);
+
+            if (is_dir($sourceDir.$file)) {
+                self::makeDirectory($destDir.$file.'/');
+                self::copyDirectory($sourceDir.$file.'/', $destDir.$file.'/');
+            } elseif (is_dir($destDir)) {
+                @copy($sourceDir.$file, $destDir.$file);
             }
         }
-        closedir($f);
+
+        closedir($sourceHandle);
     }
 
     /**
-     * อ่านนามสกุลของไฟล์เช่น config.php คืนค่า php
-     * คืนค่า ext ของไฟล์ ตัวอักษรตัวพิมพ์เล็ก
+     * Get the file extension of a file (e.g., 'config.php' returns 'php').
      *
-     * @assert ('index.php.sql') [==] 'sql'
+     * @param string $path File path
      *
-     * @param string $path ไฟล์
-     *
-     * @return string
+     * @return string File extension (lowercase)
      */
     public static function ext($path)
     {
@@ -60,86 +62,96 @@ class File
     }
 
     /**
-     * อ่านรายชื่อไฟล์ภายใต้ไดเร็คทอรี่รวมไดเร็คทอรี่ย่อย
+     * Get the list of files in a directory and its subdirectories.
      *
-     * @param string $dir    ไดเร็คทอรี่ มี / ปิดท้ายด้วย
-     * @param array $result คืนค่ารายการไฟล์ที่พบ
-     * @param array  $filter (option) ไฟล์ฟิลเตอร์ ตัวพิมพ์เล็ก เช่น array('jpg','gif') แอเรย์ว่างหมายถึงทุกนามสกุล
+     * @param string $dir     Directory path (with trailing slash)
+     * @param array  $result  Array to store the found files
+     * @param array  $filter  (optional) File extensions to filter (lowercase). An empty array means all extensions.
      */
     public static function listFiles($dir, &$result, $filter = array())
     {
         if (!is_dir($dir)) {
             return;
         }
-        $f = @opendir($dir);
-        if ($f === false) {
+
+        $dirHandle = @opendir($dir);
+        if ($dirHandle === false) {
             return;
         }
-        while (false !== ($text = readdir($f))) {
-            if ($text === '.' || $text === '..') {
+
+        while (false !== ($file = readdir($dirHandle))) {
+            if ($file === '.' || $file === '..') {
                 continue;
             }
-            if (is_dir($dir.$text)) {
-                self::listFiles($dir.$text.'/', $result, $filter);
-            } elseif (empty($filter) || in_array(self::ext($text), $filter)) {
-                $result[] = $dir.$text;
+
+            if (is_dir($dir.$file)) {
+                self::listFiles($dir.$file.'/', $result, $filter);
+            } elseif (empty($filter) || in_array(self::ext($file), $filter)) {
+                $result[] = $dir.$file;
             }
         }
-        closedir($f);
+
+        closedir($dirHandle);
     }
 
     /**
-     * สร้างและตรวจสอบไดเร็คทอรี่ ให้เขียนได้
+     * Create and validate a directory for writing.
      *
-     * @param string $dir
-     * @param int    $mode (optional) default 0755
+     * @param string $dir  Directory path
+     * @param int    $mode (optional) Directory permission mode (default: 0755)
      *
-     * @return bool
+     * @return bool True if the directory exists or is created successfully and is writable, false otherwise
      */
     public static function makeDirectory($dir, $mode = 0755)
     {
         if (!is_dir($dir)) {
-            $oldumask = umask(0);
+            $oldUmask = umask(0);
             $success = @mkdir($dir, $mode);
-            umask($oldumask);
+            umask($oldUmask);
             if (!$success) {
                 return false;
             }
         }
+
         if (!is_writable($dir)) {
-            $oldumask = umask(0);
+            $oldUmask = umask(0);
             $success = @chmod($dir, $mode);
-            umask($oldumask);
+            umask($oldUmask);
             if (!$success) {
                 return false;
             }
         }
+
         return true;
     }
 
     /**
-     * ลบไดเรคทอรี่และไฟล์ หรือ ไดเร็คทอรี่ในนั้นทั้งหมด
+     * Recursively delete a directory and its files, or only the files inside the directory.
      *
-     * @param string $dir ไดเรคทอรี่ที่ต้องการลบ มี / ต่อท้ายด้วย
-     * @param bool $removeSelf true (default) ลบไดเร็คทอรี่ที่ระบด้วย, false ลบเฉพาะไฟล์และไดเร็คทอรี่ในนั้น
+     * @param string $dir         Directory path to delete (with trailing slash)
+     * @param bool   $removeSelf  True (default) to delete the directory itself, false to delete only the files inside
      */
     public static function removeDirectory($dir, $removeSelf = true)
     {
         if (!is_dir($dir)) {
             return;
         }
-        $f = opendir($dir);
-        while (false !== ($text = readdir($f))) {
-            if ($text == '.' || $text == '..') {
+
+        $dirHandle = opendir($dir);
+        while (false !== ($file = readdir($dirHandle))) {
+            if ($file == '.' || $file == '..') {
                 continue;
             }
-            if (is_dir($dir.$text)) {
-                self::removeDirectory($dir.$text.'/');
+
+            if (is_dir($dir.$file)) {
+                self::removeDirectory($dir.$file.'/');
             } else {
-                @unlink($dir.$text);
+                @unlink($dir.$file);
             }
         }
-        closedir($f);
+
+        closedir($dirHandle);
+
         if ($removeSelf) {
             @rmdir($dir);
         }

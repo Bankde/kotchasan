@@ -18,16 +18,16 @@ namespace Kotchasan;
 class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
 {
     /**
-     * ตัวแปรเก็บสมาชิกของคลาส
+     * Holds the class members.
      *
      * @var array
      */
     private $datas = array();
 
     /**
-     * Create new collection
+     * Create a new collection.
      *
-     * @param array $items สมาชิกเริ่มต้นของ Collection
+     * @param array $items The initial members of the Collection.
      */
     public function __construct(array $items = array())
     {
@@ -37,7 +37,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * ลบข้อมูลทั้งหมด
+     * Clear all data.
      *
      * @return void
      */
@@ -47,7 +47,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * คืนค่าจำนวนข้อมูลทั้งหมด
+     * Get the count of all data.
      *
      * @return int
      */
@@ -58,7 +58,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * อ่านข้อมูลที่ $key ถ้าไม่พบคืนค่า $default
+     * Get the value at $key, or $default if not found.
      *
      * @param mixed $key
      * @param mixed $default
@@ -75,7 +75,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
      * ************************* */
 
     /**
-     * Retrieve an external iterator
+     * Retrieve an external iterator.
      *
      * @return \ArrayIterator
      */
@@ -86,7 +86,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * ตรวจสอบว่ามีรายการ $key หรือไม่
+     * Check if $key exists.
      *
      * @param mixed $key
      *
@@ -98,8 +98,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * อ่านรายชื่อ keys
-     * คืนค่าแอเรย์ของรายการ key ทั้งหมด
+     * Get a list of keys.
      *
      * @return array
      */
@@ -113,7 +112,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
      * ********************* */
 
     /**
-     * ตรวจสอบว่ามีรายการ $key หรือไม่
+     * Check if $key exists.
      *
      * @param mixed $key
      *
@@ -126,7 +125,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * อ่านข้อมูลที่ $key
+     * Get the value at $key.
      *
      * @param mixed $key
      *
@@ -139,7 +138,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * กำหนดค่า $value ของ $key
+     * Set the $value of $key.
      *
      * @param mixed $key
      * @param mixed $value
@@ -153,7 +152,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * ลบรายการที่ $key
+     * Remove the item at $key.
      *
      * @param mixed $key
      *
@@ -166,7 +165,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * ลบรายการที่ $key
+     * Remove the item at $key.
      *
      * @param mixed $key
      *
@@ -178,7 +177,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * เพิ่มรายการใหม่ แทนที่รายการเดิม
+     * Add new items, replacing existing items.
      *
      * @param array $items array(array($key => $value), array($key => $value), ...)
      *
@@ -196,7 +195,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
      * ******************* */
 
     /**
-     * กำหนดค่า $value ของ $key
+     * Set the $value of $key.
      *
      * @param mixed $key
      * @param mixed $value
@@ -209,7 +208,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * คืนค่าข้อมูลทั้งหมดเป็น
+     * Get all data as an array.
      *
      * @return array
      */

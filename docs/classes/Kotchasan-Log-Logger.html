@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -146,7 +152,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/Logger.php"><a href="files/kotchasan-log-logger.html"><abbr title="Kotchasan/Log/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -160,20 +166,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -205,7 +202,7 @@
     <span>
                 &nbsp;: <abbr title="\Kotchasan\Log\Singleton">Singleton</abbr>            </span>
 </dt>
-<dd></dd>
+<dd>Singleton instance</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Log-Logger.html#property_logLevels">$logLevels</a>
@@ -219,7 +216,7 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รูปแบบของ log</dd>
+<dd>Log options</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Log-AbstractLogger.html#method_alert">alert()</a>
@@ -233,7 +230,7 @@
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>create Logger instance (Singleton)</dd>
+<dd>Create a Logger instance (Singleton).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Log-AbstractLogger.html#method_critical">critical()</a>
@@ -274,9 +271,9 @@ be logged and monitored</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Log-Logger.html#method_log">log()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: void    </span>
 </dt>
-<dd>Logs with an arbitrary level</dd>
+<dd>Logs a message with an arbitrary level.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Log-AbstractLogger.html#method_notice">notice()</a>
@@ -297,7 +294,7 @@ be logged and monitored</dd>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>Singleton</dd>
+<dd>Private constructor.</dd>
 
         </dl>
 
@@ -327,11 +324,12 @@ be logged and monitored</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/Logger.php"><a href="files/kotchasan-log-logger.html"><abbr title="Kotchasan/Log/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Singleton instance</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
     <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type"><abbr title="\Kotchasan\Log\Singleton">Singleton</abbr></span>
@@ -339,9 +337,7 @@ be logged and monitored</dd>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
-        <section class="phpdocumentor-description"><p>สำหรับเรียกใช้ class นี้เพียงครั้งเดียวเท่านั้น</p>
-</section>
-
+    
     
 
 </article>
@@ -361,7 +357,7 @@ be logged and monitored</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/Logger.php"><a href="files/kotchasan-log-logger.html"><abbr title="Kotchasan/Log/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
@@ -371,7 +367,7 @@ be logged and monitored</dd>
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$logLevels</span>
-     = <span class="phpdocumentor-signature__default-value">array(PsrLogLogLevel::EMERGENCY =&gt; 0, PsrLogLogLevel::ALERT =&gt; 1, PsrLogLogLevel::CRITICAL =&gt; 2, PsrLogLogLevel::ERROR =&gt; 3, PsrLogLogLevel::WARNING =&gt; 4, PsrLogLogLevel::NOTICE =&gt; 5, PsrLogLogLevel::INFO =&gt; 6, PsrLogLogLevel::DEBUG =&gt; 7)</span></code>
+     = <span class="phpdocumentor-signature__default-value">[PsrLogLogLevel::EMERGENCY =&gt; 0, PsrLogLogLevel::ALERT =&gt; 1, PsrLogLogLevel::CRITICAL =&gt; 2, PsrLogLogLevel::ERROR =&gt; 3, PsrLogLogLevel::WARNING =&gt; 4, PsrLogLogLevel::NOTICE =&gt; 5, PsrLogLogLevel::INFO =&gt; 6, PsrLogLogLevel::DEBUG =&gt; 7]</span></code>
 
     
     
@@ -394,17 +390,17 @@ be logged and monitored</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/Logger.php"><a href="files/kotchasan-log-logger.html"><abbr title="Kotchasan/Log/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รูปแบบของ log</p>
+        <p class="phpdocumentor-summary">Log options</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$options</span>
-     = <span class="phpdocumentor-signature__default-value">array(&#039;dateFormat&#039; =&gt; &#039;Y-m-d H:i:s&#039;, &#039;logFormat&#039; =&gt; &#039;[{datetime}] {level}: {message} {context}&#039;, &#039;logFilePath&#039; =&gt; &#039;logs/&#039;, &#039;extension&#039; =&gt; &#039;php&#039;)</span></code>
+     = <span class="phpdocumentor-signature__default-value">[&#039;dateFormat&#039; =&gt; &#039;Y-m-d H:i:s&#039;, &#039;logFormat&#039; =&gt; &#039;[{datetime}] {level}: {message} {context}&#039;, &#039;logFilePath&#039; =&gt; &#039;logs/&#039;, &#039;extension&#039; =&gt; &#039;php&#039;]</span></code>
 
     
     
@@ -431,7 +427,7 @@ be logged and monitored</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/AbstractLogger.php"><a href="files/kotchasan-log-abstractlogger.html"><abbr title="Kotchasan/Log/AbstractLogger.php">AbstractLogger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -484,15 +480,15 @@ trigger the SMS alerts and wake you up</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/Logger.php"><a href="files/kotchasan-log-logger.html"><abbr title="Kotchasan/Log/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">create Logger instance (Singleton)</p>
+        <p class="phpdocumentor-summary">Create a Logger instance (Singleton).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -500,9 +496,11 @@ trigger the SMS alerts and wake you up</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$options</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Log options (optional).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -527,7 +525,7 @@ trigger the SMS alerts and wake you up</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/AbstractLogger.php"><a href="files/kotchasan-log-abstractlogger.html"><abbr title="Kotchasan/Log/AbstractLogger.php">AbstractLogger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -579,7 +577,7 @@ trigger the SMS alerts and wake you up</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/AbstractLogger.php"><a href="files/kotchasan-log-abstractlogger.html"><abbr title="Kotchasan/Log/AbstractLogger.php">AbstractLogger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
@@ -629,7 +627,7 @@ trigger the SMS alerts and wake you up</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/AbstractLogger.php"><a href="files/kotchasan-log-abstractlogger.html"><abbr title="Kotchasan/Log/AbstractLogger.php">AbstractLogger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -679,7 +677,7 @@ trigger the SMS alerts and wake you up</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/AbstractLogger.php"><a href="files/kotchasan-log-abstractlogger.html"><abbr title="Kotchasan/Log/AbstractLogger.php">AbstractLogger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
@@ -730,7 +728,7 @@ be logged and monitored</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/AbstractLogger.php"><a href="files/kotchasan-log-abstractlogger.html"><abbr title="Kotchasan/Log/AbstractLogger.php">AbstractLogger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
@@ -782,15 +780,15 @@ be logged and monitored</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/Logger.php"><a href="files/kotchasan-log-logger.html"><abbr title="Kotchasan/Log/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Logs with an arbitrary level</p>
+        <p class="phpdocumentor-summary">Logs a message with an arbitrary level.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">log</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$level</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">log</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$level</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -800,28 +798,34 @@ be logged and monitored</p>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The log level.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$message</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The log message.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$context</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The log context (optional).</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -839,7 +843,7 @@ be logged and monitored</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/AbstractLogger.php"><a href="files/kotchasan-log-abstractlogger.html"><abbr title="Kotchasan/Log/AbstractLogger.php">AbstractLogger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
@@ -889,7 +893,7 @@ be logged and monitored</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/AbstractLogger.php"><a href="files/kotchasan-log-abstractlogger.html"><abbr title="Kotchasan/Log/AbstractLogger.php">AbstractLogger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">125</span>
 
     </aside>
 
@@ -942,11 +946,11 @@ that are not necessarily wrong</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Log/Logger.php"><a href="files/kotchasan-log-logger.html"><abbr title="Kotchasan/Log/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">131</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Singleton</p>
+        <p class="phpdocumentor-summary">Private constructor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -960,7 +964,9 @@ that are not necessarily wrong</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Log options.</p>
+</section>
+
             </dd>
             </dl>
 

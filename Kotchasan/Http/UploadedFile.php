@@ -5,7 +5,7 @@
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * @package Kotchasan\Http
  */
 
 namespace Kotchasan\Http;
@@ -15,76 +15,84 @@ use Kotchasan\Language;
 use Psr\Http\Message\UploadedFileInterface;
 
 /**
- * Class สำหรับจัดการไฟล์อัปโหลด
+ * Class for handling uploaded files.
  *
  * @see https://www.kotchasan.com/
  */
 class UploadedFile implements UploadedFileInterface
 {
     /**
-     * ข้อผิดพลาดการอัปโหลด UPLOAD_ERR_XXX
+     * The upload error code (UPLOAD_ERR_XXX).
      *
      * @var int
      */
     private $error;
+
     /**
-     * นามสกุลของไฟล์อัปโหลด
+     * The file extension of the uploaded file.
      *
-     * @var string
+     * @var string|null
      */
     private $ext;
+
     /**
-     * ใช้สำหรับบอกว่ามีการย้ายไฟล์ไปแล้ว
+     * Indicates whether the file has been moved.
      *
      * @var bool
      */
     private $isMoved = false;
+
     /**
-     * MIME Type
+     * The MIME type of the file.
      *
-     * @var string
+     * @var string|null
      */
     private $mime;
+
     /**
-     * ชื่อไฟล์ที่อัปโหลด
+     * The name of the uploaded file.
      *
-     * @var string
+     * @var string|null
      */
     private $name;
+
     /**
-     *  Indicates if the upload is from a SAPI environment
+     * Indicates if the upload is from a SAPI environment.
      *
      * @var bool
      */
     private $sapi = false;
+
     /**
-     * ขนาดไฟล์อัปโหลด
+     * The size of the uploaded file.
      *
-     * @var int
+     * @var int|null
      */
     private $size;
+
     /**
-     * file stream
+     * The file stream.
      *
-     * @var Stream
+     * @var Stream|null
      */
     private $stream;
+
     /**
-     * ไฟล์อัปโหลด รวมพาธ
+     * The path to the uploaded file.
      *
-     * @var string
+     * @var string|null
      */
     private $tmp_name;
 
     /**
-     * ไฟล์อัปโหลด
+     * Creates a new UploadedFile instance.
      *
-     * @param string $path         ไฟล์อัปโหลด รวมพาธ
-     * @param string $originalName ชื่อไฟล์ที่อัปโหลด
-     * @param string $mimeType     MIME Type
-     * @param int    $size         ขนาดไฟล์อัปโหลด
-     * @param int    $error        ข้อผิดพลาดการอัปโหลด UPLOAD_ERR_XXX
-     * @param bool   $sapi         indicates if the upload is in a SAPI environment
+     * @param string      $path         The path to the uploaded file.
+     * @param string      $originalName The original name of the uploaded file.
+     * @param string|null $mimeType     The MIME type of the uploaded file.
+     * @param int|null    $size         The size of the uploaded file.
+     * @param int|null    $error        The upload error code (UPLOAD_ERR_XXX).
+     * @param bool        $sapi         Indicates if the upload is in a SAPI environment.
      */
     public function __construct($path, $originalName, $mimeType = null, $size = null, $error = null, $sapi = true)
     {
@@ -97,21 +105,21 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * สำเนาไฟล์อัปโหลดไปยังที่อยู่ใหม่
-     * คืนค่า true ถ้าอัปโหลดเรียบร้อย
+     * Copies the uploaded file to a new location.
      *
-     * @param string $targetPath ที่อยู่ปลายทางที่ต้องการย้าย
+     * @param string $targetPath The destination path to which the file should be moved.
      *
-     * @throws \RuntimeException         ข้อผิดพลาดการอัปโหลด
-     * @throws \InvalidArgumentException ไดเรคทอรี่ไม่สามารถเขียนได้
+     * @throws \RuntimeException         If an error occurs while copying the file.
+     * @throws \InvalidArgumentException If the target directory is not writable.
      *
-     * @return bool
+     * @return bool True on success, false otherwise.
      */
     public function copyTo($targetPath)
     {
         if ($this->isMoved) {
             throw new \RuntimeException(sprintf(Language::get('Uploaded file %1s has already been moved'), $this->name));
         }
+
         if (!is_writable(dirname($targetPath))) {
             throw new \InvalidArgumentException(Language::get('Target directory is not writable'));
         }
@@ -247,9 +255,9 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * อ่านขนาดของไฟล์อัปโหลด
+     * Retrieves the size of the uploaded file.
      *
-     * @return int|null
+     * @return int|null The size of the uploaded file in bytes, or null if the size is unknown.
      */
     public function getSize()
     {
@@ -257,11 +265,11 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * ส่งออกไฟล์อัปโหลดเป็น Stream
+     * Retrieves the uploaded file as a stream.
      *
-     * @throws \RuntimeException ถ้าไม่พบไฟล์
+     * @throws \RuntimeException If the file has already been moved or if the file is not found.
      *
-     * @return StreamInterface
+     * @return StreamInterface The uploaded file stream.
      */
     public function getStream()
     {
@@ -275,9 +283,9 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * อ่านไฟล์รวม path จากตัวแปร tmp_name
+     * Retrieves the path of the uploaded file, including the temporary directory.
      *
-     * @return string|null
+     * @return string|null The path of the uploaded file, or null if the file is not available.
      */
     public function getTempFileName()
     {
@@ -285,11 +293,11 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * อ่านการตั้งค่าขนาดของไฟลอัปโหลด
+     * Retrieves the configured maximum upload file size.
      *
-     * @param bool $return_byte false (default) คืนค่าเป็นข้อความเช่น 2M, true คืนค่าเป็นตัวเลข (byte)
+     * @param bool $return_byte False (default) to return the size as a string (e.g., '2M'), true to return the size in bytes.
      *
-     * @return string|int
+     * @return string|int The maximum upload file size as a string or an integer (bytes).
      */
     public static function getUploadSize($return_byte = false)
     {
@@ -304,10 +312,9 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * ตรวจสอบว่ามีข้อผิดพลาดการอัปโหลดหรือไม่
-     * คืนค่า false ถ้าไม่มีไฟล์อัปโหลดหรืออัปโหลดสำเร็จ, คืนค่า true ถ้ามีข้อผิดพลาด
+     * Checks if an error occurred during the upload process.
      *
-     * @return bool
+     * @return bool True if an error occurred, false otherwise.
      */
     public function hasError()
     {
@@ -318,10 +325,9 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * ตรวจสอบไฟล์อัปโหลด
-     * คืนค่า true ถ้ามีไฟล์อัปโหลด
+     * Checks if an upload file exists.
      *
-     * @return bool
+     * @return bool True if an upload file exists, false otherwise.
      */
     public function hasUploadFile()
     {
@@ -329,15 +335,14 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * ย้ายไฟล์อัปโหลดไปยังที่อยู่ใหม่
-     * คืนค่า true ถ้าอัปโหลดเรียบร้อย
+     * Moves the uploaded file to the specified target path.
      *
-     * @param string $targetPath ที่อยู่ปลายทางที่ต้องการย้าย
+     * @param string $targetPath The path where the file will be moved.
      *
-     * @throws \InvalidArgumentException ข้อผิดพลาดหากที่อยู่ปลายทางไม่สามารถเขียนได้
-     * @throws \RuntimeException         ข้อผิดพลาดการอัปโหลด
+     * @return bool True if the file was successfully moved, false otherwise.
      *
-     * @return bool
+     * @throws \RuntimeException If the file has already been moved or an error occurred during the move operation.
+     * @throws \InvalidArgumentException If the target directory is not writable.
      */
     public function moveTo($targetPath)
     {
@@ -368,20 +373,18 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * ปรับขนาดของรูปภาพอัปโหลด โดยรักษาอัตราส่วนของภาพตามความกว้างที่ต้องการ
-     * หากรูปภาพมีขนาดเล็กกว่าที่กำหนด จะเป็นการ copy file
-     * หากรูปภาพมีความสูง หรือความกว้างมากกว่า $width
-     * จะถูกปรับขนาดให้มีขนาดไม่เกิน $width (ทั้งความสูงและความกว้าง)
-     * และเปลี่ยนชนิดของภาพเป็น jpg
-     * คืนค่าแอเรย์ [name, width, height, mime] ของรูปภาพปลายทาง หรือ false ถ้าไม่สามารถดำเนินการได้
+     * Resizes an image.
      *
-     * @param array  $exts      นามสกุลของไฟล์รูปภาพที่ยอมรับ เช่น [jpg, gif, png]
-     * @param string $target    path ของไฟล์รูปภาพปลายทาง
-     * @param string $name      ชื่อไฟล์ของรูปภาพปลายทาง
-     * @param int    $width     ขนาดสูงสุดของรูปภาพที่ต้องการ
-     * @param string $watermark (optional) ข้อความลายน้ำ
+     * @param array $exts An array of valid file extensions.
+     * @param string $target The target directory for saving the resized image.
+     * @param string $name The name of the resized image.
+     * @param int $width The desired width of the resized image.
+     * @param string $watermark Optional watermark to be applied on the resized image.
      *
-     * @return array|bool
+     * @return string The path to the resized image.
+     *
+     * @throws \RuntimeException If unable to create the image.
+     * @throws \InvalidArgumentException If the file extension or target directory is invalid.
      */
     public function resizeImage($exts, $target, $name, $width, $watermark = '')
     {
@@ -395,12 +398,11 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * ตรวจสอบนามสกุลของไฟล์อัปโหลด
-     * คืนค่า true ถ้านามสกุลของไฟล์อัปโหลดอยู่ใน $exts
+     * Checks if the file extension is valid.
      *
-     * @param array $exts รายการนามสกุลของไฟล์อัปโหลดที่ยอมรับ เช่น [jpg, gif, png]
+     * @param array $exts An array of valid file extensions.
      *
-     * @return bool
+     * @return bool True if the file extension is valid, false otherwise.
      */
     public function validFileExt($exts)
     {
@@ -408,16 +410,15 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * ฟังชั่นตรวจสอบไฟล์อัปโหลด
-     * คืนค่า true ถ้าสามารถอัปโหลดได้
+     * Checks if the uploaded file is valid and the target directory is writable.
      *
-     * @param array  $exts      นามสกุลของไฟล์รูปภาพที่ยอมรับ เช่น [jpg, gif, png]
-     * @param string $targetDir ไดเรคทอรี่ปลายทาง
+     * @param array $exts An array of valid file extensions.
+     * @param string $targetDir The target directory.
      *
-     * @throws \RuntimeException         ถ้าชนิดของไฟล์อัปโหลดไม่ถูกต้อง
-     * @throws \InvalidArgumentException ถ้าไดเร็คทอรี่ไม่สามารถเขียนได้
+     * @throws \RuntimeException If the type of file is invalid.
+     * @throws \InvalidArgumentException If the target directory is not writable.
      *
-     * @return bool
+     * @return bool True if the file is valid and the directory is writable, false otherwise.
      */
     private function check($exts, $targetDir)
     {

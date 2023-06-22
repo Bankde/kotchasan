@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -142,11 +148,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">คลาสสำหรับตรวจสอบการ Login</p>
+            <p class="phpdocumentor-summary">This class is responsible for handling user login functionality.</p>
 
 
 
@@ -156,20 +162,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -190,110 +187,98 @@
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>ตัวแปรบอกว่ามาจากการ submit
-true มาจากการ submit
-false default</dd>
+<dd>Indicates whether the login request is submitted.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Login.html#property_login_input">$login_input</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อ Input ที่ต้องการให้ active
-login_username หรือ login_password</dd>
+<dd>The name of the input field to be focused.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Login.html#property_login_message">$login_message</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ข้อความจาก Login Class</dd>
+<dd>The login message.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Login.html#property_login_params">$login_params</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ตัวแปรเก็บข้อมูลที่ส่งมา
-เช่น username, password</dd>
+<dd>The login parameters submitted by the user.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_cfg">$cfg</a>
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>Config class</dd>
+<dd>Config class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_request">$request</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>            </span>
 </dt>
-<dd>Server request class</dd>
+<dd>Server request class instance.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Login.html#method_checkLogin">checkLogin()</a>
     <span>
                         &nbsp;: string|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่นตรวจสอบการ login
-เข้าระบบสำเร็จคืนค่าแอเรย์ข้อมูลสมาชิก, ไม่สำเร็จ คืนค่าข้อความผิดพลาด</dd>
+<dd>Validates the login credentials against the configured username and password.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Login.html#method_checkStatus">checkStatus()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
 </dt>
-<dd>ตรวจสอบสถานะสมาชิก
-แอดมินสูงสุด (status=1) ทำได้ทุกอย่าง
-คืนค่าข้อมูลสมาชิก (แอเรย์) ถ้าไม่สามารถทำรายการได้คืนค่า null</dd>
+<dd>Check the status of a login.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Login.html#method_create">create()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>ตรวจสอบการ login เมื่อมีการเรียกใช้ class new Login
-action=logout ออกจากระบบ
-action=forgot ขอรหัสผ่านใหม่
-ถ้าไม่มีทั้งสองส่วนด้านบน จะตรวจสอบการ login จาก session</dd>
+<dd>Validates the login request and performs the login process.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Login.html#method_forgot">forgot()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: void    </span>
 </dt>
-<dd>ฟังก์ชั่นส่งอีเมลลืมรหัสผ่าน</dd>
+<dd>Initiates the password recovery process.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Login.html#method_isAdmin">isAdmin()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
 </dt>
-<dd>ฟังก์ชั่นตรวจสอบสถานะแอดมิน
-คืนค่าข้อมูลสมาชิก (แอเรย์) ถ้าเป็นผู้ดูแลระบบและเข้าระบบแล้ว ไม่ใช่คืนค่า null</dd>
+<dd>Checks if the user is an admin.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Login.html#method_isMember">isMember()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
 </dt>
-<dd>ฟังก์ชั่นตรวจสอบการเข้าระบบ
-คืนค่าข้อมูลสมาชิก (แอเรย์) ถ้าเป็นสมาชิกและเข้าระบบแล้ว ไม่ใช่คืนค่า null</dd>
+<dd>Checks if the user is a member.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Login.html#method_login">login()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: void    </span>
 </dt>
-<dd>ฟังก์ชั่นตรวจสอบการเข้าระบบ</dd>
+<dd>Validates the login credentials and performs the login process.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Login.html#method_logout">logout()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: void    </span>
 </dt>
-<dd>ฟังก์ชั่นออกจากระบบ</dd>
+<dd>Logs out the user by clearing the session and displaying a success message.</dd>
 
         </dl>
 
@@ -323,13 +308,11 @@ action=forgot ขอรหัสผ่านใหม่
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวแปรบอกว่ามาจากการ submit
-true มาจากการ submit
-false default</p>
+        <p class="phpdocumentor-summary">Indicates whether the login request is submitted.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -358,12 +341,11 @@ false default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อ Input ที่ต้องการให้ active
-login_username หรือ login_password</p>
+        <p class="phpdocumentor-summary">The name of the input field to be focused.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -371,7 +353,9 @@ login_username หรือ login_password</p>
     <span class="phpdocumentor-signature__name">$login_input</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Can be 'login_username' or 'login_password'.</p>
+</section>
+
     
     
 
@@ -392,11 +376,11 @@ login_username หรือ login_password</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ข้อความจาก Login Class</p>
+        <p class="phpdocumentor-summary">The login message.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -425,18 +409,17 @@ login_username หรือ login_password</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวแปรเก็บข้อมูลที่ส่งมา
-เช่น username, password</p>
+        <p class="phpdocumentor-summary">The login parameters submitted by the user.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
     <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$login_params</span>
-     = <span class="phpdocumentor-signature__default-value">array()</span></code>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
     
     
@@ -459,11 +442,11 @@ login_username หรือ login_password</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Config class</p>
+        <p class="phpdocumentor-summary">Config class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -492,11 +475,11 @@ login_username หรือ login_password</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Server request class</p>
+        <p class="phpdocumentor-summary">Server request class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -529,26 +512,25 @@ login_username หรือ login_password</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">169</span>
+    <span class="phpdocumentor-element-found-in__line">158</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นตรวจสอบการ login
-เข้าระบบสำเร็จคืนค่าแอเรย์ข้อมูลสมาชิก, ไม่สำเร็จ คืนค่าข้อความผิดพลาด</p>
+        <p class="phpdocumentor-summary">Validates the login credentials against the configured username and password.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">checkLogin</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">checkLogin</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$loginParams</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$params</span>
+                <span class="phpdocumentor-signature__argument__name">$loginParams</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลการ login ที่ส่งมา $params = array('username' =&gt; '', 'password' =&gt; '');</p>
+                    <section class="phpdocumentor-description"><p>The login parameters. e.g., array('username' =&gt; '', 'password' =&gt; '');</p>
 </section>
 
             </dd>
@@ -559,7 +541,9 @@ login_username หรือ login_password</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns a string error message if login fails, or an array with login information.</p>
+</section>
+
     
 </article>
                     <article
@@ -575,19 +559,20 @@ login_username หรือ login_password</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">220</span>
+    <span class="phpdocumentor-element-found-in__line">208</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบสถานะสมาชิก
-แอดมินสูงสุด (status=1) ทำได้ทุกอย่าง
-คืนค่าข้อมูลสมาชิก (แอเรย์) ถ้าไม่สามารถทำรายการได้คืนค่า null</p>
+        <p class="phpdocumentor-summary">Check the status of a login.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">checkStatus</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$login</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$statuses</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">checkStatus</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$login</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$statuses</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If the login is empty or the status does not match the provided statuses,
+null is returned. If the status matches, the login is returned.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -595,14 +580,18 @@ login_username หรือ login_password</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The login information.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$statuses</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The allowed status(es) to check against.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -611,7 +600,9 @@ login_username หรือ login_password</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The login information if the status matches, null otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -627,14 +618,11 @@ login_username หรือ login_password</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบการ login เมื่อมีการเรียกใช้ class new Login
-action=logout ออกจากระบบ
-action=forgot ขอรหัสผ่านใหม่
-ถ้าไม่มีทั้งสองส่วนด้านบน จะตรวจสอบการ login จาก session</p>
+        <p class="phpdocumentor-summary">Validates the login request and performs the login process.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -648,7 +636,9 @@ action=forgot ขอรหัสผ่านใหม่
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The HTTP request object.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -673,15 +663,15 @@ action=forgot ขอรหัสผ่านใหม่
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">120</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นส่งอีเมลลืมรหัสผ่าน</p>
+        <p class="phpdocumentor-summary">Initiates the password recovery process.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">forgot</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">forgot</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -691,14 +681,16 @@ action=forgot ขอรหัสผ่านใหม่
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The HTTP request object.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -716,12 +708,11 @@ action=forgot ขอรหัสผ่านใหม่
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">193</span>
+    <span class="phpdocumentor-element-found-in__line">181</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นตรวจสอบสถานะแอดมิน
-คืนค่าข้อมูลสมาชิก (แอเรย์) ถ้าเป็นผู้ดูแลระบบและเข้าระบบแล้ว ไม่ใช่คืนค่า null</p>
+        <p class="phpdocumentor-summary">Checks if the user is an admin.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -734,7 +725,9 @@ action=forgot ขอรหัสผ่านใหม่
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns the login information if the user is an admin, or null otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -750,12 +743,11 @@ action=forgot ขอรหัสผ่านใหม่
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">205</span>
+    <span class="phpdocumentor-element-found-in__line">192</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นตรวจสอบการเข้าระบบ
-คืนค่าข้อมูลสมาชิก (แอเรย์) ถ้าเป็นสมาชิกและเข้าระบบแล้ว ไม่ใช่คืนค่า null</p>
+        <p class="phpdocumentor-summary">Checks if the user is a member.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -768,7 +760,9 @@ action=forgot ขอรหัสผ่านใหม่
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns the login information if the user is a member, or null otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -784,15 +778,15 @@ action=forgot ขอรหัสผ่านใหม่
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">143</span>
+    <span class="phpdocumentor-element-found-in__line">133</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นตรวจสอบการเข้าระบบ</p>
+        <p class="phpdocumentor-summary">Validates the login credentials and performs the login process.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">login</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">login</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$loginParams</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -802,21 +796,25 @@ action=forgot ขอรหัสผ่านใหม่
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The HTTP request object.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$params</span>
+                <span class="phpdocumentor-signature__argument__name">$loginParams</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The login parameters.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -834,15 +832,15 @@ action=forgot ขอรหัสผ่านใหม่
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Login.php"><a href="files/kotchasan-login.html"><abbr title="Kotchasan/Login.php">Login.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นออกจากระบบ</p>
+        <p class="phpdocumentor-summary">Logs out the user by clearing the session and displaying a success message.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">logout</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">logout</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -852,14 +850,16 @@ action=forgot ขอรหัสผ่านใหม่
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The HTTP request object.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     

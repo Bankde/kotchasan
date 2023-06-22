@@ -23,15 +23,11 @@ use Psr\Log\LogLevel;
 class Logger extends AbstractLogger implements LoggerInterface
 {
     /**
-     * @var Singleton สำหรับเรียกใช้ class นี้เพียงครั้งเดียวเท่านั้น
-     */
-    protected static $instance = null;
-    /**
      * Log Levels
      *
      * @var array
      */
-    protected $logLevels = array(
+    protected $logLevels = [
         LogLevel::EMERGENCY => 0,
         LogLevel::ALERT => 1,
         LogLevel::CRITICAL => 2,
@@ -40,75 +36,91 @@ class Logger extends AbstractLogger implements LoggerInterface
         LogLevel::NOTICE => 5,
         LogLevel::INFO => 6,
         LogLevel::DEBUG => 7
-    );
+    ];
+
     /**
-     * รูปแบบของ log
+     * Log options
      *
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'dateFormat' => 'Y-m-d H:i:s',
         'logFormat' => '[{datetime}] {level}: {message} {context}',
         'logFilePath' => 'logs/',
         'extension' => 'php'
-    );
+    ];
 
     /**
-     * create Logger instance (Singleton)
+     * Singleton instance
      *
-     * @param array $options
+     * @var Singleton
+     */
+    protected static $instance = null;
+
+    /**
+     * Create a Logger instance (Singleton).
+     *
+     * @param array $options Log options (optional).
      *
      * @return static
      */
-    public static function create(array $options = array())
+    public static function create(array $options = [])
     {
         if (null === self::$instance) {
             self::$instance = new static($options);
         }
+
         return self::$instance;
     }
 
     /**
-     * Logs with an arbitrary level
+     * Logs a message with an arbitrary level.
      *
-     * @param mixed  $level
-     * @param string $message
-     * @param array  $context
+     * @param mixed  $level   The log level.
+     * @param string $message The log message.
+     * @param array  $context The log context (optional).
+     *
+     * @return void
      */
-    public function log($level, $message, array $context = array())
+    public function log($level, $message, array $context = [])
     {
-        $patt = array(
+        $patt = [
             'datetime' => date($this->options['dateFormat'], time()),
             'level' => isset($this->logLevels[$level]) ? strtoupper($level) : 'UNKNOW',
             'message' => $message,
             'context' => empty($context) ? '' : json_encode($context)
-        );
+        ];
+
         $message = $this->options['logFormat'];
+
         foreach ($patt as $key => $value) {
-            $message = str_replace('{'.$key.'}', $value, $message);
+            $message = str_replace('{' . $key . '}', $value, $message);
         }
-        $message = "\n".preg_replace('/[\s\n\t\r]+/', ' ', $message);
+
+        $message = "\n" . preg_replace('/[\s\n\t\r]+/', ' ', $message);
+
         if (File::makeDirectory($this->options['logFilePath'])) {
-            // ไฟล์ log
             switch ($level) {
                 case LogLevel::DEBUG:
                 case LogLevel::INFO:
                 case LogLevel::ALERT:
-                    $file = $this->options['logFilePath'].date('Y-m-d').'.'.$this->options['extension'];
+                    $file = $this->options['logFilePath'] . date('Y-m-d') . '.' . $this->options['extension'];
                     break;
                 default:
-                    $file = $this->options['logFilePath'].'error_log.'.$this->options['extension'];
+                    $file = $this->options['logFilePath'] . 'error_log.' . $this->options['extension'];
                     break;
             }
-            // save
+
             if (file_exists($file)) {
                 $f = @fopen($file, 'a');
             } else {
                 $f = @fopen($file, 'w');
-                if ($f && $this->options['extension'] == 'php') {
-                    fwrite($f, '<'.'?php exit() ?'.'>');
+
+                if ($f && $this->options['extension'] === 'php') {
+                    fwrite($f, '<?php exit();?>');
                 }
             }
+
             if ($f) {
                 fwrite($f, $message);
                 fclose($f);
@@ -122,13 +134,14 @@ class Logger extends AbstractLogger implements LoggerInterface
     }
 
     /**
-     * Singleton
+     * Private constructor.
      *
-     * @param array $options
+     * @param array $options Log options.
      */
     private function __construct($options)
     {
-        $this->options['logFilePath'] = ROOT_PATH.'datas/logs/';
+        $this->options['logFilePath'] = ROOT_PATH . 'datas/logs/';
+
         foreach ($options as $key => $value) {
             $this->options[$key] = $value;
         }

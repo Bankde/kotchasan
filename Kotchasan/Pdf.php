@@ -61,18 +61,18 @@ class Pdf extends \PDF\FPDF
     /**
      * Output a cell
      *
-     * @param int        $w        ความกว้าง, คำนวณอัตโนมัติ
-     * @param int        $h        line-height
-     * @param string     $txt      ข้อความที่แสดง
-     * @param int|string $border   ไม่แสดง, 1 แสดงทั้ง 4 ด้าน, LTRB กำหนดเอง
-     * @param int        $ln       ตำแหน่งหลังจากวาดแล้ว (default) ไปทางขวา, 1 กลับไปจุดเริ่มต้น, 2 บรรทัดถัดไป
-     * @param string     $align    L หรือค่าว่าง (default) ชิดซ้าย, R ชิดขวา, C ตรงกลาง, J justify (default)
-     * @param bool       $fill     true แสดงพื้นหลัง, false โปร่งใส
-     * @param string     $link     URL
-     * @param int        $tPadding padding-top
-     * @param int        $rPadding padding-right
-     * @param int        $bPadding padding-bottom
-     * @param int        $lPadding padding-right
+     * @param int $w Width of the cell (automatically calculated if set to 0)
+     * @param int $h Line height
+     * @param string $txt Text to be displayed
+     * @param int|string $border Border style: 0 (no border), 1 (all sides), LTRB (custom sides)
+     * @param int $ln Position after drawing: 0 (to the right) (default), 1 (start of next line), 2 (below)
+     * @param string $align Text alignment: L (left align) (default), R (right align), C (center), J (justify)
+     * @param bool $fill Fill color: true (background color), false (transparent)
+     * @param string $link URL link
+     * @param int $tPadding Top padding
+     * @param int $rPadding Right padding
+     * @param int $bPadding Bottom padding
+     * @param int $lPadding Left padding
      */
     public function Cell($w, $h = 0, $txt = '', $border = 0, $ln = 0, $align = '', $fill = false, $link = '', $tPadding = 0, $rPadding = 0, $bPadding = 0, $lPadding = 0)
     {
@@ -161,32 +161,32 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * ขึ้นบรรทัดใหม่
+     * Line break.
      *
-     * @param int $h line-height ถ้าไม่กำหนดจะใช้ค่าล่าสุด
+     * @param int $h line-height. If not specified, the last used value is used.
      */
     public function Ln($h = null)
     {
-        // ขึ้นบรรทัดใหม่
+        // Line break
         $this->x = $this->lMargin;
         $this->y += ($h ? $h : $this->lineHeight);
-        // บอกว่าขึ้นบรรทัดใหม้แล้ว
+        // Indicate line break
         $this->lastBlock = true;
     }
 
     /**
-     * Output text with automatic or explicit line breaks
+     * Output text with automatic or explicit line breaks.
      *
-     * @param int        $w        ความกว้าง, คำนวณอัตโนมัติ
-     * @param int        $h        line-height
-     * @param string     $s        ข้อความที่แสดง
-     * @param int|string $border   ไม่แสดง, 1 แสดงทั้ง 4 ด้าน, LTRB กำหนดเอง
-     * @param string     $align    L หรือค่าว่างชิดซ้าย, R ชิดขวา, C ตรงกลาง, J justify (default)
-     * @param bool       $fill     true แสดงพื้นหลัง, false โปร่งใส
-     * @param int        $tPadding padding-top
-     * @param int        $rPadding padding-right
-     * @param int        $bPadding padding-bottom
-     * @param int        $lPadding padding-right
+     * @param int        $w        Width. Automatically calculated if set to 0.
+     * @param int        $h        Line-height.
+     * @param string     $s        Text to display.
+     * @param int|string $border   Border style. 0 for no border, 1 for border on all sides, LTRB for custom sides.
+     * @param string     $align    Alignment. L (or empty) for left-aligned, R for right-aligned, C for center, J for justified (default).
+     * @param bool       $fill     true to display background, false for transparent.
+     * @param int        $tPadding Top padding.
+     * @param int        $rPadding Right padding.
+     * @param int        $bPadding Bottom padding.
+     * @param int        $lPadding Left padding.
      */
     public function MultiCell($w, $h, $s, $border = 0, $align = 'J', $fill = false, $tPadding = 0, $rPadding = 0, $bPadding = 0, $lPadding = 0)
     {
@@ -216,16 +216,16 @@ class Pdf extends \PDF\FPDF
         $ns = 0;
         $nl = 1;
         while ($i < $nb) {
-            // ตัวอักษรถัดไป
+            // Next character
             $c = $s[$i];
             if ($c == "\n") {
-                // ขึ้นบรรทัดใหม่
+                // Line break
                 if ($this->ws > 0) {
                     $this->ws = 0;
                     $this->_out('0 Tw');
                 }
                 if ($nl == 1) {
-                    // บรรทัดแรก
+                    // First line
                     $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace('B', '', $border), 2, $align, $fill, '', $tPadding, $rPadding, 0, $lPadding);
                 } else {
                     $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace(array('T', 'B'), '', $border), 2, $align, $fill, '', 0, $rPadding, 0, $lPadding);
@@ -244,7 +244,7 @@ class Pdf extends \PDF\FPDF
             }
             $l += $cw[$c];
             if ($l > $wmax) {
-                // ขึ้นบรรทัดใหม่เมื่อข้อความเกินกว่าความกว้างของเอกสาร
+                // Line break when text exceeds document width
                 if ($sep == -1) {
                     if ($i == $j) {
                         ++$i;
@@ -254,7 +254,7 @@ class Pdf extends \PDF\FPDF
                         $this->_out('0 Tw');
                     }
                     if ($nl == 1) {
-                        // บรรทัดแรก
+                        // First line
                         $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace('B', '', $border), 2, $align, $fill, '', $tPadding, $rPadding, 0, $lPadding);
                     } else {
                         $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace(array('T', 'B'), '', $border), 2, $align, $fill, '', 0, $rPadding, 0, $lPadding);
@@ -265,7 +265,7 @@ class Pdf extends \PDF\FPDF
                         $this->_out(sprintf('%.3F Tw', $this->ws * $this->k));
                     }
                     if ($nl == 1) {
-                        // บรรทัดแรก
+                        // First line
                         $this->Cell($cell_width, $h, substr($s, $j, $sep - $j), str_replace('B', '', $border), 2, $align, $fill, '', $tPadding, $rPadding, 0, $lPadding);
                     } else {
                         $this->Cell($cell_width, $h, substr($s, $j, $sep - $j), str_replace(array('T', 'B'), '', $border), 2, $align, $fill, '', 0, $rPadding, 0, $lPadding);
@@ -287,10 +287,10 @@ class Pdf extends \PDF\FPDF
             $this->_out('0 Tw');
         }
         if ($nl == 1) {
-            // บรรทัดเดียว
+            // Single line
             $this->Cell($cell_width, $h, substr($s, $j, $i - $j), $border, 2, $align, $fill, '', $tPadding, $rPadding, $bPadding, $lPadding);
         } else {
-            // บรรทัดสุดท้าย
+            // Last line
             $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace('T', '', $border), 2, $align, $fill, '', 0, $rPadding, $bPadding, $lPadding);
         }
         $this->y += $bPadding;
@@ -298,7 +298,7 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * กำหนดรูปแบบของ class
+     * Set the style attributes for a class.
      *
      * @param string $className
      * @param array  $attributes
@@ -311,7 +311,7 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * กำหนดรูปแบบของ tag
+     * Set the style of a tag.
      *
      * @param string $tag
      * @param array  $attributes
@@ -324,24 +324,24 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * สร้าง PDF จาก HTML โค้ด
-     * แสดงผลตามรูปแบบที่กำหนดโดย คชสาร
+     * Create a PDF from HTML code.
+     * Render the output based on the format specified by Kosit.
      *
-     * @param string $html    โค้ด HTML4
-     * @param string $charset default cp874 (ภาษาไทย)
+     * @param string $html    HTML4 code
+     * @param string $charset default cp874 (Thai language)
      */
     public function WriteHTML($html, $charset = 'cp874')
     {
-        // parse HTML
+        // Parse HTML
         $dom = new DOMParser($html, $charset);
-        // render
+        // Render
         foreach ($dom->nodes() as $node) {
             $this->render($node);
         }
     }
 
     /**
-     * Create FPDF ภาษาไทย
+     * Create FPDF for Thai language.
      *
      * @param string $orientation
      * @param string $unit
@@ -350,15 +350,15 @@ class Pdf extends \PDF\FPDF
      */
     public function __construct($orientation = 'P', $unit = 'mm', $size = 'A4', $fontSize = 10)
     {
-        // create FPDF
+        // Create FPDF
         parent::__construct($orientation, $unit, $size);
-        // ค่าเริ่มต้นตัวแปรต่างๆ
+        // Default variable values
         $this->B = 0;
         $this->I = 0;
         $this->U = 0;
         $this->unit = $unit;
         $this->fontSize = $fontSize;
-        // ฟ้อนต์ภาษาไทย
+        // Thai fonts
         $this->AddFont('loma', '', 'Loma.php');
         $this->AddFont('loma', 'B', 'Loma-Bold.php');
         $this->AddFont('loma', 'I', 'Loma-Oblique.php');
@@ -367,9 +367,9 @@ class Pdf extends \PDF\FPDF
         $this->AddFont('angsana', 'B', 'angsab.php');
         $this->AddFont('angsana', 'I', 'angsai.php');
         $this->AddFont('angsana', 'BI', 'angsaz.php');
-        // ฟอ้นต์เริ่มต้น
+        // Default font
         $this->SetFont('loma', '', $this->fontSize);
-        // default styles
+        // Default styles
         $this->css = array(
             'H1' => array(
                 'SIZE' => $this->fontSize + 10,
@@ -437,7 +437,7 @@ class Pdf extends \PDF\FPDF
                 'COLOR' => '#333333'
             )
         );
-        // class style
+        // Class styles
         $this->cssClass = array(
             'COMMENT' => array(
                 'SIZE' => $this->fontSize - 1,
@@ -462,10 +462,10 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * ตรวจสอบความสูงของตาราง ถ้าความสูงของตารางเกินหน้า
-     * จะขึ้นหน้าใหม่
+     * Check the height of a table. If the height exceeds the page,
+     * start a new page.
      *
-     * @param int $h ความสูงของตาราง
+     * @param int $h Table height
      */
     protected function CheckPageBreak($h)
     {
@@ -475,12 +475,12 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * คำนวณความสูงของเซล
+     * Calculate the height of a cell.
      *
-     * @param int    $w
-     * @param string $s
+     * @param int    $w Width of the cell
+     * @param string $s Text content of the cell
      *
-     * @return int
+     * @return int Height of the cell
      */
     protected function NbLines($w, $s)
     {
@@ -532,10 +532,10 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * แสดงผลตัวหนา ตัวเอียง ขีดเส้นใต้
+     * Set bold, italic, or underline style for rendering text.
      *
-     * @param string $style  B I หรือ U
-     * @param bool   $enable true เปิดใช้งาน, false ปิดใช้งาน
+     * @param string $style  B, I, or U
+     * @param bool   $enable true to enable, false to disable
      */
     protected function SetStyle($style, $enable)
     {
@@ -550,18 +550,18 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * กำหนด CSS
+     * Apply CSS styles to the document.
      *
-     * @param DOMNode $node
+     * @param DOMNode $node DOM node
      */
     protected function applyCSS($node)
     {
-        // แบบตัวอักษร
+        // Font family
         if (!empty($node->attributes['FONT-FAMILY'])) {
             $node->FontFamily = $this->FontFamily;
             $this->SetFont($node->attributes['FONT-FAMILY']);
         }
-        // สีตัวอักษร
+        // Text color
         if (!empty($node->attributes['COLOR'])) {
             if (preg_match('/([0-9\.]+)\s(([0-9\.]+)\s([0-9\.]+)\sr)?g/', $this->TextColor, $match)) {
                 $node->TextColor = array(
@@ -573,7 +573,7 @@ class Pdf extends \PDF\FPDF
             list($r, $g, $b) = $this->colorToRGb($node->attributes['COLOR']);
             $this->SetTextColor($r, $g, $b);
         }
-        // สีพื้น
+        // Background color
         if (!empty($node->attributes['BACKGROUND-COLOR'])) {
             if (preg_match('/([0-9\.]+)\s(([0-9\.]+)\s([0-9\.]+)\sr)?g/', $this->FillColor, $match)) {
                 $node->FillColor = array(
@@ -585,7 +585,7 @@ class Pdf extends \PDF\FPDF
             list($r, $g, $b) = $this->colorToRGb($node->attributes['BACKGROUND-COLOR']);
             $this->SetFillColor($r, $g, $b);
         }
-        // สีกรอบ
+        // Border color
         if (!empty($node->attributes['BORDER-COLOR'])) {
             if (preg_match('/([0-9\.]+)\s(([0-9\.]+)\s([0-9\.]+)\sR)?G/', $this->DrawColor, $match)) {
                 $node->DrawColor = array(
@@ -597,19 +597,19 @@ class Pdf extends \PDF\FPDF
             list($r, $g, $b) = $this->colorToRGb($node->attributes['BORDER-COLOR']);
             $this->SetDrawColor($r, $g, $b);
         }
-        // ตัวหนา
+        // Font weight
         if (!empty($node->attributes['FONT-WEIGHT'])) {
             $this->SetStyle('B', $node->attributes['FONT-WEIGHT'] == 'BOLD');
         }
-        // ตัวเอียง
+        // Font style
         if (!empty($node->attributes['FONT-STYLE'])) {
             $this->SetStyle('I', $node->attributes['FONT-STYLE'] == 'ITALIC');
         }
-        // ขีดเส้นใต้
+        // Text decoration
         if (!empty($node->attributes['TEXT-DECORATION'])) {
             $this->SetStyle('U', $node->attributes['TEXT-DECORATION'] == 'UNDERLINE');
         }
-        // ขนาดตัวอักษร
+        // Font size
         if (!empty($node->attributes['SIZE'])) {
             $node->FontSizePt = $this->FontSizePt;
             $this->SetFontSize($node->attributes['SIZE']);
@@ -617,42 +617,48 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * คำนวนขนาดของคอลัมน์เป็น %
+     * Calculate the width of columns as a percentage.
      *
-     * @param DOMNode $table
+     * @param DOMNode $table The table node.
      *
-     * @return array
+     * @return array An array of calculated column widths.
      */
     protected function calculateColumnsWidth($table)
     {
-        // page width
+        // Page width
         $cw = $this->w - $this->lMargin - $this->rMargin;
+
+        // Table width
         if (!empty($table->attributes['WIDTH'])) {
-            // ความกว้างของตาราง width=xxx
             $table_width = $this->calculateSize($table->attributes['WIDTH'], $cw);
         }
+
         $columnSizes = array();
+
         foreach ($table->childNodes as $child) {
             foreach ($child->childNodes as $tr) {
                 foreach ($tr->childNodes as $col => $td) {
-                    // อ่านข้อความใส่ลงในโหนด
+                    // Set node value
                     $td->nodeValue = $td->nodeText();
-                    // คำนวณความกว้างของข้อความ
+                    // Calculate text width
                     $td->textWidth = $this->GetStringWidth($td->nodeValue);
-                    // ลบโหนดลูกออก
+                    // Remove child nodes
                     unset($td->childNodes);
-                    // ความกว้างของ cell
+
                     $length = isset($table_width) && !empty($td->attributes['WIDTH']) ? $this->calculateSize($td->attributes['WIDTH'], $table_width) : $td->textWidth;
+
                     $columnSizes[$col]['max'] = !isset($columnSizes[$col]['max']) ? $length : ($columnSizes[$col]['max'] < $length ? $length : $columnSizes[$col]['max']);
                     $columnSizes[$col]['avg'] = !isset($columnSizes[$col]['avg']) ? $length : $columnSizes[$col]['avg'] + $length;
                     $columnSizes[$col]['raw'][] = $length;
                 }
             }
         }
+
         $columnSizes = array_map(function ($columnSize) {
             $columnSize['avg'] = $columnSize['avg'] / sizeof($columnSize['raw']);
             return $columnSize;
         }, $columnSizes);
+
         foreach ($columnSizes as $key => $columnSize) {
             $colMaxSize = $columnSize['max'];
             $colAvgSize = $columnSize['avg'];
@@ -661,6 +667,7 @@ class Pdf extends \PDF\FPDF
             $columnSizes[$key]['cv'] = $coefficientVariation;
             $columnSizes[$key]['stdd'] = $stdDeviation;
             $columnSizes[$key]['stdd/max'] = $stdDeviation / $colMaxSize;
+
             if (($columnSizes[$key]['stdd/max'] < 0.3 || $coefficientVariation == 1) && ($coefficientVariation == 0 || ($coefficientVariation > 0.6 && $coefficientVariation < 1.5))) {
                 $columnSizes[$key]['calc'] = $colAvgSize;
             } else {
@@ -669,15 +676,20 @@ class Pdf extends \PDF\FPDF
                 } else {
                     $tmp = 0;
                 }
+
                 $columnSizes[$key]['calc'] = $colAvgSize + ($colMaxSize / $colAvgSize) * 2 / abs(1 - $coefficientVariation);
                 $columnSizes[$key]['calc'] = $columnSizes[$key]['calc'] > $colMaxSize ? $colMaxSize - $tmp : $columnSizes[$key]['calc'];
             }
         }
+
         $totalCalculatedSize = 0;
+
         foreach ($columnSizes as $columnSize) {
             $totalCalculatedSize += $columnSize['calc'];
         }
+
         $result = array();
+
         foreach ($columnSizes as $key => $columnSize) {
             if (empty($table_width)) {
                 $result[$key] = 100 / ($totalCalculatedSize / $columnSize['calc']);
@@ -685,16 +697,17 @@ class Pdf extends \PDF\FPDF
                 $result[$key] = ($columnSize['calc'] * $table_width) / $totalCalculatedSize;
             }
         }
+
         return $result;
     }
 
     /**
-     * คำนวนขนาด
+     * Calculate the size.
      *
-     * @param int|string $size     ขนาด เช่น 100%, 20px
-     * @param int        $max_size ขนาดที่ 100%
+     * @param int|string $size The size value (e.g., "100%", "20px").
+     * @param int $max_size The maximum size.
      *
-     * @return int
+     * @return int The calculated size.
      */
     protected function calculateSize($size, $max_size)
     {
@@ -705,35 +718,39 @@ class Pdf extends \PDF\FPDF
                 return (int) $match[1];
             }
         }
+
         return (int) $size;
     }
 
     /**
-     * แปลงค่าสี HTML hex เช่น #FF0000 เป็นค่าสี RGB
-     * คืนค่า array($r, $g, $b) เช่น #FF0000 = array(255, 0, 0)
+     * Convert HTML hex color value, e.g., #FF0000, to RGB color value.
+     * Returns an array [$r, $g, $b], e.g., #FF0000 = [255, 0, 0].
      *
-     * @param string $color ค่าสี HTML hex เช่น #FF0000
+     * @param string $color The HTML hex color value, e.g., #FF0000.
      *
-     * @return array
+     * @return array The RGB color value as an array.
      */
     protected function colorToRGb($color)
     {
-        return array(
+        return [
             hexdec(substr($color, 1, 2)),
             hexdec(substr($color, 3, 2)),
             hexdec(substr($color, 5, 2))
-        );
+        ];
     }
 
     /**
-     * เส้นคั่น
+     * Draw a horizontal line.
      *
-     * @param DOMNode $node
+     * @param DOMNode $node The node.
+     *
+     * @return void
      */
     protected function drawHr($node)
     {
-        // ขึ้นบรรทัดใหม่
+        // New line height
         $ln = 2;
+
         if (!$this->lastBlock) {
             if ($node->attributes['DISPLAY'] !== 'INLINE') {
                 $ln = 7;
@@ -741,18 +758,21 @@ class Pdf extends \PDF\FPDF
                 $ln = 7;
             }
         }
+
         $this->Ln($ln);
-        // current position
+        // Current position
         $x = $this->GetX();
         $y = $this->GetY();
-        // client width
+        // Client width
         $cw = $this->w - $this->lMargin - $this->rMargin;
+
         if (empty($node->attributes['WIDTH'])) {
-            // width 100%
+            // Width 100%
             $w = $cw;
         } else {
-            // width จากที่กำหนดมา
+            // Custom width
             $w = $this->calculateSize($node->attributes['WIDTH'], $cw);
+
             if (!empty($node->attributes['ALIGN']) && $cw > $w) {
                 switch (strtoupper($node->attributes['ALIGN'])) {
                     case 'CENTER':
@@ -764,44 +784,50 @@ class Pdf extends \PDF\FPDF
                 }
             }
         }
+
         if (!empty($node->attributes['COLOR'])) {
             $node->DrawColor = $this->DrawColor;
             list($r, $g, $b) = $this->colorToRGb($node->attributes['COLOR']);
             $this->SetDrawColor($r, $g, $b);
         }
+
         $lineWidth = $this->LineWidth;
         $this->SetLineWidth(0.4);
         $this->Line($x, $y, $x + $w, $y);
         $this->SetLineWidth($lineWidth);
+
         if (!empty($node->attributes['COLOR'])) {
             $this->DrawColor = $node->DrawColor;
         }
-        // ขึ้นบรรทัดใหม่
+
+        // New line
         $this->Ln(2);
     }
 
     /**
-     * แสดงรูปภาพ
+     * Draw an image.
      *
-     * @param DOMNode $node
+     * @param DOMNode $node The node.
      */
     protected function drawImg($node)
     {
         if (isset($node->attributes['SRC']) && file_exists($node->attributes['SRC'])) {
             list($left, $top, $width, $height) = $this->resizeImage($node);
+
             if ($node->parentNode->nodeName == 'FIGURE') {
                 $this->Image($node->attributes['SRC'], $left, $top, $width, $height);
                 $this->lastBlock = true;
             } else {
                 if ($node->attributes['DISPLAY'] == 'INLINE' && $node->previousSibling && $node->previousSibling->attributes['DISPLAY'] !== 'INLINE') {
-                    // ขึ้นบรรทัดใหม่
+                    // New line
                     $x = $this->lMargin;
                     $y = $this->y + $this->lineHeight;
                 } else {
-                    // get current X and Y
+                    // Current X and Y
                     $x = $this->GetX();
                     $y = $this->GetY();
                 }
+
                 $this->Image($node->attributes['SRC'], $x, $y);
                 $this->x = $x + $width;
                 $this->y = $y;
@@ -811,90 +837,111 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * แสดงตาราง
+     * Draws a table.
      *
-     * @param DOMNode $table
+     * @param DOMNode $table The table node.
      */
     protected function drawTable($table)
     {
         if (!$this->lastBlock) {
             $this->Ln();
         }
-        // คำนวณความกว้างของ Cell
+
+        // Calculate column widths
         $columnSizes = $this->calculateColumnsWidth($table);
-        // กำหนด CSS
+
+        // Apply CSS
         $this->applyCSS($table);
-        // line-height
+
+        // Line height
         $lineHeight = $this->lineHeight + 2;
-        // thead, tbody, tfoot
-        foreach ($table->childNodes as $table_group) {
-            foreach ($table_group->childNodes as $tr) {
-                // อ่าน CSS ของโหนด
+
+        // Process thead, tbody, tfoot
+        foreach ($table->childNodes as $tableGroup) {
+            foreach ($tableGroup->childNodes as $tr) {
+                // Load node's CSS
                 $this->loadStyle($tr);
-                // คำนวณความสูงของแถว
+
+                // Calculate row height
                 $h = 0;
                 foreach ($tr->childNodes as $col => $td) {
-                    // apply css จาก tr
+                    // Apply CSS from tr
                     foreach ($tr->attributes as $key => $value) {
                         $td->attributes[$key] = $value;
                     }
-                    // อ่าน CSS ของโหนด
+
+                    // Load node's CSS
                     $this->loadStyle($td);
-                    // คำนวณจำนวนแถวของข้อความ
+
+                    // Calculate number of text lines
                     $h = max($h, $this->NbLines($columnSizes[$col], $td->nodeValue));
                 }
                 $h = $h * $lineHeight;
-                // ตรวจสอบการแบ่งหน้า
+
+                // Check page break
                 $this->CheckPageBreak($h);
-                // แสดงผล
+
+                // Display content
                 $y = $this->y;
                 foreach ($tr->childNodes as $col => $td) {
-                    // กำหนด CSS
+                    // Apply CSS
                     $this->applyCSS($td);
+
                     $align = '';
                     if (!empty($td->attributes['TEXT-ALIGN'])) {
                         $align = $td->attributes['TEXT-ALIGN'][0];
                     }
-                    // current x
+
+                    // Current x position
                     $x = $this->x;
-                    // bg & border
+
+                    // Background and border
                     $this->Cell($columnSizes[$col], $h, '', 1, 0, '', !empty($td->attributes['BACKGROUND-COLOR']));
-                    // restore position
+
+                    // Restore position
                     $this->x = $x;
                     $this->y = $y;
-                    // draw text
+
+                    // Draw text
                     $this->MultiCell($columnSizes[$col], $lineHeight, $td->nodeValue, 0, $align);
-                    // next cell
+
+                    // Move to next cell
                     $this->x = $x + $columnSizes[$col];
                     $this->y = $y;
-                    // คืนค่า CSS
+
+                    // Restore CSS
                     $this->restoredCSS($td);
                 }
+
                 $this->SetXY($this->lMargin, $y + $h);
             }
         }
-        // คืนค่า CSS
+
+        // Restore CSS
         $this->restoredCSS($table);
-        // ขึ้นบรรทัดใหม่
+
+        // New line
         $this->lastBlock = true;
     }
 
     /**
-     * อ่าน CSS ของโหนด
+     * Loads the CSS of a node.
      *
-     * @param DOMNode $node
+     * @param DOMNode $node The node to load the CSS for.
      */
     protected function loadStyle($node)
     {
-        // display
+        // Display
         $node->attributes['DISPLAY'] = $node->isInlineElement() ? 'INLINE' : 'BLOCK';
-        // style เริ่มต้น
+
+        // Default styles
         if (isset($this->css[$node->nodeName])) {
             foreach ($this->css[$node->nodeName] as $key => $value) {
                 $node->attributes[$key] = $value;
             }
         }
-        // style จาก property style
+
+        // Styles from 'style' property
         if (!empty($node->attributes['STYLE'])) {
             foreach (explode(';', strtoupper($node->attributes['STYLE'])) as $style) {
                 if (preg_match('/^([A-Z\-]+)[\s]{0,}\:[\s]{0,}([A-Z0-9\-]+).*?/', trim($style), $match)) {
@@ -903,7 +950,8 @@ class Pdf extends \PDF\FPDF
             }
             unset($node->attributes['STYLE']);
         }
-        // style จาก class
+
+        // Styles from class
         if (isset($node->attributes['CLASS'])) {
             foreach (explode(' ', $node->attributes['CLASS']) as $class) {
                 $class = strtoupper($class);
@@ -917,7 +965,8 @@ class Pdf extends \PDF\FPDF
             }
             unset($node->attributes['CLASS']);
         }
-        // padding
+
+        // Padding
         if (!empty($node->attributes['PADDING'])) {
             $value = (int) $node->attributes['PADDING'];
             if (!isset($node->attributes['PADDING-LEFT'])) {
@@ -937,18 +986,20 @@ class Pdf extends \PDF\FPDF
     }
 
     /**
-     * @param DOMNode $node
+     * Renders a node.
      *
-     * @return string
+     * @param DOMNode $node The node to render.
+     * @return void
      */
     protected function render($node)
     {
         if ($node->nodeName == '') {
-            // โหนดข้อความ
+            // Text node
             $node->attributes['DISPLAY'] = 'INLINE';
             $lineHeight = empty($node->parentNode->attributes['LINE-HEIGHT']) ? $this->lineHeight : $node->parentNode->attributes['LINE-HEIGHT'];
+
             if ($node->parentNode && $node->parentNode->attributes['DISPLAY'] !== 'INLINE' && sizeof($node->parentNode->childNodes) == 1) {
-                // block node
+                // Block node
                 $align = empty($node->parentNode->attributes['TEXT-ALIGN']) ? '' : $node->parentNode->attributes['TEXT-ALIGN'][0];
                 $border = empty($node->parentNode->attributes['BORDER-COLOR']) ? 0 : 1;
                 $fill = empty($node->parentNode->attributes['BACKGROUND-COLOR']) ? false : true;
@@ -956,37 +1007,39 @@ class Pdf extends \PDF\FPDF
                 $rPadding = empty($node->parentNode->attributes['PADDING-RIGHT']) ? 0 : $node->parentNode->attributes['PADDING-RIGHT'];
                 $bPadding = empty($node->parentNode->attributes['PADDING-BOTTOM']) ? 0 : $node->parentNode->attributes['PADDING-BOTTOM'];
                 $lPadding = empty($node->parentNode->attributes['PADDING-LEFT']) ? 0 : $node->parentNode->attributes['PADDING-LEFT'];
+
                 $this->MultiCell(0, $lineHeight, $node->unentities($node->nodeValue), $border, $align, $fill, $tPadding, $rPadding, $bPadding, $lPadding);
                 $this->lastBlock = true;
             } else {
-                // inline node
+                // Inline node
                 if ($this->link) {
-                    // link
+                    // Link
                     $this->Write($lineHeight, $node->unentities($node->nodeValue), $this->link);
                 } else {
-                    // text
+                    // Text
                     $this->Write($lineHeight, $node->unentities($node->nodeValue));
                 }
                 $this->lastBlock = false;
             }
         } else {
-            // อ่าน CSS ของโหนด
+            // Read node's CSS
             $this->loadStyle($node);
-            // open tag
+
+            // Open tag
             if ($node->nodeName == 'BR') {
-                // ขึ้นบรรทัดใหม่
+                // Line break
                 $this->Ln();
             } elseif ($node->nodeName == 'IMG') {
-                // รูปภาพ
+                // Image
                 $this->drawImg($node);
             } elseif ($node->nodeName == 'HR') {
-                // เส้นคั่น
+                // Horizontal rule
                 $this->drawHr($node);
             } elseif ($node->nodeName == 'TABLE') {
-                // ตาราง
+                // Table
                 $this->drawTable($node);
             } else {
-                // ขึ้นบรรทัดใหม่
+                // Line break
                 if (!$this->lastBlock) {
                     if ($node->attributes['DISPLAY'] !== 'INLINE') {
                         $this->Ln();
@@ -994,39 +1047,45 @@ class Pdf extends \PDF\FPDF
                         $this->Ln();
                     }
                 }
-                // link
+
+                // Link
                 if ($node->nodeName == 'A' && !empty($node->attributes['HREF'])) {
                     $this->link = $node->attributes['HREF'];
                 }
-                // กำหนด CSS
+
+                // Apply CSS
                 $this->applyCSS($node);
-                // render โหนดลูก
+
+                // Render child nodes
                 foreach ($node->childNodes as $child) {
                     $this->render($child);
                 }
-                // คืนค่า CSS
+
+                // Restore CSS
                 $this->restoredCSS($node);
             }
         }
     }
 
     /**
-     * คำนวนตำแหน่งและปรับขนาดของรูปภาพ คืนค่าขนาดและตำปหน่งของรูปภาพ
-     * ถ้ารูปภาพมีขนาดใหญ่กว่าพิ้นที่แสดงผลจะปรับขนาด
-     * ถ้ารูปภาพมีขนาดเล็กกว่าพิ้นที่แสดงผล จะแสดงขนาดเดิม ตามตำแหน่งที่กำหนด
-     * คืนค่า array(left, top, width, height) top เป็น null เสมอ
+     * Resizes an image.
      *
-     * @param DOMNode $node tag IMG
+     * @param $node The node containing the image.
      *
-     * @return array
+     * @return array An array containing the coordinates and dimensions of the resized image.
      */
     protected function resizeImage($node)
     {
+        // Get the width and height of the image
         list($width, $height) = getimagesize($node->attributes['SRC']);
+
         if ($width < $this->wPt && $height < $this->hPt) {
+            // Calculate the scaling factor
             $k = 72 / 96 / $this->k;
             $l = null;
+
             if (isset($node->parentNode->attributes['TEXT-ALIGN'])) {
+                // Determine the horizontal position based on the text alignment
                 switch ($node->parentNode->attributes['TEXT-ALIGN']) {
                     case 'CENTER':
                         $l = ($this->w - ($width * $k)) / 2;
@@ -1036,11 +1095,16 @@ class Pdf extends \PDF\FPDF
                         break;
                 }
             }
+
+            // Return the coordinates and dimensions of the resized image
             return array($l, null, $width * $k, $height * $k);
         } else {
+            // Calculate the scaling factors for width and height
             $ws = $this->wPt / $width;
             $hs = $this->hPt / $height;
             $scale = min($ws, $hs);
+
+            // Determine the scaling factor based on the unit
             if ($this->unit == 'pt') {
                 $k = 1;
             } elseif ($this->unit == 'mm') {
@@ -1050,46 +1114,55 @@ class Pdf extends \PDF\FPDF
             } elseif ($this->unit == 'in') {
                 $k = 1 / 72;
             }
+
+            // Return the coordinates and dimensions of the resized image
             return array(null, null, ((($scale * $width) - 56.7) * $k), ((($scale * $height) - 56.7) * $k));
         }
     }
 
     /**
-     * คืนค่า CSS
+     * Restores CSS properties for a given DOMNode.
      *
-     * @param DOMNode $node
+     * @param object $node The DOMNode object to restore CSS properties for.
      */
     protected function restoredCSS($node)
     {
-        // แบบตัวอักษร
+        // Restore font family
         if (!empty($node->attributes['FONT-FAMILY'])) {
             $this->SetFont($node->FontFamily);
         }
-        // สีกรอบ
+
+        // Restore border color
         if (!empty($node->attributes['BORDER-COLOR']) && isset($node->DrawColor)) {
             $this->SetDrawColor($node->DrawColor['r'], $node->DrawColor['g'], $node->DrawColor['b']);
         }
-        // สีพื้น
+
+        // Restore background color
         if (!empty($node->attributes['BACKGROUND-COLOR']) && isset($node->FillColor)) {
             $this->SetFillColor($node->FillColor['r'], $node->FillColor['g'], $node->FillColor['b']);
         }
-        // สีตัวอักษร
+
+        // Restore text color
         if (!empty($node->attributes['COLOR']) && isset($node->TextColor)) {
             $this->SetTextColor($node->TextColor['r'], $node->TextColor['g'], $node->TextColor['b']);
         }
-        // ตัวหนา
+
+        // Restore font weight (bold)
         if (!empty($node->attributes['FONT-WEIGHT'])) {
             $this->SetStyle('B', $node->attributes['FONT-WEIGHT'] != 'BOLD');
         }
-        // ตัวเอียง
+
+        // Restore font style (italic)
         if (!empty($node->attributes['FONT-STYLE'])) {
             $this->SetStyle('I', $node->attributes['FONT-STYLE'] != 'ITALIC');
         }
-        // ขีดเส้นใต้
+
+        // Restore text decoration (underline)
         if (!empty($node->attributes['TEXT-DECORATION'])) {
             $this->SetStyle('U', $node->attributes['TEXT-DECORATION'] != 'UNDERLINE');
         }
-        // ขนาดตัวอักษร
+
+        // Restore font size
         if (!empty($node->attributes['SIZE'])) {
             $this->SetFontSize($node->FontSizePt);
         }

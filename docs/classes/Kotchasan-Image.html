@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -139,11 +145,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Image.php"><a href="files/kotchasan-image.html"><abbr title="Kotchasan/Image.php">Image.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">คลาสสำหรับจัดการรูปภาพ</p>
+            <p class="phpdocumentor-summary">Class Image
+A class for image manipulation.</p>
 
 
 
@@ -153,20 +160,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -187,62 +185,56 @@
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>คุณภาพของรูปภาพ</dd>
+<dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Image.html#method_crop">crop()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ฟังก์ชั่น ตัดรูปภาพ ตามขนาดที่กำหนด
-รูปภาพปลายทางจะมีขนาดเท่าที่กำหนด หากรูปภาพต้นฉบับมีขนาดหรืออัตราส่วนไม่พอดีกับขนาดของภาพปลายทาง
-รูปภาพจะถูกตัดขอบออกหรือจะถูกขยาย เพื่อให้พอดีกับรูปภาพปลายทางที่ต้องการ
-ผลลัพท์จะได้ไฟล์รูปภาพ jpg เท่านั้น
-สำเร็จคืนค่า true</dd>
+<dd>Crop an image to the specified size.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Image.html#method_flip">flip()</a>
     <span>
                         &nbsp;: <abbr title="\GdImage">GdImage</abbr>    </span>
 </dt>
-<dd>ฟังก์ชั่น พลิกรูปภาพ (ซ้าย-ขวา คล้ายกระจกเงา)
-คืนค่า resource ของรูปภาพหลังจากพลิกรูปภาพแล้ว ไม่สำเร็จคืนค่า resource ของรูปภาพต้นฉบับ</dd>
+<dd>Flip an image horizontally.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Image.html#method_info">info()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|bool    </span>
 </dt>
-<dd>อ่านข้อมูล Exif ของรูปภาพ
-คืนค่า array(width, height, mime) ของรูปภาพ, false ถ้าไม่สามารถอ่านได้</dd>
+<dd>Retrieve image information.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Image.html#method_orient">orient()</a>
     <span>
-                        &nbsp;: <abbr title="\GdImage">GdImage</abbr>    </span>
+                        &nbsp;: <abbr title="\GdImage">GdImage</abbr>|bool    </span>
 </dt>
-<dd>ฟังก์ชั่น โหลดภาพ jpg และหมุนภาพอัตโนมัติจากข้อมูลของ Exif
-คืนค่า resource ของรูปภาพหลังจากหมุนแล้ว ถ้าไม่สนับสนุนคืนค่า resource เดิม</dd>
+<dd>Rotate an image based on the Exif data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Image.html#method_resize">resize()</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;|bool    </span>
+                        &nbsp;: array&lt;string|int, mixed&gt;|false    </span>
 </dt>
-<dd>ฟังก์ชั่นปรับขนาดของภาพ โดยรักษาอัตราส่วนของภาพตามความกว้างที่ต้องการ
-หากรูปภาพมีขนาดเล็กกว่าที่กำหนด จะเป็นการ copy file
-หากรูปภาพมาความสูง หรือความกว้างมากกว่า $width
-จะถูกปรับขนาดให้มีขนาดไม่เกิน $width (ทั้งความสูงและความกว้าง)
-และเปลี่ยนชนิดของภาพเป็น jpg
-คืนค่าแอเรย์ [name, width, height, mime] ของรูปภาพปลายทาง หรือ false ถ้าไม่สามารถดำเนินการได้</dd>
+<dd>Resize an image and optionally add a watermark.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Kotchasan-Image.html#method_setQuality">setQuality()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Set the image quality for JPEG images.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Image.html#method_watermarkText">watermarkText()</a>
     <span>
-                        &nbsp;: resource    </span>
+                        &nbsp;: <abbr title="\GdImage">GdImage</abbr>    </span>
 </dt>
-<dd>ฟังก์ชั่น วาดลายน้ำที่เป็นตัวอักษรลงบนรูปภาพ
-คืนค่า resource ของรูปภาพต้นฉบับ</dd>
+<dd>Add a text watermark to an image.</dd>
 
         </dl>
 
@@ -272,12 +264,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Image.php"><a href="files/kotchasan-image.html"><abbr title="Kotchasan/Image.php">Image.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คุณภาพของรูปภาพ</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
     <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">int</span>
@@ -285,7 +276,9 @@
      = <span class="phpdocumentor-signature__default-value">75</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The image quality (0-100) for JPEG images.</p>
+</section>
+
     
 
 </article>
@@ -309,21 +302,21 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Image.php"><a href="files/kotchasan-image.html"><abbr title="Kotchasan/Image.php">Image.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น ตัดรูปภาพ ตามขนาดที่กำหนด
-รูปภาพปลายทางจะมีขนาดเท่าที่กำหนด หากรูปภาพต้นฉบับมีขนาดหรืออัตราส่วนไม่พอดีกับขนาดของภาพปลายทาง
-รูปภาพจะถูกตัดขอบออกหรือจะถูกขยาย เพื่อให้พอดีกับรูปภาพปลายทางที่ต้องการ
-ผลลัพท์จะได้ไฟล์รูปภาพ jpg เท่านั้น
-สำเร็จคืนค่า true</p>
+        <p class="phpdocumentor-summary">Crop an image to the specified size.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">crop</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$target</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$thumbwidth</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$thumbheight</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$watermark</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>The resulting image will have the exact dimensions specified. If the original image
+has a different aspect ratio, it will be cropped or stretched to fit the target dimensions.
+The resulting image will be saved as a JPEG file.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -331,7 +324,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>path และชื่อไฟล์ของไฟล์รูปภาพต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>The path and filename of the source image.</p>
 </section>
 
             </dd>
@@ -340,7 +333,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>path และชื่อไฟล์ของไฟล์รูปภาพปลายทาง</p>
+                    <section class="phpdocumentor-description"><p>The path and filename of the target image.</p>
 </section>
 
             </dd>
@@ -349,7 +342,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ความกว้างของรูปภาพที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The desired width of the target image.</p>
 </section>
 
             </dd>
@@ -358,7 +351,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ความสูงของรูปภาพที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The desired height of the target image.</p>
 </section>
 
             </dd>
@@ -367,7 +360,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) ข้อความลายน้ำ</p>
+                    <section class="phpdocumentor-description"><p>(optional) The watermark text.</p>
 </section>
 
             </dd>
@@ -378,7 +371,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True on success, false on failure.</p>
+</section>
+
     
 </article>
                     <article
@@ -394,18 +389,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Image.php"><a href="files/kotchasan-image.html"><abbr title="Kotchasan/Image.php">Image.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">115</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น พลิกรูปภาพ (ซ้าย-ขวา คล้ายกระจกเงา)
-คืนค่า resource ของรูปภาพหลังจากพลิกรูปภาพแล้ว ไม่สำเร็จคืนค่า resource ของรูปภาพต้นฉบับ</p>
+        <p class="phpdocumentor-summary">Flip an image horizontally.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">flip</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\GdImage">GdImage</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$imgsrc</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\GdImage">GdImage</abbr></span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This method flips the specified image horizontally.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -413,7 +409,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\GdImage">GdImage</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>resource ของรูปภาพต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>The source image resource.</p>
 </section>
 
             </dd>
@@ -424,7 +420,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><abbr title="\GdImage">GdImage</abbr></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The flipped image resource.</p>
+</section>
+
     
 </article>
                     <article
@@ -440,26 +438,29 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Image.php"><a href="files/kotchasan-image.html"><abbr title="Kotchasan/Image.php">Image.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">138</span>
+    <span class="phpdocumentor-element-found-in__line">158</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านข้อมูล Exif ของรูปภาพ
-คืนค่า array(width, height, mime) ของรูปภาพ, false ถ้าไม่สามารถอ่านได้</p>
+        <p class="phpdocumentor-summary">Retrieve image information.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">info</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$src</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">info</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This method retrieves the width, height, and MIME type of an image using the <code class="prettyprint">getimagesize()</code> function.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$src</span>
+                <span class="phpdocumentor-signature__argument__name">$source</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The path and filename of the image.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -468,7 +469,10 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array containing the image properties (width, height, and mime) on success,
+or false if the information cannot be obtained.</p>
+</section>
+
     
 </article>
                     <article
@@ -484,18 +488,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Image.php"><a href="files/kotchasan-image.html"><abbr title="Kotchasan/Image.php">Image.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">160</span>
+    <span class="phpdocumentor-element-found-in__line">182</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น โหลดภาพ jpg และหมุนภาพอัตโนมัติจากข้อมูลของ Exif
-คืนค่า resource ของรูปภาพหลังจากหมุนแล้ว ถ้าไม่สนับสนุนคืนค่า resource เดิม</p>
+        <p class="phpdocumentor-summary">Rotate an image based on the Exif data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">orient</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\GdImage">GdImage</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">orient</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\GdImage">GdImage</abbr>|bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This method loads a JPEG image and automatically rotates it based on the Exif data.
+The resulting image resource is returned.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -503,7 +509,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>resource ของรูปภาพต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>The path and filename of the source image.</p>
 </section>
 
             </dd>
@@ -512,9 +518,11 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\GdImage">GdImage</abbr></span>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\GdImage">GdImage</abbr>|bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The rotated image resource on success, or false on failure.</p>
+</section>
+
     
 </article>
                     <article
@@ -530,22 +538,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Image.php"><a href="files/kotchasan-image.html"><abbr title="Kotchasan/Image.php">Image.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">212</span>
+    <span class="phpdocumentor-element-found-in__line">241</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นปรับขนาดของภาพ โดยรักษาอัตราส่วนของภาพตามความกว้างที่ต้องการ
-หากรูปภาพมีขนาดเล็กกว่าที่กำหนด จะเป็นการ copy file
-หากรูปภาพมาความสูง หรือความกว้างมากกว่า $width
-จะถูกปรับขนาดให้มีขนาดไม่เกิน $width (ทั้งความสูงและความกว้าง)
-และเปลี่ยนชนิดของภาพเป็น jpg
-คืนค่าแอเรย์ [name, width, height, mime] ของรูปภาพปลายทาง หรือ false ถ้าไม่สามารถดำเนินการได้</p>
+        <p class="phpdocumentor-summary">Resize an image and optionally add a watermark.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">resize</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$target</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$width</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$watermark</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">resize</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$target</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$width</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$watermark</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|false</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This method resizes the specified image to the given width while maintaining aspect ratio.
+It can also add a watermark to the resized image if specified.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -553,7 +559,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>path และชื่อไฟล์ของไฟล์รูปภาพต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>The path to the source image.</p>
 </section>
 
             </dd>
@@ -562,7 +568,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>path ของไฟล์รูปภาพปลายทาง</p>
+                    <section class="phpdocumentor-description"><p>The path to save the resized image.</p>
 </section>
 
             </dd>
@@ -571,7 +577,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อไฟล์ของรูปภาพปลายทาง</p>
+                    <section class="phpdocumentor-description"><p>The name of the resized image.</p>
 </section>
 
             </dd>
@@ -580,7 +586,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ขนาดสูงสุดของรูปภาพที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The desired width for the resized image.</p>
 </section>
 
             </dd>
@@ -589,7 +595,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) ข้อความลายน้ำ</p>
+                    <section class="phpdocumentor-description"><p>Optional. The watermark text to add to the resized image. Default is an empty string.</p>
 </section>
 
             </dd>
@@ -598,7 +604,64 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|bool</span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|false</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>An array containing information about the resized image if successful, false otherwise.
+The returned array will have the following keys:</p>
+<ul>
+<li>'name': The name of the resized image.</li>
+<li>'width': The width of the resized image.</li>
+<li>'height': The height of the resized image.</li>
+<li>'mime': The MIME type of the resized image ('image/jpeg' for JPEG images).</li>
+</ul>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setQuality">
+        setQuality()
+        <a href="classes/Kotchasan-Image.html#method_setQuality" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Image.php"><a href="files/kotchasan-image.html"><abbr title="Kotchasan/Image.php">Image.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">350</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Set the image quality for JPEG images.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">setQuality</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$quality</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"><p>This method sets the quality level (0-100) for JPEG images. Higher quality values
+result in larger file sizes but better image quality. The default value is 75.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$quality</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The image quality level (0-100).</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
         
     
@@ -616,18 +679,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Image.php"><a href="files/kotchasan-image.html"><abbr title="Kotchasan/Image.php">Image.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">279</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น วาดลายน้ำที่เป็นตัวอักษรลงบนรูปภาพ
-คืนค่า resource ของรูปภาพต้นฉบับ</p>
+        <p class="phpdocumentor-summary">Add a text watermark to an image.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">watermarkText</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\GdImage">GdImage</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$imgsrc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pos</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$color</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;CCCCCC&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$font_size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">20</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$opacity</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">50</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">resource</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">watermarkText</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\GdImage">GdImage</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$imgsrc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pos</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$color</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;CCCCCC&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$font_size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">20</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$opacity</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">50</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\GdImage">GdImage</abbr></span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This method adds a text watermark to the specified image. The watermark text, position,
+color, font size, and opacity can be customized.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -635,7 +700,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\GdImage">GdImage</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>resource ของรูปภาพต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>The source image resource.</p>
 </section>
 
             </dd>
@@ -644,7 +709,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความที่จะใช้เป็นลายน้ำ</p>
+                    <section class="phpdocumentor-description"><p>The text to be used as the watermark.</p>
 </section>
 
             </dd>
@@ -653,7 +718,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) ตำแหน่งของลายน้ำเช่น center top bottom right left (default 'top left')</p>
+                    <section class="phpdocumentor-description"><p>The position of the watermark. Valid values: 'center', 'bottom', 'left', 'right' (default: '').</p>
 </section>
 
             </dd>
@@ -662,7 +727,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;CCCCCC&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) สีของตัวอักษร เป็น hex เท่านั้น ไม่ต้องมี # (default CCCCCC)</p>
+                    <section class="phpdocumentor-description"><p>The color of the watermark in hexadecimal format (default: 'CCCCCC').</p>
 </section>
 
             </dd>
@@ -671,7 +736,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">20</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) ขนาดตัวอักษรของลายน้ำเป็นพิกเซล (default 20px)</p>
+                    <section class="phpdocumentor-description"><p>The font size of the watermark (default: 20).</p>
 </section>
 
             </dd>
@@ -680,7 +745,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">50</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) กำหนดค่าตัวอักษรโปร่งใส 0-50 (default 50)</p>
+                    <section class="phpdocumentor-description"><p>The opacity of the watermark (0-100) (default: 50).</p>
 </section>
 
             </dd>
@@ -689,9 +754,11 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">resource</span>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\GdImage">GdImage</abbr></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The modified image resource with the added watermark.</p>
+</section>
+
     
 </article>
             </section>

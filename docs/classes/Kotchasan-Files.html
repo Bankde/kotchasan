@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -142,11 +148,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Files.php"><a href="files/kotchasan-files.html"><abbr title="Kotchasan/Files.php">Files.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">รายการ File รูปแบบ Array</p>
+            <p class="phpdocumentor-summary">Class Files
+An array-based collection of files.</p>
 
 
 
@@ -156,20 +163,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -201,7 +199,7 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>แอเรย์เก็บรายการ UploadedFile</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Files.html#property_position">$position</a>
@@ -215,56 +213,56 @@
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>init Class</dd>
+<dd>Initialize the class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Files.html#method_add">add()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>เพื่ม File ลงในคอลเล็คชั่น</dd>
+<dd>Add a file to the collection.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Files.html#method_current">current()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a>    </span>
 </dt>
-<dd>คืนค่า UploadedFile รายการปัจจุบัน</dd>
+<dd>Get the current UploadedFile.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Files.html#method_get">get()</a>
     <span>
-                        &nbsp;: <a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a>    </span>
+                        &nbsp;: <a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a>|null    </span>
 </dt>
-<dd>อ่าน File ที่ต้องการ</dd>
+<dd>Get the specified file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Files.html#method_key">key()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่าคีย์หรือลำดับของ UploadedFile ในลิสต์รายการ</dd>
+<dd>Get the key or index of the current UploadedFile in the list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Files.html#method_next">next()</a>
     <span>
-                        &nbsp;: <a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a>    </span>
+                        &nbsp;: mixed    </span>
 </dt>
-<dd>คืนค่า UploadedFile รายการถัดไป</dd>
+<dd>Move to the next UploadedFile in the list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Files.html#method_rewind">rewind()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>inherited from Iterator</dd>
+<dd>Rewind the Iterator to the first element.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Files.html#method_valid">valid()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd></dd>
+<dd>Checks if the current position is valid.</dd>
 
         </dl>
 
@@ -294,12 +292,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Files.php"><a href="files/kotchasan-files.html"><abbr title="Kotchasan/Files.php">Files.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แอเรย์เก็บรายการ UploadedFile</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
@@ -327,7 +324,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Files.php"><a href="files/kotchasan-files.html"><abbr title="Kotchasan/Files.php">Files.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
@@ -363,11 +360,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Files.php"><a href="files/kotchasan-files.html"><abbr title="Kotchasan/Files.php">Files.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">init Class</p>
+        <p class="phpdocumentor-summary">Initialize the class.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -396,11 +393,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Files.php"><a href="files/kotchasan-files.html"><abbr title="Kotchasan/Files.php">Files.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เพื่ม File ลงในคอลเล็คชั่น</p>
+        <p class="phpdocumentor-summary">Add a file to the collection.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -414,7 +411,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อของ Input</p>
+                    <section class="phpdocumentor-description"><p>Input name</p>
 </section>
 
             </dd>
@@ -423,7 +420,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไฟล์อัปโหลด รวมพาธ</p>
+                    <section class="phpdocumentor-description"><p>Uploaded file path</p>
 </section>
 
             </dd>
@@ -432,7 +429,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อไฟล์ที่อัปโหลด</p>
+                    <section class="phpdocumentor-description"><p>Uploaded file name</p>
 </section>
 
             </dd>
@@ -450,7 +447,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ขนาดไฟล์อัปโหลด</p>
+                    <section class="phpdocumentor-description"><p>Uploaded file size</p>
 </section>
 
             </dd>
@@ -459,7 +456,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อผิดพลาดการอัปโหลด UPLOAD_ERR_XXX</p>
+                    <section class="phpdocumentor-description"><p>Upload error UPLOAD_ERR_XXX</p>
 </section>
 
             </dd>
@@ -490,7 +487,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า UploadedFile รายการปัจจุบัน</p>
+        <p class="phpdocumentor-summary">Get the current UploadedFile.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -519,15 +516,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Files.php"><a href="files/kotchasan-files.html"><abbr title="Kotchasan/Files.php">Files.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">120</span>
+    <span class="phpdocumentor-element-found-in__line">118</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่าน File ที่ต้องการ</p>
+        <p class="phpdocumentor-summary">Get the specified file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a></span></code>
+                <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a>|null</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -537,7 +534,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The requested item</p>
 </section>
 
             </dd>
@@ -546,7 +543,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a></span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a>|null</span>
             &mdash;
         
     
@@ -568,7 +565,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าคีย์หรือลำดับของ UploadedFile ในลิสต์รายการ</p>
+        <p class="phpdocumentor-summary">Get the key or index of the current UploadedFile in the list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -597,22 +594,22 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Files.php"><a href="files/kotchasan-files.html"><abbr title="Kotchasan/Files.php">Files.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า UploadedFile รายการถัดไป</p>
+        <p class="phpdocumentor-summary">Move to the next UploadedFile in the list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">next</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a></span></code>
+                <span class="phpdocumentor-signature__name">next</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-UploadedFile.html"><abbr title="\Kotchasan\Http\UploadedFile">UploadedFile</abbr></a></span>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
         
     
@@ -630,11 +627,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Files.php"><a href="files/kotchasan-files.html"><abbr title="Kotchasan/Files.php">Files.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">inherited from Iterator</p>
+        <p class="phpdocumentor-summary">Rewind the Iterator to the first element.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -667,7 +664,8 @@
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Checks if the current position is valid.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">valid</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>

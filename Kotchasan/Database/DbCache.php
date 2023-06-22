@@ -15,37 +15,45 @@ use Kotchasan\Cache\FileCache as Cache;
 use Kotchasan\Text;
 
 /**
- * Database Cache Class
+ * Provides caching functionality for database query results.
  *
  * @see https://www.kotchasan.com/
  */
 class DbCache
 {
     /**
-     * กำหนดการโหลดข้อมูลจากแคชอัตโนมัติ
-     * 0 ไม่ใช้แคช
-     * 1 โหลดและบันทึกแคชอัตโนมัติ
-     * 2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ
+     * Defines the cache loading behavior.
+     *
+     * - 0: Disable caching.
+     * - 1: Load and automatically save cache.
+     * - 2: Load cache but do not automatically save cache.
      *
      * @var int
      */
     private $action = 0;
+
     /**
-     * คลาส Cache
+     * Cache driver instance.
      *
      * @var Cache
      */
     private $db_cache;
+
     /**
-     * @var Singleton สำหรับเรียกใช้ class นี้เพียงครั้งเดียวเท่านั้น
+     * Singleton instance of the class.
+     *
+     * @var DbCache
      */
     private static $instance = null;
 
     /**
-     * เปิดการใช้งานแคช
-     * จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล
+     * Enable caching.
      *
-     * @param bool $auto_save (options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง
+     * Cache will be checked before querying data.
+     *
+     * @param bool $auto_save (optional) Whether to automatically save cache results. Default is true.
+     *
+     * @return void
      */
     public function cacheOn($auto_save = true)
     {
@@ -53,20 +61,19 @@ class DbCache
     }
 
     /**
-     * เคลียร์แคช
-     * คืนค่า true ถ้าลบเรียบร้อย, หรือ array ของรายการที่ไม่สำเร็จ
+     * Clear the cache.
      *
-     * @return bool
+     * @return bool|array True if the cache is cleared successfully, or an array of failed items.
      */
     public function clear()
     {
-        $this->db_cache->clear();
+        return $this->db_cache->clear();
     }
 
     /**
-     * Create Class (Singleton)
+     * Create an instance of the class (Singleton).
      *
-     * @return static
+     * @return DbCache
      */
     public static function create()
     {
@@ -77,12 +84,13 @@ class DbCache
     }
 
     /**
-     * อ่านข้อมูลจากแคช
-     * คืนค่าข้อมูลหรือ false ถ้าไม่มีแคช
+     * Get data from the cache.
      *
-     * @param Item $item
+     * Returns the cached data or false if the cache is not available.
      *
-     * @return mixed
+     * @param Item $item The cache item.
+     *
+     * @return mixed The cached data or false.
      */
     public function get(Item $item)
     {
@@ -90,12 +98,13 @@ class DbCache
     }
 
     /**
-     * อ่านสถานะของแคช
-     * 0 ไม่ใช้แคช
-     * 1 โหลดและบันทึกแคชอัตโนมัติ
-     * 2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ
+     * Get the current cache action.
      *
-     * @return int
+     * - 0: Disable caching.
+     * - 1: Load and automatically save cache.
+     * - 2: Load cache but do not automatically save cache.
+     *
+     * @return int The cache action.
      */
     public function getAction()
     {
@@ -103,12 +112,12 @@ class DbCache
     }
 
     /**
-     * กำหนดคีย์ของแคชจาก query
+     * Initialize a cache item based on the SQL query and its values.
      *
-     * @param string $sql
-     * @param array  $values
+     * @param string $sql The SQL query.
+     * @param array $values The query values.
      *
-     * @return Item
+     * @return Item The cache item.
      */
     public function init($sql, $values)
     {
@@ -116,32 +125,34 @@ class DbCache
     }
 
     /**
-     * บันทึก cache เมื่อบันทึกแล้วจะปิดการใช้งาน cache อัตโนมัติ
-     * จะใช้คำสั่งนี้เมื่อมีการเรียกใช้แคชด้วยคำสั่ง cacheOn(false) เท่านั้น
-     * query ครั้งต่อไปถ้าจะใช้ cache ต้อง เปิดการใช้งาน cache ก่อนทุกครั้ง
-     * สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false
+     * Save the cache item with the provided data.
      *
-     * @param Item  $item
-     * @param array $datas ข้อมูลที่จะบันทึก
+     * Once the cache is saved, the automatic cache action will be disabled.
+     * Use this method when calling `cacheOn(false)` to enable caching manually.
+     * Subsequent queries that require caching must enable cache before each query.
      *
-     * @return bool
+     * @param Item $item The cache item.
+     * @param mixed $data The data to be cached.
+     *
+     * @return bool True if the cache is saved successfully, false otherwise.
      */
-    public function save(Item $item, $datas)
+    public function save(Item $item, $data)
     {
         $this->action = 0;
-        $item->set($datas);
+        $item->set($data);
         return $this->db_cache->save($item);
     }
 
     /**
-     * กำหนดสถานะของแคช
-     * 0 ไม่ใช้แคช
-     * 1 โหลดและบันทึกแคชอัตโนมัติ
-     * 2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ
+     * Set the cache action.
      *
-     * @param type $value
+     * - 0: Disable caching.
+     * - 1: Load and automatically save cache.
+     * - 2: Load cache but do not automatically save cache.
      *
-     * @return static
+     * @param int $value The cache action value.
+     *
+     * @return DbCache
      */
     public function setAction($value)
     {
@@ -150,11 +161,11 @@ class DbCache
     }
 
     /**
-     * ตรวจสอบว่าข้อมูลมาจาก cache หรือไม่
+     * Check if the data was retrieved from the cache item.
      *
-     * @param Item $item
+     * @param Item $item The cache item.
      *
-     * @return bool
+     * @return bool True if the cache item was used, false otherwise.
      */
     public function usedCache(Item $item)
     {
@@ -162,7 +173,7 @@ class DbCache
     }
 
     /**
-     * Class constructor
+     * Class constructor.
      */
     private function __construct()
     {

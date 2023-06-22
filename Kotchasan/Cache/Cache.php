@@ -17,20 +17,21 @@ use Psr\Cache\CacheItemPoolInterface;
 /**
  * Kotchasan Caching Class (base class)
  *
+ * This is an abstract base class that implements the PSR-16 CacheItemPoolInterface.
+ *
  * @see https://www.kotchasan.com/
  */
 abstract class Cache extends \Kotchasan\KBase implements CacheItemPoolInterface
 {
     /**
-     * รายการแคชรอบันทึก
+     * Deferred cache items
      *
      * @var array
      */
     protected $deferred = array();
 
     /**
-     * บันทึกรายการแคชในคิว
-     * คืนค่า true ถ้าสำเร็จ, ถ้ามีบางรายการไม่สำเร็จคืนค่า false
+     * Commit the cached items in the deferred queue
      *
      * @return bool
      */
@@ -46,8 +47,7 @@ abstract class Cache extends \Kotchasan\KBase implements CacheItemPoolInterface
     }
 
     /**
-     * ลบแคช
-     * คืนค่า true ถ้าสำเร็จ, false ถ้าไม่สำเร็จ
+     * Delete a cache item
      *
      * @param string $key
      *
@@ -59,7 +59,7 @@ abstract class Cache extends \Kotchasan\KBase implements CacheItemPoolInterface
     }
 
     /**
-     * อ่านแคช
+     * Get a cache item
      *
      * @param string $key
      *
@@ -72,8 +72,7 @@ abstract class Cache extends \Kotchasan\KBase implements CacheItemPoolInterface
     }
 
     /**
-     * กำหนดรายการแคชสำหรับบันทึกในภายหลัง
-     * คืนค่า false ถ้าไม่มีรายการในคิว
+     * Save a cache item for deferred saving
      *
      * @param CacheItemInterface $item
      *

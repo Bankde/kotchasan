@@ -11,14 +11,14 @@
 namespace Kotchasan;
 
 /**
- * CKEditor
+ * This class provides functions to work with CKEditor.
  *
  * @see https://www.kotchasan.com/
  */
 class CKEditor extends Html
 {
     /**
-     * ฟังก์ชั่นตรวจสอบความสามารถในการอัปโหลดของ CKEDITOR
+     * Check if CKEDITOR upload is enabled.
      *
      * @return bool
      */
@@ -33,21 +33,28 @@ class CKEditor extends Html
     }
 
     /**
-     * สร้างโค้ด HTML สำหรับแสดง CKEditor
+     * Render the CKEditor HTML code.
      *
      * @return string
      */
     public function render()
     {
-        $content = array('item' => '', 'label' => '', 'tag' => '', 'itemClass' => '');
-        $prop = array();
+        $content = [
+            'item' => '',
+            'label' => '',
+            'tag' => '',
+            'itemClass' => ''
+        ];
+        $prop = [];
         $innerHTML = '';
+
         if (isset($this->attributes['id']) && !isset($this->attributes['name'])) {
             $this->attributes['name'] = $this->attributes['id'];
         }
         if (isset($this->attributes['name']) && !isset($this->attributes['id'])) {
             $this->attributes['id'] = $this->attributes['name'];
         }
+
         foreach ($this->attributes as $key => $value) {
             if ($key === 'itemClass') {
                 $content['item'] = '<div class="'.$value.'">';
@@ -63,19 +70,26 @@ class CKEditor extends Html
                 $attributes[$key] = $value;
             }
         }
+
         if (isset($this->attributes['label'])) {
             $content['label'] = '<label'.$for.'>'.$this->attributes['label'].'</label>';
         }
+
         $content['tag'] = '<div><'.$this->tag.implode('', $prop).'>'.$innerHTML.'</'.$this->tag.'></div>';
+
         $login = Login::isMember();
+
         if ($login) {
             $_SESSION['CKEDITOR'] = $login['id'];
         }
+
         if (isset($this->attributes['id'])) {
-            $script = array();
+            $script = [];
+
             foreach ($attributes as $key => $value) {
                 $script[] = $key.':'.(is_int($value) ? $value : '"'.$value.'"');
             }
+
             if (isset($this->attributes['upload']) && $this->attributes['upload'] == true) {
                 if (is_dir(ROOT_PATH.'ckfinder')) {
                     $script[] = 'filebrowserBrowseUrl:"'.WEB_URL.'ckfinder/ckfinder.html"';
@@ -94,16 +108,18 @@ class CKEditor extends Html
                     $script[] = 'filebrowserFlashUploadUrl:"'.WEB_URL.'ckeditor/filemanager/connectors/php/upload.phpType=Flash"';
                 }
             }
+
             self::$form->javascript[] = 'CKEDITOR.replace("'.$this->attributes['id']."\", {\n".implode(",\n", $script)."\n});";
         }
+
         return implode('', $content);
     }
 
     /**
-     * แปลง {} เป็น HTML entities
-     * ใช้ส่งให้กับ div
+     * Convert {} to HTML entities.
+     * Used for div tag.
      *
-     * @param string $str ข้อความ
+     * @param string $str The text
      *
      * @return string
      */
@@ -113,10 +129,10 @@ class CKEditor extends Html
     }
 
     /**
-     * แปลง อักขระพิเศษ และ {} เป็น HTML entities
-     * ใช้ส่งให้กับ textarea
+     * Convert special characters and {} to HTML entities.
+     * Used for textarea tag.
      *
-     * @param string $str ข้อความ
+     * @param string $str The text
      *
      * @return string
      */

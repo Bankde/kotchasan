@@ -15,21 +15,23 @@ use Kotchasan\Database;
 /**
  * Database base class
  *
+ * Provides the base functionality for database operations.
+ *
  * @see https://www.kotchasan.com/
  */
 abstract class Db extends \Kotchasan\KBase
 {
     /**
-     * database connection
+     * Database connection.
      *
      * @var \Kotchasan\Database\Driver
      */
     protected $db;
 
     /**
-     * Class constructor
+     * Class constructor.
      *
-     * @param string $conn ชื่อของการเชื่อมต่อ ถ้าไม่ระบุจะไม่มีการเชื่อมต่อ database
+     * @param string $conn The connection name. If not specified, no database connection will be made.
      */
     public function __construct($conn)
     {
@@ -37,9 +39,9 @@ abstract class Db extends \Kotchasan\KBase
     }
 
     /**
-     * อ่าน database connection
+     * Get the database connection.
      *
-     * @return \Kotchasan\Database\Driver
+     * @return \Kotchasan\Database\Driver The database connection.
      */
     public function db()
     {
@@ -47,11 +49,11 @@ abstract class Db extends \Kotchasan\KBase
     }
 
     /**
-     * อ่านค่ากำหนดของฐานข้อมูล
+     * Get the value of a database setting.
      *
-     * @param string $key
+     * @param string $key The setting key.
      *
-     * @return mixed
+     * @return mixed The value of the setting.
      */
     public function getSetting($key)
     {
@@ -61,9 +63,9 @@ abstract class Db extends \Kotchasan\KBase
     }
 
     /**
-     * คืนค่ากำหนดทั้งหมดของฐานข้อมูล
+     * Get all database settings.
      *
-     * @return object
+     * @return object The database settings object.
      */
     public function getAllSettings()
     {

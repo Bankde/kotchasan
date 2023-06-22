@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -139,7 +145,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -153,20 +159,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -187,116 +184,105 @@
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่ารายการที่มีคอลัมน์ตามที่กำหนด</dd>
+<dd>Get values from an array or object based on the specified column key.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_delete">delete()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ลบแอเรย์คีย์ตามคีย์ที่ระบุ สามารถระบุคีย์ในรูป แอเรย์ ตัวเลข
-รักษาคีย์ของรายการเดิมไว้
-คืนค่า array ใหม่หลังจากลบแล้ว</dd>
+<dd>Delete array keys specified by $ids. Preserves the keys of the original array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_extract">extract()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ฟังก์ชั่นแยก $key และ $value ออกจาก array รองรับข้อมูลรูปแบบแอเรย์ย่อยๆ</dd>
+<dd>Extract keys and values from an array (supports nested arrays).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_filter">filter()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>เลือกรายการ array ที่มีข้อมูลที่กำหนด</dd>
+<dd>Filter array items that contain the specified search string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_get">get()</a>
     <span>
-                        &nbsp;: <abbr title="\Kotchasan\mix">mix</abbr>    </span>
+                        &nbsp;: mixed    </span>
 </dt>
-<dd>คืนค่าข้อมูลแอเรย์ที่ $key
-ไม่พบคืนค่า $default</dd>
+<dd>Get the value from an array based on the specified key. Return the default value if the key is not found.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_getFirstKey">getFirstKey()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: mixed|null    </span>
 </dt>
-<dd>อ่านคีย์รายการแรก
-ไม่พบ คืนค่า null</dd>
+<dd>Get the first key of an array or object. Returns null if no keys are found.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_in_array">in_array()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามี $needle ใน $haystack หรือไม่
-ถ้ามีคืนค่า true ถ้าไม่มีคืนค่า false</dd>
+<dd>Check if any value in the needle array exists in the haystack array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_insertAfter">insertAfter()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>แทรกข้อมูลลงในแอเรย์ ข้อมูลที่จะนำมาแทรกอยู่ถัดไป
-ถ้าไม่พบ $find ข้อมูลจะแทรกรายการสุดท้าย</dd>
+<dd>Insert data into an array after the specified key. If the key is not found, insert at the end of the array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_insertBefore">insertBefore()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>แทรกข้อมูลลงในแอเรย์ ข้อมูลที่จะนำมาแทรกอยู่ก่อน
-ถ้าไม่พบ $find ข้อมูลจะแทรกรายการสุดท้าย</dd>
+<dd>Insert data into an array before the specified key. If the key is not found, insert at the end of the array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_replace">replace()</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                        &nbsp;: mixed    </span>
 </dt>
-<dd>ฟังก์ชั่นรวมแอเรย์ รักษาแอเรย์ต้นฉบับไว้ และแทนที่ข้อมูลด้วยข้อมูลใหม่</dd>
+<dd>Replace values in an array or object with the specified replacement values.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_search">search()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ค้นหาแอเรย์ จากคอลัมน์ หรือ ค้นหา object จาก property
-คืนค่าทุกรายการที่พบ รักษา index ตาม array ของต้นฉบับและ คืนค่าแอเรย์ว่างถ้าไม่พบ</dd>
+<dd>Searches an array for elements with a specific key-value pair and returns the matching elements.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_shift">shift()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ตัดแอเรย์ตั้งแต่เริ่มต้นจนถึงตำแหน่งที่กำหนด
-คืนค่าแอเรย์ถัดจากรายการที่ตัด ไม่พบคืนค่าเดิม</dd>
+<dd>Removes an element from an array by key and returns the resulting array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_sort">sort()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่น เรียงลำดับ array ตามชื่อฟิลด์</dd>
+<dd>Sorts an array of associative arrays by a specified key in ascending or descending order.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_toString">toString()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลง Value ของ $source เป็น string คั่นด้วย $glue ไม่สนใจ Key
-ถ้า $source ไม่ใช่ Array หรือ Object คืนค่า $source</dd>
+<dd>Convert a nested array or object into a string by concatenating its values with a glue.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-ArrayTool.html#method_unserialize">unserialize()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่นแปลงข้อความ serialize เป็นแอเรย์
-และรวมข้อมูลเข้ากับ $source</dd>
+<dd>Unserialize a string and update the source array with the unserialized data.</dd>
 
         </dl>
 
@@ -324,11 +310,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่ารายการที่มีคอลัมน์ตามที่กำหนด</p>
+        <p class="phpdocumentor-summary">Get values from an array or object based on the specified column key.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -342,7 +328,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>array or object or array of object</p>
+                    <section class="phpdocumentor-description"><p>Array or object or array of objects</p>
 </section>
 
             </dd>
@@ -351,7 +337,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคอลัมน์ที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>Name of the column to retrieve</p>
 </section>
 
             </dd>
@@ -360,7 +346,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>null คืนค่า index ของ $source, string คืนค่า index จากคอลัมน์ที่กำหนด</p>
+                    <section class="phpdocumentor-description"><p>Null to return the index of $source, string to return the index based on the specified column</p>
 </section>
 
             </dd>
@@ -438,13 +424,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลบแอเรย์คีย์ตามคีย์ที่ระบุ สามารถระบุคีย์ในรูป แอเรย์ ตัวเลข
-รักษาคีย์ของรายการเดิมไว้
-คืนค่า array ใหม่หลังจากลบแล้ว</p>
+        <p class="phpdocumentor-summary">Delete array keys specified by $ids. Preserves the keys of the original array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -465,7 +449,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการที่ต้องการลบ 1 หรือ '1,2,3' หรือ [1,2,3]</p>
+                    <section class="phpdocumentor-description"><p>Items to delete. Can be a single value, comma-separated values, or an array of values. eg. 1 or '1,2,3' or [1,2,3]</p>
 </section>
 
             </dd>
@@ -534,11 +518,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นแยก $key และ $value ออกจาก array รองรับข้อมูลรูปแบบแอเรย์ย่อยๆ</p>
+        <p class="phpdocumentor-summary">Extract keys and values from an array (supports nested arrays).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -552,7 +536,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>array('key1' =&gt; 'value1', 'key2' =&gt; 'value2', array('key3' =&gt; 'value3', 'key4' =&gt; 'value4'))</p>
+                    <section class="phpdocumentor-description"><p>Array to extract eg. array('key1' =&gt; 'value1', 'key2' =&gt; 'value2', array('key3' =&gt; 'value3', 'key4' =&gt; 'value4'))</p>
 </section>
 
             </dd>
@@ -561,7 +545,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คืนค่า $key Array ( [0] =&gt; key1 [1] =&gt; key2 [2] =&gt; key3 [3] =&gt; key4 )</p>
+                    <section class="phpdocumentor-description"><p>Reference to an array to store the keys eg. Array ( [0] =&gt; key1 [1] =&gt; key2 [2] =&gt; key3 [3] =&gt; key4 )</p>
 </section>
 
             </dd>
@@ -570,7 +554,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คืนค่า $value Array ( [0] =&gt; value1 [1] =&gt; value2 [2] =&gt; value3 [3] =&gt; value4 )</p>
+                    <section class="phpdocumentor-description"><p>Reference to an array to store the values eg. Array ( [0] =&gt; value1 [1] =&gt; value2 [2] =&gt; value3 [3] =&gt; value4 )</p>
 </section>
 
             </dd>
@@ -597,11 +581,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">96</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เลือกรายการ array ที่มีข้อมูลที่กำหนด</p>
+        <p class="phpdocumentor-summary">Filter array items that contain the specified search string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -615,14 +599,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Array to filter</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$search</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>Search string</p>
 </section>
 
             </dd>
@@ -664,40 +650,44 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">123</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าข้อมูลแอเรย์ที่ $key
-ไม่พบคืนค่า $default</p>
+        <p class="phpdocumentor-summary">Get the value from an array based on the specified key. Return the default value if the key is not found.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Kotchasan\mix">mix</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$array</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Kotchasan\mix">mix</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$array</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$array</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Kotchasan\mix">mix</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Array to retrieve the value from</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Key to search for</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$default</span>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Default value to return if the key is not found</p>
+</section>
 
             </dd>
             </dl>
@@ -729,7 +719,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\Kotchasan\mix">mix</abbr></span>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
         
     
@@ -747,16 +737,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">147</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านคีย์รายการแรก
-ไม่พบ คืนค่า null</p>
+        <p class="phpdocumentor-summary">Get the first key of an array or object. Returns null if no keys are found.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">getFirstKey</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">getFirstKey</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed|null</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -766,7 +755,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Array or object</p>
+</section>
+
             </dd>
             </dl>
 
@@ -824,7 +815,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">mixed|null</span>
             &mdash;
         
     
@@ -842,26 +833,25 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">417</span>
+    <span class="phpdocumentor-element-found-in__line">425</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามี $needle ใน $haystack หรือไม่
-ถ้ามีคืนค่า true ถ้าไม่มีคืนค่า false</p>
+        <p class="phpdocumentor-summary">Check if any value in the needle array exists in the haystack array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">in_array</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$needle</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$haystack</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strick</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">in_array</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$needle</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$haystack</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strict</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$needle</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์ที่ต้องการตรวจสอบ</p>
+                    <section class="phpdocumentor-description"><p>Value or array of values to search for</p>
 </section>
 
             </dd>
@@ -870,16 +860,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์ต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>Array to search in</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$strick</span>
+                <span class="phpdocumentor-signature__argument__name">$strict</span>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false (default) ไม่สนใจประเภทของข้อมูล, true ต้องเป็นข้อมูลประเภทเดียวกัน</p>
+                    <section class="phpdocumentor-description"><p>(Optional) Perform strict comparison when checking values</p>
 </section>
 
             </dd>
@@ -1031,7 +1021,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if any value is found, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -1047,16 +1039,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แทรกข้อมูลลงในแอเรย์ ข้อมูลที่จะนำมาแทรกอยู่ถัดไป
-ถ้าไม่พบ $find ข้อมูลจะแทรกรายการสุดท้าย</p>
+        <p class="phpdocumentor-summary">Insert data into an array after the specified key. If the key is not found, insert at the end of the array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">insertAfter</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$find</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">insertAfter</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$find</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1066,25 +1057,25 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์ต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>Array to insert into</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$find</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int|string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คีย์ของแอเรย์ต้นฉบับจุดที่จะแทรก ข้อมูลต้องเป็นชนิดเดียวกันกับคีย์ของแอเรย์ต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>Key to search for</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int|string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คีย์ของข้อมูลที่จะนำมาแทรก</p>
+                    <section class="phpdocumentor-description"><p>Key of the data to insert</p>
 </section>
 
             </dd>
@@ -1093,7 +1084,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่จะนำมาแทรก</p>
+                    <section class="phpdocumentor-description"><p>Data to insert</p>
 </section>
 
             </dd>
@@ -1171,16 +1162,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">210</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แทรกข้อมูลลงในแอเรย์ ข้อมูลที่จะนำมาแทรกอยู่ก่อน
-ถ้าไม่พบ $find ข้อมูลจะแทรกรายการสุดท้าย</p>
+        <p class="phpdocumentor-summary">Insert data into an array before the specified key. If the key is not found, insert at the end of the array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">insertBefore</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$find</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">insertBefore</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$find</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1190,25 +1180,25 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์ต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>Array to insert into</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$find</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int|string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คีย์ของแอเรย์ต้นฉบับจุดที่จะแทรก ข้อมูลต้องเป็นชนิดเดียวกันกับคีย์ของแอเรย์ต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>Key to search for</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int|string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คีย์ของข้อมูลที่จะนำมาแทรก</p>
+                    <section class="phpdocumentor-description"><p>Key of the data to insert</p>
 </section>
 
             </dd>
@@ -1217,7 +1207,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่จะนำมาแทรก</p>
+                    <section class="phpdocumentor-description"><p>Data to insert</p>
 </section>
 
             </dd>
@@ -1313,15 +1303,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">239</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นรวมแอเรย์ รักษาแอเรย์ต้นฉบับไว้ และแทนที่ข้อมูลด้วยข้อมูลใหม่</p>
+        <p class="phpdocumentor-summary">Replace values in an array or object with the specified replacement values.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">replace</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$replace</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">replace</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$replace</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1331,16 +1321,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเร์ยต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>Array or object to replace values in</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$replace</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่จะนำมาแทนที่ลงในแอเร์ยต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>Associative array of replacement values (key =&gt; value)</p>
 </section>
 
             </dd>
@@ -1382,9 +1372,11 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The modified source array or object</p>
+</section>
+
     
 </article>
                     <article
@@ -1400,16 +1392,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">267</span>
+    <span class="phpdocumentor-element-found-in__line">263</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ค้นหาแอเรย์ จากคอลัมน์ หรือ ค้นหา object จาก property
-คืนค่าทุกรายการที่พบ รักษา index ตาม array ของต้นฉบับและ คืนค่าแอเรย์ว่างถ้าไม่พบ</p>
+        <p class="phpdocumentor-summary">Searches an array for elements with a specific key-value pair and returns the matching elements.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">search</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$array</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$search</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">search</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$array</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$search</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1419,16 +1410,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>array or array of object</p>
+                    <section class="phpdocumentor-description"><p>The array to search</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คอลัมน์ที่ต้องการค้นหา</p>
+                    <section class="phpdocumentor-description"><p>The key to search for</p>
 </section>
 
             </dd>
@@ -1437,7 +1428,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความค้นหา</p>
+                    <section class="phpdocumentor-description"><p>The value to search for</p>
 </section>
 
             </dd>
@@ -1490,7 +1481,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The matching elements</p>
+</section>
+
     
 </article>
                     <article
@@ -1506,16 +1499,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">292</span>
+    <span class="phpdocumentor-element-found-in__line">290</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัดแอเรย์ตั้งแต่เริ่มต้นจนถึงตำแหน่งที่กำหนด
-คืนค่าแอเรย์ถัดจากรายการที่ตัด ไม่พบคืนค่าเดิม</p>
+        <p class="phpdocumentor-summary">Removes an element from an array by key and returns the resulting array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">shift</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">shift</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1525,16 +1517,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์ต้นฉบับ</p>
+                    <section class="phpdocumentor-description"><p>The source array</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>คีย์ของ $source ตำแหน่งที่ต้องการตัด</p>
+                    <section class="phpdocumentor-description"><p>The key of the element to remove</p>
 </section>
 
             </dd>
@@ -1569,7 +1561,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The resulting array after removing the element</p>
+</section>
+
     
 </article>
                     <article
@@ -1589,7 +1583,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น เรียงลำดับ array ตามชื่อฟิลด์</p>
+        <p class="phpdocumentor-summary">Sorts an array of associative arrays by a specified key in ascending or descending order.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1603,7 +1597,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์ที่ต้องการเรียงลำดับ</p>
+                    <section class="phpdocumentor-description"><p>The array to sort</p>
 </section>
 
             </dd>
@@ -1612,7 +1606,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) คืย์ของ $array ที่ต้องการในการเรียง (default id)</p>
+                    <section class="phpdocumentor-description"><p>The key to sort the array by</p>
 </section>
 
             </dd>
@@ -1621,7 +1615,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true=เรียงจากมากไปหาน้อย, false=เรียงจากน้อยไปหามาก (default false)</p>
+                    <section class="phpdocumentor-description"><p>Whether to sort the array in descending order</p>
 </section>
 
             </dd>
@@ -1647,7 +1641,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The sorted array</p>
+</section>
+
     
 </article>
                     <article
@@ -1663,35 +1659,34 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">343</span>
+    <span class="phpdocumentor-element-found-in__line">348</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง Value ของ $source เป็น string คั่นด้วย $glue ไม่สนใจ Key
-ถ้า $source ไม่ใช่ Array หรือ Object คืนค่า $source</p>
+        <p class="phpdocumentor-summary">Convert a nested array or object into a string by concatenating its values with a glue.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">toString</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$glue</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">toString</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$glue</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$glue</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ตัวคั่นข้อมูล</p>
+                    <section class="phpdocumentor-description"><p>The glue to join the values with</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$source</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์หรืออ๊อปเจ็คที่ต้องการนำมาเชื่อม</p>
+                    <section class="phpdocumentor-description"><p>The source array or object</p>
 </section>
 
             </dd>
@@ -1744,7 +1739,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The concatenated string</p>
+</section>
+
     
 </article>
                     <article
@@ -1760,16 +1757,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/ArrayTool.php"><a href="files/kotchasan-arraytool.html"><abbr title="Kotchasan/ArrayTool.php">ArrayTool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">375</span>
+    <span class="phpdocumentor-element-found-in__line">381</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นแปลงข้อความ serialize เป็นแอเรย์
-และรวมข้อมูลเข้ากับ $source</p>
+        <p class="phpdocumentor-summary">Unserialize a string and update the source array with the unserialized data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">unserialize</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$str</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$replace</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">unserialize</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$str</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$replace</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1779,16 +1775,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูล serialize</p>
+                    <section class="phpdocumentor-description"><p>The serialized string</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$source</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลตั้งต้น ถ้าใช้ฟังก์ชั่นนี้ในการแปลงข้อมูล ค่านี้จะเป็นแอเรย์ว่าง (ค่าเริ่มต้น)</p>
+                    <section class="phpdocumentor-description"><p>(Optional) Array to update with unserialized data</p>
 </section>
 
             </dd>
@@ -1797,7 +1793,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>true (default) แทนที่ข้อมูลเดิม, false เก็บข้อมูลเดิมไว้</p>
+                    <section class="phpdocumentor-description"><p>(Optional) Whether to replace existing values in the source array</p>
 </section>
 
             </dd>
@@ -1850,7 +1846,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The updated source array</p>
+</section>
+
     
 </article>
             </section>

@@ -15,68 +15,60 @@ use Kotchasan\Database\Query;
 use Kotchasan\Database\Schema;
 
 /**
- * Recordset base class
+ * Recordset base class.
+ *
+ * This class provides methods for querying and manipulating database records.
  *
  * @see https://www.kotchasan.com/
  */
 class Recordset extends Query implements \Iterator
 {
     /**
-     * ข้อมูล
-     *
-     * @var array
+     * @var array The data records.
      */
     private $datas;
+
     /**
-     * คลาส Field
-     *
-     * @var Field
+     * @var Field The field class instance.
      */
     private $field;
+
     /**
-     * รายชื่อฟิลด์
-     *
-     * @var array
+     * @var array The field names.
      */
-    private $fields = array();
+    private $fields = [];
+
     /**
-     * รายการเริ่มต้นสำหรับการ query เพื่อแบ่งหน้า
-     *
-     * @var int
+     * @var int The starting record for pagination.
      */
     private $firstRecord;
+
     /**
-     * จำนวนรายการต่อหน้า สำหรับใช้ในการแบ่งหน้า
-     *
-     * @var int
+     * @var int The number of records per page for pagination.
      */
     private $perPage;
+
     /**
-     * กำหนดผลลัพท์ของ Recordset
-     * true ผลลัพท์เป็น Array
-     * false ผลลัพท์เป็น Model
-     *
-     * @var bool
+     * @var bool Determines the type of result: true for array, false for model.
      */
     private $toArray = false;
+
     /**
-     * ถ้ามีข้อมูลในตัวแปรนี้ จะใช้การ prepare แทน exexute
-     *
-     * @var array
+     * @var array If values are set, it will use prepare instead of execute.
      */
     private $values;
 
     /**
-     * create new Recordset
+     * Create a new Recordset instance.
      *
-     * @param string $field ชื่อของ Field
+     * @param string $field The name of the Field class.
      */
     public function __construct($field)
     {
         $this->field = new $field();
         parent::__construct($this->field->getConn());
-        $this->sqls = array();
-        $this->values = array();
+        $this->sqls = [];
+        $this->values = [];
         $this->field->initTableName($this->db);
         if (method_exists($this->field, 'getConfig')) {
             foreach ($this->field->getConfig() as $key => $value) {
@@ -86,17 +78,18 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * query ข้อมูลทุกรายการ
-     * SELECT ...
+     * Retrieve all records.
      *
-     * @param array|string $fields (options) null หมายถึง SELECT ตามที่กำหนดโดย field
+     * Executes the SELECT query and returns the result as an array or model objects.
      *
-     * @return array|\static
+     * @param array|string|null $fields (optional) The fields to select. Default is null (select all fields).
+     *
+     * @return array|static The result as an array or model objects.
      */
     public function all($fields = null)
     {
         if (!empty($fields)) {
-            $qs = array();
+            $qs = [];
             foreach (func_get_args() as $item) {
                 if (!empty($item)) {
                     $qs[] = $this->fieldName($item);
@@ -110,10 +103,11 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * เปิดการใช้งานแคช
-     * จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล
+     * Enable caching.
      *
-     * @param bool $auto_save (options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง
+     * Enables caching and specifies whether to automatically save the cache.
+     *
+     * @param bool $auto_save (optional) Specifies whether to automatically save the cache. Default is true.
      *
      * @return static
      */
@@ -124,9 +118,11 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * สอบถามจำนวน record ใช้สำหรับการแบ่งหน้า
+     * Get the record count.
      *
-     * @return int
+     * Executes a COUNT query and returns the number of records matching the conditions.
+     *
+     * @return int The number of records matching the conditions.
      */
     public function count()
     {
@@ -148,21 +144,22 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * create new Recordset
+     * Create a new instance of the Recordset class.
      *
-     * @param string $filed ชื่อ Field
+     * @param string $field The name of the Field class.
      *
-     * @return static
+     * @return static A new instance of the Recordset class.
      */
-    public static function create($filed)
+    public static function create($field)
     {
-        return new static($filed);
+        return new static($field);
     }
 
     /**
-     * build query string
+     * Build the SELECT query string.
      *
-     * @return string
+     * @param string $key The query key.
+     * @param mixed $value The query value.
      */
     public function createQuery($start, $count)
     {
@@ -175,11 +172,11 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * คำสั่งสร้าง View
+     * Create a view based on the specified table.
      *
-     * @param string $table     ชื่อตาราง
+     * @param string $table The name of the table.
      *
-     * @return static
+     * @return bool True if the view is created successfully, false otherwise.
      */
     public function createView($table)
     {
@@ -188,9 +185,9 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * คำสั่งสร้างตารางชั่วคราว
+     * Create a temporary table.
      *
-     * @param string $table     ชื่อตาราง
+     * @param string $table The table name.
      *
      * @return static
      */
@@ -211,14 +208,14 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * ฟังก์ชั่นประมวลผลคำสั่ง SQL สำหรับสอบถามข้อมูล คืนค่าผลลัพท์เป็นแอเรย์ของข้อมูลที่ตรงตามเงื่อนไข
-     * คืนค่าผลการทำงานเป็น record ของข้อมูลทั้งหมดที่ตรงตามเงื่อนไข
+     * Execute a custom SQL query to retrieve data.
+     * Returns the result as an array or object based on the $toArray parameter.
      *
-     * @param string $sql     query string
-     * @param bool   $toArray (option) default true คืนค่าเป็น Array, false คืนค่าผลลัทเป็น Object
-     * @param array  $values  ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query
+     * @param string $sql     The query string.
+     * @param bool   $toArray (optional) True to return the result as an array, false to return as an object. Default is true.
+     * @param array  $values  (optional) If specified, it will use prepared statements instead of direct query execution.
      *
-     * @return array|object
+     * @return array|object The result data.
      */
     public function customQuery($sql, $toArray = true, $values = array())
     {
@@ -226,18 +223,18 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * ลบ record กำหนดโดย $condition
-     * คืนค่า true ถ้าสำเร็จ
+     * Delete records based on the specified condition.
+     * Returns true if successful.
      *
-     * @param mixed  $condition int (primaryKey), string (SQL QUERY), array
-     * @param bool   $all       false (default) ลบรายการเดียว, true ลบทุกรายการที่ตรงตามเงื่อนไข
-     * @param string $oprator   สำหรับเชื่อมแต่ละ $condition เข้าด้วยกัน AND (default), OR
+     * @param mixed  $condition The condition for deletion. It can be an int (primaryKey), string (SQL QUERY), or array.
+     * @param bool   $all       (optional) If false (default), delete a single record. If true, delete all records that match the condition.
+     * @param string $operator  (optional) The operator to join each $condition. Use 'AND' (default) or 'OR'.
      *
-     * @return bool
+     * @return bool True if the deletion is successful, false otherwise.
      */
-    public function delete($condition = array(), $all = false, $oprator = 'AND')
+    public function delete($condition = array(), $all = false, $operator = 'AND')
     {
-        $ret = $this->buildWhereValues($condition, $oprator, $this->field->getPrimarykey());
+        $ret = $this->buildWhereValues($condition, $operator, $this->field->getPrimarykey());
         $sqls = array(
             'delete' => $this->field->table_name,
             'where' => $ret[0]
@@ -250,10 +247,10 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * ฟังก์ชั่นลบข้อมูลทั้งหมดในตาราง
-     * คืนค่า true ถ้าสำเร็จ
+     * Function to delete all data in the table.
+     * Returns true if successful.
      *
-     * @return bool
+     * @return bool True if the operation is successful, false otherwise.
      */
     public function emptyTable()
     {
@@ -261,10 +258,10 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * query ข้อมูลที่มีการแบ่งหน้า
+     * Execute a query with pagination.
      * SELECT ...
      *
-     * @param array|string $fields (options) null หมายถึง SELECT ตามที่กำหนดโดย field
+     * @param array|string $fields (optional) If null, SELECT all fields. Otherwise, specify the fields to select.
      *
      * @return array|\static
      */
@@ -285,12 +282,12 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * ฟังก์ชั่นตรวจสอบว่ามีฟิลด์ หรือไม่
-     * คืนค่า true หากมีฟิลด์นี้อยู่ ไม่พบคืนค่า false
+     * Check if a field exists.
+     * Returns true if the field exists, false otherwise.
      *
-     * @param string $field ชื่อฟิลด์
+     * @param string $field The field name.
      *
-     * @return bool
+     * @return bool True if the field exists, false otherwise.
      */
     public function fieldExists($field)
     {
@@ -301,11 +298,11 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * สอบถามข้อมูลที่ $primaryKey คืนค่าข้อมูลรายการเดียว
+     * Retrieve a single record by $primaryKey.
      *
-     * @param int $id รายการที่ค้นหา
+     * @param int $id The ID of the record to retrieve.
      *
-     * @return Field
+     * @return Field The record of the specified ID.
      */
     public function find($id)
     {
@@ -313,13 +310,13 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * Query ข้อมูลรายการเดียว
-     * ไม่พบคืนค่า false พบคืนค่า record ของข้อมูลรายการเดียว
+     * Query for a single record.
+     * Returns false if not found, the record data if found.
      * SELECT .... LIMIT 1
      *
-     * @param array|string $fields (options) null หมายถึง SELECT ตามที่กำหนดโดย field
+     * @param array|string $fields (optional) If null, SELECT all fields. Otherwise, specify the fields to select.
      *
-     * @return bool|array|Field
+     * @return bool|array|Field False if not found, the record data if found.
      */
     public function first($fields = null)
     {
@@ -352,9 +349,9 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * คืนค่าอ๊อปเจ็ค Field ของ Recordset
+     * Get the Field object of the Recordset.
      *
-     * @return Field
+     * @return Field The Field object.
      */
     public function getField()
     {
@@ -362,9 +359,9 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * รายชื่อฟิลด์ทั้งหมดของ Model
+     * Get all the field names of the Model.
      *
-     * @return array
+     * @return array The array of field names.
      */
     public function getFields()
     {
@@ -375,9 +372,9 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * คืนค่า value สำหรับการ execute
+     * Get the values for execution.
      *
-     * @return array
+     * @return array The values for execution.
      */
     public function getValues()
     {
@@ -385,17 +382,17 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * ฟังก์ชั่นสำหรับจัดกลุ่มคำสั่ง และ เชื่อมแต่ละกลุ่มด้วย $oprator
-     * คืนค่า query ภายใต้ ()
+     * Function for grouping commands and connecting each group with an operator.
+     * Returns the grouped query within ().
      *
-     * @param array  $params  คำสั่ง รูปแบบ array('field1', 'condition', 'field2')
-     * @param string $oprator AND หรือ OR
+     * @param array  $params The commands in the format array('field1', 'condition', 'field2').
+     * @param string $operator The operator (AND or OR).
      *
-     * @return string
+     * @return string The grouped query.
      */
-    public function group($params, $oprator = 'AND')
+    public function group($params, $operator = 'AND')
     {
-        switch (strtoupper($oprator)) {
+        switch (strtoupper($operator)) {
             case 'AND':
                 return $this->groupAnd($params);
                 break;
@@ -406,12 +403,12 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * insert ข้อมูล
-     * สำเร็จ คืนค่า id ที่เพิ่ม ผิดพลาด คืนค่า false
+     * Insert data.
+     * Returns the ID of the inserted data on success, false on failure.
      *
-     * @param Field $field
+     * @param Field $field The field object to be inserted.
      *
-     * @return int|bool
+     * @return int|bool The ID of the inserted data if successful, false if an error occurred.
      */
     public function insert(Field $field)
     {
@@ -432,9 +429,9 @@ class Recordset extends Query implements \Iterator
     /**
      * INNER JOIN table ON ...
      *
-     * @param string $field field class ของตารางที่ join
-     * @param string $type  เช่น LEFT, RIGHT, INNER...
-     * @param mixed  $on    where condition สำหรับการ join
+     * @param string $field The field class of the table to join.
+     * @param string $type The type of join (e.g., LEFT, RIGHT, INNER...).
+     * @param mixed  $on The join condition.
      *
      * @return static
      */
@@ -444,7 +441,7 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * @return mixed
+     * Inherited from Iterator.
      */
     #[\ReturnTypeWillChange]
     public function key()
@@ -454,10 +451,10 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * จำกัดผลลัพท์ และกำหนดรายการเริ่มต้น
+     * Limit the number of results and specify the starting record.
      *
-     * @param int $count จำนวนผลลัท์ที่ต้องการ
-     * @param int $start รายการเริ่มต้น
+     * @param int $count The number of results to limit.
+     * @param int $start The starting record.
      *
      * @return static
      */
@@ -471,7 +468,7 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * @return mixed
+     * Inherited from Iterator.
      */
     #[\ReturnTypeWillChange]
     public function next()
@@ -481,9 +478,9 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * สร้าง query เรียงลำดับ
+     * Create a query with sorting.
      *
-     * @param mixed $sort array('field ASC','field DESC') หรือ 'field ASC', 'field DESC', ...
+     * @param mixed $sorts An array of sort orders ('field ASC', 'field DESC') or multiple arguments 'field ASC', 'field DESC', ...
      *
      * @return static
      */
@@ -498,13 +495,13 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * ฟังก์ชั่นประมวลผลคำสั่ง SQL ที่ไม่ต้องการผลลัพท์ เช่น CREATE INSERT UPDATE
-     * สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false
+     * Process SQL statements that do not require a result, such as CREATE, INSERT, and UPDATE.
+     * Returns true on success, false on failure.
      *
-     * @param string $sql
-     * @param array  $values ถ้าระบุตัวแปรนี้จะเป็นการบังคับใช้คำสั่ง prepare แทน query
+     * @param string $sql The SQL statement to be processed.
+     * @param array  $values If specified, it forces the use of prepared statements instead of query.
      *
-     * @return bool
+     * @return bool True if successful, false if an error occurred.
      */
     public function query($sql, $values = array())
     {
@@ -512,9 +509,9 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * สอบถามจำนวน record ทั้งหมดที่ query แล้ว
+     * Get the total number of records queried.
      *
-     * @return int
+     * @return int The total number of records.
      */
     public function recordCount()
     {
@@ -522,7 +519,7 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * inherited from Iterator
+     * Inherited from Iterator.
      */
     #[\ReturnTypeWillChange]
     public function rewind()
@@ -531,11 +528,11 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * จำกัดจำนวนผลลัพท์
-     * LIMIT $start, $count
+     * Limit the number of results.
+     * LIMIT $start, $count.
      *
-     * @param int $start ข้อมูลเริ่มต้น
-     * @param int $count จำนวนผลลัพธ์ที่ต้องการ
+     * @param int $start The starting index.
+     * @param int $count The number of results to retrieve.
      *
      * @return static
      */
@@ -553,8 +550,8 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * คืนค่าข้อมูลเป็น Array
-     * ฟังก์ชั่นนี้ใช้เรียกก่อนการสอบถามข้อมูล
+     * Retrieve data as an array.
+     * This function should be called before querying data.
      *
      * @return static
      */
@@ -565,9 +562,9 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * ส่งออกฐานข้อมูลเป็น QueryBuilder
+     * Export the database query as a QueryBuilder instance.
      *
-     * @return \Kotchasan\Database\QueryBuilder
+     * @return \Kotchasan\Database\QueryBuilder The QueryBuilder instance.
      */
     public function toQueryBuilder()
     {
@@ -575,13 +572,12 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * อัปเดตข้อมูล
-     * สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false
+     * Update data.
      *
-     * @param array       $condition
-     * @param array|Field $save
+     * @param array       $condition The condition for the update.
+     * @param array|Field $save The data to be saved.
      *
-     * @return bool
+     * @return bool True if successful, false if an error occurred.
      */
     public function update($condition, $save)
     {
@@ -613,12 +609,11 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * อัปเดตข้อมูลทุก record
-     * สำเร็จ คืนค่า true, ผิดพลาด คืนค่า false
+     * Update data for all records.
      *
-     * @param array $save ข้อมูลที่ต้องการบันทึก array('key1'=>'value1', 'key2'=>'value2', ...)
+     * @param array $save The data to be saved (array('key1' => 'value1', 'key2' => 'value2', ...)).
      *
-     * @return bool
+     * @return bool True if successful, false if an error occurred.
      */
     public function updateAll($save)
     {
@@ -626,7 +621,9 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * @return mixed
+     * Determine if there are more records to iterate over.
+     *
+     * @return mixed The validity of the current record.
      */
     #[\ReturnTypeWillChange]
     public function valid()
@@ -637,22 +634,17 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * WHERE ...
-     * int ค้นหาจาก primaryKey เช่น id=1 หมายถึง WHERE `id`=1
-     * string เช่น QUERY ต่างๆ `email`='xxx.com' หมายถึง WHERE `email`='xxx.com'
-     * array เช่น ('id', 1) หมายถึง WHERE `id`=1
-     * array เช่น ('email', '!=', 'xxx.com') หมายถึง WHERE `email`!='xxx.com'
-     * ถ้าเป็น array สามารถรุบได้หลายค่าโดยแต่ละค่าจะเชื่อมด้วย $oprator
+     * Add a WHERE clause to the query.
      *
-     * @param mixed  $where
-     * @param string $oprator (options) AND (default), OR
+     * @param mixed  $where The condition(s) for the WHERE clause.
+     * @param string $operator (optional) The operator to use for multiple conditions (AND by default).
      *
-     * @return static
+     * @return static The updated Recordset instance.
      */
-    public function where($where = array(), $oprator = 'AND')
+    public function where($where = array(), $operator = 'AND')
     {
         if (is_int($where) || (is_string($where) && $where != '') || (is_array($where) && !empty($where))) {
-            $where = $this->buildWhere($where, $oprator, $this->field->table_alias.'.'.$this->field->getPrimarykey());
+            $where = $this->buildWhere($where, $operator, $this->field->table_alias.'.'.$this->field->getPrimarykey());
             if (is_array($where)) {
                 $this->values = ArrayTool::replace($this->values, $where[1]);
                 $where = $where[0];
@@ -663,10 +655,10 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * สร้าง query จาก config
+     * Build a query based on the provided configuration.
      *
-     * @param string $method
-     * @param mixed  $param
+     * @param string $method The query method to build.
+     * @param mixed  $param The parameters for the query.
      */
     private function buildQuery($method, $param)
     {
@@ -689,13 +681,12 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * query ข้อมูลที่มีการแบ่งหน้า
-     * SELECT ...
+     * Execute a query with pagination.
      *
-     * @param int $start
-     * @param int $end
+     * @param int $start The start index of the query results.
+     * @param int $end The end index of the query results.
      *
-     * @return array|\static
+     * @return array|static The query results or the updated Recordset instance.
      */
     private function doExecute($start, $end)
     {
@@ -714,13 +705,13 @@ class Recordset extends Query implements \Iterator
     }
 
     /**
-     * INNER JOIN table ON ...
+     * Perform a JOIN operation on the query.
      *
-     * @param string $field field class ของตารางที่ join
-     * @param string $type  เช่น LEFT, RIGHT, INNER...
-     * @param mixed  $on    where condition สำหรับการ join
+     * @param string $field The name of the field or table to join.
+     * @param string $type The type of join operation (e.g., INNER, LEFT, RIGHT).
+     * @param string|array $on The join condition(s).
      *
-     * @return static
+     * @return static The updated Recordset instance.
      */
     private function doJoin($field, $type, $on)
     {

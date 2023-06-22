@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -139,12 +145,14 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Class สำหรับการโหลด config</p>
+            <p class="phpdocumentor-summary">Configuration class for loading and managing config settings.</p>
 
+    <section class="phpdocumentor-description"><p>This class is responsible for loading and managing configuration settings.</p>
+</section>
 
 
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -153,20 +161,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -187,131 +186,126 @@
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>กำหนดอายุของแคช (วินาที)
-0 หมายถึงไม่มีการใช้งานแคช</dd>
+<dd>Cache expiration time in seconds.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_char_set">$char_set</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>default charset</dd>
+<dd>Default character set.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_email_charset">$email_charset</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ระบุรหัสภาษาของอีเมลที่ส่ง เช่น tis-620</dd>
+<dd>The character set for outgoing emails, e.g., tis-620.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_email_Host">$email_Host</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อของเมล์เซิร์ฟเวอร์ เช่น localhost หรือ smtp.gmail.com</dd>
+<dd>The mail server hostname, e.g., localhost or smtp.gmail.com.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_email_Password">$email_Password</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>รหัสผ่าน mailserver</dd>
+<dd>The password for the mail server.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_email_Port">$email_Port</a>
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>หมายเลขพอร์ตของเมล์เซิร์ฟเวอร์ (ค่าปกติคือ 25, สำหรับ gmail ใช้ 465, 587 สำหรับ DirectAdmin)</dd>
+<dd>The mail server port number (default is 25, use 465 or 587 for Gmail, 587 for DirectAdmin).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_email_SMTPAuth">$email_SMTPAuth</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>กำหนดวิธีการตรวจสอบผู้ใช้สำหรับเมล์เซิร์ฟเวอร์
-ถ้ากำหนดเป็น true จะต้องระบุUser+Pasword ของ mailserver ด้วย</dd>
+<dd>Specifies whether SMTP authentication is required for the mail server.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_email_SMTPSecure">$email_SMTPSecure</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>โปรโตคอลการเข้ารหัส SSL สำหรับการส่งอีเมล เช่น ssl</dd>
+<dd>The SSL encryption protocol for sending emails, e.g., ssl.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_email_use_phpMailer">$email_use_phpMailer</a>
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>เลือกโปรแกรมที่ใช้ในการส่งอีเมลเป็น PHPMailer</dd>
+<dd>Selects the program used for sending emails (1 for PHPMailer).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_email_Username">$email_Username</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อผู้ใช้ mailserver</dd>
+<dd>The username for the mail server.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_languages">$languages</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายชื่อภาษาที่รองรับ
-ตามที่มีในโฟลเดอร์ language/
-เริ่มต้นคือ en (ภาษาอังกฤษ)</dd>
+<dd>The list of supported languages (found in the language/ directory). The default language is &#039;en&#039; (English).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_login_fields">$login_fields</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายชื่อฟิลด์จากตารางสมาชิก สำหรับตรวจสอบการ login</dd>
+<dd>The list of fields from the member table used for login.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_noreply_email">$noreply_email</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ทีอยู่อีเมลใช้เป็นผู้ส่งจดหมาย สำหรับจดหมายที่ไม่ต้องการตอบกลับ เช่น no-reply@domain.tld</dd>
+<dd>The email address used as the sender for non-reply emails, e.g., no-reply@domain.tld.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_password_key">$password_key</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>คีย์สำหรับการเข้ารหัสข้อความ</dd>
+<dd>The encryption key for password encryption.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_skin">$skin</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>template ที่กำลังใช้งานอยู่ (ชื่อโฟลเดอร์)</dd>
+<dd>The currently used template (folder name).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_timezone">$timezone</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ตั้งค่าเขตเวลาของ Server ให้ตรงกันกับเวลาท้องถิ่น
-สำหรับ Server ที่อยู่ในประเทศไทยใช้ Asia/Bankok</dd>
+<dd>The server timezone, e.g., Asia/Bangkok (use Asia/Bangkok for servers located in Thailand).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_web_description">$web_description</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>คำอธิบายเกี่ยวกับเว็บไซต์</dd>
+<dd>The description of the website.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-Config.html#property_web_title">$web_title</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อเว็บไซต์</dd>
+<dd>The title of the website.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Config.html#property_instance">$instance</a>
@@ -325,40 +319,35 @@
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>เรียกใช้งาน Class แบบสามารถเรียกได้ครั้งเดียวเท่านั้น</dd>
+<dd>Creates an instance of the class, which can be called only once.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Config.html#method_get">get()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>อ่านค่าตัวแปร และ แปลงผลลัพท์ตามชนิดของตัวแปรตามที่กำหนดโดย $default เช่น
-$default = 0 หรือ เลขจำนวนเต็ม ผลลัพท์จะถูกแปลงเป็น int
-$default = 0.0 หรือตัวเลขมีจุดทศนิยม จำนวนเงิน ผลลัพท์จะถูกแปลงเป็น double
-$default = true หรือ false ผลลัพท์จะถูกแปลงเป็น true หรือ false เท่านั้น
-คืนค่า ค่าตัวแปร $key ถ้าไม่พบคืนค่า $default</dd>
+<dd>Retrieves the value of a variable and converts the result based on the specified data type in $default.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Config.html#method_load">load()</a>
     <span>
                         &nbsp;: object    </span>
 </dt>
-<dd>โหลดไฟล์ config</dd>
+<dd>Loads the config file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Config.html#method_save">save()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>บันทึกไฟล์ config ของโปรเจ็ค
-คืนค่า true ถ้าสำเร็จ</dd>
+<dd>Saves the project&#039;s config file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Kotchasan-Config.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>เรียกใช้งาน Class แบบสามารถเรียกได้ครั้งเดียวเท่านั้น</dd>
+<dd>Creates an instance of the class, which can be called only once.</dd>
 
         </dl>
 
@@ -388,12 +377,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดอายุของแคช (วินาที)
-0 หมายถึงไม่มีการใช้งานแคช</p>
+        <p class="phpdocumentor-summary">Cache expiration time in seconds.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -401,7 +389,9 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <span class="phpdocumentor-signature__name">$cache_expire</span>
      = <span class="phpdocumentor-signature__default-value">0</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>0 means no caching.</p>
+</section>
+
     
     
 
@@ -426,7 +416,7 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
 
     </aside>
 
-        <p class="phpdocumentor-summary">default charset</p>
+        <p class="phpdocumentor-summary">Default character set.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -455,11 +445,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ระบุรหัสภาษาของอีเมลที่ส่ง เช่น tis-620</p>
+        <p class="phpdocumentor-summary">The character set for outgoing emails, e.g., tis-620.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -488,11 +478,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อของเมล์เซิร์ฟเวอร์ เช่น localhost หรือ smtp.gmail.com</p>
+        <p class="phpdocumentor-summary">The mail server hostname, e.g., localhost or smtp.gmail.com.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -521,11 +511,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รหัสผ่าน mailserver</p>
+        <p class="phpdocumentor-summary">The password for the mail server.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -554,11 +544,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">หมายเลขพอร์ตของเมล์เซิร์ฟเวอร์ (ค่าปกติคือ 25, สำหรับ gmail ใช้ 465, 587 สำหรับ DirectAdmin)</p>
+        <p class="phpdocumentor-summary">The mail server port number (default is 25, use 465 or 587 for Gmail, 587 for DirectAdmin).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -587,12 +577,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดวิธีการตรวจสอบผู้ใช้สำหรับเมล์เซิร์ฟเวอร์
-ถ้ากำหนดเป็น true จะต้องระบุUser+Pasword ของ mailserver ด้วย</p>
+        <p class="phpdocumentor-summary">Specifies whether SMTP authentication is required for the mail server.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -600,7 +589,9 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <span class="phpdocumentor-signature__name">$email_SMTPAuth</span>
      = <span class="phpdocumentor-signature__default-value">false</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If set to true, username and password for the mail server must be provided.</p>
+</section>
+
     
     
 
@@ -621,11 +612,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">โปรโตคอลการเข้ารหัส SSL สำหรับการส่งอีเมล เช่น ssl</p>
+        <p class="phpdocumentor-summary">The SSL encryption protocol for sending emails, e.g., ssl.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -654,11 +645,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เลือกโปรแกรมที่ใช้ในการส่งอีเมลเป็น PHPMailer</p>
+        <p class="phpdocumentor-summary">Selects the program used for sending emails (1 for PHPMailer).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -687,11 +678,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อผู้ใช้ mailserver</p>
+        <p class="phpdocumentor-summary">The username for the mail server.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -720,19 +711,17 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อภาษาที่รองรับ
-ตามที่มีในโฟลเดอร์ language/
-เริ่มต้นคือ en (ภาษาอังกฤษ)</p>
+        <p class="phpdocumentor-summary">The list of supported languages (found in the language/ directory). The default language is &#039;en&#039; (English).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$languages</span>
-     = <span class="phpdocumentor-signature__default-value">array(&#039;th&#039;)</span></code>
+     = <span class="phpdocumentor-signature__default-value">[&#039;th&#039;]</span></code>
 
     
     
@@ -755,17 +744,17 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">106</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อฟิลด์จากตารางสมาชิก สำหรับตรวจสอบการ login</p>
+        <p class="phpdocumentor-summary">The list of fields from the member table used for login.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$login_fields</span>
-     = <span class="phpdocumentor-signature__default-value">array(&#039;username&#039;)</span></code>
+     = <span class="phpdocumentor-signature__default-value">[&#039;username&#039;]</span></code>
 
     
     
@@ -788,11 +777,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">104</span>
+    <span class="phpdocumentor-element-found-in__line">113</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ทีอยู่อีเมลใช้เป็นผู้ส่งจดหมาย สำหรับจดหมายที่ไม่ต้องการตอบกลับ เช่น no-reply@domain.tld</p>
+        <p class="phpdocumentor-summary">The email address used as the sender for non-reply emails, e.g., no-reply@domain.tld.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -821,11 +810,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">110</span>
+    <span class="phpdocumentor-element-found-in__line">120</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คีย์สำหรับการเข้ารหัสข้อความ</p>
+        <p class="phpdocumentor-summary">The encryption key for password encryption.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -854,11 +843,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">116</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">template ที่กำลังใช้งานอยู่ (ชื่อโฟลเดอร์)</p>
+        <p class="phpdocumentor-summary">The currently used template (folder name).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -887,12 +876,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">123</span>
+    <span class="phpdocumentor-element-found-in__line">134</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตั้งค่าเขตเวลาของ Server ให้ตรงกันกับเวลาท้องถิ่น
-สำหรับ Server ที่อยู่ในประเทศไทยใช้ Asia/Bankok</p>
+        <p class="phpdocumentor-summary">The server timezone, e.g., Asia/Bangkok (use Asia/Bangkok for servers located in Thailand).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -921,17 +909,17 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">129</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คำอธิบายเกี่ยวกับเว็บไซต์</p>
+        <p class="phpdocumentor-summary">The description of the website.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$web_description</span>
-     = <span class="phpdocumentor-signature__default-value">&#039;PHP Framework พัฒนาโดยคนไทย&#039;</span></code>
+     = <span class="phpdocumentor-signature__default-value">&#039;PHP Framework developed by Thai people&#039;</span></code>
 
     
     
@@ -954,11 +942,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">148</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อเว็บไซต์</p>
+        <p class="phpdocumentor-summary">The title of the website.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -987,7 +975,7 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">139</span>
+    <span class="phpdocumentor-element-found-in__line">152</span>
 
     </aside>
 
@@ -999,7 +987,7 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
-        <section class="phpdocumentor-description"><p>สำหรับเรียกใช้ class นี้เพียงครั้งเดียวเท่านั้น</p>
+        <section class="phpdocumentor-description"><p>used to invoke this class only once</p>
 </section>
 
     
@@ -1025,11 +1013,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">146</span>
+    <span class="phpdocumentor-element-found-in__line">159</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เรียกใช้งาน Class แบบสามารถเรียกได้ครั้งเดียวเท่านั้น</p>
+        <p class="phpdocumentor-summary">Creates an instance of the class, which can be called only once.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1058,15 +1046,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">166</span>
+    <span class="phpdocumentor-element-found-in__line">175</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านค่าตัวแปร และ แปลงผลลัพท์ตามชนิดของตัวแปรตามที่กำหนดโดย $default เช่น
-$default = 0 หรือ เลขจำนวนเต็ม ผลลัพท์จะถูกแปลงเป็น int
-$default = 0.0 หรือตัวเลขมีจุดทศนิยม จำนวนเงิน ผลลัพท์จะถูกแปลงเป็น double
-$default = true หรือ false ผลลัพท์จะถูกแปลงเป็น true หรือ false เท่านั้น
-คืนค่า ค่าตัวแปร $key ถ้าไม่พบคืนค่า $default</p>
+        <p class="phpdocumentor-summary">Retrieves the value of a variable and converts the result based on the specified data type in $default.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1080,7 +1064,7 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตัวแปร</p>
+                    <section class="phpdocumentor-description"><p>Variable name</p>
 </section>
 
             </dd>
@@ -1089,7 +1073,7 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(option) ค่าเริ่มต้นหากไม่พบตัวแปร</p>
+                    <section class="phpdocumentor-description"><p>(optional) Default value if the variable is not found</p>
 </section>
 
             </dd>
@@ -1116,11 +1100,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">193</span>
+    <span class="phpdocumentor-element-found-in__line">202</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">โหลดไฟล์ config</p>
+        <p class="phpdocumentor-summary">Loads the config file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1134,7 +1118,7 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไฟล์ config (fullpath)</p>
+                    <section class="phpdocumentor-description"><p>Config file (fullpath)</p>
 </section>
 
             </dd>
@@ -1161,12 +1145,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">211</span>
+    <span class="phpdocumentor-element-found-in__line">219</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">บันทึกไฟล์ config ของโปรเจ็ค
-คืนค่า true ถ้าสำเร็จ</p>
+        <p class="phpdocumentor-summary">Saves the project&#039;s config file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1187,7 +1170,7 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ไฟล์ config (fullpath)</p>
+                    <section class="phpdocumentor-description"><p>Config file (fullpath)</p>
 </section>
 
             </dd>
@@ -1214,11 +1197,11 @@ $default = true หรือ false ผลลัพท์จะถูกแปล
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Config.php"><a href="files/kotchasan-config.html"><abbr title="Kotchasan/Config.php">Config.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">239</span>
+    <span class="phpdocumentor-element-found-in__line">247</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เรียกใช้งาน Class แบบสามารถเรียกได้ครั้งเดียวเท่านั้น</p>
+        <p class="phpdocumentor-summary">Creates an instance of the class, which can be called only once.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>

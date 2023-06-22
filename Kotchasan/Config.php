@@ -11,7 +11,8 @@
 namespace Kotchasan;
 
 /**
- * Class สำหรับการโหลด config
+ * Configuration class for loading and managing config settings.
+ * This class is responsible for loading and managing configuration settings.
  *
  * @see https://www.kotchasan.com/
  */
@@ -19,125 +20,139 @@ namespace Kotchasan;
 class Config
 {
     /**
-     * กำหนดอายุของแคช (วินาที)
-     * 0 หมายถึงไม่มีการใช้งานแคช
+     * Cache expiration time in seconds.
+     * 0 means no caching.
      *
      * @var int
      */
     public $cache_expire = 0;
+
     /**
-     * default charset
+     * Default character set.
      *
      * @var string
      */
     public $char_set = 'UTF-8';
+
     /**
-     * ชื่อของเมล์เซิร์ฟเวอร์ เช่น localhost หรือ smtp.gmail.com
+     * The mail server hostname, e.g., localhost or smtp.gmail.com.
      *
      * @var string
      */
     public $email_Host = 'localhost';
+
     /**
-     * รหัสผ่าน mailserver
+     * The password for the mail server.
      *
      * @var string
      */
     public $email_Password = '';
+
     /**
-     * หมายเลขพอร์ตของเมล์เซิร์ฟเวอร์ (ค่าปกติคือ 25, สำหรับ gmail ใช้ 465, 587 สำหรับ DirectAdmin)
+     * The mail server port number (default is 25, use 465 or 587 for Gmail, 587 for DirectAdmin).
      *
      * @var int
      */
     public $email_Port = 25;
+
     /**
-     * กำหนดวิธีการตรวจสอบผู้ใช้สำหรับเมล์เซิร์ฟเวอร์
-     * ถ้ากำหนดเป็น true จะต้องระบุUser+Pasword ของ mailserver ด้วย
+     * Specifies whether SMTP authentication is required for the mail server.
+     * If set to true, username and password for the mail server must be provided.
      *
      * @var bool
      */
     public $email_SMTPAuth = false;
+
     /**
-     * โปรโตคอลการเข้ารหัส SSL สำหรับการส่งอีเมล เช่น ssl
+     * The SSL encryption protocol for sending emails, e.g., ssl.
      *
      * @var string
      */
     public $email_SMTPSecure = '';
+
     /**
-     * ชื่อผู้ใช้ mailserver
+     * The username for the mail server.
      *
      * @var string
      */
     public $email_Username = '';
+
     /**
-     * ระบุรหัสภาษาของอีเมลที่ส่ง เช่น tis-620
+     * The character set for outgoing emails, e.g., tis-620.
      *
      * @var string
      */
     public $email_charset = 'utf-8';
+
     /**
-     * เลือกโปรแกรมที่ใช้ในการส่งอีเมลเป็น PHPMailer
+     * Selects the program used for sending emails (1 for PHPMailer).
      *
      * @var int
      */
     public $email_use_phpMailer = 1;
+
     /**
-     * รายชื่อภาษาที่รองรับ
-     * ตามที่มีในโฟลเดอร์ language/
-     * เริ่มต้นคือ en (ภาษาอังกฤษ)
+     * The list of supported languages (found in the language/ directory). The default language is 'en' (English).
      *
      * @var array
      */
-    public $languages = array('th');
+    public $languages = ['th'];
+
     /**
-     * รายชื่อฟิลด์จากตารางสมาชิก สำหรับตรวจสอบการ login
+     * The list of fields from the member table used for login.
      *
      * @var array
      */
-    public $login_fields = array('username');
+    public $login_fields = ['username'];
+
     /**
-     * ทีอยู่อีเมลใช้เป็นผู้ส่งจดหมาย สำหรับจดหมายที่ไม่ต้องการตอบกลับ เช่น no-reply@domain.tld
+     * The email address used as the sender for non-reply emails, e.g., no-reply@domain.tld.
      *
      * @var string
      */
     public $noreply_email = '';
+
     /**
-     * คีย์สำหรับการเข้ารหัสข้อความ
+     * The encryption key for password encryption.
      *
      * @var string
      */
     public $password_key = '1234567890';
+
     /**
-     * template ที่กำลังใช้งานอยู่ (ชื่อโฟลเดอร์)
+     * The currently used template (folder name).
      *
      * @var string
      */
     public $skin = 'default';
+
     /**
-     * ตั้งค่าเขตเวลาของ Server ให้ตรงกันกับเวลาท้องถิ่น
-     * สำหรับ Server ที่อยู่ในประเทศไทยใช้ Asia/Bankok
+     * The server timezone, e.g., Asia/Bangkok (use Asia/Bangkok for servers located in Thailand).
      *
      * @var string
      */
     public $timezone = 'Asia/Bangkok';
+
     /**
-     * คำอธิบายเกี่ยวกับเว็บไซต์
+     * The description of the website.
      *
      * @var string
      */
-    public $web_description = 'PHP Framework พัฒนาโดยคนไทย';
+    public $web_description = 'PHP Framework developed by Thai people';
+
     /**
-     * ชื่อเว็บไซต์
+     * The title of the website.
      *
      * @var string
      */
     public $web_title = 'Kotchasan PHP Framework';
     /**
-     * @var Singleton สำหรับเรียกใช้ class นี้เพียงครั้งเดียวเท่านั้น
+     * @var Singleton used to invoke this class only once
      */
     private static $instance = null;
 
     /**
-     * เรียกใช้งาน Class แบบสามารถเรียกได้ครั้งเดียวเท่านั้น
+     * Creates an instance of the class, which can be called only once.
      *
      * @return static
      */
@@ -150,14 +165,10 @@ class Config
     }
 
     /**
-     * อ่านค่าตัวแปร และ แปลงผลลัพท์ตามชนิดของตัวแปรตามที่กำหนดโดย $default เช่น
-     * $default = 0 หรือ เลขจำนวนเต็ม ผลลัพท์จะถูกแปลงเป็น int
-     * $default = 0.0 หรือตัวเลขมีจุดทศนิยม จำนวนเงิน ผลลัพท์จะถูกแปลงเป็น double
-     * $default = true หรือ false ผลลัพท์จะถูกแปลงเป็น true หรือ false เท่านั้น
-     * คืนค่า ค่าตัวแปร $key ถ้าไม่พบคืนค่า $default
+     * Retrieves the value of a variable and converts the result based on the specified data type in $default.
      *
-     * @param string $key     ชื่อตัวแปร
-     * @param mixed  $default (option) ค่าเริ่มต้นหากไม่พบตัวแปร
+     * @param string $key     Variable name
+     * @param mixed  $default (optional) Default value if the variable is not found
      *
      * @return mixed
      */
@@ -166,13 +177,13 @@ class Config
         if (isset($this->{$key})) {
             $result = $this->$key;
             if (is_float($default)) {
-                // จำนวนเงิน เช่น 0.0
+                // Floating-point number, e.g., 0.0
                 $result = (float) $result;
             } elseif (is_int($default)) {
-                // เลขจำนวนเต็ม เช่น 0
+                // Integer, e.g., 0
                 $result = (int) $result;
             } elseif (is_bool($default)) {
-                // true, false
+                // Boolean, true or false
                 $result = (bool) $result;
             }
         } else {
@@ -182,9 +193,9 @@ class Config
     }
 
     /**
-     * โหลดไฟล์ config
+     * Loads the config file.
      *
-     * @param string $file ไฟล์ config (fullpath)
+     * @param string $file Config file (fullpath)
      *
      * @return object
      */
@@ -198,11 +209,10 @@ class Config
     }
 
     /**
-     * บันทึกไฟล์ config ของโปรเจ็ค
-     * คืนค่า true ถ้าสำเร็จ
+     * Saves the project's config file.
      *
      * @param array  $config
-     * @param string $file   ไฟล์ config (fullpath)
+     * @param string $file   Config file (fullpath)
      *
      * @return bool
      */
@@ -216,13 +226,13 @@ class Config
             fwrite($f, '<'."?php\n/* $match[1].php */\nreturn ".var_export((array) $config, true).';');
             fclose($f);
             if (function_exists('opcache_invalidate')) {
-                // reset file cache
+                // Reset file cache
                 opcache_invalidate($file);
             } else {
-                // หน่วงเวลาเล็กน้อย
+                // Small delay
                 usleep(1000000);
             }
-            // success
+            // Success
             return true;
         } else {
             return false;
@@ -230,7 +240,7 @@ class Config
     }
 
     /**
-     * เรียกใช้งาน Class แบบสามารถเรียกได้ครั้งเดียวเท่านั้น
+     * Creates an instance of the class, which can be called only once.
      *
      * @return static
      */

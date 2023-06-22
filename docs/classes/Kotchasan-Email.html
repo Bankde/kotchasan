@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -142,11 +148,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Email.php"><a href="files/kotchasan-email.html"><abbr title="Kotchasan/Email.php">Email.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Email function</p>
+            <p class="phpdocumentor-summary">Email class for sending emails.</p>
 
 
 
@@ -156,20 +162,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -190,7 +187,7 @@
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>Config class</dd>
+<dd>Config class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Email.html#property_error">$error</a>
@@ -204,30 +201,28 @@
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>            </span>
 </dt>
-<dd>Server request class</dd>
+<dd>Server request class instance.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Email.html#method_error">error()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามีข้อผิดพลาดในการส่งอีเมลหรือไม่
-คืนค่า true ถ้ามี error, false ถ้าส่งอีเมลสำเร็จ</dd>
+<dd>Check if there is an error in email sending.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Email.html#method_getErrorMessage">getErrorMessage()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่าข้อผิดพลาดการส่งอีเมล
-ถ้าไม่มีข้อผิดพลาดคืนค่าข้อความว่าง</dd>
+<dd>Get the error message of the email sending.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Email.html#method_send">send()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>ฟังก์ชั่นส่งเมล์แบบกำหนดรายละเอียดเอง</dd>
+<dd>Send an email with custom details.</dd>
 
         </dl>
 
@@ -257,11 +252,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Config class</p>
+        <p class="phpdocumentor-summary">Config class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -290,7 +285,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Email.php"><a href="files/kotchasan-email.html"><abbr title="Kotchasan/Email.php">Email.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -302,7 +297,9 @@
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>Error information for email sending</p>
+</section>
+
     
 
 </article>
@@ -322,11 +319,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Server request class</p>
+        <p class="phpdocumentor-summary">Server request class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -359,12 +356,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Email.php"><a href="files/kotchasan-email.html"><abbr title="Kotchasan/Email.php">Email.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามีข้อผิดพลาดในการส่งอีเมลหรือไม่
-คืนค่า true ถ้ามี error, false ถ้าส่งอีเมลสำเร็จ</p>
+        <p class="phpdocumentor-summary">Check if there is an error in email sending.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -377,7 +373,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if there is an error, false if the email was sent successfully</p>
+</section>
+
     
 </article>
                     <article
@@ -393,12 +391,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Email.php"><a href="files/kotchasan-email.html"><abbr title="Kotchasan/Email.php">Email.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าข้อผิดพลาดการส่งอีเมล
-ถ้าไม่มีข้อผิดพลาดคืนค่าข้อความว่าง</p>
+        <p class="phpdocumentor-summary">Get the error message of the email sending.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -411,7 +408,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Error message. If there is no error, an empty string is returned.</p>
+</section>
+
     
 </article>
                     <article
@@ -427,11 +426,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Email.php"><a href="files/kotchasan-email.html"><abbr title="Kotchasan/Email.php">Email.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นส่งเมล์แบบกำหนดรายละเอียดเอง</p>
+        <p class="phpdocumentor-summary">Send an email with custom details.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -445,7 +444,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ที่อยู่อีเมลผู้รับ User Name<a href="mailto:email@domain.tld">email@domain.tld</a> หรือ email@domain.tld คั่นแต่ละรายการด้วย ,</p>
+                    <section class="phpdocumentor-description"><p>Email address(es) of the recipient(s). Can be multiple addresses separated by commas.</p>
 </section>
 
             </dd>
@@ -454,7 +453,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ที่อยู่อีเมลสำหรับการตอบกลับจดหมาย ถ้าระบุเป็นค่าว่างจะใช้ที่อยู่อีเมลจาก noreply_email</p>
+                    <section class="phpdocumentor-description"><p>Email address for the reply-to field. If empty, the noreply_email address will be used.</p>
 </section>
 
             </dd>
@@ -463,7 +462,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>หัวข้อจดหมาย</p>
+                    <section class="phpdocumentor-description"><p>Email subject.</p>
 </section>
 
             </dd>
@@ -472,7 +471,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายละเอียดของจดหมาย (รองรับ HTML)</p>
+                    <section class="phpdocumentor-description"><p>Email content. HTML is supported.</p>
 </section>
 
             </dd>
@@ -481,7 +480,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ที่อยู่อีเมล์สำหรับ ส่งแบบ CC คั่นแต่ละรายการด้วย ,</p>
+                    <section class="phpdocumentor-description"><p>Email address(es) to be included in the CC field. Can be multiple addresses separated by commas.</p>
 </section>
 
             </dd>
@@ -490,7 +489,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ที่อยู่อีเมล์สำหรับ ส่งแบบ BCC คั่นแต่ละรายการด้วย ,</p>
+                    <section class="phpdocumentor-description"><p>Email address(es) to be included in the BCC field. Can be multiple addresses separated by commas.</p>
 </section>
 
             </dd>

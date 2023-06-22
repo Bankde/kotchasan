@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -142,11 +148,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">คลาสสำหรับจัดการแสดงผลข้อมูลจาก Model ในรูปแบบตาราง</p>
+            <p class="phpdocumentor-summary">Class for managing data presentation from a Model in table format.</p>
 
 
 
@@ -156,20 +162,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -190,225 +187,203 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ถ้ากำหนดรายการนี้จะแสดง checkbox และ ปุ่ม action
-array(&#039;delete&#039; =&gt; Language::get(&#039;Delete&#039;), &#039;published&#039; =&gt; Language::get(&#039;Published&#039;))
-หมายถึงแสดง select สำหรับ ลบ และ เผยแพร่</dd>
+<dd>If specified, checkboxes and action buttons will be shown.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_addNew">$addNew</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ปุ่มเพิ่มข้อมูล</dd>
+<dd>The button for adding new data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_autoSearch">$autoSearch</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>กำหนดวิธีการค้นหาจากช่อง search
-true (default) ค้นหาจาก $searchColumns โดยอัตโนมัติ
-false กำหนดการค้นหาด้วยตัวเอง</dd>
+<dd>Specify the search behavior from the search box.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_buttons">$buttons</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ปุ่มที่จะใส่ไว้ด้านหลังของแต่ละแถว</dd>
+<dd>Buttons to be added at the end of each row.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_cols">$cols</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายชื่อคอลัมน์ทั้งหมด</dd>
+<dd>List of all columns.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_defaultFilters">$defaultFilters</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ลิสต์คำสั่ง Query หลัก สำหรับคัดเลือกข้อมูล
-array(&#039;id&#039;, 1) WHERE `id` = 1 AND ...
-array(&#039;id&#039;, array(1, 2)) WHERE `id` IN (1, 2) AND ...
-array(&#039;id&#039;, &#039;!=&#039; , 1) WHERE `id` != 1 AND .</dd>
+<dd>List of main query commands for data selection.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_defaultSort">$defaultSort</a>
     <span>
                 &nbsp;: string|null            </span>
 </dt>
-<dd>ชื่อคอลัมน์ที่ใช้เรียงลำดับเริ่มต้น
-ถ้ามีการกำหนดค่าจะเรียงลำดับตามรายการนี้ก่อนเสมอ</dd>
+<dd>The default column name used for sorting.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_enableJavascript">$enableJavascript</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>เปิดใช้งาน Javascript ของตาราง
-true เปิดใช้งาน GTable
-false ปิดใช้งาน GTable แต่ยังแทรก Javascript อื่นๆได้</dd>
+<dd>Enables the usage of DataTable&#039;s JavaScript.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_entriesList">$entriesList</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ตัวเลือกจำนวนการแสดงผลรายการต่อหน้า</dd>
+<dd>Options for the number of entries to be displayed per page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_filters">$filters</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ฟิลเตอร์ข้อมูลแสดงผล
-ถ้ากำหนดรายการนี้จะแสดงตัวเลือกการ filter ด้านบนตาราง</dd>
+<dd>Data display filters.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_headers">$headers</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายชื่อส่วนหัวของตอลัมน์</dd>
+<dd>List of header names for columns.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_hideCheckbox">$hideCheckbox</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>กำหนดการแสดงผล checkbox
-ถ้าเป็น true จะซ่อน checkbox เสมอ</dd>
+<dd>Determines whether to hide the checkbox.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_hideColumns">$hideColumns</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายชื่อคอลัมน์ที่ไม่ต้องแสดงผล</dd>
+<dd>List of columns that should not be displayed.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_page">$page</a>
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>หน้าที่กำลังแสดงผล</dd>
+<dd>The current page being displayed.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_perPage">$perPage</a>
     <span>
                 &nbsp;: int|null            </span>
 </dt>
-<dd>จำนวนรายการต่อหน้า
-ถ้ากำหนดรายการนี้จะแสดงรายการแบ่งหน้า และตัวเลือกแสดงรายการต่อหน้า</dd>
+<dd>The number of items per page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_search">$search</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ข้อความค้นหา</dd>
+<dd>The search text.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_searchColumns">$searchColumns</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายชื่อฟิลด์ที่สามารถค้นหาได้
-ถ้ากำหนดรายการนี้จะแสดงกล่องค้นหา</dd>
+<dd>List of fields that can be searched.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_searchForm">$searchForm</a>
     <span>
-                &nbsp;: bool            </span>
+                &nbsp;: bool|string            </span>
 </dt>
-<dd>การแสดงฟอร์มค้นหา
-auto (default) แสดงฟอร์มค้นหา ถ้ามี $searchColumns ระบุมา
-true แสดงฟอร์มค้นหาเสมอ
-false ไม่ต้องแสดงฟอร์มค้นหา</dd>
+<dd>Determines the display of the search form.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Kotchasan-DataTable.html#property_sort">$sort</a>
     <span>
                 &nbsp;: string|null            </span>
 </dt>
-<dd>ชื่อคอลัมน์ที่ใช้เรียงลำดับ
-ค่าเริ่มต้น null สำหรับการรับค่าอัตโนมัติ</dd>
+<dd>The column name used for sorting.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_cfg">$cfg</a>
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>Config class</dd>
+<dd>Config class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_request">$request</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>            </span>
 </dt>
-<dd>Server request class</dd>
+<dd>Server request class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-DataTable.html#property_sorts">$sorts</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ข้อมูลการเรียงลำดับที่กำลังใช้งานอยู่</dd>
+<dd>The active sorting information.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_action">$action</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>URL สำหรับรับค่าจาก action ต่างๆ เช่นการลบ
-เช่น index/[controller|model]/className/method.php</dd>
+<dd>URL for receiving actions such as delete.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_actionCallback">$actionCallback</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อฟังก์ชั่น Javascript เรียกหลังจากทำการส่งค่าจาก action ไปประมวลผลแล้ว
-เช่น doFormSubmit</dd>
+<dd>Name of the Javascript function to call after sending data from action.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_actionConfirm">$actionConfirm</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อฟังก์ชั่น Javascript เรียกหลังจากคลิก action
-เช่น confirmAction(text, action, id)</dd>
+<dd>Name of the JavaScript function called after clicking an action.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_border">$border</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>แสดงเส้นกรอบ</dd>
+<dd>Displays the table with borders.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_cache">$cache</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>database cache</dd>
+<dd>Database cache.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_checkCol">$checkCol</a>
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>คอลัมน์ของ checkbox
--1 ไม่แสดง checkbox</dd>
+<dd>Column index of the checkbox.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_class">$class</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>class ของตาราง</dd>
+<dd>Table class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_columns">$columns</a>
@@ -422,262 +397,238 @@ false ไม่ต้องแสดงฟอร์มค้นหา</dd>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ข้อมูลทั้งหมดของตารางรูปแบบแอเรย์
-หากไม่ได้ใช้ตารางเชื่อมต่อกับ Model ให้กำหนดข้อมูลทั้งหมดที่นี่</dd>
+<dd>All data of the table in array format.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_debug">$debug</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>แสดง Query ออกทางจอภาพ</dd>
+<dd>Displays the query on the screen.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_dragColumn">$dragColumn</a>
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>กำหนดคอลัมน์ หากยอมให้สามารถจัดลำดับตารางด้วยการลากได้</dd>
+<dd>Specifies the column that allows drag and drop for table reordering.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_explain">$explain</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>แสดง Explain ของ Query</dd>
+<dd>Displays the query&#039;s explain plan.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_fields">$fields</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>รายชื่อฟิลด์ที่จะ query</dd>
+<dd>List of fields to query.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_fullWidth">$fullWidth</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>แสดงตารางกว้าง 100%</dd>
+<dd>Displays the table with 100% width.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_id">$id</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>id ของตาราง</dd>
+<dd>Table ID.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_javascript">$javascript</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>Javascript</dd>
+<dd>Javascript code.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_model">$model</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Database-QueryBuilder.html"><abbr title="\Kotchasan\Database\QueryBuilder">QueryBuilder</abbr></a>            </span>
 </dt>
-<dd>ชื่อ Model ที่ต้องการเรียกข้อมูล</dd>
+<dd>Name of the Model to retrieve data from.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onAddRow">$onAddRow</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อฟังก์ชั่น Javascript เรียกเมื่อมีการเพิ่มแถวใหม่ (pmButton)
-ฟังก์ชั่นนี้จะมีการเรียกใช้ก่อนเรียกใช้ $onInitRow
-function(tr)</dd>
+<dd>Name of the JavaScript function called when adding a new row (pmButton).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onBeforeDelete">$onBeforeDelete</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อฟังก์ชั่น Javascript เรียกก่อนที่จะมีการลบแถว (pmButton)
-ถ้าฟังก์ชั่นคืนค่า true มา ถึงจะมีการลบแถว
-function(tr){return true;}</dd>
+<dd>Name of the JavaScript function called before deleting a row (pmButton).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onChanged">$onChanged</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อฟังก์ชั่น Javascript เรียกหลังจากโหลดข้อมูลด้วย Ajax แล้ว
-function(tbody, items)</dd>
+<dd>Name of the JavaScript function called after loading data via Ajax.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onCreateButton">$onCreateButton</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>method สำหรับเตรียมการแสดงผล button
-ถ้าคืนค่า false กลับมาจะไม่มีการสรางปุ่ม
-function($btn, $attributes, $items)
-$btn string id ของ button
-$attributes array property ของปุ่ม
-$items array ข้อมูลในแถว</dd>
+<dd>A method for preparing button rendering.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onCreateFooter">$onCreateFooter</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>method เรียกเมื่อต้องการสร้าง footer
-คืนค่า tag tr ที่อยู่ภายใน footer
-function()</dd>
+<dd>A method to call when creating the footer.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onCreateHeader">$onCreateHeader</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>method เรียกเมื่อต้องการสร้าง header
-คืนค่า tag tr ที่อยู่ภายใน header
-function()</dd>
+<dd>A method to call when creating the header.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onDelete">$onDelete</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อฟังก์ชั่น Javascript เรียกเมื่อมีการลบแถวแล้ว (pmButton)
-function(){}</dd>
+<dd>Name of the JavaScript function called after deleting a row (pmButton).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onInitRow">$onInitRow</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อฟังก์ชั่น Javascript เรียกเพื่อจัดการแถวใหม่
-function(tr, row)</dd>
+<dd>Name of the JavaScript function called to handle a new row.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_onRow">$onRow</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>method สำหรับจัดการข้อมูลแต่ละแถวก่อนการแสดงผล
-function($item, $index, $prop)
-$item array ข้อมูล
-$row int ลำดับที่ของข้อมูล (key)
-$prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</dd>
+<dd>Method to handle each row&#039;s data before displaying.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_params">$params</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ข้อมูลแอเรย์สำหรับส่งไปยัง $url เมื่อมีการเรียกโดย Ajax</dd>
+<dd>Array data to be sent to $url when called by Ajax.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_pmButton">$pmButton</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>แสดงปุ่ม สำหรับเพิ่มและลบแถว</dd>
+<dd>Displays buttons for adding and deleting rows.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_primaryKey">$primaryKey</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อคีย์หลักของข้อมูล
-สำหรับอ่าน id ของ แถว</dd>
+<dd>The primary key column name for data identification.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_responsive">$responsive</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>แสดงตารางแบบ responsive</dd>
+<dd>Displays the table in responsive mode.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_showCaption">$showCaption</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
-<dd>แสดงส่วนหัวของตาราง</dd>
+<dd>Displays the table caption.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_uri">$uri</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>            </span>
 </dt>
-<dd>Uri ปัจจุบันของหน้าเว็บ</dd>
+<dd>The current URI of the web page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-DataTable.html#property_url">$url</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>URL สำหรับการอ่านข้อมูลด้วย Ajax
-คืนค่ากลับมาเป็น JSON ตามคอลัมน์</dd>
+<dd>URL for reading data using Ajax.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DataTable.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>Initial Class</dd>
+<dd>Constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DataTable.html#method_render">render()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>สร้างตาราง และเริ่มต้นทำงานตาราง
-คืนค่าเป็นโค้ด HTML ของ DataTable</dd>
+<dd>Render the component.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-DataTable.html#method_script">script()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>กำหนด Javascript</dd>
+<dd>Adds a JavaScript script to the table.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-DataTable.html#method_addAction">addAction()</a>
     <span>
-                        &nbsp;: string    </span>
+                        &nbsp;: string|null    </span>
 </dt>
-<dd>สร้าง select หรือ button ด้านล่างตาราง (actions)</dd>
+<dd>Adds an action element based on the provided item configuration.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-DataTable.html#method_addFilter">addFilter()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>สร้าง select ด้านบนตาราง (filters)</dd>
+<dd>Adds a filter element based on the provided item configuration.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-DataTable.html#method_button">button()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>render button</dd>
+<dd>Generates HTML markup for a button element.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-DataTable.html#method_tbody">tbody()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>render tbody</dd>
+<dd>Generates HTML markup for the table body (&lt;tbody&gt;).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-DataTable.html#method_td">td()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>render td</dd>
+<dd>Generates HTML markup for a table cell (&lt;td&gt;) or header cell (&lt;th&gt;).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-DataTable.html#method_th">th()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>render th</dd>
+<dd>Generates HTML markup for a table header cell (&lt;th&gt;).</dd>
 
         </dl>
 
@@ -707,13 +658,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</d
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">146</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ถ้ากำหนดรายการนี้จะแสดง checkbox และ ปุ่ม action
-array(&#039;delete&#039; =&gt; Language::get(&#039;Delete&#039;), &#039;published&#039; =&gt; Language::get(&#039;Published&#039;))
-หมายถึงแสดง select สำหรับ ลบ และ เผยแพร่</p>
+        <p class="phpdocumentor-summary">If specified, checkboxes and action buttons will be shown.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -721,7 +670,10 @@ array(&#039;delete&#039; =&gt; Language::get(&#039;Delete&#039;), &#039;publishe
     <span class="phpdocumentor-signature__name">$actions</span>
      = <span class="phpdocumentor-signature__default-value">array()</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Example: array('delete' =&gt; Language::get('Delete'), 'published' =&gt; Language::get('Published'))
+This means a select option will be shown for deleting and publishing.</p>
+</section>
+
     
     
 
@@ -742,11 +694,11 @@ array(&#039;delete&#039; =&gt; Language::get(&#039;Delete&#039;), &#039;publishe
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">384</span>
+    <span class="phpdocumentor-element-found-in__line">434</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ปุ่มเพิ่มข้อมูล</p>
+        <p class="phpdocumentor-summary">The button for adding new data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -775,13 +727,11 @@ array(&#039;delete&#039; =&gt; Language::get(&#039;Delete&#039;), &#039;publishe
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">242</span>
+    <span class="phpdocumentor-element-found-in__line">271</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดวิธีการค้นหาจากช่อง search
-true (default) ค้นหาจาก $searchColumns โดยอัตโนมัติ
-false กำหนดการค้นหาด้วยตัวเอง</p>
+        <p class="phpdocumentor-summary">Specify the search behavior from the search box.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -789,7 +739,10 @@ false กำหนดการค้นหาด้วยตัวเอง</p>
     <span class="phpdocumentor-signature__name">$autoSearch</span>
      = <span class="phpdocumentor-signature__default-value">true</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>true (default): Automatically search based on $searchColumns.
+false: Manually specify the search behavior.</p>
+</section>
+
     
     
 
@@ -810,11 +763,11 @@ false กำหนดการค้นหาด้วยตัวเอง</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">296</span>
+    <span class="phpdocumentor-element-found-in__line">333</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ปุ่มที่จะใส่ไว้ด้านหลังของแต่ละแถว</p>
+        <p class="phpdocumentor-summary">Buttons to be added at the end of each row.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -843,11 +796,11 @@ false กำหนดการค้นหาด้วยตัวเอง</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">221</span>
+    <span class="phpdocumentor-element-found-in__line">247</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อคอลัมน์ทั้งหมด</p>
+        <p class="phpdocumentor-summary">List of all columns.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -876,14 +829,11 @@ false กำหนดการค้นหาด้วยตัวเอง</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">202</span>
+    <span class="phpdocumentor-element-found-in__line">225</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลิสต์คำสั่ง Query หลัก สำหรับคัดเลือกข้อมูล
-array(&#039;id&#039;, 1) WHERE `id` = 1 AND ...
-array(&#039;id&#039;, array(1, 2)) WHERE `id` IN (1, 2) AND ...
-array(&#039;id&#039;, &#039;!=&#039; , 1) WHERE `id` != 1 AND .</p>
+        <p class="phpdocumentor-summary">List of main query commands for data selection.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -891,7 +841,9 @@ array(&#039;id&#039;, &#039;!=&#039; , 1) WHERE `id` != 1 AND .</p>
     <span class="phpdocumentor-signature__name">$defaultFilters</span>
      = <span class="phpdocumentor-signature__default-value">array()</span></code>
 
-        <section class="phpdocumentor-description"><p>..</p>
+        <section class="phpdocumentor-description"><p>array('id', 1) WHERE <code class="prettyprint">id</code> = 1 AND ...
+array('id', array(1, 2)) WHERE <code class="prettyprint">id</code> IN (1, 2) AND ...
+array('id', '!=' , 1) WHERE <code class="prettyprint">id</code> != 1 AND ...</p>
 </section>
 
     
@@ -914,12 +866,11 @@ array(&#039;id&#039;, &#039;!=&#039; , 1) WHERE `id` != 1 AND .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">284</span>
+    <span class="phpdocumentor-element-found-in__line">319</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อคอลัมน์ที่ใช้เรียงลำดับเริ่มต้น
-ถ้ามีการกำหนดค่าจะเรียงลำดับตามรายการนี้ก่อนเสมอ</p>
+        <p class="phpdocumentor-summary">The default column name used for sorting.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -927,7 +878,9 @@ array(&#039;id&#039;, &#039;!=&#039; , 1) WHERE `id` != 1 AND .</p>
     <span class="phpdocumentor-signature__name">$defaultSort</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If specified, the table will be initially sorted based on this column.</p>
+</section>
+
     
     
 
@@ -948,13 +901,11 @@ array(&#039;id&#039;, &#039;!=&#039; , 1) WHERE `id` != 1 AND .</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">350</span>
+    <span class="phpdocumentor-element-found-in__line">394</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เปิดใช้งาน Javascript ของตาราง
-true เปิดใช้งาน GTable
-false ปิดใช้งาน GTable แต่ยังแทรก Javascript อื่นๆได้</p>
+        <p class="phpdocumentor-summary">Enables the usage of DataTable&#039;s JavaScript.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -962,7 +913,12 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <span class="phpdocumentor-signature__name">$enableJavascript</span>
      = <span class="phpdocumentor-signature__default-value">true</span></code>
 
-    
+        <section class="phpdocumentor-description"><ul>
+<li>true: Enables the usage of GTable.</li>
+<li>false: Disables GTable but still allows other JavaScript to be inserted.</li>
+</ul>
+</section>
+
     
     
 
@@ -983,11 +939,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">362</span>
+    <span class="phpdocumentor-element-found-in__line">408</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวเลือกจำนวนการแสดงผลรายการต่อหน้า</p>
+        <p class="phpdocumentor-summary">Options for the number of entries to be displayed per page.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1016,12 +972,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">209</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟิลเตอร์ข้อมูลแสดงผล
-ถ้ากำหนดรายการนี้จะแสดงตัวเลือกการ filter ด้านบนตาราง</p>
+        <p class="phpdocumentor-summary">Data display filters.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1029,7 +984,9 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <span class="phpdocumentor-signature__name">$filters</span>
      = <span class="phpdocumentor-signature__default-value">array()</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If this list is specified, it will display filter options above the table.</p>
+</section>
+
     
     
 
@@ -1050,11 +1007,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">227</span>
+    <span class="phpdocumentor-element-found-in__line">254</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อส่วนหัวของตอลัมน์</p>
+        <p class="phpdocumentor-summary">List of header names for columns.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1083,12 +1040,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดการแสดงผล checkbox
-ถ้าเป็น true จะซ่อน checkbox เสมอ</p>
+        <p class="phpdocumentor-summary">Determines whether to hide the checkbox.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1096,7 +1052,9 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <span class="phpdocumentor-signature__name">$hideCheckbox</span>
      = <span class="phpdocumentor-signature__default-value">false</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If set to true, the checkbox will always be hidden.</p>
+</section>
+
     
     
 
@@ -1117,11 +1075,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">215</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อคอลัมน์ที่ไม่ต้องแสดงผล</p>
+        <p class="phpdocumentor-summary">List of columns that should not be displayed.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1150,11 +1108,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">270</span>
+    <span class="phpdocumentor-element-found-in__line">303</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">หน้าที่กำลังแสดงผล</p>
+        <p class="phpdocumentor-summary">The current page being displayed.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1183,12 +1141,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">264</span>
+    <span class="phpdocumentor-element-found-in__line">296</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">จำนวนรายการต่อหน้า
-ถ้ากำหนดรายการนี้จะแสดงรายการแบ่งหน้า และตัวเลือกแสดงรายการต่อหน้า</p>
+        <p class="phpdocumentor-summary">The number of items per page.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1196,7 +1153,9 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <span class="phpdocumentor-signature__name">$perPage</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If specified, the table will be paginated and display options for the number of items per page.</p>
+</section>
+
     
     
 
@@ -1217,11 +1176,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">257</span>
+    <span class="phpdocumentor-element-found-in__line">288</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ข้อความค้นหา</p>
+        <p class="phpdocumentor-summary">The search text.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1250,12 +1209,11 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">234</span>
+    <span class="phpdocumentor-element-found-in__line">262</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อฟิลด์ที่สามารถค้นหาได้
-ถ้ากำหนดรายการนี้จะแสดงกล่องค้นหา</p>
+        <p class="phpdocumentor-summary">List of fields that can be searched.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1263,7 +1221,9 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <span class="phpdocumentor-signature__name">$searchColumns</span>
      = <span class="phpdocumentor-signature__default-value">array()</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If this list is specified, it will display a search box.</p>
+</section>
+
     
     
 
@@ -1284,22 +1244,25 @@ false ปิดใช้งาน GTable แต่ยังแทรก Javascri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">251</span>
+    <span class="phpdocumentor-element-found-in__line">281</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">การแสดงฟอร์มค้นหา
-auto (default) แสดงฟอร์มค้นหา ถ้ามี $searchColumns ระบุมา
-true แสดงฟอร์มค้นหาเสมอ
-false ไม่ต้องแสดงฟอร์มค้นหา</p>
+        <p class="phpdocumentor-summary">Determines the display of the search form.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">bool</span>
+        <span class="phpdocumentor-signature__type">bool|string</span>
     <span class="phpdocumentor-signature__name">$searchForm</span>
      = <span class="phpdocumentor-signature__default-value">&#039;auto&#039;</span></code>
 
-    
+        <section class="phpdocumentor-description"><ul>
+<li>'auto' (default): Shows the search form if $searchColumns are specified.</li>
+<li>true: Always shows the search form.</li>
+<li>false: Doesn't show the search form.</li>
+</ul>
+</section>
+
     
     
 
@@ -1320,12 +1283,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">277</span>
+    <span class="phpdocumentor-element-found-in__line">311</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อคอลัมน์ที่ใช้เรียงลำดับ
-ค่าเริ่มต้น null สำหรับการรับค่าอัตโนมัติ</p>
+        <p class="phpdocumentor-summary">The column name used for sorting.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1333,7 +1295,9 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <span class="phpdocumentor-signature__name">$sort</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Default is null for automatic value retrieval.</p>
+</section>
+
     
     
 
@@ -1354,11 +1318,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Config class</p>
+        <p class="phpdocumentor-summary">Config class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1387,11 +1351,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Server request class</p>
+        <p class="phpdocumentor-summary">Server request class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1420,11 +1384,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">290</span>
+    <span class="phpdocumentor-element-found-in__line">326</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ข้อมูลการเรียงลำดับที่กำลังใช้งานอยู่</p>
+        <p class="phpdocumentor-summary">The active sorting information.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1453,12 +1417,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">124</span>
+    <span class="phpdocumentor-element-found-in__line">137</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">URL สำหรับรับค่าจาก action ต่างๆ เช่นการลบ
-เช่น index/[controller|model]/className/method.php</p>
+        <p class="phpdocumentor-summary">URL for receiving actions such as delete.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1466,7 +1429,9 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <span class="phpdocumentor-signature__name">$action</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Format: index/[controller|model]/className/method.php</p>
+</section>
+
     
     
 
@@ -1487,12 +1452,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">139</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อฟังก์ชั่น Javascript เรียกหลังจากทำการส่งค่าจาก action ไปประมวลผลแล้ว
-เช่น doFormSubmit</p>
+        <p class="phpdocumentor-summary">Name of the Javascript function to call after sending data from action.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1500,7 +1464,9 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <span class="phpdocumentor-signature__name">$actionCallback</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Example: doFormSubmit</p>
+</section>
+
     
     
 
@@ -1521,12 +1487,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">146</span>
+    <span class="phpdocumentor-element-found-in__line">162</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อฟังก์ชั่น Javascript เรียกหลังจากคลิก action
-เช่น confirmAction(text, action, id)</p>
+        <p class="phpdocumentor-summary">Name of the JavaScript function called after clicking an action.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1534,7 +1499,9 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <span class="phpdocumentor-signature__name">$actionConfirm</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>For example, confirmAction(text, action, id)</p>
+</section>
+
     
     
 
@@ -1555,11 +1522,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แสดงเส้นกรอบ</p>
+        <p class="phpdocumentor-summary">Displays the table with borders.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1588,11 +1555,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">database cache</p>
+        <p class="phpdocumentor-summary">Database cache.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1621,12 +1588,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คอลัมน์ของ checkbox
--1 ไม่แสดง checkbox</p>
+        <p class="phpdocumentor-summary">Column index of the checkbox.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1634,7 +1600,9 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <span class="phpdocumentor-signature__name">$checkCol</span>
      = <span class="phpdocumentor-signature__default-value">-1</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>-1 to hide the checkbox.</p>
+</section>
+
     
     
 
@@ -1655,11 +1623,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">class ของตาราง</p>
+        <p class="phpdocumentor-summary">Table class.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1688,7 +1656,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">378</span>
+    <span class="phpdocumentor-element-found-in__line">427</span>
 
     </aside>
 
@@ -1720,12 +1688,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ข้อมูลทั้งหมดของตารางรูปแบบแอเรย์
-หากไม่ได้ใช้ตารางเชื่อมต่อกับ Model ให้กำหนดข้อมูลทั้งหมดที่นี่</p>
+        <p class="phpdocumentor-summary">All data of the table in array format.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1733,7 +1700,9 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <span class="phpdocumentor-signature__name">$datas</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>If the table does not connect to a Model, specify the data here.</p>
+</section>
+
     
     
 
@@ -1754,11 +1723,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">368</span>
+    <span class="phpdocumentor-element-found-in__line">415</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แสดง Query ออกทางจอภาพ</p>
+        <p class="phpdocumentor-summary">Displays the query on the screen.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1787,11 +1756,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">329</span>
+    <span class="phpdocumentor-element-found-in__line">370</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดคอลัมน์ หากยอมให้สามารถจัดลำดับตารางด้วยการลากได้</p>
+        <p class="phpdocumentor-summary">Specifies the column that allows drag and drop for table reordering.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1820,11 +1789,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">374</span>
+    <span class="phpdocumentor-element-found-in__line">422</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แสดง Explain ของ Query</p>
+        <p class="phpdocumentor-summary">Displays the query&#039;s explain plan.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1853,11 +1822,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อฟิลด์ที่จะ query</p>
+        <p class="phpdocumentor-summary">List of fields to query.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1886,11 +1855,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">101</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แสดงตารางกว้าง 100%</p>
+        <p class="phpdocumentor-summary">Displays the table with 100% width.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1919,11 +1888,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">id ของตาราง</p>
+        <p class="phpdocumentor-summary">Table ID.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1952,11 +1921,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">342</span>
+    <span class="phpdocumentor-element-found-in__line">385</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Javascript</p>
+        <p class="phpdocumentor-summary">Javascript code.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -1989,7 +1958,7 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อ Model ที่ต้องการเรียกข้อมูล</p>
+        <p class="phpdocumentor-summary">Name of the Model to retrieve data from.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2018,13 +1987,11 @@ false ไม่ต้องแสดงฟอร์มค้นหา</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">179</span>
+    <span class="phpdocumentor-element-found-in__line">199</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อฟังก์ชั่น Javascript เรียกเมื่อมีการเพิ่มแถวใหม่ (pmButton)
-ฟังก์ชั่นนี้จะมีการเรียกใช้ก่อนเรียกใช้ $onInitRow
-function(tr)</p>
+        <p class="phpdocumentor-summary">Name of the JavaScript function called when adding a new row (pmButton).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2032,7 +1999,10 @@ function(tr)</p>
     <span class="phpdocumentor-signature__name">$onAddRow</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>This function is called before $onInitRow.
+function(tr)</p>
+</section>
+
     
     
 
@@ -2053,13 +2023,11 @@ function(tr)</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">164</span>
+    <span class="phpdocumentor-element-found-in__line">182</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อฟังก์ชั่น Javascript เรียกก่อนที่จะมีการลบแถว (pmButton)
-ถ้าฟังก์ชั่นคืนค่า true มา ถึงจะมีการลบแถว
-function(tr){return true;}</p>
+        <p class="phpdocumentor-summary">Name of the JavaScript function called before deleting a row (pmButton).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2067,7 +2035,10 @@ function(tr){return true;}</p>
     <span class="phpdocumentor-signature__name">$onBeforeDelete</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>If the function returns true, the row will be deleted.
+function(tr){return true;}</p>
+</section>
+
     
     
 
@@ -2088,12 +2059,11 @@ function(tr){return true;}</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">193</span>
+    <span class="phpdocumentor-element-found-in__line">215</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อฟังก์ชั่น Javascript เรียกหลังจากโหลดข้อมูลด้วย Ajax แล้ว
-function(tbody, items)</p>
+        <p class="phpdocumentor-summary">Name of the JavaScript function called after loading data via Ajax.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2101,7 +2071,9 @@ function(tbody, items)</p>
     <span class="phpdocumentor-signature__name">$onChanged</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>function(tbody, items)</p>
+</section>
+
     
     
 
@@ -2122,16 +2094,11 @@ function(tbody, items)</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">307</span>
+    <span class="phpdocumentor-element-found-in__line">345</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">method สำหรับเตรียมการแสดงผล button
-ถ้าคืนค่า false กลับมาจะไม่มีการสรางปุ่ม
-function($btn, $attributes, $items)
-$btn string id ของ button
-$attributes array property ของปุ่ม
-$items array ข้อมูลในแถว</p>
+        <p class="phpdocumentor-summary">A method for preparing button rendering.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2139,7 +2106,13 @@ $items array ข้อมูลในแถว</p>
     <span class="phpdocumentor-signature__name">$onCreateButton</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>If it returns false, no buttons will be created.
+function($btn, $attributes, $items)
+$btn: The button ID.
+$attributes: The button properties.
+$items: The data in the row.</p>
+</section>
+
         <section class="phpdocumentor-description"><p>array($this, methodName)</p>
 </section>
 
@@ -2162,13 +2135,11 @@ $items array ข้อมูลในแถว</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">323</span>
+    <span class="phpdocumentor-element-found-in__line">363</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">method เรียกเมื่อต้องการสร้าง footer
-คืนค่า tag tr ที่อยู่ภายใน footer
-function()</p>
+        <p class="phpdocumentor-summary">A method to call when creating the footer.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2176,7 +2147,10 @@ function()</p>
     <span class="phpdocumentor-signature__name">$onCreateFooter</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the <tr> tag within the footer.
+function()</p>
+</section>
+
         <section class="phpdocumentor-description"><p>array($this, methodName)</p>
 </section>
 
@@ -2199,13 +2173,11 @@ function()</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">315</span>
+    <span class="phpdocumentor-element-found-in__line">354</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">method เรียกเมื่อต้องการสร้าง header
-คืนค่า tag tr ที่อยู่ภายใน header
-function()</p>
+        <p class="phpdocumentor-summary">A method to call when creating the header.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2213,7 +2185,10 @@ function()</p>
     <span class="phpdocumentor-signature__name">$onCreateHeader</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the <tr> tag within the header.
+function()</p>
+</section>
+
         <section class="phpdocumentor-description"><p>array($this, methodName)</p>
 </section>
 
@@ -2236,12 +2211,11 @@ function()</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">171</span>
+    <span class="phpdocumentor-element-found-in__line">190</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อฟังก์ชั่น Javascript เรียกเมื่อมีการลบแถวแล้ว (pmButton)
-function(){}</p>
+        <p class="phpdocumentor-summary">Name of the JavaScript function called after deleting a row (pmButton).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2249,7 +2223,9 @@ function(){}</p>
     <span class="phpdocumentor-signature__name">$onDelete</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>function()}</p>
+</section>
+
     
     
 
@@ -2270,12 +2246,11 @@ function(){}</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">186</span>
+    <span class="phpdocumentor-element-found-in__line">207</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อฟังก์ชั่น Javascript เรียกเพื่อจัดการแถวใหม่
-function(tr, row)</p>
+        <p class="phpdocumentor-summary">Name of the JavaScript function called to handle a new row.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2283,7 +2258,9 @@ function(tr, row)</p>
     <span class="phpdocumentor-signature__name">$onInitRow</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>function(tr, row)</p>
+</section>
+
     
     
 
@@ -2304,15 +2281,11 @@ function(tr, row)</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">156</span>
+    <span class="phpdocumentor-element-found-in__line">173</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">method สำหรับจัดการข้อมูลแต่ละแถวก่อนการแสดงผล
-function($item, $index, $prop)
-$item array ข้อมูล
-$row int ลำดับที่ของข้อมูล (key)
-$prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p>
+        <p class="phpdocumentor-summary">Method to handle each row&#039;s data before displaying.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2320,7 +2293,12 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <span class="phpdocumentor-signature__name">$onRow</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>function($item, $index, $prop)
+$item: array of data
+$row: index of the row (key)
+$prop: array of properties for the tr element, e.g., $prop[0]['id'] = xxx</p>
+</section>
+
         <section class="phpdocumentor-description"><p>array($this, methodName)</p>
 </section>
 
@@ -2343,11 +2321,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ข้อมูลแอเรย์สำหรับส่งไปยัง $url เมื่อมีการเรียกโดย Ajax</p>
+        <p class="phpdocumentor-summary">Array data to be sent to $url when called by Ajax.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2376,11 +2354,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แสดงปุ่ม สำหรับเพิ่มและลบแถว</p>
+        <p class="phpdocumentor-summary">Displays buttons for adding and deleting rows.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2409,12 +2387,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">336</span>
+    <span class="phpdocumentor-element-found-in__line">378</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อคีย์หลักของข้อมูล
-สำหรับอ่าน id ของ แถว</p>
+        <p class="phpdocumentor-summary">The primary key column name for data identification.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2422,7 +2399,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <span class="phpdocumentor-signature__name">$primaryKey</span>
      = <span class="phpdocumentor-signature__default-value">&#039;id&#039;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Used to read the ID of each row.</p>
+</section>
+
     
     
 
@@ -2443,11 +2422,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">111</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แสดงตารางแบบ responsive</p>
+        <p class="phpdocumentor-summary">Displays the table in responsive mode.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2476,11 +2455,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แสดงส่วนหัวของตาราง</p>
+        <p class="phpdocumentor-summary">Displays the table caption.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2509,11 +2488,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">356</span>
+    <span class="phpdocumentor-element-found-in__line">401</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Uri ปัจจุบันของหน้าเว็บ</p>
+        <p class="phpdocumentor-summary">The current URI of the web page.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2542,12 +2521,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">URL สำหรับการอ่านข้อมูลด้วย Ajax
-คืนค่ากลับมาเป็น JSON ตามคอลัมน์</p>
+        <p class="phpdocumentor-summary">URL for reading data using Ajax.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2555,7 +2533,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <span class="phpdocumentor-signature__name">$url</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns JSON data based on columns.</p>
+</section>
+
     
     
 
@@ -2580,11 +2560,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">391</span>
+    <span class="phpdocumentor-element-found-in__line">441</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Initial Class</p>
+        <p class="phpdocumentor-summary">Constructor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2598,7 +2578,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The parameters to initialize the object.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2623,18 +2605,20 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">502</span>
+    <span class="phpdocumentor-element-found-in__line">574</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างตาราง และเริ่มต้นทำงานตาราง
-คืนค่าเป็นโค้ด HTML ของ DataTable</p>
+        <p class="phpdocumentor-summary">Render the component.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">render</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function is responsible for rendering the component.
+It generates the necessary HTML code based on the provided data.</p>
+</section>
+
     
     
 
@@ -2657,11 +2641,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">491</span>
+    <span class="phpdocumentor-element-found-in__line">561</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนด Javascript</p>
+        <p class="phpdocumentor-summary">Adds a JavaScript script to the table.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2675,7 +2659,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The JavaScript script to add.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2700,15 +2686,15 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1152</span>
+    <span class="phpdocumentor-element-found-in__line">1296</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้าง select หรือ button ด้านล่างตาราง (actions)</p>
+        <p class="phpdocumentor-summary">Adds an action element based on the provided item configuration.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">addAction</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">addAction</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -2718,16 +2704,20 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The item configuration for the action element.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
+    <span class="phpdocumentor-signature__response_type">string|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The generated HTML for the action element, or null if no action is defined.</p>
+</section>
+
     
 </article>
                     <article
@@ -2743,11 +2733,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1223</span>
+    <span class="phpdocumentor-element-found-in__line">1374</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้าง select ด้านบนตาราง (filters)</p>
+        <p class="phpdocumentor-summary">Adds a filter element based on the provided item configuration.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2761,7 +2751,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The item configuration for the filter element.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2770,7 +2762,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The generated HTML for the filter element.</p>
+</section>
+
     
 </article>
                     <article
@@ -2786,11 +2780,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1071</span>
+    <span class="phpdocumentor-element-found-in__line">1203</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">render button</p>
+        <p class="phpdocumentor-summary">Generates HTML markup for a button element.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2804,7 +2798,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อ button</p>
+                    <section class="phpdocumentor-description"><p>The button identifier.</p>
 </section>
 
             </dd>
@@ -2813,7 +2807,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>properties ของ button</p>
+                    <section class="phpdocumentor-description"><p>The properties of the button.</p>
 </section>
 
             </dd>
@@ -2822,7 +2816,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลในแถว</p>
+                    <section class="phpdocumentor-description"><p>The items associated with the button.</p>
 </section>
 
             </dd>
@@ -2833,7 +2827,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The generated HTML for the button element.</p>
+</section>
+
     
 </article>
                     <article
@@ -2849,15 +2845,15 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">916</span>
+    <span class="phpdocumentor-element-found-in__line">1012</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">render tbody</p>
+        <p class="phpdocumentor-summary">Generates HTML markup for the table body (&lt;tbody&gt;).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">tbody</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$end</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">tbody</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$end</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -2867,16 +2863,17 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลเริ่มต้น (เริ่มที่ 1)</p>
+                    <section class="phpdocumentor-description"><p>The start index of the rows to be included in the tbody.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$end</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The end index of the rows to be included in the tbody.</p>
+</section>
 
             </dd>
             </dl>
@@ -2886,7 +2883,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The generated HTML for the table body.</p>
+</section>
+
     
 </article>
                     <article
@@ -2902,25 +2901,25 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1046</span>
+    <span class="phpdocumentor-element-found-in__line">1173</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">render td</p>
+        <p class="phpdocumentor-summary">Generates HTML markup for a table cell (&lt;td&gt;) or header cell (&lt;th&gt;).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">td</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$i</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$properties</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$th</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">td</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$i</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$properties</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$text</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$th</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>id ของ แถว</p>
+                    <section class="phpdocumentor-description"><p>The cell ID.</p>
 </section>
 
             </dd>
@@ -2929,7 +2928,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ลำดับคอลัมน์</p>
+                    <section class="phpdocumentor-description"><p>The cell index.</p>
 </section>
 
             </dd>
@@ -2938,7 +2937,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคอลัมน์</p>
+                    <section class="phpdocumentor-description"><p>The properties of the cell.</p>
 </section>
 
             </dd>
@@ -2947,16 +2946,17 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความใน td</p>
+                    <section class="phpdocumentor-description"><p>The cell content.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$th</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The content of the corresponding table header cell.</p>
+</section>
 
             </dd>
             </dl>
@@ -2966,7 +2966,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The generated HTML for the table cell.</p>
+</section>
+
     
 </article>
                     <article
@@ -2982,11 +2984,11 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/DataTable.php"><a href="files/kotchasan-datatable.html"><abbr title="Kotchasan/DataTable.php">DataTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1020</span>
+    <span class="phpdocumentor-element-found-in__line">1142</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">render th</p>
+        <p class="phpdocumentor-summary">Generates HTML markup for a table header cell (&lt;th&gt;).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -3000,7 +3002,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ลำดับคอลัมน์</p>
+                    <section class="phpdocumentor-description"><p>The column index.</p>
 </section>
 
             </dd>
@@ -3009,7 +3011,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคอลัมน์</p>
+                    <section class="phpdocumentor-description"><p>The column name or identifier.</p>
 </section>
 
             </dd>
@@ -3018,7 +3020,7 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>properties ของ th</p>
+                    <section class="phpdocumentor-description"><p>The properties of the table header cell.</p>
 </section>
 
             </dd>
@@ -3029,7 +3031,9 @@ $prop array property ของ tr เช่น $prop[0][&#039;id&#039;] = xxx</p
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The generated HTML for the table header cell.</p>
+</section>
+
     
 </article>
             </section>

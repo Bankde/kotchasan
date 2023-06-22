@@ -11,7 +11,7 @@
 namespace Kotchasan;
 
 /**
- * คลาสจัดการเกี่ยวกับวันที่และเวลา
+ * Class for managing dates and times.
  *
  * @see https://www.kotchasan.com/
  */
@@ -23,28 +23,28 @@ class Date
     private static $lang;
 
     /**
-     * class constructer
+     * Class constructor.
      */
     public function __construct()
     {
-        self::$lang = Language::getItems(array(
+        self::$lang = Language::getItems([
             'DATE_SHORT',
             'DATE_LONG',
             'MONTH_SHORT',
             'MONTH_LONG',
             'YEAR_OFFSET'
-        ));
+        ]);
     }
 
     /**
-     * ฟังก์ชั่น คำนวนความแตกต่างของวัน (เช่น อายุ)
-     * คืนค่า จำนวนวัน(ติดลบได้) ปี เดือน วัน [days, year, month, day] ที่แตกต่าง
+     * Calculates the difference between two dates (e.g., age).
+     * Returns the number of days (can be negative), years, months, and days [days, year, month, day].
      *
      * @assert (mktime(0, 0, 0, 2, 1, 2016), mktime(0, 0, 0, 3, 1, 2016)) [==]  array('days' => 29, 'year' => 0,'month' => 0, 'day' => 29)
      * @assert ('2016-3-1', '2016-2-1') [==]  array('days' => -29, 'year' => 0,'month' => 0, 'day' => 29)
      *
-     * @param string|int  $begin_date วันที่เริ่มต้นหรือวันเกิด (Unix timestamp หรือ วันที่ รูปแบบ YYYY-m-d)
-     * @param istring|int $end_date   วันที่สิ้นสุดหรือวันนี้ (Unix timestamp หรือ วันที่ รูปแบบ YYYY-m-d)
+     * @param string|int  $begin_date The start date or birth date (Unix timestamp or date in the format YYYY-m-d)
+     * @param istring|int $end_date   The end date or today's date (Unix timestamp or date in the format YYYY-m-d)
      *
      * @return array
      */
@@ -57,16 +57,16 @@ class Date
             $end_date = date('Y-m-d H:i:s', $end_date);
         }
         $diff = date_diff(date_create($begin_date), date_create($end_date));
-        return array(
+        return [
             'days' => $diff->invert == 1 ? -$diff->days : $diff->days,
             'year' => $diff->y,
             'month' => $diff->m,
             'day' => $diff->d
-        );
+        ];
     }
 
     /**
-     * คืนค่าเวลาที่แตกต่าง หน่วย msec
+     * Returns the time difference in milliseconds.
      *
      * @assert ('08:00', '09:00') [==] 3600
      *
@@ -84,14 +84,14 @@ class Date
     }
 
     /**
-     * แปลงตัวเลขเป็นชื่อวันตามภาษาที่ใช้งานอยู่
-     * คืนค่า อาทิตย์...6 เสาร์
+     * Converts a number to the name of the day in the current language.
+     * Returns the name of the day (e.g., Sunday...Saturday).
      *
      * @assert (0) [==] 'อา.'
      * @assert (0, false) [==] 'อาทิตย์'
      *
      * @param int  $date       0-6
-     * @param bool $short_date true (default) วันที่แบบสั้น เช่น อ., false ชื่อเดือนแบบเต็ม เช่น อาทิตย์
+     * @param bool $short_date true (default) for short day name format (e.g., อ.), false for full month name format (e.g., อาทิตย์)
      *
      * @return string
      */
@@ -106,15 +106,15 @@ class Date
     }
 
     /**
-     * ฟังก์ชั่นแปลงเวลาเป็นวันที่ตามรูปแบบที่กำหนด สามารถคืนค่าวันเดือนปี พศ. ได้ ขึ้นกับไฟล์ภาษา
-     * คืนค่า วันที่และเวลาตามรูปแบบที่กำหนดโดย $format
+     * Converts a time to a date in the specified format.
+     * Returns the date and time in the specified format.
      *
      * @assert (0, 'y-m-d H:i:s') [==]  date('y-m-d H:i:s')
      * @assert (null) [==]  ''
      * @assert (1454259600, 'Y-m-d H:i:s') [==] '2559-02-01 00:00:00'
      *
-     * @param int|string $time   int เวลารูปแบบ Unix timestamp, string เวลารูปแบบ Y-m-d หรือ Y-m-d H:i:s ถ้าไม่ระบุหรือระบุ หมายถึงวันนี้
-     * @param string     $format รูปแบบของวันที่ที่ต้องการ (ถ้าไม่ระบุจะใช้รูปแบบที่มาจากระบบภาษา DATE_FORMAT)
+     * @param int|string $time   int for Unix timestamp, string for Y-m-d or Y-m-d H:i:s format (if not specified or empty, it means today)
+     * @param string     $format The desired format of the date (if not specified, it uses the format from the language file DATE_FORMAT)
      *
      * @return string
      */
@@ -176,14 +176,14 @@ class Date
     }
 
     /**
-     * แปลงตัวเลขเป็นชื่อเดือนตามภาษาที่ใช้งานอยู่
-     * คืนค่า 1 มกราคม...12 ธันวาคม
+     * Converts a number to the name of the month in the current language.
+     * Returns the name of the month (e.g., January...December).
      *
      * @assert (1) [==] 'ม.ค.'
      * @assert (1, false) [==] 'มกราคม'
      *
      * @param int  $month       1-12
-     * @param bool $short_month true (default) ชื่อเดือนแบบสั้น เช่น มค., false ชื่อเดือนแบบเต็ม เช่น มกราคม
+     * @param bool $short_month true (default) for short month name format (e.g., มค.), false for full month name format (e.g., มกราคม)
      *
      * @return string
      */
@@ -198,10 +198,10 @@ class Date
     }
 
     /**
-     * แยกวันที่ออกเป็น array
-     * คืนค่า array(y, m, d, h, i, s) หรือ array(y, m, d) หากเป้นวันที่อย่างเดียว หรือ false หากไม่ใช่วันที่
+     * Parses a date string into an array.
+     * Returns an array containing year, month, day, hour, minute, second, or an empty array if it's not a date.
      *
-     * @param string $date
+     * @param string $date The date string to parse
      *
      * @return array|bool
      */

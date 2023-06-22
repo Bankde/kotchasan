@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -142,11 +148,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Class สำหรับการโหลดภาษา</p>
+            <p class="phpdocumentor-summary">Class for language loading.</p>
 
 
 
@@ -156,20 +162,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -190,149 +187,140 @@
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>Config class</dd>
+<dd>Config class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_request">$request</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>            </span>
 </dt>
-<dd>Server request class</dd>
+<dd>Server request class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Language.html#property_installed_languages">$installed_languages</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ภาษาทั้งหมดที่ติดตั้ง</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Language.html#property_language_name">$language_name</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>ชื่อภาษาที่กำลังใช้งานอยู่</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Language.html#property_languages">$languages</a>
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>รายการภาษา</dd>
+<dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_arrayKeyExists">arrayKeyExists()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่ามีตัวแปรภาษาที่เป็นแอเรย์ในคีย์ที่เลือกหรือไม่
-คืนค่า true ถ้ามี
-คืนค่า false ถ้าไม่มีหรือไม่ใช่แอเรย์</dd>
+<dd>Checks if a language variable specified by name exists and is an array with a given key.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_get">get()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>ฟังก์ชั่นอ่านตัวแปรภาษา $key
-ถ้าระบุ $value และตัวแปรเป็นแอเรย์ คืนค่าภาษาที่ $key[$value]
-ถ้าไม่พบ $key หรือ $value คืนค่าตามที่กำหนดโดย $default
-$default = null (หรือไม่ระบุ) คืนค่า $key
-$default = อื่นๆ คืนค่า $default</dd>
+<dd>Retrieves the language variable with the specified key.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_getItems">getItems()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>อ่านภาษาหลายรายการ ตามที่กำหนดโดย $keys</dd>
+<dd>Retrieves multiple language items based on the specified keys.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_installed">installed()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>โหลดไฟล์ภาษาทั้งหมดที่ติดตั้ง
-คืนค่าข้อมูลภาษาทั้งหมด</dd>
+<dd>Loads all installed language files.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_installedLanguage">installedLanguage()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>รายชื่อภาษาที่ติดตั้ง</dd>
+<dd>Retrieves an array of installed languages.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_keyExists">keyExists()</a>
     <span>
                         &nbsp;: int    </span>
 </dt>
-<dd>ตรวจสอบคีย์ของภาษาซ้ำ
-คืนค่าลำดับที่พบ (รายการแรกคือ 0), คืนค่า -1 ถ้าไม่พบ</dd>
+<dd>Checks if a language key exists in the given array of languages.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_languageFolder">languageFolder()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นอ่านชื่อโฟลเดอร์เก็บไฟล์ภาษา</dd>
+<dd>Retrieves the folder path where language files are stored.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_load">load()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>โหลดภาษาตามที่เลือก</dd>
+<dd>Loads the language file based on the selected language.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_name">name()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>อ่านชื่อภาษาที่กำลังใช้งานอยู่</dd>
+<dd>Retrieves the name of the currently active language.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_parse">parse()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นแปลภาษาที่รับค่ามาจากการ parse Theme</dd>
+<dd>Function that translates the language received from Theme parsing.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_replace">replace()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>คืนค่าภาษาตาม $key
-และแทนที่ข้อความ ที่ $replace array(&#039;:key&#039; =&gt; &#039;value&#039;, &#039;:key&#039; =&gt; &#039;value&#039;)</dd>
+<dd>Retrieves the language value based on the given key and replaces placeholders with values from the $replace array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_save">save()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>บันทึกไฟล์ภาษา</dd>
+<dd>Saves the language file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_setName">setName()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>กำหนดภาษาที่ต้องการ</dd>
+<dd>Sets the language to be used.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Language.html#method_trans">trans()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลภาษา</dd>
+<dd>Translates the given content by replacing language placeholders.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Language.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>โหลดภาษา</dd>
+<dd>Loads the language.</dd>
 
         </dl>
 
@@ -362,11 +350,11 @@ $default = อื่นๆ คืนค่า $default</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Config class</p>
+        <p class="phpdocumentor-summary">Config class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -395,11 +383,11 @@ $default = อื่นๆ คืนค่า $default</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Server request class</p>
+        <p class="phpdocumentor-summary">Server request class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -428,12 +416,11 @@ $default = อื่นๆ คืนค่า $default</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ภาษาทั้งหมดที่ติดตั้ง</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
     <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
@@ -441,7 +428,9 @@ $default = อื่นๆ คืนค่า $default</dd>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>Installed languages.</p>
+</section>
+
     
 
 </article>
@@ -461,12 +450,11 @@ $default = อื่นๆ คืนค่า $default</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ชื่อภาษาที่กำลังใช้งานอยู่</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
     <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">string</span>
@@ -474,7 +462,9 @@ $default = อื่นๆ คืนค่า $default</dd>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>Name of the currently used language.</p>
+</section>
+
     
 
 </article>
@@ -494,12 +484,11 @@ $default = อื่นๆ คืนค่า $default</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายการภาษา</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
     <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">object</span>
@@ -507,7 +496,9 @@ $default = อื่นๆ คืนค่า $default</dd>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>Language data.</p>
+</section>
+
     
 
 </article>
@@ -531,17 +522,15 @@ $default = อื่นๆ คืนค่า $default</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">200</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่ามีตัวแปรภาษาที่เป็นแอเรย์ในคีย์ที่เลือกหรือไม่
-คืนค่า true ถ้ามี
-คืนค่า false ถ้าไม่มีหรือไม่ใช่แอเรย์</p>
+        <p class="phpdocumentor-summary">Checks if a language variable specified by name exists and is an array with a given key.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">arrayKeyExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">arrayKeyExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -551,14 +540,18 @@ $default = อื่นๆ คืนค่า $default</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the language variable.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The key to check.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -591,7 +584,9 @@ $default = อื่นๆ คืนค่า $default</dd>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the language variable exists and is an array with the given key, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -607,15 +602,11 @@ $default = อื่นๆ คืนค่า $default</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นอ่านตัวแปรภาษา $key
-ถ้าระบุ $value และตัวแปรเป็นแอเรย์ คืนค่าภาษาที่ $key[$value]
-ถ้าไม่พบ $key หรือ $value คืนค่าตามที่กำหนดโดย $default
-$default = null (หรือไม่ระบุ) คืนค่า $key
-$default = อื่นๆ คืนค่า $default</p>
+        <p class="phpdocumentor-summary">Retrieves the language variable with the specified key.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -629,7 +620,7 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความในภาษาอังกฤษ หรือ คีย์ของภาษา</p>
+                    <section class="phpdocumentor-description"><p>The language variable key or English text.</p>
 </section>
 
             </dd>
@@ -638,7 +629,7 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าไม่ระบุ (null) และไม่พบ $key</p>
+                    <section class="phpdocumentor-description"><p>The default value to return if the key is not found.</p>
 </section>
 
             </dd>
@@ -647,7 +638,7 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าเป็นแอเรย์และระบุ $value มาด้วย คืนค่าข้อมูลที่ $value</p>
+                    <section class="phpdocumentor-description"><p>If an array variable is specified and $value is set, returns the language value at $key[$value].</p>
 </section>
 
             </dd>
@@ -709,7 +700,9 @@ $default = อื่นๆ คืนค่า $default</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The language value or the default value if the key is not found.</p>
+</section>
+
     
 </article>
                     <article
@@ -725,11 +718,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านภาษาหลายรายการ ตามที่กำหนดโดย $keys</p>
+        <p class="phpdocumentor-summary">Retrieves multiple language items based on the specified keys.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -743,7 +736,9 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>An array of language variable keys or English texts.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -752,7 +747,9 @@ $default = อื่นๆ คืนค่า $default</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array of language values.</p>
+</section>
+
     
 </article>
                     <article
@@ -768,12 +765,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">104</span>
+    <span class="phpdocumentor-element-found-in__line">93</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">โหลดไฟล์ภาษาทั้งหมดที่ติดตั้ง
-คืนค่าข้อมูลภาษาทั้งหมด</p>
+        <p class="phpdocumentor-summary">Loads all installed language files.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -787,7 +783,9 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The file type (php or js).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -796,7 +794,9 @@ $default = อื่นๆ คืนค่า $default</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array of language data.</p>
+</section>
+
     
 </article>
                     <article
@@ -812,11 +812,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">149</span>
+    <span class="phpdocumentor-element-found-in__line">138</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">รายชื่อภาษาที่ติดตั้ง</p>
+        <p class="phpdocumentor-summary">Retrieves an array of installed languages.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -829,7 +829,9 @@ $default = อื่นๆ คืนค่า $default</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array of installed languages.</p>
+</section>
+
     
 </article>
                     <article
@@ -845,12 +847,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">177</span>
+    <span class="phpdocumentor-element-found-in__line">165</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบคีย์ของภาษาซ้ำ
-คืนค่าลำดับที่พบ (รายการแรกคือ 0), คืนค่า -1 ถ้าไม่พบ</p>
+        <p class="phpdocumentor-summary">Checks if a language key exists in the given array of languages.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -864,7 +865,7 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลภาษาที่ต้องการตรวจสอบ</p>
+                    <section class="phpdocumentor-description"><p>An array of language data.</p>
 </section>
 
             </dd>
@@ -873,7 +874,7 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการที่ต้องการตรวจสอบ</p>
+                    <section class="phpdocumentor-description"><p>The language key to check.</p>
 </section>
 
             </dd>
@@ -917,7 +918,9 @@ $default = อื่นๆ คืนค่า $default</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The index of the found key, or -1 if not found.</p>
+</section>
+
     
 </article>
                     <article
@@ -933,11 +936,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">213</span>
+    <span class="phpdocumentor-element-found-in__line">200</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นอ่านชื่อโฟลเดอร์เก็บไฟล์ภาษา</p>
+        <p class="phpdocumentor-summary">Retrieves the folder path where language files are stored.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -950,7 +953,9 @@ $default = อื่นๆ คืนค่า $default</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The folder path where language files are stored.</p>
+</section>
+
     
 </article>
                     <article
@@ -966,11 +971,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">386</span>
+    <span class="phpdocumentor-element-found-in__line">372</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">โหลดภาษาตามที่เลือก</p>
+        <p class="phpdocumentor-summary">Loads the language file based on the selected language.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -984,7 +989,9 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The language to be loaded.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1009,11 +1016,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">225</span>
+    <span class="phpdocumentor-element-found-in__line">212</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านชื่อภาษาที่กำลังใช้งานอยู่</p>
+        <p class="phpdocumentor-summary">Retrieves the name of the currently active language.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1041,7 +1048,9 @@ $default = อื่นๆ คืนค่า $default</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The name of the currently active language.</p>
+</section>
+
     
 </article>
                     <article
@@ -1057,11 +1066,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">257</span>
+    <span class="phpdocumentor-element-found-in__line">244</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นแปลภาษาที่รับค่ามาจากการ parse Theme</p>
+        <p class="phpdocumentor-summary">Function that translates the language received from Theme parsing.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1075,7 +1084,7 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ตัวแปรรับค่ามาจากการ parse Theme</p>
+                    <section class="phpdocumentor-description"><p>The variable received from Theme parsing.</p>
 </section>
 
             </dd>
@@ -1117,12 +1126,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">275</span>
+    <span class="phpdocumentor-element-found-in__line">261</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าภาษาตาม $key
-และแทนที่ข้อความ ที่ $replace array(&#039;:key&#039; =&gt; &#039;value&#039;, &#039;:key&#039; =&gt; &#039;value&#039;)</p>
+        <p class="phpdocumentor-summary">Retrieves the language value based on the given key and replaces placeholders with values from the $replace array.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1136,14 +1144,18 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The language key.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$replace</span>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The values to replace placeholders.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1201,11 +1213,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">300</span>
+    <span class="phpdocumentor-element-found-in__line">286</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">บันทึกไฟล์ภาษา</p>
+        <p class="phpdocumentor-summary">Saves the language file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1219,14 +1231,18 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The language data to be saved.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$type</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The type of file to save ('php' or 'js').</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1251,11 +1267,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">240</span>
+    <span class="phpdocumentor-element-found-in__line">227</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดภาษาที่ต้องการ</p>
+        <p class="phpdocumentor-summary">Sets the language to be used.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1269,7 +1285,9 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The language to be set.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1278,7 +1296,9 @@ $default = อื่นๆ คืนค่า $default</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The name of the language.</p>
+</section>
+
     
 </article>
                     <article
@@ -1294,11 +1314,11 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">374</span>
+    <span class="phpdocumentor-element-found-in__line">360</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลภาษา</p>
+        <p class="phpdocumentor-summary">Translates the given content by replacing language placeholders.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1312,7 +1332,9 @@ $default = อื่นๆ คืนค่า $default</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The content to be translated.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1336,7 +1358,9 @@ $default = อื่นๆ คืนค่า $default</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The translated content.</p>
+</section>
+
     
 </article>
                     <article
@@ -1352,25 +1376,25 @@ $default = อื่นๆ คืนค่า $default</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Language.php"><a href="files/kotchasan-language.html"><abbr title="Kotchasan/Language.php">Language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">404</span>
+    <span class="phpdocumentor-element-found-in__line">390</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">โหลดภาษา</p>
+        <p class="phpdocumentor-summary">Loads the language.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lang</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lang</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$lang</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ภาษาที่ต้องการ ถ้าไม่ระบุจะอ่านจาก cookie my_lang</p>
+                    <section class="phpdocumentor-description"><p>The language to be used. If not specified, it will read from the 'my_lang' cookie.</p>
 </section>
 
             </dd>

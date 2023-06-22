@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -146,8 +152,10 @@
 
     </aside>
 
-            <p class="phpdocumentor-summary">รายการ input รูปแบบ Array</p>
+            <p class="phpdocumentor-summary">Input item array wrapper class.</p>
 
+    <section class="phpdocumentor-description"><p>This class represents an array of input items.</p>
+</section>
 
 
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
@@ -156,20 +164,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -201,70 +200,70 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ตัวแปรเก็บ properties ของคลาส</dd>
+<dd>The array to store the input item objects.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Inputs.html#method___call">__call()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>magic method คืนค่าข้อมูลสำหรับ input ชนิด array</dd>
+<dd>Magic method to retrieve data for array type input.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Inputs.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>Class Constructer</dd>
+<dd>Class constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Inputs.html#method_current">current()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-InputItem.html"><abbr title="\Kotchasan\InputItem">InputItem</abbr></a>    </span>
 </dt>
-<dd>คืนค่า InputItem รายการปัจจุบัน</dd>
+<dd>Returns the current InputItem in the list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Inputs.html#method_get">get()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-InputItem.html"><abbr title="\Kotchasan\InputItem">InputItem</abbr></a>    </span>
 </dt>
-<dd>อ่าน Input ที่ต้องการ</dd>
+<dd>Get the specified InputItem.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Inputs.html#method_key">key()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่าคีย์หรือลำดับของ InputItem ในลิสต์รายการ</dd>
+<dd>Returns the key or index of the current InputItem in the list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Inputs.html#method_next">next()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-InputItem.html"><abbr title="\Kotchasan\InputItem">InputItem</abbr></a>    </span>
 </dt>
-<dd>คืนค่า InputItem รายการถัดไป</dd>
+<dd>Returns the next InputItem in the list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Inputs.html#method_rewind">rewind()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>inherited from Iterator</dd>
+<dd>Rewind the Iterator to the first InputItem in the list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Inputs.html#method_valid">valid()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd></dd>
+<dd>Checks if the current position of the Iterator is valid.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Inputs.html#method_collectInputs">collectInputs()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|object    </span>
 </dt>
-<dd>เตรียมผลลัพท์สำหรับ input แบบ array</dd>
+<dd>Prepare the result for array type input.</dd>
 
         </dl>
 
@@ -298,7 +297,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวแปรเก็บ properties ของคลาส</p>
+        <p class="phpdocumentor-summary">The array to store the input item objects.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -335,7 +334,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">magic method คืนค่าข้อมูลสำหรับ input ชนิด array</p>
+        <p class="phpdocumentor-summary">Magic method to retrieve data for array type input.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -372,7 +371,7 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้าไม่มี method ที่ต้องการ</p>
+                                                 <section class="phpdocumentor-description"><p>If the requested method does not exist</p>
 </section>
 
                                     </dd>
@@ -381,7 +380,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The array of input item values</p>
+</section>
+
     
 </article>
                     <article
@@ -401,7 +402,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Class Constructer</p>
+        <p class="phpdocumentor-summary">Class constructor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -415,7 +416,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการ input</p>
+                    <section class="phpdocumentor-description"><p>The input items array</p>
 </section>
 
             </dd>
@@ -424,7 +425,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ประเภท Input เช่น GET POST SESSION COOKIE หรือ null ถ้าไม่ได้มาจากรายการข้างต้น</p>
+                    <section class="phpdocumentor-description"><p>The input type (e.g., GET, POST, SESSION, COOKIE) or null if not derived from the above lists</p>
 </section>
 
             </dd>
@@ -455,7 +456,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า InputItem รายการปัจจุบัน</p>
+        <p class="phpdocumentor-summary">Returns the current InputItem in the list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -468,7 +469,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-InputItem.html"><abbr title="\Kotchasan\InputItem">InputItem</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The current InputItem</p>
+</section>
+
     
 </article>
                     <article
@@ -488,7 +491,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่าน Input ที่ต้องการ</p>
+        <p class="phpdocumentor-summary">Get the specified InputItem.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -502,7 +505,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายการที่ต้องการ</p>
+                    <section class="phpdocumentor-description"><p>The key of the input item to retrieve</p>
 </section>
 
             </dd>
@@ -513,7 +516,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-InputItem.html"><abbr title="\Kotchasan\InputItem">InputItem</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The specified InputItem</p>
+</section>
+
     
 </article>
                     <article
@@ -533,7 +538,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าคีย์หรือลำดับของ InputItem ในลิสต์รายการ</p>
+        <p class="phpdocumentor-summary">Returns the key or index of the current InputItem in the list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -546,7 +551,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The key or index of the current InputItem</p>
+</section>
+
     
 </article>
                     <article
@@ -566,7 +573,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า InputItem รายการถัดไป</p>
+        <p class="phpdocumentor-summary">Returns the next InputItem in the list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -579,7 +586,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-InputItem.html"><abbr title="\Kotchasan\InputItem">InputItem</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The next InputItem</p>
+</section>
+
     
 </article>
                     <article
@@ -599,7 +608,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">inherited from Iterator</p>
+        <p class="phpdocumentor-summary">Rewind the Iterator to the first InputItem in the list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -628,11 +637,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Inputs.php"><a href="files/kotchasan-inputs.html"><abbr title="Kotchasan/Inputs.php">Inputs.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Checks if the current position of the Iterator is valid.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">valid</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
@@ -644,7 +654,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the current position is valid, false otherwise</p>
+</section>
+
     
 </article>
                     <article
@@ -664,7 +676,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">เตรียมผลลัพท์สำหรับ input แบบ array</p>
+        <p class="phpdocumentor-summary">Prepare the result for array type input.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -678,21 +690,27 @@
                 : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The input item object</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$name</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The method name to call</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$arguments</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The method arguments</p>
+</section>
+
             </dd>
             </dl>
 
@@ -701,7 +719,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|object</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The array of input item values or an object</p>
+</section>
+
     
 </article>
             </section>

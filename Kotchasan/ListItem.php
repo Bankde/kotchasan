@@ -11,29 +11,28 @@
 namespace Kotchasan;
 
 /**
- * คลาสสำหรับจัดการแอเรย์
+ * Class ListItem
+ *
+ * This class handles array manipulation.
  *
  * @see https://www.kotchasan.com/
  */
 class ListItem
 {
     /**
-     * ข้อมูล
-     *
-     * @var array
+     * @var array The data.
      */
     public $datas;
+
     /**
-     * ที่อยู่ไฟล์ที่โหลดมา
-     *
-     * @var string
+     * @var string The source file path.
      */
     private $source;
 
     /**
-     * นำเข้าข้อมูลครั้งละหลายรายการ
+     * Assigns multiple items to the data array.
      *
-     * @param array $array ข้อมูลที่ต้องการนำเข้า
+     * @param array $array The data to assign.
      */
     public function assign($array)
     {
@@ -45,7 +44,7 @@ class ListItem
     }
 
     /**
-     * ลบข้อมูลทั้งหมด
+     * Clears all data.
      */
     public function clear()
     {
@@ -53,9 +52,9 @@ class ListItem
     }
 
     /**
-     * อ่านจำนวนสมาชิกทั้งหมด
+     * Retrieves the total number of items.
      *
-     * @return int จำนวนสมาชิกทั้งหมด
+     * @return int The total number of items.
      */
     public function count()
     {
@@ -63,12 +62,12 @@ class ListItem
     }
 
     /**
-     * ลบรายการที่กำหนด
-     * คืนค่า true ถ้าสำเร็จ, false ถ้าไม่พบ
+     * Deletes the specified item.
+     * Returns true if successful, false if not found.
      *
-     * @param string $key ของรายการที่ต้องการจะลบ
+     * @param string $key The key of the item to delete.
      *
-     * @return bool
+     * @return bool True if the item is deleted successfully, false otherwise.
      */
     public function delete($key)
     {
@@ -80,9 +79,9 @@ class ListItem
     }
 
     /**
-     * คืนค่าแอเรย์รายการแรก
+     * Retrieves the first item in the array.
      *
-     * @return mixed
+     * @return mixed The first item.
      */
     public function firstItem()
     {
@@ -90,12 +89,12 @@ class ListItem
     }
 
     /**
-     * อ่านข้อมูลที่ $key
-     * คืนค่ารายการที่ $key ถ้าไม่พบคืนค่า null
+     * Retrieves the value at the specified key.
+     * Returns the item at the key if found, null otherwise.
      *
-     * @param string $key
+     * @param string $key The key to retrieve.
      *
-     * @return mixed
+     * @return mixed The item at the key, or null if not found.
      */
     public function get($key)
     {
@@ -103,12 +102,12 @@ class ListItem
     }
 
     /**
-     * ค้นหาข้อมูลในแอเรย์
-     * คืนค่า key ของรายการที่พบ ถ้าไม่พบคืนค่า false
+     * Searches for a value in the array.
+     * Returns the key of the found item if found, false otherwise.
      *
-     * @param mixed $value รายการค้นหา
+     * @param mixed $value The value to search for.
      *
-     * @return mixed
+     * @return mixed The key of the found item, or false if not found.
      */
     public function indexOf($value)
     {
@@ -116,9 +115,9 @@ class ListItem
     }
 
     /**
-     * กำหนดค่าเริ่มต้นของ Class
+     * Initializes the class with default values.
      *
-     * @param array $config
+     * @param array $config The configuration values.
      */
     public function init($config)
     {
@@ -126,10 +125,10 @@ class ListItem
     }
 
     /**
-     * เพิ่มรายการใหม่ต่อจากรายการที่ $key
+     * Inserts a new item after the specified key.
      *
-     * @param mixed $key
-     * @param mixed $item รายการใหม่
+     * @param mixed $key  The key after which the new item will be inserted.
+     * @param mixed $item The new item.
      */
     public function insert($key, $item)
     {
@@ -137,7 +136,7 @@ class ListItem
             $this->datas[] = $item;
         } else {
             $temp = $this->datas;
-            $this->datas = array();
+            $this->datas = [];
             foreach ($temp as $k => $value) {
                 $this->datas[$k] = $value;
                 if ($k == $key) {
@@ -148,15 +147,15 @@ class ListItem
     }
 
     /**
-     * เพิ่มรายการใหม่ก่อนรายการที่ $key
+     * Inserts a new item before the specified key.
      *
-     * @param mixed $key
-     * @param mixed $item รายการใหม่
+     * @param mixed $key  The key before which the new item will be inserted.
+     * @param mixed $item The new item.
      */
     public function insertBefore($key, $item)
     {
         $temp = $this->datas;
-        $this->datas = array();
+        $this->datas = [];
         foreach ($temp as $k => $value) {
             if ($k == $key) {
                 $this->datas[$key] = $item;
@@ -166,9 +165,9 @@ class ListItem
     }
 
     /**
-     * อ่านจำนวนรายการทั้งหมด
+     * Retrieves all items.
      *
-     * @return array
+     * @return array The array of items.
      */
     public function items()
     {
@@ -176,10 +175,9 @@ class ListItem
     }
 
     /**
-     * อ่านรายชื่อ keys
-     * คืนค่า แอเรย์ของรายการ key ทั้งหมด
+     * Retrieves the list of keys.
      *
-     * @return array
+     * @return array The array of keys.
      */
     public function keys()
     {
@@ -187,9 +185,9 @@ class ListItem
     }
 
     /**
-     * คืนค่าแอเรย์รายการสุดท้าย
+     * Retrieves the last item in the array.
      *
-     * @return mixed
+     * @return mixed The last item.
      */
     public function lastItem()
     {
@@ -197,9 +195,9 @@ class ListItem
     }
 
     /**
-     * โหลดแอเรย์จากไฟล์
+     * Loads the array from a file.
      *
-     * @param string $file ชื่อไฟล์ที่ต้องการโหลดรวม path
+     * @param string $file The file path to load, including the path.
      *
      * @return static
      */
@@ -214,17 +212,16 @@ class ListItem
     }
 
     /**
-     * บันทึกเป็นไฟล์
-     * คืนค่า true ถ้าสำเร็จ
+     * Saves the array to a file.
      *
-     * @return bool
+     * @return bool True if the array is successfully saved, false otherwise.
      */
     public function saveToFile()
     {
         if (!isset($this->source) || empty($this->datas)) {
             return false;
         } else {
-            $datas = array();
+            $datas = [];
             foreach ($this->datas as $key => $value) {
                 if (is_array($value)) {
                     $datas[] = (is_int($key) ? $key : "'".strtolower($key)."'")." => array(\n".$this->arrayToString(1, $value)."\n\t)";
@@ -245,10 +242,10 @@ class ListItem
     }
 
     /**
-     * เพิ่มรายการใหม่ที่ลำดับสุดท้าย ถ้ามี $key อยู่แล้วจะแทนที่รายการเดิม
+     * Sets a value at the specified key.
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param string $key   The key to set.
+     * @param mixed  $value The value to set.
      */
     public function set($key, $value)
     {
@@ -256,9 +253,9 @@ class ListItem
     }
 
     /**
-     * คืนค่า แอเรย์ของข้อมูลทั้งหมด
+     * Retrieves all values.
      *
-     * @return array
+     * @return array The array of values.
      */
     public function values()
     {
@@ -266,12 +263,12 @@ class ListItem
     }
 
     /**
-     * array to string
+     * Converts an array to a string.
      *
-     * @param int   $indent
-     * @param array $array
+     * @param int   $indent The indentation level.
+     * @param array $array  The array to convert.
      *
-     * @return string
+     * @return string The string representation of the array.
      */
     private function arrayToString($indent, $array)
     {

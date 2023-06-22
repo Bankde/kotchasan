@@ -5,7 +5,7 @@
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * @package Kotchasan\Http
  */
 
 namespace Kotchasan\Http;
@@ -13,18 +13,21 @@ namespace Kotchasan\Http;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Response Class
+ * Represents an HTTP response.
+ *
+ * This class extends the Message class and implements the ResponseInterface.
+ * It provides methods to handle and manipulate HTTP responses.
  *
  * @see https://www.kotchasan.com/
  */
 class Response extends Message implements ResponseInterface
 {
     /**
-     * Status codes
+     * Status codes and their corresponding text phrases.
      *
      * @var array
      */
-    public static $statusTexts = array(
+    public static $statusTexts = [
         100 => 'Continue',
         101 => 'Switching Protocols',
         102 => 'Processing', // RFC2518
@@ -85,27 +88,34 @@ class Response extends Message implements ResponseInterface
         508 => 'Loop Detected', // RFC5842
         510 => 'Not Extended', // RFC2774
         511 => 'Network Authentication Required' // RFC6585
-    );
+    ];
+
     /**
-     * เนื้อหา
+     * The response content.
      *
      * @var string
      */
     protected $content;
+
     /**
+     * The reason phrase associated with the status code.
+     *
      * @var string
      */
     protected $reasonPhrase;
+
     /**
+     * The status code of the response.
+     *
      * @var int
      */
     protected $statusCode;
 
     /**
-     * create Response
+     * Create a new Response instance.
      *
-     * @param int          $code         status Code
-     * @param string||null $reasonPhrase ถ้าไม่กำหนดจะใช้ข้อความจากระบบ
+     * @param int          $code          The status code.
+     * @param string|null  $reasonPhrase  The reason phrase (optional).
      */
     public function __construct($code = 200, $reasonPhrase = null)
     {
@@ -114,9 +124,9 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * คืนค่าเนื้อหาของ Response
+     * Get the content of the response.
      *
-     * @return string
+     * @return string The response content.
      */
     public function getContent()
     {
@@ -124,12 +134,12 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * Gets the response reason phrase associated with the status code
+     * Get the reason phrase associated with the status code.
+     *
+     * @return string The reason phrase.
      *
      * @see http://tools.ietf.org/html/rfc7231#section-6
      * @see http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
-     *
-     * @return string
      */
     public function getReasonPhrase()
     {
@@ -143,9 +153,9 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * คืนค่า Response Status
+     * Get the status code of the response.
      *
-     * @return int
+     * @return int The status code.
      */
     public function getStatusCode()
     {
@@ -153,9 +163,9 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * Sends HTTP headers and content
+     * Send the HTTP headers and content.
      *
-     * @return static
+     * @return Response The Response object.
      */
     public function send()
     {
@@ -165,17 +175,17 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * กำหนดเนื้อหาให้กับ  Response
+     * Set the content of the response.
      *
-     * @param mixed $content
+     * @param mixed $content The response content.
      *
-     * @throws \InvalidArgumentException ถ้า $content ไม่ใช่ string
+     * @throws \InvalidArgumentException if the content is not a string.
      *
-     * @return static
+     * @return Response The Response object.
      */
     public function withContent($content)
     {
-        if (null !== $content && !is_string($content) && !is_numeric($content) && !is_callable(array($content, '__toString'))) {
+        if (null !== $content && !is_string($content) && !is_numeric($content) && !is_callable([$content, '__toString'])) {
             throw new \InvalidArgumentException(sprintf('The Response content must be a string or object implementing __toString(), "%s" given.', gettype($content)));
         }
         $this->content = (string) $content;
@@ -183,12 +193,12 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * กำหนดค่า status code
+     * Set the status code and reason phrase of the response.
      *
-     * @param int    $code
-     * @param string $reasonPhrase
+     * @param int    $code          The status code.
+     * @param string $reasonPhrase  The reason phrase (optional).
      *
-     * @return static
+     * @return Response The new Response object.
      */
     public function withStatus($code, $reasonPhrase = '')
     {
@@ -199,9 +209,9 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * ส่งออกเนื้อหา
+     * Send the response content.
      *
-     * @return static
+     * @return Response The Response object.
      */
     protected function sendContent()
     {
@@ -212,9 +222,9 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * ส่งออก HTTP headers
+     * Send the HTTP headers.
      *
-     * @return static
+     * @return Response The Response object.
      */
     protected function sendHeaders()
     {

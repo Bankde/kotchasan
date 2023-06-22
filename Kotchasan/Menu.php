@@ -11,22 +11,22 @@
 namespace Kotchasan;
 
 /**
- * คลาสสำหรับแสดงผลเมนูมาตรฐานของ Kotchasan
+ * This class is responsible for rendering the standard menu of Kotchasan.
  *
  * @see https://www.kotchasan.com/
  */
 class Menu
 {
     /**
-     * แสดงผลเมนู
+     * Renders the menu.
      *
-     * @param array $items รายการเมนู
-     *
-     * @return string
+     * @param array  $items  The menu items.
+     * @param string $select The selected menu item.
+     * @return string The rendered menu HTML.
      */
     public static function render($items, $select)
     {
-        $menus = array();
+        $menus = [];
         foreach ($items as $alias => $values) {
             if (isset($values['text']) && $values['text'] !== null) {
                 if (isset($values['url'])) {
@@ -42,29 +42,27 @@ class Menu
     }
 
     /**
-     * ฟังก์ชั่น แปลงเป็นรายการเมนู
-     * คืนค่า HTML ของเมนู
+     * Converts an item to a menu item and returns the HTML.
      *
-     * @param string|int $name   ชื่อเมนู
-     * @param array      $item   แอเรย์ข้อมูลเมนู
-     * @param bool       $arrow  true แสดงลูกศรสำหรับเมนูที่มีเมนูย่อย
-     * @param string     $select ชื่อเมนูที่ถูกเลือก
-     *
-     * @return string
+     * @param string|int $name   The menu name.
+     * @param array      $item   The menu item data array.
+     * @param bool       $arrow  True to show arrow for menus with submenus.
+     * @param string     $select The selected menu name.
+     * @return string The HTML of the menu item.
      */
     protected static function getItem($name, $item, $arrow, $select)
     {
         if (empty($name) && !is_int($name)) {
             $c = '';
         } else {
-            $c = array($name);
-            if ($name == $select) {
+            $c = [$name];
+            if ($name === $select) {
                 $c[] = 'select';
             }
             $c = ' class="'.implode(' ', $c).'"';
         }
         if (!empty($item['url'])) {
-            $a = array('href="'.$item['url'].'"');
+            $a = ['href="'.$item['url'].'"'];
             if (!empty($item['target'])) {
                 $a[] = 'target="'.$item['target'].'"';
             }

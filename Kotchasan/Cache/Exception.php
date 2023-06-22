@@ -11,7 +11,9 @@
 namespace Kotchasan\Cache;
 
 /**
- * คลาสสำหรับจัดการข้อผิดพลาดของแคช
+ * Cache Exception class
+ *
+ * This class is used to handle cache-related exceptions.
  *
  * @see https://www.kotchasan.com/
  */

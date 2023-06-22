@@ -11,14 +11,14 @@
 namespace Kotchasan;
 
 /**
- * รายชื่อประเทศ เรียงลำดับตามชื่อไทย
+ * Country Names sorted by Thai name.
  *
  * @see https://www.kotchasan.com/
  */
 class Country
 {
     /**
-     * รายชื่อประเทศ เรียงลำดับตามชื่อไทย
+     * Initialize country data.
      *
      * @return array
      */
@@ -285,12 +285,12 @@ class Country
     }
 
     /**
-     * อ่านชื่อประเทศจาก ISO ตามภาษา (ถ้าไม่มีใช้ภาษาอังกฤษ)
-     * คืนค่าว่างถ้าไม่พบ
+     * Get country name based on ISO code and language.
+     * Returns an empty string if not found.
      *
      * @assert ('TH') [==] 'ไทย'
      *
-     * @param int $iso
+     * @param string $iso
      *
      * @return string
      */
@@ -303,8 +303,9 @@ class Country
     }
 
     /**
-     * list รายชื่อประเทศทั้งหมด  ตามภาษา (ถ้าไม่มีใช้ภาษาอังกฤษ)
-     * สามารถนำไปใช้โดย Form ได้ทันที
+     * Get a list of all country names in the specified language.
+     * If the language is not available, use English.
+     * Can be used directly in forms.
      *
      * @return array
      */

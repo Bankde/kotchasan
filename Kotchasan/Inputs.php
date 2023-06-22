@@ -11,28 +11,30 @@
 namespace Kotchasan;
 
 /**
- * รายการ input รูปแบบ Array
+ * Input item array wrapper class.
+ *
+ * This class represents an array of input items.
  *
  * @see https://www.kotchasan.com/
  */
 class Inputs implements \Iterator
 {
     /**
-     * ตัวแปรเก็บ properties ของคลาส
+     * The array to store the input item objects.
      *
      * @var array
      */
     private $datas = array();
 
     /**
-     * magic method คืนค่าข้อมูลสำหรับ input ชนิด array
+     * Magic method to retrieve data for array type input.
      *
      * @param string $name
      * @param array  $arguments
      *
-     * @throws \InvalidArgumentException ถ้าไม่มี method ที่ต้องการ
+     * @throws \InvalidArgumentException If the requested method does not exist
      *
-     * @return array
+     * @return array The array of input item values
      */
     public function __call($name, $arguments)
     {
@@ -48,10 +50,10 @@ class Inputs implements \Iterator
     }
 
     /**
-     * Class Constructer
+     * Class constructor.
      *
-     * @param array       $items รายการ input
-     * @param string|null $type  ประเภท Input เช่น GET POST SESSION COOKIE หรือ null ถ้าไม่ได้มาจากรายการข้างต้น
+     * @param array       $items The input items array
+     * @param string|null $type  The input type (e.g., GET, POST, SESSION, COOKIE) or null if not derived from the above lists
      */
     public function __construct(array $items = array(), $type = null)
     {
@@ -67,13 +69,13 @@ class Inputs implements \Iterator
     }
 
     /**
-     * เตรียมผลลัพท์สำหรับ input แบบ array
+     * Prepare the result for array type input.
      *
-     * @param Object $item
-     * @param string $name
-     * @param array  $arguments
+     * @param Object $item      The input item object
+     * @param string $name      The method name to call
+     * @param array  $arguments The method arguments
      *
-     * @return array|object
+     * @return array|object The array of input item values or an object
      */
     private function collectInputs($item, $name, $arguments)
     {
@@ -94,9 +96,9 @@ class Inputs implements \Iterator
     }
 
     /**
-     * คืนค่า InputItem รายการปัจจุบัน
+     * Returns the current InputItem in the list.
      *
-     * @return \Kotchasan\InputItem
+     * @return \Kotchasan\InputItem The current InputItem
      */
     #[\ReturnTypeWillChange]
     public function current()
@@ -106,11 +108,11 @@ class Inputs implements \Iterator
     }
 
     /**
-     * อ่าน Input ที่ต้องการ
+     * Get the specified InputItem.
      *
-     * @param string|int $key รายการที่ต้องการ
+     * @param string|int $key The key of the input item to retrieve
      *
-     * @return \Kotchasan\InputItem
+     * @return \Kotchasan\InputItem The specified InputItem
      */
     #[\ReturnTypeWillChange]
     public function get($key)
@@ -119,9 +121,9 @@ class Inputs implements \Iterator
     }
 
     /**
-     * คืนค่าคีย์หรือลำดับของ InputItem ในลิสต์รายการ
+     * Returns the key or index of the current InputItem in the list.
      *
-     * @return string
+     * @return string The key or index of the current InputItem
      */
     #[\ReturnTypeWillChange]
     public function key()
@@ -131,9 +133,9 @@ class Inputs implements \Iterator
     }
 
     /**
-     * คืนค่า InputItem รายการถัดไป
+     * Returns the next InputItem in the list.
      *
-     * @return \Kotchasan\InputItem
+     * @return \Kotchasan\InputItem The next InputItem
      */
     #[\ReturnTypeWillChange]
     public function next()
@@ -143,7 +145,7 @@ class Inputs implements \Iterator
     }
 
     /**
-     * inherited from Iterator
+     * Rewind the Iterator to the first InputItem in the list.
      */
     #[\ReturnTypeWillChange]
     public function rewind()
@@ -152,7 +154,9 @@ class Inputs implements \Iterator
     }
 
     /**
-     * @return bool
+     * Checks if the current position of the Iterator is valid.
+     *
+     * @return bool True if the current position is valid, false otherwise
      */
     #[\ReturnTypeWillChange]
     public function valid()

@@ -11,36 +11,36 @@
 namespace Kotchasan;
 
 /**
- * คลาสสำหรับจัดการรูปภาพ
+ * Class Image
+ * A class for image manipulation.
  *
  * @see https://www.kotchasan.com/
  */
 class Image
 {
     /**
-     * คุณภาพของรูปภาพ
-     *
-     * @var int
+     * @var int The image quality (0-100) for JPEG images.
      */
     private static $quality = 75;
 
     /**
-     * ฟังก์ชั่น ตัดรูปภาพ ตามขนาดที่กำหนด
-     * รูปภาพปลายทางจะมีขนาดเท่าที่กำหนด หากรูปภาพต้นฉบับมีขนาดหรืออัตราส่วนไม่พอดีกับขนาดของภาพปลายทาง
-     * รูปภาพจะถูกตัดขอบออกหรือจะถูกขยาย เพื่อให้พอดีกับรูปภาพปลายทางที่ต้องการ
-     * ผลลัพท์จะได้ไฟล์รูปภาพ jpg เท่านั้น
-     * สำเร็จคืนค่า true
+     * Crop an image to the specified size.
      *
-     * @param string $source      path และชื่อไฟล์ของไฟล์รูปภาพต้นฉบับ
-     * @param string $target      path และชื่อไฟล์ของไฟล์รูปภาพปลายทาง
-     * @param int    $thumbwidth  ความกว้างของรูปภาพที่ต้องการ
-     * @param int    $thumbheight ความสูงของรูปภาพที่ต้องการ
-     * @param string $watermark   (optional) ข้อความลายน้ำ
+     * The resulting image will have the exact dimensions specified. If the original image
+     * has a different aspect ratio, it will be cropped or stretched to fit the target dimensions.
+     * The resulting image will be saved as a JPEG file.
      *
-     * @return bool
+     * @param string $source The path and filename of the source image.
+     * @param string $target The path and filename of the target image.
+     * @param int $thumbwidth The desired width of the target image.
+     * @param int $thumbheight The desired height of the target image.
+     * @param string $watermark (optional) The watermark text.
+     *
+     * @return bool True on success, false on failure.
      */
     public static function crop($source, $target, $thumbwidth, $thumbheight, $watermark = '')
     {
+        // Load the original image
         $info = getimagesize($source);
         switch ($info['mime']) {
             case 'image/gif':
@@ -58,13 +58,15 @@ class Image
             default:
                 return false;
         }
-        $o_wd = @imagesx($o_im);
-        $o_ht = @imagesy($o_im);
+
+        // Calculate dimensions and resize
+        $o_wd = imagesx($o_im);
+        $o_ht = imagesy($o_im);
         $wm = $o_wd / $thumbwidth;
         $hm = $o_ht / $thumbheight;
         $h_height = $thumbheight / 2;
         $w_height = $thumbwidth / 2;
-        $t_im = ImageCreateTrueColor($thumbwidth, $thumbheight);
+        $t_im = imageCreateTrueColor($thumbwidth, $thumbheight);
         $int_width = 0;
         $int_height = 0;
         $adjusted_width = $thumbwidth;
@@ -92,23 +94,37 @@ class Image
                 $int_height = 0;
             }
         }
-        ImageCopyResampled($t_im, $o_im, -$int_width, -$int_height, 0, 0, $adjusted_width, $adjusted_height, $o_wd, $o_ht);
-        if ($watermark != '') {
-            $t_im = self::watermarkText($t_im, $watermark);
+
+        // Resize and crop the image
+        if (function_exists('ImageCopyResampled')) {
+            imageCopyResampled($t_im, $o_im, -$int_width, -$int_height, 0, 0, $adjusted_width, $adjusted_height, $o_wd, $o_ht);
+        } else {
+            imageCopyResized($t_im, $o_im, -$int_width, -$int_height, 0, 0, $adjusted_width, $adjusted_height, $o_wd, $o_ht);
         }
-        $ret = @ImageJPEG($t_im, $target, self::$quality);
-        imageDestroy($o_im);
+
+        // Add watermark if specified
+        if (!empty($watermark)) {
+            self::watermarkText($t_im, $watermark);
+        }
+
+        // Save the resulting image as a JPEG file
+        $result = imageJPEG($t_im, $target, self::$quality);
+
+        // Clean up resources
         imageDestroy($t_im);
-        return $ret;
+        imageDestroy($o_im);
+
+        return $result;
     }
 
     /**
-     * ฟังก์ชั่น พลิกรูปภาพ (ซ้าย-ขวา คล้ายกระจกเงา)
-     * คืนค่า resource ของรูปภาพหลังจากพลิกรูปภาพแล้ว ไม่สำเร็จคืนค่า resource ของรูปภาพต้นฉบับ
+     * Flip an image horizontally.
      *
-     * @param \GdImage $imgsrc resource ของรูปภาพต้นฉบับ
+     * This method flips the specified image horizontally.
      *
-     * @return \GdImage
+     * @param \GdImage $imgsrc The source image resource.
+     *
+     * @return \GdImage The flipped image resource.
      */
     public static function flip($imgsrc)
     {
@@ -119,97 +135,112 @@ class Image
         $src_width = -$width;
         $src_height = $height;
         $imgdest = imagecreatetruecolor($width, $height);
-        if (imagecopyresampled($imgdest, $imgsrc, 0, 0, $src_x, $src_y, $width, $height, $src_width, $src_height)) {
-            return $imgdest;
+
+        if (function_exists('ImageCopyResampled')) {
+            imageCopyResampled($imgdest, $imgsrc, 0, 0, $src_x, $src_y, $width, $height, $src_width, $src_height);
+        } else {
+            imageCopyResized($imgdest, $imgsrc, 0, 0, $src_x, $src_y, $width, $height, $src_width, $src_height);
         }
+
         return $imgsrc;
     }
 
     /**
-     * อ่านข้อมูล Exif ของรูปภาพ
-     * คืนค่า array(width, height, mime) ของรูปภาพ, false ถ้าไม่สามารถอ่านได้
+     * Retrieve image information.
      *
-     * @param string $src
+     * This method retrieves the width, height, and MIME type of an image using the `getimagesize()` function.
      *
-     * @return array|bool
+     * @param string $source The path and filename of the image.
+     *
+     * @return array|bool An array containing the image properties (width, height, and mime) on success,
+     *                    or false if the information cannot be obtained.
      */
-    public static function info($src)
+    public static function info($source)
     {
-        // Exif
-        $info = getimagesize($src);
-        if ($info && $info[0] > 0 && $info[1] > 0) {
-            return array(
-                'width' => $info[0],
-                'height' => $info[1],
-                'mime' => $info['mime']
-            );
+        $info = getimagesize($source);
+        if (!$info) {
+            return false;
         }
-        return false;
+
+        return [
+            'width' => $info[0],
+            'height' => $info[1],
+            'mime' => $info['mime']
+        ];
     }
 
     /**
-     * ฟังก์ชั่น โหลดภาพ jpg และหมุนภาพอัตโนมัติจากข้อมูลของ Exif
-     * คืนค่า resource ของรูปภาพหลังจากหมุนแล้ว ถ้าไม่สนับสนุนคืนค่า resource เดิม
+     * Rotate an image based on the Exif data.
      *
-     * @param string $source resource ของรูปภาพต้นฉบับ
+     * This method loads a JPEG image and automatically rotates it based on the Exif data.
+     * The resulting image resource is returned.
      *
-     * @return \GdImage
+     * @param string $source The path and filename of the source image.
+     *
+     * @return \GdImage|bool The rotated image resource on success, or false on failure.
      */
     public static function orient($source)
     {
-        $imgsrc = imageCreateFromJPEG($source);
-        if (function_exists('exif_read_data')) {
-            // read image exif and rotate
-            $exif = @exif_read_data($source);
-            if (!isset($exif['Orientation'])) {
-                return $imgsrc;
-            } elseif ($exif['Orientation'] == 2) {
-                // horizontal flip
-                $imgsrc = self::flip($imgsrc);
-            } elseif ($exif['Orientation'] == 3) {
-                // 180 rotate left
-                $imgsrc = imagerotate($imgsrc, 180, 0);
-            } elseif ($exif['Orientation'] == 4) {
-                // vertical flip
-                $imgsrc = self::flip($imgsrc);
-            } elseif ($exif['Orientation'] == 5) {
-                // vertical flip + 90 rotate right
-                $imgsrc = imagerotate($imgsrc, 270, 0);
-                $imgsrc = self::flip($imgsrc);
-            } elseif ($exif['Orientation'] == 6) {
-                // 90 rotate right
-                $imgsrc = imagerotate($imgsrc, 270, 0);
-            } elseif ($exif['Orientation'] == 7) {
-                // horizontal flip + 90 rotate right
-                $imgsrc = imagerotate($imgsrc, 90, 0);
-                $imgsrc = self::flip($imgsrc);
-            } elseif ($exif['Orientation'] == 8) {
-                // 90 rotate left
-                $imgsrc = imagerotate($imgsrc, 90, 0);
-            }
+        $exif = exif_read_data($source);
+        if (!$exif || !isset($exif['Orientation'])) {
+            return imageCreateFromJPEG($source);
         }
-        return $imgsrc;
+
+        $im = imageCreateFromJPEG($source);
+        if (!$im) {
+            return false;
+        }
+
+        if ($exif['Orientation'] == 2) {
+            // horizontal flip
+            $im = self::flip($im);
+        } elseif ($exif['Orientation'] == 3) {
+            // 180 rotate left
+            $im = imagerotate($im, 180, 0);
+        } elseif ($exif['Orientation'] == 4) {
+            // vertical flip
+            $im = self::flip($im);
+        } elseif ($exif['Orientation'] == 5) {
+            // vertical flip + 90 rotate right
+            $im = imagerotate($im, 270, 0);
+            $im = self::flip($im);
+        } elseif ($exif['Orientation'] == 6) {
+            // 90 rotate right
+            $im = imagerotate($im, 270, 0);
+        } elseif ($exif['Orientation'] == 7) {
+            // horizontal flip + 90 rotate right
+            $im = imagerotate($im, 90, 0);
+            $im = self::flip($im);
+        } elseif ($exif['Orientation'] == 8) {
+            // 90 rotate left
+            $im = imagerotate($im, 90, 0);
+        }
+
+        return $im;
     }
 
     /**
-     * ฟังก์ชั่นปรับขนาดของภาพ โดยรักษาอัตราส่วนของภาพตามความกว้างที่ต้องการ
-     * หากรูปภาพมีขนาดเล็กกว่าที่กำหนด จะเป็นการ copy file
-     * หากรูปภาพมาความสูง หรือความกว้างมากกว่า $width
-     * จะถูกปรับขนาดให้มีขนาดไม่เกิน $width (ทั้งความสูงและความกว้าง)
-     * และเปลี่ยนชนิดของภาพเป็น jpg
-     * คืนค่าแอเรย์ [name, width, height, mime] ของรูปภาพปลายทาง หรือ false ถ้าไม่สามารถดำเนินการได้
+     * Resize an image and optionally add a watermark.
      *
-     * @param string $source    path และชื่อไฟล์ของไฟล์รูปภาพต้นฉบับ
-     * @param string $target    path ของไฟล์รูปภาพปลายทาง
-     * @param string $name      ชื่อไฟล์ของรูปภาพปลายทาง
-     * @param int    $width     ขนาดสูงสุดของรูปภาพที่ต้องการ
-     * @param string $watermark (optional) ข้อความลายน้ำ
+     * This method resizes the specified image to the given width while maintaining aspect ratio.
+     * It can also add a watermark to the resized image if specified.
      *
-     * @return array|bool
+     * @param string $source    The path to the source image.
+     * @param string $target    The path to save the resized image.
+     * @param string $name      The name of the resized image.
+     * @param int    $width     The desired width for the resized image.
+     * @param string $watermark Optional. The watermark text to add to the resized image. Default is an empty string.
+     *
+     * @return array|false An array containing information about the resized image if successful, false otherwise.
+     *                    The returned array will have the following keys:
+     *                    - 'name': The name of the resized image.
+     *                    - 'width': The width of the resized image.
+     *                    - 'height': The height of the resized image.
+     *                    - 'mime': The MIME type of the resized image ('image/jpeg' for JPEG images).
      */
     public static function resize($source, $target, $name, $width, $watermark = '')
     {
-        $info = @getimagesize($source);
+        $info = getimagesize($source);
         if ($info[0] > $width || $info[1] > $width) {
             switch ($info['mime']) {
                 case 'image/gif':
@@ -225,8 +256,8 @@ class Image
                     $o_im = imageCreateFromPNG($source);
                     break;
             }
-            $o_wd = @imagesx($o_im);
-            $o_ht = @imagesy($o_im);
+            $o_wd = imagesx($o_im);
+            $o_ht = imagesy($o_im);
             if ($o_wd <= $o_ht) {
                 $h = $width;
                 $w = round($h * $o_wd / $o_ht);
@@ -234,8 +265,12 @@ class Image
                 $w = $width;
                 $h = round($w * $o_ht / $o_wd);
             }
-            $t_im = @ImageCreateTrueColor($w, $h);
-            @ImageCopyResampled($t_im, $o_im, 0, 0, 0, 0, $w + 1, $h + 1, $o_wd, $o_ht);
+            $t_im = ImageCreateTrueColor($w, $h);
+            if (function_exists('ImageCopyResampled')) {
+                imageCopyResampled($t_im, $o_im, 0, 0, 0, 0, $w + 1, $h + 1, $o_wd, $o_ht);
+            } else {
+                imageCopyResized($t_im, $o_im, 0, 0, 0, 0, $w + 1, $h + 1, $o_wd, $o_ht);
+            }
             if ($watermark != '') {
                 $t_im = self::watermarkText($t_im, $watermark);
             }
@@ -248,10 +283,10 @@ class Image
                 $ret['height'] = $h;
                 $ret['mime'] = 'image/jpeg';
             }
-            @imageDestroy($o_im);
-            @imageDestroy($t_im);
+            imageDestroy($o_im);
+            imageDestroy($t_im);
             return $ret;
-        } elseif (@copy($source, $target.$name)) {
+        } elseif (copy($source, $target.$name)) {
             $ret['name'] = $name;
             $ret['width'] = $info[0];
             $ret['height'] = $info[1];
@@ -262,17 +297,19 @@ class Image
     }
 
     /**
-     * ฟังก์ชั่น วาดลายน้ำที่เป็นตัวอักษรลงบนรูปภาพ
-     * คืนค่า resource ของรูปภาพต้นฉบับ
+     * Add a text watermark to an image.
      *
-     * @param \GdImage $imgsrc    resource ของรูปภาพต้นฉบับ
-     * @param string   $text      ข้อความที่จะใช้เป็นลายน้ำ
-     * @param string   $pos       (optional) ตำแหน่งของลายน้ำเช่น center top bottom right left (default 'top left')
-     * @param string   $color     (optional) สีของตัวอักษร เป็น hex เท่านั้น ไม่ต้องมี # (default CCCCCC)
-     * @param int      $font_size (optional) ขนาดตัวอักษรของลายน้ำเป็นพิกเซล (default 20px)
-     * @param int      $opacity   (optional) กำหนดค่าตัวอักษรโปร่งใส 0-50 (default 50)
+     * This method adds a text watermark to the specified image. The watermark text, position,
+     * color, font size, and opacity can be customized.
      *
-     * @return resource
+     * @param \GdImage $imgsrc The source image resource.
+     * @param string $text The text to be used as the watermark.
+     * @param string $pos The position of the watermark. Valid values: 'center', 'bottom', 'left', 'right' (default: '').
+     * @param string $color The color of the watermark in hexadecimal format (default: 'CCCCCC').
+     * @param int $font_size The font size of the watermark (default: 20).
+     * @param int $opacity The opacity of the watermark (0-100) (default: 50).
+     *
+     * @return \GdImage The modified image resource with the added watermark.
      */
     public static function watermarkText($imgsrc, $text, $pos = '', $color = 'CCCCCC', $font_size = 20, $opacity = 50)
     {
@@ -280,6 +317,7 @@ class Image
         $offset = 5;
         $alpha_color = imagecolorallocatealpha($imgsrc, hexdec(substr($color, 0, 2)), hexdec(substr($color, 2, 2)), hexdec(substr($color, 4, 2)), 127 * (100 - $opacity) / 100);
         $box = imagettfbbox($font_size, 0, $font, $text);
+
         if (preg_match('/center/i', $pos)) {
             $y = $box[1] + (imagesy($imgsrc) / 2) - ($box[5] / 2);
         } elseif (preg_match('/bottom/i', $pos)) {
@@ -287,6 +325,7 @@ class Image
         } else {
             $y = $box[1] - $box[5] + $offset;
         }
+
         if (preg_match('/center/i', $pos)) {
             $x = $box[0] + (imagesx($imgsrc) / 2) - ($box[4] / 2);
         } elseif (preg_match('/right/i', $pos)) {
@@ -294,7 +333,22 @@ class Image
         } else {
             $x = $offset;
         }
+
         imagettftext($imgsrc, $font_size, 0, $x, $y, $alpha_color, $font, $text);
+
         return $imgsrc;
+    }
+
+    /**
+     * Set the image quality for JPEG images.
+     *
+     * This method sets the quality level (0-100) for JPEG images. Higher quality values
+     * result in larger file sizes but better image quality. The default value is 75.
+     *
+     * @param int $quality The image quality level (0-100).
+     */
+    public static function setQuality($quality)
+    {
+        self::$quality = max(0, min($quality, 100));
     }
 }

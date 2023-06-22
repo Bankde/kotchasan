@@ -18,46 +18,39 @@ namespace Kotchasan\Orm;
 class Field extends \Kotchasan\Database\Db
 {
     /**
-     * ชื่อรองของตาราง
-     *
-     * @var string
+     * @var string The table alias
      */
     public $table_alias;
+
     /**
-     * ชื่อตาราง
-     *
-     * @var string
+     * @var string The table name
      */
     public $table_name;
+
     /**
-     * ชื่อของการเชื่อมต่อ ใช้สำหรับโหลด config จาก settings/database.php
-     *
-     * @var string
+     * @var string The connection name used to load the config from settings/database.php
      */
     protected $conn = 'mysql';
+
     /**
-     * true ถ้ามาจากการ query, false ถ้าเป็นรายการใหม่
-     *
-     * @var bool
+     * @var bool True if the field is queried, false if it is a new item
      */
     protected $exists;
+
     /**
-     * ชื่อฟิลด์ที่จะใช้เป็น Primary Key INT(11) AUTO_INCREMENT
-     *
-     * @var string
+     * @var string The name of the INT(11) AUTO_INCREMENT primary key field
      */
     protected $primaryKey = 'id';
+
     /**
-     * ชื่อตาราง
-     *
-     * @var string
+     * @var string The table name
      */
     protected $table;
 
     /**
-     * class constructor
+     * Class constructor
      *
-     * @param array|object $param ข้อมูลเริ่มต้น
+     * @param array|object $param Initial data
      */
     public function __construct($param = null)
     {
@@ -72,7 +65,7 @@ class Field extends \Kotchasan\Database\Db
     }
 
     /**
-     * สร้าง record
+     * Create a record
      *
      * @return static
      */
@@ -83,7 +76,9 @@ class Field extends \Kotchasan\Database\Db
     }
 
     /**
-     * ลบ record
+     * Delete a record
+     *
+     * @return bool True on success, false on failure
      */
     public function delete()
     {
@@ -92,9 +87,9 @@ class Field extends \Kotchasan\Database\Db
     }
 
     /**
-     * อ่านค่าตัวแปร conn (ชื่อของการเชื่อมต่อ)
+     * Get the connection name
      *
-     * @return string
+     * @return string The connection name
      */
     public function getConn()
     {
@@ -102,24 +97,23 @@ class Field extends \Kotchasan\Database\Db
     }
 
     /**
-     * ฟังก์ชั่นอ่านชื่อตารางจากการตั้งค่าฐานข้อมุล
-     * คืนค่าชื่อตารางรวม prefix ถ้าไม่มีชื่อกำหนดไว้ จะคืนค่า $table ครอบชื่อตารางด้วย ``
+     * Get the full table name
      *
-     * @param string $table ชื่อตารางตามที่กำหนดใน settings/datasbase.php
-     *
-     * @return string
+     * @param string $table The table name specified in settings/database.php
+     * @return string The full table name with prefix, enclosed in backticks (`) if no table name is specified
      */
     public function getFullTableName($table)
     {
         $dbname = empty($this->db->settings->dbname) ? '' : '`'.$this->db->settings->dbname.'`.';
+
         $prefix = empty($this->db->settings->prefix) ? '' : $this->db->settings->prefix.'_';
         return $dbname.'`'.$prefix.(isset($this->db->tables->$table) ? $this->db->tables->$table : $table).'`';
     }
 
     /**
-     * คืนค่าชื่อฟิลด์ที่เป็น Primary Key
+     * Get the primary key field name
      *
-     * @return string
+     * @return string The primary key field name
      */
     public function getPrimarykey()
     {
@@ -127,9 +121,9 @@ class Field extends \Kotchasan\Database\Db
     }
 
     /**
-     * อ่านชื่อตาราง
+     * Get the table name
      *
-     * @return string
+     * @return string The table name
      */
     public function getTableName()
     {
@@ -137,11 +131,10 @@ class Field extends \Kotchasan\Database\Db
     }
 
     /**
-     * อ่านชื่อตารางรวม Alias
+     * Get the table name with alias
      *
-     * @param string|null $alias Alias ที่ต้องการ ถ้าไม่ระบุจะใช้ Alias ตามที่กำหนดไว้
-     *
-     * @return string
+     * @param string|null $alias The desired alias. If not specified, the defined alias will be used
+     * @return string The table name with the specified alias or the defined alias
      */
     public function getTableWithAlias($alias = null)
     {
@@ -149,9 +142,9 @@ class Field extends \Kotchasan\Database\Db
     }
 
     /**
-     * ฟังก์ชั่นตรวจสอบชื่อตารางและชื่อรอง
+     * Initialize table name and alias
      *
-     * @param \Kotchasan\Database\Query $db
+     * @param \Kotchasan\Database\Query $db The database query object
      */
     public function initTableName($db)
     {
@@ -177,7 +170,7 @@ class Field extends \Kotchasan\Database\Db
     }
 
     /**
-     * insert or update record
+     * Insert or update a record
      */
     public function save()
     {

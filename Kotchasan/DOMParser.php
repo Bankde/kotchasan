@@ -11,27 +11,28 @@
 namespace Kotchasan;
 
 /**
- * คลาสสำหรับ การ Parse DOM
+ * Class for DOM Parsing.
  *
  * @see https://www.kotchasan.com/
  */
 class DOMParser
 {
     /**
-     * รายการโหนด
+     * Array of nodes.
      *
      * @var array
      */
     protected $doms = array();
 
     /**
-     * class constructor
+     * Class constructor.
      *
-     * @param string $html    HTML code
-     * @param string $charset encoding default utf-8
+     * @param string $html    HTML code.
+     * @param string $charset Encoding (default utf-8).
      */
     public function __construct($html, $charset = 'utf-8')
     {
+        // Remove unnecessary elements and normalize the HTML code.
         $patt = array(
             '/^(.*)<body[^>]{0,}>(.*)<\/body>(.*)$/is' => '\\2',
             '#<(style|script)(.*?)>(.*?)</\\1>#is' => '',
@@ -42,14 +43,17 @@ class DOMParser
             '@[\s\t]{0,}[\r\n]+[\s\t]{0,}@' => ' '
         );
         $html = preg_replace(array_keys($patt), array_values($patt), $html);
+
+        // Convert the HTML code to the specified charset.
         if (strtolower($charset) != 'utf-8') {
             $html = iconv('utf-8', $charset, $html);
         }
+
         $node = null;
         foreach (preg_split('/<(.*)>/U', $html, -1, PREG_SPLIT_DELIM_CAPTURE) as $i => $e) {
             if ($e != '') {
                 if ($i % 2 == 0) {
-                    // text node
+                    // Text node
                     if ($e != '') {
                         if ($node) {
                             $node->childNodes[] = new DOMNode('', $node, array(), $e);
@@ -58,12 +62,12 @@ class DOMParser
                         }
                     }
                 } elseif ($e[0] == '/') {
-                    // close tag
+                    // Close tag
                     $node = $node->parentNode;
                 } elseif (preg_match('/^([a-zA-Z0-9]+)([\s]{0,}(.*))?$/', $e, $a2)) {
-                    // open tag
+                    // Open tag
                     $tag = strtoupper($a2[1]);
-                    // attributes
+                    // Attributes
                     $attributes = array();
                     if (!empty($a2[3]) && preg_match_all('/(\\w+)\s*=\\s*("[^"]*"|\'[^\']*\'|[^"\'\\s>]*)/', $a2[3], $matches, PREG_SET_ORDER)) {
                         foreach ($matches as $match) {
@@ -91,7 +95,8 @@ class DOMParser
                 }
             }
         }
-        // ตรวจสอบ previousSibling และ nextSibling
+
+        // Check previousSibling and nextSibling for each node.
         $currentNode = null;
         foreach ($this->doms as $node) {
             $node->previousSibling = $currentNode;
@@ -104,9 +109,9 @@ class DOMParser
     }
 
     /**
-     * parse HTML จาก URL
+     * Parse HTML from URL.
      *
-     * @param string $url URL ที่ต้องการ parse
+     * @param string $url URL to parse.
      *
      * @return static
      */
@@ -117,7 +122,7 @@ class DOMParser
     }
 
     /**
-     * คืนค่า node ทั้งหมด
+     * Get all nodes.
      *
      * @return array
      */
@@ -127,7 +132,7 @@ class DOMParser
     }
 
     /**
-     * ส่งออกเป็นโค้ด HTML จากที่ parse แล้ว
+     * Export the parsed HTML code as a string.
      *
      * @return string
      */
@@ -141,9 +146,11 @@ class DOMParser
     }
 
     /**
-     * @param DOMNode $node
+     * Draw the node and its descendants recursively.
      *
-     * @return string
+     * @param DOMNode $node The node to draw.
+     *
+     * @return string The HTML representation of the node.
      */
     private function drawNode($node)
     {
@@ -177,9 +184,9 @@ class DOMParser
     }
 
     /**
-     * ตรวจสอบ previousSibling และ nextSibling
+     * Populate previousSibling and nextSibling for each node recursively.
      *
-     * @param DOMNode $node
+     * @param DOMNode $node The node to populate.
      */
     private function populate($node)
     {

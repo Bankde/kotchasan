@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -134,6 +140,7 @@
             in package
             <ul class="phpdocumentor-breadcrumbs">
                                     <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan.html">Kotchasan</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Kotchasan-Http.html">Http</a></li>
                             </ul>
         </div>
     
@@ -146,11 +153,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Class สำหรับจัดการ Uri (PSR-7)</p>
+            <p class="phpdocumentor-summary">Class for managing Uri (PSR-7)</p>
 
 
 
@@ -160,20 +167,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -205,14 +203,14 @@
     <span>
                 &nbsp;: object            </span>
 </dt>
-<dd>Config class</dd>
+<dd>Config class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Http-Uri.html#property_fragment">$fragment</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>Uri fragment หลัง  #</dd>
+<dd>Uri fragment after #</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Http-Uri.html#property_host">$host</a>
@@ -240,14 +238,14 @@
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>Uri query string หลัง ?</dd>
+<dd>Uri query string after ?</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-KBase.html#property_request">$request</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Http-Request.html"><abbr title="\Kotchasan\Http\Request">Request</abbr></a>            </span>
 </dt>
-<dd>Server request class</dd>
+<dd>Server request class instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Http-Uri.html#property_scheme">$scheme</a>
@@ -268,262 +266,247 @@
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>Create a new Uri</dd>
+<dd>Constructs a new Uri object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method___toString">__toString()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>magic function ส่งออกคลาสเป็น String</dd>
+<dd>Magic function to output the class as a String</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_createBackUri">createBackUri()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นสร้าง URL สำหรับส่งต่อ Query string จากหน้าหนึ่งไปยังอีกหน้าหนึ่ง
-เพื่อให้สามารถสร้าง URL ที่สามารถส่งกลับไปยังหน้าเดิมได้โดย ฟังก์ชั่น back()
-ลบรายการที่ เป็น null ออก</dd>
+<dd>Create a URL for redirecting query strings from one page to another
+to allow creating URLs that can be sent back to the original page with the `back()` function
+Remove null items</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_createFromGlobals">createFromGlobals()</a>
     <span>
-                        &nbsp;: static    </span>
+                        &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>    </span>
 </dt>
-<dd>สร้าง Uri จากตัวแปร $_SERVER</dd>
+<dd>Creates a new Uri object based on the current server environment.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_createFromUri">createFromUri()</a>
     <span>
-                        &nbsp;: static    </span>
+                        &nbsp;: <a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a>    </span>
 </dt>
-<dd>สร้างคลาสจากลิงค์</dd>
+<dd>Creates a new Uri object based on the provided URI string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_getAuthority">getAuthority()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ตืนค่า authority ของ Uri [user-info@]host[:port]</dd>
+<dd>Retrieves the authority component of the URI.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_getBack">getBack()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลง GET เป็น query string สำหรับการส่งกลับไปหน้าเดิม ที่มาจากการโพสต์ด้วยฟอร์ม</dd>
+<dd>Convert GET parameters to a query string for returning to the original page after form submission.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_getFragment">getFragment()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่า fragment (ข้อมูลหลัง # ใน Uri) ของ Uri</dd>
+<dd>Get the fragment (data after #) of the Uri.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_getHost">getHost()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่า Hostname ของ Uri เช่น domain.tld</dd>
+<dd>Get the hostname of the Uri, e.g., domain.tld.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_getPath">getPath()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่า path ของ Uri เช่น /kotchasan</dd>
+<dd>Get the path of the Uri, e.g., /kotchasan.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_getPort">getPort()</a>
     <span>
                         &nbsp;: null|int    </span>
 </dt>
-<dd>คืนค่าหมายเลข Port ของ Uri
-ไม่ระบุหรือเป็น default port (80,433) คืนค่า null</dd>
+<dd>Get the port number of the Uri.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_getQuery">getQuery()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่า query string (ข้อมูลหลัง ? ใน Uri) ของ Uri</dd>
+<dd>Get the query string (data after ?) of the Uri.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_getScheme">getScheme()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่า scheme ของ Uri ไม่รวม :// เช่น http, https</dd>
+<dd>Get the scheme of the Uri without ://, e.g., http, https.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_getUserInfo">getUserInfo()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่าข้อมูล user ของ Uri user[:password]</dd>
+<dd>Get the user information of the Uri user[:password].</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_pagination">pagination()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นแสดงผลตัวแบ่งหน้า</dd>
+<dd>Generate a pagination HTML string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_paramsToQuery">paramsToQuery()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ฟังก์ชั่นแปลง Queryparams เป็น Querystring</dd>
+<dd>Convert an array of query parameters to a query string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_parseQueryParams">parseQueryParams()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>ฟังก์ชั่น แยก Querystring ออกเป็น array</dd>
+<dd>Parse the query string and return an array of query parameters.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_postBack">postBack()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลง POST เป็น query string สำหรับการส่งกลับไปหน้าเดิม ที่มาจากการโพสต์ด้วยฟอร์ม
-คืนค่า URL+query string</dd>
+<dd>Generate a URL with query string for posting back to the original page, typically used with form submissions.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withFragment">withFragment()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดค่า fragment
-คืนค่า Object ใหม่</dd>
+<dd>Set the fragment of the URL.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withHost">withHost()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดชื่อ host
-คืนค่า Object ใหม่</dd>
+<dd>Set the host of the URL.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withoutParams">withoutParams()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>ฟังก์ลบ Query params ออกจาก URL</dd>
+<dd>Remove specified query parameters from the URL.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withoutQuery">withoutQuery()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>ลบ query string
-คืนค่า Object ใหม่</dd>
+<dd>Remove the specified query parameters from the URL.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withParams">withParams()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>ฟังก์ชั่นแทนที่ Query params ลงใน URL</dd>
+<dd>Set or update query parameters in the URL.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withPath">withPath()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดชื่อ path
-path ต้องเริ่มต้นด้วย / เช่น /kotchasan
-หรือเป็นค่าว่าง ถ้าเป็นรากของโดเมน
-คืนค่า Object ใหม่</dd>
+<dd>Set the path of the URI.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withPort">withPort()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดค่า port
-คืนค่า Object ใหม่</dd>
+<dd>Set the port number of the URI.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withQuery">withQuery()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดค่า query string
-คืนค่า Object ใหม่</dd>
+<dd>Set the query string of the URI.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withScheme">withScheme()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>กำหนดค่า scheme ของ Uri
-คืนค่า Object ใหม่</dd>
+<dd>Set the scheme (http or https) of the URI.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Http-Uri.html#method_withUserInfo">withUserInfo()</a>
     <span>
-                        &nbsp;: static    </span>
+                        &nbsp;: self    </span>
 </dt>
-<dd>กำหนดข้อมูล user ของ Uri
-คืนค่า Object ใหม่</dd>
+<dd>Return a new instance of the class with the specified user information (username and password).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Http-Uri.html#method_createBack">createBack()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>แปลง POST เป็น query string สำหรับการส่งกลับไปหน้าเดิม ที่มาจากการโพสต์ด้วยฟอร์ม
-คืนค่า URL+query string</dd>
+<dd>Convert POST data to a query string for redirecting back to the previous page after form submission.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Http-Uri.html#method_createUriString">createUriString()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>สร้าง Uri
-เช่น http://domain.tld/</dd>
+<dd>Create a URI string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Http-Uri.html#method_filterPath">filterPath()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ตรวจสอบ path</dd>
+<dd>Validate the path.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Http-Uri.html#method_filterPort">filterPort()</a>
     <span>
                         &nbsp;: int|null    </span>
 </dt>
-<dd>ตรวจสอบ port</dd>
+<dd>Filter and validate the port number for a URI.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Http-Uri.html#method_filterQueryFragment">filterQueryFragment()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ตรวจสอบ query และ fragment</dd>
+<dd>Check and filter the query and fragment components of a URL.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Http-Uri.html#method_filterScheme">filterScheme()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>ตรวจสอบ scheme</dd>
+<dd>Check the URL scheme.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Http-Uri.html#method_isNonStandardPort">isNonStandardPort()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่าเป็น port มาตรฐานหรือไม่
-เช่น http เป็น 80 หรือ https เป็น 433</dd>
+<dd>Check if the port is a non-standard port for the given scheme and host.</dd>
 
         </dl>
 
@@ -553,11 +536,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Config class</p>
+        <p class="phpdocumentor-summary">Config class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -586,11 +569,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Uri fragment หลัง  #</p>
+        <p class="phpdocumentor-summary">Uri fragment after #</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -619,7 +602,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -652,7 +635,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -685,7 +668,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
@@ -718,11 +701,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Uri query string หลัง ?</p>
+        <p class="phpdocumentor-summary">Uri query string after ?</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -751,11 +734,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/KBase.php"><a href="files/kotchasan-kbase.html"><abbr title="Kotchasan/KBase.php">KBase.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Server request class</p>
+        <p class="phpdocumentor-summary">Server request class instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -784,7 +767,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
@@ -817,7 +800,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -854,102 +837,94 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Create a new Uri</p>
+        <p class="phpdocumentor-summary">Constructs a new Uri object.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scheme</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;/&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pass</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fragment</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scheme</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;/&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pass</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fragment</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$scheme</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The URI scheme (e.g., &quot;http&quot;, &quot;https&quot;).</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$host</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The URI host.</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$path</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;/&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The URI path (default is &quot;/&quot;).</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$query</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The URI query string (default is an empty string).</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$port</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The URI port (optional, default is null).</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$user</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The username for URI authentication (optional, default is an empty string).</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$pass</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The password for URI authentication (optional, default is an empty string).</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$fragment</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The URI fragment (part after the # character, optional, default is an empty string).</p>
+</section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>ถ้า Uri ไม่ถูกต้อง</p>
-</section>
-
-                                    </dd>
-                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
@@ -970,11 +945,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">magic function ส่งออกคลาสเป็น String</p>
+        <p class="phpdocumentor-summary">Magic function to output the class as a String</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1003,13 +978,13 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นสร้าง URL สำหรับส่งต่อ Query string จากหน้าหนึ่งไปยังอีกหน้าหนึ่ง
-เพื่อให้สามารถสร้าง URL ที่สามารถส่งกลับไปยังหน้าเดิมได้โดย ฟังก์ชั่น back()
-ลบรายการที่ เป็น null ออก</p>
+        <p class="phpdocumentor-summary">Create a URL for redirecting query strings from one page to another
+to allow creating URLs that can be sent back to the original page with the `back()` function
+Remove null items</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1048,15 +1023,15 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้าง Uri จากตัวแปร $_SERVER</p>
+        <p class="phpdocumentor-summary">Creates a new Uri object based on the current server environment.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">createFromGlobals</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">createFromGlobals</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a></span></code>
 
     
     
@@ -1072,16 +1047,18 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้า Uri ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the provided URI is invalid.</p>
 </section>
 
                                     </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new Uri object based on the server environment.</p>
+</section>
+
     
 </article>
                     <article
@@ -1097,15 +1074,15 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">178</span>
+    <span class="phpdocumentor-element-found-in__line">192</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างคลาสจากลิงค์</p>
+        <p class="phpdocumentor-summary">Creates a new Uri object based on the provided URI string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">createFromUri</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$uri</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">createFromUri</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$uri</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a></span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1115,7 +1092,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The URI string to create the Uri object from.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1131,16 +1110,18 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้า $uri ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the provided URI is invalid.</p>
 </section>
 
                                     </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Http-Uri.html"><abbr title="\Kotchasan\Http\Uri">Uri</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new Uri object based on the provided URI.</p>
+</section>
+
     
 </article>
                     <article
@@ -1156,24 +1137,30 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">201</span>
+    <span class="phpdocumentor-element-found-in__line">221</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตืนค่า authority ของ Uri [user-info@]host[:port]</p>
+        <p class="phpdocumentor-summary">Retrieves the authority component of the URI.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">getAuthority</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>The authority component consists of the user information, host, and optional port.
+If the user information is present, it is followed by &quot;@&quot; symbol.
+If the port is present, it is preceded by &quot;:&quot; symbol.</p>
+</section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The authority component of the URI.</p>
+</section>
+
     
 </article>
                     <article
@@ -1189,17 +1176,21 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">214</span>
+    <span class="phpdocumentor-element-found-in__line">238</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง GET เป็น query string สำหรับการส่งกลับไปหน้าเดิม ที่มาจากการโพสต์ด้วยฟอร์ม</p>
+        <p class="phpdocumentor-summary">Convert GET parameters to a query string for returning to the original page after form submission.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">getBack</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query_string</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">array()</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Generate a URL for returning to the original page using the specified base URL and query string.
+The query string can be provided as an array in the form of key-value pairs.
+The method automatically includes the query string from the current request by default.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1207,7 +1198,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>URL ที่ต้องการส่งกลับ เช่น index.php</p>
+                    <section class="phpdocumentor-description"><p>The URL to return to, e.g., index.php.</p>
 </section>
 
             </dd>
@@ -1216,7 +1207,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(option) query string ที่ต้องการส่งกลับไปด้วย array('key' =&gt; 'value', ...)</p>
+                    <section class="phpdocumentor-description"><p>(optional) The query string to include as an array of key-value pairs. Default is an empty array.</p>
 </section>
 
             </dd>
@@ -1227,7 +1218,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-            <section class="phpdocumentor-description"><p>URL+query string</p>
+            <section class="phpdocumentor-description"><p>The generated URL with the query string.</p>
 </section>
 
     
@@ -1245,11 +1236,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">224</span>
+    <span class="phpdocumentor-element-found-in__line">248</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า fragment (ข้อมูลหลัง # ใน Uri) ของ Uri</p>
+        <p class="phpdocumentor-summary">Get the fragment (data after #) of the Uri.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1262,7 +1253,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The fragment of the Uri.</p>
+</section>
+
     
 </article>
                     <article
@@ -1278,11 +1271,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">234</span>
+    <span class="phpdocumentor-element-found-in__line">258</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า Hostname ของ Uri เช่น domain.tld</p>
+        <p class="phpdocumentor-summary">Get the hostname of the Uri, e.g., domain.tld.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1295,7 +1288,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The hostname of the Uri.</p>
+</section>
+
     
 </article>
                     <article
@@ -1311,11 +1306,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">244</span>
+    <span class="phpdocumentor-element-found-in__line">268</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า path ของ Uri เช่น /kotchasan</p>
+        <p class="phpdocumentor-summary">Get the path of the Uri, e.g., /kotchasan.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1328,7 +1323,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The path of the Uri.</p>
+</section>
+
     
 </article>
                     <article
@@ -1344,25 +1341,28 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">255</span>
+    <span class="phpdocumentor-element-found-in__line">279</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าหมายเลข Port ของ Uri
-ไม่ระบุหรือเป็น default port (80,433) คืนค่า null</p>
+        <p class="phpdocumentor-summary">Get the port number of the Uri.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">getPort</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null|int</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If not specified or default port (80, 443), return null.</p>
+</section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">null|int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The port number of the Uri.</p>
+</section>
+
     
 </article>
                     <article
@@ -1378,11 +1378,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">265</span>
+    <span class="phpdocumentor-element-found-in__line">289</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า query string (ข้อมูลหลัง ? ใน Uri) ของ Uri</p>
+        <p class="phpdocumentor-summary">Get the query string (data after ?) of the Uri.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1395,7 +1395,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The query string of the Uri.</p>
+</section>
+
     
 </article>
                     <article
@@ -1411,11 +1413,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">275</span>
+    <span class="phpdocumentor-element-found-in__line">299</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่า scheme ของ Uri ไม่รวม :// เช่น http, https</p>
+        <p class="phpdocumentor-summary">Get the scheme of the Uri without ://, e.g., http, https.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1428,7 +1430,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The scheme of the Uri.</p>
+</section>
+
     
 </article>
                     <article
@@ -1444,11 +1448,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">285</span>
+    <span class="phpdocumentor-element-found-in__line">309</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าข้อมูล user ของ Uri user[:password]</p>
+        <p class="phpdocumentor-summary">Get the user information of the Uri user[:password].</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1461,7 +1465,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The user information of the Uri.</p>
+</section>
+
     
 </article>
                     <article
@@ -1477,11 +1483,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">299</span>
+    <span class="phpdocumentor-element-found-in__line">323</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นแสดงผลตัวแบ่งหน้า</p>
+        <p class="phpdocumentor-summary">Generate a pagination HTML string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1495,7 +1501,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>จำนวนหน้าทั้งหมด</p>
+                    <section class="phpdocumentor-description"><p>The total number of pages.</p>
 </section>
 
             </dd>
@@ -1504,7 +1510,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>หน้าปัจจุบัน</p>
+                    <section class="phpdocumentor-description"><p>The current page.</p>
 </section>
 
             </dd>
@@ -1513,7 +1519,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">9</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) จำนวนตัวเลือกแบ่งหน้าสูงสุด ค่าปกติ 9</p>
+                    <section class="phpdocumentor-description"><p>The maximum number of links to display.</p>
 </section>
 
             </dd>
@@ -1524,7 +1530,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The pagination HTML string.</p>
+</section>
+
     
 </article>
                     <article
@@ -1540,11 +1548,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">329</span>
+    <span class="phpdocumentor-element-found-in__line">353</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นแปลง Queryparams เป็น Querystring</p>
+        <p class="phpdocumentor-summary">Convert an array of query parameters to a query string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1558,14 +1566,16 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>An array of query parameters.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$encode</span>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false เชื่อม Querystring ด้วย &amp;, true เชื่อม Querystring ด้วย &amp;</p>
+                    <section class="phpdocumentor-description"><p>Whether to encode the query string using '&amp;' (true) or '&amp;' (false).</p>
 </section>
 
             </dd>
@@ -1576,7 +1586,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The generated query string.</p>
+</section>
+
     
 </article>
                     <article
@@ -1592,25 +1604,27 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">351</span>
+    <span class="phpdocumentor-element-found-in__line">375</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่น แยก Querystring ออกเป็น array</p>
+        <p class="phpdocumentor-summary">Parse the query string and return an array of query parameters.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">parseQueryParams</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">parseQueryParams</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$query</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The query string to parse (optional). If not provided, the object's query string will be used.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1619,7 +1633,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An array of query parameters.</p>
+</section>
+
     
 </article>
                     <article
@@ -1635,12 +1651,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">381</span>
+    <span class="phpdocumentor-element-found-in__line">404</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง POST เป็น query string สำหรับการส่งกลับไปหน้าเดิม ที่มาจากการโพสต์ด้วยฟอร์ม
-คืนค่า URL+query string</p>
+        <p class="phpdocumentor-summary">Generate a URL with query string for posting back to the original page, typically used with form submissions.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1654,7 +1669,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>URL ที่ต้องการส่งกลับ เช่น index.php</p>
+                    <section class="phpdocumentor-description"><p>The URL to which the form should be submitted.</p>
 </section>
 
             </dd>
@@ -1663,7 +1678,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">array()</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(option) query string ที่ต้องการส่งกลับไปด้วย array('key' =&gt; 'value', ...)</p>
+                    <section class="phpdocumentor-description"><p>Additional query string parameters to be included in the URL.</p>
 </section>
 
             </dd>
@@ -1672,7 +1687,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false เชื่อม Querystring ด้วย &amp;, true เชื่อม Querystring ด้วย &amp;</p>
+                    <section class="phpdocumentor-description"><p>Determines whether the query string should be encoded using &amp; or &amp; (default is false).</p>
 </section>
 
             </dd>
@@ -1683,7 +1698,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The generated URL with query string.</p>
+</section>
+
     
 </article>
                     <article
@@ -1699,12 +1716,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">396</span>
+    <span class="phpdocumentor-element-found-in__line">418</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดค่า fragment
-คืนค่า Object ใหม่</p>
+        <p class="phpdocumentor-summary">Set the fragment of the URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1718,7 +1734,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The fragment to be set.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1734,7 +1752,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้า fragment ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the fragment is not a string.</p>
 </section>
 
                                     </dd>
@@ -1743,7 +1761,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class with the updated fragment.</p>
+</section>
+
     
 </article>
                     <article
@@ -1759,12 +1779,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">415</span>
+    <span class="phpdocumentor-element-found-in__line">436</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดชื่อ host
-คืนค่า Object ใหม่</p>
+        <p class="phpdocumentor-summary">Set the host of the URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1778,7 +1797,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อ host</p>
+                    <section class="phpdocumentor-description"><p>The host to be set.</p>
 </section>
 
             </dd>
@@ -1789,7 +1808,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class with the updated host.</p>
+</section>
+
     
 </article>
                     <article
@@ -1805,11 +1826,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">450</span>
+    <span class="phpdocumentor-element-found-in__line">471</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ลบ Query params ออกจาก URL</p>
+        <p class="phpdocumentor-summary">Remove specified query parameters from the URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1823,7 +1844,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อของ attributes ที่ต้องการลบ</p>
+                    <section class="phpdocumentor-description"><p>The names of attributes to be removed.</p>
 </section>
 
             </dd>
@@ -1832,7 +1853,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false (default) เชื่อม Querystring ด้วย &amp;, true เชื่อม Querystring ด้วย &amp;</p>
+                    <section class="phpdocumentor-description"><p>False (default) to connect query string with &quot;&amp;&quot;, true to connect with &quot;&amp;&quot;.</p>
 </section>
 
             </dd>
@@ -1843,7 +1864,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class without the specified query parameters.</p>
+</section>
+
     
 </article>
                     <article
@@ -1859,12 +1882,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">526</span>
+    <span class="phpdocumentor-element-found-in__line">541</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ลบ query string
-คืนค่า Object ใหม่</p>
+        <p class="phpdocumentor-summary">Remove the specified query parameters from the URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1878,7 +1900,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>array('q1' =&gt; 'value1', 'q2' =&gt; 'value2')</p>
+                    <section class="phpdocumentor-description"><p>An array of query parameters to be removed (e.g., ['q1' =&gt; 'value1', 'q2' =&gt; 'value2']).</p>
 </section>
 
             </dd>
@@ -1889,7 +1911,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class without the specified query parameters.</p>
+</section>
+
     
 </article>
                     <article
@@ -1905,11 +1929,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">430</span>
+    <span class="phpdocumentor-element-found-in__line">451</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นแทนที่ Query params ลงใน URL</p>
+        <p class="phpdocumentor-summary">Set or update query parameters in the URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1923,14 +1947,16 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>An array of query parameters to be set or updated.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$encode</span>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false (default) เชื่อม Querystring ด้วย &amp;, true เชื่อม Querystring ด้วย &amp;</p>
+                    <section class="phpdocumentor-description"><p>False (default) to connect query string with &quot;&amp;&quot;, true to connect with &quot;&amp;&quot;.</p>
 </section>
 
             </dd>
@@ -1941,7 +1967,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class with the updated query parameters.</p>
+</section>
+
     
 </article>
                     <article
@@ -1957,20 +1985,19 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">473</span>
+    <span class="phpdocumentor-element-found-in__line">492</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดชื่อ path
-path ต้องเริ่มต้นด้วย / เช่น /kotchasan
-หรือเป็นค่าว่าง ถ้าเป็นรากของโดเมน
-คืนค่า Object ใหม่</p>
+        <p class="phpdocumentor-summary">Set the path of the URI.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">withPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>The path must start with '/' (e.g., '/kotchasan'), or it can be empty if it is the root of the domain.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1978,7 +2005,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อ path</p>
+                    <section class="phpdocumentor-description"><p>The path name.</p>
 </section>
 
             </dd>
@@ -1989,7 +2016,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class with the updated path.</p>
+</section>
+
     
 </article>
                     <article
@@ -2005,12 +2034,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">490</span>
+    <span class="phpdocumentor-element-found-in__line">508</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดค่า port
-คืนค่า Object ใหม่</p>
+        <p class="phpdocumentor-summary">Set the port number of the URI.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2024,7 +2052,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">null|int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>หมายเลข port 1- 65535 หรือ null</p>
+                    <section class="phpdocumentor-description"><p>The port number (1-65535) or null.</p>
 </section>
 
             </dd>
@@ -2042,7 +2070,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้า port ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the port number is invalid.</p>
 </section>
 
                                     </dd>
@@ -2051,7 +2079,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class with the updated port number.</p>
+</section>
+
     
 </article>
                     <article
@@ -2067,12 +2097,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">507</span>
+    <span class="phpdocumentor-element-found-in__line">523</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดค่า query string
-คืนค่า Object ใหม่</p>
+        <p class="phpdocumentor-summary">Set the query string of the URI.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2086,7 +2115,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The query string.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2102,7 +2133,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้า query string ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the query string is invalid.</p>
 </section>
 
                                     </dd>
@@ -2111,7 +2142,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class with the updated query string.</p>
+</section>
+
     
 </article>
                     <article
@@ -2127,12 +2160,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">550</span>
+    <span class="phpdocumentor-element-found-in__line">563</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดค่า scheme ของ Uri
-คืนค่า Object ใหม่</p>
+        <p class="phpdocumentor-summary">Set the scheme (http or https) of the URI.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2146,7 +2178,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>http หรือ https หรือค่าว่าง</p>
+                    <section class="phpdocumentor-description"><p>The scheme (http, https, or empty string).</p>
 </section>
 
             </dd>
@@ -2164,7 +2196,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้าไม่ใช่ ค่าว่าง http หรือ https</p>
+                                                 <section class="phpdocumentor-description"><p>If the scheme is not empty, http, or https.</p>
 </section>
 
                                     </dd>
@@ -2173,7 +2205,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class with the updated scheme.</p>
+</section>
+
     
 </article>
                     <article
@@ -2189,16 +2223,15 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">566</span>
+    <span class="phpdocumentor-element-found-in__line">578</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดข้อมูล user ของ Uri
-คืนค่า Object ใหม่</p>
+        <p class="phpdocumentor-summary">Return a new instance of the class with the specified user information (username and password).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">withUserInfo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$password</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                <span class="phpdocumentor-signature__name">withUserInfo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$password</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -2208,23 +2241,29 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The username.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$password</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>(optional) The password.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type">self</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>A new instance of the class with the updated user information.</p>
+</section>
+
     
 </article>
                     <article
@@ -2240,18 +2279,19 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">584</span>
+    <span class="phpdocumentor-element-found-in__line">596</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลง POST เป็น query string สำหรับการส่งกลับไปหน้าเดิม ที่มาจากการโพสต์ด้วยฟอร์ม
-คืนค่า URL+query string</p>
+        <p class="phpdocumentor-summary">Convert POST data to a query string for redirecting back to the previous page after form submission.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                 <span class="phpdocumentor-signature__name">createBack</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query_string</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$encode</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the URL with the query string.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2259,7 +2299,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>URL ที่ต้องการส่งกลับ เช่น index.php</p>
+                    <section class="phpdocumentor-description"><p>The URL to redirect back to, e.g., index.php.</p>
 </section>
 
             </dd>
@@ -2268,7 +2308,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query string จาก $_POST หรือ $_GET</p>
+                    <section class="phpdocumentor-description"><p>The query string from $_POST or $_GET.</p>
 </section>
 
             </dd>
@@ -2277,7 +2317,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>query string ที่ต้องการส่งกลับไปด้วย array('key' =&gt; 'value', ...)</p>
+                    <section class="phpdocumentor-description"><p>Additional query string parameters in the format array('key' =&gt; 'value', ...).</p>
 </section>
 
             </dd>
@@ -2286,7 +2326,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false เชื่อม Querystring ด้วย &amp;, true เชื่อม Querystring ด้วย &amp;</p>
+                    <section class="phpdocumentor-description"><p>False to concatenate query string with '&amp;', true to use '&amp;'.</p>
 </section>
 
             </dd>
@@ -2297,7 +2337,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The URL with the query string.</p>
+</section>
+
     
 </article>
                     <article
@@ -2313,18 +2355,19 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">617</span>
+    <span class="phpdocumentor-element-found-in__line">634</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้าง Uri
-เช่น http://domain.tld/</p>
+        <p class="phpdocumentor-summary">Create a URI string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">createUriString</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scheme</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$authority</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fragment</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Example: http://domain.tld/</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2369,7 +2412,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The URI string.</p>
+</section>
+
     
 </article>
                     <article
@@ -2385,22 +2430,22 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">648</span>
+    <span class="phpdocumentor-element-found-in__line">665</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบ path</p>
+        <p class="phpdocumentor-summary">Validate the path.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">filterPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">filterPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$path</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -2412,7 +2457,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The filtered path.</p>
+</section>
+
     
 </article>
                     <article
@@ -2428,15 +2475,15 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">666</span>
+    <span class="phpdocumentor-element-found-in__line">682</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบ port</p>
+        <p class="phpdocumentor-summary">Filter and validate the port number for a URI.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">filterPort</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scheme</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
+                <span class="phpdocumentor-signature__name">filterPort</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scheme</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -2446,21 +2493,27 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The URI scheme (e.g., http, https).</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$host</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The URI host.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$port</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The port number to be filtered and validated.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2476,7 +2529,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้า port ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the port number is invalid (not within the range of 1 to 65535).</p>
 </section>
 
                                     </dd>
@@ -2485,7 +2538,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The filtered port number, or null if the default port for the given scheme and host is used.</p>
+</section>
+
     
 </article>
                     <article
@@ -2501,25 +2556,27 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">684</span>
+    <span class="phpdocumentor-element-found-in__line">700</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบ query และ fragment</p>
+        <p class="phpdocumentor-summary">Check and filter the query and fragment components of a URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">filterQueryFragment</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$str</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">filterQueryFragment</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$str</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$str</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The string to filter.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2528,7 +2585,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The filtered string.</p>
+</section>
+
     
 </article>
                     <article
@@ -2544,11 +2603,11 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">700</span>
+    <span class="phpdocumentor-element-found-in__line">715</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบ scheme</p>
+        <p class="phpdocumentor-summary">Check the URL scheme.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -2562,7 +2621,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The scheme to check.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2578,7 +2639,7 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้าไม่ใช่ ค่าว่าง http หรือ https</p>
+                                                 <section class="phpdocumentor-description"><p>If the scheme is not empty, &quot;http&quot;, or &quot;https&quot;.</p>
 </section>
 
                                     </dd>
@@ -2587,7 +2648,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The filtered scheme.</p>
+</section>
+
     
 </article>
                     <article
@@ -2603,18 +2666,21 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Http/Uri.php"><a href="files/kotchasan-http-uri.html"><abbr title="Kotchasan/Http/Uri.php">Uri.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">721</span>
+    <span class="phpdocumentor-element-found-in__line">739</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่าเป็น port มาตรฐานหรือไม่
-เช่น http เป็น 80 หรือ https เป็น 433</p>
+        <p class="phpdocumentor-summary">Check if the port is a non-standard port for the given scheme and host.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">isNonStandardPort</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scheme</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                <span class="phpdocumentor-signature__name">isNonStandardPort</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scheme</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This method determines if the specified scheme and host combination has a non-standard port.
+It returns true if either the scheme is not 'http' or 'https', or the port is not 80 or 443.
+Otherwise, it returns false.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2622,21 +2688,27 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The scheme (e.g., http, https).</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$host</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The host.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$port</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The port number.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2645,7 +2717,9 @@ path ต้องเริ่มต้นด้วย / เช่น /kotchasan
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the port is non-standard, false otherwise.</p>
+</section>
+
     
 </article>
             </section>

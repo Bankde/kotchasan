@@ -11,7 +11,9 @@
 namespace Kotchasan\Database;
 
 /**
- * Database schema
+ * Database schema class
+ *
+ * This class is responsible for retrieving and managing database schema information.
  *
  * @see https://www.kotchasan.com/
  */
@@ -24,7 +26,7 @@ class Schema
      */
     private $db;
     /**
-     * รายการ Schema ที่โหลดแล้ว
+     * List of loaded schemas
      *
      * @var array
      */
@@ -33,7 +35,7 @@ class Schema
     /**
      * Create Schema Class
      *
-     * @param Driver $db
+     * @param Driver $db The database driver object
      *
      * @return static
      */
@@ -45,15 +47,20 @@ class Schema
     }
 
     /**
-     * อ่านรายชื่อฟิลด์ของตาราง
-     * คืนค่ารายชื่อฟิลด์ทั้งหมดในตาราง
+     * Get the field names of a table
      *
-     * @return array
+     * Retrieve all field names in the specified table.
+     *
+     * @param string $table The table name
+     *
+     * @return array The array of field names
+     *
+     * @throws \InvalidArgumentException if the table name is empty
      */
     public function fields($table)
     {
         if (empty($table)) {
-            throw new \InvalidArgumentException('table name empty in fields');
+            throw new \InvalidArgumentException('Table name is empty in fields');
         } else {
             $this->init($table);
             return array_keys($this->tables[$table]);
@@ -61,9 +68,9 @@ class Schema
     }
 
     /**
-     * อ่านข้อมูล Schema จากตาราง
+     * Initialize the schema data for a table
      *
-     * @param string $table
+     * @param string $table The table name
      */
     private function init($table)
     {

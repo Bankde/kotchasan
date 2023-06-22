@@ -2,8 +2,8 @@
 /**
  * @filesource Kotchasan/load.php
  *
- * ไฟล์หลักสำหรับกำหนดค่าเริ่มต้นในการโหลดเฟรมเวิร์ค
- * ต้อง include ไฟล์นี้ก่อนเสมอ
+ * Main file for setting default configurations during framework loading
+ * This file must be included before anything else.
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
@@ -12,62 +12,70 @@
  */
 
 /**
- * การแสดงข้อผิดพลาด
- * 0 บันทึกข้อผิดพลาดร้ายแรงลง error_log .php (ขณะใช้งานจริง)
- * 1 บันทึกข้อผิดพลาดและคำเตือนลง error_log .php
- * 2 แสดงผลข้อผิดพลาดและคำเตือนออกทางหน้าจอ (เฉพาะตอนออกแบบเท่านั้น)
+ * Error reporting level.
+ * 0: Log severe errors to error_log.php (in production)
+ * 1: Log errors and warnings to error_log.php
+ * 2: Display errors and warnings on screen (for development only)
  *
  * @var int
  */
 if (!defined('DEBUG')) {
     define('DEBUG', 0);
 }
-/* display error */
+
+/* Display errors */
 if (DEBUG > 0) {
-    /* ขณะออกแบบ แสดง error และ warning ของ PHP */
+    /* During development, display PHP errors and warnings */
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(-1);
 } else {
-    /* ขณะใช้งานจริง */
+    /* During production */
     error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
 }
+
 /*
  * Framework Version
  *
  * @var string
  */
-define('VERSION', '4.9.2');
+define('VERSION', '5.0.0');
+
 /*
- * กำหนดการบันทึกการ query ฐานข้อมูล
- * ควรกำหนดเป็น false ขณะใช้งานจริง
+ * Enable database query logging.
+ * It should be set to false in production.
  *
- * $var bool
+ * @var bool
  */
 if (!defined('DB_LOG')) {
     define('DB_LOG', false);
 }
+
 /**
- * ไดเรคทอรี่ของ Framework
+ * Framework directory.
  */
 $vendorDir = str_replace('load.php', '', __FILE__);
 if (DIRECTORY_SEPARATOR != '/') {
     $vendorDir = str_replace('\\', '/', $vendorDir);
 }
 define('VENDOR_DIR', $vendorDir);
+
 /*
- * พาธของ Application เช่น D:/htdocs/kotchasan/
+ * Application path, e.g., D:/htdocs/kotchasan/
  */
 $appPath = '';
+
 /*
- * พาธของ Server ตั้งแต่ระดับราก เช่น D:/htdocs/Somtum/
+ * Server's document root path, e.g., D:/htdocs/
  */
 $docRoot = dirname($vendorDir);
+
 if (!defined('ROOT_PATH')) {
     define('ROOT_PATH', $docRoot.'/');
 }
+
 /**
- *  document root (Server)
+ * Document root (Server).
  */
 $contextPrefix = '';
 if (isset($_SERVER['APPL_PHYSICAL_PATH'])) {
@@ -99,7 +107,7 @@ if (isset($_SERVER['APPL_PHYSICAL_PATH'])) {
 }
 
 /*
- * พาธของ Application เช่น D:/htdocs/kotchasan/
+ * Application path, e.g., D:/htdocs/kotchasan/
  */
 if (!defined('APP_PATH')) {
     $appPath = dirname($_SERVER['SCRIPT_NAME']);
@@ -108,8 +116,9 @@ if (!defined('APP_PATH')) {
     }
     define('APP_PATH', rtrim($docRoot.$appPath, '/').'/');
 }
+
 /*
- *  http หรือ https
+ *  http or https
  */
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
     $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'].'://';
@@ -121,8 +130,9 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
 if (!defined('HTTPS')) {
     define('HTTPS', $scheme == 'https://');
 }
+
 /*
- * host name
+ * Host name
  */
 if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
     $host = trim(current(explode(',', $_SERVER['HTTP_X_FORWARDED_HOST'])));
@@ -134,9 +144,10 @@ if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
 if (!defined('HOST')) {
     define('HOST', str_replace('www.', '', $host));
 }
+
 /*
- * ไดเร็คทอรี่ที่ติดตั้งเว็บไซต์ตั้งแต่ DOCUMENT_ROOT
- * เช่น kotchasan/
+ * Base directory of the website installation starting from DOCUMENT_ROOT
+ * For example, kotchasan/
  */
 if (!defined('BASE_PATH')) {
     if (empty($_SERVER['CONTEXT_DOCUMENT_ROOT'])) {
@@ -149,39 +160,31 @@ if (!defined('BASE_PATH')) {
         define('BASE_PATH', rtrim($basePath, '/').'/');
     }
 }
-/*
- * URL ของเว็บไซต์รวม path เช่น http://domain.tld/folder
+
+/**
+ * URL of the website including the path, e.g., http://domain.tld/folder
  */
 if (!defined('WEB_URL')) {
-    define('WEB_URL', $scheme.$host.$contextPrefix.str_replace($docRoot, '', ROOT_PATH));
+    define('WEB_URL', (HTTPS ? 'https://' : $scheme).$host.$contextPrefix.str_replace($docRoot, '', ROOT_PATH));
 }
+
 /*
- * กำหนดจำนวนครั้งในการตรวจสอบ token
- * ถ้ามีการตรวจสอบ token เกินกว่าที่กำหนดจะถูกลบออก
- * ป้องกันการ buteforce
- *
- * @var int
+ * Token settings.
+ * The limit and age of tokens.
  */
 if (!defined('TOKEN_LIMIT')) {
     define('TOKEN_LIMIT', 10);
 }
-/*
- * อายุของ token (วินาที)
- * ค่าเริ่มต้นคือ 60 นาที
- *
- * @var int
- */
 if (!defined('TOKEN_AGE')) {
     define('TOKEN_AGE', 3600);
 }
 
 /**
- * ฟังก์ชั่นใช้สำหรับสร้างคลาส
+ * Create a new instance of a class.
  *
- * @param string $className ชื่อคลาส
- * @param mixed  $param
+ * @param  string $className The class name
  *
- * @return object
+ * @return object|null        An instance of the class or null if the class doesn't exist
  */
 function createClass($className, $param = null)
 {
@@ -189,7 +192,7 @@ function createClass($className, $param = null)
 }
 
 /**
- * ฟังก์ชั่นเรียกเมื่อมีการเรียกคำสั่ง debug และสิ้นสุดการประมวลผลแล้ว
+ * Shutdown function to output debug messages to the browser console.
  */
 function doShutdown()
 {
@@ -201,9 +204,9 @@ function doShutdown()
 }
 
 /**
- * แสดงข้อมูลตัวแปรออกทาง Console ของบราวเวอร์ (debug)
+ * Output debug information to the browser console.
  *
- * @param mixed $expression
+ * @param  mixed $data The variable to be displayed in the console
  */
 function debug($expression)
 {
@@ -220,9 +223,11 @@ function debug($expression)
     }
 }
 
-/*
- * custom error handler
- * ถ้าอยู่ใน mode debug จะแสดง error ถ้าไม่จะเขียนลง log อย่างเดียว
+/**
+ * Custom error handler
+ *
+ * This code segment defines a custom error handler that handles PHP errors and exceptions.
+ * If the application is not in debug mode (DEBUG != 2), errors are logged to a file. Otherwise, errors are displayed.
  */
 if (DEBUG != 2) {
     set_error_handler(function ($errno, $errstr, $errfile, $errline) {
@@ -248,32 +253,37 @@ if (DEBUG != 2) {
             default:
                 $type = 'PHP Error';
         }
+
+        // Create a log entry with the error information
         \Kotchasan\Log\Logger::create()->error('<br>'.$type.' : <em>'.$errstr.'</em> in <b>'.$errfile.'</b> on line <b>'.$errline.'</b>');
     });
+
     set_exception_handler(function ($e) {
-        $tract = $e->getTrace();
-        if (empty($tract)) {
-            $tract = array(
+        $trace = $e->getTrace();
+        if (empty($trace)) {
+            $trace = array(
                 'file' => $e->getFile(),
                 'line' => $e->getLine()
             );
         } else {
-            $tract = next($tract);
+            $trace = next($trace);
         }
-        $err = '<br>Exception : <em>'.$e->getMessage().'</em>';
-        if (isset($tract['file']) && isset($tract['line'])) {
-            $err .= ' in <b>'.$tract['file'].'</b> on line <b>'.$tract['line'].'</b>';
+        $error = '<br>Exception : <em>'.$e->getMessage().'</em>';
+        if (isset($trace['file']) && isset($trace['line'])) {
+            $error .= ' in <b>'.$trace['file'].'</b> on line <b>'.$trace['line'].'</b>';
         }
-        \Kotchasan\Log\Logger::create()->error($err);
+
+        // Create a log entry with the exception information
+        \Kotchasan\Log\Logger::create()->error($error);
     });
 }
 
 /**
- * ตรวจสอบและคืนค่าชื่อไฟล์รวมพาธของคลาส
+ * Get the file path of a class based on its name.
  *
- * @param string $className
+ * @param  string $className The class name
  *
- * @return string|null คืนค่าไฟล์รวมพาธของคลาส ถ้าไม่พบคืนค่า null
+ * @return string            The file path of the class or an empty string if the class is not found
  */
 function getClassPath($className)
 {
@@ -296,11 +306,14 @@ function getClassPath($className)
     }
     return null;
 }
-/*
- * โหลดคลาสโดยอัตโนมัติตามชื่อของ Classname เมื่อมีการเรียกใช้งานคลาส
- * PSR-4
+
+/**
+ * Class Autoloader
  *
- * @param string $className
+ * This section defines an autoloader function that is responsible for dynamically loading classes.
+ * It uses a predefined mapping array to match class names with their corresponding file paths.
+ * If a class is found in the mapping array, the corresponding file is required, otherwise, the getClassPath() function is used to locate the file.
+ * Once the file is found, it is required to load the class.
  */
 spl_autoload_register(function ($className) {
     $files = array(
@@ -388,18 +401,20 @@ spl_autoload_register(function ($className) {
         'Kotchasan\InputItemException' => 'InputItemException.php',
         'Kotchasan\Xls' => 'Xls.php'
     );
+
     if (isset($files[$className])) {
         $file = VENDOR_DIR.$files[$className];
     } else {
         $file = getClassPath($className);
     }
+
     if ($file !== null) {
         require $file;
     }
 });
 
 /**
- * โหลดคลาสเริ่มต้น
+ * Load initial classes
  */
 require VENDOR_DIR.'KBase.php';
 require VENDOR_DIR.'Config.php';

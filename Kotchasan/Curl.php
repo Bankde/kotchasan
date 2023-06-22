@@ -18,15 +18,15 @@ namespace Kotchasan;
 class Curl
 {
     /**
-     * ตัวแปรสำหรับเก็บ Error ที่มาจาก cURL
-     * 0 ไม่มี error (ค่าเริ่มต้น)
-     * มากกว่า 0 Error No. ของ cURL
+     * Variable to store cURL errors
+     * 0 means no error (default value)
+     * Greater than 0 represents the cURL error number
      *
      * @var int
      */
     protected $error = 0;
     /**
-     * ข้อความ Error จาก cURL หากมีข้อผิดพลาดในการส่ง
+     * Error message from cURL if there is an error in sending
      *
      * @var string
      */
@@ -38,23 +38,23 @@ class Curl
      */
     protected $headers = array();
     /**
-     * พารามิเตอร์ CURLOPT
+     * CURLOPT parameters
      *
      * @var array
      */
     protected $options = array();
 
     /**
-     * Construct
+     * Constructor
      *
-     * @throws \Exception ถ้าไม่รองรับ cURL
+     * @throws \Exception If cURL is not supported
      */
     public function __construct()
     {
         if (!extension_loaded('curl')) {
             throw new \Exception('cURL library is not loaded');
         }
-        // default parameter
+        // Default parameters
         $this->headers = array(
             'Connection' => 'keep-alive',
             'Keep-Alive' => '300',
@@ -92,8 +92,8 @@ class Curl
     }
 
     /**
-     * คืนค่า error no จากการ cURL
-     * 0 หมายถึงไม่มี error
+     * Returns the cURL error number
+     * 0 means no error
      *
      * @return int
      */
@@ -103,7 +103,7 @@ class Curl
     }
 
     /**
-     * คืนค่าข้อความ Error จาก cURL หากมีข้อผิดพลาดในการส่ง
+     * Returns the error message from cURL if there is an error in sending
      *
      * @return string
      */
@@ -157,7 +157,7 @@ class Curl
     }
 
     /**
-     * Login สำหรับการส่งแบบ HTTP
+     * HTTP authentication for sending requests
      *
      * @param string $username
      * @param string $password
@@ -173,7 +173,7 @@ class Curl
     }
 
     /**
-     * ใช้งาน PROXY
+     * Use PROXY
      *
      * @param string $url
      * @param int    $port
@@ -236,7 +236,7 @@ class Curl
     }
 
     /**
-     * กำหนด referer
+     * Set referer
      *
      * @param string $referrer
      *
@@ -249,7 +249,7 @@ class Curl
     }
 
     /**
-     * กำหนดค่า cookie file
+     * Set cookie file
      *
      * @param string $cookiePath
      *
@@ -263,7 +263,7 @@ class Curl
     }
 
     /**
-     * กำหนด Header
+     * Set headers
      *
      * @param array $headers
      *
@@ -278,7 +278,7 @@ class Curl
     }
 
     /**
-     * กำหนด Options
+     * Set options
      *
      * @param array $options
      *
@@ -293,7 +293,7 @@ class Curl
     }
 
     /**
-     * ประมวลผล cURL
+     * Execute cURL
      *
      * @param string $url
      *

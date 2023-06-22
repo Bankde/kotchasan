@@ -11,58 +11,67 @@
 namespace Kotchasan;
 
 /**
- * คลาสสำหรับ Dom Node
+ * Class representing a DOM Node.
  *
  * @see https://www.kotchasan.com/
  */
 class DOMNode
 {
     /**
-     * รายการคุณสมบัติของโหนด
+     * List of node attributes.
      *
      * @var array
      */
     public $attributes = array();
+
     /**
-     * รายการของโหนดที่อยู่ภายใน
+     * List of child nodes.
      * <parentNode><childNode></childNode><childNode></childNode></parentNode>
      *
      * @var array
      */
     public $childNodes;
+
     /**
-     * ลำดับของโหนด ชั้นนอกสุดคือ 0
+     * Node level. The outermost level is 0.
      *
      * @var int
      */
     public $level;
+
     /**
-     * โหนดถัดไป (ลำดับเดียวกัน) ถ้าเป็นโหนดสุดท้ายจะเป็น null
+     * Next sibling node. If it's the last node, it will be null.
      * <node></node><nextSibling></nextSibling>
      *
      * @var DOMNode
      */
     public $nextSibling;
+
     /**
+     * Node name.
+     *
      * @var mixed
      */
     public $nodeName;
+
     /**
-     * ข้อความภายในโหนด ถ้าเป็น tag ค่านี้จะเป็น null
+     * Node value. It will be null if the node is a tag.
      * <node>nodeValue</node>
      *
      * @var string|null
      */
     public $nodeValue;
+
     /**
-     * โหนดแม่
+     * Parent node.
      * <parentNode><childNode></childNode></parentNode>
      *
      * @var DOMNode
      */
     public $parentNode;
+
     /**
-     * โหนดก่อนหน้า (ลำดับเดียวกัน) ถ้าเป็นโหนดแรกจะเป็น null
+     * Previous sibling node. If it's the first node, it will be null.
      * <previousSibling></previousSibling><node></node>
      *
      * @var DOMNode
@@ -70,29 +79,31 @@ class DOMNode
     public $previousSibling;
 
     /**
-     * class constructor
+     * Class constructor.
      *
-     * @param string       $nodeName   ชื่อ tag ถ้าไม่มีชื่อ tag หมายถึงข้อความเปล่าๆ
-     * @param DOMNode|null $parentNode โหนดแม่ ถ้าเป็นโหนดแรกคือ null
-     * @param array        $attributes คุณสมบัติของโหนก (properties)
-     * @param string|null  $nodeValue  ข้อความภายในโหนด ถ้าเป็น tag ค่านี้จะเป็น null
+     * @param string       $nodeName   The tag name. If there is no tag name, it represents empty text.
+     * @param DOMNode|null $parentNode The parent node. If it's the first node, it will be null.
+     * @param array        $attributes The node attributes (properties).
+     * @param string|null  $nodeValue  The text content of the node. It will be null if the node is a tag.
      */
     public function __construct($nodeName, $parentNode, $attributes, $nodeValue = null)
     {
         $this->nodeName = strtoupper($nodeName);
         $this->parentNode = $parentNode;
         $this->nodeValue = $nodeValue;
+
+        // Store attributes as uppercase keys for easier access.
         foreach ($attributes as $key => $value) {
             $this->attributes[strtoupper($key)] = $value;
         }
+
         $this->childNodes = array();
     }
 
     /**
-     * ตรวจสอบว่ามีโหนดลูกหรือไม่
-     * คืนค่า true ถ้ามีโหนดลูก, false ถ้าไม่มี
+     * Check if the node has child nodes.
      *
-     * @return bool
+     * @return bool True if it has child nodes, false otherwise.
      */
     public function hasChildNodes()
     {
@@ -100,12 +111,11 @@ class DOMNode
     }
 
     /**
-     * ตรวจสอบว่ามีคลาสอยู่หรือไม่
-     * คืนค่า true ถ้ามี
+     * Check if the node has a specific class.
      *
-     * @param string $className ชื่อคลาสที่ต้องการตรวจสอบ
+     * @param string $className The class name to check.
      *
-     * @return bool
+     * @return bool True if it has the class, false otherwise.
      */
     public function hasClass($className)
     {
@@ -121,59 +131,34 @@ class DOMNode
     }
 
     /**
-     * ตรวจสอบว่าเป็น element แบบ Inline หรือไม่
-     * คืนค่า true ถ้าเป็น Inline Elements หรือ false ถ้าเป็น Block-level Elements
+     * Check if the element is an inline element.
      *
-     * @return bool
+     * @return bool True if it's an inline element, false if it's a block-level element.
      */
     public function isInlineElement()
     {
-        switch ($this->nodeName) {
-            case 'B':
-            case 'BIG':
-            case 'I':
-            case 'SMALL':
-            case 'TT':
-            case 'ABBR':
-            case 'ACRONYM':
-            case 'CITE':
-            case 'CODE':
-            case 'DFN':
-            case 'EM':
-            case 'STRONG':
-            case 'SAMP':
-            case 'TIME':
-            case 'VAR':
-            case 'A':
-            case 'BDO':
-            case 'BR':
-            case 'IMG':
-            case 'MAP':
-            case 'OBJECT':
-            case 'Q':
-            case 'SCRIPT':
-            case 'SPAN':
-            case 'SUB':
-            case 'BUTTON':
-            case 'INPUT':
-            case 'LABEL':
-            case 'SELECT':
-            case 'TEXTAREA':
-                return true;
-        }
-        return false;
+        // List of inline elements.
+        $inlineElements = array(
+            'B', 'BIG', 'I', 'SMALL', 'TT', 'ABBR', 'ACRONYM', 'CITE', 'CODE',
+            'DFN', 'EM', 'STRONG', 'SAMP', 'TIME', 'VAR', 'A', 'BDO', 'BR', 'IMG',
+            'MAP', 'OBJECT', 'Q', 'SCRIPT', 'SPAN', 'SUB', 'BUTTON', 'INPUT',
+            'LABEL', 'SELECT', 'TEXTAREA'
+        );
+
+        return in_array($this->nodeName, $inlineElements);
     }
 
     /**
-     * คืนค่า ข้อความทั้งหมดภายในโหนด
+     * Get the concatenated text content of the node and its descendants.
      *
-     * @return string
+     * @return string The concatenated text content.
      */
     public function nodeText()
     {
         $txt = '';
         foreach ($this->childNodes as $node) {
             if ($node->hasChildNodes()) {
+                // Recursively call nodeText() to concatenate text from child nodes.
                 $txt .= $this->nodeText();
             } else {
                 switch ($node->nodeName) {
@@ -190,14 +175,23 @@ class DOMNode
     }
 
     /**
-     * แปลงรหัส HTML เป็นข้อความ เช่น &lt; เป็น <
+     * Convert HTML entities to their corresponding characters.
      *
-     * @param string $html
+     * @param string $html The HTML string to convert.
      *
-     * @return string
+     * @return string The converted string.
      */
     public function unentities($html)
     {
-        return str_replace(array('&nbsp;', '&amp;', '&lt;', '&gt;', '&#39;', '&quot;'), array(' ', '&', '<', '>', "'", '"'), $html);
+        $entities = array(
+            '&nbsp;' => ' ',
+            '&amp;' => '&',
+            '&lt;' => '<',
+            '&gt;' => '>',
+            '&#39;' => "'",
+            '&quot;' => '"'
+        );
+
+        return str_replace(array_keys($entities), array_values($entities), $html);
     }
 }

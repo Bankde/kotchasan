@@ -98,6 +98,12 @@
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Kotchasan.html">Kotchasan</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Kotchasan-Http.html">Http</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
 
@@ -140,11 +146,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Database Cache Class</p>
+            <p class="phpdocumentor-summary">Provides caching functionality for database query results.</p>
 
 
 
@@ -154,20 +160,11 @@
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
+                    <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Goragod Wiriya <a href="mailto:admin@goragod.com">admin@goragod.com</a></p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0</span>
-                                                                                
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.kotchasan.com/"><abbr title="https://www.kotchasan.com/">https://www.kotchasan.com/</abbr></a></span>
+                                        
                                              
                                     </dd>
                         </dl>
@@ -188,106 +185,91 @@
     <span>
                 &nbsp;: int            </span>
 </dt>
-<dd>กำหนดการโหลดข้อมูลจากแคชอัตโนมัติ
-0 ไม่ใช้แคช
-1 โหลดและบันทึกแคชอัตโนมัติ
-2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ</dd>
+<dd>Defines the cache loading behavior.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Database-DbCache.html#property_db_cache">$db_cache</a>
     <span>
                 &nbsp;: <a href="classes/Kotchasan-Cache-FileCache.html"><abbr title="\Kotchasan\Cache\FileCache">FileCache</abbr></a>            </span>
 </dt>
-<dd>คลาส Cache</dd>
+<dd>Cache driver instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Kotchasan-Database-DbCache.html#property_instance">$instance</a>
     <span>
-                &nbsp;: <abbr title="\Kotchasan\Database\Singleton">Singleton</abbr>            </span>
+                &nbsp;: <a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a>            </span>
 </dt>
-<dd></dd>
+<dd>Singleton instance of the class.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-DbCache.html#method_cacheOn">cacheOn()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: void    </span>
 </dt>
-<dd>เปิดการใช้งานแคช
-จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล</dd>
+<dd>Enable caching.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-DbCache.html#method_clear">clear()</a>
     <span>
-                        &nbsp;: bool    </span>
+                        &nbsp;: bool|array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>เคลียร์แคช
-คืนค่า true ถ้าลบเรียบร้อย, หรือ array ของรายการที่ไม่สำเร็จ</dd>
+<dd>Clear the cache.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-DbCache.html#method_create">create()</a>
     <span>
-                        &nbsp;: static    </span>
+                        &nbsp;: <a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a>    </span>
 </dt>
-<dd>Create Class (Singleton)</dd>
+<dd>Create an instance of the class (Singleton).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-DbCache.html#method_get">get()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>อ่านข้อมูลจากแคช
-คืนค่าข้อมูลหรือ false ถ้าไม่มีแคช</dd>
+<dd>Get data from the cache.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-DbCache.html#method_getAction">getAction()</a>
     <span>
                         &nbsp;: int    </span>
 </dt>
-<dd>อ่านสถานะของแคช
-0 ไม่ใช้แคช
-1 โหลดและบันทึกแคชอัตโนมัติ
-2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ</dd>
+<dd>Get the current cache action.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-DbCache.html#method_init">init()</a>
     <span>
                         &nbsp;: <a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a>    </span>
 </dt>
-<dd>กำหนดคีย์ของแคชจาก query</dd>
+<dd>Initialize a cache item based on the SQL query and its values.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-DbCache.html#method_save">save()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>บันทึก cache เมื่อบันทึกแล้วจะปิดการใช้งาน cache อัตโนมัติ
-จะใช้คำสั่งนี้เมื่อมีการเรียกใช้แคชด้วยคำสั่ง cacheOn(false) เท่านั้น
-query ครั้งต่อไปถ้าจะใช้ cache ต้อง เปิดการใช้งาน cache ก่อนทุกครั้ง
-สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false</dd>
+<dd>Save the cache item with the provided data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-DbCache.html#method_setAction">setAction()</a>
     <span>
-                        &nbsp;: static    </span>
+                        &nbsp;: <a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a>    </span>
 </dt>
-<dd>กำหนดสถานะของแคช
-0 ไม่ใช้แคช
-1 โหลดและบันทึกแคชอัตโนมัติ
-2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ</dd>
+<dd>Set the cache action.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-DbCache.html#method_usedCache">usedCache()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>ตรวจสอบว่าข้อมูลมาจาก cache หรือไม่</dd>
+<dd>Check if the data was retrieved from the cache item.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Database-DbCache.html#method___construct">__construct()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>Class constructor</dd>
+<dd>Class constructor.</dd>
 
         </dl>
 
@@ -317,14 +299,11 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดการโหลดข้อมูลจากแคชอัตโนมัติ
-0 ไม่ใช้แคช
-1 โหลดและบันทึกแคชอัตโนมัติ
-2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ</p>
+        <p class="phpdocumentor-summary">Defines the cache loading behavior.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -332,7 +311,13 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <span class="phpdocumentor-signature__name">$action</span>
      = <span class="phpdocumentor-signature__default-value">0</span></code>
 
-    
+        <section class="phpdocumentor-description"><ul>
+<li>0: Disable caching.</li>
+<li>1: Load and automatically save cache.</li>
+<li>2: Load cache but do not automatically save cache.</li>
+</ul>
+</section>
+
     
     
 
@@ -357,7 +342,7 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
 
     </aside>
 
-        <p class="phpdocumentor-summary">คลาส Cache</p>
+        <p class="phpdocumentor-summary">Cache driver instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -386,21 +371,20 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Singleton instance of the class.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type"><abbr title="\Kotchasan\Database\Singleton">Singleton</abbr></span>
+    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type"><a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a></span>
     <span class="phpdocumentor-signature__name">$instance</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
-        <section class="phpdocumentor-description"><p>สำหรับเรียกใช้ class นี้เพียงครั้งเดียวเท่านั้น</p>
-</section>
-
+    
     
 
 </article>
@@ -424,18 +408,19 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เปิดการใช้งานแคช
-จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล</p>
+        <p class="phpdocumentor-summary">Enable caching.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">cacheOn</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$auto_save</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">cacheOn</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$auto_save</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Cache will be checked before querying data.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -443,7 +428,7 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง</p>
+                    <section class="phpdocumentor-description"><p>(optional) Whether to automatically save cache results. Default is true.</p>
 </section>
 
             </dd>
@@ -452,7 +437,7 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -470,25 +455,26 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">เคลียร์แคช
-คืนค่า true ถ้าลบเรียบร้อย, หรือ array ของรายการที่ไม่สำเร็จ</p>
+        <p class="phpdocumentor-summary">Clear the cache.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">clear</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                <span class="phpdocumentor-signature__name">clear</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool|array&lt;string|int, mixed&gt;</span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
+    <span class="phpdocumentor-signature__response_type">bool|array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the cache is cleared successfully, or an array of failed items.</p>
+</section>
+
     
 </article>
                     <article
@@ -504,22 +490,22 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Create Class (Singleton)</p>
+        <p class="phpdocumentor-summary">Create an instance of the class (Singleton).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">create</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">create</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a></span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a></span>
             &mdash;
         
     
@@ -537,18 +523,19 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านข้อมูลจากแคช
-คืนค่าข้อมูลหรือ false ถ้าไม่มีแคช</p>
+        <p class="phpdocumentor-summary">Get data from the cache.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns the cached data or false if the cache is not available.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -556,7 +543,9 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The cache item.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -565,7 +554,9 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The cached data or false.</p>
+</section>
+
     
 </article>
                     <article
@@ -581,27 +572,32 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">102</span>
+    <span class="phpdocumentor-element-found-in__line">109</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">อ่านสถานะของแคช
-0 ไม่ใช้แคช
-1 โหลดและบันทึกแคชอัตโนมัติ
-2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ</p>
+        <p class="phpdocumentor-summary">Get the current cache action.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">getAction</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
-    
+        <section class="phpdocumentor-description"><ul>
+<li>0: Disable caching.</li>
+<li>1: Load and automatically save cache.</li>
+<li>2: Load cache but do not automatically save cache.</li>
+</ul>
+</section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The cache action.</p>
+</section>
+
     
 </article>
                     <article
@@ -617,11 +613,11 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">115</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดคีย์ของแคชจาก query</p>
+        <p class="phpdocumentor-summary">Initialize a cache item based on the SQL query and its values.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -635,14 +631,18 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The SQL query.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$values</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The query values.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -651,7 +651,9 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>The cache item.</p>
+</section>
+
     
 </article>
                     <article
@@ -667,20 +669,21 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">131</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">บันทึก cache เมื่อบันทึกแล้วจะปิดการใช้งาน cache อัตโนมัติ
-จะใช้คำสั่งนี้เมื่อมีการเรียกใช้แคชด้วยคำสั่ง cacheOn(false) เท่านั้น
-query ครั้งต่อไปถ้าจะใช้ cache ต้อง เปิดการใช้งาน cache ก่อนทุกครั้ง
-สำเร็จคืนค่า true ไม่สำเร็จคืนค่า false</p>
+        <p class="phpdocumentor-summary">Save the cache item with the provided data.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">save</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$datas</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                <span class="phpdocumentor-signature__name">save</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Once the cache is saved, the automatic cache action will be disabled.
+Use this method when calling <code class="prettyprint">cacheOn(false)</code> to enable caching manually.
+Subsequent queries that require caching must enable cache before each query.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -688,14 +691,16 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The cache item.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$datas</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อมูลที่จะบันทึก</p>
+                    <section class="phpdocumentor-description"><p>The data to be cached.</p>
 </section>
 
             </dd>
@@ -706,7 +711,9 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the cache is saved successfully, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -722,35 +729,40 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">148</span>
+    <span class="phpdocumentor-element-found-in__line">157</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">กำหนดสถานะของแคช
-0 ไม่ใช้แคช
-1 โหลดและบันทึกแคชอัตโนมัติ
-2 โหลดข้อมูลจากแคชได้ แต่ไม่บันทึกแคชอัตโนมัติ</p>
+        <p class="phpdocumentor-summary">Set the cache action.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setAction</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Kotchasan\Database\type">type</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                <span class="phpdocumentor-signature__name">setAction</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a></span></code>
 
-    
+        <section class="phpdocumentor-description"><ul>
+<li>0: Disable caching.</li>
+<li>1: Load and automatically save cache.</li>
+<li>2: Load cache but do not automatically save cache.</li>
+</ul>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$value</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Kotchasan\Database\type">type</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The cache action value.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Kotchasan-Database-DbCache.html"><abbr title="\Kotchasan\Database\DbCache">DbCache</abbr></a></span>
             &mdash;
         
     
@@ -768,11 +780,11 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">161</span>
+    <span class="phpdocumentor-element-found-in__line">170</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตรวจสอบว่าข้อมูลมาจาก cache หรือไม่</p>
+        <p class="phpdocumentor-summary">Check if the data was retrieved from the cache item.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -786,7 +798,9 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Kotchasan-Cache-CacheItem.html"><abbr title="\Kotchasan\Cache\CacheItem">CacheItem</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The cache item.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -795,7 +809,9 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if the cache item was used, false otherwise.</p>
+</section>
+
     
 </article>
                     <article
@@ -811,11 +827,11 @@ query ครั้งต่อไปถ้าจะใช้ cache ต้อง 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/DbCache.php"><a href="files/kotchasan-database-dbcache.html"><abbr title="Kotchasan/Database/DbCache.php">DbCache.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">169</span>
+    <span class="phpdocumentor-element-found-in__line">178</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Class constructor</p>
+        <p class="phpdocumentor-summary">Class constructor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>

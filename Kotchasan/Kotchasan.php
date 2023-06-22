@@ -11,45 +11,51 @@
 use Kotchasan\Http\Request;
 
 /**
- * Kotchasan PHP Framework
+ * The main class of the Kotchasan framework.
  *
  * @see https://www.kotchasan.com/
  */
 class Kotchasan extends Kotchasan\KBase
 {
     /**
-     * default charset (แนะนำ utf-8)
+     * Default charset (recommended utf-8).
      *
      * @var string
      */
     public $char_set = 'utf-8';
+
     /**
-     * Controller หลัก
+     * The main controller.
      *
      * @var string
      */
     public $defaultController = 'Index\Index\Controller';
+
     /**
-     * Router หลัก
+     * The main router.
      *
      * @var string
      */
     public $defaultRouter = 'Kotchasan\Router';
+
     /**
-     * เก็บข้อมูลการ DEBUG
+     * Stores DEBUG information.
      *
      * @var array
      */
     public static $debugger = null;
+
     /**
-     * @var Singleton สำหรับเรียกใช้ class นี้เพียงครั้งเดียวเท่านั้น
+     * Singleton instance of the class.
+     *
+     * @var Singleton
      */
     private static $instance = null;
 
     /**
-     * สร้าง Application สามารถเรียกใช้ได้ครั้งเดียวเท่านั้น
+     * Creates a web application instance. Can only be called once.
      *
-     * @param mixed $cfg ชื่อคลาสหรือ Object ของคลาส Config ถ้าไม่กำหนดมาจะใช้ \Kotchasan\Config
+     * @param mixed $cfg Name of the class or an object of the Config class. If not specified, \Kotchasan\Config will be used.
      *
      * @return static
      */
@@ -62,7 +68,7 @@ class Kotchasan extends Kotchasan\KBase
     }
 
     /**
-     * แสดงผลหน้าเว็บไซต์
+     * Runs the web page.
      */
     public function run()
     {
@@ -71,15 +77,16 @@ class Kotchasan extends Kotchasan\KBase
     }
 
     /**
-     * create instance (Singleton)
+     * Class constructor (private, Singleton).
      *
-     * @param mixed $cfg ชื่อคลาสหรือ Object ของคลาส Config ถ้าไม่กำหนดมาจะใช้ \Kotchasan\Config
+     * @param mixed $cfg Name of the class or an object of the Config class. If not specified, \Kotchasan\Config will be used.
      */
     private function __construct($cfg)
     {
         /* Request Class with Apache HTTP headers */
         self::$request = new Request(true);
-        /* config */
+
+        /* Config */
         if (empty($cfg)) {
             self::$cfg = \Kotchasan\Config::create();
         } elseif (is_string($cfg)) {
@@ -87,14 +94,17 @@ class Kotchasan extends Kotchasan\KBase
         } else {
             self::$cfg = $cfg;
         }
-        /* charset */
+
+        /* Charset */
         ini_set('default_charset', $this->char_set);
         if (extension_loaded('mbstring')) {
             mb_internal_encoding($this->char_set);
         }
-        /* time zone */
+
+        /* Time Zone */
         @date_default_timezone_set(self::$cfg->timezone);
-        /* custom init site */
+
+        /* Custom site initialization */
         if (is_string($cfg) && method_exists($cfg, 'init')) {
             $cfg::init(self::$cfg);
         }

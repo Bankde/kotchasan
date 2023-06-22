@@ -13,7 +13,7 @@ namespace Kotchasan\Cache;
 use Psr\Cache\CacheItemInterface;
 
 /**
- * Cache Item
+ * This class represents a cache item that implements the PSR-16 CacheItemInterface.
  *
  * @see https://www.kotchasan.com/
  */
@@ -49,7 +49,7 @@ class CacheItem implements CacheItemInterface
     }
 
     /**
-     * กำหนดอายุของแคช (วินาที)
+     * Set the expiration time of the cache item (in seconds)
      *
      * @param int|\DateInterval $time
      *
@@ -61,7 +61,7 @@ class CacheItem implements CacheItemInterface
     }
 
     /**
-     * กำหนดวันที่และเวลาหมดอายุของแคช
+     * Set the expiration date and time of the cache item
      *
      * @param \DateTimeInterface $expiration
      *
@@ -73,7 +73,7 @@ class CacheItem implements CacheItemInterface
     }
 
     /**
-     * อ่านค่าของแคช
+     * Get the value of the cache item
      *
      * @return mixed
      */
@@ -83,7 +83,7 @@ class CacheItem implements CacheItemInterface
     }
 
     /**
-     * อ่านค่าคีย์ของแคช
+     * Get the key of the cache item
      *
      * @return string
      */
@@ -93,8 +93,7 @@ class CacheItem implements CacheItemInterface
     }
 
     /**
-     * ฟังก์ชั่นตรวจสอบว่ามีการกำหนดข้อมูลลงในแคชหรือไม่
-     * คืนค่า true ถ้ามีการใส่ value ในแคชแล้ว
+     * Check if the cache item has a value
      *
      * @return bool
      */
@@ -104,7 +103,7 @@ class CacheItem implements CacheItemInterface
     }
 
     /**
-     * กำหนดค่า
+     * Set the value of the cache item
      *
      * @param mixed $value
      *

@@ -13,7 +13,8 @@ namespace Kotchasan;
 use Kotchasan\Http\UploadedFile;
 
 /**
- * รายการ File รูปแบบ Array
+ * Class Files
+ * An array-based collection of files.
  *
  * @see https://www.kotchasan.com/
  */
@@ -23,15 +24,14 @@ class Files implements \Iterator
      * @var int
      */
     private $position = 0;
+
     /**
-     * แอเรย์เก็บรายการ UploadedFile
-     *
      * @var array
      */
     private $datas = array();
 
     /**
-     * init Class
+     * Initialize the class.
      */
     public function __construct()
     {
@@ -40,14 +40,14 @@ class Files implements \Iterator
     }
 
     /**
-     * เพื่ม File ลงในคอลเล็คชั่น
+     * Add a file to the collection.
      *
-     * @param string $name         ชื่อของ Input
-     * @param string $path         ไฟล์อัปโหลด รวมพาธ
-     * @param string $originalName ชื่อไฟล์ที่อัปโหลด
+     * @param string $name         Input name
+     * @param string $path         Uploaded file path
+     * @param string $originalName Uploaded file name
      * @param string $mimeType     MIME Type
-     * @param int    $size         ขนาดไฟล์อัปโหลด
-     * @param int    $error        ข้อผิดพลาดการอัปโหลด UPLOAD_ERR_XXX
+     * @param int    $size         Uploaded file size
+     * @param int    $error        Upload error UPLOAD_ERR_XXX
      */
     public function add($name, $path, $originalName, $mimeType = null, $size = null, $error = null)
     {
@@ -58,7 +58,7 @@ class Files implements \Iterator
     }
 
     /**
-     * inherited from Iterator
+     * Rewind the Iterator to the first element.
      */
     #[\ReturnTypeWillChange]
     public function rewind()
@@ -67,6 +67,8 @@ class Files implements \Iterator
     }
 
     /**
+     * Checks if the current position is valid.
+     *
      * @return bool
      */
     #[\ReturnTypeWillChange]
@@ -76,7 +78,7 @@ class Files implements \Iterator
     }
 
     /**
-     * คืนค่า UploadedFile รายการปัจจุบัน
+     * Get the current UploadedFile.
      *
      * @return \Kotchasan\Http\UploadedFile
      */
@@ -87,7 +89,7 @@ class Files implements \Iterator
     }
 
     /**
-     * คืนค่าคีย์หรือลำดับของ UploadedFile ในลิสต์รายการ
+     * Get the key or index of the current UploadedFile in the list.
      *
      * @return string
      */
@@ -98,9 +100,7 @@ class Files implements \Iterator
     }
 
     /**
-     * คืนค่า UploadedFile รายการถัดไป
-     *
-     * @return \Kotchasan\Http\UploadedFile
+     * Move to the next UploadedFile in the list.
      */
     #[\ReturnTypeWillChange]
     public function next()
@@ -109,11 +109,11 @@ class Files implements \Iterator
     }
 
     /**
-     * อ่าน File ที่ต้องการ
+     * Get the specified file.
      *
-     * @param string|int $key รายการที่ต้องการ
+     * @param string|int $key The requested item
      *
-     * @return \Kotchasan\Http\UploadedFile
+     * @return \Kotchasan\Http\UploadedFile|null
      */
     public function get($key)
     {

@@ -5,20 +5,20 @@
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * @package Kotchasan\Http
  */
 
 namespace Kotchasan\Http;
 
 /**
- * Class สำหรับจัดการ Uri (PSR-7)
+ * Class for managing Uri (PSR-7)
  *
  * @see https://www.kotchasan.com/
  */
 class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
 {
     /**
-     * Uri fragment หลัง  #
+     * Uri fragment after #
      *
      * @var string
      */
@@ -42,7 +42,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      */
     protected $port;
     /**
-     * Uri query string หลัง ?
+     * Uri query string after ?
      *
      * @var string
      */
@@ -61,11 +61,16 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     protected $userInfo = '';
 
     /**
-     * Create a new Uri
+     * Constructs a new Uri object.
      *
-     * @param string $uri
-     *
-     * @throws \InvalidArgumentException ถ้า Uri ไม่ถูกต้อง
+     * @param string $scheme The URI scheme (e.g., "http", "https").
+     * @param string $host The URI host.
+     * @param string $path The URI path (default is "/").
+     * @param string $query The URI query string (default is an empty string).
+     * @param int|null $port The URI port (optional, default is null).
+     * @param string $user The username for URI authentication (optional, default is an empty string).
+     * @param string $pass The password for URI authentication (optional, default is an empty string).
+     * @param string $fragment The URI fragment (part after the # character, optional, default is an empty string).
      */
     public function __construct($scheme, $host, $path = '/', $query = '', $port = null, $user = '', $pass = '', $fragment = '')
     {
@@ -79,7 +84,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * magic function ส่งออกคลาสเป็น String
+     * Magic function to output the class as a String
      *
      * @return string
      */
@@ -95,9 +100,9 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ฟังก์ชั่นสร้าง URL สำหรับส่งต่อ Query string จากหน้าหนึ่งไปยังอีกหน้าหนึ่ง
-     * เพื่อให้สามารถสร้าง URL ที่สามารถส่งกลับไปยังหน้าเดิมได้โดย ฟังก์ชั่น back()
-     * ลบรายการที่ เป็น null ออก
+     * Create a URL for redirecting query strings from one page to another
+     * to allow creating URLs that can be sent back to the original page with the `back()` function
+     * Remove null items
      *
      * @param array $query_string
      *
@@ -126,14 +131,14 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * สร้าง Uri จากตัวแปร $_SERVER
+     * Creates a new Uri object based on the current server environment.
      *
-     * @throws \InvalidArgumentException ถ้า Uri ไม่ถูกต้อง
-     *
-     * @return static
+     * @return Uri A new Uri object based on the server environment.
+     * @throws \InvalidArgumentException If the provided URI is invalid.
      */
     public static function createFromGlobals()
     {
+        // Determine the URI scheme
         if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
             $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'].'://';
         } elseif ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) {
@@ -141,6 +146,8 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
         } else {
             $scheme = 'http://';
         }
+
+        // Determine the URI host
         if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
             $host = trim(current(explode(',', $_SERVER['HTTP_X_FORWARDED_HOST'])));
         } elseif (empty($_SERVER['HTTP_HOST'])) {
@@ -148,6 +155,8 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
         } else {
             $host = $_SERVER['HTTP_HOST'];
         }
+
+        // Determine the URI port
         $pos = strpos($host, ':');
         if ($pos !== false) {
             $port = (int) substr($host, $pos + 1);
@@ -157,21 +166,28 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
         } else {
             $port = $scheme === 'https://' ? 443 : 80;
         }
+
+        // Determine the URI path
         $path = empty($_SERVER['REQUEST_URI']) ? '/' : parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+        // Determine the URI query string
         $query = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+
+        // Determine the URI user authentication
         $user = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
         $pass = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : '';
+
+        // Create and return a new Uri object
         return new static($scheme, $host, $path, $query, $port, $user, $pass);
     }
 
     /**
-     * สร้างคลาสจากลิงค์
+     * Creates a new Uri object based on the provided URI string.
      *
-     * @param string $uri
+     * @param string $uri The URI string to create the Uri object from.
      *
-     * @throws \InvalidArgumentException ถ้า $uri ไม่ถูกต้อง
-     *
-     * @return static
+     * @return Uri A new Uri object based on the provided URI.
+     * @throws \InvalidArgumentException If the provided URI is invalid.
      */
     public static function createFromUri($uri)
     {
@@ -187,14 +203,20 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
             $path = isset($parts['path']) ? $parts['path'] : '';
             $query = isset($parts['query']) ? $parts['query'] : '';
             $fragment = isset($parts['fragment']) ? $parts['fragment'] : '';
+
+            // Create and return a new Uri object
             return new static($scheme, $host, $path, $query, $port, $user, $pass, $fragment);
         }
     }
 
     /**
-     * ตืนค่า authority ของ Uri [user-info@]host[:port]
+     * Retrieves the authority component of the URI.
      *
-     * @return string
+     * The authority component consists of the user information, host, and optional port.
+     * If the user information is present, it is followed by "@" symbol.
+     * If the port is present, it is preceded by ":" symbol.
+     *
+     * @return string The authority component of the URI.
      */
     public function getAuthority()
     {
@@ -202,12 +224,16 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * แปลง GET เป็น query string สำหรับการส่งกลับไปหน้าเดิม ที่มาจากการโพสต์ด้วยฟอร์ม
+     * Convert GET parameters to a query string for returning to the original page after form submission.
      *
-     * @param string $url          URL ที่ต้องการส่งกลับ เช่น index.php
-     * @param array  $query_string (option) query string ที่ต้องการส่งกลับไปด้วย array('key' => 'value', ...)
+     * Generate a URL for returning to the original page using the specified base URL and query string.
+     * The query string can be provided as an array in the form of key-value pairs.
+     * The method automatically includes the query string from the current request by default.
      *
-     * @return string URL+query string
+     * @param string $url The URL to return to, e.g., index.php.
+     * @param array $query_string (optional) The query string to include as an array of key-value pairs. Default is an empty array.
+     *
+     * @return string The generated URL with the query string.
      */
     public function getBack($url, $query_string = array())
     {
@@ -215,9 +241,9 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * คืนค่า fragment (ข้อมูลหลัง # ใน Uri) ของ Uri
+     * Get the fragment (data after #) of the Uri.
      *
-     * @return string
+     * @return string The fragment of the Uri.
      */
     public function getFragment()
     {
@@ -225,9 +251,9 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * คืนค่า Hostname ของ Uri เช่น domain.tld
+     * Get the hostname of the Uri, e.g., domain.tld.
      *
-     * @return string
+     * @return string The hostname of the Uri.
      */
     public function getHost()
     {
@@ -235,9 +261,9 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * คืนค่า path ของ Uri เช่น /kotchasan
+     * Get the path of the Uri, e.g., /kotchasan.
      *
-     * @return string
+     * @return string The path of the Uri.
      */
     public function getPath()
     {
@@ -245,10 +271,10 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * คืนค่าหมายเลข Port ของ Uri
-     * ไม่ระบุหรือเป็น default port (80,433) คืนค่า null
+     * Get the port number of the Uri.
+     * If not specified or default port (80, 443), return null.
      *
-     * @return null|int
+     * @return null|int The port number of the Uri.
      */
     public function getPort()
     {
@@ -256,9 +282,9 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * คืนค่า query string (ข้อมูลหลัง ? ใน Uri) ของ Uri
+     * Get the query string (data after ?) of the Uri.
      *
-     * @return string
+     * @return string The query string of the Uri.
      */
     public function getQuery()
     {
@@ -266,9 +292,9 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * คืนค่า scheme ของ Uri ไม่รวม :// เช่น http, https
+     * Get the scheme of the Uri without ://, e.g., http, https.
      *
-     * @return string
+     * @return string The scheme of the Uri.
      */
     public function getScheme()
     {
@@ -276,9 +302,9 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * คืนค่าข้อมูล user ของ Uri user[:password]
+     * Get the user information of the Uri user[:password].
      *
-     * @return string
+     * @return string The user information of the Uri.
      */
     public function getUserInfo()
     {
@@ -286,13 +312,13 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ฟังก์ชั่นแสดงผลตัวแบ่งหน้า
+     * Generate a pagination HTML string.
      *
-     * @param int $totalpage จำนวนหน้าทั้งหมด
-     * @param int $page      หน้าปัจจุบัน
-     * @param int $maxlink   (optional) จำนวนตัวเลือกแบ่งหน้าสูงสุด ค่าปกติ 9
+     * @param int $totalpage The total number of pages.
+     * @param int $page      The current page.
+     * @param int $maxlink   The maximum number of links to display.
      *
-     * @return string
+     * @return string The pagination HTML string.
      */
     public function pagination($totalpage, $page, $maxlink = 9)
     {
@@ -317,12 +343,12 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ฟังก์ชั่นแปลง Queryparams เป็น Querystring
+     * Convert an array of query parameters to a query string.
      *
-     * @param array $params
-     * @param bool  $encode false เชื่อม Querystring ด้วย &, true เชื่อม Querystring ด้วย &amp;
+     * @param array $params An array of query parameters.
+     * @param bool  $encode Whether to encode the query string using '&amp;' (true) or '&' (false).
      *
-     * @return string
+     * @return string The generated query string.
      */
     public function paramsToQuery($params, $encode)
     {
@@ -340,11 +366,11 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ฟังก์ชั่น แยก Querystring ออกเป็น array
+     * Parse the query string and return an array of query parameters.
      *
-     * @param string $query
+     * @param string|null $query The query string to parse (optional). If not provided, the object's query string will be used.
      *
-     * @return array
+     * @return array An array of query parameters.
      */
     public function parseQueryParams($query = null)
     {
@@ -367,14 +393,13 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * แปลง POST เป็น query string สำหรับการส่งกลับไปหน้าเดิม ที่มาจากการโพสต์ด้วยฟอร์ม
-     * คืนค่า URL+query string
+     * Generate a URL with query string for posting back to the original page, typically used with form submissions.
      *
-     * @param string $url          URL ที่ต้องการส่งกลับ เช่น index.php
-     * @param array  $query_string (option) query string ที่ต้องการส่งกลับไปด้วย array('key' => 'value', ...)
-     * @param bool  $encode false เชื่อม Querystring ด้วย &, true เชื่อม Querystring ด้วย &amp;
+     * @param string $url          The URL to which the form should be submitted.
+     * @param array  $query_string Additional query string parameters to be included in the URL.
+     * @param bool   $encode       Determines whether the query string should be encoded using &amp; or & (default is false).
      *
-     * @return string
+     * @return string The generated URL with query string.
      */
     public function postBack($url, $query_string = array(), $encode = false)
     {
@@ -382,14 +407,13 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * กำหนดค่า fragment
-     * คืนค่า Object ใหม่
+     * Set the fragment of the URL.
      *
-     * @param string $fragment
+     * @param string $fragment The fragment to be set.
      *
-     * @throws \InvalidArgumentException ถ้า fragment ไม่ถูกต้อง
+     * @throws \InvalidArgumentException If the fragment is not a string.
      *
-     * @return static
+     * @return static A new instance of the class with the updated fragment.
      */
     public function withFragment($fragment)
     {
@@ -403,12 +427,11 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * กำหนดชื่อ host
-     * คืนค่า Object ใหม่
+     * Set the host of the URL.
      *
-     * @param string $host ชื่อ host
+     * @param string $host The host to be set.
      *
-     * @return static
+     * @return static A new instance of the class with the updated host.
      */
     public function withHost($host)
     {
@@ -418,12 +441,12 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ฟังก์ชั่นแทนที่ Query params ลงใน URL
+     * Set or update query parameters in the URL.
      *
-     * @param array $params
-     * @param bool  $encode false (default) เชื่อม Querystring ด้วย &, true เชื่อม Querystring ด้วย &amp;
+     * @param array $params An array of query parameters to be set or updated.
+     * @param bool  $encode False (default) to connect query string with "&", true to connect with "&amp;".
      *
-     * @return static
+     * @return static A new instance of the class with the updated query parameters.
      */
     public function withParams($params, $encode = false)
     {
@@ -438,12 +461,12 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ฟังก์ลบ Query params ออกจาก URL
+     * Remove specified query parameters from the URL.
      *
-     * @param string|array $names  ชื่อของ attributes ที่ต้องการลบ
-     * @param bool         $encode false (default) เชื่อม Querystring ด้วย &, true เชื่อม Querystring ด้วย &amp;
+     * @param string|array $names  The names of attributes to be removed.
+     * @param bool         $encode False (default) to connect query string with "&", true to connect with "&amp;".
      *
-     * @return static
+     * @return static A new instance of the class without the specified query parameters.
      */
     public function withoutParams($names, $encode = false)
     {
@@ -459,14 +482,12 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * กำหนดชื่อ path
-     * path ต้องเริ่มต้นด้วย / เช่น /kotchasan
-     * หรือเป็นค่าว่าง ถ้าเป็นรากของโดเมน
-     * คืนค่า Object ใหม่
+     * Set the path of the URI.
+     * The path must start with '/' (e.g., '/kotchasan'), or it can be empty if it is the root of the domain.
      *
-     * @param string $path ชื่อ path
+     * @param string $path The path name.
      *
-     * @return static
+     * @return static A new instance of the class with the updated path.
      */
     public function withPath($path)
     {
@@ -476,14 +497,13 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * กำหนดค่า port
-     * คืนค่า Object ใหม่
+     * Set the port number of the URI.
      *
-     * @param null|int $port หมายเลข port 1- 65535 หรือ null
+     * @param null|int $port The port number (1-65535) or null.
      *
-     * @throws \InvalidArgumentException ถ้า port ไม่ถูกต้อง
+     * @throws \InvalidArgumentException If the port number is invalid.
      *
-     * @return static
+     * @return static A new instance of the class with the updated port number.
      */
     public function withPort($port)
     {
@@ -493,14 +513,12 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * กำหนดค่า query string
-     * คืนค่า Object ใหม่
+     * Set the query string of the URI.
      *
-     * @param string $query
+     * @param string $query The query string.
      *
-     * @throws \InvalidArgumentException ถ้า query string ไม่ถูกต้อง
-     *
-     * @return static
+     * @return static A new instance of the class with the updated query string.
+     * @throws \InvalidArgumentException If the query string is invalid.
      */
     public function withQuery($query)
     {
@@ -514,12 +532,11 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ลบ query string
-     * คืนค่า Object ใหม่
+     * Remove the specified query parameters from the URL.
      *
-     * @param array $query array('q1' => 'value1', 'q2' => 'value2')
+     * @param array $query An array of query parameters to be removed (e.g., ['q1' => 'value1', 'q2' => 'value2']).
      *
-     * @return static
+     * @return static A new instance of the class without the specified query parameters.
      */
     public function withoutQuery($query)
     {
@@ -536,14 +553,12 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * กำหนดค่า scheme ของ Uri
-     * คืนค่า Object ใหม่
+     * Set the scheme (http or https) of the URI.
      *
-     * @param string $scheme http หรือ https หรือค่าว่าง
+     * @param string $scheme The scheme (http, https, or empty string).
      *
-     * @throws \InvalidArgumentException ถ้าไม่ใช่ ค่าว่าง http หรือ https
-     *
-     * @return static
+     * @return static A new instance of the class with the updated scheme.
+     * @throws \InvalidArgumentException If the scheme is not empty, http, or https.
      */
     public function withScheme($scheme)
     {
@@ -553,13 +568,12 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * กำหนดข้อมูล user ของ Uri
-     * คืนค่า Object ใหม่
+     * Return a new instance of the class with the specified user information (username and password).
      *
-     * @param string $user
-     * @param string $password
+     * @param string $user     The username.
+     * @param string $password (optional) The password.
      *
-     * @return static
+     * @return self A new instance of the class with the updated user information.
      */
     public function withUserInfo($user, $password = null)
     {
@@ -569,18 +583,19 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * แปลง POST เป็น query string สำหรับการส่งกลับไปหน้าเดิม ที่มาจากการโพสต์ด้วยฟอร์ม
-     * คืนค่า URL+query string
+     * Convert POST data to a query string for redirecting back to the previous page after form submission.
+     * Returns the URL with the query string.
      *
-     * @param string $url          URL ที่ต้องการส่งกลับ เช่น index.php
-     * @param array  $source       query string จาก $_POST หรือ $_GET
-     * @param array  $query_string query string ที่ต้องการส่งกลับไปด้วย array('key' => 'value', ...)
-     * @param bool  $encode false เชื่อม Querystring ด้วย &, true เชื่อม Querystring ด้วย &amp;
+     * @param string $url The URL to redirect back to, e.g., index.php.
+     * @param array $source The query string from $_POST or $_GET.
+     * @param array $query_string Additional query string parameters in the format array('key' => 'value', ...).
+     * @param bool $encode False to concatenate query string with '&', true to use '&amp;'.
      *
-     * @return string
+     * @return string The URL with the query string.
      */
     private function createBack($url, $source, $query_string, $encode = false)
     {
+        // Process source array and update query string array
         foreach ($source as $key => $value) {
             if ($value !== '' && !preg_match('/.*?(username|password|token|time).*?/', $key) && preg_match('/^_{1,}(.*)$/', $key, $match)) {
                 if (!isset($query_string[$match[1]])) {
@@ -588,21 +603,25 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
                 }
             }
         }
+
+        // Update 'time' query string parameter with current time
         if (isset($query_string['time'])) {
             $query_string['time'] = time();
         }
+
         $query_str = array();
         foreach ($query_string as $key => $value) {
             if ($value !== null) {
                 $query_str[$key] = $value;
             }
         }
+
         return $url.(strpos($url, '?') === false ? '?' : '&').$this->paramsToQuery($query_str, $encode);
     }
 
     /**
-     * สร้าง Uri
-     * เช่น http://domain.tld/
+     * Create a URI string.
+     * Example: http://domain.tld/
      *
      * @param string $scheme
      * @param string $authority
@@ -610,7 +629,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      * @param string $query
      * @param string $fragment
      *
-     * @return string
+     * @return string The URI string.
      */
     private static function createUriString($scheme, $authority, $path, $query, $fragment)
     {
@@ -637,11 +656,11 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ตรวจสอบ path
+     * Validate the path.
      *
-     * @param  $path
+     * @param string $path
      *
-     * @return string
+     * @return string The filtered path.
      */
     private function filterPath($path)
     {
@@ -651,15 +670,14 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ตรวจสอบ port
+     * Filter and validate the port number for a URI.
      *
-     * @param string $scheme
-     * @param string $host
-     * @param int    $port
+     * @param string      $scheme The URI scheme (e.g., http, https).
+     * @param string      $host   The URI host.
+     * @param int|null    $port   The port number to be filtered and validated.
      *
-     * @throws \InvalidArgumentException ถ้า port ไม่ถูกต้อง
-     *
-     * @return int|null
+     * @return int|null The filtered port number, or null if the default port for the given scheme and host is used.
+     * @throws \InvalidArgumentException If the port number is invalid (not within the range of 1 to 65535).
      */
     private function filterPort($scheme, $host, $port)
     {
@@ -673,11 +691,11 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ตรวจสอบ query และ fragment
+     * Check and filter the query and fragment components of a URL.
      *
-     * @param  $str
+     * @param string $str The string to filter.
      *
-     * @return string
+     * @return string The filtered string.
      */
     private function filterQueryFragment($str)
     {
@@ -687,13 +705,12 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     }
 
     /**
-     * ตรวจสอบ scheme
+     * Check the URL scheme.
      *
-     * @param string $scheme
+     * @param string $scheme The scheme to check.
      *
-     * @throws \InvalidArgumentException ถ้าไม่ใช่ ค่าว่าง http หรือ https
-     *
-     * @return string
+     * @return string The filtered scheme.
+     * @throws \InvalidArgumentException If the scheme is not empty, "http", or "https".
      */
     private function filterScheme($scheme)
     {
@@ -702,19 +719,22 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
         if (isset($schemes[$scheme])) {
             return $scheme;
         } else {
-            throw new \InvalidArgumentException('Uri scheme must be http, https or empty string');
+            throw new \InvalidArgumentException('Uri scheme must be http, https, or an empty string');
         }
     }
 
     /**
-     * ตรวจสอบว่าเป็น port มาตรฐานหรือไม่
-     * เช่น http เป็น 80 หรือ https เป็น 433
+     * Check if the port is a non-standard port for the given scheme and host.
      *
-     * @param string $scheme
-     * @param string $host
-     * @param int    $port
+     * This method determines if the specified scheme and host combination has a non-standard port.
+     * It returns true if either the scheme is not 'http' or 'https', or the port is not 80 or 443.
+     * Otherwise, it returns false.
      *
-     * @return bool
+     * @param string $scheme The scheme (e.g., http, https).
+     * @param string $host The host.
+     * @param int|null $port The port number.
+     *
+     * @return bool True if the port is non-standard, false otherwise.
      */
     private function isNonStandardPort($scheme, $host, $port)
     {
