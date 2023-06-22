@@ -110,16 +110,17 @@ class Htmldoc
 
         // Extract the HTML body and process special spans
         if (preg_match('/<body[^>]+>(.*)<\/body>/isU', $html, $matches)) {
-            $this->htmlBody = preg_replace_callback('/<span[^>]+class="line([0-9]{0,})">([^>]+)<\/span>/isuU', function ($items) {
-                $datas = array(0 => 20, 1 => 40, 2 => 60, 3 => 80, 4 => 100);
-                $text = trim(str_replace('&nbsp;', ' ', $items[2]));
-                $len = ($datas[(int) $items[1]] - mb_strlen($text)) / 2;
-                for ($i = 0; $i < $len; ++$i) {
-                    $text = '.'.$text.'.';
-                }
-                return ' <span> '.$text.' </span> ';
-            }, $matches[1]);
+            $html = $matches[1];
         }
+        $this->htmlBody = preg_replace_callback('/<span[^>]+class="line([0-9]{0,})">([^>]+)<\/span>/isuU', function ($items) {
+            $datas = array(0 => 20, 1 => 40, 2 => 60, 3 => 80, 4 => 100);
+            $text = trim(str_replace('&nbsp;', ' ', $items[2]));
+            $len = ($datas[(int) $items[1]] - mb_strlen($text)) / 2;
+            for ($i = 0; $i < $len; ++$i) {
+                $text = '.'.$text.'.';
+            }
+            return ' <span> '.$text.' </span> ';
+        }, $html);
     }
 
     /**

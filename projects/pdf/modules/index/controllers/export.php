@@ -26,9 +26,20 @@ class Controller extends \Kotchasan\Controller
      */
     public function index(Request $request)
     {
-        $pdf = new \Kotchasan\Pdf();
-        $pdf->AddPage();
-        $pdf->WriteHTML($request->post('content')->toString());
-        $pdf->Output();
+        // รับค่า type ว่ามาจากปุ่มกดไหน
+        $type = $request->post('type')->toString();
+        // เนื้อหา
+        $content = $request->post('content')->detail();
+        if ($type === 'doc') {
+            // DOC
+            $doc = new \Kotchasan\Htmldoc();
+            $doc->createDoc($content);
+        } else {
+            // PDF
+            $pdf = new \Kotchasan\Pdf();
+            $pdf->AddPage();
+            $pdf->WriteHTML($content);
+            $pdf->Output();
+        }
     }
 }
