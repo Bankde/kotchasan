@@ -2,35 +2,40 @@
 /**
  * @filesource modules/index/views/menu.php
  *
+ * View file for the Menu module.
+ *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
  */
 
 namespace Index\Menu;
 
-/*
- * default View
+/**
+ * Default View for the Menu module.
+ *
+ * This class is responsible for rendering the menu.
  *
  * @see https://www.kotchasan.com/
  */
-
 class View extends \Kotchasan\View
 {
     /**
-     * ฟังก์ชั่นสร้างเมนู.
+     * Render the menu.
      *
-     * @param array $module หน้าที่เรียก มาจาก Controller
+     * This method is responsible for rendering the menu based on the specified module.
      *
-     * @return string
+     * @param string $module The module name.
+     *
+     * @return string The rendered menu HTML.
      */
     public function render($module)
     {
-        // รายการเมนู
-        $menus['home'] = array('หน้าหลัก', 'index.php');
-        $menus['about'] = array('เกี่ยวกับเรา', 'index.php?module=about');
-        // สร้างเมนู
+        // Menu items
+        $menus['home'] = array('Home', 'index.php');
+        $menus['about'] = array('About Us', 'index.php?module=about');
+
+        // Generate the menu HTML
         $menu = '';
         foreach ($menus as $key => $values) {
             $c = $module == $key ? ' class=select' : '';

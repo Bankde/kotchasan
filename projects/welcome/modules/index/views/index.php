@@ -1,25 +1,30 @@
 <?php
 /**
- * @filesource modules/index/views/index.php
+ * View for the Index module.
+ * This class handles the rendering of the default view for the Index module.
+ * For more information, please visit: https://www.kotchasan.com/
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
  */
 
 namespace Index\Index;
 
-/*
- * default View
+/**
+ * Render the default view.
  *
- * @see https://www.kotchasan.com/
+ * This method is responsible for rendering the default view of the Index module.
+ * It retrieves video information from YouTube API and displays it on the page.
  */
-
 class View extends \Kotchasan\View
 {
+    /**
+     * Render the default view.
+     */
     public function render()
     {
+        // Kotchasan start page
         echo '<html><head>';
         echo '<meta charset=utf-8>';
         echo '<link href="https://fonts.googleapis.com/css?family=Itim&subset=thai,latin" rel="stylesheet" type="text/css">';

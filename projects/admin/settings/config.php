@@ -4,11 +4,11 @@
 
 return array(
     /*
-     * คีย์สำหรับการเข้ารหัส ควรแก้ไขในทุกโปรเจ็ค
-     * ไม่ให้ซ้ำกัน ตัวเลข ตัวอักษร ยิ่งยาวยิ่งดี
+     * Encryption key for security. Should be modified for each project.
+     * Avoid using repetitive patterns, and longer keys are better.
      */
     'password_key' => '9876543210',
     'login_fields' => array('username'),
     'username' => 'admin',
-    'password' => 'admin',
+    'password' => 'admin'
 );

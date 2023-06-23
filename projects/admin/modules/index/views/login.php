@@ -22,34 +22,38 @@ use Kotchasan\Login;
 class View extends \Kotchasan\View
 {
     /**
-     * แสดงผล.
+     * Render the form.
      */
     public function render()
     {
-        // form login
+        // Create the form
         $form = Html::create('form', array(
             'id' => 'login_frm',
             'class' => 'login',
             'autocomplete' => 'off',
             'gform' => false
         ));
-        // h1
+
+        // Add h1 heading
         $form->add('h1', array(
             'class' => 'icon-customer',
             'innerHTML' => Language::get('Administrator Area')
         ));
-        // message
+
+        // Add message
         if (isset(Login::$login_message)) {
             $form->add('p', array(
                 'class' => empty(Login::$login_input) ? 'message' : 'error',
                 'innerHTML' => Login::$login_message
             ));
         }
-        // fieldset
+
+        // Add fieldset
         $fieldset = $form->add('fieldset', array(
             'title' => 'Please enter Username and Password (admin+admin)'
         ));
-        // username
+
+        // Add username input
         $fieldset->add('text', array(
             'id' => 'login_username',
             'labelClass' => 'g-input icon-user',
@@ -58,7 +62,8 @@ class View extends \Kotchasan\View
             'maxlength' => 255,
             'value' => isset(Login::$login_params['username']) ? Login::$login_params['username'] : ''
         ));
-        // password
+
+        // Add password input
         $fieldset->add('password', array(
             'id' => 'login_password',
             'labelClass' => 'g-input icon-password',
@@ -66,26 +71,30 @@ class View extends \Kotchasan\View
             'placeholder' => Language::get('Password'),
             'value' => isset(Login::$login_params['password']) ? Login::$login_params['password'] : ''
         ));
-        // input-groups (div สำหรับจัดกลุ่ม input)
+
+        // Add input groups (div for grouping inputs)
         $group = $fieldset->add('groups');
-        // a
+
+        // Add a link
         $group->add('a', array(
             'href' => self::$request->getUri()->withParams(array('action' => 'forgot'), true),
             'class' => 'td',
             'title' => Language::get('Request new password'),
             'innerHTML' => ''.Language::get('Forgot').' ?'
         ));
-        // submit
+
+        // Add submit button
         $fieldset->add('submit', array(
             'class' => 'button ok large wide',
             'value' => Language::get('Sign in')
         ));
-        // คืนค่า HTML
+
+        // Return the HTML
         return $form->render();
     }
 
     /**
-     * title bar
+     * Get the title bar.
      */
     public function title()
     {

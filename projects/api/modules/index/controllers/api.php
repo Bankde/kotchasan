@@ -2,10 +2,14 @@
 /**
  * @filesource modules/index/controllers/api.php
  *
+ * API Controller.
+ *
+ * This file is part of the Kotchasan CMS package.
+ * It is used to handle API requests.
+ *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * @author Goragod Wiriya
  */
 
 namespace Index\Api;
@@ -13,38 +17,33 @@ namespace Index\Api;
 use Kotchasan\Http\Request;
 use Kotchasan\Http\Response;
 
-/**
- * API Controller.
- *
- * @see https://www.kotchasan.com/
- */
 class Controller extends \Kotchasan\Controller
 {
     /**
-     * method สำหรับตรวจสอบและประมวลผล API.
+     * Method for validating and processing the API.
      *
      * @param Request $request
      */
     public function index(Request $request)
     {
-        // method ที่ต้องการ
+        // Get the requested method
         $method = $request->get('method')->toString();
-        // ตัวแปรสำหรับส่งค่ากลับ
+        // Variable for storing the response data
         $ret = array();
-        // ประมวลผล method ที่ต้องการ
+        // Process the requested method
         if (method_exists('Index\Api\Model', $method)) {
             $ret['result'] = call_user_func(array('Index\Api\Model', $method), $request);
         } else {
-            // ข้อผิดดพลาด ไม่พบ method
+            // Error: Method not found
             $ret['error'] = 'Method not found';
         }
-        // create Response สำหรับส่งค่ากลับ
+        // Create a Response object for sending the response
         $response = new Response();
-        // กำหนด header เป็น JSON+UTF-8
+        // Set the header to JSON+UTF-8
         $response->withHeader('Content-Type', 'application/json; charset=utf-8')
-        // ข้อมูลที่ส่งกลับ
+        // Set the response content
             ->withContent(json_encode($ret))
-        // ส่ง
+        // Send the response
             ->send();
     }
 }

@@ -2,6 +2,8 @@
 /**
  * @filesource modules/index/views/index.php
  *
+ * View class for rendering HTML.
+ *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
@@ -13,38 +15,41 @@ namespace Index\Index;
 use Kotchasan\Http\Request;
 
 /**
- * render HTML.
- *
- * @see https://www.kotchasan.com/
+ * View class for rendering HTML.
  */
 class View extends \Kotchasan\View
 {
     /**
-     * แสดงผล.
+     * Render the HTML.
      *
-     * @param Request $request
+     * @param Request $request The HTTP request object.
      */
     public function render()
     {
-        // เวลาปัจจุบัน
+        // Get the current timestamp
         $mktime = time();
-        // init Curl
+
+        // Initialize Curl
         $ch = new \Kotchasan\Curl();
-        // call API Online
+
+        // Call the Online API
         $json = $ch->get('https://projects.kotchasan.com/api/api.php', array('method' => 'getTime', 'id' => $mktime));
-        // JSON to Array
+
+        // Convert JSON to an array
         $array = json_decode($json, true);
-        // เตรียมข้อมูลสำหรับใส่ข้อมูลลงใน template
+
+        // Prepare data for inserting into the template
         $this->setContents(array(
-            // เวลาปัจจุบัน ใส่ลงใน template
+            // Current timestamp to be inserted into the template
             '/{MKTIME}/' => $mktime,
-            // ผลลัพท์ที่ได้จากการเรียก API
+            // Result obtained from calling the API
             '/{RESULT}/' => isset($array['result']) ? $array['result'] : ''
         ));
-        // โหลด template index.html
-        $template = file_get_contents('modules/index/views/index.html');
-        // คืนค่า HTML template
 
-        return $this->renderHTML($template);
+        // Load the index.html template
+        $template = file_get_contents('modules/index/views/index.html');
+
+        // Render and return the HTML template
+        echo $this->renderHTML($template);
     }
 }

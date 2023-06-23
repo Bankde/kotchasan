@@ -2,25 +2,24 @@
 /**
  * @filesource modules/index/models/index.php
  *
+ * Model for handling Ajax data.
+ *
+ * This file is part of the Kotchasan CMS package.
+ * It is used to handle Ajax requests and perform related operations.
+ *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * @author Goragod Wiriya
  */
 
 namespace Index\Index;
 
 use Kotchasan\Http\Request;
 
-/**
- * Model สำหรับรับค่าจาก Ajax.
- *
- * @see https://www.kotchasan.com/
- */
 class Model
 {
     /**
-     * โหลดเว็บไซต์ด้วย Ajax.
+     * Load a website using Ajax.
      *
      * @param Request $request
      *
@@ -28,75 +27,75 @@ class Model
      */
     public function web(Request $request)
     {
-        // ตรวจสอบว่าเรียกมาจากภายในไซต์
+        // Check if the request is made from within the website
         if ($request->isReferer()) {
-            // ดูค่าที่ส่งมา
+            // View the sent data
             //print_r($_POST);
-            // รับค่า URL ที่ส่งมา
+            // Get the URL parameter
             $url = $request->post('url')->url();
             if ($url != '' && preg_match('/^https?:\/\/.*/', $url)) {
-                // โหลด URL ที่ส่งมา
+                // Load the URL
                 $content = file_get_contents($url);
-                // คืนค่า HTML ไปยัง Ajax
+                // Return the HTML content to Ajax
                 echo $content;
             } else {
-                // ไม่ใช่ http
+                // Not an HTTP URL
                 echo $url;
             }
         }
     }
 
     /**
-     * ส่งข้อมูลไปบันทึกด้วย Ajax.
+     * Save data using Ajax.
      *
      * @param Request $request
      */
     public function save(Request $request)
     {
-        // ตรวจสอบว่าเรียกมาจากภายในไซต์
+        // Check if the request is made from within the website
         if ($request->isReferer()) {
-            // ดูค่าที่ส่งมา
+            // View the sent data
             //print_r($_POST);
-            // create Model
+            // Create a Model object
             $model = new \Kotchasan\Model();
-            // วนลูปค่าที่ส่งมาจาก $_POST
+            // Loop through the $_POST data
             foreach ($_POST as $key => $value) {
                 if ($key == 'test') {
-                    // test รับค่าเป็นตัวเลข
+                    // For 'test' key, cast the value to an integer
                     $save['test'] = $request->post($key)->toInt();
                 } else {
-                    // name รับค่าเป็นข้อความบรรทัดเดียว
+                    // For 'name' key, sanitize the value as a single-line string
                     $save['name'] = $request->post($key)->topic();
                 }
             }
             if (!empty($save)) {
                 if (isset($save['name']) && $save['name'] == '') {
-                    $json = array('error' => 'กรุณากรอกข้อความ');
+                    $json = array('error' => 'Please enter a message');
                 } else {
-                    // query INSERT
+                    // Prepare INSERT query
                     $query = $model->db()->createQuery()->insert('world', $save);
-                    // ประมวลผลคำสั่ง SQL ในตอนใช้งานจริง
+                    // Uncomment the following line to execute the SQL query in a real scenario
                     //$query->execute();
-                    // ข้อมูล JSON สำหรับส่งกลับไปแสดงผล
+                    // JSON data to be returned for display
                     $json = array(
-                        // คืนค่าคำสั่ง SQL ที่สร้าง
+                        // Return the generated SQL query
                         'sql' => $query->text()
                     );
                 }
-                // คืนค่าเป็น JSON
+                // Return JSON data
                 echo json_encode($json);
             }
         }
     }
 
     /**
-     * อ่านเวลาจาก Server.
+     * Get the current server time.
      *
      * @param Request $request
      */
     public function time(Request $request)
     {
-        // คืนค่าเวลาปัจจุบันจาก Server
+        // Return the current server time
         echo date('H:i:s');
     }
 }

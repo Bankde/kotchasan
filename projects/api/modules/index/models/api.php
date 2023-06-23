@@ -2,25 +2,19 @@
 /**
  * @filesource modules/index/models/api.php
  *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
+ * API Model.
+ *
+ * @see https://www.kotchasan.com/
  */
 
 namespace Index\Api;
 
 use Kotchasan\Http\Request;
 
-/**
- * API Model.
- *
- * @see https://www.kotchasan.com/
- */
 class Model
 {
     /**
-     * ฟังก์ชั่นแปลง id เป็นเวลา.
+     * Convert an ID to a time string.
      *
      * @param Request $request
      *

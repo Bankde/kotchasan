@@ -22,32 +22,36 @@ use Kotchasan\Login;
 class View extends \Kotchasan\View
 {
     /**
-     * แสดงผล.
+     * Render the form.
      */
     public function render()
     {
-        // แสดงผล
+        // Create the form
         $form = Html::create('form', array(
             'id' => 'forgot_frm',
             'class' => 'login',
             'autocomplete' => 'off',
             'gform' => false
         ));
-        // h1
+
+        // Add h1 heading
         $form->add('h1', array(
             'class' => 'icon-password',
             'innerHTML' => Language::get('Request new password')
         ));
-        // message
+
+        // Add message
         if (!empty(Login::$login_message)) {
             $form->add('p', array(
                 'class' => empty(Login::$login_input) ? 'message' : 'error',
                 'innerHTML' => Login::$login_message
             ));
         }
-        // fieldset
+
+        // Add fieldset
         $fieldset = $form->add('fieldset');
-        // email
+
+        // Add email input
         $fieldset->add('email', array(
             'id' => 'email',
             'labelClass' => 'g-input icon-email',
@@ -59,30 +63,35 @@ class View extends \Kotchasan\View
             'maxlength' => 255,
             'comment' => Language::get('New password will be sent to the email address registered. If you do not remember or do not receive emails. Please contact your system administrator (Please check in the Junk Box)')
         ));
-        // input-groups (div สำหรับจัดกลุ่ม input)
+
+        // Add input groups (div for grouping inputs)
         $group = $fieldset->add('groups');
-        // a
+
+        // Add a link
         $group->add('a', array(
             'href' => self::$request->getUri()->withParams(array('action' => 'login'), true),
             'class' => 'td',
             'title' => Language::get('Administrator area'),
             'innerHTML' => ''.Language::get('Sign in').' ?'
         ));
-        // submit
+
+        // Add submit button
         $fieldset->add('submit', array(
             'class' => 'button ok large wide',
             'value' => Language::get('Get new password')
         ));
+
         $fieldset->add('hidden', array(
             'id' => 'action',
             'value' => 'forgot'
         ));
-        // คืนค่า HTML
+
+        // Return the HTML
         return $form->render();
     }
 
     /**
-     * title bar
+     * Get the title bar.
      */
     public function title()
     {

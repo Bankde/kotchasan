@@ -2,10 +2,13 @@
 /**
  * @filesource modules/index/controllers/index.php
  *
+ * Controller for the Index module.
+ * This class handles the default actions for the Index module, including rendering the index page.
+ * For more information, please visit: https://www.kotchasan.com/
+ *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
  */
 
 namespace Index\Index;
@@ -16,56 +19,68 @@ use Kotchasan\Http\Request;
 use Kotchasan\Orm\Recordset;
 
 /**
- * default Controller.
+ * Render the index page.
  *
- * @see https://www.kotchasan.com/
+ * This method is responsible for rendering the index page of the Index module.
  */
 class Controller extends \Kotchasan\Controller
 {
     /**
-     * แสดงผล.
+     * Render the index page.
      *
-     * @param Request $request
+     * This method is responsible for rendering the index page of the Index module.
+     *
+     * @param Request $request The HTTP request object.
      */
     public function index(Request $request)
     {
-        // อ่านรายชื่อฟิลด์ของตาราง
-        $rs = Recordset::create('Index\World\Model');
-        $fields = $rs->getFields();
+        // Read the field names of the table
+        $recordset = Recordset::create('Index\World\Model');
+        $fields = $recordset->getFields();
         echo implode(', ', array_keys($fields)).'<br>';
-        // ลบข้อมูลทั้งตาราง
-        $rs->emptyTable();
-        // insert new record
+
+        // Empty the table
+        $recordset->emptyTable();
+
+        // Insert new records
         for ($i = 0; $i < 10; ++$i) {
-            $query = World::create();
-            $query->updated_at = date('Y-m-d H:i:s');
-            $query->save();
+            $world = World::create();
+            $world->updated_at = Date::format('Y-m-d H:i:s');
+            $world->save();
         }
-        // อัปเดตทุก record
-        $rs->updateAll(array('created_at' => date('Y-m-d H:i:s')));
-        // อ่านจำนวนข้อมูลทั้งหมดในตาราง
-        echo 'All '.$rs->count().' records.<br>';
-        // สุ่ม record มาแก้ไข
+
+        // Update all records
+        $recordset->updateAll(array('created_at' => Date::format('Y-m-d H:i:s')));
+
+        // Read the total number of records in the table
+        echo 'All '.$recordset->count().' records.<br>';
+
+        // Modify a random set of records
         for ($i = 0; $i < 5; ++$i) {
             $rnd = rand(1, 10);
-            $world = $rs->find($rnd);
+            $world = $recordset->find($rnd);
             $world->name = 'Hello World!';
             $world->save();
         }
-        // query รายการที่มีการแก้ไข
-        $rs->where(array('name', '!=', ''));
-        // อ่านจำนวนข้อมูลที่พบ
-        echo 'Found '.$rs->count().' records.<br>';
-        // แสดงผลรายการที่พบ
-        foreach ($rs->all('id', 'name') as $item) {
+
+        // Query the records that have been modified
+        $recordset->where(array('name', '!=', ''));
+
+        // Read the number of found records
+        echo 'Found '.$recordset->count().' records.<br>';
+
+        // Display the found records
+        foreach ($recordset->all('id', 'name') as $item) {
             echo $item->id.'='.$item->name.'<br>';
-            // ลบรายการที่กำลังแสดงผล
+            // Delete the displayed item
             $item->delete();
         }
-        // อ่านรายชื่อฟิลด์ของ query
-        $fields = $rs->getFields();
+
+        // Read the field names of the query
+        $fields = $recordset->getFields();
         echo implode(', ', array_keys($fields)).'<br>';
-        // อ่านจำนวนข้อมูลที่เหลือ
+
+        // Read the remaining number of records
         echo 'Remain '.Recordset::create('Index\World\Model')->count().' records.<br>';
     }
 }

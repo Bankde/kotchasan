@@ -2,10 +2,13 @@
 /**
  * @filesource modules/index/controllers/index.php
  *
+ * Controller for the Index module.
+ * This class handles the default actions for the Index module, including rendering the index page.
+ * For more information, please visit: https://www.kotchasan.com/
+ *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
  */
 
 namespace Index\Index;
@@ -13,16 +16,18 @@ namespace Index\Index;
 use Kotchasan\Http\Request;
 
 /**
- * default Controller.
+ * Render the index page.
  *
- * @see https://www.kotchasan.com/
+ * This method is responsible for rendering the index page of the Index module.
  */
 class Controller extends \Kotchasan\Controller
 {
     /**
-     * แสดงผล.
+     * Render the index page.
      *
-     * @param Request $request
+     * This method is responsible for rendering the index page of the Index module.
+     *
+     * @param Request $request The HTTP request object.
      */
     public function index(Request $request)
     {
@@ -31,8 +36,9 @@ class Controller extends \Kotchasan\Controller
     }
 
     /**
-     * Loading Performance
-     * ทดสอบการโหลดเว็บไซต์แบบน้อยที่สุด.
+     * Hello action.
+     *
+     * Renders the "Hello World!" message.
      */
     public function hello()
     {
@@ -40,8 +46,9 @@ class Controller extends \Kotchasan\Controller
     }
 
     /**
-     * Recordset Performance (select only)
-     * ทดสอบการเรียกข้อมูลด้วย Recordset.
+     * Select action.
+     *
+     * Performs a select operation using Recordset.
      */
     public function select()
     {
@@ -56,8 +63,9 @@ class Controller extends \Kotchasan\Controller
     }
 
     /**
-     * Recordset Performance (select and update)
-     * ทดสอบการเรียกข้อมูลและอัปเดตข้อมูลด้วย Recordset.
+     * Recordset action.
+     *
+     * Performs select and update operations using Recordset.
      */
     public function recordset()
     {
@@ -74,8 +82,9 @@ class Controller extends \Kotchasan\Controller
     }
 
     /**
-     * Query Builder Performance
-     * ทดสอบการเรียกข้อมูลและอัปเดตข้อมูลด้วย Query Builder.
+     * Query Builder action.
+     *
+     * Performs select and update operations using Query Builder.
      */
     public function querybuilder()
     {
@@ -92,8 +101,9 @@ class Controller extends \Kotchasan\Controller
     }
 
     /**
-     * SQL Command Performance
-     * ทดสอบการเรียกข้อมูลและอัปเดตข้อมูลโดยใช้คำสั่ง SQL Command.
+     * SQL Command action.
+     *
+     * Performs select and update operations using SQL commands.
      */
     public function sql()
     {
