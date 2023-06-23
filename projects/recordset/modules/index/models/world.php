@@ -5,24 +5,26 @@
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
  */
 
 namespace Index\World;
 
 /**
- * คลาสสำหรับเชื่อมต่อกับฐานข้อมูลของ GCMS.
+ * Class Model
+ *
+ * This class is used to connect to the GCMS database and interact with the "world" table.
  *
  * @see https://www.kotchasan.com/
  */
 class Model extends \Kotchasan\Orm\Field
 {
     /**
-     * ชื่อตาราง.
+     * The name of the table.
      *
      * @var string
      */
     protected $table = 'world';
+
     /*
  * CREATE TABLE IF NOT EXISTS `world` (
  * `id` int(11) NOT NULL AUTO_INCREMENT,

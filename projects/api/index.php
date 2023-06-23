@@ -9,7 +9,6 @@
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
  */
 
 /**
@@ -18,7 +17,7 @@
  * 1: Log errors and warnings to error_log.php.
  * 2: Display errors and warnings on the screen (only for development purposes).
  */
-define('DEBUG', 2);
+define('DEBUG', 0);
 
 /**
  * Database query logging:

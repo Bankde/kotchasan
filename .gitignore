@@ -9,4 +9,5 @@ settings/*
 projects/test/
 nbproject/*
 documents.sh
+phpdocumenter.sh
 phpdoc.xml
