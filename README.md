@@ -1,5 +1,6 @@
 # Kotchasan Web Framework
-Kotchasan Web Framework, apart from being a symbol of PHP, is also a symbol of our nation. Therefore, I chose to use this name as the name of the framework designed by Thai people, 100%.
+The elephant, besides being a symbol of PHP, is also our national symbol.
+So I chose to use this name as the name of a framework designed by 100% Thai people.
 
 ## Features
 * MMVC (Modules Model View Controller) architecture, making module addition or removal easy and independent of each other.
@@ -19,7 +20,7 @@ Kotchasan consists of three main frameworks designed to work together: PHP, CSS,
 * PDO Mysql
 
 ## Installation and Usage
-I designed Kotchasan to avoid the complex installation process commonly associated with PHP frameworks. You can download the entire source code from GitHub and start using it immediately without any installation or configuration. Alternatively, you can install it via Composer using the command: ```composer require goragod/kotchasan``` https://packagist.org/packages/goragod/kotchasan
+I designed Kotchasan to avoid the complex installation process commonly associated with PHP frameworks. You can download the entire source code from GitHub and start using it immediately without any installation or configuration. Alternatively, you can install it via Composer using the command: ```composer require goragod/kotchasan``` https://packagist.org/packages/goragod/kotchasan (Installing via composer will decrease the performance of the framework.)
 
 ## Usage Conditions (License)
 * You can use it for free without any conditions.
