@@ -146,8 +146,8 @@ blockquote:before {
   display: block;
   color: rgba(0, 0, 0, 0.1);
 }
-code+br,
-blockquote+br {
+code + br,
+blockquote + br {
   display: none;
 }
 code code,
@@ -162,7 +162,7 @@ blockquote ul {
   padding-top: 0;
   padding-bottom: 0;
 }
-blockquote>b {
+blockquote > b {
   font-weight: bold;
   margin: 0 5px 5px 0;
   line-height: 2em;
@@ -199,40 +199,40 @@ table caption {
 table caption {
   text-align: left;
 }
-table>thead>tr>th,
+table > thead > tr > th,
 table caption {
   background: #eee;
   border-bottom: 1px solid #666;
 }
-table>thead>tr>th {
+table > thead > tr > th {
   border-left: 1px solid #666;
 }
-table>tbody>tr>td,
-table>tbody>tr>th {
+table > tbody > tr > td,
+table > tbody > tr > th {
   vertical-align: middle;
   border-bottom: 1px solid #666;
   border-left: 1px solid #666;
   background-color: #fff;
 }
-table>tbody>tr>th {
+table > tbody > tr > th {
   text-align: center;
 }
-table>tbody>tr.bg2>td {
+table > tbody > tr.bg2 > td {
   background: #eee;
 }
-table>tbody>tr.bg2>th {
+table > tbody > tr.bg2 > th {
   background: #eee;
 }
-table>tbody>tr>th {
+table > tbody > tr > th {
   background: #f5f5f5;
 }
-table>tbody>tr>th.th {
+table > tbody > tr > th.th {
   background: #eee;
 }
-table>thead>tr>th.th {
+table > thead > tr > th.th {
   border-left: 1px solid #666;
 }
-table th>span {
+table th > span {
   display: block;
   color: #f90;
 }

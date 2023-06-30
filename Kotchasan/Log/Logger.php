@@ -94,20 +94,20 @@ class Logger extends AbstractLogger implements LoggerInterface
         $message = $this->options['logFormat'];
 
         foreach ($patt as $key => $value) {
-            $message = str_replace('{' . $key . '}', $value, $message);
+            $message = str_replace('{'.$key.'}', $value, $message);
         }
 
-        $message = "\n" . preg_replace('/[\s\n\t\r]+/', ' ', $message);
+        $message = "\n".preg_replace('/[\s\n\t\r]+/', ' ', $message);
 
         if (File::makeDirectory($this->options['logFilePath'])) {
             switch ($level) {
                 case LogLevel::DEBUG:
                 case LogLevel::INFO:
                 case LogLevel::ALERT:
-                    $file = $this->options['logFilePath'] . date('Y-m-d') . '.' . $this->options['extension'];
+                    $file = $this->options['logFilePath'].date('Y-m-d').'.'.$this->options['extension'];
                     break;
                 default:
-                    $file = $this->options['logFilePath'] . 'error_log.' . $this->options['extension'];
+                    $file = $this->options['logFilePath'].'error_log.'.$this->options['extension'];
                     break;
             }
 
@@ -140,7 +140,7 @@ class Logger extends AbstractLogger implements LoggerInterface
      */
     private function __construct($options)
     {
-        $this->options['logFilePath'] = ROOT_PATH . 'datas/logs/';
+        $this->options['logFilePath'] = ROOT_PATH.'datas/logs/';
 
         foreach ($options as $key => $value) {
             $this->options[$key] = $value;
