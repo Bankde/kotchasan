@@ -766,6 +766,9 @@ a.icon-edit:before {
 .icon-child:before {
   content: "\e90f";
 }
+.icon-contrast:before {
+  content: "\e9d5";
+}
 .icon-bell:before {
   content: "\e951";
 }

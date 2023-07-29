@@ -13,24 +13,7 @@ var GGraphs = (function(document) {
     this.options = {
       type: 'line',
       rows: 5,
-      colors: [
-        '#438AEF',
-        '#FBB242',
-        '#DE4210',
-        '#259B24',
-        '#E91E63',
-        '#1F3D68',
-        '#FEE280',
-        '#1A9ADC',
-        '#C86A4C',
-        '#055CDA',
-        '#F2D086',
-        '#51627F',
-        '#F0B7A6',
-        '#DE8210',
-        '#7791BC'
-      ],
-      startColor: 0,
+      colors: [],
       shadowColor: 'rgba(0,0,0,0.2)',
       grid: true,
       gridHColor: 'rgba(0,0,0,0.05)',
@@ -52,15 +35,20 @@ var GGraphs = (function(document) {
     for (let property in options) {
       this.options[property] = options[property];
     }
-    if (this.options.startColor > 0) {
-      let temp = [],
-        l = this.options.colors.length,
-        i = Math.max(0, Math.min(l - 1, this.options.startColor));
-      for (let a = 0; a < l; a++) {
-        temp.push(this.options.colors[i]);
-        i = i < l - 1 ? i + 1 : 0;
+    if (this.options.colors.length == 0) {
+      let span = document.createElement('span');
+      span.style.position = 'absolute';
+      span.style.top = '-100%';
+      document.body.appendChild(span);
+      for (let i = 0; i <= 11; i++) {
+        span.className = 'term' + i;
+        this.options.colors.push(getComputedStyle(span).getPropertyValue("background-color"));
       }
-      this.options.colors = temp;
+      let borderColor = getComputedStyle(span).getPropertyValue("border-color");
+      this.options.gridHColor = borderColor;
+      this.options.gridVColor = borderColor;
+      this.options.zeroColor = borderColor;
+      document.body.removeChild(span);
     }
     let wraper = $E(id),
       transparent = /rgba\([0-9a-fA-F,\s]+0\)/;
@@ -279,6 +267,7 @@ var GGraphs = (function(document) {
         y += rowHeight;
       });
       headers.forEach(function(row) {
+        console.log(x, x - columnWidth);
         self.line(panel, x, top, x, bottom, options.gridHColor, 1);
         if (options.rotate) {
           self.text(panel, x, bottom + top - pointerSize, row.text, self.fontColor, 'left', true);

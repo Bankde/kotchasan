@@ -432,6 +432,18 @@ class DataTable extends \Kotchasan\KBase
      * @var array
      */
     public $addNew;
+    /**
+     * Text, such as Notes, is displayed next to the table.
+     *
+     * @var string
+     */
+    public $comment = '';
+    /**
+     * Note class name
+     *
+     * @var string
+     */
+    public $commentClass = 'comment';
 
     /**
      * Constructor.
@@ -919,6 +931,9 @@ class DataTable extends \Kotchasan\KBase
             }
         }
         $content[] = '</table></div>';
+        if (!empty($this->comment)) {
+            $content[] = '<div class="table_comment '.$this->commentClass.'">'.$this->comment.'</div>';
+        }
         $table_nav = array();
         $table_nav_float = array();
         if (!empty($this->actions) && is_array($this->actions)) {

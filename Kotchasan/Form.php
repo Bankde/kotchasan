@@ -610,9 +610,6 @@ class Form extends \Kotchasan\KBase
                 $input .= self::create('div', (empty($id) ? '' : 'result_'.$id), 'comment', $comment);
             }
         } else {
-            if (!empty($unit)) {
-                $itemClass .= ' wlabel';
-            }
             $input = '<div class="'.$itemClass.'"'.(empty($itemId) ? '' : ' id="'.$itemId.'"').'>';
             if (isset($type) && $type === 'checkbox') {
                 $input .= self::create('label', '', (empty($labelClass) ? '' : $labelClass), $element.'&nbsp;'.(isset($label) ? $label : ''));
@@ -634,6 +631,9 @@ class Form extends \Kotchasan\KBase
                 if (isset($label) && isset($id)) {
                     $input .= '<label for="'.$id.'">'.$label.'</label>';
                 }
+                if (!empty($unit)) {
+                    $input .= '<div class=wlabel>';
+                }
                 $input .= $w_checkbox;
                 $labelClass = isset($labelClass) ? $labelClass : '';
                 if (isset($type) && $type === 'range') {
@@ -644,7 +644,7 @@ class Form extends \Kotchasan\KBase
                     $input .= self::create('label', '', $labelClass, $element);
                 }
                 if (!empty($unit)) {
-                    $input .= self::create('span', '', 'label', $unit);
+                    $input .= self::create('span', '', 'label', $unit).'</div>';
                 }
             }
             if (!empty($comment)) {
@@ -797,6 +797,13 @@ class Form extends \Kotchasan\KBase
         $obj = new static;
         $obj->tag = 'input';
         $attributes['type'] = 'text';
+        if (isset($attributes['text'])) {
+            if ($attributes['text'] === true) {
+                $attributes['text'] = '';
+            } elseif ($attributes['text'] === false) {
+                unset($attributes['text']);
+            }
+        }
         $obj->attributes = $attributes;
         return $obj;
     }

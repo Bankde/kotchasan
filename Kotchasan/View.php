@@ -236,4 +236,34 @@ class View extends \Kotchasan\KBase
             $this->metas[$key] = $value;
         }
     }
+
+    /**
+     * Get the value from an array based on a given key.
+     * If the key doesn't exist, return the default value.
+     *
+     * @param array  $array    The array to search in.
+     * @param string $key      The key to retrieve the value from.
+     * @param mixed  $default  The default value to return if the key doesn't exist.
+     *
+     * @return mixed  The value from the array or the default value.
+     */
+    public static function array_value($array, $key, $default = '')
+    {
+        return isset($array[$key]) ? $array[$key] : $default;
+    }
+
+    /**
+     * Get the value from an object based on a given key.
+     * If the key doesn't exist, return the default value.
+     *
+     * @param object $source   The object to retrieve the value from.
+     * @param string $key      The key to retrieve the value from.
+     * @param mixed  $default  The default value to return if the key doesn't exist.
+     *
+     * @return mixed  The value from the object or the default value.
+     */
+    public static function object_value($source, $key, $default = '')
+    {
+        return isset($source->{$key}) ? $source->{$key} : $default;
+    }
 }

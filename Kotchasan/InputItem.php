@@ -222,7 +222,7 @@ class InputItem
      * @param string $format The regular expression pattern to filter the input value
      * @param string $replace The replacement string for filtered characters (default: '')
      *
-     * @return string The filtered input value
+     * @return string|array The filtered input value
      */
     public function filter($format, $replace = '')
     {
