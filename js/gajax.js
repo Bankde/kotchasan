@@ -78,10 +78,11 @@ window.$K = (function() {
                 obj.max = elem.max;
               }
               var autofocus = elem.get('autofocus'),
+                inputs = ['number', 'integer', 'tel', 'email', 'url', 'color', 'currency'],
                 text = elem;
-              if (obj.type == 'date' || obj.type == 'datetime') {
-                new GCalendar(elem);
-              } else if (obj.dataset['keyboard'] || obj.type == 'number' || obj.type == 'integer' || obj.type == 'tel' || obj.type == 'email' || obj.type == 'url' || obj.type == 'color' || obj.type == 'currency') {
+              if (obj.type == 'date' || obj.type == 'datetime-local' || obj.type == 'time') {
+                new GDateTime(elem);
+              } else if (obj.dataset['keyboard'] || inputs.indexOf(obj.type) > -1) {
                 var o = {
                   type: 'text',
                   name: elem.name,
@@ -374,11 +375,11 @@ window.$K = (function() {
       base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'),
       jsonPayload = decodeURIComponent(
         atob(base64)
-          .split("")
+          .split('')
           .map(function(c) {
-            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
           })
-          .join("")
+          .join('')
       );
     return JSON.parse(jsonPayload);
   };
@@ -785,24 +786,31 @@ window.$K = (function() {
     return w(this);
   };
   String.prototype.toDate = function() {
-    var patt = /(([0-9]{4,4})-([0-9]{1,2})-([0-9]{1,2})(\s([0-9]{1,2}):([0-9]{1,2})(:([0-9]{1,2}))?)?|today|tomorrow|yesterday)([\s]{0,}([+-])[\s]{0,}([0-9]+))?/,
-      hs = patt.exec(this),
-      d;
+    if (this === '') {
+      return null;
+    }
+    let d = new Date(),
+      hs = /^(today|tomorrow|yesterday|((([0-9]{4,4})[\-\/]([0-9]{1,2})[\-\/]([0-9]{1,2}))?([T\s]{0,}(([0-9]{1,2}):([0-9]{1,2})(:([0-9]{1,2}))?))?))([\s]{0,}([\+\-]{0,})[\s]{0,}([0-9]{0,}))?$/.exec(this);
     if (hs) {
-      if (typeof hs[2] == 'undefined') {
-        d = new Date();
-      } else {
-        d = new Date(floatval(hs[2]), floatval(hs[3]) - 1, hs[4], floatval(hs[6]), floatval(hs[7]), floatval(hs[9]), 0);
+      if (typeof hs[4] !== 'undefined') {
+        d.setFullYear(floatval(hs[4]), floatval(hs[5]) - 1, floatval(hs[6]));
+      }
+      if (typeof hs[9] !== 'undefined') {
+        if (typeof hs[13] === 'undefined') {
+          d.setHours(floatval(hs[9]), floatval(hs[10]));
+        } else {
+          d.setHours(floatval(hs[9]), floatval(hs[10]), floatval(hs[12]));
+        }
       }
       if (hs[1] == 'yesterday') {
         d.setDate(d.getDate() - 1);
       } else if (hs[1] == 'tomorrow') {
         d.setDate(d.getDate() + 1);
       }
-      if (hs[11] == '+' && floatval(hs[12]) > 0) {
-        d.setDate(d.getDate() + floatval(hs[12]));
-      } else if (hs[11] == '-' && floatval(hs[12]) > 0) {
-        d.setDate(d.getDate() - floatval(hs[12]));
+      if (hs[14] == '+' && floatval(hs[15]) > 0) {
+        d.setDate(d.getDate() + floatval(hs[15]));
+      } else if (hs[14] == '-' && floatval(hs[15]) > 0) {
+        d.setDate(d.getDate() - floatval(hs[15]));
       }
       return d;
     } else {
@@ -2778,7 +2786,7 @@ window.$K = (function() {
         $G(document.body).addEvent('click', function(e) {
           if (!$G(GEvent.element(e)).hasClass('ginput')) {
             self.panel.hide();
-            self._dochanged();
+            self._doChanged();
             if (self.panel.input) {
               if (self.panel.input_value != self.panel.input.value) {
                 self.panel.input.callEvent('change');
@@ -2796,11 +2804,11 @@ window.$K = (function() {
         return self.keyboard.indexOf(e.key) > -1;
       });
       this.input.addEvent('change', function() {
-        self._dochanged();
+        self._doChanged();
       });
-      this._dochanged();
+      this._doChanged();
     },
-    _dochanged: function() {
+    _doChanged: function() {
       this.onchanged.call(this.input);
     },
     _createButton: function(parent, text, title, className) {
@@ -2981,16 +2989,31 @@ window.$K = (function() {
       return this.dropdown.style.display == 'block';
     }
   };
-
-  window.GCalendar = GClass.create();
-  GCalendar.prototype = {
+  window.GDateTime = GClass.create();
+  GDateTime.prototype = {
     initialize: function(elem) {
       elem = $E(elem);
-      this.input = document.createElement('div');
+      this.input = $G(document.createElement('div'));
       if (elem.id && elem.id != '') {
         this.input.id = elem.id;
       } else {
         this.input.id = elem.name.replace(/\[.*?\]/, '');
+      }
+      this.type = elem.type.toLowerCase();
+      this.mode = 0;
+      if (this.type === 'date') {
+        this.displayFormat = 'd M Y';
+        this.format = 'y-m-d';
+      } else if (this.type === 'datetime-local') {
+        this.displayFormat = 'd M Y H:I';
+        this.format = 'y-m-d H:I';
+      } else if (this.type === 'time') {
+        this.displayFormat = 'H:I';
+        this.format = 'H:I';
+        this.mode = 3;
+      } else {
+        console.error('Not support ' + this.type);
+        return;
       }
       this.input.className = 'input-gcalendar input-select';
       this.input.tabIndex = 0;
@@ -2999,7 +3022,6 @@ window.$K = (function() {
       this.display = document.createElement('div');
       this.display.id = elem.id + '_display';
       this.input.appendChild(this.display);
-      this.display.innerHTML = 'Please';
       this.hidden = document.createElement('input');
       this.hidden.type = 'hidden';
       this.hidden.name = elem.name;
@@ -3008,65 +3030,152 @@ window.$K = (function() {
       this.placeholder.className = 'placeholder';
       this.placeholder.style.position = 'absolute';
       this.input.appendChild(this.placeholder);
-      this.calendar = new GDropdown(this.input, {float: 'auto'});
-      this.mdate = null;
-      this.xdate = null;
-      this.mode = 0;
-      this.datetime = elem.type.toLowerCase() != 'date';
-      if (this.datetime) {
-        this.displayFormat = 'd M Y H:I';
-        this.format = 'y-m-d H:I';
-      } else {
-        this.displayFormat = 'd M Y';
-        this.format = 'y-m-d';
-      }
-      this.date = null;
-      this.hour = 0;
-      this.minute = 0;
+      this.value = null;
       this.cdate = new Date();
+      this.min_date = null;
+      this.max_date = null;
+      this.input_click = false;
+      this.firstKey = null;
+      this.keyboard = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+      this.calendar = new GDropdown(this.input, {float: 'auto'});
       var self = this;
-      $G(this.input).addEvent('click', function(e) {
-        self.mode = 0;
-        self.cdate.setTime(self.date ? self.date.valueOf() : new Date());
-        self._draw();
-        GEvent.stop(e);
-        return false;
+      this.input.addEvent('mousedown', function(e) {
+        self.input_click = true;
+      });
+      this.input.addEvent('mouseup', function(e) {
+        self.input_click = false;
+        self.firstKey = null;
+        self.mode = self._modeFromCaretPosition();
+        self._setHighlight();
+      });
+      this.input.addEvent('focus', function(e) {
+        if (!self.input_click) {
+          self.mode = self._modeFromCaretPosition();
+          self._setHighlight();
+        }
+      });
+      this.input.addEvent('click', function(e) {
+        if (self._draw()) {
+          GEvent.stop(e);
+        }
       });
       this.input.addEvent('keydown', function(e) {
-        var key = GEvent.keyCode(e);
+        var key = GEvent.keyCode(e),
+          old_mode = self.mode;
         if (key == 9) {
-          self.calendar.hide();
+          if (self.mode == 3 && self.type !== 'date') {
+            self.mode = 4;
+            self._setHighlight();
+            GEvent.stop(e);
+          } else if (self.mode < 3 && self.type === 'datetime-local') {
+            self.mode = 3;
+            self.calendar.hide();
+            self._setHighlight();
+            GEvent.stop(e);
+          } else if (self.mode < 3 && self.type !== 'time') {
+            self.calendar.hide();
+            self.mode = 0;
+          }
         } else if (key == 32) {
-          self._toogle(e);
+          self._toogle();
+          GEvent.stop(e);
         } else if (key == 37 || key == 39) {
-          self.moveDate(key == 39 ? 1 : -1);
-          self._draw();
+          if (self.mode < 3 && self.type !== 'time') {
+            self._moveDate(key == 39 ? 1 : -1);
+            self._drawCalendar();
+            old_mode = -1;
+          } else if (key == 37 && self.mode == 4) {
+            self.mode = 3;
+          } else if (key == 37 && self.mode == 3 && self.type === 'datetime-local') {
+            self.mode = 0;
+          } else if (key == 39 && self.mode < 3 && self.type === 'datetime-local') {
+            self.mode = 3;
+          } else if (key == 39 && self.mode == 3) {
+            self.mode = 4;
+          }
+          if (old_mode != self.mode) {
+            self._setHighlight();
+          }
           GEvent.stop(e);
         } else if (key == 38 || key == 40) {
-          if (GEvent.isShiftKey(e)) {
-            self.moveYear(key == 40 ? 1 : -1);
-          } else if (GEvent.isCtrlKey(e)) {
-            self.moveMonth(key == 40 ? 1 : -1);
+          if (self.mode < 3 && self.type !== 'time') {
+            if (GEvent.isShiftKey(e)) {
+              self._moveYear(key == 40 ? 1 : -1);
+            } else if (GEvent.isCtrlKey(e)) {
+              self._moveMonth(key == 40 ? 1 : -1);
+            } else {
+              self._moveDate(key == 40 ? 7 : -7);
+            }
+            self._drawCalendar();
+            self._setHighlight();
           } else {
-            self.moveDate(key == 40 ? 7 : -7);
+            let hour = self.value.getHours(),
+              d = new Date(self.value),
+              t,
+              min,
+              max;
+            if (self.mode == 3) {
+              t = hour;
+              min = self.min_date ? self.min_date.getHours() : 0;
+              max = self.max_date ? self.max_date.getHours() : 23;
+            } else if (self.mode == 4) {
+              t = Math.floor(self.value.getTime() / 60000);
+              if (self.max_date) {
+                max = Math.floor(self.max_date.getTime() / 60000);
+              } else {
+                d.setHours(23, 59, 59);
+                max = Math.floor(d.getTime());
+              }
+              if (self.min_date) {
+                min = Math.floor(self.min_date.getTime() / 60000);
+              } else {
+                d.setHours(0, 0, 0);
+                min = Math.floor(d.getTime() / 60000);
+              }
+            }
+            if (key == 38) {
+              if (t >= max) {
+                t = min;
+              } else {
+                t++;
+              }
+            } else if (key == 40) {
+              if (t <= min) {
+                t = max;
+              } else {
+                t--;
+              }
+            }
+            if (self.mode == 3) {
+              d.setHours(t);
+            } else if (self.mode == 4) {
+              d.setTime(t * 60000);
+            }
+
+            self._doChanged(d);
+            self._setHighlight();
           }
-          self._draw();
           GEvent.stop(e);
         } else if (key == 8 && self.input.hasClass('readonly disabled') == false) {
-          self.setDate(null);
+          self.input.value = null;
           GEvent.stop(e);
         } else if (GEvent.isCtrlKey(e)) {
-          if (key == 67) {
-            var currentDate = self.getDate().format('y-m-d H:i:s');
-            if (currentDate) {
-              copyToClipboard(currentDate);
-            }
+          if (key == 67 && self.value) {
+            copyToClipboard(self.value.format('y-m-d H:i:s'));
           } else if (key == 86) {
             navigator.clipboard.readText().then((copiedText) => {
-              self.setDate(copiedText);
+              self.input.value = copiedText;
+              if (self.mode < 3 && self.type !== 'time') {
+                self._drawCalendar();
+              }
+              self._setHighlight();
             });
           }
         } else {
+          if (self.mode == 3 || self.mode == 4) {
+            self._timeFromChar(e.key);
+            self._setHighlight();
+          }
           GEvent.stop(e);
         }
       });
@@ -3078,20 +3187,30 @@ window.$K = (function() {
           self.calendar.hide();
         }
       });
-      Object.defineProperty(this.input, 'min', {
+      Object.defineProperty(this.input, 'value', {
         get: function() {
-          return self.mdate;
+          return self.value ? self.value.format(self.format) : null;
         },
         set: function(value) {
-          self.minDate(value);
+          self._doChanged(value);
+        }
+      });
+      Object.defineProperty(this.input, 'min', {
+        get: function() {
+          return self.min_date.format(self.format);
+        },
+        set: function(value) {
+          self.min_date = self._toDate(value);
+          self._doChanged(self.value);
         }
       });
       Object.defineProperty(this.input, 'max', {
         get: function() {
-          return self.xdate;
+          return self.max_date.format(self.format);
         },
         set: function(value) {
-          self.maxDate(value);
+          self.max_date = self._toDate(value);
+          self._doChanged(self.value);
         }
       });
       Object.defineProperty(this.input, 'placeholder', {
@@ -3110,22 +3229,6 @@ window.$K = (function() {
           self.display.innerHTML = value;
         }
       });
-      Object.defineProperty(this.input, 'value', {
-        get: function() {
-          return self.getDateFormat(self.format);
-        },
-        set: function(value) {
-          self.setDate(value);
-        }
-      });
-      Object.defineProperty(this.input, 'date', {
-        get: function() {
-          return self.getDate();
-        },
-        set: function(value) {
-          self.setDate(value);
-        }
-      });
       Object.defineProperty(this.input, 'disabled', {
         get: function() {
           return self.input.hasClass('disabled') ? true : false;
@@ -3133,8 +3236,10 @@ window.$K = (function() {
         set: function(value) {
           if (value) {
             self.input.addClass('disabled');
+            self.input.tabIndex = -1;
           } else {
             self.input.removeClass('disabled');
+            self.input.tabIndex = 0;
           }
         },
       });
@@ -3150,7 +3255,6 @@ window.$K = (function() {
           }
         },
       });
-      this.input.calendar = this;
       if (elem.min) {
         this.input.min = elem.min;
       }
@@ -3164,325 +3268,301 @@ window.$K = (function() {
         this.input.readOnly = true;
       }
       this.input.placeholder = elem.placeholder;
-      elem.parentNode.removeChild(elem);
       this.input.value = elem.value;
-    },
-    _dochanged: function() {
-      if (this.xdate && this.date && this.date > this.xdate) {
-        this.date.setTime(this.xdate.valueOf());
-      } else if (this.mdate && this.date && this.date < this.mdate) {
-        this.date.setTime(this.mdate.valueOf());
-      }
-      if (this.date) {
-        this.cdate.setTime(this.date.valueOf());
-        this.display.innerHTML = this.date.format(this.displayFormat);
-        this.hidden.value = this.date.format(this.format);
-      } else {
-        this.cdate.setTime(new Date());
-        this.display.innerHTML = '';
-        this.hidden.value = '';
-      }
-      this.placeholder.style.display = this.hidden.value == '' && this.placeholder.innerHTML != '' ? 'block' : 'none';
-      var self = this;
-      window.setTimeout(function() {
-        self.input.callEvent('change');
-      });
-    },
-    _toogle: function(e) {
-      if (this.calendar.showing()) {
-        this.calendar.hide();
-      } else {
-        this.mode = 0;
-        if (this.date) {
-          this.cdate.setTime(this.date.valueOf());
-        } else {
-          this.cdate.setTime(new Date());
-        }
-        this.hour = this.cdate.getHours();
-        this.minute = this.cdate.getMinutes();
-        this._draw();
-      }
-      GEvent.stop(e);
+      elem.parentNode.removeChild(elem);
     },
     _draw: function() {
       if (this.input.hasClass('readonly disabled') == false) {
-        var self = this,
-          calendar = this.calendar.getDropdown();
-        calendar.innerHTML = '';
-        var div = document.createElement('div');
-        calendar.appendChild(div);
-        div.className = 'gcalendar';
-        var p = document.createElement('p');
-        div.appendChild(p);
-        var a = document.createElement('a');
-        p.appendChild(a);
-        a.innerHTML = '&larr;';
-        a.style.cursor = 'pointer';
-        $G(a).addEvent('click', function(e) {
-          self._move(e, -1);
-          GEvent.stop(e);
-          return false;
-        });
-        if (this.mode == 2) {
-          var start_year = this.cdate.getFullYear() - 6;
-          a = document.createElement('span');
-          a.appendChild(
-            document.createTextNode(
-              start_year +
-              Date.yearOffset +
-              '-' +
-              (start_year + 11 + Date.yearOffset)
-            )
-          );
-          p.appendChild(a);
-          a.style.cursor = 'pointer';
-        } else {
-          a = document.createElement('a');
-          a.innerHTML = this.cdate.format('M');
-          a.style.cursor = 'pointer';
-          $G(a).addEvent('click', function(e) {
-            self.mode++;
-            self._draw();
-            GEvent.stop(e);
-            return false;
-          });
-          p.appendChild(a);
-          a = document.createElement('a');
-          a.innerHTML = this.cdate.format('Y');
-          a.style.cursor = 'pointer';
-          $G(a).addEvent('click', function(e) {
-            self.mode = 2;
-            self._draw();
-            GEvent.stop(e);
-            return false;
-          });
-          p.appendChild(a);
-          if (this.datetime && this.mode == 0) {
-            var i, x, option, span,
-              hour = document.createElement('select'),
-              minute = document.createElement('select');
-            for (i = 0; i < 24; i++) {
-              x = i.toString().leftPad(2, '0');
-              option = document.createElement('option');
-              if (x == self.hour) {
-                option.selected = true;
-              }
-              option.innerHTML = x;
-              option.value = x;
-              hour.appendChild(option);
-            }
-            p.appendChild(hour);
-            span = document.createElement('span');
-            span.innerText = ':';
-            p.appendChild(span);
-            for (i = 0; i < 60; i++) {
-              x = i.toString().leftPad(2, '0');
-              option = document.createElement('option');
-              if (x == self.minute) {
-                option.selected = true;
-              }
-              option.innerHTML = x;
-              option.value = x;
-              minute.appendChild(option);
-            }
-            p.appendChild(minute);
-            var timeClicked = function(e) {
-              GEvent.stop(e);
-              return false;
-            };
-            $G(hour).addEvent('click', timeClicked);
-            $G(minute).addEvent('click', timeClicked);
-            var timeChange = function() {
-              self.hour = parseInt(hour.value);
-              self.minute = parseInt(minute.value);
-              self.date.setHours(self.hour, self.minute, 0);
-              self._dochanged();
-            };
-            $G(hour).addEvent('change', timeChange);
-            $G(minute).addEvent('change', timeChange);
-          }
+        if ((this.mode == 3 || this.mode == 4) && $K.isMobile()) {
+          this._drawTime();
+          return true;
+        } else if (this.mode < 3) {
+          this._drawCalendar();
+          return true;
         }
-        a = document.createElement('a');
-        p.appendChild(a);
-        a.innerHTML = '&rarr;';
-        a.style.cursor = 'pointer';
-        $G(a).addEvent('click', function(e) {
-          self._move(e, 1);
-          GEvent.stop(e);
-          return false;
-        });
-        var table = document.createElement('table'),
-          thead = document.createElement('thead'),
-          tbody = document.createElement('tbody'),
-          intmonth = this.cdate.getMonth() + 1,
-          intyear = this.cdate.getFullYear(),
-          cls = '',
-          today = new Date(),
-          today_month = today.getMonth() + 1,
-          today_year = today.getFullYear(),
-          today_date = today.getDate(),
-          sel_month = this.date ? this.date.getMonth() + 1 : today_month,
-          sel_year = this.date ? this.date.getFullYear() : today_year,
-          sel_date = this.date ? this.date.getDate() : today_date,
-          r = 0,
-          c = 0,
-          bg, row, cell;
-        table.appendChild(thead);
-        table.appendChild(tbody);
-        div.appendChild(table);
-        if (this.mode == 2) {
-          for (var i = start_year; i < start_year + 12; i++) {
-            c = (i - start_year) % 4;
-            if (c == 0) {
-              row = tbody.insertRow(r);
-              bg = bg == 'bg1' ? 'bg2' : 'bg1';
-              row.className = 'gcalendar_' + bg;
-              r++;
-            }
-            cell = row.insertCell(c);
-            cls = 'month';
-            if (i == sel_year) {
-              cls = cls + ' select';
-            }
-            if (i == today_year) {
-              cls = cls + ' today';
-            }
-            cell.className = cls;
-            cell.appendChild(document.createTextNode(i + Date.yearOffset));
-            cell.oDate = new Date(i, 1, 1, 12, 0, 0, 0);
-            $G(cell).addEvent('click', function(e) {
-              self.cdate.setTime(this.oDate.valueOf());
-              self.mode--;
-              self._draw();
-              GEvent.stop(e);
-              return false;
-            });
-          }
-        } else if (this.mode == 1) {
-          forEach(Date.monthNames, function(month, i) {
-            c = i % 4;
-            if (c == 0) {
-              row = tbody.insertRow(r);
-              bg = bg == 'bg1' ? 'bg2' : 'bg1';
-              row.className = 'gcalendar_' + bg;
-              r++;
-            }
-            cell = row.insertCell(c);
-            cls = 'month';
-            if (intyear == sel_year && i + 1 == sel_month) {
-              cls = cls + ' select';
-            }
-            if (intyear == today_year && i + 1 == today_month) {
-              cls = cls + ' today';
-            }
-            cell.className = cls;
-            cell.appendChild(document.createTextNode(month));
-            cell.oDate = new Date(intyear, i, 1, 0, 0, 0, 0);
-            $G(cell).addEvent('click', function(e) {
-              self.cdate.setTime(this.oDate.valueOf());
-              self.mode--;
-              self._draw();
-              GEvent.stop(e);
-              return false;
-            });
-          });
-        } else {
-          row = thead.insertRow(0);
-          forEach(Date.dayNames, function(item, i) {
-            cell = document.createElement('th');
-            row.appendChild(cell);
-            cell.appendChild(document.createTextNode(item));
-          });
-          var tmp_prev_month = intmonth - 1;
-          var tmp_next_month = intmonth + 1;
-          var tmp_next_year = intyear;
-          var tmp_prev_year = intyear;
-          if (tmp_prev_month == 0) {
-            tmp_prev_month = 12;
-            tmp_prev_year--;
-          }
-          if (tmp_next_month == 13) {
-            tmp_next_month = 1;
-            tmp_next_year++;
-          }
-          var initial_day = 1;
-          var tmp_init = new Date(intyear, intmonth, 1, 0, 0, 0, 0).dayOfWeek();
-          var max_prev = new Date(tmp_prev_year, tmp_prev_month, 0, 0, 0, 0, 0).daysInMonth();
-          var max_this = new Date(intyear, intmonth, 0, 0, 0, 0, 0).daysInMonth();
-          if (tmp_init !== 0) {
-            initial_day = max_prev - (tmp_init - 1);
-          }
-          tmp_next_year = tmp_next_year.toString();
-          tmp_prev_year = tmp_prev_year.toString();
-          tmp_next_month = tmp_next_month.toString();
-          tmp_prev_month = tmp_prev_month.toString();
-          var pointer = initial_day;
-          var flag_init = initial_day == 1 ? 1 : 0;
-          var tmp_month = initial_day == 1 ? intmonth : parseInt(tmp_prev_month);
-          var tmp_year = initial_day == 1 ? intyear : parseInt(tmp_prev_year);
-          var flag_end = 0;
-          r = 0;
-          for (var x = 0; x < 42; x++) {
-            if (tmp_init !== 0 && pointer > max_prev && flag_init == 0) {
-              flag_init = 1;
-              pointer = 1;
-              tmp_month = intmonth;
-              tmp_year = intyear;
-            }
-            if (flag_init == 1 && flag_end == 0 && pointer > max_this) {
-              flag_end = 1;
-              pointer = 1;
-              tmp_month = parseInt(tmp_next_month);
-              tmp_year = parseInt(tmp_next_year);
-            }
-            c = x % 7;
-            if (c == 0) {
-              row = tbody.insertRow(r);
-              r++;
-            }
-            cell = row.insertCell(c);
-            cell.oDate = new Date(tmp_year, tmp_month - 1, pointer, 0, 0, 0, 0);
-            cell.title = cell.oDate.format(self.displayFormat);
-            cell.appendChild(document.createTextNode(pointer));
-            var canclick = true;
-            if (this.mdate !== null && this.xdate !== null) {
-              canclick = cell.oDate >= this.mdate && cell.oDate <= this.xdate;
-            } else if (this.mdate !== null) {
-              canclick = cell.oDate >= this.mdate;
-            } else if (this.xdate !== null) {
-              canclick = cell.oDate <= this.xdate;
-            }
-            if (canclick) {
-              cls = tmp_month == intmonth ? 'curr' : 'ex';
-            } else {
-              cls = 'ex';
-            }
-            $G(cell).addEvent('click', function(e) {
-              var c = this.hasClass('curr ex');
-              if (c == 'curr') {
-                if (self.date === null) {
-                  self.date = new Date();
-                }
-                self.date.setTime(this.oDate.valueOf());
-                self.date.setHours(self.hour, self.minute, 0);
-              } else if (c == 'ex') {
-                self.date = null;
-              }
-              self._dochanged();
-              $E(self.input).focus();
-            });
-            if (tmp_year == sel_year && tmp_month == sel_month && pointer == sel_date) {
-              cls = cls + ' select';
-            }
-            if (tmp_year == today_year && tmp_month == today_month && pointer == today_date) {
-              cls = cls + ' today';
-            }
-            cell.className = cls;
-            pointer++;
-          }
-        }
-        this.calendar.show();
       }
+      return false;
+    },
+    _drawCalendar: function() {
+      let self = this,
+        calendar = this.calendar.getDropdown(),
+        div = document.createElement('div'),
+        p = document.createElement('p'),
+        a = document.createElement('a');
+      calendar.innerHTML = '';
+      calendar.appendChild(div);
+      div.className = 'gcalendar';
+      div.appendChild(p);
+      p.appendChild(a);
+      a.innerHTML = '&larr;';
+      a.style.cursor = 'pointer';
+      $G(a).addEvent('click', function(e) {
+        self._move(e, -1);
+        GEvent.stop(e);
+        return false;
+      });
+      if (this.mode == 2) {
+        var start_year = this.cdate.getFullYear() - 6;
+        a = document.createElement('span');
+        a.appendChild(
+          document.createTextNode(
+            start_year +
+            Date.yearOffset +
+            '-' +
+            (start_year + 11 + Date.yearOffset)
+          )
+        );
+        p.appendChild(a);
+        a.style.cursor = 'pointer';
+      } else {
+        a = document.createElement('a');
+        a.innerHTML = this.cdate.format('M');
+        a.style.cursor = 'pointer';
+        $G(a).addEvent('click', function(e) {
+          self.mode++;
+          self._drawCalendar();
+          GEvent.stop(e);
+          return false;
+        });
+        p.appendChild(a);
+        a = document.createElement('a');
+        a.innerHTML = this.cdate.format('Y');
+        a.style.cursor = 'pointer';
+        $G(a).addEvent('click', function(e) {
+          self.mode = 2;
+          self._drawCalendar();
+          GEvent.stop(e);
+          return false;
+        });
+        p.appendChild(a);
+      }
+      a = document.createElement('a');
+      p.appendChild(a);
+      a.innerHTML = '&rarr;';
+      a.style.cursor = 'pointer';
+      $G(a).addEvent('click', function(e) {
+        self._move(e, 1);
+        GEvent.stop(e);
+        return false;
+      });
+      var table = document.createElement('table'),
+        thead = document.createElement('thead'),
+        tbody = document.createElement('tbody'),
+        intmonth = this.cdate.getMonth() + 1,
+        intyear = this.cdate.getFullYear(),
+        cls = '',
+        today = new Date(),
+        today_month = today.getMonth() + 1,
+        today_year = today.getFullYear(),
+        today_date = today.getDate(),
+        sel_month = this.value ? this.value.getMonth() + 1 : today_month,
+        sel_year = this.value ? this.value.getFullYear() : today_year,
+        sel_date = this.value ? this.value.getDate() : today_date,
+        r = 0,
+        c = 0,
+        bg, row, cell;
+      table.appendChild(thead);
+      table.appendChild(tbody);
+      div.appendChild(table);
+      if (this.mode == 2) {
+        for (var i = start_year; i < start_year + 12; i++) {
+          c = (i - start_year) % 4;
+          if (c == 0) {
+            row = tbody.insertRow(r);
+            bg = bg == 'bg1' ? 'bg2' : 'bg1';
+            row.className = 'gcalendar_' + bg;
+            r++;
+          }
+          cell = row.insertCell(c);
+          cls = 'month';
+          if (i == sel_year) {
+            cls = cls + ' select';
+          }
+          if (i == today_year) {
+            cls = cls + ' today';
+          }
+          cell.className = cls;
+          cell.appendChild(document.createTextNode(i + Date.yearOffset));
+          cell.oDate = new Date(i, 1, 1, 12, 0, 0, 0);
+          $G(cell).addEvent('click', function(e) {
+            self.cdate.setTime(this.oDate.valueOf());
+            self.mode--;
+            self._drawCalendar();
+            GEvent.stop(e);
+            return false;
+          });
+        }
+      } else if (this.mode == 1) {
+        forEach(Date.monthNames, function(month, i) {
+          c = i % 4;
+          if (c == 0) {
+            row = tbody.insertRow(r);
+            bg = bg == 'bg1' ? 'bg2' : 'bg1';
+            row.className = 'gcalendar_' + bg;
+            r++;
+          }
+          cell = row.insertCell(c);
+          cls = 'month';
+          if (intyear == sel_year && i + 1 == sel_month) {
+            cls = cls + ' select';
+          }
+          if (intyear == today_year && i + 1 == today_month) {
+            cls = cls + ' today';
+          }
+          cell.className = cls;
+          cell.appendChild(document.createTextNode(month));
+          cell.oDate = new Date(intyear, i, 1, 0, 0, 0, 0);
+          $G(cell).addEvent('click', function(e) {
+            self.cdate.setTime(this.oDate.valueOf());
+            self.mode--;
+            self._drawCalendar();
+            GEvent.stop(e);
+            return false;
+          });
+        });
+      } else {
+        row = thead.insertRow(0);
+        forEach(Date.dayNames, function(item, i) {
+          cell = document.createElement('th');
+          row.appendChild(cell);
+          cell.appendChild(document.createTextNode(item));
+        });
+        var tmp_prev_month = intmonth - 1,
+          tmp_next_month = intmonth + 1,
+          tmp_next_year = intyear,
+          tmp_prev_year = intyear;
+        if (tmp_prev_month == 0) {
+          tmp_prev_month = 12;
+          tmp_prev_year--;
+        }
+        if (tmp_next_month == 13) {
+          tmp_next_month = 1;
+          tmp_next_year++;
+        }
+        var initial_day = 1,
+          tmp_init = new Date(intyear, intmonth, 1, 0, 0, 0, 0).dayOfWeek(),
+          max_prev = new Date(tmp_prev_year, tmp_prev_month, 0, 0, 0, 0, 0).daysInMonth(),
+          max_this = new Date(intyear, intmonth, 0, 0, 0, 0, 0).daysInMonth();
+        if (tmp_init !== 0) {
+          initial_day = max_prev - (tmp_init - 1);
+        }
+        tmp_next_year = tmp_next_year.toString();
+        tmp_prev_year = tmp_prev_year.toString();
+        tmp_next_month = tmp_next_month.toString();
+        tmp_prev_month = tmp_prev_month.toString();
+        var pointer = initial_day,
+          flag_init = initial_day == 1 ? 1 : 0,
+          tmp_month = initial_day == 1 ? intmonth : parseInt(tmp_prev_month),
+          tmp_year = initial_day == 1 ? intyear : parseInt(tmp_prev_year),
+          flag_end = 0,
+          min_date = this.min_date ? this.min_date.format('y-m-d') : null,
+          max_date = this.max_date ? this.max_date.format('y-m-d') : null,
+          canclick,
+          oDate;
+        r = 0;
+        for (var x = 0; x < 42; x++) {
+          if (tmp_init !== 0 && pointer > max_prev && flag_init == 0) {
+            flag_init = 1;
+            pointer = 1;
+            tmp_month = intmonth;
+            tmp_year = intyear;
+          }
+          if (flag_init == 1 && flag_end == 0 && pointer > max_this) {
+            flag_end = 1;
+            pointer = 1;
+            tmp_month = parseInt(tmp_next_month);
+            tmp_year = parseInt(tmp_next_year);
+          }
+          c = x % 7;
+          if (c == 0) {
+            row = tbody.insertRow(r);
+            r++;
+          }
+          cell = row.insertCell(c);
+          cell.oDate = new Date(tmp_year, tmp_month - 1, pointer, 0, 0, 0, 0);
+          cell.title = cell.oDate.format(self.displayFormat);
+          cell.appendChild(document.createTextNode(pointer));
+          canclick = true;
+          oDate = cell.oDate.format('y-m-d');
+          if (min_date && max_date) {
+            canclick = oDate >= min_date && oDate <= max_date;
+          } else if (min_date) {
+            canclick = oDate >= min_date;
+          } else if (max_date) {
+            canclick = oDate <= max_date;
+          }
+          if (canclick) {
+            cls = tmp_month == intmonth ? 'curr' : 'ex';
+          } else {
+            cls = 'ex';
+          }
+          $G(cell).addEvent('click', function(e) {
+            var c = this.hasClass('curr ex');
+            if (c == 'curr') {
+              if (self.value) {
+                this.oDate.setHours(self.value.getHours(), self.value.getMinutes(), self.value.getSeconds());
+              }
+              self._doChanged(this.oDate);
+            } else if (c == 'ex') {
+              self._doChanged(null);
+            }
+            self.input.focus();
+          });
+          if (tmp_year == sel_year && tmp_month == sel_month && pointer == sel_date) {
+            cls = cls + ' select';
+          }
+          if (tmp_year == today_year && tmp_month == today_month && pointer == today_date) {
+            cls = cls + ' today';
+          }
+          cell.className = cls;
+          pointer++;
+        }
+      }
+      this.calendar.show();
+    },
+    _drawTime: function() {
+      let self = this,
+        calendar = this.calendar.getDropdown(),
+        panel = document.createElement('table'),
+        tr = document.createElement('tr'),
+        td = document.createElement('td');
+      calendar.innerHTML = '';
+      panel.className = 'ginput';
+      calendar.appendChild(panel);
+      td.className = 'buttons';
+      td.rowSpan = 2;
+      tr.appendChild(td);
+      forEach(this.keyboard, function() {
+        self._createButton(td, this, this);
+      });
+      td = document.createElement('td');
+      tr.appendChild(td);
+      panel.appendChild(tr);
+      this._createButton(td, 'x', 'Backspace', 'backspace');
+      tr = document.createElement('tr');
+      td = document.createElement('td');
+      tr.appendChild(td);
+      panel.appendChild(tr);
+      this._createButton(td, '&crarr;', 'Enter', 'enter');
+      forEach(panel.getElementsByTagName('a'), function() {
+        $G(this).addEvent('click', function(e) {
+          var elem = GEvent.element(e);
+          if (elem.parentNode.className == 'enter') {
+            return true;
+          } else if (elem.parentNode.className == 'backspace') {
+            self.input.value = null;
+            self.mode = self.type == 'time' ? 3 : 0;
+            self.firstKey = null;
+          } else {
+            self._timeFromChar(elem.innerText);
+          }
+          self.mouse_click = true;
+          self._setHighlight();
+          GEvent.stop(e);
+          return false;
+        });
+      });
+      this.calendar.show();
     },
     _move: function(e, value) {
       if (this.mode == 2) {
@@ -3495,110 +3575,210 @@ window.$K = (function() {
       this._draw();
       GEvent.stop(e);
     },
-    moveDate: function(day) {
-      if (this.date === null) {
-        this.date = new Date();
-      }
-      this.date.setDate(this.date.getDate() + day);
-      this._dochanged();
-      return this;
-    },
-    moveMonth: function(month) {
-      if (this.date === null) {
-        this.date = new Date();
-      }
-      this.date.setMonth(this.date.getMonth() + month);
-      this._dochanged();
-      return this;
-    },
-    moveYear: function(year) {
-      if (this.date === null) {
-        this.date = new Date();
-      }
-      this.date.setFullYear(this.date.getFullYear() + year);
-      this._dochanged();
-      return this;
-    },
-    setFormat: function(value) {
-      this.format = value;
-      this._dochanged();
-      return this;
-    },
-    setDisplayFormat: function(value) {
-      this.displayFormat = value;
-      this._dochanged();
-      return this;
-    },
-    setDate: function(date) {
-      if (date === null || date === '' || !/[0-9]{2,4}\-[0-9]{1,2}\-[0-9]{1,2}(\s[0-9:]+)?/.test(date)) {
-        this.date = null;
-        this.hour = 0;
-        this.minute = 0;
-      } else {
-        this.date = this._toDate(date);
-        this.hour = this.date.getHours();
-        this.minute = this.date.getMinutes();
-      }
-      this._dochanged();
-      return this;
-    },
-    getDate: function() {
-      if (this.date) {
-        var d = new Date();
-        d.setTime(this.date.valueOf());
-        return d;
-      }
-      return null;
-    },
-    getDateFormat: function(format) {
-      if (this.date) {
-        format = format || this.format;
-        return this.getDate().format(format);
-      }
-      return null;
-    },
-    minDate: function(date) {
-      if (date === null) {
-        this.mdate = null;
-      } else if (Object.isString(date) && date === '') {
-        if (this.mdate == null) {
-          this.mdate = new Date();
+    _timeFromChar: function(value) {
+      let d,
+        c = value.toInt(),
+        hours = this.value ? this.value.getHours().toString() : '0',
+        minutes = this.value ? this.value.getMinutes().toString() : '0';
+      if (this.keyboard.indexOf(value) > -1) {
+        if (this.mode == 3) {
+          if (this.firstKey == null) {
+            hours = '0' + c;
+            if (c < 3) {
+              this.firstKey = c;
+            } else {
+              this.mode = 4;
+              this.firstKey = null;
+            }
+          } else {
+            c = floatval(String(this.firstKey) + c);
+            hours = c < 10 ? '0' + c : String(Math.min(23, c));
+            this.mode = 4;
+            this.firstKey = null;
+          }
+        } else if (this.mode == 4) {
+          if (this.firstKey == null) {
+            minutes = '0' + c;
+            this.firstKey = c;
+          } else {
+            c = floatval(String(this.firstKey) + c);
+            minutes = c < 10 ? '0' + c : String(Math.min(59, c));
+            this.firstKey = null;
+          }
+          this.mode = 4;
         }
-        this.mdate.setTime(this.date ? this.date.valueOf() : new Date()).setHours(0, 0, 0);
-      } else {
-        this.mdate = this._toDate(date).setHours(0, 0, 0);
-      }
-      return this;
-    },
-    maxDate: function(date) {
-      if (date === null) {
-        this.xdate = null;
-      } else if (Object.isString(date) && date === '') {
-        if (this.xdate == null) {
-          this.xdate = new Date();
+        if (this.value) {
+          d = new Date(this.value.valueOf());
+        } else {
+          d = new Date(this.cdate.valueOf());
         }
-        this.xdate.setTime(this.date ? this.date.valueOf() : new Date()).setHours(23, 59, 59);
-      } else {
-        this.xdate = this._toDate(date).setHours(23, 59, 59);
+        d.setHours(hours, minutes);
+        this._doChanged(d);
       }
-      return this;
     },
-    setText: function(value) {
-      this.display.innerHTML = value;
-    },
-    _toDate: function(date) {
-      var d = null;
-      if (Object.isString(date)) {
-        d = date.toDate();
-        d = d == null ? new Date() : d;
+    _toogle: function() {
+      if (this.calendar.showing()) {
+        this.calendar.hide();
       } else {
+        this._draw();
+      }
+    },
+    _createButton: function(parent, text, title, className) {
+      var a = document.createElement('a');
+      a.innerHTML = text;
+      a.title = title;
+      if (className) {
+        parent.className = className;
+      }
+      parent.appendChild(a);
+    },
+    _modeFromCaretPosition: function() {
+      let value = this.display.innerText,
+        len = value.length,
+        position = this._getCaretPosition(),
+        match = /[0-9\-][0-9\-]\:[0-9\-][0-9\-]$/.exec(value),
+        mode = 0;
+      if (len > 0 && match) {
+        if (position >= len - 2) {
+          mode = 4;
+        } else if (position >= match.index) {
+          mode = 3;
+        }
+      }
+      return mode;
+    },
+    _getCaretPosition: function() {
+      if (window.getSelection && window.getSelection().getRangeAt) {
+        var range = window.getSelection().getRangeAt(0);
+        return range.startOffset;
+      }
+      return 0;
+    },
+    _setHighlight: function() {
+      let value = this.display.innerText,
+        len = value.length;
+      if (len > 0) {
+        let match = /[0-9\-][0-9\-]\:[0-9\-][0-9\-]$/.exec(value);
+        if (match) {
+          if (this.mode == 4) {
+            this._selectText(match.index + 3, len);
+          } else if (this.mode == 3) {
+            this._selectText(match.index, len - 3);
+          } else {
+            this._selectText(0, match.index - 1);
+          }
+        } else {
+          this._selectText(0, len);
+        }
+      }
+    },
+    _selectText: function(start, stop) {
+      let node = this.display.firstChild,
+        range = document.createRange();
+      range.setStart(node, start);
+      range.setEnd(node, stop);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    },
+    _setTime: function(value) {
+      value = this._toDate(value);
+      if (value !== null) {
+        let d = new Date();
+        value.setFullYear(d.getFullYear());
+        value.setMonth(d.getMonth());
+        value.setDate(d.getDate());
+        value.setSeconds(0);
+      }
+      return value;
+    },
+    _doChanged: function(value) {
+      let old_value = this.value ? this.value.getTime() : 0,
+        display = '';
+      if (this.type === 'time') {
+        this.value = this._setTime(value);
+        this.min_date = this._setTime(this.min_date);
+        this.max_date = this._setTime(this.max_date);
+      } else {
+        this.value = this._toDate(value);
+      }
+      let current_time = this.value ? this.value.getTime() : 0;
+      if (this.type !== 'datetime-local') {
+        let min_date = this.min_date ? this.min_date.getTime() : 0,
+          max_date = this.max_date ? this.max_date.getTime() : 0;
+        if (max_date > 0 && current_time > 0 && current_time > max_date) {
+          this.value.setTime(this.max_date.valueOf());
+        } else if (min_date > 0 && current_time > 0 && current_time < min_date) {
+          this.value.setTime(this.min_date.valueOf());
+        }
+      }
+      if (this.value) {
+        this.cdate.setTime(this.value.valueOf());
+      }
+      if (old_value != current_time) {
+        if (current_time == 0) {
+          if (this.type === 'time') {
+            display = '--:--';
+          }
+          this.hidden.value = '';
+        } else {
+          display = this.value.format(this.displayFormat);
+          this.hidden.value = this.value.format(this.format);
+        }
+        this._setText(display);
+        var self = this;
+        window.setTimeout(function() {
+          self.input.callEvent('change');
+        });
+      }
+    },
+    _toDate: function(value) {
+      let d = null;
+      if (Object.isString(value)) {
+        d = value.toDate();
+      } else if (value) {
         d = new Date();
-        if (!Object.isNull(date)) {
-          d.setTime(date.valueOf());
-        }
+        d.setTime(value.valueOf());
       }
       return d;
-    }
+    },
+    _setText: function(value) {
+      this.display.innerHTML = value;
+      this.placeholder.style.display = value == '' && this.placeholder.innerHTML != '' ? 'block' : 'none';
+    },
+    _moveDate: function(days) {
+      let d;
+      if (this.value === null) {
+        d = new Date(this.cdate.format('y-m-d H:i'));
+      } else {
+        d = new Date(this.value.format('y-m-d H:i'));
+      }
+      d.setDate(d.getDate() + days);
+      this._doChanged(d);
+      return this;
+    },
+    _moveMonth: function(months) {
+      let d;
+      if (this.value === null) {
+        d = new Date(this.cdate.format('y-m-d H:i'));
+      } else {
+        d = new Date(this.value.format('y-m-d H:i'));
+      }
+      d.setMonth(d.getMonth() + months);
+      this._doChanged(d);
+      return this;
+    },
+    _moveYear: function(years) {
+      let d;
+      if (this.value === null) {
+        d = new Date(this.cdate.format('y-m-d H:i'));
+      } else {
+        d = new Date(this.value.format('y-m-d H:i'));
+      }
+      d.setFullYear(d.getFullYear() + years);
+      this._doChanged(d);
+      return this;
+    },
   };
   window.GFxZoom = GClass.create();
   GFxZoom.prototype = Object.extend(new GFx(), {

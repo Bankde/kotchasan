@@ -694,8 +694,8 @@ class DataTable extends \Kotchasan\KBase
         }
         if (!$this->explain && !empty($form)) {
             // GO button
-            $form[] = '<fieldset class=go>';
-            $form[] = '<button type=submit class="button go">'.Language::get('Go').'</button>';
+            $form[] = '<fieldset>';
+            $form[] = '<button type=submit class="button go circle">'.Language::get('Go').'</button>';
             $form[] = implode('', $hidden_fields);
             $form[] = '</fieldset>';
             $content[] = '<form class="table_nav clear" method="get" action="'.$this->uri.'"><div>'.implode('', $form).'</div></form>';

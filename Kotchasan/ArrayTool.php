@@ -438,4 +438,32 @@ class ArrayTool
 
         return false;
     }
+
+    /**
+     * Retrieve the key of the element following a specified key in the array.
+     *
+     * @param array $array The input array.
+     * @param mixed $key The key to find the next key after.
+     * @return mixed|false The key of the element following the specified key, or false if not found.
+     */
+    public static function getNextKey($array, $key)
+    {
+        // Check if the specified key exists in the array
+        if (isset($array[$key])) {
+            // Get the current key of the array cursor
+            $currentKey = key($array);
+
+            // Iterate through the array until the current key matches the specified key
+            while ($currentKey !== null && $currentKey != $key) {
+                next($array); // Move the array cursor to the next element
+                $currentKey = key($array); // Update the current key
+            }
+
+            next($array); // Move the array cursor to the next element
+            return key($array); // Return the key of the next element
+        }
+
+        // If the specified key is not found in the array, return false
+        return false;
+    }
 }

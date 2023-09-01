@@ -267,7 +267,6 @@ var GGraphs = (function(document) {
         y += rowHeight;
       });
       headers.forEach(function(row) {
-        console.log(x, x - columnWidth);
         self.line(panel, x, top, x, bottom, options.gridHColor, 1);
         if (options.rotate) {
           self.text(panel, x, bottom + top - pointerSize, row.text, self.fontColor, 'left', true);

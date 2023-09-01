@@ -178,7 +178,7 @@ class Form extends \Kotchasan\KBase
     {
         $obj = new static;
         $obj->tag = 'input';
-        $attributes['type'] = 'datetime';
+        $attributes['type'] = 'datetime-local';
         $obj->attributes = $attributes;
         return $obj;
     }

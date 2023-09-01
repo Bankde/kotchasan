@@ -521,7 +521,7 @@ class Html extends \Kotchasan\KBase
                     if ($k == 'url') {
                         $o['url'] = 'url: "'.$v.'"';
                     } else {
-                        $o['get'] = $k.': '.$v;
+                        $o[$k] = $k.': '.$v;
                     }
                 }
 
