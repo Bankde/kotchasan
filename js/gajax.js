@@ -2333,8 +2333,11 @@ window.$K = (function() {
     },
     element: function(e) {
       e = window.event || e;
-      var node = e.target ? e.target : e.srcElement;
-      return e.nodeType == 3 ? node.parentNode : node;
+      if (e) {
+        var node = e.target ? e.target : e.srcElement;
+        return e.nodeType == 3 ? node.parentNode : node;
+      }
+      return null;
     },
     keyCode: function(e) {
       e = window.event || e;
@@ -2969,14 +2972,16 @@ window.$K = (function() {
             vpo.left, document.viewport.getscrollLeft() + 5
         );
         this.dropdown.style.left = l + 'px';
+        this.dropdown.style.display = 'block';
       } else {
         this.dropdown.style.left = 0;
         this.dropdown.style.right = 0;
         this.dropdown.style.bottom = 0;
         this.dropdown.style.position = 'fixed';
         this.dropdown.classList.add('mobile_fixed');
+        this.dropdown.style.display = 'block';
+        this.src.scrollIntoView();
       }
-      this.dropdown.style.display = 'block';
     },
     hide: function() {
       if (this.options.className) {
@@ -3053,6 +3058,9 @@ window.$K = (function() {
           self.mode = self._modeFromCaretPosition();
           self._setHighlight();
         }
+      });
+      this.input.addEvent('blur', function(e) {
+        self._clearSelectText();
       });
       this.input.addEvent('click', function(e) {
         if (self._draw()) {
@@ -3637,7 +3645,7 @@ window.$K = (function() {
         len = value.length,
         position = this._getCaretPosition(),
         match = /[0-9\-][0-9\-]\:[0-9\-][0-9\-]$/.exec(value),
-        mode = 0;
+        mode = this.type === 'time' ? 3 : 0;
       if (len > 0 && match) {
         if (position >= len - 2) {
           mode = 4;
@@ -3648,8 +3656,9 @@ window.$K = (function() {
       return mode;
     },
     _getCaretPosition: function() {
-      if (window.getSelection && window.getSelection().getRangeAt) {
-        var range = window.getSelection().getRangeAt(0);
+      var sel = window.getSelection && window.getSelection();
+      if (sel && sel.rangeCount > 0) {
+        var range = sel.getRangeAt(0);
         return range.startOffset;
       }
       return 0;
@@ -3672,12 +3681,16 @@ window.$K = (function() {
         }
       }
     },
+    _clearSelectText: function() {
+      var selection = window.getSelection();
+      selection.empty();
+    },
     _selectText: function(start, stop) {
       let node = this.display.firstChild,
         range = document.createRange();
       range.setStart(node, start);
       range.setEnd(node, stop);
-      var sel = window.getSelection();
+      let sel = window.getSelection();
       sel.removeAllRanges();
       sel.addRange(range);
     },
@@ -3693,7 +3706,7 @@ window.$K = (function() {
       return value;
     },
     _doChanged: function(value) {
-      let old_value = this.value ? this.value.getTime() : 0,
+      let old_value = this.value ? this.value.getTime() : -1,
         display = '';
       if (this.type === 'time') {
         this.value = this._setTime(value);

@@ -94,7 +94,7 @@ class Csv
                             // Check header values
                             foreach ($headers as $k) {
                                 if (!in_array($k, $data)) {
-                                    throw new \Exception('Column '.$k.' not found');
+                                    throw new \Exception('Column not found : '.$k);
                                 }
                             }
                         }

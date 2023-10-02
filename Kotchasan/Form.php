@@ -166,8 +166,8 @@ class Form extends \Kotchasan\KBase
     /**
      * Create an input element of type "datetime".
      *
-     * @assert (array('id' => 'test_id', 'value' => '2021-01-01 12:00', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="datetime" name="test_id" id="test_id" value="2021-01-01 12:00" title="Test"></label>'
-     * @assert (array('id' => 'test_id', 'value' => '2021-01-01 12:00', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-calendar'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-calendar"><input type="datetime" name="test_id" id="test_id" value="2021-01-01 12:00" title="Test"></span></div>'
+     * @assert (array('id' => 'test_id', 'value' => '2021-01-01 12:00', 'label' => 'Test'))->render() [==] '<label>Test&nbsp;<input type="datetime-local" name="test_id" id="test_id" value="2021-01-01 12:00" title="Test"></label>'
+     * @assert (array('id' => 'test_id', 'value' => '2021-01-01 12:00', 'label' => 'Test', 'itemClass' => 'item' , 'labelClass' => 'icon-calendar'))->render() [==] '<div class="item"><label for="test_id">Test</label><span class="icon-calendar"><input type="datetime-local" name="test_id" id="test_id" value="2021-01-01 12:00" title="Test"></span></div>'
      *
      * @param array $attributes
      *        An array of attributes for the input field.

@@ -39,7 +39,7 @@ if (DEBUG > 0) {
  *
  * @var string
  */
-define('VERSION', '5.0.0');
+define('VERSION', '6.0.0');
 
 /*
  * Enable database query logging.
@@ -216,10 +216,12 @@ function debug($expression)
     }
     $debug = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);
     \Kotchasan::$debugger[] = '"'.$debug[0]['file'].' : '.$debug[0]['line'].'"';
-    if (is_array($expression) || is_object($expression)) {
-        \Kotchasan::$debugger[] = json_encode((array) $expression);
-    } else {
-        \Kotchasan::$debugger[] = '"'.str_replace(array('/', '"'), array('\/', '\"'), strval($expression)).'"';
+    foreach (func_get_args() as $expression) {
+        if (is_array($expression) || is_object($expression)) {
+            \Kotchasan::$debugger[] = json_encode((array) $expression);
+        } else {
+            \Kotchasan::$debugger[] = '"'.str_replace(array('/', '"'), array('\/', '\"'), strval($expression)).'"';
+        }
     }
 }
 

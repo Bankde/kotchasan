@@ -94,9 +94,35 @@ class Province
     }
 
     /**
-     * รายชื่อจังหวัด ไทย เรียงลำดับตามชื่อไทย
+     * Get the ISO code of a province based on its name and language.
      *
-     * @return array
+     * @param string $province The name of the province
+     * @param string $lang The language code for the desired language (e.g., 'th' for Thai, 'en' for English)
+     * @param string $country (default: 'TH')
+     *
+     * @return string The ISO code of the province
+     */
+    public static function isoFromProvince($province, $lang = '', $country = 'TH')
+    {
+        $datas = self::init($country);
+        if (empty($lang)) {
+            $lang = Language::name();
+        }
+        $lang = in_array($lang, array_keys(reset($datas))) ? $lang : 'en';
+        $result = '';
+        foreach ($datas as $iso => $items) {
+            if ($items[$lang] === $province) {
+                $result = $iso;
+                break;
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * List of provinces in Thailand, sorted by Thai name.
+     *
+     * @return array An array containing province data for Thailand
      */
     private static function TH()
     {
@@ -184,7 +210,7 @@ class Province
     /**
      * List of provinces in Laos, sorted by Lao name.
      *
-     * @return array
+     * @return array An array containing province data for Laos
      */
     private static function LA()
     {

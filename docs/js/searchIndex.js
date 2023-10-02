@@ -151,6 +151,11 @@ Search.appendIndex(
             "summary": "Check\u0020if\u0020any\u0020value\u0020in\u0020the\u0020needle\u0020array\u0020exists\u0020in\u0020the\u0020haystack\u0020array.",
             "url": "classes/Kotchasan-ArrayTool.html#method_in_array"
         },                {
+            "fqsen": "\\Kotchasan\\ArrayTool\u003A\u003AgetNextKey\u0028\u0029",
+            "name": "getNextKey",
+            "summary": "Retrieve\u0020the\u0020key\u0020of\u0020the\u0020element\u0020following\u0020a\u0020specified\u0020key\u0020in\u0020the\u0020array.",
+            "url": "classes/Kotchasan-ArrayTool.html#method_getNextKey"
+        },                {
             "fqsen": "\\Kotchasan\\Cache\\ApcCache",
             "name": "ApcCache",
             "summary": "APC\u0020cache\u0020driver",
@@ -2000,6 +2005,16 @@ Search.appendIndex(
             "name": "addNew",
             "summary": "The\u0020button\u0020for\u0020adding\u0020new\u0020data.",
             "url": "classes/Kotchasan-DataTable.html#property_addNew"
+        },                {
+            "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024comment",
+            "name": "comment",
+            "summary": "Text,\u0020such\u0020as\u0020Notes,\u0020is\u0020displayed\u0020next\u0020to\u0020the\u0020table.",
+            "url": "classes/Kotchasan-DataTable.html#property_comment"
+        },                {
+            "fqsen": "\\Kotchasan\\DataTable\u003A\u003A\u0024commentClass",
+            "name": "commentClass",
+            "summary": "Note\u0020class\u0020name",
+            "url": "classes/Kotchasan-DataTable.html#property_commentClass"
         },                {
             "fqsen": "\\Kotchasan\\Date",
             "name": "Date",
@@ -7315,6 +7330,16 @@ Search.appendIndex(
             "name": "setMetas",
             "summary": "Adds\u0020meta\u0020tags\u0020to\u0020the\u0020HTML\u0020head.",
             "url": "classes/Kotchasan-View.html#method_setMetas"
+        },                {
+            "fqsen": "\\Kotchasan\\View\u003A\u003Aarray_value\u0028\u0029",
+            "name": "array_value",
+            "summary": "Get\u0020the\u0020value\u0020from\u0020an\u0020array\u0020based\u0020on\u0020a\u0020given\u0020key.",
+            "url": "classes/Kotchasan-View.html#method_array_value"
+        },                {
+            "fqsen": "\\Kotchasan\\View\u003A\u003Aobject_value\u0028\u0029",
+            "name": "object_value",
+            "summary": "Get\u0020the\u0020value\u0020from\u0020an\u0020object\u0020based\u0020on\u0020a\u0020given\u0020key.",
+            "url": "classes/Kotchasan-View.html#method_object_value"
         },                {
             "fqsen": "\\Kotchasan\\View\u003A\u003A\u0024afterContents",
             "name": "afterContents",

@@ -538,6 +538,7 @@ class Sql
      * @assert (array(Sql::YEAR('create_date'), Sql::YEAR('`create_date`')))->text() [==] "YEAR(`create_date`) = YEAR(`create_date`)"
      * @assert (array('ip', 'NOT IN', array('', '192.168.1.2')))->text() [==] "`ip` NOT IN ('', '192.168.1.2')"
      * @assert (array(1, 1))->text() [==] "1 = 1"
+     * @assert (array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))->text() [==] "`username` IS NULL AND `username` IS NULL AND `username` IS NOT NULL"
      *
      * @param mixed  $condition
      * @param string $operator  (optional) เช่น AND หรือ OR
@@ -834,15 +835,19 @@ class Sql
                 } else {
                     $key = self::fieldName($condition[0]);
                 }
-                if (count($condition) == 2) {
+                $c = count($condition);
+                if ($c == 2) {
                     if ($condition[1] instanceof QueryBuilder) {
-                        $operator = '=';
+                        $operator = 'IN';
                         $value = '('.$condition[1]->text().')';
                         $values = $condition[1]->getValues($values);
                     } elseif ($condition[1] instanceof self) {
                         $operator = '=';
                         $value = $condition[1]->text();
                         $values = $condition[1]->getValues($values);
+                    } elseif ($condition[1] === null) {
+                        $operator = 'IS';
+                        $value = 'NULL';
                     } else {
                         $operator = '=';
                         if (is_array($condition[1]) && $operator == '=') {
@@ -850,7 +855,7 @@ class Sql
                         }
                         $value = self::quoteValue($key, $condition[1], $values);
                     }
-                } elseif (isset($condition[2])) {
+                } elseif ($c == 3) {
                     if ($condition[2] instanceof QueryBuilder) {
                         $operator = trim($condition[1]);
                         $value = '('.$condition[2]->text().')';
@@ -859,6 +864,14 @@ class Sql
                         $operator = trim($condition[1]);
                         $value = $condition[2]->text();
                         $values = $condition[2]->getValues($values);
+                    } elseif ($condition[2] === null) {
+                        $operator = trim($condition[1]);
+                        if ($operator == '=') {
+                            $operator = 'IS';
+                        } elseif ($operator == '!=') {
+                            $operator = 'IS NOT';
+                        }
+                        $value = 'NULL';
                     } else {
                         $operator = trim($condition[1]);
                         if (is_array($condition[2]) && $operator == '=') {

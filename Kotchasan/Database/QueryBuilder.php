@@ -795,6 +795,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @assert where(Sql::ISNULL('U.id'))->text() [==] " WHERE U.`id` IS NULL"
      * @assert where(array(array('create_date', 'A'), Sql::BETWEEN('id', 'ทดสอบ', 'ทดสอบ')))->text() [==] " WHERE `create_date` = 'A' AND `id` BETWEEN 'ทดสอบ' AND 'ทดสอบ'"
      * @assert where(array(array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1)), array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1))), 'OR')->text() [==] " WHERE `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1"
+     * @assert where(array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))->text() [==] " WHERE `username` IS NULL AND `username` IS NULL AND `username` IS NOT NULL"
      *
      * @param mixed  $condition query string หรือ array
      * @param string $oprator   defaul AND

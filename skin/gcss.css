@@ -1657,9 +1657,10 @@ form .comment {
 }
 .radiogroups label,
 .checkboxgroups label {
-  padding: 0.31em 1em 0.3em 0;
+  padding: 0 1em 0 0;
   cursor: pointer;
   float: left;
+  line-height: 2.175em;
 }
 .radiogroups.g-input.groupsbutton > label,
 .checkboxgroups.g-input.groupsbutton > label {
@@ -3586,6 +3587,12 @@ th[scope="rowgroup"],
   position: relative;
   padding-bottom: 0 !important;
   vertical-align: middle;
+}
+.table_nav label {
+  display: inline-block;
+}
+.table_nav select {
+  max-width: 10rem;
 }
 .table_nav > div > fieldset:not(.search) {
   background-color: inherit;

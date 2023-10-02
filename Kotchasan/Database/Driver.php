@@ -169,7 +169,7 @@ abstract class Driver extends Query
      */
     public function databaseExists($database)
     {
-        $search = $this->doCustomQuery("SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='$database'");
+        $search = $this->doCustomQuery("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='$database'");
         return $search && count($search) == 1;
     }
 
