@@ -32,7 +32,7 @@ class QueryBuilderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert where(array('U.id', 1))->andWhere(array())->text() [==] " WHERE U.`id` = 1".
+     * Generated from @assert where(array('U.id', 1))->andWhere([])->text() [==] " WHERE U.`id` = 1".
      *
      * @covers Kotchasan\Database\QueryBuilder::andWhere
      */
@@ -41,7 +41,7 @@ class QueryBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             " WHERE U.`id` = 1",
-            $this->object->where(array('U.id', 1))->andWhere(array())->text()
+            $this->object->where(array('U.id', 1))->andWhere([])->text()
         );
     }
 
@@ -368,7 +368,7 @@ class QueryBuilderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert where(array('U.id', 1))->orWhere(array())->text() [==] " WHERE U.`id` = 1".
+     * Generated from @assert where(array('U.id', 1))->orWhere([])->text() [==] " WHERE U.`id` = 1".
      *
      * @covers Kotchasan\Database\QueryBuilder::orWhere
      */
@@ -377,7 +377,7 @@ class QueryBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             " WHERE U.`id` = 1",
-            $this->object->where(array('U.id', 1))->orWhere(array())->text()
+            $this->object->where(array('U.id', 1))->orWhere([])->text()
         );
     }
 
@@ -942,7 +942,7 @@ class QueryBuilderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert where(array())->text() [==] "".
+     * Generated from @assert where([])->text() [==] "".
      *
      * @covers Kotchasan\Database\QueryBuilder::where
      */
@@ -951,7 +951,7 @@ class QueryBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             "",
-            $this->object->where(array())->text()
+            $this->object->where([])->text()
         );
     }
 

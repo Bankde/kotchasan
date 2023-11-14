@@ -30,7 +30,7 @@ function GetFolders($resourceType, $currentFolder)
     // Map the virtual path to the local server path.
     $sServerDir = ServerMapFolder($resourceType, $currentFolder, 'GetFolders');
     // Array that will hold the folders names.
-    $aFolders = array();
+    $aFolders = [];
     $oCurrentFolder = @opendir($sServerDir);
     if ($oCurrentFolder !== false) {
         while ($sFile = readdir($oCurrentFolder)) {
@@ -58,8 +58,8 @@ function GetFoldersAndFiles($resourceType, $currentFolder)
     // Map the virtual path to the local server path.
     $sServerDir = ServerMapFolder($resourceType, $currentFolder, 'GetFoldersAndFiles');
     // Arrays that will hold the folders and files names.
-    $aFolders = array();
-    $aFiles = array();
+    $aFolders = [];
+    $aFiles = [];
     $oCurrentFolder = @opendir($sServerDir);
     if ($oCurrentFolder !== false) {
         while ($sFile = readdir($oCurrentFolder)) {

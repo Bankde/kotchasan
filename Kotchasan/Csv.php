@@ -48,7 +48,7 @@ class Csv
     {
         $obj = new static;
         $obj->columns = $columns;
-        $obj->datas = array();
+        $obj->datas = [];
         $obj->charset = strtoupper($charset);
         $obj->keys = $keys;
         $obj->read($csv, array($obj, 'importDatas'), array_keys($columns));
@@ -69,7 +69,7 @@ class Csv
      */
     public static function read($file, $onRow, $headers = null, $charset = 'UTF-8')
     {
-        $columns = array();
+        $columns = [];
         $f = @fopen($file, 'r');
         if ($f) {
             // Convert charset to uppercase
@@ -101,7 +101,7 @@ class Csv
                     }
                     $columns = $data;
                 } else {
-                    $items = array();
+                    $items = [];
                     foreach ($data as $k => $v) {
                         if (isset($columns[$k])) {
                             if ($charset == 'UTF-8') {
@@ -212,7 +212,7 @@ class Csv
      */
     private function importDatas($data)
     {
-        $save = array();
+        $save = [];
         foreach ($this->columns as $key => $type) {
             $save[$key] = null;
             if (isset($data[$key])) {

@@ -120,7 +120,7 @@ class Template
     {
         $obj = new static;
         $obj->skin = $html;
-        $obj->items = array();
+        $obj->items = [];
         $obj->num = -1;
         return $obj;
     }

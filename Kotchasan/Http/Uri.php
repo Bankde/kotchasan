@@ -110,7 +110,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      */
     public function createBackUri($query_string)
     {
-        $query_str = array();
+        $query_str = [];
         foreach ($this->parseQueryParams($this->query) as $key => $value) {
             $key = ltrim($key, '_');
             if (key_exists($key, $query_string) && $query_string[$key] === null) {
@@ -235,7 +235,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @return string The generated URL with the query string.
      */
-    public function getBack($url, $query_string = array())
+    public function getBack($url, $query_string = [])
     {
         return $this->createBack($url, $_GET, $query_string);
     }
@@ -352,7 +352,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      */
     public function paramsToQuery($params, $encode)
     {
-        $query_str = array();
+        $query_str = [];
         foreach ($params as $key => $value) {
             if (preg_match('/^[a-zA-Z0-9_\-\[\]]+$/', $key)) {
                 if ($value === null) {
@@ -375,7 +375,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     public function parseQueryParams($query = null)
     {
         $query = $query === null ? $this->query : $query;
-        $result = array();
+        $result = [];
         if (!empty($query)) {
             foreach (explode('&', str_replace('&amp;', '&', $query)) as $item) {
                 if (preg_match('/^([a-zA-Z0-9_\-\[\]]+)(=(.*))?$/', $item, $match)) {
@@ -401,7 +401,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      *
      * @return string The generated URL with query string.
      */
-    public function postBack($url, $query_string = array(), $encode = false)
+    public function postBack($url, $query_string = [], $encode = false)
     {
         return $this->createBack($url, $_POST, $query_string, $encode);
     }
@@ -450,7 +450,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      */
     public function withParams($params, $encode = false)
     {
-        $query_str = array();
+        $query_str = [];
         foreach ($this->parseQueryParams($this->query) as $key => $value) {
             $query_str[$key] = $value;
         }
@@ -541,7 +541,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
     public function withoutQuery($query)
     {
         $clone = clone $this;
-        $queries = array();
+        $queries = [];
         foreach (explode('&', $clone->query) as $item) {
             $queries[$item] = $item;
         }
@@ -609,7 +609,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
             $query_string['time'] = time();
         }
 
-        $query_str = array();
+        $query_str = [];
         foreach ($query_string as $key => $value) {
             if ($value !== null) {
                 $query_str[$key] = $value;

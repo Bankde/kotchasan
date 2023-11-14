@@ -20,7 +20,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     /**
      * @var array
      */
-    private $attributes = array();
+    private $attributes = [];
 
     /**
      * $_COOKIE
@@ -110,8 +110,8 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      */
     public function getAcceptableLanguages()
     {
-        $acceptLanguages = empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? array() : explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        $matches = array();
+        $acceptLanguages = empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? [] : explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        $matches = [];
         if (!empty($acceptLanguages)) {
             foreach ($acceptLanguages as $item) {
                 $item = array_map('trim', explode(';', $item));
@@ -613,7 +613,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      */
     public static function filterRequestKey($source)
     {
-        $result = array();
+        $result = [];
         foreach ($source as $key => $values) {
             if (preg_match('/^[a-zA-Z0-9\[\]_\-]+/', $key)) {
                 if (is_array($values)) {

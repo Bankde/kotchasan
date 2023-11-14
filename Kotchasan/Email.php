@@ -57,7 +57,7 @@ class Email extends \Kotchasan\KBase
     public static function send($mailto, $replyto, $subject, $msg, $cc = '', $bcc = '')
     {
         $obj = new static;
-        $obj->error = array();
+        $obj->error = [];
 
         $charset = empty(self::$cfg->email_charset) ? 'utf-8' : strtolower(self::$cfg->email_charset);
 

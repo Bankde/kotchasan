@@ -122,28 +122,28 @@ $config['AllowedExtensions']['File'] = array(
     '7z', 'aiff', 'asf', 'avi', 'bmp', 'csv', 'doc', 'fla', 'flv', 'gif', 'gz', 'gzip', 'jpeg', 'jpg', 'mid', 'mov', 'mp3', 'mp4', 'mpc', 'mpeg', 'mpg', 'ods', 'odt', 'pdf', 'png', 'ppt', 'pxd', 'qt', 'ram', 'rar', 'rm', 'rmi', 'rmvb', 'rtf', 'sdc', 'sitd', 'swf',
     'sxc', 'sxw', 'tar', 'tgz', 'tif', 'tiff', 'txt', 'vsd', 'wav', 'wma', 'wmv', 'xls', 'xml', 'zip',
 );
-$config['DeniedExtensions']['File'] = array();
+$config['DeniedExtensions']['File'] = [];
 $config['FileTypesPath']['File'] = $config['UserFilesPath'].'file/';
 $config['FileTypesAbsolutePath']['File'] = ($config['UserFilesAbsolutePath'] == '') ? '' : $config['UserFilesAbsolutePath'].'file/';
 $config['QuickUploadPath']['File'] = $config['UserFilesPath'].'file/';
 $config['QuickUploadAbsolutePath']['File'] = $config['UserFilesAbsolutePath'].'file/';
 // รูปภาพอัปโหลด
 $config['AllowedExtensions']['Image'] = array('gif', 'jpeg', 'jpg', 'png');
-$config['DeniedExtensions']['Image'] = array();
+$config['DeniedExtensions']['Image'] = [];
 $config['FileTypesPath']['Image'] = $config['UserFilesPath'].'image/';
 $config['FileTypesAbsolutePath']['Image'] = ($config['UserFilesAbsolutePath'] == '') ? '' : $config['UserFilesAbsolutePath'].'image/';
 $config['QuickUploadPath']['Image'] = $config['UserFilesPath'].'image/';
 $config['QuickUploadAbsolutePath']['Image'] = $config['UserFilesAbsolutePath'].'image/';
 // แฟลชอัปโหลด
 $config['AllowedExtensions']['Flash'] = array('swf', 'flv');
-$config['DeniedExtensions']['Flash'] = array();
+$config['DeniedExtensions']['Flash'] = [];
 $config['FileTypesPath']['Flash'] = $config['UserFilesPath'].'flash/';
 $config['FileTypesAbsolutePath']['Flash'] = ($config['UserFilesAbsolutePath'] == '') ? '' : $config['UserFilesAbsolutePath'].'flash/';
 $config['QuickUploadPath']['Flash'] = $config['UserFilesPath'].'flash/';
 $config['QuickUploadAbsolutePath']['Flash'] = $config['UserFilesAbsolutePath'].'flash/';
 // มีเดียอัปโหลด
 $config['AllowedExtensions']['Media'] = array('aiff', 'asf', 'avi', 'bmp', 'fla', 'flv', 'gif', 'jpeg', 'jpg', 'mid', 'mov', 'mp3', 'mp4', 'mpc', 'mpeg', 'mpg', 'png', 'qt', 'ram', 'rm', 'rmi', 'rmvb', 'swf', 'tif', 'tiff', 'wav', 'wma', 'wmv');
-$config['DeniedExtensions']['Media'] = array();
+$config['DeniedExtensions']['Media'] = [];
 $config['FileTypesPath']['Media'] = $config['UserFilesPath'].'media/';
 $config['FileTypesAbsolutePath']['Media'] = ($config['UserFilesAbsolutePath'] == '') ? '' : $config['UserFilesAbsolutePath'].'media/';
 $config['QuickUploadPath']['Media'] = $config['UserFilesPath'].'media/';

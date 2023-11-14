@@ -1389,7 +1389,7 @@ class SqlTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array()) [throws] InvalidArgumentException.
+     * Generated from @assert ([]) [throws] InvalidArgumentException.
      *
      * @covers Kotchasan\Database\Sql::fieldName
      * @expectedException InvalidArgumentException
@@ -1397,7 +1397,7 @@ class SqlTest extends \PHPUnit_Framework_TestCase
     public function testFieldName23()
     {
 
-        \Kotchasan\Database\Sql::fieldName(array());
+        \Kotchasan\Database\Sql::fieldName([]);
     }
 
     /**

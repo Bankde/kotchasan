@@ -23,35 +23,35 @@ class View extends \Kotchasan\KBase
      *
      * @var array
      */
-    protected $afterContents = array();
+    protected $afterContents = [];
 
     /**
      * Array to store the contents of the website.
      *
      * @var array
      */
-    protected $contents = array();
+    protected $contents = [];
 
     /**
      * Array to store the headers.
      *
      * @var array
      */
-    protected $headers = array();
+    protected $headers = [];
 
     /**
      * Array to store meta tags.
      *
      * @var array
      */
-    protected $metas = array();
+    protected $metas = [];
 
     /**
      * Array to store JavaScript code to be inserted in the head section.
      *
      * @var array
      */
-    protected $scripts = array();
+    protected $scripts = [];
 
     /**
      * Creates an instance of the View class.
@@ -108,7 +108,7 @@ class View extends \Kotchasan\KBase
     public static function back($f)
     {
         $uri = self::$request->getUri();
-        $queryUrl = array();
+        $queryUrl = [];
         foreach (explode('&', $uri->getQuery()) as $item) {
             if (preg_match('/^(_)?(.*)=([^$]{1,})$/', $item, $match)) {
                 if ($match[2] == 'action' && ($match[3] == 'login' || $match[3] == 'logout')) {

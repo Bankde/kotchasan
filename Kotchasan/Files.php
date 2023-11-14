@@ -28,7 +28,7 @@ class Files implements \Iterator
     /**
      * @var array
      */
-    private $datas = array();
+    private $datas = [];
 
     /**
      * Initialize the class.
@@ -36,7 +36,7 @@ class Files implements \Iterator
     public function __construct()
     {
         $this->position = 0;
-        $this->datas = array();
+        $this->datas = [];
     }
 
     /**

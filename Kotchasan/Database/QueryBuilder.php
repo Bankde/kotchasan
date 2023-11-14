@@ -43,13 +43,13 @@ class QueryBuilder extends \Kotchasan\Database\Query
     public function __construct(Driver $db)
     {
         $this->db = $db;
-        $this->values = array();
+        $this->values = [];
     }
 
     /**
      * ฟังก์ชั่นสร้างคำสั่ง WHERE ถ้ามีข้อมูล Where ก่อนหน้าจะ AND กับข้อมูลก่อนหน้า
      *
-     * @assert where(array('U.id', 1))->andWhere(array())->text() [==] " WHERE U.`id` = 1"
+     * @assert where(array('U.id', 1))->andWhere([])->text() [==] " WHERE U.`id` = 1"
      * @assert where(array('U.id', 1))->andWhere(array('U.id', 2))->text() [==] " WHERE (U.`id` = 1) AND (U.`id` = 2)"
      * @assert where(array('U.id', 1))->andWhere(array(Sql::BETWEEN('id', 0, 1), Sql::BETWEEN('id', 0, 1)), 'OR')->text() [==] " WHERE (U.`id` = 1) AND (`id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1)"
      *
@@ -191,7 +191,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
             $ret = $ret[0];
         }
         if (!isset($this->sqls['exists'])) {
-            $this->sqls['exists'] = array();
+            $this->sqls['exists'] = [];
         }
         $this->sqls['exists'][] = 'EXISTS (SELECT * FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
         return $this;
@@ -272,7 +272,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      */
     public function from($tables)
     {
-        $qs = array();
+        $qs = [];
         foreach (func_get_args() as $table) {
             $qs[] = $this->quoteTableName($table);
         }
@@ -289,7 +289,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @return array
      */
-    public function getValues($values = array())
+    public function getValues($values = [])
     {
         if (empty($values)) {
             return $this->values;
@@ -314,7 +314,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     public function groupBy($fields)
     {
         $args = is_array($fields) ? $fields : func_get_args();
-        $sqls = array();
+        $sqls = [];
         foreach ($args as $item) {
             if ($item instanceof Sql) {
                 $sqls[] = $item->text();
@@ -366,7 +366,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @return static
      */
-    public function insert($table, $datas, $fields = array())
+    public function insert($table, $datas, $fields = [])
     {
         $this->sqls['function'] = 'query';
         $this->sqls['insert'] = $this->getFullTableName($table);
@@ -401,7 +401,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     public function insertOrUpdate($table, $datas)
     {
         $this->insert($table, $datas);
-        $this->sqls['orupdate'] = array();
+        $this->sqls['orupdate'] = [];
         foreach ($datas as $key => $value) {
             $this->sqls['orupdate'][] = "`$key`=VALUES(`$key`)";
         }
@@ -478,7 +478,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
             $ret = $ret[0];
         }
         if (!isset($this->sqls['exists'])) {
-            $this->sqls['exists'] = array();
+            $this->sqls['exists'] = [];
         }
         $this->sqls['exists'][] = 'NOT EXISTS (SELECT * FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
         return $this;
@@ -487,7 +487,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * ฟังก์ชั่นสร้างคำสั่ง WHERE ถ้ามีข้อมูล Where ก่อนหน้าจะ OR กับข้อมูลก่อนหน้า
      *
-     * @assert where(array('U.id', 1))->orWhere(array())->text() [==] " WHERE U.`id` = 1"
+     * @assert where(array('U.id', 1))->orWhere([])->text() [==] " WHERE U.`id` = 1"
      * @assert where(array('U.id', 1))->orWhere(array('U.id', 2))->text() [==] " WHERE (U.`id` = 1) OR (U.`id` = 2)"
      * @assert where(array('U.id', 1))->orWhere(array(Sql::BETWEEN('id', 0, 1), Sql::BETWEEN('id', 0, 1)), 'OR')->text() [==] " WHERE (U.`id` = 1) OR (`id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1)"
      *
@@ -557,7 +557,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      */
     public function select($fields = '*')
     {
-        $qs = array();
+        $qs = [];
         if ($fields == '*') {
             $qs[] = '*';
         } else {
@@ -588,7 +588,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     public function selectCount($fileds = '* count')
     {
         $args = func_num_args() == 0 ? array($fileds) : func_get_args();
-        $sqls = array();
+        $sqls = [];
         foreach ($args as $item) {
             if (preg_match('/^([a-z0-9_\*]+)([\s]+([a-z0-9_]+))?$/', trim($item), $match)) {
                 $sqls[] = 'COUNT('.($match[1] == '*' ? '*' : '`'.$match[1].'`').')'.(isset($match[3]) ? ' AS `'.$match[3].'`' : '');
@@ -694,7 +694,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      */
     public function union($querys)
     {
-        $this->sqls['union'] = array();
+        $this->sqls['union'] = [];
         $querys = is_array($querys) ? $querys : func_get_args();
         foreach ($querys as $item) {
             if ($item instanceof QueryBuilder || $item instanceof Sql) {
@@ -721,7 +721,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      */
     public function unionAll($querys)
     {
-        $this->sqls['unionAll'] = array();
+        $this->sqls['unionAll'] = [];
         $querys = is_array($querys) ? $querys : func_get_args();
         foreach ($querys as $item) {
             if ($item instanceof QueryBuilder || $item instanceof Sql) {
@@ -748,7 +748,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     public function update($table)
     {
         $this->sqls['function'] = 'query';
-        $updates = array();
+        $updates = [];
         foreach (func_get_args() as $tbl) {
             $updates[] = $this->quoteTableName($tbl);
         }
@@ -772,7 +772,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * ฟังก์ชั่นสร้างคำสั่ง WHERE
      *
-     * @assert where(array())->text() [==] ""
+     * @assert where([])->text() [==] ""
      * @assert where(1)->text() [==] " WHERE `id` = 1"
      * @assert where(array('id', 1))->text() [==] " WHERE `id` = 1"
      * @assert where(array('id', '1'))->text() [==] " WHERE `id` = '1'"

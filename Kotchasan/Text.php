@@ -236,8 +236,8 @@ class Text
     public static function replace($source, $replace)
     {
         if (!empty($replace)) {
-            $keys = array();
-            $values = array();
+            $keys = [];
+            $values = [];
 
             // Extract keys and values from the replace array
             ArrayTool::extract($replace, $keys, $values);

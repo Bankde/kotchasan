@@ -52,7 +52,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $f = fopen('temp/test/index.php', 'w');
         fclose($f);
         $this->object->copyDirectory('temp/test/', 'temp/');
-        $result = array();
+        $result = [];
         $this->object->listFiles('temp/test/', $result);
         $this->object->removeDirectory('temp/');
         $this->assertEquals(

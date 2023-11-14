@@ -22,7 +22,7 @@ class DOMNode
      *
      * @var array
      */
-    public $attributes = array();
+    public $attributes = [];
 
     /**
      * List of child nodes.
@@ -97,7 +97,7 @@ class DOMNode
             $this->attributes[strtoupper($key)] = $value;
         }
 
-        $this->childNodes = array();
+        $this->childNodes = [];
     }
 
     /**

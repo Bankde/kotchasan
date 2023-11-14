@@ -30,7 +30,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
   }
 
   /**
-   * Generated from @assert ('/print.php/css/view/index', array()) [==] array( '_mvc' => 'view', '_dir' => 'index', 'module' => 'css').
+   * Generated from @assert ('/print.php/css/view/index', []) [==] array( '_mvc' => 'view', '_dir' => 'index', 'module' => 'css').
    *
    * @covers Kotchasan\Router::parseRoutes
    */
@@ -38,12 +38,12 @@ class RouterTest extends \PHPUnit_Framework_TestCase
   {
 
     $this->assertEquals(
-      array('_mvc' => 'view', '_dir' => 'index', 'module' => 'css'), $this->object->parseRoutes('/print.php/css/view/index', array())
+      array('_mvc' => 'view', '_dir' => 'index', 'module' => 'css'), $this->object->parseRoutes('/print.php/css/view/index', [])
     );
   }
 
   /**
-   * Generated from @assert ('/index/model/updateprofile.php', array()) [==] array( '_mvc' => 'model', '_dir' => 'updateprofile', 'module' => 'index').
+   * Generated from @assert ('/index/model/updateprofile.php', []) [==] array( '_mvc' => 'model', '_dir' => 'updateprofile', 'module' => 'index').
    *
    * @covers Kotchasan\Router::parseRoutes
    */
@@ -51,12 +51,12 @@ class RouterTest extends \PHPUnit_Framework_TestCase
   {
 
     $this->assertEquals(
-      array('_mvc' => 'model', '_dir' => 'updateprofile', 'module' => 'index'), $this->object->parseRoutes('/index/model/updateprofile.php', array())
+      array('_mvc' => 'model', '_dir' => 'updateprofile', 'module' => 'index'), $this->object->parseRoutes('/index/model/updateprofile.php', [])
     );
   }
 
   /**
-   * Generated from @assert ('/index.php/alias/model/admin/settings/save', array()) [==] array('module' => 'alias', '_mvc' => 'model', '_dir' => 'admin/settings', '_method' => 'save').
+   * Generated from @assert ('/index.php/alias/model/admin/settings/save', []) [==] array('module' => 'alias', '_mvc' => 'model', '_dir' => 'admin/settings', '_method' => 'save').
    *
    * @covers Kotchasan\Router::parseRoutes
    */
@@ -64,12 +64,12 @@ class RouterTest extends \PHPUnit_Framework_TestCase
   {
 
     $this->assertEquals(
-      array('module' => 'alias', '_mvc' => 'model', '_dir' => 'admin/settings', '_method' => 'save'), $this->object->parseRoutes('/index.php/alias/model/admin/settings/save', array())
+      array('module' => 'alias', '_mvc' => 'model', '_dir' => 'admin/settings', '_method' => 'save'), $this->object->parseRoutes('/index.php/alias/model/admin/settings/save', [])
     );
   }
 
   /**
-   * Generated from @assert ('/css/view/index.php', array()) [==] array('module' => 'css', '_mvc' => 'view', '_dir' => 'index').
+   * Generated from @assert ('/css/view/index.php', []) [==] array('module' => 'css', '_mvc' => 'view', '_dir' => 'index').
    *
    * @covers Kotchasan\Router::parseRoutes
    */
@@ -77,12 +77,12 @@ class RouterTest extends \PHPUnit_Framework_TestCase
   {
 
     $this->assertEquals(
-      array('module' => 'css', '_mvc' => 'view', '_dir' => 'index'), $this->object->parseRoutes('/css/view/index.php', array())
+      array('module' => 'css', '_mvc' => 'view', '_dir' => 'index'), $this->object->parseRoutes('/css/view/index.php', [])
     );
   }
 
   /**
-   * Generated from @assert ('/module/ทดสอบ.html', array()) [==] array('alias' => 'ทดสอบ', 'module' => 'module').
+   * Generated from @assert ('/module/ทดสอบ.html', []) [==] array('alias' => 'ทดสอบ', 'module' => 'module').
    *
    * @covers Kotchasan\Router::parseRoutes
    */
@@ -90,12 +90,12 @@ class RouterTest extends \PHPUnit_Framework_TestCase
   {
 
     $this->assertEquals(
-      array('alias' => 'ทดสอบ', 'module' => 'module'), $this->object->parseRoutes('/module/ทดสอบ.html', array())
+      array('alias' => 'ทดสอบ', 'module' => 'module'), $this->object->parseRoutes('/module/ทดสอบ.html', [])
     );
   }
 
   /**
-   * Generated from @assert ('/module.html', array()) [==] array('module' => 'module').
+   * Generated from @assert ('/module.html', []) [==] array('module' => 'module').
    *
    * @covers Kotchasan\Router::parseRoutes
    */
@@ -103,12 +103,12 @@ class RouterTest extends \PHPUnit_Framework_TestCase
   {
 
     $this->assertEquals(
-      array('module' => 'module'), $this->object->parseRoutes('/module.html', array())
+      array('module' => 'module'), $this->object->parseRoutes('/module.html', [])
     );
   }
 
   /**
-   * Generated from @assert ('/ทดสอบ.html', array()) [==] array('alias' => 'ทดสอบ').
+   * Generated from @assert ('/ทดสอบ.html', []) [==] array('alias' => 'ทดสอบ').
    *
    * @covers Kotchasan\Router::parseRoutes
    */
@@ -116,7 +116,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
   {
 
     $this->assertEquals(
-      array('alias' => 'ทดสอบ'), $this->object->parseRoutes('/ทดสอบ.html', array())
+      array('alias' => 'ทดสอบ'), $this->object->parseRoutes('/ทดสอบ.html', [])
     );
   }
 

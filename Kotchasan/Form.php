@@ -65,7 +65,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function button($attributes = array())
+    public static function button($attributes = [])
     {
         $obj = new static;
         if (isset($attributes['tag']) && $attributes['tag'] == 'input') {
@@ -92,7 +92,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function checkbox($attributes = array())
+    public static function checkbox($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -112,7 +112,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function color($attributes = array())
+    public static function color($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -133,7 +133,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function currency($attributes = array())
+    public static function currency($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -154,7 +154,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function date($attributes = array())
+    public static function date($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -174,7 +174,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function datetime($attributes = array())
+    public static function datetime($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -194,7 +194,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function email($attributes = array())
+    public static function email($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -214,7 +214,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function file($attributes = array())
+    public static function file($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -231,7 +231,7 @@ class Form extends \Kotchasan\KBase
      */
     public static function get2Input()
     {
-        $hiddens = array();
+        $hiddens = [];
 
         // Retrieve input values from query parameters
         foreach (self::$request->getQueryParams() as $key => $value) {
@@ -262,7 +262,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function hidden($attributes = array())
+    public static function hidden($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -282,7 +282,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function number($attributes = array())
+    public static function number($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -302,7 +302,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function integer($attributes = array())
+    public static function integer($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -322,7 +322,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function password($attributes = array())
+    public static function password($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -344,7 +344,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function radio($attributes = array())
+    public static function radio($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -364,7 +364,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function range($attributes = array())
+    public static function range($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -394,9 +394,9 @@ class Form extends \Kotchasan\KBase
      */
     public function render()
     {
-        $prop = array();
-        $event = array();
-        $class = array();
+        $prop = [];
+        $event = [];
+        $class = [];
         foreach ($this->attributes as $k => $v) {
             switch ($k) {
                 case 'itemClass':
@@ -459,7 +459,7 @@ class Form extends \Kotchasan\KBase
         if (isset(Html::$form)) {
             if ($id != '' && Html::$form->gform) {
                 if (isset($validator)) {
-                    $js = array();
+                    $js = [];
                     $js[] = '"'.$id.'"';
                     $js[] = '"'.$validator[0].'"';
                     $js[] = $validator[1];
@@ -483,12 +483,12 @@ class Form extends \Kotchasan\KBase
         if ($this->tag == 'select') {
             unset($prop['type']);
             if (isset($multiple)) {
-                $value = isset($value) ? $value : array();
+                $value = isset($value) ? $value : [];
             } else {
                 $value = isset($value) ? $value : null;
             }
             if (isset($options) && is_array($options)) {
-                $datas = array();
+                $datas = [];
                 foreach ($options as $k => $v) {
                     if (is_array($value)) {
                         $sel = in_array($k, $value) ? ' selected' : '';
@@ -503,7 +503,7 @@ class Form extends \Kotchasan\KBase
                 }
                 $value = implode('', $datas);
             } elseif (isset($optgroup) && is_array($optgroup)) {
-                $datas = array();
+                $datas = [];
                 foreach ($optgroup as $group_label => $options) {
                     $datas[] = '<optgroup label="'.$group_label.'">';
                     foreach ($options as $k => $v) {
@@ -691,7 +691,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function reset($attributes = array())
+    public static function reset($attributes = [])
     {
         $obj = new static;
         if (isset($attributes['tag']) && $attributes['tag'] == 'input') {
@@ -722,7 +722,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function select($attributes = array())
+    public static function select($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'select';
@@ -741,7 +741,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function submit($attributes = array())
+    public static function submit($attributes = [])
     {
         $obj = new static;
         if (isset($attributes['tag']) && $attributes['tag'] == 'input') {
@@ -772,7 +772,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function tel($attributes = array())
+    public static function tel($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -792,7 +792,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function text($attributes = array())
+    public static function text($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -819,7 +819,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function textarea($attributes = array())
+    public static function textarea($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'textarea';
@@ -838,7 +838,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function time($attributes = array())
+    public static function time($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';
@@ -858,7 +858,7 @@ class Form extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function url($attributes = array())
+    public static function url($attributes = [])
     {
         $obj = new static;
         $obj->tag = 'input';

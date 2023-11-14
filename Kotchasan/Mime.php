@@ -33,7 +33,7 @@ class Mime
     {
         $mime_types = self::getMimeTypes();
         if (is_array($exts)) {
-            $result = array();
+            $result = [];
             foreach ($exts as $ext) {
                 if (isset($mime_types[$ext])) {
                     $result[$ext] = $mime_types[$ext];
@@ -83,7 +83,7 @@ class Mime
     public static function getAccept($typies)
     {
         $mime_types = self::getMimeTypes();
-        $accept = array();
+        $accept = [];
         foreach ($typies as $ext) {
             if (isset($mime_types[$ext])) {
                 $accept[] = $mime_types[$ext];

@@ -22,7 +22,7 @@ final class Database extends KBase
      *
      * @var array
      */
-    private static $instances = array();
+    private static $instances = [];
 
     /**
      * Create Database Connection.
@@ -40,7 +40,7 @@ final class Database extends KBase
                 'dbdriver' => 'mysql',
                 'hostname' => 'localhost'
             ),
-            'tables' => (object) array()
+            'tables' => (object) []
         );
 
         // Check if $name is a string

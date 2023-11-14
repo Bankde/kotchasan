@@ -42,7 +42,7 @@ interface CacheItemPoolInterface
      *
      * @return array|\Traversable
      */
-    public function getItems(array $keys = array());
+    public function getItems(array $keys = []);
 
     /**
      * Confirms if the cache contains specified cache item.

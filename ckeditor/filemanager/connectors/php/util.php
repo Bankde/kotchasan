@@ -81,7 +81,7 @@ function IsHtmlExtension($ext, $htmlExtensions)
     if (!$htmlExtensions || !is_array($htmlExtensions)) {
         return false;
     }
-    $lcaseHtmlExtensions = array();
+    $lcaseHtmlExtensions = [];
     foreach ($htmlExtensions as $key => $val) {
         $lcaseHtmlExtensions[$key] = strtolower($val);
     }

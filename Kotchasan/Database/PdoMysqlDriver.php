@@ -118,7 +118,7 @@ class PdoMysqlDriver extends Driver
      */
     public function insert($table_name, $save)
     {
-        $params = array();
+        $params = [];
         $sql = $this->makeInsert($table_name, $save, $params);
         try {
             $query = $this->connection->prepare($sql);
@@ -142,8 +142,8 @@ class PdoMysqlDriver extends Driver
      */
     public function insertOrUpdate($table_name, $save)
     {
-        $updates = array();
-        $params = array();
+        $updates = [];
+        $params = [];
 
         foreach ($save as $key => $value) {
             $updates[] = '`'.$key.'`=:U'.$key;
@@ -282,9 +282,9 @@ class PdoMysqlDriver extends Driver
      *
      * @return array The resulting data in array format. Returns an empty array if unsuccessful.
      */
-    public function select($table_name, $condition = array(), $sort = array(), $limit = 0)
+    public function select($table_name, $condition = [], $sort = [], $limit = 0)
     {
-        $values = array();
+        $values = [];
         $sql = 'SELECT * FROM '.$table_name;
 
         if (!empty($condition)) {
@@ -302,7 +302,7 @@ class PdoMysqlDriver extends Driver
             if (is_string($sort) && preg_match('/^([a-z0-9_]+)\s(asc|desc)$/i', trim($sort), $match)) {
                 $sql .= ' ORDER BY `'.$match[1].'`'.(empty($match[2]) ? '' : ' '.$match[2]);
             } elseif (is_array($sort)) {
-                $qs = array();
+                $qs = [];
 
                 foreach ($sort as $item) {
                     if (preg_match('/^([a-z0-9_]+)\s(asc|desc)$/i', trim($item), $match)) {
@@ -349,8 +349,8 @@ class PdoMysqlDriver extends Driver
      */
     public function update($table_name, $condition, $save)
     {
-        $sets = array();
-        $values = array();
+        $sets = [];
+        $values = [];
 
         foreach ($save as $key => $value) {
             if ($value instanceof QueryBuilder) {
@@ -388,7 +388,7 @@ class PdoMysqlDriver extends Driver
      *
      * @return array|bool Returns an array of records that match the condition on success, or false on failure.
      */
-    protected function doCustomQuery($sql, $values = array())
+    protected function doCustomQuery($sql, $values = [])
     {
         $action = $this->cache->getAction();
         if ($action) {
@@ -432,7 +432,7 @@ class PdoMysqlDriver extends Driver
      *
      * @return int|bool Returns the number of affected rows on success, or false on failure.
      */
-    protected function doQuery($sql, $values = array())
+    protected function doQuery($sql, $values = [])
     {
         try {
             if (empty($values)) {
@@ -460,8 +460,8 @@ class PdoMysqlDriver extends Driver
      */
     private function makeInsert($table_name, $save, &$params)
     {
-        $keys = array();
-        $values = array();
+        $keys = [];
+        $values = [];
         foreach ($save as $key => $value) {
             if ($value instanceof QueryBuilder) {
                 $keys[] = $key;

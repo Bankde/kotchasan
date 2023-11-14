@@ -45,10 +45,10 @@ class Accordion
      * @param array  $items  Initial items array (array(array('title1' => 'detail1'), array('title2' => 'detail2'))).
      * @param bool   $onetab true to allow opening only one tab at a time, false (default) to allow opening and closing tabs independently.
      */
-    public function __construct($id, $items = array(), $onetab = false)
+    public function __construct($id, $items = [], $onetab = false)
     {
         $this->id = $id;
-        $this->datas = empty($items) ? array() : $items;
+        $this->datas = empty($items) ? [] : $items;
         $this->type = $onetab ? 'radio' : 'checkbox';
     }
 

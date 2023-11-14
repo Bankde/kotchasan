@@ -211,7 +211,7 @@ function doShutdown()
 function debug($expression)
 {
     if (\Kotchasan::$debugger === null) {
-        \Kotchasan::$debugger = array();
+        \Kotchasan::$debugger = [];
         register_shutdown_function('doShutdown');
     }
     $debug = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);

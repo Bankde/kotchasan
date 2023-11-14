@@ -241,7 +241,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array()) [==] null.
+     * Generated from @assert ([]) [==] null.
      *
      * @covers Kotchasan\ArrayTool::getFirstKey
      */
@@ -250,7 +250,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             null,
-            \Kotchasan\ArrayTool::getFirstKey(array())
+            \Kotchasan\ArrayTool::getFirstKey([])
         );
     }
 
@@ -493,7 +493,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'one')), 'id', 'one') [==] array().
+     * Generated from @assert (array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'one')), 'id', 'one') [==] [].
      *
      * @covers Kotchasan\ArrayTool::search
      */
@@ -501,7 +501,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            array(),
+            [],
             \Kotchasan\ArrayTool::search(array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'one')), 'id', 'one')
         );
     }
@@ -521,7 +521,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), (object)array('id' => 3, 'name' => 'one')), 'id', 'one') [==] array().
+     * Generated from @assert (array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), (object)array('id' => 3, 'name' => 'one')), 'id', 'one') [==] [].
      *
      * @covers Kotchasan\ArrayTool::search
      */
@@ -529,7 +529,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            array(),
+            [],
             \Kotchasan\ArrayTool::search(array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), (object)array('id' => 3, 'name' => 'one')), 'id', 'one')
         );
     }
@@ -633,7 +633,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert ('') [==] array().
+     * Generated from @assert ('') [==] [].
      *
      * @covers Kotchasan\ArrayTool::unserialize
      */
@@ -641,7 +641,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            array(),
+            [],
             \Kotchasan\ArrayTool::unserialize('')
         );
     }
@@ -693,7 +693,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
      *
      * @covers Kotchasan\ArrayTool::in_array
      */
-    public function testIn_array()
+    public function testIn_[]
     {
 
         $this->assertTrue(
@@ -806,7 +806,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert (array(), array(3, 4)) [==] false.
+     * Generated from @assert ([], array(3, 4)) [==] false.
      *
      * @covers Kotchasan\ArrayTool::in_array
      */
@@ -814,12 +814,12 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertFalse(
-            \Kotchasan\ArrayTool::in_array(array(), array(3, 4))
+            \Kotchasan\ArrayTool::in_array([], array(3, 4))
         );
     }
 
     /**
-     * Generated from @assert (array(), array()) [==] false.
+     * Generated from @assert ([], []) [==] false.
      *
      * @covers Kotchasan\ArrayTool::in_array
      */
@@ -827,7 +827,7 @@ class ArrayToolTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertFalse(
-            \Kotchasan\ArrayTool::in_array(array(), array())
+            \Kotchasan\ArrayTool::in_array([], [])
         );
     }
 

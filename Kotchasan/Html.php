@@ -51,12 +51,12 @@ class Html extends \Kotchasan\KBase
     /**
      * Class constructor
      */
-    public function __construct($tag, $attributes = array())
+    public function __construct($tag, $attributes = [])
     {
         $this->tag = strtolower($tag);
         $this->attributes = $attributes;
-        $this->rows = array();
-        $this->javascript = array();
+        $this->rows = [];
+        $this->javascript = [];
     }
 
     /**
@@ -67,7 +67,7 @@ class Html extends \Kotchasan\KBase
      *
      * @return static
      */
-    public function add($tag, $attributes = array())
+    public function add($tag, $attributes = [])
     {
         $tag = strtolower($tag);
         if ($tag == 'groups' || $tag == 'groups-table') {
@@ -115,7 +115,7 @@ class Html extends \Kotchasan\KBase
      *
      * @return static
      */
-    public static function create($tag, $attributes = array())
+    public static function create($tag, $attributes = [])
     {
         if (method_exists(__CLASS__, $tag)) {
             $obj = self::$tag($attributes);
@@ -134,10 +134,10 @@ class Html extends \Kotchasan\KBase
      *
      * @return self The created fieldset element.
      */
-    public static function fieldset($attributes = array())
+    public static function fieldset($attributes = [])
     {
-        $prop = array();
-        $span = array();
+        $prop = [];
+        $span = [];
 
         foreach ($attributes as $key => $value) {
             if ($key == 'title') {
@@ -166,7 +166,7 @@ class Html extends \Kotchasan\KBase
      *
      * @return self The created form element.
      */
-    public static function form($attributes = array())
+    public static function form($attributes = [])
     {
         $ajax = false;
         $prop = array('method' => 'post');
@@ -308,7 +308,7 @@ class Html extends \Kotchasan\KBase
      */
     protected function renderAttributes()
     {
-        $attr = array();
+        $attr = [];
         foreach ($this->attributes as $key => $value) {
             // Exclude the 'innerHTML' attribute
             if ($key != 'innerHTML') {
@@ -391,8 +391,8 @@ class Html extends \Kotchasan\KBase
         $this->rows[] = $item;
 
         $obj = $item->add('div', array('class' => 'input-'.$tag));
-        $rows = array();
-        $comment = array();
+        $rows = [];
+        $comment = [];
 
         if (empty($attributes['id'])) {
             $id = '';
@@ -606,7 +606,7 @@ class Html extends \Kotchasan\KBase
 
         if (isset($attributes['submenus']) && is_array($attributes['submenus'])) {
             foreach ($attributes['submenus'] as $item) {
-                $prop = array();
+                $prop = [];
                 $text = '';
 
                 foreach ($item as $key => $value) {

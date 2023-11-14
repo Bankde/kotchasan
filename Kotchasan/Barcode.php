@@ -85,7 +85,7 @@ class Barcode
         $data = self::Barcode128($this->code);
         if ($data === '') {
             // Error
-            $this->datas = array();
+            $this->datas = [];
             $this->width = 1;
         } else {
             // Split to array (2D)

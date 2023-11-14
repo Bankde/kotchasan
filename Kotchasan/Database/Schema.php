@@ -30,7 +30,7 @@ class Schema
      *
      * @var array
      */
-    private $tables = array();
+    private $tables = [];
 
     /**
      * Create Schema Class
@@ -80,7 +80,7 @@ class Schema
             if (empty($columns)) {
                 throw new \InvalidArgumentException($this->db->getError());
             } else {
-                $datas = array();
+                $datas = [];
                 foreach ($columns as $column) {
                     $datas[$column['Field']] = $column;
                 }

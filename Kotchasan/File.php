@@ -68,7 +68,7 @@ class File
      * @param array  $result  Array to store the found files
      * @param array  $filter  (optional) File extensions to filter (lowercase). An empty array means all extensions.
      */
-    public static function listFiles($dir, &$result, $filter = array())
+    public static function listFiles($dir, &$result, $filter = [])
     {
         if (!is_dir($dir)) {
             return;

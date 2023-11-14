@@ -36,13 +36,13 @@ class Curl
      *
      * @var array
      */
-    protected $headers = array();
+    protected $headers = [];
     /**
      * CURLOPT parameters
      *
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Constructor
@@ -120,7 +120,7 @@ class Curl
      *
      * @return string
      */
-    public function get($url, $params = array())
+    public function get($url, $params = [])
     {
         $this->options[CURLOPT_CUSTOMREQUEST] = 'GET';
         $this->options[CURLOPT_HTTPGET] = true;
@@ -142,7 +142,7 @@ class Curl
      *
      * @return string
      */
-    public function head($url, $params = array())
+    public function head($url, $params = [])
     {
         $this->options[CURLOPT_CUSTOMREQUEST] = 'HEAD';
         $this->options[CURLOPT_NOBODY] = true;
@@ -200,7 +200,7 @@ class Curl
      *
      * @return string
      */
-    public function post($url, $params = array())
+    public function post($url, $params = [])
     {
         $this->options[CURLOPT_CUSTOMREQUEST] = 'POST';
         $this->options[CURLOPT_POST] = true;
@@ -222,7 +222,7 @@ class Curl
      *
      * @return string
      */
-    public function put($url, $params = array())
+    public function put($url, $params = [])
     {
         $this->options[CURLOPT_CUSTOMREQUEST] = 'PUT';
         if (!empty($params)) {
@@ -304,7 +304,7 @@ class Curl
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         if (!empty($this->headers)) {
-            $headers = array();
+            $headers = [];
             foreach ($this->headers as $key => $value) {
                 $headers[] = $key.': '.$value;
             }

@@ -36,7 +36,7 @@ final class Language extends \Kotchasan\KBase
      * Retrieves the language variable with the specified key.
      *
      * @assert ('YEAR_OFFSET') [==] 543
-     * @assert ('XYZ', array()) [==] array()
+     * @assert ('XYZ', []) [==] []
      * @assert ('DATE_LONG', null, 0) [==] 'อาทิตย์'
      * @assert ('DATE_LONG', null, 12) [==] 'DATE_LONG'
      * @assert ('not found', 'default') [==] 'default'
@@ -71,12 +71,12 @@ final class Language extends \Kotchasan\KBase
      *
      * @return array An array of language values.
      */
-    public static function getItems(array $keys = array())
+    public static function getItems(array $keys = [])
     {
         if (null === self::$languages) {
             new static;
         }
-        $result = array();
+        $result = [];
         foreach ($keys as $i => $key) {
             $result[is_int($i) ? $key : $i] = isset(self::$languages->{$key}) ? self::$languages->{$key} : $key;
         }
@@ -93,7 +93,7 @@ final class Language extends \Kotchasan\KBase
     public static function installed($type)
     {
         $language_folder = self::languageFolder();
-        $datas = array();
+        $datas = [];
         foreach (self::installedLanguage() as $lng) {
             if ($type == 'php') {
                 if (is_file($language_folder.$lng.'.php')) {
@@ -111,7 +111,7 @@ final class Language extends \Kotchasan\KBase
             }
         }
         // จัดกลุ่มภาษาตาม key
-        $languages = array();
+        $languages = [];
         foreach ($datas as $language => $values) {
             foreach ($values as $key => $value) {
                 $languages[$key][$language] = $value;
@@ -121,7 +121,7 @@ final class Language extends \Kotchasan\KBase
             }
         }
         // จัดกลุ่มภาษาตาม id
-        $datas = array();
+        $datas = [];
         $i = 0;
         foreach ($languages as $key => $row) {
             $datas[$i] = ArrayTool::replace(array('id' => $i, 'key' => $key), $row);
@@ -139,7 +139,7 @@ final class Language extends \Kotchasan\KBase
     {
         if (!isset(self::$installed_languages)) {
             $language_folder = self::languageFolder();
-            $files = array();
+            $files = [];
             File::listFiles($language_folder, $files);
             foreach ($files as $file) {
                 if (preg_match('/(.*\/([a-z]{2,2}))\.(php|js)$/', $file, $match)) {
@@ -285,7 +285,7 @@ final class Language extends \Kotchasan\KBase
      */
     public static function save($languages, $type)
     {
-        $datas = array();
+        $datas = [];
         foreach ($languages as $items) {
             foreach ($items as $key => $value) {
                 if (!in_array($key, array('id', 'key', 'array', 'owner', 'type', 'js'))) {
@@ -295,7 +295,7 @@ final class Language extends \Kotchasan\KBase
         }
         $language_folder = self::languageFolder();
         foreach ($datas as $lang => $items) {
-            $list = array();
+            $list = [];
             foreach ($items as $key => $value) {
                 if ($type == 'js') {
                     if (is_string($value)) {
@@ -304,7 +304,7 @@ final class Language extends \Kotchasan\KBase
                         $list[] = "var $key = $value;";
                     }
                 } elseif (is_array($value)) {
-                    $save = array();
+                    $save = [];
                     foreach ($value as $k => $v) {
                         $data = '';
                         if (preg_match('/^[0-9]+$/', $k)) {

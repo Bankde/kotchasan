@@ -40,9 +40,9 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
      *
      * @return Uri
      */
-    public static function createUriWithGet($uri = 'index.php', $exclude = array())
+    public static function createUriWithGet($uri = 'index.php', $exclude = [])
     {
-        $query = array();
+        $query = [];
         self::map($query, $_GET, $exclude);
         if (!empty($query)) {
             $uri .= (strpos($uri, '?') === false ? '?' : '&').http_build_query($query);
@@ -58,9 +58,9 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
      *
      * @return Uri
      */
-    public function createUriWithGlobals($uri = 'index.php', $exclude = array())
+    public function createUriWithGlobals($uri = 'index.php', $exclude = [])
     {
-        $query_str = array();
+        $query_str = [];
         self::map($query_str, $_GET, $exclude);
         self::map($query_str, $_POST, $exclude);
         if (!empty($query_str)) {
@@ -77,9 +77,9 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
      *
      * @return Uri
      */
-    public static function createUriWithPost($uri = 'index.php', $exclude = array())
+    public static function createUriWithPost($uri = 'index.php', $exclude = [])
     {
-        $query = array();
+        $query = [];
         self::map($query, $_POST, $exclude);
         if (!empty($query)) {
             $uri .= (strpos($uri, '?') === false ? '?' : '&').http_build_query($query);
@@ -136,7 +136,7 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
      * @param array $array The array to merge, e.g., $_GET or $_POST
      * @param array $exclude A list of keys from the array that should not be included in the result
      */
-    public static function map(&$result, $array, $exclude = array())
+    public static function map(&$result, $array, $exclude = [])
     {
         foreach ($array as $key => $value) {
             if (!in_array($key, $exclude)) {

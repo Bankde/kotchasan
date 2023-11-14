@@ -314,7 +314,7 @@ class Country
         $datas = self::init();
         $language = Language::name();
         $language = in_array($language, array_keys(reset($datas))) ? $language : 'en';
-        $result = array();
+        $result = [];
         foreach ($datas as $iso => $values) {
             $result[$iso] = $values[$language].($values[$language] == $values['local'] ? '' : ' ('.$values['local'].')');
         }

@@ -45,7 +45,7 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Generated from @assert ('XYZ', array()) [==] array().
+     * Generated from @assert ('XYZ', []) [==] [].
      *
      * @covers Kotchasan\Language::get
      */
@@ -53,8 +53,8 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            array(),
-            \Kotchasan\Language::get('XYZ', array())
+            [],
+            \Kotchasan\Language::get('XYZ', [])
         );
     }
 

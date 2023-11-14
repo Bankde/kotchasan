@@ -28,7 +28,7 @@ abstract class Cache extends \Kotchasan\KBase implements CacheItemPoolInterface
      *
      * @var array
      */
-    protected $deferred = array();
+    protected $deferred = [];
 
     /**
      * Commit the cached items in the deferred queue

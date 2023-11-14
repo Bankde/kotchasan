@@ -68,9 +68,9 @@ class ApcCache extends Cache
      *
      * @return array
      */
-    public function getItems(array $keys = array())
+    public function getItems(array $keys = [])
     {
-        $results = array();
+        $results = [];
         $success = false;
         $values = \apc_fetch($keys, $success);
         if ($success && is_array($values)) {

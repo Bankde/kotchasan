@@ -26,7 +26,7 @@ abstract class AbstractMessage implements MessageInterface
     /**
      * @var array The headers of the message.
      */
-    protected $headers = array();
+    protected $headers = [];
 
     /**
      * @var string The protocol version of the message.
@@ -69,7 +69,7 @@ abstract class AbstractMessage implements MessageInterface
      */
     public function getHeader($name)
     {
-        return isset($this->headers[$name]) ? $this->headers[$name] : array();
+        return isset($this->headers[$name]) ? $this->headers[$name] : [];
     }
 
     /**
@@ -241,7 +241,7 @@ abstract class AbstractMessage implements MessageInterface
      */
     protected function getRequestHeaders()
     {
-        $headers = array();
+        $headers = [];
         if (function_exists("apache_request_headers")) {
             foreach (apache_request_headers() as $key => $value) {
                 if (preg_match('/^[a-zA-Z0-9\-]+$/', $key)) {

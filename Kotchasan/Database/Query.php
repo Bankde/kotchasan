@@ -114,7 +114,7 @@ abstract class Query extends \Kotchasan\Database\Db
      */
     protected function buildGroup($fields)
     {
-        $sqls = array();
+        $sqls = [];
         foreach ((array) $fields as $item) {
             $sqls[] = $this->fieldName($item);
         }
@@ -160,7 +160,7 @@ abstract class Query extends \Kotchasan\Database\Db
      */
     protected function buildOrder($fields)
     {
-        $sqls = array();
+        $sqls = [];
         foreach ((array) $fields as $item) {
             if (preg_match('/^([A-Z][0-9]{0,2}\.)([a-zA-Z0-9_]+)([\s]{1,}(ASC|DESC|asc|desc))?$/', $item, $match)) {
                 // U.id DESC
@@ -196,7 +196,7 @@ abstract class Query extends \Kotchasan\Database\Db
                     $ret = '\''.addslashes($fields[0]).'\' AS `'.$fields[1].'`';
                 } else {
                     // multiples
-                    $rets = array();
+                    $rets = [];
                     foreach ($fields as $k => $item) {
                         $rets[] = $this->buildSelect($item, $k);
                     }
@@ -271,7 +271,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 if ($params[1] == '=') {
                     $params[1] = 'IN';
                 }
-                $qs = array();
+                $qs = [];
                 foreach ($params[2] as $item) {
                     if (is_numeric($item) || is_bool($item)) {
                         $qs[] = $item;
@@ -312,8 +312,8 @@ abstract class Query extends \Kotchasan\Database\Db
     {
         if (is_array($condition)) {
             if (is_array($condition[0])) {
-                $qs = array();
-                $ps = array();
+                $qs = [];
+                $ps = [];
                 foreach ($condition as $i => $item) {
                     $ret = $this->whereValue($item, $i);
                     if (is_array($ret)) {
@@ -328,8 +328,8 @@ abstract class Query extends \Kotchasan\Database\Db
                     $ret = array($ret, $ps);
                 }
             } elseif ($condition[0] instanceof Sql) {
-                $qs = array();
-                $ps = array();
+                $qs = [];
+                $ps = [];
                 foreach ($condition as $i => $item) {
                     $qs[] = $item->text();
                     $ps += $item->getValues();
@@ -371,8 +371,8 @@ abstract class Query extends \Kotchasan\Database\Db
     protected function buildWhereValues($condition, $operator = 'AND', $id = 'id')
     {
         if (is_array($condition)) {
-            $values = array();
-            $qs = array();
+            $values = [];
+            $qs = [];
             if (is_array($condition[0])) {
                 foreach ($condition as $item) {
                     $ret = $this->buildWhereValues($item, $operator, $id);
@@ -390,7 +390,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 }
                 if (is_array($condition[2])) {
                     $operator = $condition[1] == '=' ? 'IN' : $condition[1];
-                    $qs = array();
+                    $qs = [];
                     foreach ($condition[2] as $k => $v) {
                         $qs[] = ":$condition[0]$k";
                         $values[":$condition[0]$k"] = $v;
@@ -406,7 +406,7 @@ abstract class Query extends \Kotchasan\Database\Db
             $values = array(":$id" => $condition);
             $condition = "`$id` = :$id";
         } else {
-            $values = array();
+            $values = [];
         }
         return array($condition, $values);
     }
@@ -424,7 +424,7 @@ abstract class Query extends \Kotchasan\Database\Db
             if ($name[0] instanceof QueryBuilder) {
                 $ret = '('.$name[0]->text().') AS `'.$name[1].'`';
             } else {
-                $rets = array();
+                $rets = [];
                 foreach ($name as $item) {
                     $rets[] = $this->fieldName($item);
                 }
@@ -470,7 +470,7 @@ abstract class Query extends \Kotchasan\Database\Db
     protected function fieldValue($value)
     {
         if (is_array($value)) {
-            $rets = array();
+            $rets = [];
             foreach ($value as $item) {
                 $rets[] = $this->fieldValue($item);
             }
@@ -497,7 +497,7 @@ abstract class Query extends \Kotchasan\Database\Db
         if (func_num_args() > 1) {
             $params = func_get_args();
         }
-        $sqls = array();
+        $sqls = [];
         foreach ($params as $i => $item) {
             $sqls[] = $this->buildValue($item);
         }
@@ -516,7 +516,7 @@ abstract class Query extends \Kotchasan\Database\Db
         if (func_num_args() > 1) {
             $params = func_get_args();
         }
-        $sqls = array();
+        $sqls = [];
         foreach ($params as $i => $item) {
             $sqls[] = $this->buildValue($item);
         }
@@ -558,7 +558,7 @@ abstract class Query extends \Kotchasan\Database\Db
      */
     private function whereValue($params, $i = null)
     {
-        $result = array();
+        $result = [];
         if (is_array($params)) {
             if (count($params) == 2) {
                 $operator = '=';
@@ -587,8 +587,8 @@ abstract class Query extends \Kotchasan\Database\Db
                     $operator = 'IN';
                 }
                 $q = $this->aliasName($key);
-                $qs = array();
-                $vs = array();
+                $qs = [];
+                $vs = [];
                 foreach ($value as $a => $item) {
                     if (empty($item)) {
                         $qs[] = is_string($item) ? "'$item'" : $item;

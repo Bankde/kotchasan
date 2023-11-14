@@ -82,7 +82,7 @@ class Sql
      */
     public static function CONCAT($fields, $alias = null, $separator = null)
     {
-        $fs = array();
+        $fs = [];
         if (is_array($fields)) {
             foreach ($fields as $item) {
                 $fs[] = self::fieldName($item);
@@ -224,7 +224,7 @@ class Sql
     public static function GROUP_CONCAT($column_name, $alias = null, $separator = ',', $distinct = false, $order = null)
     {
         if (!empty($order)) {
-            $orders = array();
+            $orders = [];
             if (is_array($order)) {
                 foreach ($order as $item) {
                     $orders[] = self::fieldName($item);
@@ -577,7 +577,7 @@ class Sql
     public function __construct($sql = null)
     {
         $this->sql = $sql;
-        $this->values = array();
+        $this->values = [];
     }
 
     /**
@@ -617,7 +617,7 @@ class Sql
      * @assert (0x64656) [==] 411222
      * @assert ('DATE(day)') [==] "'DATE(day)'"
      * @assert ('DROP table') [==] "'DROP table'"
-     * @assert (array()) [throws] InvalidArgumentException
+     * @assert ([]) [throws] InvalidArgumentException
      *
      * @param string $column_name
      *
@@ -659,7 +659,7 @@ class Sql
      *
      * @return array
      */
-    public function getValues($values = array())
+    public function getValues($values = [])
     {
         if (empty($values)) {
             return $this->values;
@@ -703,7 +703,7 @@ class Sql
     public static function quoteValue($column_name, $value, &$values)
     {
         if (is_array($value)) {
-            $qs = array();
+            $qs = [];
             foreach ($value as $v) {
                 $qs[] = self::quoteValue($column_name, $v, $values);
             }
@@ -809,7 +809,7 @@ class Sql
     private function buildWhere($condition, &$values, $operator, $id)
     {
         if (is_array($condition)) {
-            $qs = array();
+            $qs = [];
             if (is_array($condition[0])) {
                 foreach ($condition as $item) {
                     if ($item instanceof QueryBuilder) {

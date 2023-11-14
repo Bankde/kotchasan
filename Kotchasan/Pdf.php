@@ -633,7 +633,7 @@ class Pdf extends \PDF\FPDF
             $table_width = $this->calculateSize($table->attributes['WIDTH'], $cw);
         }
 
-        $columnSizes = array();
+        $columnSizes = [];
 
         foreach ($table->childNodes as $child) {
             foreach ($child->childNodes as $tr) {
@@ -688,7 +688,7 @@ class Pdf extends \PDF\FPDF
             $totalCalculatedSize += $columnSize['calc'];
         }
 
-        $result = array();
+        $result = [];
 
         foreach ($columnSizes as $key => $columnSize) {
             if (empty($table_width)) {

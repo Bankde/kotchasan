@@ -47,11 +47,11 @@ class HtmlTable
      *
      * @param array $properties The properties of the table
      */
-    public function __construct($properties = array())
+    public function __construct($properties = [])
     {
-        $this->tbody = array();
-        $this->tfoot = array();
-        $this->thead = array();
+        $this->tbody = [];
+        $this->tfoot = [];
+        $this->thead = [];
         $this->properties = $properties;
     }
 
@@ -91,7 +91,7 @@ class HtmlTable
      * @param array $rows       The data for the row
      * @param array $attributes The attributes of the row
      */
-    public function addRow($rows, $attributes = array())
+    public function addRow($rows, $attributes = [])
     {
         $tr = TableRow::create($attributes);
         foreach ($rows as $td) {
@@ -107,7 +107,7 @@ class HtmlTable
      *
      * @return HtmlTable The created HtmlTable object
      */
-    public static function create($properties = array())
+    public static function create($properties = [])
     {
         $obj = new static($properties);
         return $obj;
@@ -120,7 +120,7 @@ class HtmlTable
      */
     public function render()
     {
-        $prop = array();
+        $prop = [];
         foreach ($this->properties as $k => $v) {
             $prop[] = $k.'="'.$v.'"';
         }
@@ -131,9 +131,9 @@ class HtmlTable
 
         // thead
         if (!empty($this->thead)) {
-            $thead = array();
+            $thead = [];
             foreach ($this->thead as $r => $rows) {
-                $tr = array();
+                $tr = [];
                 foreach ($rows as $c => $th) {
                     $prop = array('id' => 'id="c'.$c.'"', 'scope' => 'scope="col"');
                     foreach ($th as $key => $value) {
@@ -154,7 +154,7 @@ class HtmlTable
 
         // tfoot
         if (!empty($this->tfoot)) {
-            $rows = array();
+            $rows = [];
             foreach ($this->tfoot as $tr) {
                 $rows[] = $tr->render();
             }
@@ -165,7 +165,7 @@ class HtmlTable
 
         // tbody
         if (!empty($this->tbody)) {
-            $rows = array();
+            $rows = [];
             foreach ($this->tbody as $tr) {
                 $rows[] = $tr->render();
             }
@@ -201,10 +201,10 @@ class TableRow
      *
      * @param array $properties The properties of the row
      */
-    public function __construct($properties = array())
+    public function __construct($properties = [])
     {
         $this->properties = $properties;
-        $this->tds = array();
+        $this->tds = [];
     }
 
     /**
@@ -224,7 +224,7 @@ class TableRow
      *
      * @return TableRow The created TableRow object
      */
-    public static function create($properties = array())
+    public static function create($properties = [])
     {
         $obj = new static($properties);
         return $obj;
@@ -237,13 +237,13 @@ class TableRow
      */
     public function render()
     {
-        $prop = array();
+        $prop = [];
         foreach ($this->properties as $key => $value) {
             $prop[$key] = $key.'="'.$value.'"';
         }
         $row = array('<tr '.implode(' ', $prop).'>');
         foreach ($this->tds as $c => $td) {
-            $prop = array();
+            $prop = [];
             $tag = 'td';
             foreach ($td as $key => $value) {
                 if ($key == 'scope') {

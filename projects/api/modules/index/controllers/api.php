@@ -29,7 +29,7 @@ class Controller extends \Kotchasan\Controller
         // Get the requested method
         $method = $request->get('method')->toString();
         // Variable for storing the response data
-        $ret = array();
+        $ret = [];
         // Process the requested method
         if (method_exists('Index\Api\Model', $method)) {
             $ret['result'] = call_user_func(array('Index\Api\Model', $method), $request);

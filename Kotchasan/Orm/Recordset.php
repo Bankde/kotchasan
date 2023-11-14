@@ -128,7 +128,7 @@ class Recordset extends Query implements \Iterator
     {
         $old_sqls = $this->sqls;
         $old_values = $this->values;
-        $this->sqls = array();
+        $this->sqls = [];
         $this->sqls['select'] = 'COUNT(*) AS `count`';
         foreach ($old_sqls as $key => $value) {
             if ($key !== 'order' && $key !== 'limit' && $key !== 'select') {
@@ -217,7 +217,7 @@ class Recordset extends Query implements \Iterator
      *
      * @return array|object The result data.
      */
-    public function customQuery($sql, $toArray = true, $values = array())
+    public function customQuery($sql, $toArray = true, $values = [])
     {
         return $this->db()->customQuery($sql, $toArray, $values);
     }
@@ -232,7 +232,7 @@ class Recordset extends Query implements \Iterator
      *
      * @return bool True if the deletion is successful, false otherwise.
      */
-    public function delete($condition = array(), $all = false, $operator = 'AND')
+    public function delete($condition = [], $all = false, $operator = 'AND')
     {
         $ret = $this->buildWhereValues($condition, $operator, $this->field->getPrimarykey());
         $sqls = array(
@@ -268,7 +268,7 @@ class Recordset extends Query implements \Iterator
     public function execute($fields = null)
     {
         if (!empty($fields)) {
-            $qs = array();
+            $qs = [];
             foreach (func_get_args() as $item) {
                 if (!empty($item)) {
                     $qs[] = $this->fieldName($item);
@@ -325,7 +325,7 @@ class Recordset extends Query implements \Iterator
             'limit' => 1
         );
         if (!empty($fields)) {
-            $qs = array();
+            $qs = [];
             foreach (func_get_args() as $item) {
                 if (!empty($item)) {
                     $qs[] = $this->fieldName($item);
@@ -412,7 +412,7 @@ class Recordset extends Query implements \Iterator
      */
     public function insert(Field $field)
     {
-        $save = array();
+        $save = [];
         foreach (Schema::create($this->db())->fields($this->field->table_name) as $item) {
             if (isset($field->$item)) {
                 $save[$item] = $field->$item;
@@ -503,7 +503,7 @@ class Recordset extends Query implements \Iterator
      *
      * @return bool True if successful, false if an error occurred.
      */
-    public function query($sql, $values = array())
+    public function query($sql, $values = [])
     {
         $this->db()->query($sql, $values);
     }
@@ -583,7 +583,7 @@ class Recordset extends Query implements \Iterator
     {
         $db = $this->db();
         $schema = Schema::create($db);
-        $datas = array();
+        $datas = [];
         if ($save instanceof Field) {
             foreach ($schema->fields($this->field->table_name) as $field) {
                 if (isset($save->$field)) {
@@ -641,7 +641,7 @@ class Recordset extends Query implements \Iterator
      *
      * @return static The updated Recordset instance.
      */
-    public function where($where = array(), $operator = 'AND')
+    public function where($where = [], $operator = 'AND')
     {
         if (is_int($where) || (is_string($where) && $where != '') || (is_array($where) && !empty($where))) {
             $where = $this->buildWhere($where, $operator, $this->field->table_alias.'.'.$this->field->getPrimarykey());
@@ -696,7 +696,7 @@ class Recordset extends Query implements \Iterator
             return $result;
         } else {
             $class = get_class($this->field);
-            $this->datas = array();
+            $this->datas = [];
             foreach ($result as $item) {
                 $this->datas[] = new $class($item);
             }

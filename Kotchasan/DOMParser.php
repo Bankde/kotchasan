@@ -22,7 +22,7 @@ class DOMParser
      *
      * @var array
      */
-    protected $doms = array();
+    protected $doms = [];
 
     /**
      * Class constructor.
@@ -56,9 +56,9 @@ class DOMParser
                     // Text node
                     if ($e != '') {
                         if ($node) {
-                            $node->childNodes[] = new DOMNode('', $node, array(), $e);
+                            $node->childNodes[] = new DOMNode('', $node, [], $e);
                         } else {
-                            $this->doms[] = new DOMNode('', $node, array(), $e);
+                            $this->doms[] = new DOMNode('', $node, [], $e);
                         }
                     }
                 } elseif ($e[0] == '/') {
@@ -68,7 +68,7 @@ class DOMParser
                     // Open tag
                     $tag = strtoupper($a2[1]);
                     // Attributes
-                    $attributes = array();
+                    $attributes = [];
                     if (!empty($a2[3]) && preg_match_all('/(\\w+)\s*=\\s*("[^"]*"|\'[^\']*\'|[^"\'\\s>]*)/', $a2[3], $matches, PREG_SET_ORDER)) {
                         foreach ($matches as $match) {
                             if (($match[2][0] == '"' || $match[2][0] == "'") && $match[2][0] == $match[2][strlen($match[2]) - 1]) {
@@ -158,7 +158,7 @@ class DOMParser
         if ($node->nodeName == '') {
             $html .= $node->nodeValue;
         } else {
-            $prop = array();
+            $prop = [];
             foreach ($node->attributes as $k => $v) {
                 $prop[] = $k.'="'.$v.'"';
             }

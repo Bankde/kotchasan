@@ -70,7 +70,7 @@ class FileCache extends Cache
      */
     public function clear()
     {
-        $error = array();
+        $error = [];
         if ($this->cache_dir && !empty($this->cache_expire)) {
             $this->clearCache($this->cache_dir, $error);
         }
@@ -101,9 +101,9 @@ class FileCache extends Cache
      *
      * @return array
      */
-    public function getItems(array $keys = array())
+    public function getItems(array $keys = [])
     {
-        $results = array();
+        $results = [];
         foreach ($keys as $key) {
             $file = $this->fetchStreamUri($key);
             if ($this->isExpired($file)) {

@@ -24,7 +24,7 @@ class Inputs implements \Iterator
      *
      * @var array
      */
-    private $datas = array();
+    private $datas = [];
 
     /**
      * Magic method to retrieve data for array type input.
@@ -39,7 +39,7 @@ class Inputs implements \Iterator
     public function __call($name, $arguments)
     {
         if (method_exists('Kotchasan\InputItem', $name)) {
-            $result = array();
+            $result = [];
             foreach ($this->datas as $key => $item) {
                 $result[$key] = $this->collectInputs($item, $name, $arguments);
             }
@@ -55,7 +55,7 @@ class Inputs implements \Iterator
      * @param array       $items The input items array
      * @param string|null $type  The input type (e.g., GET, POST, SESSION, COOKIE) or null if not derived from the above lists
      */
-    public function __construct(array $items = array(), $type = null)
+    public function __construct(array $items = [], $type = null)
     {
         foreach ($items as $key => $value) {
             if (is_array($value)) {
@@ -80,7 +80,7 @@ class Inputs implements \Iterator
     private function collectInputs($item, $name, $arguments)
     {
         if (is_array($item)) {
-            $array = array();
+            $array = [];
             foreach ($item as $k => $v) {
                 $array[$k] = $this->collectInputs($v, $name, $arguments);
             }

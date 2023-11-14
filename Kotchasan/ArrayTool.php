@@ -34,7 +34,7 @@ class ArrayTool
      */
     public static function columns($source, $column_key, $index_key = null)
     {
-        $result = array();
+        $result = [];
         foreach ($source as $key => $item) {
             if (is_object($item) && isset($item->$column_key)) {
                 $result[$index_key !== null ? $item->$index_key : $key] = $item->$column_key;
@@ -98,7 +98,7 @@ class ArrayTool
         if ($search == '') {
             return $array;
         } else {
-            $result = array();
+            $result = [];
             foreach ($array as $key => $value) {
                 if (stripos(self::toString(' ', $value), $search) !== false) {
                     $result[$key] = $value;
@@ -131,7 +131,7 @@ class ArrayTool
      * @assert (array('one', 'two', 'three')) [==] 0
      * @assert (array('one' => 1, 'two' => 2, 'three' => 3)) [==] 'one'
      * @assert ((object)array('one' => 1, 'two' => 2, 'three' => 3)) [==] 'one'
-     * @assert (array()) [==] null
+     * @assert ([]) [==] null
      * @assert (0) [==] null
      *
      * @param mixed $source Array or object
@@ -168,7 +168,7 @@ class ArrayTool
      */
     public static function insertAfter($source, $find, $key, $value)
     {
-        $result = array();
+        $result = [];
         $inserted = false;
         foreach ($source as $k => $v) {
             $result[$k] = $v;
@@ -203,7 +203,7 @@ class ArrayTool
      */
     public static function insertBefore($source, $find, $key, $value)
     {
-        $result = array();
+        $result = [];
         $inserted = false;
         foreach ($source as $k => $v) {
             if ($k === $find) {
@@ -250,9 +250,9 @@ class ArrayTool
      * Searches an array for elements with a specific key-value pair and returns the matching elements.
      *
      * @assert (array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'one')), 'name', 'one') [==] array(0 => array('id' => 1, 'name' => 'one'), 2 => array('id' => 3, 'name' => 'one'))
-     * @assert (array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'one')), 'id', 'one') [==] array()
+     * @assert (array(array('id' => 1, 'name' => 'one'), array('id' => 2, 'name' => 'two'), array('id' => 3, 'name' => 'one')), 'id', 'one') [==] []
      * @assert (array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), (object)array('id' => 3, 'name' => 'one')), 'name', 'one') [==] array(0 => (object)array('id' => 1, 'name' => 'one'), 2 => (object)array('id' => 3, 'name' => 'one'))
-     * @assert (array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), (object)array('id' => 3, 'name' => 'one')), 'id', 'one') [==] array()
+     * @assert (array((object)array('id' => 1, 'name' => 'one'), (object)array('id' => 2, 'name' => 'two'), (object)array('id' => 3, 'name' => 'one')), 'id', 'one') [==] []
      *
      * @param array $array The array to search
      * @param string $key The key to search for
@@ -262,7 +262,7 @@ class ArrayTool
      */
     public static function search($array, $key, $search)
     {
-        $result = array();
+        $result = [];
 
         foreach ($array as $i => $values) {
             if (
@@ -289,11 +289,11 @@ class ArrayTool
      */
     public static function shift($source, $key)
     {
-        $result = array();
+        $result = [];
 
         foreach ($source as $k => $v) {
             if ($k == $key) {
-                $result = array();
+                $result = [];
             } else {
                 $result[$k] = $v;
             }
@@ -367,7 +367,7 @@ class ArrayTool
     /**
      * Unserialize a string and update the source array with the unserialized data.
      *
-     * @assert ('') [==] array()
+     * @assert ('') [==] []
      * @assert (serialize(array(1, 2, 3))) [==] array(1, 2, 3)
      * @assert (serialize(array(1 => 'One', 2 => 'Two', 3 => 'Three')), array(3 => 3, 4 => 'Four'), true) [==] array(3 => 'Three', 4 => 'Four', 1 => 'One', 2 => 'Two')
      * @assert (serialize(array(1 => 'One', 2 => 'Two', 3 => 'Three')), array(3 => 3, 4 => 'Four'), false) [==] array(3 => 3, 4 => 'Four', 1 => 'One', 2 => 'Two')
@@ -409,8 +409,8 @@ class ArrayTool
      * @assert (array(1, 2), array(1, 2)) [==] true
      * @assert (array(2), array(1, 2, 3)) [==] true
      * @assert (array(1, 2), array(3, 4)) [==] false
-     * @assert (array(), array(3, 4)) [==] false
-     * @assert (array(), array()) [==] false
+     * @assert ([], array(3, 4)) [==] false
+     * @assert ([], []) [==] false
      * @assert (array('q', array('p', 'h')), array(array('p', 'h'), array('p', 'r'), 'o')) [==] true
      * @assert (array('r', 'h'), array(array('p', 'h'), array('p', 'r'), 'o')) [==] false
      * @assert (array('f', 'i'), array(array('p', 'h'), array('p', 'r'), 'o')) [==] false

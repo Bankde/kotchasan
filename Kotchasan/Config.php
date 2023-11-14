@@ -201,7 +201,7 @@ class Config
      */
     public static function load($file)
     {
-        $config = array();
+        $config = [];
         if (is_file($file)) {
             $config = include $file;
         }

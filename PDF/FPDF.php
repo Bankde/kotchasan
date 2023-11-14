@@ -81,14 +81,14 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	$this->page = 0;
 	$this->n = 2;
 	$this->buffer = '';
-	$this->pages = array();
-	$this->PageInfo = array();
-	$this->fonts = array();
-	$this->FontFiles = array();
-	$this->encodings = array();
-	$this->cmaps = array();
-	$this->images = array();
-	$this->links = array();
+	$this->pages = [];
+	$this->PageInfo = [];
+	$this->fonts = [];
+	$this->FontFiles = [];
+	$this->encodings = [];
+	$this->cmaps = [];
+	$this->images = [];
+	$this->links = [];
 	$this->InHeader = false;
 	$this->InFooter = false;
 	$this->lasth = 0;
@@ -1083,7 +1083,7 @@ protected function _beginpage($orientation, $size, $rotation)
 {
 	$this->page++;
 	$this->pages[$this->page] = '';
-	$this->PageLinks[$this->page] = array();
+	$this->PageLinks[$this->page] = [];
 	$this->state = 2;
 	$this->x = $this->lMargin;
 	$this->y = $this->tMargin;

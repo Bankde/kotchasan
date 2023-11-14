@@ -61,7 +61,7 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var array
      */
-    private $params = array();
+    private $params = [];
 
     /**
      * Database cache.
@@ -75,7 +75,7 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var array
      */
-    private $fields = array();
+    private $fields = [];
 
     /**
      * Column index of the checkbox.
@@ -143,7 +143,7 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var array
      */
-    public $actions = array();
+    public $actions = [];
 
     /**
      * Name of the Javascript function to call after sending data from action.
@@ -222,7 +222,7 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var array
      */
-    public $defaultFilters = array();
+    public $defaultFilters = [];
 
     /**
      * Data display filters.
@@ -230,28 +230,28 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var array
      */
-    public $filters = array();
+    public $filters = [];
 
     /**
      * List of columns that should not be displayed.
      *
      * @var array
      */
-    public $hideColumns = array();
+    public $hideColumns = [];
 
     /**
      * List of all columns.
      *
      * @var array
      */
-    public $cols = array();
+    public $cols = [];
 
     /**
      * List of header names for columns.
      *
      * @var array
      */
-    public $headers = array();
+    public $headers = [];
 
     /**
      * List of fields that can be searched.
@@ -259,7 +259,7 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var array
      */
-    public $searchColumns = array();
+    public $searchColumns = [];
 
     /**
      * Specify the search behavior from the search box.
@@ -323,14 +323,14 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var array
      */
-    protected $sorts = array();
+    protected $sorts = [];
 
     /**
      * Buttons to be added at the end of each row.
      *
      * @var array
      */
-    public $buttons = array();
+    public $buttons = [];
 
     /**
      * A method for preparing button rendering.
@@ -382,7 +382,7 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var array
      */
-    private $javascript = array();
+    private $javascript = [];
 
     /**
      * Enables the usage of DataTable's JavaScript.
@@ -516,7 +516,7 @@ class DataTable extends \Kotchasan\KBase
             }
         } elseif (isset($this->datas)) {
             // Read the columns from the first data item
-            $this->columns = array();
+            $this->columns = [];
             if (!empty($this->datas)) {
                 foreach (reset($this->datas) as $key => $value) {
                     $this->columns[$key] = array('text' => $key);
@@ -529,7 +529,7 @@ class DataTable extends \Kotchasan\KBase
 
         // Handle headers, check against the provided values, sort headers based on columns
         if (!empty($this->columns)) {
-            $headers = array();
+            $headers = [];
 
             foreach ($this->columns as $field => $attributes) {
                 if (!in_array($field, $this->hideColumns)) {
@@ -591,9 +591,9 @@ class DataTable extends \Kotchasan\KBase
             $this->checkCol = 1;
         }
 
-        $url_query = array();
-        $hidden_fields = array();
-        $query_string = array();
+        $url_query = [];
+        $hidden_fields = [];
+        $query_string = [];
 
         // Parse the query string and populate the $query_string array
         parse_str($this->uri->getQuery(), $query_string);
@@ -609,7 +609,7 @@ class DataTable extends \Kotchasan\KBase
 
         if (isset($this->model)) {
             // Build the main query list (AND)
-            $qs = array();
+            $qs = [];
             foreach ($this->defaultFilters as $array) {
                 $qs[] = $array;
             }
@@ -630,10 +630,10 @@ class DataTable extends \Kotchasan\KBase
         $content = array('<div class="'.implode(' ', $c).'" id="'.$this->id.'">');
 
         // Form
-        $form = array();
+        $form = [];
         if ($this->perPage !== null) {
             $entries = Language::get('entries');
-            $options = array();
+            $options = [];
             foreach ($this->entriesList as $c) {
                 if ($c == 0) {
                     $options[0] = Language::get('all items');
@@ -676,7 +676,7 @@ class DataTable extends \Kotchasan\KBase
         if ($this->searchForm === true || ($this->searchForm === 'auto' && !empty($this->searchColumns))) {
             if (!empty($this->search) && $this->autoSearch) {
                 if (isset($this->model)) {
-                    $sh = array();
+                    $sh = [];
                     foreach ($this->searchColumns as $key) {
                         $sh[] = array($key, 'LIKE', '%'.$this->search.'%');
                     }
@@ -757,7 +757,7 @@ class DataTable extends \Kotchasan\KBase
         }
 
         // Sort
-        $orders = array();
+        $orders = [];
         if (!empty($this->defaultSort)) {
             foreach (explode(',', $this->defaultSort) as $sort) {
                 if (preg_match('/^([a-z0-9_\-]+)([\s]+(desc|asc))?$/i', trim($sort), $match)) {
@@ -769,7 +769,7 @@ class DataTable extends \Kotchasan\KBase
         }
 
         if (!empty($this->sort)) {
-            $sorts = array();
+            $sorts = [];
             foreach (explode(',', $this->sort) as $sort) {
                 if (preg_match('/^([a-z0-9_\-]+)([\s]+(desc|asc))?$/i', trim($sort), $match)) {
                     if (isset($this->headers[$match[1]]['sort'])) {
@@ -833,8 +833,8 @@ class DataTable extends \Kotchasan\KBase
         }
 
         // Table properties
-        $prop = array();
-        $c = array();
+        $prop = [];
+        $c = [];
         if (!empty($this->class)) {
             $c[] = $this->class;
         }
@@ -861,7 +861,7 @@ class DataTable extends \Kotchasan\KBase
         if (!$this->explain && isset($this->onCreateHeader)) {
             $thead = call_user_func($this->onCreateHeader);
         } elseif (!empty($this->headers)) {
-            $row = array();
+            $row = [];
             $i = 0;
             $colspan = 0;
             foreach ($this->headers as $key => $attributes) {
@@ -936,8 +936,8 @@ class DataTable extends \Kotchasan\KBase
         if (!empty($this->comment)) {
             $content[] = '<div class="table_comment '.$this->commentClass.'">'.$this->comment.'</div>';
         }
-        $table_nav = array();
-        $table_nav_float = array();
+        $table_nav = [];
+        $table_nav_float = [];
         if (!empty($this->actions) && is_array($this->actions)) {
             foreach ($this->actions as $item) {
                 $action = $this->addAction($item);
@@ -954,7 +954,7 @@ class DataTable extends \Kotchasan\KBase
             $table_nav[] = '<div class=float_bottom_menu>'.implode('', $table_nav_float).'</div>';
         }
         if (!empty($this->addNew) && is_array($this->addNew)) {
-            $prop = array();
+            $prop = [];
             foreach ($this->addNew as $k => $v) {
                 if ($k != 'text') {
                     $prop[$k] = $k.'="'.$v.'"';
@@ -1028,7 +1028,7 @@ class DataTable extends \Kotchasan\KBase
      */
     private function tbody($start, $end)
     {
-        $row = array();
+        $row = [];
         $n = 0;
 
         foreach ($this->datas as $o => $items) {
@@ -1043,7 +1043,7 @@ class DataTable extends \Kotchasan\KBase
                     'id' => $this->id.'_'.$id
                 );
 
-                $buttons = array();
+                $buttons = [];
 
                 if (!$this->explain) {
                     // Generate buttons
@@ -1071,7 +1071,7 @@ class DataTable extends \Kotchasan\KBase
                 }
 
                 // Table row
-                $p = array();
+                $p = [];
                 foreach ($prop as $k => $v) {
                     $p[] = $k.'="'.$v.'"';
                 }
@@ -1093,7 +1093,7 @@ class DataTable extends \Kotchasan\KBase
                             }
                         }
 
-                        $properties = isset($this->cols[$field]) ? $this->cols[$field] : array();
+                        $properties = isset($this->cols[$field]) ? $this->cols[$field] : [];
                         $text = isset($items[$field]) ? $items[$field] : '';
                         $th = isset($attributes['text']) ? $attributes['text'] : $field;
                         $row[] = $this->td($id, $i, $properties, $text, $th);
@@ -1111,8 +1111,8 @@ class DataTable extends \Kotchasan\KBase
                     // Buttons column
                     if (!empty($this->buttons)) {
                         if (!empty($buttons)) {
-                            $patt = array();
-                            $replace = array();
+                            $patt = [];
+                            $replace = [];
                             $keys = array_keys($src_items);
                             rsort($keys);
                             foreach ($keys as $k) {
@@ -1128,7 +1128,7 @@ class DataTable extends \Kotchasan\KBase
                             }
                             $row[] = str_replace($patt, $replace, $this->td($id, $i, $prop, implode('', $buttons), ''));
                         } else {
-                            $row[] = $this->td($id, $i, array(), '', '');
+                            $row[] = $this->td($id, $i, [], '', '');
                         }
                     }
 
@@ -1158,7 +1158,7 @@ class DataTable extends \Kotchasan\KBase
      */
     private function th($i, $column, $properties)
     {
-        $c = array();
+        $c = [];
         $c['id'] = 'id="c'.$i.'"';
 
         if (!empty($properties['sort'])) {
@@ -1223,12 +1223,12 @@ class DataTable extends \Kotchasan\KBase
             // Button with submenus
             $innerHTML = '';
             $li = '';
-            $attributes = array();
+            $attributes = [];
 
             foreach ($properties as $name => $item) {
                 if ($name == 'submenus') {
                     foreach ($item as $btn => $menu) {
-                        $prop = array();
+                        $prop = [];
                         if (isset($this->onCreateButton)) {
                             // Submenu button event
                             $menu = call_user_func($this->onCreateButton, $btn, $menu, $items);
@@ -1265,7 +1265,7 @@ class DataTable extends \Kotchasan\KBase
             return '<div '.implode(' ', $attributes).'>'.$innerHTML.'<ul>'.$li.'</ul></div>';
         } else {
             // Regular button
-            $prop = array();
+            $prop = [];
 
             foreach ($properties as $key => $value) {
                 if ($key === 'id') {
@@ -1276,7 +1276,7 @@ class DataTable extends \Kotchasan\KBase
             }
 
             if (!empty($properties['class']) && preg_match('/(.*)\s?(icon\-[a-z0-9\-_]+)($|\s(.*))/', $properties['class'], $match)) {
-                $class = array();
+                $class = [];
 
                 foreach (array(1, 4) as $i) {
                     if (!empty($match[$i])) {
@@ -1319,7 +1319,7 @@ class DataTable extends \Kotchasan\KBase
         if (isset($item['options'])) {
             if (!empty($item['options'])) {
                 // Select
-                $rows = array();
+                $rows = [];
                 foreach ($item['options'] as $key => $text) {
                     $rows[] = '<option value="'.$key.'">'.$text.'</option>';
                 }
@@ -1349,7 +1349,7 @@ class DataTable extends \Kotchasan\KBase
             return '<fieldset><input '.implode(' ', $prop).'><label '.implode(' ', $prop2).'><span>'.$item['text'].'</span></label></fieldset>';
         } else {
             // Link or button
-            $prop = array();
+            $prop = [];
             $text = isset($item['text']) ? $item['text'] : '';
 
             if ($text != '' && !isset($item['title'])) {
@@ -1394,7 +1394,7 @@ class DataTable extends \Kotchasan\KBase
             $item['type'] = 'text';
         }
         if (isset($item['type'])) {
-            $prop = array();
+            $prop = [];
             $datalist = '';
             foreach ($item as $key => $value) {
                 if ($key == 'datalist') {
@@ -1444,7 +1444,7 @@ class DataTable extends \Kotchasan\KBase
             }
             $row = '<a '.implode(' ', $prop).'>'.(isset($item['text']) ? $item['text'] : '').'</a>';
         } else {
-            $prop = array();
+            $prop = [];
             foreach ($item as $key => $value) {
                 if ($key != 'options' && $key != 'value' && $key != 'text' && $key != 'default' && !is_array($value)) {
                     $prop[$key] = $key.'="'.$value.'"';

@@ -15,7 +15,7 @@ Kotchasan consists of three main frameworks designed to work together: PHP, CSS,
 * GAjax Javascript Framework
 
 ## Requirements
-* PHP 5.3 or higher
+* PHP 5.6 or higher
 * ext-mbstring
 * PDO Mysql
 

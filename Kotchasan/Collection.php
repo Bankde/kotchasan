@@ -22,14 +22,14 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
      *
      * @var array
      */
-    private $datas = array();
+    private $datas = [];
 
     /**
      * Create a new collection.
      *
      * @param array $items The initial members of the Collection.
      */
-    public function __construct(array $items = array())
+    public function __construct(array $items = [])
     {
         foreach ($items as $key => $value) {
             $this->set($key, $value);
@@ -43,7 +43,7 @@ class Collection implements \Countable, \IteratorAggregate, \ArrayAccess
      */
     public function clear()
     {
-        $this->datas = array();
+        $this->datas = [];
     }
 
     /**

@@ -149,7 +149,7 @@ abstract class Driver extends Query
      *
      * @return array An array of records that match the conditions
      */
-    public function customQuery($sql, $toArray = false, $values = array())
+    public function customQuery($sql, $toArray = false, $values = [])
     {
         $result = $this->doCustomQuery($sql, $values);
         if ($result && !$toArray) {
@@ -190,7 +190,7 @@ abstract class Driver extends Query
             $values = $condition[1];
             $condition = $condition[0];
         } else {
-            $values = array();
+            $values = [];
         }
         $sql = 'DELETE FROM '.$table_name.' WHERE '.$condition;
         if (is_int($limit) && $limit > 0) {
@@ -220,7 +220,7 @@ abstract class Driver extends Query
      *
      * @return mixed Returns the result of the executed query/queries
      */
-    public function execQuery($sqls, $values = array(), $debugger = 0)
+    public function execQuery($sqls, $values = [], $debugger = 0)
     {
         $sql = $this->makeQuery($sqls);
 
@@ -239,7 +239,7 @@ abstract class Driver extends Query
                 }
             } elseif ($debugger == 2) {
                 if (\Kotchasan::$debugger === null) {
-                    \Kotchasan::$debugger = array();
+                    \Kotchasan::$debugger = [];
                     register_shutdown_function('doShutdown');
                 }
                 \Kotchasan::$debugger[] = '"'.$line.'"';
@@ -289,9 +289,9 @@ abstract class Driver extends Query
      *
      * @return array An array of objects representing the retrieved data, or an empty array if not found
      */
-    public function find($table_name, $condition, $sort = array())
+    public function find($table_name, $condition, $sort = [])
     {
-        $result = array();
+        $result = [];
         foreach ($this->select($table_name, $condition, $sort) as $item) {
             $result[] = (object) $item;
         }
@@ -308,7 +308,7 @@ abstract class Driver extends Query
      */
     public function first($table_name, $condition)
     {
-        $result = $this->select($table_name, $condition, array(), 1);
+        $result = $this->select($table_name, $condition, [], 1);
         return count($result) == 1 ? (object) $result[0] : false;
     }
 
@@ -342,7 +342,7 @@ abstract class Driver extends Query
     public function getNextId($table_name, $condition = [], $operator = 'AND', $primary_key = 'id')
     {
         $sql = "SELECT MAX(`$primary_key`) AS `Auto_increment` FROM `$table_name`";
-        $values = array();
+        $values = [];
         if (!empty($condition)) {
             $condition = $this->buildWhere($condition, $operator);
             if (is_array($condition)) {
@@ -412,7 +412,7 @@ abstract class Driver extends Query
      *
      * @return array|bool
      */
-    abstract protected function doCustomQuery($sql, $values = array());
+    abstract protected function doCustomQuery($sql, $values = []);
 
     /**
      * Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.
@@ -423,7 +423,7 @@ abstract class Driver extends Query
      *
      * @return int|bool
      */
-    abstract protected function doQuery($sql, $values = array());
+    abstract protected function doQuery($sql, $values = []);
 
     /**
      * Optimize a table.
@@ -447,7 +447,7 @@ abstract class Driver extends Query
      *
      * @return bool
      */
-    public function query($sql, $values = array())
+    public function query($sql, $values = [])
     {
         return $this->doQuery($sql, $values);
     }
@@ -486,7 +486,7 @@ abstract class Driver extends Query
      *
      * @return array
      */
-    abstract public function select($table_name, $condition = array(), $sort = array(), $limit = 0);
+    abstract public function select($table_name, $condition = [], $sort = [], $limit = 0);
 
     /**
      * Select a database.
@@ -545,7 +545,7 @@ abstract class Driver extends Query
      * @param string $sql     The SQL query string.
      * @param array  $values  (Optional) The values for prepared statements.
      */
-    protected function log($type, $sql, $values = array())
+    protected function log($type, $sql, $values = [])
     {
         if (DB_LOG == true) {
             $datas = array('<b>'.$type.' :</b> '.Text::replace($sql, $values));
