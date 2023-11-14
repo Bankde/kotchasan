@@ -2787,7 +2787,9 @@ window.$K = (function() {
           return false;
         });
         $G(document.body).addEvent('click', function(e) {
-          if (!$G(GEvent.element(e)).hasClass('ginput')) {
+          let elem = GEvent.element(e),
+            ginput = $G(elem).hasClass('ginput');
+          if (!ginput) {
             self.panel.hide();
             self._doChanged();
             if (self.panel.input) {
@@ -3188,10 +3190,11 @@ window.$K = (function() {
         }
       });
       $G(document.body).addEvent('click', function(e) {
-        if (!(
-          $G(GEvent.element(e)).hasClass('input-gcalendar') ||
-          $G(GEvent.element(e).parentNode).hasClass('input-gcalendar')
-        )) {
+        let elem = GEvent.element(e),
+          parent = elem && elem.parentNode,
+          gcalendar = $G(elem).hasClass('input-gcalendar');
+        gcalendar = gcalendar || (parent && $G(parent).hasClass('input-gcalendar'));
+        if (!gcalendar) {
           self.calendar.hide();
         }
       });
@@ -4050,7 +4053,9 @@ window.$K = (function() {
         self.input.tabIndex = 0;
       }
       $G(document.body).addEvent('click', function(e) {
-        if (!$G(GEvent.element(e)).hasClass('gddcolor')) {
+        let elem = GEvent.element(e),
+          gddcolor = $G(elem).hasClass('gddcolor');
+        if (!gddcolor) {
           self.ddcolor.hide();
         }
       });

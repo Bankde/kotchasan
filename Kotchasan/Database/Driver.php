@@ -330,17 +330,28 @@ abstract class Driver extends Query
     abstract public function getFields();
 
     /**
-     * Returns the next ID of the table (Auto Increment).
-     * Used to retrieve the next ID value for a table.
+     * Gets the next ID for the specified table based on the primary key.
      *
-     * @param string $table_name  The table name
-     * @param string $primary_key The column name to read
+     * @param string $table_name The name of the table.
+     * @param array $condition An array of conditions for the query (default is empty).
+     * @param string $operator The logical operator for combining conditions (default is 'AND').
+     * @param string $primary_key The primary key column name (default is 'id').
      *
-     * @return int The next ID value
+     * @return int The next ID for the specified table.
      */
-    public function getNextId($table_name, $primary_key = 'id')
+    public function getNextId($table_name, $condition = [], $operator = 'AND', $primary_key = 'id')
     {
-        $result = $this->doCustomQuery("SELECT MAX(`$primary_key`) AS `Auto_increment` FROM `$table_name`");
+        $sql = "SELECT MAX(`$primary_key`) AS `Auto_increment` FROM `$table_name`";
+        $values = array();
+        if (!empty($condition)) {
+            $condition = $this->buildWhere($condition, $operator);
+            if (is_array($condition)) {
+                $values = $condition[1];
+                $condition = $condition[0];
+            }
+            $sql .= ' WHERE '.$condition;
+        }
+        $result = $this->doCustomQuery($sql, $values);
         return (int) $result[0]['Auto_increment'] + 1;
     }
 

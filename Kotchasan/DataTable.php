@@ -784,7 +784,9 @@ class DataTable extends \Kotchasan\KBase
                     if ($sort) {
                         $sortType = isset($match[3]) && strtolower($match[3]) == 'desc' ? 'desc' : 'asc';
                         $this->sorts[$sort] = $sortType;
-                        $sorts[] = $sort.' '.$sortType;
+                        foreach (explode(',', $sort) as $sort_item) {
+                            $sorts[] = $sort_item.' '.$sortType;
+                        }
                     }
                 }
             }

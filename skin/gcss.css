@@ -665,6 +665,7 @@ form label {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .radiogroups.g-input,
 .radiogroups label,
@@ -794,6 +795,7 @@ input[type="color"] {
   color: inherit;
   opacity: 0.3;
 }
+fieldset.search:focus-within,
 input[type=file].g-file:focus + input[type=text]:disabled,
 .input-select:focus,
 input:focus,
@@ -3590,6 +3592,7 @@ th[scope="rowgroup"],
 }
 .table_nav label {
   display: inline-block;
+  vertical-align: middle;
 }
 .table_nav select {
   max-width: 10rem;
@@ -4613,23 +4616,52 @@ td.buttons .button:last-child {
   display: none !important;
 }
 @media only screen and (max-width: 72rem) {
-  .ggrid.ggrid > [class^="block"],
-  .ggrid.ggrid > [class*=" block"] {
+  .ggrid > .block5,
+  .ggrid > .block4 {
     max-width: 33.33%;
     flex: 0 0 33.33%;
   }
+  .ggrid > .block11,
+  .ggrid > .block10,
+  .ggrid > .block9,
+  .ggrid > .block8,
+  .ggrid > .block7 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
 }
 @media only screen and (max-width: 56rem) {
-  .ggrid.ggrid > [class^="block"],
-  .ggrid.ggrid > [class*=" block"] {
+  .ggrid > .block11,
+  .ggrid > .block10,
+  .ggrid > .block9,
+  .ggrid > .block8,
+  .ggrid > .block7,
+  .ggrid > .block6 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  .ggrid > .block5,
+  .ggrid > .block4,
+  .ggrid > .block3,
+  .ggrid > .block2 {
     max-width: 50%;
     flex: 0 0 50%;
   }
+  .ggrid > .block1 {
+    max-width: 16.667%;
+    flex: 0 0 16.667%;
+  }
 }
 @media only screen and (max-width: 40rem) {
-  .ggrid.ggrid > [class^="block"],
-  .ggrid.ggrid > [class*=" block"] {
+  .ggrid > .block5,
+  .ggrid > .block4 {
     max-width: 100%;
     flex: 0 0 100%;
+  }
+  .ggrid > .block3,
+  .ggrid > .block2,
+  .ggrid > .block1 {
+    max-width: 50%;
+    flex: 0 0 50%;
   }
 }
