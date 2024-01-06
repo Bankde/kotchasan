@@ -240,7 +240,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @param string $fields (option) รายชื่อฟิลด์ field1, field2, field3, ...
      *
-     * @return object|array|bool
+     * @return mixed
      */
     public function first($fields = '*')
     {

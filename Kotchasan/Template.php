@@ -122,6 +122,7 @@ class Template
         $obj->skin = $html;
         $obj->items = [];
         $obj->num = -1;
+        $obj->cols = 0;
         return $obj;
     }
 

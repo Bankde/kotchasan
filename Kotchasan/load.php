@@ -78,12 +78,7 @@ if (!defined('ROOT_PATH')) {
  * Document root (Server).
  */
 $contextPrefix = '';
-if (isset($_SERVER['APPL_PHYSICAL_PATH'])) {
-    $docRoot = rtrim(realpath($_SERVER['APPL_PHYSICAL_PATH']), DIRECTORY_SEPARATOR);
-    if (DIRECTORY_SEPARATOR != '/' && $docRoot != '') {
-        $docRoot = str_replace('\\', '/', $docRoot);
-    }
-} elseif (!empty($_SERVER['SCRIPT_FILENAME']) && !empty($_SERVER['DOCUMENT_ROOT']) && strpos($_SERVER['SCRIPT_FILENAME'], $_SERVER['DOCUMENT_ROOT']) !== false) {
+if (!empty($_SERVER['SCRIPT_FILENAME']) && !empty($_SERVER['DOCUMENT_ROOT']) && strpos($_SERVER['SCRIPT_FILENAME'], $_SERVER['DOCUMENT_ROOT']) !== false) {
     $docRoot = rtrim(realpath($_SERVER['DOCUMENT_ROOT']), DIRECTORY_SEPARATOR);
     if (DIRECTORY_SEPARATOR != '/' && $docRoot != '') {
         $docRoot = str_replace('\\', '/', $docRoot);

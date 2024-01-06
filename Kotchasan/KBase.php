@@ -10,8 +10,6 @@
 
 namespace Kotchasan;
 
-use Kotchasan\Http\Request;
-
 /**
  * The base class for Kotchasan framework.
  *
@@ -30,7 +28,7 @@ class KBase
     /**
      * Server request class instance.
      *
-     * @var Request
+     * @var Kotchasan\Http\Request
      */
     protected static $request;
 }

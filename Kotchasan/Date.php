@@ -66,6 +66,32 @@ class Date
     }
 
     /**
+     * คืนค่าอายุเป็นข้อความ ปี เดือน วัน
+     *
+     * @param string $date
+     *
+     * @return string
+     */
+    public static function age($date)
+    {
+        $diff = self::compare($date, date('Y-m-d'));
+        $age = [];
+        if ($diff['year'] > 0) {
+            $age[] = $diff['year'];
+            $age[] = '{LNG_year}';
+        }
+        if ($diff['month'] > 0) {
+            $age[] = $diff['month'];
+            $age[] = '{LNG_month}';
+        }
+        if ($diff['day'] > 0) {
+            $age[] = $diff['day'];
+            $age[] = '{LNG_days}';
+        }
+        return implode(' ', $age);
+    }
+
+    /**
      * Returns the time difference in milliseconds.
      *
      * @assert ('08:00', '09:00') [==] 3600

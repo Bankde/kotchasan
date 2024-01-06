@@ -684,14 +684,14 @@ a.icon-edit:before {
 .icon-google:before {
   content: "\e90c";
 }
-.icon-googleplus:before {
+.icon-twitter:before {
   content: "\e90d";
 }
-.icon-twitter:before {
-  content: "\e911";
+.icon-instagram:before {
+  content: "\e90e";
 }
 .icon-youtube:before {
-  content: "\e913";
+  content: "\e911";
 }
 .icon-wechat:before {
   content: "\e914";

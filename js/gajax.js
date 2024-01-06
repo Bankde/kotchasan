@@ -4570,9 +4570,9 @@ window.$K = (function() {
     };
     input = $E(input);
     if (input && input.onclick == null) {
+      input.onclick = func;
       input.style.cursor = 'pointer';
       input.tabIndex = 0;
-      input.onclick = func;
       $G(input).addEvent('keydown', doKeyDown);
     }
   };

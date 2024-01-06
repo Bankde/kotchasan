@@ -350,7 +350,7 @@
     _doButton: function(input) {
       var action = "",
         cs = [],
-        patt = /^([a-z_\-]+)_([0-9]+)(_([0-9]+))?$/,
+        patt = /^([a-z0-9_\-]+)_([0-9]+)(_([0-9]+))?$/,
         q = input.get("data-confirm"),
         chk = input.get("data-checkbox");
       if (chk) {

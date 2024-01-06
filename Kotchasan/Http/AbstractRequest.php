@@ -119,7 +119,7 @@ class AbstractRequest extends AbstractMessage implements \Psr\Http\Message\Reque
     /**
      * Get the URI
      *
-     * @return \Kotchasan\Http\Uri The URI
+     * @return Uri
      */
     public function getUri()
     {
