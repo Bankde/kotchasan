@@ -2031,6 +2031,11 @@ Search.appendIndex(
             "summary": "Calculates\u0020the\u0020difference\u0020between\u0020two\u0020dates\u0020\u0028e.g.,\u0020age\u0029.",
             "url": "classes/Kotchasan-Date.html#method_compare"
         },                {
+            "fqsen": "\\Kotchasan\\Date\u003A\u003Aage\u0028\u0029",
+            "name": "age",
+            "summary": "\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E2D\u0E32\u0E22\u0E38\u0E40\u0E1B\u0E47\u0E19\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0020\u0E1B\u0E35\u0020\u0E40\u0E14\u0E37\u0E2D\u0E19\u0020\u0E27\u0E31\u0E19",
+            "url": "classes/Kotchasan-Date.html#method_age"
+        },                {
             "fqsen": "\\Kotchasan\\Date\u003A\u003AtimeDiff\u0028\u0029",
             "name": "timeDiff",
             "summary": "Returns\u0020the\u0020time\u0020difference\u0020in\u0020milliseconds.",

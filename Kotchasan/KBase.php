@@ -28,7 +28,7 @@ class KBase
     /**
      * Server request class instance.
      *
-     * @var Kotchasan\Http\Request
+     * @var \Kotchasan\Http\Request
      */
     protected static $request;
 }

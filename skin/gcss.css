@@ -258,10 +258,10 @@ sup {
   vertical-align: baseline;
 }
 sup {
-  top: -0.5rem;
+  top: -0.5em;
 }
 sub {
-  bottom: -0.25rem;
+  bottom: -0.25em;
 }
 pre {
   white-space: pre-wrap;
@@ -3154,6 +3154,10 @@ input.gddcolor.invalid {
 .document-list.col,
 .ggrid > .block {
   flex: 1 0 0%;
+}
+.ggrid.equal-height > [class^="block"] > *,
+.ggrid.equal-height > [class*=" block"] > * {
+  height: 100%;
 }
 .ggrid:not(.collapse) {
   margin-left: calc(0px - var(--grid-gap));
