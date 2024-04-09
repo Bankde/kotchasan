@@ -115,28 +115,32 @@ if (!defined('APP_PATH')) {
 /*
  *  http or https
  */
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
-    $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'].'://';
-} elseif ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) {
-    $scheme = 'https://';
+if (defined('HTTPS')) {
+    $scheme = HTTPS ? 'https://' : 'http://';
 } else {
-    $scheme = 'http://';
-}
-if (!defined('HTTPS')) {
+    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+        $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'].'://';
+    } elseif ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) {
+        $scheme = 'https://';
+    } else {
+        $scheme = 'http://';
+    }
     define('HTTPS', $scheme == 'https://');
 }
 
 /*
  * Host name
  */
-if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
-    $host = trim(current(explode(',', $_SERVER['HTTP_X_FORWARDED_HOST'])));
-} elseif (empty($_SERVER['HTTP_HOST'])) {
-    $host = $_SERVER['SERVER_NAME'];
+if (defined('HOST')) {
+    $host = HOST;
 } else {
-    $host = $_SERVER['HTTP_HOST'];
-}
-if (!defined('HOST')) {
+    if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+        $host = trim(current(explode(',', $_SERVER['HTTP_X_FORWARDED_HOST'])));
+    } elseif (empty($_SERVER['HTTP_HOST'])) {
+        $host = $_SERVER['SERVER_NAME'];
+    } else {
+        $host = $_SERVER['HTTP_HOST'];
+    }
     define('HOST', str_replace('www.', '', $host));
 }
 

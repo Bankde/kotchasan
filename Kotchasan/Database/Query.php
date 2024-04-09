@@ -591,7 +591,11 @@ abstract class Query extends \Kotchasan\Database\Db
                 $vs = [];
                 foreach ($value as $a => $item) {
                     if (empty($item)) {
-                        $qs[] = is_string($item) ? "'$item'" : $item;
+                        if (is_string($item)) {
+                            $qs[] = "'$item'";
+                        } elseif (is_numeric($item)) {
+                            $qs[] = $item;
+                        }
                     } elseif (is_string($item)) {
                         if (preg_match('/^([A-Z][0-9]{0,2})\.`?([a-zA-Z0-9_\-]+)`?$/', $item, $match)) {
                             $qs[] = "$match[1].`$match[2]`";
@@ -624,7 +628,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 $result = "$key $operator ".(is_string($value) ? "'$value'" : $value);
             } elseif (preg_match('/^SQL\((.+)\)$/', $value, $match)) {
                 // SQL()
-                $result = '('.$match[1].')';
+                $result = "$key $operator ($match[1])";
             } elseif (preg_match('/^[0-9\s\-:]+$/', $value)) {
                 // วันที่
                 $result = "$key $operator '$value'";
@@ -659,8 +663,6 @@ abstract class Query extends \Kotchasan\Database\Db
         } elseif (preg_match('/^SQL\((.+)\)$/', $params, $match)) {
             // SQL()
             $result = '('.$match[1].')';
-        } else {
-            $result = $params;
         }
         return $result;
     }

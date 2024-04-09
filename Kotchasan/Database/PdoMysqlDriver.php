@@ -135,7 +135,7 @@ class PdoMysqlDriver extends Driver
      * Insert a new row into a table or update an existing row if a unique key constraint is violated.
      *
      * @param string $table_name The name of the table.
-     * @param array $save The data to be inserted or updated.
+     * @param array|object $save The data to be inserted or updated.
      *
      * @return int The ID of the inserted row.
      * @throws \Exception if there's an error executing the query.

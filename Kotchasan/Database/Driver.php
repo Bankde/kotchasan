@@ -357,13 +357,12 @@ abstract class Driver extends Query
 
     /**
      * Check if an index exists in a table.
-     * Returns true if the index exists, false otherwise.
      *
      * @param string $database_name The database name.
      * @param string $table_name    The table name.
      * @param string $index         The index name.
      *
-     * @return bool
+     * @return bool Returns true if the index exists, false otherwise.
      */
     public function indexExists($database_name, $table_name, $index)
     {
@@ -373,65 +372,60 @@ abstract class Driver extends Query
 
     /**
      * Insert new data into a table.
-     * Returns the ID of the inserted data if successful, or false if an error occurs.
      *
      * @param string $table_name The table name.
      * @param array  $save       The data to be saved.
      *
-     * @return int|bool
+     * @return int|bool Returns the ID of the inserted data if successful, or false if an error occurs.
      */
     abstract public function insert($table_name, $save);
 
     /**
      * Insert new data into a table or update existing data if a unique key constraint is violated.
-     * Returns the ID of the inserted data, 0 if an update occurred, or null if an error occurs.
      *
      * @param string       $table_name The table name.
      * @param array|object $save       The data to be saved in the format array('key1'=>'value1', 'key2'=>'value2', ...).
      *
-     * @return int|null
+     * @return int Returns the ID of the inserted data, 0 if an update occurred, or null if an error occurs.
+     * @throws \Exception if there's an error executing the query.
      */
     abstract public function insertOrUpdate($table_name, $save);
 
     /**
      * Generate an SQL query command.
-     * Returns the SQL command.
      *
      * @param array $sqls The SQL commands from the query builder.
      *
-     * @return string
+     * @return string Returns the SQL command.
      */
     abstract public function makeQuery($sqls);
 
     /**
      * Execute an SQL query for retrieving data.
-     * Returns an array of data that match the conditions, or false if an error occurs.
      *
-     * @param string $sql    The query string.
-     * @param array  $values If specified, it will use prepared statements instead of directly querying the database.
+     * @param string $sql    The SQL query string.
+     * @param array  $values If specified, it will use prepared statements instead of direct query execution.
      *
-     * @return array|bool
+     * @return array|bool Returns an array of records that match the condition on success, or false on failure.
      */
     abstract protected function doCustomQuery($sql, $values = []);
 
     /**
      * Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.
-     * Returns the number of affected rows if successful, or false if an error occurs.
      *
-     * @param string $sql    The query string.
-     * @param array  $values If specified, it will use prepared statements instead of directly querying the database.
+     * @param string $sql    The SQL query string.
+     * @param array  $values If specified, it will use prepared statements instead of direct query execution.
      *
-     * @return int|bool
+     * @return int|bool Returns the number of affected rows on success, or false on failure.
      */
     abstract protected function doQuery($sql, $values = []);
 
     /**
      * Optimize a table.
-     * Returns true if successful.
      *
      * @param string $table_name The table name.
      *
-     * @return bool
+     * @return bool Returns true if successful.
      */
     public function optimizeTable($table_name)
     {
@@ -440,12 +434,11 @@ abstract class Driver extends Query
 
     /**
      * Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.
-     * Returns true if successful, or false if an error occurs.
      *
      * @param string $sql    The query string.
      * @param array  $values If specified, it will use prepared statements instead of directly querying the database.
      *
-     * @return bool
+     * @return bool Returns true if successful, or false if an error occurs.
      */
     public function query($sql, $values = [])
     {
@@ -464,11 +457,10 @@ abstract class Driver extends Query
 
     /**
      * Repair a table.
-     * Returns true if successful.
      *
      * @param string $table_name The table name.
      *
-     * @return bool
+     * @return bool Returns true if successful.
      */
     public function repairTable($table_name)
     {
@@ -477,34 +469,31 @@ abstract class Driver extends Query
 
     /**
      * Retrieve data from a table.
-     * Returns the result in an array format. If unsuccessful, returns an empty array.
      *
      * @param string $table_name The table name.
-     * @param mixed  $condition  The WHERE condition for the query.
-     * @param array  $sort       The sorting order.
+     * @param mixed  $condition  The query WHERE condition.
+     * @param array  $sort       The sorting criteria.
      * @param int    $limit      The number of data to retrieve.
      *
-     * @return array
+     * @return array The resulting data in array format. Returns an empty array if unsuccessful.
      */
     abstract public function select($table_name, $condition = [], $sort = [], $limit = 0);
 
     /**
-     * Select a database.
-     * Returns false if unsuccessful.
+     * Selects a database.
      *
-     * @param string $database The database name.
+     * @param string $database The name of the database.
      *
-     * @return bool
+     * @return bool Returns true on success, false on failure.
      */
     abstract public function selectDB($database);
 
     /**
      * Check if a table exists.
-     * Returns true if the table exists, false otherwise.
      *
      * @param string $table_name The table name.
      *
-     * @return bool
+     * @return bool Returns true if the table exists, false otherwise.
      */
     public function tableExists($table_name)
     {
@@ -513,14 +502,13 @@ abstract class Driver extends Query
     }
 
     /**
-     * Update data in a table.
-     * Returns true if successful, false otherwise.
+     * Updates data in the specified table.
      *
-     * @param string $table_name The table name.
-     * @param mixed  $condition  The WHERE condition for the query.
-     * @param array  $save       The data to be saved in the format array('key1'=>'value1', 'key2'=>'value2', ...).
+     * @param string       $table_name The table name.
+     * @param mixed        $condition  The query WHERE condition.
+     * @param array|object $save       The data to be saved in the format array('key1'=>'value1', 'key2'=>'value2', ...)
      *
-     * @return bool
+     * @return bool Returns true on success, false on failure.
      */
     abstract public function update($table_name, $condition, $save);
 

@@ -1033,7 +1033,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Database\\Driver\u003A\u003AselectDB\u0028\u0029",
             "name": "selectDB",
-            "summary": "Select\u0020a\u0020database.",
+            "summary": "Selects\u0020a\u0020database.",
             "url": "classes/Kotchasan-Database-Driver.html#method_selectDB"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Driver\u003A\u003AtableExists\u0028\u0029",
@@ -1043,7 +1043,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Database\\Driver\u003A\u003Aupdate\u0028\u0029",
             "name": "update",
-            "summary": "Update\u0020data\u0020in\u0020a\u0020table.",
+            "summary": "Updates\u0020data\u0020in\u0020the\u0020specified\u0020table.",
             "url": "classes/Kotchasan-Database-Driver.html#method_update"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Driver\u003A\u003AupdateAll\u0028\u0029",
@@ -2060,6 +2060,11 @@ Search.appendIndex(
             "name": "parse",
             "summary": "Parses\u0020a\u0020date\u0020string\u0020into\u0020an\u0020array.",
             "url": "classes/Kotchasan-Date.html#method_parse"
+        },                {
+            "fqsen": "\\Kotchasan\\Date\u003A\u003AtimeAgo\u0028\u0029",
+            "name": "timeAgo",
+            "summary": "Converts\u0020a\u0020date\u0020to\u0020a\u0020human\u002Dreadable\u0020time\u0020ago\u0020format",
+            "url": "classes/Kotchasan-Date.html#method_timeAgo"
         },                {
             "fqsen": "\\Kotchasan\\Date\u003A\u003A\u0024lang",
             "name": "lang",
@@ -3653,8 +3658,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Image\u003A\u003Aorient\u0028\u0029",
             "name": "orient",
-            "summary": "Rotate\u0020an\u0020image\u0020based\u0020on\u0020the\u0020Exif\u0020data.",
+            "summary": "",
             "url": "classes/Kotchasan-Image.html#method_orient"
+        },                {
+            "fqsen": "\\Kotchasan\\Image\u003A\u003ArotateImage\u0028\u0029",
+            "name": "rotateImage",
+            "summary": "",
+            "url": "classes/Kotchasan-Image.html#method_rotateImage"
+        },                {
+            "fqsen": "\\Kotchasan\\Image\u003A\u003AflipImage\u0028\u0029",
+            "name": "flipImage",
+            "summary": "",
+            "url": "classes/Kotchasan-Image.html#method_flipImage"
         },                {
             "fqsen": "\\Kotchasan\\Image\u003A\u003Aresize\u0028\u0029",
             "name": "resize",

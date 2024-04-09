@@ -36,7 +36,7 @@ class Form extends \Kotchasan\KBase
     /**
      * JavaScript
      *
-     * @var string
+     * @var array
      */
     public $javascript;
 
@@ -482,10 +482,8 @@ class Form extends \Kotchasan\KBase
         }
         if ($this->tag == 'select') {
             unset($prop['type']);
-            if (isset($multiple)) {
-                $value = isset($value) ? $value : [];
-            } else {
-                $value = isset($value) ? $value : null;
+            if (!isset($value)) {
+                $value = isset($multiple) ? [] : null;
             }
             if (isset($options) && is_array($options)) {
                 $datas = [];

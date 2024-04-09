@@ -423,6 +423,21 @@
         }
         row++;
       });
+      let menus = this.table.querySelectorAll('.menubutton > ul'),
+        tablebody = this.table.querySelector('.tablebody'),
+        table_height = $G(tablebody).getHeight(),
+        vp = $G(tablebody).viewportOffset(),
+        height = 0;
+      forEach(menus, function() {
+        height = Math.max(height, $G(this).getHeight());
+      });
+      forEach(menus, function() {
+        if (this.getTop() - vp.top + height > table_height) {
+          $G(this.parentNode).addClass('uppermenu');
+        }
+      });
+      tablebody.style.paddingTop = height + 'px';
+      tablebody.style.marginTop = '-' + height + 'px';
     },
     initTR: function(el) {
       var hs,

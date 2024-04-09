@@ -25,21 +25,18 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     private $id;
-
     /**
      * Table class.
      *
      * @var string
      */
     private $class;
-
     /**
      * Name of the Model to retrieve data from.
      *
      * @var \Kotchasan\Database\QueryBuilder
      */
     private $model;
-
     /**
      * All data of the table in array format.
      * If the table does not connect to a Model, specify the data here.
@@ -47,7 +44,6 @@ class DataTable extends \Kotchasan\KBase
      * @var array
      */
     private $datas;
-
     /**
      * URL for reading data using Ajax.
      * Returns JSON data based on columns.
@@ -55,28 +51,24 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     private $url = null;
-
     /**
      * Array data to be sent to $url when called by Ajax.
      *
      * @var array
      */
     private $params = [];
-
     /**
      * Database cache.
      *
      * @var bool
      */
     private $cache = false;
-
     /**
      * List of fields to query.
      *
      * @var array
      */
     private $fields = [];
-
     /**
      * Column index of the checkbox.
      * -1 to hide the checkbox.
@@ -84,7 +76,6 @@ class DataTable extends \Kotchasan\KBase
      * @var int
      */
     private $checkCol = -1;
-
     /**
      * Determines whether to hide the checkbox.
      * If set to true, the checkbox will always be hidden.
@@ -92,35 +83,30 @@ class DataTable extends \Kotchasan\KBase
      * @var bool
      */
     public $hideCheckbox = false;
-
     /**
      * Displays the table with 100% width.
      *
      * @var bool
      */
     private $fullWidth = true;
-
     /**
      * Displays the table with borders.
      *
      * @var bool
      */
     private $border = false;
-
     /**
      * Displays buttons for adding and deleting rows.
      *
      * @var bool
      */
     private $pmButton = false;
-
     /**
      * Displays the table in responsive mode.
      *
      * @var bool
      */
     private $responsive = false;
-
     /**
      * Displays the table caption.
      *
@@ -135,7 +121,6 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     private $action;
-
     /**
      * If specified, checkboxes and action buttons will be shown.
      * Example: array('delete' => Language::get('Delete'), 'published' => Language::get('Published'))
@@ -144,7 +129,6 @@ class DataTable extends \Kotchasan\KBase
      * @var array
      */
     public $actions = [];
-
     /**
      * Name of the Javascript function to call after sending data from action.
      * Example: doFormSubmit
@@ -171,7 +155,6 @@ class DataTable extends \Kotchasan\KBase
      * @var array array($this, methodName)
      */
     private $onRow;
-
     /**
      * Name of the JavaScript function called before deleting a row (pmButton).
      * If the function returns true, the row will be deleted.
@@ -180,7 +163,6 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     private $onBeforeDelete;
-
     /**
      * Name of the JavaScript function called after deleting a row (pmButton).
      * function(){}
@@ -188,7 +170,6 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     private $onDelete;
-
     /**
      * Name of the JavaScript function called when adding a new row (pmButton).
      * This function is called before $onInitRow.
@@ -197,7 +178,6 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     private $onAddRow;
-
     /**
      * Name of the JavaScript function called to handle a new row.
      * function(tr, row)
@@ -205,7 +185,6 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     private $onInitRow;
-
     /**
      * Name of the JavaScript function called after loading data via Ajax.
      * function(tbody, items)
@@ -213,7 +192,6 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     private $onChanged;
-
     /**
      * List of main query commands for data selection.
      * array('id', 1) WHERE `id` = 1 AND ...
@@ -223,7 +201,6 @@ class DataTable extends \Kotchasan\KBase
      * @var array
      */
     public $defaultFilters = [];
-
     /**
      * Data display filters.
      * If this list is specified, it will display filter options above the table.
@@ -231,28 +208,24 @@ class DataTable extends \Kotchasan\KBase
      * @var array
      */
     public $filters = [];
-
     /**
      * List of columns that should not be displayed.
      *
      * @var array
      */
     public $hideColumns = [];
-
     /**
      * List of all columns.
      *
      * @var array
      */
     public $cols = [];
-
     /**
      * List of header names for columns.
      *
      * @var array
      */
     public $headers = [];
-
     /**
      * List of fields that can be searched.
      * If this list is specified, it will display a search box.
@@ -260,7 +233,6 @@ class DataTable extends \Kotchasan\KBase
      * @var array
      */
     public $searchColumns = [];
-
     /**
      * Specify the search behavior from the search box.
      * true (default): Automatically search based on $searchColumns.
@@ -269,7 +241,6 @@ class DataTable extends \Kotchasan\KBase
      * @var bool
      */
     public $autoSearch = true;
-
     /**
      * Determines the display of the search form.
      * - 'auto' (default): Shows the search form if $searchColumns are specified.
@@ -279,14 +250,12 @@ class DataTable extends \Kotchasan\KBase
      * @var bool|string
      */
     public $searchForm = 'auto';
-
     /**
      * The search text.
      *
      * @var string
      */
     public $search = '';
-
     /**
      * The number of items per page.
      * If specified, the table will be paginated and display options for the number of items per page.
@@ -294,14 +263,12 @@ class DataTable extends \Kotchasan\KBase
      * @var int|null
      */
     public $perPage = null;
-
     /**
      * The current page being displayed.
      *
      * @var int
      */
     public $page = 1;
-
     /**
      * The column name used for sorting.
      * Default is null for automatic value retrieval.
@@ -309,7 +276,6 @@ class DataTable extends \Kotchasan\KBase
      * @var string|null
      */
     public $sort = null;
-
     /**
      * The default column name used for sorting.
      * If specified, the table will be initially sorted based on this column.
@@ -317,21 +283,18 @@ class DataTable extends \Kotchasan\KBase
      * @var string|null
      */
     public $defaultSort = null;
-
     /**
      * The active sorting information.
      *
      * @var array
      */
     protected $sorts = [];
-
     /**
      * Buttons to be added at the end of each row.
      *
      * @var array
      */
     public $buttons = [];
-
     /**
      * A method for preparing button rendering.
      * If it returns false, no buttons will be created.
@@ -343,7 +306,6 @@ class DataTable extends \Kotchasan\KBase
      * @var array array($this, methodName)
      */
     private $onCreateButton;
-
     /**
      * A method to call when creating the header.
      * Returns the <tr> tag within the header.
@@ -352,7 +314,6 @@ class DataTable extends \Kotchasan\KBase
      * @var array array($this, methodName)
      */
     private $onCreateHeader;
-
     /**
      * A method to call when creating the footer.
      * Returns the <tr> tag within the footer.
@@ -361,14 +322,12 @@ class DataTable extends \Kotchasan\KBase
      * @var array array($this, methodName)
      */
     private $onCreateFooter;
-
     /**
      * Specifies the column that allows drag and drop for table reordering.
      *
      * @var int
      */
     private $dragColumn = -1;
-
     /**
      * The primary key column name for data identification.
      * Used to read the ID of each row.
@@ -376,14 +335,12 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     private $primaryKey = 'id';
-
     /**
      * Javascript code.
      *
      * @var array
      */
     private $javascript = [];
-
     /**
      * Enables the usage of DataTable's JavaScript.
      * - true: Enables the usage of GTable.
@@ -392,40 +349,34 @@ class DataTable extends \Kotchasan\KBase
      * @var bool
      */
     public $enableJavascript = true;
-
     /**
      * The current URI of the web page.
      *
      * @var Uri
      */
     private $uri;
-
     /**
      * Options for the number of entries to be displayed per page.
      *
      * @var array
      */
     public $entriesList = array(10, 20, 30, 40, 50, 100);
-
     /**
      * Displays the query on the screen.
      *
      * @var bool
      */
     private $debug = false;
-
     /**
      * Displays the query's explain plan.
      *
      * @var bool
      */
     private $explain = false;
-
     /**
      * @var array
      */
     private $columns;
-
     /**
      * The button for adding new data.
      *
@@ -615,19 +566,8 @@ class DataTable extends \Kotchasan\KBase
             }
         }
 
-        $c = array('datatable');
-
-        // Check for submenus in buttons to add space below the table
-        if (!empty($this->buttons)) {
-            foreach ($this->buttons as $item) {
-                if (!empty($item['submenus'])) {
-                    $c[] = 'hassubmenus';
-                    break;
-                }
-            }
-        }
         // Create HTML
-        $content = array('<div class="'.implode(' ', $c).'" id="'.$this->id.'">');
+        $content = array('<div class="datatable" id="'.$this->id.'">');
 
         // Form
         $form = [];

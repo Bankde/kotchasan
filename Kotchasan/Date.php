@@ -242,4 +242,55 @@ class Date
         }
         return false;
     }
+
+    /**
+     * Converts a date to a human-readable time ago format
+     *
+     * @param string $date
+     *
+     * @return string
+     */
+    public static function timeAgo($date)
+    {
+        // Get the current date and time
+        $today = new \DateTime();
+
+        // Calculate the difference between the given date and the current date
+        $diff = $today->diff(new \DateTime($date));
+
+        // Check for the time difference in years
+        if ($diff->y > 0) {
+            return $diff->y.' {LNG_year} {LNG_ago}';
+        }
+
+        // Check for the time difference in months
+        if ($diff->m > 0) {
+            return $diff->m.' {LNG_month} {LNG_ago}';
+        }
+
+        // Check for the time difference in weeks if it's more than 7 days
+        if ($diff->d > 7) {
+            $week = floor($diff->d / 7);
+            return $week.' {LNG_week} {LNG_ago}';
+        }
+
+        // Check for the time difference in days if it's more than 2 days
+        if ($diff->d > 2) {
+            return $diff->d.' {LNG_days} {LNG_ago}';
+        }
+
+        // Check for the time difference in hours
+        if ($diff->h > 0) {
+            return $diff->h.' {LNG_hours} {LNG_ago}';
+        }
+
+        // Check for the time difference in minutes
+        if ($diff->i > 0) {
+            return $diff->i.' {LNG_minutes} {LNG_ago}';
+        }
+
+        // If there is no significant time difference, return '{LNG_now}'
+        return '{LNG_now}';
+    }
+
 }

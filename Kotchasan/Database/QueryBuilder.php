@@ -145,7 +145,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      *
      * @return static
      */
-    public function delete($table, $condition)
+    public function delete($table, $condition = [])
     {
         $this->sqls['function'] = 'query';
         $this->sqls['delete'] = $this->quoteTableName($table);
@@ -178,8 +178,8 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @param string $table     ชื่อตาราง
      * @param mixed  $condition query WHERE
      *
-     * @assert select()->from('user U')->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
-     * @assert select()->from('user U')->where(array('U.id', 1))->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE U.`id` = 1 AND EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
+     * @assert select()->from('user U')->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE EXISTS (SELECT 1 FROM `useronline` WHERE `member_id` = U.`id`)'
+     * @assert select()->from('user U')->where(array('U.id', 1))->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE U.`id` = 1 AND EXISTS (SELECT 1 FROM `useronline` WHERE `member_id` = U.`id`)'
      *
      * @return static
      */
@@ -193,7 +193,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
         if (!isset($this->sqls['exists'])) {
             $this->sqls['exists'] = [];
         }
-        $this->sqls['exists'][] = 'EXISTS (SELECT * FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
+        $this->sqls['exists'][] = 'EXISTS (SELECT 1 FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
         return $this;
     }
 
@@ -303,7 +303,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * GROUP BY
      *
-     * @assert select()->from('user')->groupBy('MONTH(`date`)', 'YEAR(`date`)')->text() [==] 'SELECT * FROM `user` GROUP BY MONTH(`date`), YEAR(`date`)'
+     * @assert select()->from('user')->groupBy('SQL(MONTH(`date`))', 'SQL(YEAR(`date`))')->text() [==] 'SELECT * FROM `user` GROUP BY MONTH(`date`), YEAR(`date`)'
      * @assert select()->from('user')->groupBy('U.id')->text() [==] 'SELECT * FROM `user` GROUP BY U.`id`'
      * @assert select()->from('user')->groupBy(array('id', 'username'))->text() [==] 'SELECT * FROM `user` GROUP BY `id`, `username`'
      *
@@ -318,9 +318,11 @@ class QueryBuilder extends \Kotchasan\Database\Query
         foreach ($args as $item) {
             if ($item instanceof Sql) {
                 $sqls[] = $item->text();
-            } elseif (strpos($item, '(') !== false) {
-                $sqls[] = $item;
+            } elseif (preg_match('/^SQL\((.+)\)$/', $item, $match)) {
+                // SQL()
+                $sqls[] = $match[1];
             } elseif (preg_match('/^(([a-z0-9]+)\.)?([a-z0-9_]+)?$/i', $item, $match)) {
+                // column.alias
                 $sqls[] = "$match[1]`$match[3]`";
             }
         }
@@ -461,8 +463,8 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * ฟังก์ชั่นสร้าง SQL NOT EXISTS
      *
-     * @assert select()->from('user U')->notExists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE NOT EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
-     * @assert select()->from('user U')->where(array('U.id', 1))->notExists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE U.`id` = 1 AND NOT EXISTS (SELECT * FROM `useronline` WHERE `member_id` = U.`id`)'
+     * @assert select()->from('user U')->notExists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE NOT EXISTS (SELECT 1 FROM `useronline` WHERE `member_id` = U.`id`)'
+     * @assert select()->from('user U')->where(array('U.id', 1))->notExists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE U.`id` = 1 AND NOT EXISTS (SELECT 1 FROM `useronline` WHERE `member_id` = U.`id`)'
      *
      * @param string $table     ชื่อตาราง
      * @param mixed  $condition query WHERE
@@ -480,7 +482,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
         if (!isset($this->sqls['exists'])) {
             $this->sqls['exists'] = [];
         }
-        $this->sqls['exists'][] = 'NOT EXISTS (SELECT * FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
+        $this->sqls['exists'][] = 'NOT EXISTS (SELECT 1 FROM '.$this->quoteTableName($table).' WHERE '.$ret.')';
         return $this;
     }
 

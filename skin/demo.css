@@ -1,14 +1,14 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: sans-serif;
+  font-family: Tahoma, Loma sans-serif;
   font-size: 1em;
   line-height: 1.5;
   color: #555;
   background: #fff;
 }
 h1 {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: normal;
 }
 small {
@@ -31,7 +31,7 @@ input:hover {
 }
 input,
 fieldset {
-  font-family: sans-serif;
+  font-family: Tahoma, Loma sans-serif;
   font-size: 1em;
   margin: 0;
   padding: 0;
@@ -49,9 +49,10 @@ input:focus {
 }
 .glyph {
   font-size: 16px;
-  width: 15em;
+  width: 20%;
+  min-width: 10em;
   padding-bottom: 1em;
-  margin-right: 4em;
+  margin-right: 5%;
   margin-bottom: 1em;
   float: left;
   overflow: hidden;
@@ -153,5 +154,5 @@ p {
   line-height: 1.5;
 }
 .fs3 {
-  font-size: 20px;
+  font-size: 1.5em;
 }

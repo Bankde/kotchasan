@@ -74,22 +74,22 @@ class Image
         if ($o_wd > $o_ht) {
             $adjusted_width = ceil($o_wd / $hm);
             $half_width = $adjusted_width / 2;
-            $int_width = $half_width - $w_height;
+            $int_width = intval($half_width - $w_height);
             if ($adjusted_width < $thumbwidth) {
                 $adjusted_height = ceil($o_ht / $wm);
                 $half_height = $adjusted_height / 2;
-                $int_height = $half_height - $h_height;
+                $int_height = intval($half_height - $h_height);
                 $adjusted_width = $thumbwidth;
                 $int_width = 0;
             }
         } elseif (($o_wd < $o_ht) || ($o_wd == $o_ht)) {
             $adjusted_height = ceil($o_ht / $wm);
             $half_height = $adjusted_height / 2;
-            $int_height = $half_height - $h_height;
+            $int_height = intval($half_height - $h_height);
             if ($adjusted_height < $thumbheight) {
                 $adjusted_width = ceil($o_wd / $hm);
                 $half_width = $adjusted_width / 2;
-                $int_width = $half_width - $w_height;
+                $int_width = intval($half_width - $w_height);
                 $adjusted_height = $thumbheight;
                 $int_height = 0;
             }
@@ -170,53 +170,77 @@ class Image
     }
 
     /**
-     * Rotate an image based on the Exif data.
-     *
-     * This method loads a JPEG image and automatically rotates it based on the Exif data.
-     * The resulting image resource is returned.
-     *
-     * @param string $source The path and filename of the source image.
-     *
-     * @return \GdImage|bool The rotated image resource on success, or false on failure.
+     * @param $source
+     * @return mixed
      */
     public static function orient($source)
     {
-        $exif = exif_read_data($source);
-        if (!$exif || !isset($exif['Orientation'])) {
-            return imageCreateFromJPEG($source);
-        }
-
         $im = imageCreateFromJPEG($source);
+
         if (!$im) {
             return false;
         }
 
-        if ($exif['Orientation'] == 2) {
-            // horizontal flip
-            $im = self::flip($im);
-        } elseif ($exif['Orientation'] == 3) {
-            // 180 rotate left
-            $im = imagerotate($im, 180, 0);
-        } elseif ($exif['Orientation'] == 4) {
-            // vertical flip
-            $im = self::flip($im);
-        } elseif ($exif['Orientation'] == 5) {
-            // vertical flip + 90 rotate right
-            $im = imagerotate($im, 270, 0);
-            $im = self::flip($im);
-        } elseif ($exif['Orientation'] == 6) {
-            // 90 rotate right
-            $im = imagerotate($im, 270, 0);
-        } elseif ($exif['Orientation'] == 7) {
-            // horizontal flip + 90 rotate right
-            $im = imagerotate($im, 90, 0);
-            $im = self::flip($im);
-        } elseif ($exif['Orientation'] == 8) {
-            // 90 rotate left
-            $im = imagerotate($im, 90, 0);
+        try {
+            $exif = exif_read_data($source);
+        } catch (\Throwable $th) {
+            // exif error
+            return $im;
+        }
+
+        $orientation = $exif['Orientation'] ?? 0;
+
+        switch ($orientation) {
+            case 2:
+                // horizontal flip
+                $im = self::flip($im);
+                break;
+            case 3:
+                // 180 rotate left
+                $im = self::rotateImage($im, 180);
+                break;
+            case 4:
+                // vertical flip
+                $im = self::flipImage($im);
+                break;
+            case 5:
+                // vertical flip + 90 rotate left
+                $im = self::flipImage($im);
+                $im = self::rotateImage($im, -90);
+                break;
+            case 6:
+                // 90 rotate right
+                $im = self::rotateImage($im, 90);
+                break;
+            case 7:
+                // horizontal flip + 90 rotate right
+                $im = self::flipImage($im);
+                $im = self::rotateImage($im, 90);
+                break;
+            case 8:
+                // 90 rotate left
+                $im = self::rotateImage($im, -90);
+                break;
         }
 
         return $im;
+    }
+
+    /**
+     * @param $image
+     * @param $angle
+     */
+    private static function rotateImage($image, $angle)
+    {
+        return imagerotate($image, $angle, 0);
+    }
+
+    /**
+     * @param $image
+     */
+    private static function flipImage($image)
+    {
+        return self::rotateImage($image, 180);
     }
 
     /**
