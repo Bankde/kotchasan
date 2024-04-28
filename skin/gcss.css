@@ -221,6 +221,11 @@ figure.center {
 figure img {
   width: 100%;
 }
+.figure.center img,
+figure.center img {
+  width: 100% !important;
+  height: auto !important;
+}
 img {
   border-style: none;
   vertical-align: middle;

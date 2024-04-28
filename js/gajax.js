@@ -188,7 +188,7 @@ window.$K = (function() {
                         files = [],
                         preview = $E(this.get('data-preview')),
                         max = floatval(input.get('data-max')),
-                        validImageTypes = ['image/gif', 'image/jpeg', 'image/jpg', 'image/png'];
+                        validImageTypes = ['image/gif', 'image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
                       if (preview) {
                         preview.innerHTML = '';
                       }

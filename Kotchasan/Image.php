@@ -19,7 +19,7 @@ namespace Kotchasan;
 class Image
 {
     /**
-     * @var int The image quality (0-100) for JPEG images.
+     * @var int The image quality (0-100) for JPEG or WEBP images.
      */
     private static $quality = 75;
 
@@ -28,7 +28,7 @@ class Image
      *
      * The resulting image will have the exact dimensions specified. If the original image
      * has a different aspect ratio, it will be cropped or stretched to fit the target dimensions.
-     * The resulting image will be saved as a JPEG file.
+     * The resulting image will be saved as a JPEG or WEBP file.
      *
      * @param string $source The path and filename of the source image.
      * @param string $target The path and filename of the target image.
@@ -54,6 +54,9 @@ class Image
             case 'image/png':
             case 'image/x-png':
                 $o_im = imageCreateFromPNG($source);
+                break;
+            case 'image/webp':
+                $o_im = imagecreatefromwebp($source);
                 break;
             default:
                 return false;
@@ -107,8 +110,13 @@ class Image
             self::watermarkText($t_im, $watermark);
         }
 
-        // Save the resulting image as a JPEG file
-        $result = imageJPEG($t_im, $target, self::$quality);
+        if (preg_match('/.*\.webp$/', $target)) {
+            // Save the resulting image as a WEBP file
+            $result = imagewebp($t_im, $target, self::$quality);
+        } else {
+            // Save the resulting image as a JPEG file
+            $result = imageJPEG($t_im, $target, self::$quality);
+        }
 
         // Clean up resources
         imageDestroy($t_im);
@@ -279,6 +287,9 @@ class Image
                 case 'image/x-png':
                     $o_im = imageCreateFromPNG($source);
                     break;
+                case 'image/webp':
+                    $o_im = imagecreatefromwebp($source);
+                    break;
             }
             $o_wd = imagesx($o_im);
             $o_ht = imagesy($o_im);
@@ -298,18 +309,26 @@ class Image
             if ($watermark != '') {
                 $t_im = self::watermarkText($t_im, $watermark);
             }
-            $newname = substr($name, 0, strrpos($name, '.')).'.jpg';
-            if (!@ImageJPEG($t_im, $target.$newname, self::$quality)) {
-                $ret = false;
+            if (preg_match('/(.*)\.webp$/', $name, $match)) {
+                // Save the resulting image as a WEBP file
+                $newname = $match[1].'.webp';
+                $mime = 'image/webp';
+                $result = imagewebp($t_im, $target, self::$quality);
             } else {
-                $ret['name'] = $newname;
-                $ret['width'] = $w;
-                $ret['height'] = $h;
-                $ret['mime'] = 'image/jpeg';
+                // Save the resulting image as a JPEG file
+                $newname = $match[1].'.jpg';
+                $mime = 'image/jpeg';
+                $result = imageJPEG($t_im, $target, self::$quality);
             }
             imageDestroy($o_im);
             imageDestroy($t_im);
-            return $ret;
+            if ($result) {
+                $ret['name'] = $newname;
+                $ret['width'] = $w;
+                $ret['height'] = $h;
+                $ret['mime'] = $mime;
+                return $ret;
+            }
         } elseif (copy($source, $target.$name)) {
             $ret['name'] = $name;
             $ret['width'] = $info[0];

@@ -100,10 +100,15 @@ strong {
 figure {
   margin: 0 0 10px 0;
 }
+figure.center img {
+  height: auto !important;
+}
 img {
-  border: none;
+  border-style: none;
   vertical-align: middle;
-  max-width: 70%;
+  max-width: 100%;
+  height: auto !important;
+  -ms-interpolation-mode: bicubic;
 }
 del {
   text-decoration: line-through;
