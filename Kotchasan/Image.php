@@ -110,12 +110,12 @@ class Image
             self::watermarkText($t_im, $watermark);
         }
 
-        if (preg_match('/.*\.webp$/', $target)) {
+        if (preg_match('/.*\.webp$/i', $target)) {
             // Save the resulting image as a WEBP file
             $result = imagewebp($t_im, $target, self::$quality);
         } else {
             // Save the resulting image as a JPEG file
-            $result = imageJPEG($t_im, $target, self::$quality);
+            $result = imagejpeg($t_im, $target, self::$quality);
         }
 
         // Clean up resources
@@ -309,16 +309,28 @@ class Image
             if ($watermark != '') {
                 $t_im = self::watermarkText($t_im, $watermark);
             }
-            if (preg_match('/(.*)\.webp$/', $name, $match)) {
-                // Save the resulting image as a WEBP file
-                $newname = $match[1].'.webp';
-                $mime = 'image/webp';
-                $result = imagewebp($t_im, $target, self::$quality);
+            $newname = strtolower($name);
+            if (preg_match('/(.*)\.([a-z]+)$/', $newname, $match)) {
+                if ($match[2] == 'webp') {
+                    // Save the resulting image as a WEBP file
+                    $newname = $match[1].'.webp';
+                    $mime = 'image/webp';
+                } else {
+                    // Save the resulting image as a JPEG file
+                    $newname = $match[1].'.jpg';
+                    $mime = 'image/jpeg';
+                }
             } else {
                 // Save the resulting image as a JPEG file
-                $newname = $match[1].'.jpg';
+                $newname .= '.jpg';
                 $mime = 'image/jpeg';
-                $result = imageJPEG($t_im, $target, self::$quality);
+            }
+            if ($mime == 'image/webp') {
+                // WEBP
+                $result = imagewebp($t_im, $target.$newname, self::$quality);
+            } else {
+                // JPG
+                $result = imagejpeg($t_im, $target.$newname, self::$quality);
             }
             imageDestroy($o_im);
             imageDestroy($t_im);
