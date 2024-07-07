@@ -299,14 +299,14 @@ class PdoMysqlDriver extends Driver
         }
 
         if (!empty($sort)) {
-            if (is_string($sort) && preg_match('/^([a-z0-9_]+)\s(asc|desc)$/i', trim($sort), $match)) {
-                $sql .= ' ORDER BY `'.$match[1].'`'.(empty($match[2]) ? '' : ' '.$match[2]);
+            if (is_string($sort) && preg_match('/^([a-z0-9_]+)(\s(asc|desc))?$/i', trim($sort), $match)) {
+                $sql .= ' ORDER BY `'.$match[1].'`'.(empty($match[3]) ? ' ASC' : ' '.$match[3]);
             } elseif (is_array($sort)) {
                 $qs = [];
 
                 foreach ($sort as $item) {
-                    if (preg_match('/^([a-z0-9_]+)\s(asc|desc)$/i', trim($item), $match)) {
-                        $qs[] = '`'.$match[1].'`'.(empty($match[2]) ? '' : ' '.$match[2]);
+                    if (preg_match('/^([a-z0-9_]+)(\s(asc|desc))?$/i', trim($item), $match)) {
+                        $qs[] = '`'.$match[1].'`'.(empty($match[3]) ? ' ASC' : ' '.$match[3]);
                     }
                 }
 

@@ -1384,7 +1384,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">628</span>
+    <span class="phpdocumentor-element-found-in__line">630</span>
 
     </aside>
 
@@ -1617,6 +1617,24 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
+                                                 <section class="phpdocumentor-description"><p>('SQL(DATE(day))') [==] 'DATE(day)'</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(Sql::DATE('day')) [==] 'DATE(<code class="prettyprint">day</code>)'</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
                                                  <section class="phpdocumentor-description"><p>([]) [throws] InvalidArgumentException</p>
 </section>
 
@@ -1735,7 +1753,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">662</span>
+    <span class="phpdocumentor-element-found-in__line">664</span>
 
     </aside>
 
@@ -2713,7 +2731,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">703</span>
+    <span class="phpdocumentor-element-found-in__line">705</span>
 
     </aside>
 
@@ -3105,7 +3123,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">773</span>
+    <span class="phpdocumentor-element-found-in__line">775</span>
 
     </aside>
 
@@ -3250,7 +3268,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">786</span>
+    <span class="phpdocumentor-element-found-in__line">788</span>
 
     </aside>
 
@@ -3642,7 +3660,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>(array(array('U.id', 1), array('U.id', '!=', '1')))-&gt;text() [==] &quot;U.<code class="prettyprint">id</code> = 1 AND U.<code class="prettyprint">id</code> != '1'&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>(array(array('U.id', 1), array('U.id', '!=', '1')))-&gt;text() [==] &quot;(U.<code class="prettyprint">id</code> = 1 AND U.<code class="prettyprint">id</code> != '1')&quot;</p>
 </section>
 
                                     </dd>
@@ -3651,7 +3669,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>(array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))-&gt;text() [==] &quot;MONTH(<code class="prettyprint">create_date</code>) = 1 AND YEAR(<code class="prettyprint">create_date</code>) = 1&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>(array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))-&gt;text() [==] &quot;(MONTH(<code class="prettyprint">create_date</code>) = 1 AND YEAR(<code class="prettyprint">create_date</code>) = 1)&quot;</p>
 </section>
 
                                     </dd>
@@ -3660,7 +3678,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>(array(array('id', array(1, 'a')), array('id', array('G.id', 'G.<code class="prettyprint">id2</code>'))))-&gt;text() [==] &quot;<code class="prettyprint">id</code> IN (1, 'a') AND <code class="prettyprint">id</code> IN (G.<code class="prettyprint">id</code>, G.<code class="prettyprint">id2</code>)&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>(array(array('id', array(1, 'a')), array('id', array('G.id', 'G.<code class="prettyprint">id2</code>'))))-&gt;text() [==] &quot;(<code class="prettyprint">id</code> IN (1, 'a') AND <code class="prettyprint">id</code> IN (G.<code class="prettyprint">id</code>, G.<code class="prettyprint">id2</code>))&quot;</p>
 </section>
 
                                     </dd>
@@ -3705,7 +3723,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>(array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))-&gt;text() [==] &quot;<code class="prettyprint">username</code> IS NULL AND <code class="prettyprint">username</code> IS NULL AND <code class="prettyprint">username</code> IS NOT NULL&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>(array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))-&gt;text() [==] &quot;(<code class="prettyprint">username</code> IS NULL AND <code class="prettyprint">username</code> IS NULL AND <code class="prettyprint">username</code> IS NOT NULL)&quot;</p>
 </section>
 
                                     </dd>
@@ -3806,7 +3824,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">809</span>
+    <span class="phpdocumentor-element-found-in__line">811</span>
 
     </aside>
 

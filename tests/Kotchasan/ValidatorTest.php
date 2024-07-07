@@ -1,4 +1,5 @@
 <?php
+
 namespace Kotchasan;
 
 /**
@@ -26,6 +27,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
+
     }
 
     /**
@@ -35,7 +37,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testEmail()
     {
-        
+
         $this->assertTrue(
             \Kotchasan\Validator::email('admin@localhost.com')
         );
@@ -48,7 +50,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testEmail2()
     {
-        
+
         $this->assertTrue(
             \Kotchasan\Validator::email('admin@localhost')
         );
@@ -61,7 +63,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testEmail3()
     {
-        
+
         $this->assertTrue(
             \Kotchasan\Validator::email('Abc01.d_e-f@1081009.com')
         );
@@ -74,7 +76,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testEmail4()
     {
-        
+
         $this->assertFalse(
             \Kotchasan\Validator::email('ทดสอบ@localhost')
         );
@@ -87,7 +89,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsImage()
     {
-        
+
         $this->assertEquals(
             ['ext' => 'gif', 'width' => 1, 'height' => 1, 'mime' => 'image/gif'],
             \Kotchasan\Validator::isImage(['gif'], ['name' => 'blank.GIF', 'tmp_name' => ROOT_PATH.'skin/img/blank.gif'])

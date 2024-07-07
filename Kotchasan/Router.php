@@ -97,6 +97,7 @@ class Router extends \Kotchasan\KBase
     public function parseRoutes($path, $modules)
     {
         $base_path = preg_quote(BASE_PATH, '/');
+
         // Extract only the path excluding the application path and file extension
         if (preg_match('/^'.$base_path.'(.*)(\.html?|\/)$/u', $path, $match)) {
             $my_path = $match[1];

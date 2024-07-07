@@ -256,7 +256,7 @@ final class Language extends \Kotchasan\KBase
      * @param string $key     The language key.
      * @param mixed  $replace The values to replace placeholders.
      *
-     * @return mixed
+     * @return string
      */
     public static function replace($key, $replace)
     {
@@ -273,6 +273,28 @@ final class Language extends \Kotchasan\KBase
             $value = str_replace('%s', $replace, $value);
         }
         return $value;
+    }
+
+    /**
+     * Format a string based on a key using sprintf formatting.
+     *
+     * @assert ('Error moving uploaded file %1s to %2s', 'one', 'two') [==] 'Error moving uploaded file one to two'
+     * @assert ('Error moving uploaded file %s to %s', 'one', 'two') [==] 'Error moving uploaded file one to two'
+     *
+     * @param string $key The key to lookup in the language translations.
+     * @param mixed ...$values Optional values to substitute into the formatted string.
+     *
+     * @return string The formatted string.
+     */
+    public static function sprintf($key, ...$values)
+    {
+        if (null === self::$languages) {
+            new static;
+        }
+        $values = func_get_args();
+        $key = array_shift($values);
+        $value = isset(self::$languages->$key) ? self::$languages->$key : $key;
+        return \sprintf($value, ...$values);
     }
 
     /**

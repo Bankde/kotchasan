@@ -117,14 +117,13 @@ class UploadedFile implements UploadedFileInterface
     public function copyTo($targetPath)
     {
         if ($this->isMoved) {
-            throw new \RuntimeException(sprintf(Language::get('Uploaded file %1s has already been moved'), $this->name));
+            throw new \RuntimeException(Language::sprintf('Uploaded file "%s" has already been moved', $this->name));
         }
-
         if (!is_writable(dirname($targetPath))) {
-            throw new \InvalidArgumentException(Language::get('Target directory is not writable'));
+            throw new \InvalidArgumentException(Language::sprintf('Target directory "%s" is not writable', dirname($targetPath)));
         }
         if (!copy($this->tmp_name, $targetPath)) {
-            throw new \RuntimeException(sprintf(Language::get('Error copying file %1s to %2s'), $this->name, $targetPath));
+            throw new \RuntimeException(Language::sprintf('Error copying file %s to %s', $this->name, $targetPath));
         }
         return true;
     }
@@ -274,7 +273,7 @@ class UploadedFile implements UploadedFileInterface
     public function getStream()
     {
         if (!is_file($this->tmp_name)) {
-            throw new \RuntimeException(sprintf(Language::get('Uploaded file %1s has already been moved'), $this->name));
+            throw new \RuntimeException(Language::sprintf('Uploaded file %1s has already been moved', $this->name));
         }
         if ($this->stream === null) {
             $this->stream = new Stream($this->tmp_name);
@@ -347,26 +346,26 @@ class UploadedFile implements UploadedFileInterface
     public function moveTo($targetPath)
     {
         if ($this->isMoved) {
-            throw new \RuntimeException(sprintf(Language::get('Uploaded file %1s has already been moved'), $this->name));
+            throw new \RuntimeException(Language::sprintf('Uploaded file %1s has already been moved', $this->name));
         }
         if (!is_writable(dirname($targetPath))) {
-            throw new \InvalidArgumentException(Language::get('Target directory is not writable'));
+            throw new \InvalidArgumentException(Language::sprintf('Target directory "%s" is not writable', dirname($targetPath)));
         }
         if (strpos($targetPath, '://') > 0) {
             if (!copy($this->tmp_name, $targetPath)) {
-                throw new \RuntimeException(sprintf(Language::get('Error moving uploaded file %1s to %2s'), $this->name, $targetPath));
+                throw new \RuntimeException(Language::sprintf('Error moving uploaded file %1s to %2s', $this->name, $targetPath));
             }
             if (!unlink($this->tmp_name)) {
-                throw new \RuntimeException(sprintf(Language::get('Error removing uploaded file %1s'), $this->name));
+                throw new \RuntimeException(Language::sprintf('Error removing uploaded file %1s', $this->name));
             }
         } elseif ($this->sapi) {
             if (!move_uploaded_file($this->tmp_name, $targetPath)) {
-                throw new \RuntimeException(sprintf(Language::get('Error moving uploaded file %1s to %2s'), $this->name, $targetPath));
+                throw new \RuntimeException(Language::sprintf('Error moving uploaded file %1s to %2s', $this->name, $targetPath));
             }
         } elseif (copy($this->tmp_name, $targetPath)) {
             unlink($this->tmp_name);
         } else {
-            throw new \RuntimeException(sprintf(Language::get('Error moving uploaded file %1s to %2s'), $this->name, $targetPath));
+            throw new \RuntimeException(Language::sprintf('Error moving uploaded file %1s to %2s', $this->name, $targetPath));
         }
         $this->isMoved = true;
         return true;
@@ -426,7 +425,7 @@ class UploadedFile implements UploadedFileInterface
             throw new \RuntimeException(Language::get('The type of file is invalid'));
         }
         if (!is_writable($targetDir)) {
-            throw new \InvalidArgumentException(Language::get('Target directory is not writable'));
+            throw new \InvalidArgumentException(Language::sprintf('Target directory "%s" is not writable', $targetDir));
         }
         return true;
     }

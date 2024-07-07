@@ -198,6 +198,10 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     public function getParsedBody()
     {
         if ($this->parsedBody === null) {
+            if (empty($_POST) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                $rawData = file_get_contents('php://input');
+                parse_str($rawData, $_POST);
+            }
             $this->parsedBody = self::filterRequestKey($_POST);
         }
         return $this->parsedBody;

@@ -531,14 +531,14 @@ class Sql
      * @assert (array('id', 'SELECT * FROM'))->text() [==] "`id` = :id0"
      * @assert (array('U.`id`', 'NOT IN', Sql::create('SELECT * FROM')))->text() [==] "U.`id` NOT IN SELECT * FROM"
      * @assert (array(array('id', 'IN', array(1, '2', null))))->text() [==] "`id` IN (1, '2', NULL)"
-     * @assert (array(array('U.id', 1), array('U.id', '!=', '1')))->text() [==] "U.`id` = 1 AND U.`id` != '1'"
-     * @assert (array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))->text() [==] "MONTH(`create_date`) = 1 AND YEAR(`create_date`) = 1"
-     * @assert (array(array('id', array(1, 'a')), array('id', array('G.id', 'G.`id2`'))))->text() [==] "`id` IN (1, 'a') AND `id` IN (G.`id`, G.`id2`)"
+     * @assert (array(array('U.id', 1), array('U.id', '!=', '1')))->text() [==] "(U.`id` = 1 AND U.`id` != '1')"
+     * @assert (array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))->text() [==] "(MONTH(`create_date`) = 1 AND YEAR(`create_date`) = 1)"
+     * @assert (array(array('id', array(1, 'a')), array('id', array('G.id', 'G.`id2`'))))->text() [==] "(`id` IN (1, 'a') AND `id` IN (G.`id`, G.`id2`))"
      * @assert (array(array('id', array('', 'th'))))->text() [==] "`id` IN ('', 'th')"
      * @assert (array(Sql::YEAR('create_date'), Sql::YEAR('`create_date`')))->text() [==] "YEAR(`create_date`) = YEAR(`create_date`)"
      * @assert (array('ip', 'NOT IN', array('', '192.168.1.2')))->text() [==] "`ip` NOT IN ('', '192.168.1.2')"
      * @assert (array(1, 1))->text() [==] "1 = 1"
-     * @assert (array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))->text() [==] "`username` IS NULL AND `username` IS NULL AND `username` IS NOT NULL"
+     * @assert (array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))->text() [==] "(`username` IS NULL AND `username` IS NULL AND `username` IS NOT NULL)"
      *
      * @param mixed  $condition
      * @param string $operator  (optional) เช่น AND หรือ OR
@@ -617,6 +617,8 @@ class Sql
      * @assert (0x64656) [==] 411222
      * @assert ('DATE(day)') [==] "'DATE(day)'"
      * @assert ('DROP table') [==] "'DROP table'"
+     * @assert ('SQL(DATE(day))') [==] 'DATE(day)'
+     * @assert (Sql::DATE('day')) [==] 'DATE(`day`)'
      * @assert ([]) [throws] InvalidArgumentException
      *
      * @param string $column_name
@@ -627,14 +629,14 @@ class Sql
      */
     public static function fieldName($column_name)
     {
-        if ($column_name instanceof self) {
-            // Sql
+        if ($column_name instanceof self || $column_name instanceof QueryBuilder) {
+            // Sql, QueryBuilder
             return $column_name->text();
-        } elseif ($column_name instanceof QueryBuilder) {
-            // QueryBuilder
-            return '('.$column_name->text().')';
         } elseif (is_string($column_name)) {
-            if (preg_match('/^`?([a-z0-9_]{2,})`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
+            if (preg_match('/^SQL\((.+)\)$/', $column_name, $match)) {
+                // SQL command
+                return $match[1];
+            } elseif (preg_match('/^`?([a-z0-9_]{2,})`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
                 return '`'.$match[1].'`'.(empty($match[3]) ? '' : $match[2]);
             } elseif (preg_match('/^([A-Z][0-9]{0,2}\.)`?([a-zA-Z0-9_]+)`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
                 return $match[1].'`'.$match[2].'`'.(empty($match[4]) ? '' : $match[3]);
@@ -822,16 +824,20 @@ class Sql
                         $qs[] = $this->buildWhere($item, $values, $operator, $id);
                     }
                 }
-                $sql = implode(' '.$operator.' ', $qs);
+                if (count($qs) > 1) {
+                    $sql = '('.implode(' '.$operator.' ', $qs).')';
+                } else {
+                    $sql = implode(' '.$operator.' ', $qs);
+                }
             } else {
                 if ($condition[0] instanceof QueryBuilder) {
-                    $key = '('.$condition[0]->text().')';
+                    $key = $condition[0]->text();
                     $values = $condition[0]->getValues($values);
                 } elseif ($condition[0] instanceof self) {
                     $key = $condition[0]->text();
                     $values = $condition[0]->getValues($values);
                 } elseif (preg_match('/^SQL(\(.*\))$/', $condition[0], $match)) {
-                    $key = '('.$match[1].')';
+                    $key = $match[1];
                 } else {
                     $key = self::fieldName($condition[0]);
                 }
@@ -893,7 +899,7 @@ class Sql
             $sql = $condition->text();
             $values = $condition->getValues($values);
         } elseif (preg_match('/^SQL\((.+)\)$/', $condition, $match)) {
-            $sql = '('.$match[1].')';
+            $sql = $match[1];
         } else {
             // ใช้ $id เป็น column_name
             $sql = self::fieldName($id).' = '.self::quoteValue($id, $condition, $values);

@@ -23,7 +23,8 @@
       this.hour_offset = 0;
       this.display = $E(id);
       if (this._getDisplay() == "") {
-        this._setDisplay(new Date().format("H:I:S"));
+        const d = new Date();
+        this._setDisplay(d.getHours(), d.getMinutes(), d.getSeconds());
       }
       var temp = this;
       this.clock = window.setInterval(function() {
@@ -39,7 +40,7 @@
       if (Hour >= 24) {
         Hour = 0;
       }
-      this._setDisplay(Hour.toString().leftPad(2, "0") + ":" + Minute.toString().leftPad(2, "0") + ":" + Second.toString().leftPad(2, "0"));
+      this._setDisplay(Hour, Minute, Second);
       return this;
     },
     stop: function() {
@@ -47,9 +48,17 @@
     },
     _updateTime: function() {
       var ds = this._getDisplay().split(":"),
-        Hour = floatval(ds[0]),
-        Minute = floatval(ds[1]),
+        Hour = 0,
+        Minute = 0,
+        Second = 0;
+      if (ds.length == 3) {
+        Hour = floatval(ds[0]);
+        Minute = floatval(ds[1]);
         Second = floatval(ds[2]);
+      } else {
+        Minute = floatval(ds[0]);
+        Second = floatval(ds[1]);
+      }
       if (this.options.reverse) {
         Second--;
         if (Hour <= 0 && Minute <= 0 && Second <= 0) {
@@ -84,7 +93,7 @@
           Hour = 0;
         }
       }
-      this._setDisplay(Hour.toString().leftPad(2, "0") + ":" + Minute.toString().leftPad(2, "0") + ":" + Second.toString().leftPad(2, "0"));
+      this._setDisplay(Hour, Minute, Second);
       if (Object.isFunction(this.options.onTimer)) {
         this.options.onTimer.call(this, Hour, Minute, Second);
       }
@@ -95,7 +104,11 @@
       }
       return this.display.innerHTML;
     },
-    _setDisplay: function(val) {
+    _setDisplay: function(h, m, i) {
+      let val = m.toString().leftPad(2, "0") + ":" + i.toString().leftPad(2, "0");
+      if (!this.options.reverse || h > 0) {
+        val = h.toString().leftPad(2, "0") + ":" + val;
+      }
       if (this.display.value) {
         this.display.value = val;
       } else {

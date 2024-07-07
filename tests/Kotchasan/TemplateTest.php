@@ -39,7 +39,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertTrue(
-          \Kotchasan\Template::create('', '', 'FileNotFound')->isEmpty()
+            \Kotchasan\Template::create('', '', 'FileNotFound')->isEmpty()
         );
     }
 
@@ -64,8 +64,8 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-          '<b>Title</b>',
-          \Kotchasan\Template::pregReplace('/{TITLE}/', 'Title', '<b>{TITLE}</b>')
+            '<b>Title</b>',
+            \Kotchasan\Template::pregReplace('/{TITLE}/', 'Title', '<b>{TITLE}</b>')
         );
     }
 
@@ -78,8 +78,8 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-          '<b>Language test</b>',
-          \Kotchasan\Template::pregReplace('/{LNG_([\w\s\.\-\'\(\),%\/:&\#;]+)}/e', '\Kotchasan\Language::parse(array(1=>"$1"))', '<b>{LNG_Language test}</b>')
+            '<b>Language test</b>',
+            \Kotchasan\Template::pregReplace('/{LNG_([\w\s\.\-\'\(\),%\/:&\#;]+)}/e', '\Kotchasan\Language::parse(array(1=>"$1"))', '<b>{LNG_Language test}</b>')
         );
     }
 }

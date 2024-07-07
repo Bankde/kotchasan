@@ -16,7 +16,7 @@
         form: "",
         input: "",
         fileprogress: "",
-        fileext: ["jpg", "jpeg", "gif", "png"],
+        fileext: ["jpg", "jpeg", "webp", "gif", "png"],
         iconpath: WEB_URL + "skin/ext/",
         onupload: $K.emptyFunction,
         oncomplete: $K.emptyFunction,
@@ -69,15 +69,15 @@
                 if (ds) {
                   if (ds.alert) {
                     $G("result_" + temp.prefix + "_" + index).addClass(
-                        "invalid"
-                      ).innerHTML =
+                      "invalid"
+                    ).innerHTML =
                       ds.alert;
                     temp.error.push(ds.alert);
                   }
                 } else if (xhr.responseText != "") {
                   $G("result_" + temp.prefix + "_" + index).addClass(
-                      "invalid"
-                    ).innerHTML =
+                    "invalid"
+                  ).innerHTML =
                     xhr.responseText;
                   temp.error.push(xhr.responseText);
                 } else {
@@ -244,6 +244,7 @@
         "iso",
         "jpeg",
         "jpg",
+        "webp",
         "js",
         "midi",
         "mov",
@@ -319,13 +320,22 @@ function initGUploads(form_id, id, model, module_id) {
   function _action(q) {
     send("index.php/" + model, q, doFormSubmit);
   }
+
   forEach(form.elems("a"), function() {
     var hs = patt.exec(this.id);
     if (hs) {
-      G_Lightbox.add(this.parentNode);
       callClick(this, _doAction);
+      const backgroundImage = this.parentNode.style.backgroundImage
+        .replace('url(', '')
+        .replace(/['"\(\)]+/g, '')
+        .replace('thumb_', '');
+      let id = G_Lightbox.add(backgroundImage);
+      callClick(this.parentNode, function() {
+        G_Lightbox.play(id);
+      });
     }
   });
+
   new GDragDrop(form_id, {
     endDrag: function() {
       var elems = new Array();
@@ -339,6 +349,7 @@ function initGUploads(form_id, id, model, module_id) {
       }
     }
   });
+
   var _setSel = function() {
     var chk = this.id == "selectAll" ? "icon-check" : "icon-uncheck";
     forEach(form.elems("a"), function() {
@@ -348,6 +359,7 @@ function initGUploads(form_id, id, model, module_id) {
       }
     });
   };
+
   var galleryUploadResult = function(error, count) {
     if (error != "") {
       alert(error);
@@ -361,6 +373,7 @@ function initGUploads(form_id, id, model, module_id) {
       window.location.reload();
     }
   };
+
   var upload = new GUploads({
     form: form_id,
     input: "fileupload_tmp",
@@ -369,7 +382,7 @@ function initGUploads(form_id, id, model, module_id) {
     onupload: function() {
       $E("btnCancel").disabled = false;
     },
-    customSettings: { albumId: id }
+    customSettings: {albumId: id}
   });
   callClick("btnCancel", function() {
     upload.cancel();

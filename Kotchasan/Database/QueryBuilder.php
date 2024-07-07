@@ -138,7 +138,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * ฟังก์ชั่นสร้างคำสั่ง DELETE
      *
-     * @assert delete('user', array(array('id', 1), array('name', 'test')))->text() [==] "DELETE FROM `user` WHERE `id` = 1 AND `name` = 'test'"
+     * @assert delete('user', array(array('id', 1), array('name', 'test')))->text() [==] "DELETE FROM `user` WHERE (`id` = 1 AND `name` = 'test')"
      *
      * @param string $table
      * @param mixed  $condition query string หรือ array
@@ -741,7 +741,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * UPDATE
      *
-     * @assert update('user')->set(array('key1'=>'value1', 'key2'=>2))->where(array(array('id', 1), array('id', 1)))->text() [==] "UPDATE `user` SET `key1`=:Skey1, `key2`=:Skey2 WHERE `id` = 1 AND `id` = 1"
+     * @assert update('user')->set(array('key1'=>'value1', 'key2'=>2))->where(array(array('id', 1), array('id', 1)))->text() [==] "UPDATE `user` SET `key1`=:Skey1, `key2`=:Skey2 WHERE (`id` = 1 AND `id` = 1)"
      *
      * @param string $table [$table1, $table2, ....] ชื่อตาราง
      *
@@ -786,18 +786,18 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @assert where(Sql::create('`id`=1 OR (SELECT ....)'))->text() [==] " WHERE `id`=1 OR (SELECT ....)"
      * @assert where(array('id', '=', 1))->text() [==] " WHERE `id` = 1"
      * @assert where(array('id', 'IN', array(1, 2, '3')))->text() [==] " WHERE `id` IN (1, 2, '3')"
-     * @assert where(array(array('social', '0'), Sql::create('(...)')))->text() [==] " WHERE `social` = '0' AND (...)"
-     * @assert where(array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))->text() [==] " WHERE MONTH(`create_date`) = 1 AND YEAR(`create_date`) = 1"
-     * @assert where(array(array('id', array(1, 'a')), array('id', array('G.id', 'G.`id2`'))))->text() [==] " WHERE `id` IN (1, 'a') AND `id` IN (G.`id`, G.`id2`)"
-     * @assert where(array(array('id', array(1, 'a')), array('id', array('', 'th'))))->text() [==] " WHERE `id` IN (1, 'a') AND `id` IN ('', 'th')"
+     * @assert where(array(array('social', '0'), Sql::create('(...)')))->text() [==] " WHERE (`social` = '0' AND (...))"
+     * @assert where(array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))->text() [==] " WHERE (MONTH(`create_date`) = 1 AND YEAR(`create_date`) = 1)"
+     * @assert where(array(array('id', array(1, 'a')), array('id', array('G.id', 'G.`id2`'))))->text() [==] " WHERE (`id` IN (1, 'a') AND `id` IN (G.`id`, G.`id2`))"
+     * @assert where(array(array('id', array(1, 'a')), array('id', array('', 'th'))))->text() [==] " WHERE (`id` IN (1, 'a') AND `id` IN ('', 'th'))"
      * @assert where(array('ip', 'NOT IN', array('', '192.168.1.104')))->text() [==] " WHERE `ip` NOT IN ('', '192.168.1.104')"
      * @assert where(array('U.id', '(SELECT CASE END)'))->text() [==] " WHERE U.`id` = '(SELECT CASE END)'"
      * @assert where(array(array(Sql::YEAR('create_date'), Sql::YEAR('S.`create_date`'))))->text() [==] " WHERE YEAR(`create_date`) = YEAR(S.`create_date`)"
      * @assert where(array('U.id', Sql::strValue('G.id')))->text() [==] " WHERE U.`id` = 'G.id'"
      * @assert where(Sql::ISNULL('U.id'))->text() [==] " WHERE U.`id` IS NULL"
-     * @assert where(array(array('create_date', 'A'), Sql::BETWEEN('id', 'ทดสอบ', 'ทดสอบ')))->text() [==] " WHERE `create_date` = 'A' AND `id` BETWEEN 'ทดสอบ' AND 'ทดสอบ'"
-     * @assert where(array(array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1)), array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1))), 'OR')->text() [==] " WHERE `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1"
-     * @assert where(array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))->text() [==] " WHERE `username` IS NULL AND `username` IS NULL AND `username` IS NOT NULL"
+     * @assert where(array(array('create_date', 'A'), Sql::BETWEEN('id', 'ทดสอบ', 'ทดสอบ')))->text() [==] " WHERE (`create_date` = 'A' AND `id` BETWEEN 'ทดสอบ' AND 'ทดสอบ')"
+     * @assert where(array(array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1)), array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1))), 'OR')->text() [==] " WHERE (`id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1)"
+     * @assert where(array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))->text() [==] " WHERE (`username` IS NULL AND `username` IS NULL AND `username` IS NOT NULL)"
      *
      * @param mixed  $condition query string หรือ array
      * @param string $oprator   defaul AND

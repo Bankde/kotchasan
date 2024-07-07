@@ -520,12 +520,13 @@ class Form extends \Kotchasan\KBase
             if ($this->tag === 'textarea') {
                 $value = str_replace(array('{', '}', '&amp;'), array('&#x007B;', '&#x007D;', '&'), htmlspecialchars($value));
             } elseif ($this->tag != 'button') {
-                if (is_numeric($value)) {
+                if (is_numeric($value) || is_bool($value)) {
                     $prop['value'] = 'value='.$value;
                 } elseif (is_string($value)) {
                     $prop['value'] = 'value="'.str_replace('&amp;', '&', htmlspecialchars($value)).'"';
                 } else {
-                    throw new \Exception('Value of "'.(isset($name) ? $name : '').'" must be numbers and letters only.');
+                    $nameOrId = isset($name) ? $name : (isset($id) ? $id : '');
+                    throw new \Exception(sprintf('The value of "%s" cannot be the %s.', $nameOrId, gettype($value)));
                 }
             }
         }

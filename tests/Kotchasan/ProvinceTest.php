@@ -39,8 +39,8 @@ class ProvinceTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-          'กรุงเทพมหานคร',
-          \Kotchasan\Province::get(10)
+            'กรุงเทพมหานคร',
+            \Kotchasan\Province::get(10)
         );
     }
 }

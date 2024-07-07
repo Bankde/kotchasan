@@ -1427,7 +1427,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>delete('user', array(array('id', 1), array('name', 'test')))-&gt;text() [==] &quot;DELETE FROM <code class="prettyprint">user</code> WHERE <code class="prettyprint">id</code> = 1 AND <code class="prettyprint">name</code> = 'test'&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>delete('user', array(array('id', 1), array('name', 'test')))-&gt;text() [==] &quot;DELETE FROM <code class="prettyprint">user</code> WHERE (<code class="prettyprint">id</code> = 1 AND <code class="prettyprint">name</code> = 'test')&quot;</p>
 </section>
 
                                     </dd>
@@ -3444,7 +3444,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>update('user')-&gt;set(array('key1'=&gt;'value1', 'key2'=&gt;2))-&gt;where(array(array('id', 1), array('id', 1)))-&gt;text() [==] &quot;UPDATE <code class="prettyprint">user</code> SET <code class="prettyprint">key1</code>=:Skey1, <code class="prettyprint">key2</code>=:Skey2 WHERE <code class="prettyprint">id</code> = 1 AND <code class="prettyprint">id</code> = 1&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>update('user')-&gt;set(array('key1'=&gt;'value1', 'key2'=&gt;2))-&gt;where(array(array('id', 1), array('id', 1)))-&gt;text() [==] &quot;UPDATE <code class="prettyprint">user</code> SET <code class="prettyprint">key1</code>=:Skey1, <code class="prettyprint">key2</code>=:Skey2 WHERE (<code class="prettyprint">id</code> = 1 AND <code class="prettyprint">id</code> = 1)&quot;</p>
 </section>
 
                                     </dd>
@@ -3630,7 +3630,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>where(array(array('social', '0'), Sql::create('(...)')))-&gt;text() [==] &quot; WHERE <code class="prettyprint">social</code> = '0' AND (...)&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>where(array(array('social', '0'), Sql::create('(...)')))-&gt;text() [==] &quot; WHERE (<code class="prettyprint">social</code> = '0' AND (...))&quot;</p>
 </section>
 
                                     </dd>
@@ -3639,7 +3639,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>where(array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))-&gt;text() [==] &quot; WHERE MONTH(<code class="prettyprint">create_date</code>) = 1 AND YEAR(<code class="prettyprint">create_date</code>) = 1&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>where(array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))-&gt;text() [==] &quot; WHERE (MONTH(<code class="prettyprint">create_date</code>) = 1 AND YEAR(<code class="prettyprint">create_date</code>) = 1)&quot;</p>
 </section>
 
                                     </dd>
@@ -3648,7 +3648,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>where(array(array('id', array(1, 'a')), array('id', array('G.id', 'G.<code class="prettyprint">id2</code>'))))-&gt;text() [==] &quot; WHERE <code class="prettyprint">id</code> IN (1, 'a') AND <code class="prettyprint">id</code> IN (G.<code class="prettyprint">id</code>, G.<code class="prettyprint">id2</code>)&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>where(array(array('id', array(1, 'a')), array('id', array('G.id', 'G.<code class="prettyprint">id2</code>'))))-&gt;text() [==] &quot; WHERE (<code class="prettyprint">id</code> IN (1, 'a') AND <code class="prettyprint">id</code> IN (G.<code class="prettyprint">id</code>, G.<code class="prettyprint">id2</code>))&quot;</p>
 </section>
 
                                     </dd>
@@ -3657,7 +3657,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>where(array(array('id', array(1, 'a')), array('id', array('', 'th'))))-&gt;text() [==] &quot; WHERE <code class="prettyprint">id</code> IN (1, 'a') AND <code class="prettyprint">id</code> IN ('', 'th')&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>where(array(array('id', array(1, 'a')), array('id', array('', 'th'))))-&gt;text() [==] &quot; WHERE (<code class="prettyprint">id</code> IN (1, 'a') AND <code class="prettyprint">id</code> IN ('', 'th'))&quot;</p>
 </section>
 
                                     </dd>
@@ -3711,7 +3711,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>where(array(array('create_date', 'A'), Sql::BETWEEN('id', 'ทดสอบ', 'ทดสอบ')))-&gt;text() [==] &quot; WHERE <code class="prettyprint">create_date</code> = 'A' AND <code class="prettyprint">id</code> BETWEEN 'ทดสอบ' AND 'ทดสอบ'&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>where(array(array('create_date', 'A'), Sql::BETWEEN('id', 'ทดสอบ', 'ทดสอบ')))-&gt;text() [==] &quot; WHERE (<code class="prettyprint">create_date</code> = 'A' AND <code class="prettyprint">id</code> BETWEEN 'ทดสอบ' AND 'ทดสอบ')&quot;</p>
 </section>
 
                                     </dd>
@@ -3720,7 +3720,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>where(array(array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1)), array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1))), 'OR')-&gt;text() [==] &quot; WHERE <code class="prettyprint">id</code> BETWEEN 0 AND 1 OR <code class="prettyprint">id</code> BETWEEN 0 AND 1 OR <code class="prettyprint">id</code> BETWEEN 0 AND 1 OR <code class="prettyprint">id</code> BETWEEN 0 AND 1&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>where(array(array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1)), array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1))), 'OR')-&gt;text() [==] &quot; WHERE (<code class="prettyprint">id</code> BETWEEN 0 AND 1 OR <code class="prettyprint">id</code> BETWEEN 0 AND 1 OR <code class="prettyprint">id</code> BETWEEN 0 AND 1 OR <code class="prettyprint">id</code> BETWEEN 0 AND 1)&quot;</p>
 </section>
 
                                     </dd>
@@ -3729,7 +3729,7 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>where(array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))-&gt;text() [==] &quot; WHERE <code class="prettyprint">username</code> IS NULL AND <code class="prettyprint">username</code> IS NULL AND <code class="prettyprint">username</code> IS NOT NULL&quot;</p>
+                                                 <section class="phpdocumentor-description"><p>where(array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))-&gt;text() [==] &quot; WHERE (<code class="prettyprint">username</code> IS NULL AND <code class="prettyprint">username</code> IS NULL AND <code class="prettyprint">username</code> IS NOT NULL)&quot;</p>
 </section>
 
                                     </dd>
@@ -3962,7 +3962,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">187</span>
+    <span class="phpdocumentor-element-found-in__line">193</span>
 
     </aside>
 
@@ -4012,7 +4012,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">257</span>
+    <span class="phpdocumentor-element-found-in__line">260</span>
 
     </aside>
 
@@ -4057,7 +4057,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">311</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
     </aside>
 
@@ -4119,7 +4119,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">371</span>
+    <span class="phpdocumentor-element-found-in__line">374</span>
 
     </aside>
 
@@ -4181,7 +4181,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">421</span>
+    <span class="phpdocumentor-element-found-in__line">424</span>
 
     </aside>
 
@@ -4224,7 +4224,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">470</span>
+    <span class="phpdocumentor-element-found-in__line">471</span>
 
     </aside>
 
@@ -4267,7 +4267,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">495</span>
+    <span class="phpdocumentor-element-found-in__line">496</span>
 
     </aside>
 
@@ -4312,7 +4312,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">514</span>
+    <span class="phpdocumentor-element-found-in__line">515</span>
 
     </aside>
 
@@ -4357,7 +4357,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">533</span>
+    <span class="phpdocumentor-element-found-in__line">534</span>
 
     </aside>
 
@@ -4402,7 +4402,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Query.php"><a href="files/kotchasan-database-query.html"><abbr title="Kotchasan/Database/Query.php">Query.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">559</span>
+    <span class="phpdocumentor-element-found-in__line">560</span>
 
     </aside>
 

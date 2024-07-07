@@ -376,4 +376,31 @@ class Text
 
         return $sanitizedText;
     }
+
+/**
+ * Generates a random string of specified length using the given characters.
+ *
+ * @param int $length The length of the generated string.
+ * @param string $characters The characters to use for generating the random string.
+ *
+ * @return string The randomly generated string.
+ */
+    public static function generateRandomString($length = 4, $characters = '0123456789')
+    {
+        // Initialize an empty string to store the generated random string
+        $output = '';
+
+        // Get the length of the character set
+        $charLength = strlen($characters);
+
+        // Loop through the specified length to generate random characters
+        for ($i = 0; $i < $length; $i++) {
+            // Append a random character from the character set to the output string
+            $output .= $characters[rand(0, $charLength - 1)];
+        }
+
+        // Return the generated random string
+        return $output;
+    }
+
 }

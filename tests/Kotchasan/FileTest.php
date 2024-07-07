@@ -1,4 +1,5 @@
 <?php
+
 namespace Kotchasan;
 
 /**
@@ -37,7 +38,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     public function testExt()
     {
         $this->assertEquals(
-        'sql', \Kotchasan\File::ext('index.php.sql')
+            'sql', \Kotchasan\File::ext('index.php.sql')
         );
     }
 
@@ -56,7 +57,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->object->listFiles('temp/test/', $result);
         $this->object->removeDirectory('temp/');
         $this->assertEquals(
-        array('temp/test/index.php'), $result
+            array('temp/test/index.php'), $result
         );
     }
 }

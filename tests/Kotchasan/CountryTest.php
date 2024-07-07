@@ -39,8 +39,8 @@ class CountryTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-          'ไทย',
-          \Kotchasan\Country::get('TH')
+            'ไทย',
+            \Kotchasan\Country::get('TH')
         );
     }
 }

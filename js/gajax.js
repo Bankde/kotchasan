@@ -355,6 +355,43 @@ window.$K = (function() {
     document.execCommand('copy');
     document.body.removeChild(el);
   };
+  window.getTextFromClipboard = function(callback) {
+    if (!navigator.clipboard) {
+      var textArea = document.createElement("textarea");
+      textArea.style.position = 'fixed';
+      textArea.style.top = 0;
+      textArea.style.left = 0;
+      textArea.style.width = '2em';
+      textArea.style.height = '2em';
+      textArea.style.padding = 0;
+      textArea.style.border = 'none';
+      textArea.style.outline = 'none';
+      textArea.style.boxShadow = 'none';
+      textArea.style.background = 'transparent';
+      textArea.value = '';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        var successful = document.execCommand('paste');
+        var text = successful ? textArea.value : '';
+        callback(text);
+      } catch (error) {
+        console.error('Unable to read clipboard data:', error);
+        callback('');
+      }
+      document.body.removeChild(textArea);
+    } else {
+      navigator.clipboard.readText()
+        .then(text => {
+          callback(text);
+        })
+        .catch(err => {
+          console.error('Failed to read clipboard contents: ', err);
+          callback('');
+        });
+    }
+  };
   window.trans = function(val) {
     try {
       var patt = /^[_]+|[_]+$/g;
@@ -2135,27 +2172,41 @@ window.$K = (function() {
     content: function() {
       return this.body;
     },
-    show: function(value, className) {
+    show: function(value, className, parent) {
       this.body.setHTML(value);
-      this.overlay();
-      if (className) {
-        this.div.className = className;
+      var cls = [],
+        showing = this.div.hasClass('show');
+      if (showing) {
+        cls.push('show');
+      } else {
+        this.overlay();
       }
-      if (this.parent) {
-        var parent = $G(this.parent),
-          vp = parent.viewportOffset(),
-          dm = parent.getDimensions(),
+      if (className) {
+        cls.push(className);
+      }
+      this.div.className = cls.join(' ');
+      if (parent) {
+        var element = $G(parent),
+          vp = element.viewportOffset(),
+          dm = element.getDimensions(),
           d = $G(document).getDimensions();
         this.div.style.right = (d.width - (vp.left + dm.width)) + 'px';
-        this.div.addClass(this.parentClass);
-      }
-      var self = this;
-      window.setTimeout(function() {
-        self.div.addClass('show');
-        if (self.parent) {
-          self.div.style.top = (vp.top + dm.height + 10) + 'px';
+        if (showing) {
+          this.div.style.top = (vp.top + dm.height + 10) + 'px';
         }
-      }, 500);
+        this.div.addClass(this.parentClass);
+        window.scrollTo(0, vp.top);
+      }
+      if (!showing) {
+        var self = this;
+        window.setTimeout(function() {
+          self.div.addClass('show');
+          if (parent) {
+            self.div.style.top = (vp.top + dm.height + 10) + 'px';
+          }
+        }, 500);
+      }
+      this.parent = parent;
       return this;
     },
     hide: function() {
@@ -2851,8 +2902,10 @@ window.$K = (function() {
       self._createButton(td, '&crarr;', 'Enter', 'enter');
       forEach(panel.getElementsByTagName('a'), function() {
         $G(this).addEvent('click', function(e) {
-          var elem = GEvent.element(e);
+          var key,
+            elem = GEvent.element(e);
           if (elem.parentNode.className == 'backspace') {
+            key = 'Backspace';
             if (document.selection) {
               self.input.focus();
               document.selection.empty();
@@ -2870,37 +2923,39 @@ window.$K = (function() {
               self.input.focus();
             }
             GEvent.stop(e);
-          } else if (elem.parentNode.className != 'enter') {
-            var text = this.innerHTML;
+          } else if (elem.parentNode.className == 'enter') {
+            key = 'Enter';
+          } else {
+            key = this.innerHTML;
             self.input.focus();
             if (document.selection) {
-              sel.setSelectedText(text);
-            } else if (
-              self.input.selectionStart ||
-              self.input.selectionStart === 0
-            ) {
+              self.input.setSelectedText(key);
+            } else if (self.input.selectionStart || self.input.selectionStart === 0) {
               var startPos = self.input.selectionStart,
                 endPos = self.input.selectionEnd,
                 value =
                   self.input.value.substring(0, startPos) +
-                  text +
+                  key +
                   self.input.value.substring(endPos, self.input.value.length);
               if (self.maxlength == 0 || value.length <= self.maxlength) {
                 self.input.value = value;
-                self.input.selectionStart = startPos + text.length;
-                self.input.selectionEnd = startPos + text.length;
+                self.input.selectionStart = startPos + key.length;
+                self.input.selectionEnd = startPos + key.length;
               } else {
                 self.input.selectionStart = startPos;
                 self.input.selectionEnd = endPos;
               }
             } else {
-              text = self.input.value + text;
+              const text = self.input.value + key;
               if (self.maxlength == 0 || text.length <= self.maxlength) {
                 self.input.value = text;
               }
             }
             GEvent.stop(e);
           }
+          const event = new Event('input');
+          event.key = key;
+          self.input.dispatchEvent(event);
         });
       });
       this.panel.show();
@@ -3024,6 +3079,9 @@ window.$K = (function() {
       }
       this.input.className = 'input-gcalendar input-select';
       this.input.tabIndex = 0;
+      if (elem.title && elem.title != '') {
+        this.input.title = elem.title;
+      }
       this.input.style.cursor = 'pointer';
       elem.parentNode.appendChild(this.input);
       this.display = document.createElement('div');

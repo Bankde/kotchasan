@@ -110,7 +110,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             date('y-m-d H:i:s'),
-            \Kotchasan\Date::format(0, 'y-m-d H:i:s')
+                 \Kotchasan\Date::format(0, 'y-m-d H:i:s')
         );
     }
 

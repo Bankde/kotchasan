@@ -7281,6 +7281,11 @@ Search.appendIndex(
             "summary": "Sanitize\u0020a\u0020username\u0020string.",
             "url": "classes/Kotchasan-Text.html#method_username"
         },                {
+            "fqsen": "\\Kotchasan\\Text\u003A\u003AgenerateRandomString\u0028\u0029",
+            "name": "generateRandomString",
+            "summary": "Generates\u0020a\u0020random\u0020string\u0020of\u0020specified\u0020length\u0020using\u0020the\u0020given\u0020characters.",
+            "url": "classes/Kotchasan-Text.html#method_generateRandomString"
+        },                {
             "fqsen": "\\Kotchasan\\Validator",
             "name": "Validator",
             "summary": "Class\u0020for\u0020validating\u0020various\u0020variables.",

@@ -196,7 +196,7 @@ class Image
             return $im;
         }
 
-        $orientation = $exif['Orientation'] ?? 0;
+        $orientation = empty($exif['Orientation']) ? 0 : $exif['Orientation'];
 
         switch ($orientation) {
             case 2:

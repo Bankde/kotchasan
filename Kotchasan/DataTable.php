@@ -1178,7 +1178,7 @@ class DataTable extends \Kotchasan\KBase
                             foreach ($menu as $key => $value) {
                                 if ($key == 'text') {
                                     $text = $value;
-                                } else {
+                                } elseif ($key != 'submenus') {
                                     $prop[$key] = $key.'="'.$value.'"';
                                 }
                             }
