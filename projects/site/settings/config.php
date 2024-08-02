@@ -2,6 +2,6 @@
 
 /* settings/config.php */
 
-return array(
-    'skin' => 'skin/default',
-);
+return [
+    'skin' => 'skin/default'
+];

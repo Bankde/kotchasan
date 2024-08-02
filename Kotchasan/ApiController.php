@@ -26,13 +26,13 @@ class ApiController extends \Kotchasan\KBase
      */
     public function index(Request $request)
     {
-        $headers = array('Content-type' => 'application/json; charset=UTF-8');
+        $headers = ['Content-type' => 'application/json; charset=UTF-8'];
         if (empty(self::$cfg->api_token) || empty(self::$cfg->api_ips)) {
             // Token or IP authorization not set up
-            $result = array(
+            $result = [
                 'code' => 503,
                 'message' => 'Unavailable API'
-            );
+            ];
         } elseif (in_array('0.0.0.0', self::$cfg->api_ips) || in_array($request->getClientIp(), self::$cfg->api_ips)) {
             try {
                 // Get values from the router
@@ -52,24 +52,24 @@ class ApiController extends \Kotchasan\KBase
                     }
                 } else {
                     // Error: class or method not found
-                    $result = array(
+                    $result = [
                         'code' => 404,
                         'message' => 'Object Not Found'
-                    );
+                    ];
                 }
             } catch (ApiException $e) {
                 // API Error
-                $result = array(
+                $result = [
                     'code' => $e->getCode(),
                     'message' => $e->getMessage()
-                );
+                ];
             }
         } else {
             // IP not allowed
-            $result = array(
+            $result = [
                 'code' => 403,
                 'message' => 'Forbidden'
-            );
+            ];
         }
         // Return JSON response based on $result
         $response = new \Kotchasan\Http\Response();

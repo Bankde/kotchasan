@@ -53,7 +53,7 @@ class Controller extends \Kotchasan\Controller
     public function select()
     {
         $rs = \Kotchasan\Orm\Recordset::create('Index\World\Model');
-        $rs->updateAll(array('name' => 'Hello World!'));
+        $rs->updateAll(['name' => 'Hello World!']);
         for ($i = 0; $i < 2; ++$i) {
             $rnd = mt_rand(1, 10000);
             $result = $rs->find($rnd);
@@ -70,7 +70,7 @@ class Controller extends \Kotchasan\Controller
     public function recordset()
     {
         $rs = \Kotchasan\Orm\Recordset::create('Index\World\Model');
-        $rs->updateAll(array('name' => ''));
+        $rs->updateAll(['name' => '']);
         for ($i = 0; $i < 2; ++$i) {
             $rnd = mt_rand(1, 10000);
             $result = $rs->find($rnd);
@@ -89,14 +89,14 @@ class Controller extends \Kotchasan\Controller
     public function querybuilder()
     {
         $db = \Kotchasan\Database::create();
-        $db->createQuery()->update('world')->set(array('name' => ''))->execute();
+        $db->createQuery()->update('world')->set(['name' => ''])->execute();
         $query = $db->createQuery()->from('world');
         for ($i = 0; $i < 2; ++$i) {
             $rnd = mt_rand(1, 10000);
-            $result = $query->where(array('id', $rnd))->first();
-            $db->createQuery()->update('world')->where(array('id', $result->id))->set(array('name' => 'Hello World!'))->execute();
+            $result = $query->where(['id', $rnd])->first();
+            $db->createQuery()->update('world')->where(['id', $result->id])->set(['name' => 'Hello World!'])->execute();
         }
-        $result = $query->where(array('id', $result->id))->first();
+        $result = $query->where(['id', $result->id])->first();
         echo $result->name;
     }
 

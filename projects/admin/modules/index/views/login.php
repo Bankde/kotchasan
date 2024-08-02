@@ -26,67 +26,67 @@ class View extends \Kotchasan\View
     public function render()
     {
         // Create the form
-        $form = Html::create('form', array(
+        $form = Html::create('form', [
             'id' => 'login_frm',
             'class' => 'login',
             'autocomplete' => 'off',
             'gform' => false
-        ));
+        ]);
 
         // Add h1 heading
-        $form->add('h1', array(
+        $form->add('h1', [
             'class' => 'icon-customer',
             'innerHTML' => Language::get('Administrator Area')
-        ));
+        ]);
 
         // Add message
         if (isset(Login::$login_message)) {
-            $form->add('p', array(
+            $form->add('p', [
                 'class' => empty(Login::$login_input) ? 'message' : 'error',
                 'innerHTML' => Login::$login_message
-            ));
+            ]);
         }
 
         // Add fieldset
-        $fieldset = $form->add('fieldset', array(
+        $fieldset = $form->add('fieldset', [
             'title' => 'Please enter Username and Password (admin+admin)'
-        ));
+        ]);
 
         // Add username input
-        $fieldset->add('text', array(
+        $fieldset->add('text', [
             'id' => 'login_username',
             'labelClass' => 'g-input icon-user',
             'placeholder' => Language::get('Username'),
             'accesskey' => 'e',
             'maxlength' => 255,
             'value' => isset(Login::$login_params['username']) ? Login::$login_params['username'] : ''
-        ));
+        ]);
 
         // Add password input
-        $fieldset->add('password', array(
+        $fieldset->add('password', [
             'id' => 'login_password',
             'labelClass' => 'g-input icon-password',
             'autocomplete' => 'off',
             'placeholder' => Language::get('Password'),
             'value' => isset(Login::$login_params['password']) ? Login::$login_params['password'] : ''
-        ));
+        ]);
 
         // Add input groups (div for grouping inputs)
         $group = $fieldset->add('groups');
 
         // Add a link
-        $group->add('a', array(
-            'href' => self::$request->getUri()->withParams(array('action' => 'forgot'), true),
+        $group->add('a', [
+            'href' => self::$request->getUri()->withParams(['action' => 'forgot'], true),
             'class' => 'td',
             'title' => Language::get('Request new password'),
             'innerHTML' => ''.Language::get('Forgot').' ?'
-        ));
+        ]);
 
         // Add submit button
-        $fieldset->add('submit', array(
+        $fieldset->add('submit', [
             'class' => 'button ok large wide',
             'value' => Language::get('Sign in')
-        ));
+        ]);
 
         // Return the HTML
         return $form->render();

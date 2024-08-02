@@ -219,15 +219,15 @@ class Template
     public static function pregReplace($patt, $replace, $skin)
     {
         if (!is_array($patt)) {
-            $patt = array($patt);
+            $patt = [$patt];
         }
         if (!is_array($replace)) {
-            $replace = array($replace);
+            $replace = [$replace];
         }
         foreach ($patt as $i => $item) {
             $text = ($replace[$i] === null) ? '' : $replace[$i];
             if (preg_match('/(.*\/(.*?))[e](.*?)$/', $item, $patt) && preg_match('/^([\\\\a-z0-9]+)::([a-z0-9_\\\\]+).*/i', $text, $func)) {
-                $skin = preg_replace_callback($patt[1].$patt[3], array($func[1], $func[2]), $skin);
+                $skin = preg_replace_callback($patt[1].$patt[3], [$func[1], $func[2]], $skin);
             } else {
                 $skin = preg_replace($item, $text, $skin);
             }

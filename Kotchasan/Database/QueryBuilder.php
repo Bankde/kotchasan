@@ -82,10 +82,10 @@ class QueryBuilder extends \Kotchasan\Database\Query
      */
     public function assignment($src)
     {
-        $this->sqls = array(
+        $this->sqls = [
             'function' => 'customQuery',
             'select' => '*'
-        );
+        ];
         if ($src instanceof \Kotchasan\Orm\Recordset) {
             $this->sqls['from'] = $src->getField()->getTableWithAlias();
         }
@@ -249,11 +249,11 @@ class QueryBuilder extends \Kotchasan\Database\Query
         }
         if (!empty($fields)) {
             // ถ้ามีการระบุฟิลด์มา
-            call_user_func(array($this, 'select'), $fields);
+            call_user_func([$this, 'select'], $fields);
         }
         if (empty($this->sqls['select'])) {
             // เลือกทุกฟิลด์ ถ้ายังไม่มีฟิลด์ที่ถูกเลือก
-            call_user_func(array($this, 'select'), '*');
+            call_user_func([$this, 'select'], '*');
         }
         $this->sqls['limit'] = 1;
         $result = $this->execute();
@@ -589,7 +589,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      */
     public function selectCount($fileds = '* count')
     {
-        $args = func_num_args() == 0 ? array($fileds) : func_get_args();
+        $args = func_num_args() == 0 ? [$fileds] : func_get_args();
         $sqls = [];
         foreach ($args as $item) {
             if (preg_match('/^([a-z0-9_\*]+)([\s]+([a-z0-9_]+))?$/', trim($item), $match)) {
@@ -614,7 +614,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      */
     public function selectDistinct($fields = '*')
     {
-        call_user_func(array($this, 'select'), func_get_args());
+        call_user_func([$this, 'select'], func_get_args());
         $this->sqls['select'] = 'DISTINCT '.$this->sqls['select'];
         return $this;
     }

@@ -145,7 +145,7 @@ abstract class Query extends \Kotchasan\Database\Db
             $sql = ' '.$type.' JOIN '.$table.' ON '.$sql;
         }
         if (is_array($ret)) {
-            return array($sql, $ret[1]);
+            return [$sql, $ret[1]];
         } else {
             return $sql;
         }
@@ -261,9 +261,9 @@ abstract class Query extends \Kotchasan\Database\Db
     {
         if (is_array($params)) {
             if (count($params) == 2) {
-                $params = array($params[0], '=', $params[1]);
+                $params = [$params[0], '=', $params[1]];
             } else {
-                $params = array($params[0], trim($params[1]), $params[2]);
+                $params = [$params[0], trim($params[1]), $params[2]];
             }
             $key = $this->fieldName($params[0]);
             if (is_numeric($params[2]) || is_bool($params[2])) {
@@ -328,7 +328,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 }
                 $ret = implode(' '.$operator.' ', $qs);
                 if (!empty($ps)) {
-                    $ret = array($ret, $ps);
+                    $ret = [$ret, $ps];
                 }
             } elseif ($condition[0] instanceof Sql) {
                 $qs = [];
@@ -339,7 +339,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 }
                 $ret = implode(' '.$operator.' ', $qs);
                 if (!empty($ps)) {
-                    $ret = array($ret, $ps);
+                    $ret = [$ret, $ps];
                 }
             } else {
                 $ret = $this->whereValue($condition);
@@ -349,7 +349,7 @@ abstract class Query extends \Kotchasan\Database\Db
             if (empty($values)) {
                 $ret = $condition->text();
             } else {
-                $ret = array($condition->text(), $values);
+                $ret = [$condition->text(), $values];
             }
         } elseif (preg_match('/^[0-9]+$/', $condition)) {
             // primaryKey
@@ -387,7 +387,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 $condition = $condition[0];
             } else {
                 if (count($condition) == 2) {
-                    $condition = array($condition[0], '=', $condition[1]);
+                    $condition = [$condition[0], '=', $condition[1]];
                 } else {
                     $condition[1] = strtoupper(trim($condition[1]));
                 }
@@ -406,12 +406,12 @@ abstract class Query extends \Kotchasan\Database\Db
             }
         } elseif (is_numeric($condition)) {
             // primaryKey
-            $values = array(":$id" => $condition);
+            $values = [":$id" => $condition];
             $condition = "`$id` = :$id";
         } else {
             $values = [];
         }
-        return array($condition, $values);
+        return [$condition, $values];
     }
 
     /**
@@ -569,12 +569,25 @@ abstract class Query extends \Kotchasan\Database\Db
                 $value = $params[2];
             }
             $key = $this->fieldName($params[0]);
-            if ($value instanceof QueryBuilder || $value instanceof Sql) {
+            if ($value instanceof QueryBuilder) {
+                if ($operator == '=') {
+                    $operator = 'IN';
+                }
                 $values = $value->getValues();
                 if (empty($values)) {
                     $result = $key.' '.$operator.' ('.$value->text().')';
                 } else {
-                    $result = array($key.' '.$operator.' ('.$value->text().')', $values);
+                    $result = [$key.' '.$operator.' ('.$value->text().')', $values];
+                }
+            } elseif ($value instanceof Sql) {
+                if ($operator == '=') {
+                    $operator = 'IN';
+                }
+                $values = $value->getValues();
+                if (empty($values)) {
+                    $result = $key.' '.$operator.' ('.$value->text().')';
+                } else {
+                    $result = [$key.' '.$operator.' ('.$value->text().')', $values];
                 }
             } elseif (is_array($value)) {
                 if ($operator == '=') {
@@ -606,7 +619,7 @@ abstract class Query extends \Kotchasan\Database\Db
                         $vs[$k] = $item;
                     }
                 }
-                $result = array($key.' '.$operator.' ('.implode(', ', $qs).')', $vs);
+                $result = [$key.' '.$operator.' ('.implode(', ', $qs).')', $vs];
             } elseif ($value === null) {
                 if ($operator == '=') {
                     $result = $key.' IS NULL';
@@ -643,14 +656,14 @@ abstract class Query extends \Kotchasan\Database\Db
             } else {
                 // value เป็น string
                 $q = ':'.preg_replace('/[\.`]/', '', strtolower($key)).($i === null ? '' : $i);
-                $result = array($key.' '.$operator.' '.$q, array($q => $value));
+                $result = [$key.' '.$operator.' '.$q, [$q => $value]];
             }
         } elseif ($params instanceof QueryBuilder) {
             $values = $params->getValues();
             if (empty($values)) {
                 $result = '('.$params->text().')';
             } else {
-                $result = array('('.$params->text().')', $values);
+                $result = ['('.$params->text().')', $values];
             }
         } elseif ($params instanceof Sql) {
             $result = $params->text();

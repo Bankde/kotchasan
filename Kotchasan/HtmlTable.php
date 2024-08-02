@@ -124,7 +124,7 @@ class HtmlTable
         foreach ($this->properties as $k => $v) {
             $prop[] = $k.'="'.$v.'"';
         }
-        $table = array("\n<table".(empty($prop) ? '' : ' '.implode(' ', $prop)).'>');
+        $table = ["\n<table".(empty($prop) ? '' : ' '.implode(' ', $prop)).'>'];
         if (!empty($this->caption)) {
             $table[] = '<caption>'.$this->caption.'</caption>';
         }
@@ -135,7 +135,7 @@ class HtmlTable
             foreach ($this->thead as $r => $rows) {
                 $tr = [];
                 foreach ($rows as $c => $th) {
-                    $prop = array('id' => 'id="c'.$c.'"', 'scope' => 'scope="col"');
+                    $prop = ['id' => 'id="c'.$c.'"', 'scope' => 'scope="col"'];
                     foreach ($th as $key => $value) {
                         if ($key != 'text') {
                             $prop[$key] = $key.'="'.$value.'"';
@@ -241,7 +241,7 @@ class TableRow
         foreach ($this->properties as $key => $value) {
             $prop[$key] = $key.'="'.$value.'"';
         }
-        $row = array('<tr '.implode(' ', $prop).'>');
+        $row = ['<tr '.implode(' ', $prop).'>'];
         foreach ($this->tds as $c => $td) {
             $prop = [];
             $tag = 'td';

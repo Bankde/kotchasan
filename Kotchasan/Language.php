@@ -124,7 +124,7 @@ final class Language extends \Kotchasan\KBase
         $datas = [];
         $i = 0;
         foreach ($languages as $key => $row) {
-            $datas[$i] = ArrayTool::replace(array('id' => $i, 'key' => $key), $row);
+            $datas[$i] = ArrayTool::replace(['id' => $i, 'key' => $key], $row);
             ++$i;
         }
         return $datas;
@@ -310,7 +310,7 @@ final class Language extends \Kotchasan\KBase
         $datas = [];
         foreach ($languages as $items) {
             foreach ($items as $key => $value) {
-                if (!in_array($key, array('id', 'key', 'array', 'owner', 'type', 'js'))) {
+                if (!in_array($key, ['id', 'key', 'array', 'owner', 'type', 'js'])) {
                     $datas[$key][$items['key']] = $value;
                 }
             }
@@ -434,7 +434,7 @@ final class Language extends \Kotchasan\KBase
             }
         }
         // Check language and use the first one found
-        foreach (ArrayTool::replace(array($lang => $lang), self::$cfg->languages) as $item) {
+        foreach (ArrayTool::replace([$lang => $lang], self::$cfg->languages) as $item) {
             if (!empty($item)) {
                 if (is_file($language_folder.$item.'.php')) {
                     $language = include $language_folder.$item.'.php';
@@ -451,9 +451,9 @@ final class Language extends \Kotchasan\KBase
         if (null === self::$languages) {
             // Default language
             self::$language_name = 'th';
-            self::$languages = (object) array(
+            self::$languages = (object) [
                 'DATE_FORMAT' => 'd M Y เวลา H:i น.',
-                'DATE_LONG' => array(
+                'DATE_LONG' => [
                     0 => 'อาทิตย์',
                     1 => 'จันทร์',
                     2 => 'อังคาร',
@@ -461,8 +461,8 @@ final class Language extends \Kotchasan\KBase
                     4 => 'พฤหัสบดี',
                     5 => 'ศุกร์',
                     6 => 'เสาร์'
-                ),
-                'DATE_SHORT' => array(
+                ],
+                'DATE_SHORT' => [
                     0 => 'อา.',
                     1 => 'จ.',
                     2 => 'อ.',
@@ -470,9 +470,9 @@ final class Language extends \Kotchasan\KBase
                     4 => 'พฤ.',
                     5 => 'ศ.',
                     6 => 'ส.'
-                ),
+                ],
                 'YEAR_OFFSET' => 543,
-                'MONTH_LONG' => array(
+                'MONTH_LONG' => [
                     1 => 'มกราคม',
                     2 => 'กุมภาพันธ์',
                     3 => 'มีนาคม',
@@ -485,8 +485,8 @@ final class Language extends \Kotchasan\KBase
                     10 => 'ตุลาคม',
                     11 => 'พฤศจิกายน',
                     12 => 'ธันวาคม'
-                ),
-                'MONTH_SHORT' => array(
+                ],
+                'MONTH_SHORT' => [
                     1 => 'ม.ค.',
                     2 => 'ก.พ.',
                     3 => 'มี.ค.',
@@ -499,8 +499,8 @@ final class Language extends \Kotchasan\KBase
                     10 => 'ต.ค.',
                     11 => 'พ.ย.',
                     12 => 'ธ.ค.'
-                )
-            );
+                ]
+            ];
         }
         if (!defined('LANGUAGE')) {
             /* Register the currently used language */

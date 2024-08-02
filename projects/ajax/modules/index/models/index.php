@@ -70,17 +70,17 @@ class Model
             }
             if (!empty($save)) {
                 if (isset($save['name']) && $save['name'] == '') {
-                    $json = array('error' => 'Please enter a message');
+                    $json = ['error' => 'Please enter a message'];
                 } else {
                     // Prepare INSERT query
                     $query = $model->db()->createQuery()->insert('world', $save);
                     // Uncomment the following line to execute the SQL query in a real scenario
                     //$query->execute();
                     // JSON data to be returned for display
-                    $json = array(
+                    $json = [
                         // Return the generated SQL query
                         'sql' => $query->text()
-                    );
+                    ];
                 }
                 // Return JSON data
                 echo json_encode($json);

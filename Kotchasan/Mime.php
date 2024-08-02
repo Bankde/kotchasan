@@ -99,7 +99,7 @@ class Mime
      */
     private static function getMimeTypes()
     {
-        return array(
+        return [
             'ez' => 'application/andrew-inset',
             'aw' => 'application/applixware',
             'atom' => 'application/atom+xml',
@@ -1082,6 +1082,6 @@ class Mime
             'movie' => 'video/x-sgi-movie',
             'smv' => 'video/x-smv',
             'ice' => 'x-conference/x-cooltalk'
-        );
+        ];
     }
 }

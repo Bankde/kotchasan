@@ -60,7 +60,7 @@ class Session extends \Kotchasan\Model
      */
     public function _read($sess_id)
     {
-        $search = $this->database->first($this->table, array('sess_id', $sess_id), true);
+        $search = $this->database->first($this->table, ['sess_id', $sess_id], true);
         return $search ? $search->data : '';
     }
 
@@ -74,19 +74,19 @@ class Session extends \Kotchasan\Model
      */
     public function _write($sess_id, $data)
     {
-        $search = $this->database->first($this->table, array('sess_id', $sess_id), true);
+        $search = $this->database->first($this->table, ['sess_id', $sess_id], true);
         if ($search) {
-            $this->database->update($this->table, array('sess_id', $sess_id), array(
+            $this->database->update($this->table, ['sess_id', $sess_id], [
                 'access' => time(),
                 'data' => $data
-            ));
+            ]);
         } else {
-            $this->database->insert($this->table, array(
+            $this->database->insert($this->table, [
                 'sess_id' => $sess_id,
                 'access' => time(),
                 'data' => $data,
                 'create_date' => date('Y-m-d H:i:s')
-            ));
+            ]);
         }
         return true;
     }
@@ -100,7 +100,7 @@ class Session extends \Kotchasan\Model
      */
     public function _destroy($sess_id)
     {
-        $this->database->delete($this->table, array('sess_id', $sess_id));
+        $this->database->delete($this->table, ['sess_id', $sess_id]);
         return true;
     }
 
@@ -114,7 +114,7 @@ class Session extends \Kotchasan\Model
     public function _gc($max)
     {
         $old = time() - $max;
-        $this->database->delete($this->table, array('access', '<', $old));
+        $this->database->delete($this->table, ['access', '<', $old]);
         return true;
     }
 }

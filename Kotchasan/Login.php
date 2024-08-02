@@ -165,12 +165,12 @@ class Login extends KBase
             return 'password incorrect';
         }
         // Return the logged-in user information
-        return array(
+        return [
             'username' => $loginParams['username'],
             'password' => $loginParams['password'],
             // Status: Admin
             'status' => 1
-        );
+        ];
     }
 
     /**

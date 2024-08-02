@@ -32,7 +32,7 @@ class Controller extends \Kotchasan\Controller
         $ret = [];
         // Process the requested method
         if (method_exists('Index\Api\Model', $method)) {
-            $ret['result'] = call_user_func(array('Index\Api\Model', $method), $request);
+            $ret['result'] = call_user_func(['Index\Api\Model', $method], $request);
         } else {
             // Error: Method not found
             $ret['error'] = 'Method not found';

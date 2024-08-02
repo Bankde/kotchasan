@@ -125,7 +125,7 @@ class CKEditor extends Html
      */
     public function toDiv($str)
     {
-        return preg_replace(array('/{/', '/}/'), array('&#x007B;', '&#x007D;'), $str);
+        return preg_replace(['/{/', '/}/'], ['&#x007B;', '&#x007D;'], $str);
     }
 
     /**
@@ -138,6 +138,6 @@ class CKEditor extends Html
      */
     public function toTextarea($str)
     {
-        return preg_replace(array('/{/', '/}/'), array('&#x007B;', '&#x007D;'), htmlspecialchars($str));
+        return preg_replace(['/{/', '/}/'], ['&#x007B;', '&#x007D;'], htmlspecialchars($str));
     }
 }

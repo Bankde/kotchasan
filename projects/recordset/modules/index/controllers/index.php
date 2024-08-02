@@ -50,7 +50,7 @@ class Controller extends \Kotchasan\Controller
         }
 
         // Update all records
-        $recordset->updateAll(array('created_at' => Date::format('Y-m-d H:i:s')));
+        $recordset->updateAll(['created_at' => Date::format('Y-m-d H:i:s')]);
 
         // Read the total number of records in the table
         echo 'All '.$recordset->count().' records.<br>';
@@ -64,7 +64,7 @@ class Controller extends \Kotchasan\Controller
         }
 
         // Query the records that have been modified
-        $recordset->where(array('name', '!=', ''));
+        $recordset->where(['name', '!=', '']);
 
         // Read the number of found records
         echo 'Found '.$recordset->count().' records.<br>';

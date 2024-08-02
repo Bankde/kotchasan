@@ -51,7 +51,7 @@ class Csv
         $obj->datas = [];
         $obj->charset = strtoupper($charset);
         $obj->keys = $keys;
-        $obj->read($csv, array($obj, 'importDatas'), array_keys($columns));
+        $obj->read($csv, [$obj, 'importDatas'], array_keys($columns));
         return $obj->datas;
     }
 

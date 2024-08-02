@@ -62,11 +62,11 @@ class Accordion
      */
     public function add($title, $detail, $select = false, $className = 'article')
     {
-        $this->datas[$title] = array(
+        $this->datas[$title] = [
             'detail' => $detail,
             'select' => $select,
             'className' => $className
-        );
+        ];
     }
 
     /**

@@ -245,13 +245,13 @@ abstract class AbstractMessage implements MessageInterface
         if (function_exists("apache_request_headers")) {
             foreach (apache_request_headers() as $key => $value) {
                 if (preg_match('/^[a-zA-Z0-9\-]+$/', $key)) {
-                    $headers[$key] = array($value);
+                    $headers[$key] = [$value];
                 }
             }
         } else {
             foreach ($_SERVER as $key => $value) {
                 if (preg_match('/^HTTP_([a-zA-Z0-9_]+)$/', $key, $match)) {
-                    $headers[str_replace(' ', '-', ucwords(strtolower(str_replace(array('_', '-'), ' ', $match[1]))))] = array($value);
+                    $headers[str_replace(' ', '-', ucwords(strtolower(str_replace(['_', '-'], ' ', $match[1]))))] = [$value];
                 }
             }
         }

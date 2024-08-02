@@ -1483,147 +1483,152 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AAVG\u0028\u0029",
             "name": "AVG",
-            "summary": "\u0E2B\u0E32\u0E04\u0E48\u0E32\u0E40\u0E09\u0E25\u0E35\u0E48\u0E22\u0E02\u0E2D\u0E07\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01",
+            "summary": "Calculate\u0020the\u0020average\u0020of\u0020the\u0020selected\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_AVG"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ABETWEEN\u0028\u0029",
             "name": "BETWEEN",
-            "summary": "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020BETWEEN\u0020...\u0020AND\u0020.",
+            "summary": "Generate\u0020a\u0020SQL\u0020BETWEEN\u0020...\u0020AND\u0020...\u0020clause",
             "url": "classes/Kotchasan-Database-Sql.html#method_BETWEEN"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ACONCAT\u0028\u0029",
             "name": "CONCAT",
-            "summary": "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020CONCAT\u0020\u0E2B\u0E23\u0E37\u0E2D\u0020CONCAT_WS",
+            "summary": "Generate\u0020a\u0020SQL\u0020CONCAT\u0020or\u0020CONCAT_WS\u0020clause",
             "url": "classes/Kotchasan-Database-Sql.html#method_CONCAT"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ACOUNT\u0028\u0029",
             "name": "COUNT",
-            "summary": "\u0E19\u0E31\u0E1A\u0E08\u0E33\u0E19\u0E27\u0E19\u0E40\u0E23\u0E47\u0E04\u0E04\u0E2D\u0E23\u0E4C\u0E14\u0E02\u0E2D\u0E07\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01",
+            "summary": "Count\u0020the\u0020number\u0020of\u0020records\u0020for\u0020the\u0020selected\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_COUNT"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ADATE\u0028\u0029",
             "name": "DATE",
-            "summary": "\u0E41\u0E22\u0E01\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E0A\u0E19\u0E34\u0E14\u0020DATETIME",
+            "summary": "Extract\u0020date\u0020from\u0020a\u0020DATETIME\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_DATE"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ADATEDIFF\u0028\u0029",
             "name": "DATEDIFF",
-            "summary": "\u0E2B\u0E32\u0E04\u0E27\u0E32\u0E21\u0E41\u0E15\u0E01\u0E15\u0E48\u0E32\u0E07\u0E23\u0E30\u0E2B\u0E27\u0E48\u0E32\u0E07\u0E27\u0E31\u0E19\u0020\u0028\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E40\u0E1B\u0E47\u0E19\u0E08\u0E33\u0E19\u0E27\u0E19\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E41\u0E15\u0E01\u0E15\u0E48\u0E32\u0E07\u0E01\u0E31\u0E19\u0029",
+            "summary": "Calculate\u0020the\u0020difference\u0020in\u0020days\u0020between\u0020two\u0020dates\u0020or\u0020between\u0020a\u0020date\u0020and\u0020NOW\u0028\u0029",
             "url": "classes/Kotchasan-Database-Sql.html#method_DATEDIFF"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ADATE_FORMAT\u0028\u0029",
             "name": "DATE_FORMAT",
-            "summary": "\u0E08\u0E31\u0E14\u0E23\u0E39\u0E1B\u0E41\u0E1A\u0E1A\u0E02\u0E2D\u0E07\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E15\u0E2D\u0E19\u0E41\u0E2A\u0E14\u0E07\u0E1C\u0E25",
+            "summary": "Format\u0020a\u0020date\u0020column\u0020for\u0020display",
             "url": "classes/Kotchasan-Database-Sql.html#method_DATE_FORMAT"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ADAY\u0028\u0029",
             "name": "DAY",
-            "summary": "\u0E41\u0E22\u0E01\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E0A\u0E19\u0E34\u0E14\u0020DATE\u0020DATETIME",
+            "summary": "Extract\u0020the\u0020day\u0020from\u0020a\u0020DATE\u0020or\u0020DATETIME\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_DAY"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ADISTINCT\u0028\u0029",
             "name": "DISTINCT",
-            "summary": "\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E02\u0E49\u0E2D\u0E2D\u0E21\u0E39\u0E25\u0E17\u0E35\u0E48\u0E44\u0E21\u0E48\u0E0B\u0E49\u0E33\u0E01\u0E31\u0E19",
+            "summary": "Return\u0020distinct\u0020values\u0020of\u0020a\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_DISTINCT"
+        },                {
+            "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AextractSort\u0028\u0029",
+            "name": "extractSort",
+            "summary": "Extract\u0020sorting\u0020information\u0020and\u0020return\u0020as\u0020an\u0020array.",
+            "url": "classes/Kotchasan-Database-Sql.html#method_extractSort"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AFORMAT\u0028\u0029",
             "name": "FORMAT",
-            "summary": "\u0E08\u0E31\u0E14\u0E23\u0E39\u0E1B\u0E41\u0E1A\u0E1A\u0E02\u0E2D\u0E07\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E15\u0E2D\u0E19\u0E41\u0E2A\u0E14\u0E07\u0E1C\u0E25",
+            "summary": "Format\u0020a\u0020column\u0020for\u0020display",
             "url": "classes/Kotchasan-Database-Sql.html#method_FORMAT"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AGROUP_CONCAT\u0028\u0029",
             "name": "GROUP_CONCAT",
-            "summary": "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020GROUP_CONCAT",
+            "summary": "Create\u0020a\u0020GROUP_CONCAT\u0020SQL\u0020statement",
             "url": "classes/Kotchasan-Database-Sql.html#method_GROUP_CONCAT"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AHOUR\u0028\u0029",
             "name": "HOUR",
-            "summary": "\u0E41\u0E22\u0E01\u0E0A\u0E31\u0E48\u0E27\u0E42\u0E21\u0E07\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E0A\u0E19\u0E34\u0E14\u0020DATETIME",
+            "summary": "Extract\u0020the\u0020hour\u0020from\u0020a\u0020DATETIME\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_HOUR"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AIFNULL\u0028\u0029",
             "name": "IFNULL",
-            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020IFNULL",
+            "summary": "Create\u0020an\u0020IFNULL\u0020SQL\u0020statement",
             "url": "classes/Kotchasan-Database-Sql.html#method_IFNULL"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AISNOTNULL\u0028\u0029",
             "name": "ISNOTNULL",
-            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020IS\u0020NOT\u0020NULL",
+            "summary": "Create\u0020an\u0020IS\u0020NOT\u0020NULL\u0020SQL\u0020statement",
             "url": "classes/Kotchasan-Database-Sql.html#method_ISNOTNULL"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AISNULL\u0028\u0029",
             "name": "ISNULL",
-            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020IS\u0020NULL",
+            "summary": "Create\u0020an\u0020IS\u0020NULL\u0020SQL\u0020statement",
             "url": "classes/Kotchasan-Database-Sql.html#method_ISNULL"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AMAX\u0028\u0029",
             "name": "MAX",
-            "summary": "\u0E2B\u0E32\u0E04\u0E48\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14",
+            "summary": "Find\u0020the\u0020maximum\u0020value\u0020of\u0020a\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_MAX"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AMIN\u0028\u0029",
             "name": "MIN",
-            "summary": "\u0E2B\u0E32\u0E04\u0E48\u0E32\u0E15\u0E48\u0E33\u0E2A\u0E38\u0E14",
+            "summary": "Find\u0020the\u0020minimum\u0020value\u0020of\u0020a\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_MIN"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AMINUTE\u0028\u0029",
             "name": "MINUTE",
-            "summary": "\u0E41\u0E22\u0E01\u0E19\u0E32\u0E17\u0E35\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E0A\u0E19\u0E34\u0E14\u0020DATETIME",
+            "summary": "Extract\u0020minutes\u0020from\u0020a\u0020DATETIME\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_MINUTE"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AMONTH\u0028\u0029",
             "name": "MONTH",
-            "summary": "\u0E41\u0E22\u0E01\u0E40\u0E14\u0E37\u0E2D\u0E19\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E0A\u0E19\u0E34\u0E14\u0020DATE\u0020DATETIME",
+            "summary": "Extract\u0020month\u0020from\u0020a\u0020DATE\u0020or\u0020DATETIME\u0020column",
             "url": "classes/Kotchasan-Database-Sql.html#method_MONTH"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ANEXT\u0028\u0029",
             "name": "NEXT",
-            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E2A\u0E23\u0E49\u0E32\u0E07\u0020SQL\u0020\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E2B\u0E32\u0E04\u0E48\u0E32\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14\u0020\u002B\u00201\n\u0E43\u0E0A\u0E49\u0E43\u0E19\u0E01\u0E32\u0E23\u0E2B\u0E32\u0E04\u0E48\u0E32\u0020id\u0020\u0E16\u0E31\u0E14\u0E44\u0E1B",
+            "summary": "Generate\u0020SQL\u0020to\u0020find\u0020the\u0020next\u0020value\u0020in\u0020a\u0020sequence\u0020\u0028MAX\u0020\u002B\u00201\u0029",
             "url": "classes/Kotchasan-Database-Sql.html#method_NEXT"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ANOW\u0028\u0029",
             "name": "NOW",
-            "summary": "\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E41\u0E25\u0E30\u0E40\u0E27\u0E25\u0E32\u0E1B\u0E31\u0E08\u0E08\u0E38\u0E1A\u0E31\u0E19",
+            "summary": "Returns\u0020the\u0020current\u0020date\u0020and\u0020time\u0020as\u0020a\u0020SQL\u0020function\u0020NOW\u0028\u0029.",
             "url": "classes/Kotchasan-Database-Sql.html#method_NOW"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003APOSITION\u0028\u0029",
             "name": "POSITION",
-            "summary": "\u0E04\u0E49\u0E19\u0E2B\u0E32\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0020\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u00200,\u0020\u0E15\u0E31\u0E27\u0E41\u0E23\u0E01\u0E04\u0E37\u0E2D\u00201",
+            "summary": "Searches\u0020for\u0020a\u0020substring\u0020in\u0020a\u0020string\u0020and\u0020returns\u0020its\u0020position.\u0020If\u0020not\u0020found,\u0020returns\u00200\u003B\u0020indexing\u0020starts\u0020from\u00201.",
             "url": "classes/Kotchasan-Database-Sql.html#method_POSITION"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ARAND\u0028\u0029",
             "name": "RAND",
-            "summary": "\u0E2A\u0E38\u0E48\u0E21\u0E15\u0E31\u0E27\u0E40\u0E25\u0E02",
+            "summary": "Generates\u0020a\u0020random\u0020number.",
             "url": "classes/Kotchasan-Database-Sql.html#method_RAND"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ASECOND\u0028\u0029",
             "name": "SECOND",
-            "summary": "\u0E41\u0E22\u0E01\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E0A\u0E19\u0E34\u0E14\u0020DATETIME",
+            "summary": "Extracts\u0020the\u0020seconds\u0020from\u0020a\u0020DATETIME\u0020column.",
             "url": "classes/Kotchasan-Database-Sql.html#method_SECOND"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ASUM\u0028\u0029",
             "name": "SUM",
-            "summary": "\u0E1C\u0E25\u0E23\u0E27\u0E21\u0E02\u0E2D\u0E07\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01",
+            "summary": "Calculates\u0020the\u0020sum\u0020of\u0020values\u0020in\u0020a\u0020selected\u0020column.",
             "url": "classes/Kotchasan-Database-Sql.html#method_SUM"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ATIMEDIFF\u0028\u0029",
             "name": "TIMEDIFF",
-            "summary": "\u0E2B\u0E32\u0E04\u0E27\u0E32\u0E21\u0E41\u0E15\u0E01\u0E15\u0E48\u0E32\u0E07\u0E23\u0E30\u0E2B\u0E27\u0E48\u0E32\u0E07\u0E40\u0E27\u0E25\u0E32\u0020\u0028\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E40\u0E1B\u0E47\u0E19\u0020H\u003Am\u003Ai\u0020\u0E17\u0E35\u0E48\u0E41\u0E15\u0E01\u0E15\u0E48\u0E32\u0E07\u0E01\u0E31\u0E19\u0029",
+            "summary": "Calculates\u0020the\u0020time\u0020difference\u0020between\u0020two\u0020datetime\u0020columns\u0020or\u0020values.",
             "url": "classes/Kotchasan-Database-Sql.html#method_TIMEDIFF"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003ATIMESTAMPDIFF\u0028\u0029",
             "name": "TIMESTAMPDIFF",
-            "summary": "\u0E2B\u0E32\u0E04\u0E27\u0E32\u0E21\u0E41\u0E15\u0E01\u0E15\u0E48\u0E32\u0E07\u0E23\u0E30\u0E2B\u0E27\u0E48\u0E32\u0E07\u0E40\u0E27\u0E25\u0E32\u0020\u0028\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E15\u0E32\u0E21\u0E23\u0E39\u0E1B\u0E41\u0E1A\u0E1A\u0020\u0024unit\u0029",
+            "summary": "Calculates\u0020the\u0020difference\u0020between\u0020two\u0020datetime\u0020columns\u0020or\u0020values\u0020in\u0020specified\u0020units.",
             "url": "classes/Kotchasan-Database-Sql.html#method_TIMESTAMPDIFF"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AWHERE\u0028\u0029",
             "name": "WHERE",
-            "summary": "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020WHERE",
+            "summary": "Constructs\u0020a\u0020WHERE\u0020clause\u0020based\u0020on\u0020the\u0020provided\u0020conditions.",
             "url": "classes/Kotchasan-Database-Sql.html#method_WHERE"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AYEAR\u0028\u0029",
             "name": "YEAR",
-            "summary": "\u0E41\u0E22\u0E01\u0E1B\u0E35\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E0A\u0E19\u0E34\u0E14\u0020DATE\u0020DATETIME",
+            "summary": "Extracts\u0020the\u0020year\u0020from\u0020a\u0020DATE\u0020or\u0020DATETIME\u0020column.",
             "url": "classes/Kotchasan-Database-Sql.html#method_YEAR"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003A__construct\u0028\u0029",
@@ -1638,42 +1643,42 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AfieldName\u0028\u0029",
             "name": "fieldName",
-            "summary": "\u0E43\u0E2A\u0E48\u0020\u0060\u0060\u0020\u0E04\u0E23\u0E2D\u0E1A\u0E0A\u0E37\u0E48\u0E2D\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\n\u0E0A\u0E37\u0E48\u0E2D\u0E04\u0E2D\u0E25\u0E31\u0E21\u0E19\u0E4C\u0E15\u0E49\u0E2D\u0E07\u0E40\u0E1B\u0E47\u0E19\u0020\u0E20\u0E32\u0E29\u0E32\u0E2D\u0E31\u0E07\u0E01\u0E24\u0E29\u0020\u0E15\u0E31\u0E27\u0E40\u0E25\u0E02\u0020\u0E41\u0E25\u0E30\u0020_\u0020\u0E40\u0E17\u0E48\u0E32\u0E19\u0E31\u0E49\u0E19\n\u0E16\u0E49\u0E32\u0E21\u0E35\u0E2D\u0E31\u0E01\u0E02\u0E23\u0E30\u0E2D\u0E37\u0E48\u0E19\u0E19\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E19\u0E35\u0E49\u0020\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E17\u0E35\u0E48\u0E2A\u0E48\u0E07\u0E21\u0E32\u0020\u0E04\u0E23\u0E2D\u0E1A\u0E14\u0E49\u0E27\u0E22\u0020\u0027\u0027",
+            "summary": "Wraps\u0020a\u0020column\u0020name\u0020with\u0020backticks\u0020\u0028\u0060\u0029\u0020for\u0020SQL\u0020identifiers.",
             "url": "classes/Kotchasan-Database-Sql.html#method_fieldName"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AgetValues\u0028\u0029",
             "name": "getValues",
-            "summary": "\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E41\u0E2D\u0E40\u0E23\u0E4C\u0E22\u0E40\u0E01\u0E47\u0E1A\u0E1E\u0E32\u0E23\u0E32\u0E21\u0E34\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0020bind\u0020\u0E23\u0E27\u0E21\u0E01\u0E31\u0E1A\u0020\u0024values",
+            "summary": "Retrieves\u0020or\u0020merges\u0020bind\u0020parameters\u0020\u0028\u0024values\u0029\u0020used\u0020for\u0020prepared\u0020statements\u0020in\u0020SQL\u0020queries.",
             "url": "classes/Kotchasan-Database-Sql.html#method_getValues"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AquoteValue\u0028\u0029",
             "name": "quoteValue",
-            "summary": "\u0E41\u0E1B\u0E25\u0E07\u0E04\u0E48\u0E32\u0020Value\u0020\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E43\u0E0A\u0E49\u0E43\u0E19\u0020query",
+            "summary": "Quotes\u0020and\u0020prepares\u0020a\u0020value\u0020for\u0020use\u0020in\u0020SQL\u0020queries,\u0020handling\u0020various\u0020data\u0020types\u0020and\u0020formats.",
             "url": "classes/Kotchasan-Database-Sql.html#method_quoteValue"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AstrValue\u0028\u0029",
             "name": "strValue",
-            "summary": "\u0E1F\u0E31\u0E07\u0E01\u0E4C\u0E0A\u0E31\u0E48\u0E19\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E23\u0E31\u0E1A\u0E04\u0E48\u0E32\u0E40\u0E1B\u0E47\u0E19\u0E2A\u0E15\u0E23\u0E34\u0E07\u0E04\u0E4C\u0E40\u0E17\u0E48\u0E32\u0E19\u0E31\u0E49\u0E19\n\u0E1C\u0E25\u0E25\u0E31\u0E1E\u0E17\u0E4C\u0E08\u0E30\u0E16\u0E39\u0E01\u0E04\u0E23\u0E2D\u0E1A\u0E14\u0E49\u0E27\u0E22\u0020\u0027\u0027\u0020\u0028\u0E1F\u0E31\u0E19\u0E2B\u0E19\u0E39\u0029",
+            "summary": "Creates\u0020a\u0020SQL\u0020string\u0020literal\u0020by\u0020wrapping\u0020the\u0020given\u0020value\u0020in\u0020single\u0020quotes\u0020\u0028\u0027\u0027\u0029.",
             "url": "classes/Kotchasan-Database-Sql.html#method_strValue"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003Atext\u0028\u0029",
             "name": "text",
-            "summary": "\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020SQL\u0020\u0E40\u0E1B\u0E47\u0E19\u0020string\n\u0E16\u0E49\u0E32\u0020\u0024sql\u0020\u0E40\u0E1B\u0E47\u0E19\u0020null\u0020\u0E08\u0E30\u0E04\u0E37\u0E19\u0E04\u0E48\u0E32\u0020\u003A\u0024key\u0020\u0E43\u0E0A\u0E49\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0020bind",
+            "summary": "Returns\u0020the\u0020SQL\u0020command\u0020as\u0020a\u0020string.",
             "url": "classes/Kotchasan-Database-Sql.html#method_text"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003AbuildWhere\u0028\u0029",
             "name": "buildWhere",
-            "summary": "create\u0020SQL\u0020WHERE\u0020command",
+            "summary": "Constructs\u0020SQL\u0020WHERE\u0020command\u0020based\u0020on\u0020given\u0020conditions.",
             "url": "classes/Kotchasan-Database-Sql.html#method_buildWhere"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003A\u0024sql",
             "name": "sql",
-            "summary": "\u0E04\u0E33\u0E2A\u0E31\u0E48\u0E07\u0020SQL\u0020\u0E17\u0E35\u0E48\u0E40\u0E01\u0E47\u0E1A\u0E44\u0E27\u0E49",
+            "summary": "SQL\u0020statement\u0020stored\u0020here",
             "url": "classes/Kotchasan-Database-Sql.html#property_sql"
         },                {
             "fqsen": "\\Kotchasan\\Database\\Sql\u003A\u003A\u0024values",
             "name": "values",
-            "summary": "\u0E15\u0E31\u0E27\u0E41\u0E1B\u0E23\u0E40\u0E01\u0E47\u0E1A\u0E1E\u0E32\u0E23\u0E32\u0E21\u0E34\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0020bind",
+            "summary": "Array\u0020to\u0020store\u0020parameters\u0020for\u0020binding",
             "url": "classes/Kotchasan-Database-Sql.html#property_values"
         },                {
             "fqsen": "\\Kotchasan\\Database",
@@ -4045,6 +4050,11 @@ Search.appendIndex(
             "name": "replace",
             "summary": "Retrieves\u0020the\u0020language\u0020value\u0020based\u0020on\u0020the\u0020given\u0020key\u0020and\u0020replaces\u0020placeholders\u0020with\u0020values\u0020from\u0020the\u0020\u0024replace\u0020array.",
             "url": "classes/Kotchasan-Language.html#method_replace"
+        },                {
+            "fqsen": "\\Kotchasan\\Language\u003A\u003Asprintf\u0028\u0029",
+            "name": "sprintf",
+            "summary": "Format\u0020a\u0020string\u0020based\u0020on\u0020a\u0020key\u0020using\u0020sprintf\u0020formatting.",
+            "url": "classes/Kotchasan-Language.html#method_sprintf"
         },                {
             "fqsen": "\\Kotchasan\\Language\u003A\u003Asave\u0028\u0029",
             "name": "save",

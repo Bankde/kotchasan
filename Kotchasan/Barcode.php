@@ -166,7 +166,7 @@ class Barcode
             return '';
         }
         // Mapping of characters to their corresponding Code 128 encoding
-        $characters = array(
+        $characters = [
             ' ' => '11011001100', '!' => '11001101100', '"' => '11001100110', '#' => '10010011000',
             '$' => '10010001100', '%' => '10001001100', '&' => '10011001000', "'" => '10011000100',
             '(' => '10001100100', ')' => '11001001000', '*' => '11001000100', '+' => '11000100100',
@@ -194,7 +194,7 @@ class Barcode
             'FNC 3' => '10111100010', 'FNC 2' => '11110101000', 'SHIFT' => '11110100010', 'CODE C' => '10111011110',
             'CODE B' => '10111101110', 'CODE A' => '11101011110', 'FNC 1' => '11110101110', 'Start A' => '11010000100',
             'Start B' => '11010010000', 'Start C' => '11010011100', 'Stop' => '11000111010'
-        );
+        ];
 
         // Get the array of valid characters
         $validCharacters = array_keys($characters);

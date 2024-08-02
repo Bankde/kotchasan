@@ -61,10 +61,10 @@ class Htmldoc
 
         // Export as a Word document
         $response = new \Kotchasan\Http\Response();
-        $response->withHeaders(array(
+        $response->withHeaders([
             'Content-type' => 'application/vnd.ms-word',
             'Content-Disposition' => 'attachment;Filename='.$this->docFile
-        ))
+        ])
             ->withContent($this->render())
             ->send();
     }
@@ -113,7 +113,7 @@ class Htmldoc
             $html = $matches[1];
         }
         $this->htmlBody = preg_replace_callback('/<span[^>]+class="line([0-9]{0,})">([^>]+)<\/span>/isuU', function ($items) {
-            $datas = array(0 => 20, 1 => 40, 2 => 60, 3 => 80, 4 => 100);
+            $datas = [0 => 20, 1 => 40, 2 => 60, 3 => 80, 4 => 100];
             $text = trim(str_replace('&nbsp;', ' ', $items[2]));
             $len = ($datas[(int) $items[1]] - mb_strlen($text)) / 2;
             for ($i = 0; $i < $len; ++$i) {

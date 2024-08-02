@@ -81,14 +81,14 @@ class Html extends \Kotchasan\KBase
         } elseif ($tag == 'ckeditor') {
             $obj = $this->addCKEditor($tag, $attributes);
         } elseif ($tag == 'row') {
-            $obj = new static('div', array(
+            $obj = new static('div', [
                 'class' => 'row'
-            ));
+            ]);
             $this->rows[] = $obj;
         } elseif ($tag == 'rowgroup') {
-            $obj = new static('div', array(
+            $obj = new static('div', [
                 'class' => 'rowgroup'
-            ));
+            ]);
             $this->rows[] = $obj;
         } else {
             $obj = self::create($tag, $attributes);
@@ -169,7 +169,7 @@ class Html extends \Kotchasan\KBase
     public static function form($attributes = [])
     {
         $ajax = false;
-        $prop = array('method' => 'post');
+        $prop = ['method' => 'post'];
         $gform = true;
         $token = false;
 
@@ -363,7 +363,7 @@ class Html extends \Kotchasan\KBase
      */
     private function addGroups($tag, $attributes)
     {
-        $prop = array('class' => isset($attributes['class']) ? $attributes['class'] : 'item');
+        $prop = ['class' => isset($attributes['class']) ? $attributes['class'] : 'item'];
 
         if (isset($attributes['id'])) {
             $prop['id'] = $attributes['id'];
@@ -373,10 +373,10 @@ class Html extends \Kotchasan\KBase
             if (isset($attributes['for'])) {
                 // Create a div element with a label for attribute
                 $item = new static('div', $prop);
-                $item->add('label', array(
+                $item->add('label', [
                     'innerHTML' => $attributes['label'],
                     'for' => $attributes['for']
-                ));
+                ]);
             } else {
                 // Create a fieldset element with a title attribute
                 $prop['title'] = strip_tags($attributes['label']);
@@ -390,7 +390,7 @@ class Html extends \Kotchasan\KBase
         // Add the groups element to the HTML
         $this->rows[] = $item;
 
-        $obj = $item->add('div', array('class' => 'input-'.$tag));
+        $obj = $item->add('div', ['class' => 'input-'.$tag]);
         $rows = [];
         $comment = [];
 
@@ -450,7 +450,7 @@ class Html extends \Kotchasan\KBase
             unset($attributes['readonly']);
         }
 
-        $prop = array('class' => empty($attributes['itemClass']) ? 'item' : $attributes['itemClass']);
+        $prop = ['class' => empty($attributes['itemClass']) ? 'item' : $attributes['itemClass']];
 
         if (isset($attributes['itemId'])) {
             $prop['id'] = $attributes['itemId'];
@@ -465,7 +465,7 @@ class Html extends \Kotchasan\KBase
             $id = \Kotchasan\Password::uniqid();
         }
 
-        $c = array('inputgroups');
+        $c = ['inputgroups'];
 
         if (isset($attributes['labelClass'])) {
             $c[] = $attributes['labelClass'];
@@ -473,10 +473,10 @@ class Html extends \Kotchasan\KBase
 
         if (isset($attributes['label'])) {
             // Create a label element for the input groups
-            $obj->add('label', array(
+            $obj->add('label', [
                 'innerHTML' => $attributes['label'],
                 'for' => $id
-            ));
+            ]);
         }
 
         $li = '';
@@ -500,7 +500,7 @@ class Html extends \Kotchasan\KBase
         foreach ($attributes as $key => $value) {
             if ($key == 'validator') {
                 // If a validator is provided, create a GValidator JavaScript object
-                $js = array('"'.$id.'"', '"'.$value[0].'"', $value[1]);
+                $js = ['"'.$id.'"', '"'.$value[0].'"', $value[1]];
 
                 if (isset($value[2])) {
                     $js[] = '"'.$value[2].'"';
@@ -511,11 +511,11 @@ class Html extends \Kotchasan\KBase
                 self::$form->javascript[] = 'new GValidator('.implode(', ', $js).');';
             } elseif ($key == 'autocomplete') {
                 // If autocomplete is provided, create a GAutoComplete JavaScript object
-                $o = array(
+                $o = [
                     'get' => 'get: GInputGroup.prototype.doAutocompleteGet',
                     'populate' => 'populate: GInputGroup.prototype.doAutocompletePopulate',
                     'callBack' => 'callBack: GInputGroup.prototype.doAutocompleteCallback'
-                );
+                ];
 
                 foreach ($value as $k => $v) {
                     if ($k == 'url') {
@@ -532,7 +532,7 @@ class Html extends \Kotchasan\KBase
                 $prop['list'] = 'list="'.$datalist.'"';
             } elseif ($key == 'comment') {
                 $comment = $value;
-            } elseif (!in_array($key, array('id', 'type', 'itemId', 'itemClass', 'labelClass', 'label', 'value'))) {
+            } elseif (!in_array($key, ['id', 'type', 'itemId', 'itemClass', 'labelClass', 'label', 'value'])) {
                 $prop[$key] = $key.'="'.$value.'"';
             }
         }
@@ -556,18 +556,18 @@ class Html extends \Kotchasan\KBase
         $li .= '</li>';
 
         // Create a ul element for the input groups
-        $obj->add('ul', array(
+        $obj->add('ul', [
             'class' => implode(' ', $c),
             'innerHTML' => $li
-        ));
+        ]);
 
         if (isset($comment)) {
             // Create a div element for the comment
-            $obj->add('div', array(
+            $obj->add('div', [
                 'id' => 'result_'.$id,
                 'class' => 'comment',
                 'innerHTML' => $comment
-            ));
+            ]);
         }
 
         return $obj;
@@ -582,7 +582,7 @@ class Html extends \Kotchasan\KBase
      */
     private function addMenuButton($attributes)
     {
-        $prop = array('class' => empty($attributes['itemClass']) ? 'item' : $attributes['itemClass']);
+        $prop = ['class' => empty($attributes['itemClass']) ? 'item' : $attributes['itemClass']];
 
         if (isset($attributes['itemId'])) {
             $prop['id'] = $attributes['itemId'];
@@ -593,14 +593,14 @@ class Html extends \Kotchasan\KBase
 
         if (isset($attributes['label'])) {
             // Create a label element for the menu button
-            $obj->add('label', array(
+            $obj->add('label', [
                 'innerHTML' => $attributes['label']
-            ));
+            ]);
         }
 
-        $div = $obj->add('div', array(
+        $div = $obj->add('div', [
             'class' => 'g-input'
-        ));
+        ]);
 
         $li = '<ul>';
 
@@ -623,10 +623,10 @@ class Html extends \Kotchasan\KBase
 
         $li .= '</ul>';
 
-        $prop = array(
+        $prop = [
             'class' => isset($attributes['class']) ? $attributes['class'].' menubutton' : 'menubutton',
             'tabindex' => 0
-        );
+        ];
 
         if (isset($attributes['text'])) {
             $prop['innerHTML'] = $attributes['text'].$li;
@@ -650,7 +650,7 @@ class Html extends \Kotchasan\KBase
      */
     private function addRadioOrCheckbox($tag, $attributes)
     {
-        $prop = array('class' => empty($attributes['itemClass']) ? 'item' : $attributes['itemClass']);
+        $prop = ['class' => empty($attributes['itemClass']) ? 'item' : $attributes['itemClass']];
 
         if (!empty($attributes['itemId'])) {
             $prop['id'] = $attributes['itemId'];
@@ -667,7 +667,7 @@ class Html extends \Kotchasan\KBase
             $name = false;
         }
 
-        $c = array($tag);
+        $c = [$tag];
 
         if (isset($attributes['labelClass'])) {
             $c[] = $attributes['labelClass'];
@@ -675,19 +675,19 @@ class Html extends \Kotchasan\KBase
 
         if (isset($attributes['label']) && isset($attributes['id'])) {
             // Create a label element for the radio or checkbox groups
-            $obj->add('label', array(
+            $obj->add('label', [
                 'innerHTML' => $attributes['label'],
                 'for' => $attributes['id']
-            ));
+            ]);
         }
 
         if (isset($attributes['button']) && $attributes['button'] === true) {
             $c[] = 'groupsbutton';
         }
 
-        $prop = array(
+        $prop = [
             'class' => implode(' ', $c)
-        );
+        ];
 
         if (isset($attributes['id'])) {
             $prop['id'] = $attributes['id'];
@@ -696,24 +696,24 @@ class Html extends \Kotchasan\KBase
         $div = $obj->add('div', $prop);
 
         if (!empty($attributes['multiline'])) {
-            $c = array('multiline');
+            $c = ['multiline'];
 
             if (!empty($attributes['scroll'])) {
                 $c[] = 'hscroll';
             }
 
             // Create a div element for multiline groups
-            $div = $div->add('div', array(
+            $div = $div->add('div', [
                 'class' => implode(' ', $c)
-            ));
+            ]);
         }
 
         if (!empty($attributes['options']) && is_array($attributes['options'])) {
             foreach ($attributes['options'] as $v => $label) {
-                $item = array(
+                $item = [
                     'label' => $label,
                     'value' => $v
-                );
+                ];
 
                 if (isset($attributes['value'])) {
                     if (is_array($attributes['value']) && in_array($v, $attributes['value'])) {
@@ -751,11 +751,11 @@ class Html extends \Kotchasan\KBase
 
         if (isset($attributes['id']) && !empty($attributes['comment'])) {
             // Create a div element for the comment
-            $obj->add('div', array(
+            $obj->add('div', [
                 'id' => 'result_'.$attributes['id'],
                 'class' => 'comment',
                 'innerHTML' => $attributes['comment']
-            ));
+            ]);
         }
 
         return $obj;

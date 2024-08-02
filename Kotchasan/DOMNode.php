@@ -138,12 +138,12 @@ class DOMNode
     public function isInlineElement()
     {
         // List of inline elements.
-        $inlineElements = array(
+        $inlineElements = [
             'B', 'BIG', 'I', 'SMALL', 'TT', 'ABBR', 'ACRONYM', 'CITE', 'CODE',
             'DFN', 'EM', 'STRONG', 'SAMP', 'TIME', 'VAR', 'A', 'BDO', 'BR', 'IMG',
             'MAP', 'OBJECT', 'Q', 'SCRIPT', 'SPAN', 'SUB', 'BUTTON', 'INPUT',
             'LABEL', 'SELECT', 'TEXTAREA'
-        );
+        ];
 
         return in_array($this->nodeName, $inlineElements);
     }
@@ -183,14 +183,14 @@ class DOMNode
      */
     public function unentities($html)
     {
-        $entities = array(
+        $entities = [
             '&nbsp;' => ' ',
             '&amp;' => '&',
             '&lt;' => '<',
             '&gt;' => '>',
             '&#39;' => "'",
             '&quot;' => '"'
-        );
+        ];
 
         return str_replace(array_keys($entities), array_values($entities), $html);
     }

@@ -62,11 +62,11 @@ class Email extends \Kotchasan\KBase
         $charset = empty(self::$cfg->email_charset) ? 'utf-8' : strtolower(self::$cfg->email_charset);
 
         if (empty($replyto)) {
-            $replyto = array(strip_tags(self::$cfg->web_title), self::$cfg->noreply_email);
+            $replyto = [strip_tags(self::$cfg->web_title), self::$cfg->noreply_email];
         } elseif (preg_match('/^(.*)<(.*?)>$/', $replyto, $match)) {
-            $replyto = array(strip_tags($match[1]), (empty($match[2]) ? $match[1] : $match[2]));
+            $replyto = [strip_tags($match[1]), (empty($match[2]) ? $match[1] : $match[2])];
         } else {
-            $replyto = array($replyto, $replyto);
+            $replyto = [$replyto, $replyto];
         }
 
         if ($charset != 'utf-8') {
@@ -75,11 +75,11 @@ class Email extends \Kotchasan\KBase
             $replyto[0] = iconv('utf-8', $charset, $replyto[0]);
         }
 
-        $msg = preg_replace(array('/<\?/', '/\?>/'), array('&lt;?', '?&gt;'), $msg);
+        $msg = preg_replace(['/<\?/', '/\?>/'], ['&lt;?', '?&gt;'], $msg);
 
         if (empty(self::$cfg->email_use_phpMailer)) {
             // Send email using PHP's mail() function
-            $emails = array($mailto);
+            $emails = [$mailto];
             if ($cc != '') {
                 $emails[] = $cc;
             }
@@ -127,13 +127,13 @@ class Email extends \Kotchasan\KBase
                 $mail->Port = self::$cfg->email_Port;
             }
 
-            $mail->SMTPOptions = array(
-                'ssl' => array(
+            $mail->SMTPOptions = [
+                'ssl' => [
                     'verify_peer' => false,
                     'verify_peer_name' => false,
                     'allow_self_signed' => true
-                )
-            );
+                ]
+            ];
 
             $mail->AddReplyTo($replyto[1], $replyto[0]);
 

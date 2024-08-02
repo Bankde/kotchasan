@@ -26,32 +26,32 @@ class View extends \Kotchasan\View
     public function render()
     {
         // Create the form
-        $form = Html::create('form', array(
+        $form = Html::create('form', [
             'id' => 'forgot_frm',
             'class' => 'login',
             'autocomplete' => 'off',
             'gform' => false
-        ));
+        ]);
 
         // Add h1 heading
-        $form->add('h1', array(
+        $form->add('h1', [
             'class' => 'icon-password',
             'innerHTML' => Language::get('Request new password')
-        ));
+        ]);
 
         // Add message
         if (!empty(Login::$login_message)) {
-            $form->add('p', array(
+            $form->add('p', [
                 'class' => empty(Login::$login_input) ? 'message' : 'error',
                 'innerHTML' => Login::$login_message
-            ));
+            ]);
         }
 
         // Add fieldset
         $fieldset = $form->add('fieldset');
 
         // Add email input
-        $fieldset->add('email', array(
+        $fieldset->add('email', [
             'id' => 'email',
             'labelClass' => 'g-input icon-email',
             'placeholder' => Language::get('Email'),
@@ -61,29 +61,29 @@ class View extends \Kotchasan\View
             'accesskey' => 'e',
             'maxlength' => 255,
             'comment' => Language::get('New password will be sent to the email address registered. If you do not remember or do not receive emails. Please contact your system administrator (Please check in the Junk Box)')
-        ));
+        ]);
 
         // Add input groups (div for grouping inputs)
         $group = $fieldset->add('groups');
 
         // Add a link
-        $group->add('a', array(
-            'href' => self::$request->getUri()->withParams(array('action' => 'login'), true),
+        $group->add('a', [
+            'href' => self::$request->getUri()->withParams(['action' => 'login'], true),
             'class' => 'td',
             'title' => Language::get('Administrator area'),
             'innerHTML' => ''.Language::get('Sign in').' ?'
-        ));
+        ]);
 
         // Add submit button
-        $fieldset->add('submit', array(
+        $fieldset->add('submit', [
             'class' => 'button ok large wide',
             'value' => Language::get('Get new password')
-        ));
+        ]);
 
-        $fieldset->add('hidden', array(
+        $fieldset->add('hidden', [
             'id' => 'action',
             'value' => 'forgot'
-        ));
+        ]);
 
         // Return the HTML
         return $form->render();

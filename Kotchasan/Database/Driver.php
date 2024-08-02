@@ -243,7 +243,7 @@ abstract class Driver extends Query
                     register_shutdown_function('doShutdown');
                 }
                 \Kotchasan::$debugger[] = '"'.$line.'"';
-                \Kotchasan::$debugger[] = '"'.str_replace(array('/', '"'), array('\/', '\"'), $sql).'"';
+                \Kotchasan::$debugger[] = '"'.str_replace(['/', '"'], ['\/', '\"'], $sql).'"';
                 if (!empty($values)) {
                     \Kotchasan::$debugger[] = json_encode($values);
                 }
@@ -523,7 +523,7 @@ abstract class Driver extends Query
      */
     public function updateAll($table_name, $save)
     {
-        return $this->update($table_name, array(1, 1), $save);
+        return $this->update($table_name, [1, 1], $save);
     }
 
     /**
@@ -536,7 +536,7 @@ abstract class Driver extends Query
     protected function log($type, $sql, $values = [])
     {
         if (DB_LOG == true) {
-            $datas = array('<b>'.$type.' :</b> '.Text::replace($sql, $values));
+            $datas = ['<b>'.$type.' :</b> '.Text::replace($sql, $values)];
             foreach (debug_backtrace() as $a => $item) {
                 if (isset($item['file']) && isset($item['line'])) {
                     if ($item['function'] == 'all' || $item['function'] == 'first' || $item['function'] == 'count' || $item['function'] == 'save' || $item['function'] == 'find' || $item['function'] == 'execute') {

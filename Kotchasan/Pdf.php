@@ -228,7 +228,7 @@ class Pdf extends \PDF\FPDF
                     // First line
                     $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace('B', '', $border), 2, $align, $fill, '', $tPadding, $rPadding, 0, $lPadding);
                 } else {
-                    $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace(array('T', 'B'), '', $border), 2, $align, $fill, '', 0, $rPadding, 0, $lPadding);
+                    $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace(['T', 'B'], '', $border), 2, $align, $fill, '', 0, $rPadding, 0, $lPadding);
                 }
                 ++$i;
                 $sep = -1;
@@ -257,7 +257,7 @@ class Pdf extends \PDF\FPDF
                         // First line
                         $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace('B', '', $border), 2, $align, $fill, '', $tPadding, $rPadding, 0, $lPadding);
                     } else {
-                        $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace(array('T', 'B'), '', $border), 2, $align, $fill, '', 0, $rPadding, 0, $lPadding);
+                        $this->Cell($cell_width, $h, substr($s, $j, $i - $j), str_replace(['T', 'B'], '', $border), 2, $align, $fill, '', 0, $rPadding, 0, $lPadding);
                     }
                 } else {
                     if ($align == 'J') {
@@ -268,7 +268,7 @@ class Pdf extends \PDF\FPDF
                         // First line
                         $this->Cell($cell_width, $h, substr($s, $j, $sep - $j), str_replace('B', '', $border), 2, $align, $fill, '', $tPadding, $rPadding, 0, $lPadding);
                     } else {
-                        $this->Cell($cell_width, $h, substr($s, $j, $sep - $j), str_replace(array('T', 'B'), '', $border), 2, $align, $fill, '', 0, $rPadding, 0, $lPadding);
+                        $this->Cell($cell_width, $h, substr($s, $j, $sep - $j), str_replace(['T', 'B'], '', $border), 2, $align, $fill, '', 0, $rPadding, 0, $lPadding);
                     }
                     $i = $sep + 1;
                 }
@@ -370,53 +370,53 @@ class Pdf extends \PDF\FPDF
         // Default font
         $this->SetFont('loma', '', $this->fontSize);
         // Default styles
-        $this->css = array(
-            'H1' => array(
+        $this->css = [
+            'H1' => [
                 'SIZE' => $this->fontSize + 10,
                 'LINE-HEIGHT' => $this->lineHeight + 2.5
-            ),
-            'H2' => array(
+            ],
+            'H2' => [
                 'SIZE' => $this->fontSize + 8,
                 'LINE-HEIGHT' => $this->lineHeight + 2
-            ),
-            'H3' => array(
+            ],
+            'H3' => [
                 'SIZE' => $this->fontSize + 6,
                 'LINE-HEIGHT' => $this->lineHeight + 1.5
-            ),
-            'H4' => array(
+            ],
+            'H4' => [
                 'SIZE' => $this->fontSize + 4,
                 'LINE-HEIGHT' => $this->lineHeight + 1
-            ),
-            'H5' => array(
+            ],
+            'H5' => [
                 'SIZE' => $this->fontSize + 2,
                 'LINE-HEIGHT' => $this->lineHeight + 0.5
-            ),
-            'EM' => array(
+            ],
+            'EM' => [
                 'COLOR' => '#FF5722'
-            ),
-            'I' => array(
+            ],
+            'I' => [
                 'FONT-STYLE' => 'ITALIC'
-            ),
-            'B' => array(
+            ],
+            'B' => [
                 'FONT-WEIGHT' => 'BOLD'
-            ),
-            'STRONG' => array(
+            ],
+            'STRONG' => [
                 'FONT-WEIGHT' => 'BOLD'
-            ),
-            'U' => array(
+            ],
+            'U' => [
                 'TEXT-DECORATION' => 'UNDERLINE'
-            ),
-            'A' => array(
+            ],
+            'A' => [
                 'TEXT-DECORATION' => 'UNDERLINE'
-            ),
-            'BLOCKQUOTE' => array(
+            ],
+            'BLOCKQUOTE' => [
                 'BORDER-COLOR' => '#DDDDDD',
                 'BACKGROUND-COLOR' => '#F9F9F9',
                 'COLOR' => '#666666',
                 'SIZE' => $this->fontSize - 1,
                 'PADDING' => 2
-            ),
-            'CODE' => array(
+            ],
+            'CODE' => [
                 'BORDER-COLOR' => '#DDDDDD',
                 'BACKGROUND-COLOR' => '#F9F9F9',
                 'COLOR' => '#666666',
@@ -425,40 +425,40 @@ class Pdf extends \PDF\FPDF
                 'DISPLAY' => 'BLOCK',
                 'FONT-FAMILY' => 'angsana',
                 'FONT-STYLE' => 'ITALIC'
-            ),
-            'TABLE' => array(
+            ],
+            'TABLE' => [
                 'BORDER-COLOR' => '#DDDDDD'
-            ),
-            'TH' => array(
+            ],
+            'TH' => [
                 'TEXT-ALIGN' => 'CENTER',
                 'BACKGROUND-COLOR' => '#EEEEEE'
-            ),
-            'TD' => array(
+            ],
+            'TD' => [
                 'COLOR' => '#333333'
-            )
-        );
+            ]
+        ];
         // Class styles
-        $this->cssClass = array(
-            'COMMENT' => array(
+        $this->cssClass = [
+            'COMMENT' => [
                 'SIZE' => $this->fontSize - 1,
                 'COLOR' => '#259B24'
-            ),
-            'CENTER' => array(
+            ],
+            'CENTER' => [
                 'TEXT-ALIGN' => 'CENTER'
-            ),
-            'LEFT' => array(
+            ],
+            'LEFT' => [
                 'TEXT-ALIGN' => 'LEFT'
-            ),
-            'RIGHT' => array(
+            ],
+            'RIGHT' => [
                 'TEXT-ALIGN' => 'RIGHT'
-            ),
-            'BG2' => array(
+            ],
+            'BG2' => [
                 'BACKGROUND-COLOR' => '#F9F9F9'
-            ),
-            'FULLWIDTH' => array(
+            ],
+            'FULLWIDTH' => [
                 'WIDTH' => '100%'
-            )
-        );
+            ]
+        ];
     }
 
     /**
@@ -541,7 +541,7 @@ class Pdf extends \PDF\FPDF
     {
         $this->{$style} += ($enable ? 1 : -1);
         $font_style = '';
-        foreach (array('B', 'I', 'U') as $s) {
+        foreach (['B', 'I', 'U'] as $s) {
             if ($this->{$s} > 0) {
                 $font_style .= $s;
             }
@@ -564,11 +564,11 @@ class Pdf extends \PDF\FPDF
         // Text color
         if (!empty($node->attributes['COLOR'])) {
             if (preg_match('/([0-9\.]+)\s(([0-9\.]+)\s([0-9\.]+)\sr)?g/', $this->TextColor, $match)) {
-                $node->TextColor = array(
+                $node->TextColor = [
                     'r' => $match[1],
                     'g' => isset($match[3]) ? $match[3] : null,
                     'b' => isset($match[4]) ? $match[4] : null
-                );
+                ];
             }
             list($r, $g, $b) = $this->colorToRGb($node->attributes['COLOR']);
             $this->SetTextColor($r, $g, $b);
@@ -576,11 +576,11 @@ class Pdf extends \PDF\FPDF
         // Background color
         if (!empty($node->attributes['BACKGROUND-COLOR'])) {
             if (preg_match('/([0-9\.]+)\s(([0-9\.]+)\s([0-9\.]+)\sr)?g/', $this->FillColor, $match)) {
-                $node->FillColor = array(
+                $node->FillColor = [
                     'r' => $match[1],
                     'g' => isset($match[3]) ? $match[3] : null,
                     'b' => isset($match[4]) ? $match[4] : null
-                );
+                ];
             }
             list($r, $g, $b) = $this->colorToRGb($node->attributes['BACKGROUND-COLOR']);
             $this->SetFillColor($r, $g, $b);
@@ -588,11 +588,11 @@ class Pdf extends \PDF\FPDF
         // Border color
         if (!empty($node->attributes['BORDER-COLOR'])) {
             if (preg_match('/([0-9\.]+)\s(([0-9\.]+)\s([0-9\.]+)\sR)?G/', $this->DrawColor, $match)) {
-                $node->DrawColor = array(
+                $node->DrawColor = [
                     'r' => $match[1],
                     'g' => isset($match[3]) ? $match[3] : null,
                     'b' => isset($match[4]) ? $match[4] : null
-                );
+                ];
             }
             list($r, $g, $b) = $this->colorToRGb($node->attributes['BORDER-COLOR']);
             $this->SetDrawColor($r, $g, $b);
@@ -1097,7 +1097,7 @@ class Pdf extends \PDF\FPDF
             }
 
             // Return the coordinates and dimensions of the resized image
-            return array($l, null, $width * $k, $height * $k);
+            return [$l, null, $width * $k, $height * $k];
         } else {
             // Calculate the scaling factors for width and height
             $ws = $this->wPt / $width;
@@ -1116,7 +1116,7 @@ class Pdf extends \PDF\FPDF
             }
 
             // Return the coordinates and dimensions of the resized image
-            return array(null, null, ((($scale * $width) - 56.7) * $k), ((($scale * $height) - 56.7) * $k));
+            return [null, null, ((($scale * $width) - 56.7) * $k), ((($scale * $height) - 56.7) * $k)];
         }
     }
 

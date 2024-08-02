@@ -32,18 +32,18 @@ class View extends \Kotchasan\View
         $ch = new \Kotchasan\Curl();
 
         // Call the Online API
-        $json = $ch->get('https://projects.kotchasan.com/api/api.php', array('method' => 'getTime', 'id' => $mktime));
+        $json = $ch->get('https://projects.kotchasan.com/api/api.php', ['method' => 'getTime', 'id' => $mktime]);
 
         // Convert JSON to an array
         $array = json_decode($json, true);
 
         // Prepare data for inserting into the template
-        $this->setContents(array(
+        $this->setContents([
             // Current timestamp to be inserted into the template
             '/{MKTIME}/' => $mktime,
             // Result obtained from calling the API
             '/{RESULT}/' => isset($array['result']) ? $array['result'] : ''
-        ));
+        ]);
 
         // Load the index.html template
         $template = file_get_contents('modules/index/views/index.html');

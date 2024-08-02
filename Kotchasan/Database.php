@@ -33,15 +33,15 @@ final class Database extends KBase
      */
     public static function create($name = 'mysql')
     {
-        $param = (object) array(
-            'settings' => (object) array(
+        $param = (object) [
+            'settings' => (object) [
                 'driver' => 'PdoMysql',
                 'char_set' => 'utf8',
                 'dbdriver' => 'mysql',
                 'hostname' => 'localhost'
-            ),
+            ],
             'tables' => (object) []
-        );
+        ];
 
         // Check if $name is a string
         if (is_string($name)) {

@@ -51,10 +51,10 @@ class Files implements \Iterator
      */
     public function add($name, $path, $originalName, $mimeType = null, $size = null, $error = null)
     {
-        $this->datas[] = array(
+        $this->datas[] = [
             $name,
             new UploadedFile($path, $originalName, $mimeType, $size, $error)
-        );
+        ];
     }
 
     /**

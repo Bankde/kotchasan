@@ -219,7 +219,7 @@ function debug($expression)
         if (is_array($expression) || is_object($expression)) {
             \Kotchasan::$debugger[] = json_encode((array) $expression);
         } else {
-            \Kotchasan::$debugger[] = '"'.str_replace(array('/', '"'), array('\/', '\"'), strval($expression)).'"';
+            \Kotchasan::$debugger[] = '"'.str_replace(['/', '"'], ['\/', '\"'], strval($expression)).'"';
         }
     }
 }
@@ -262,10 +262,10 @@ if (DEBUG != 2) {
     set_exception_handler(function ($e) {
         $trace = $e->getTrace();
         if (empty($trace)) {
-            $trace = array(
+            $trace = [
                 'file' => $e->getFile(),
                 'line' => $e->getLine()
-            );
+            ];
         } else {
             $trace = next($trace);
         }
@@ -317,7 +317,7 @@ function getClassPath($className)
  * Once the file is found, it is required to load the class.
  */
 spl_autoload_register(function ($className) {
-    $files = array(
+    $files = [
         'Kotchasan\Cache\ApcCache' => 'Cache/ApcCache.php',
         'Kotchasan\Cache\Cache' => 'Cache/Cache.php',
         'Kotchasan\Cache\CacheItem' => 'Cache/CacheItem.php',
@@ -401,7 +401,7 @@ spl_autoload_register(function ($className) {
         'Kotchasan\load' => 'load.php',
         'Kotchasan\InputItemException' => 'InputItemException.php',
         'Kotchasan\Xls' => 'Xls.php'
-    );
+    ];
 
     if (isset($files[$className])) {
         $file = VENDOR_DIR.$files[$className];

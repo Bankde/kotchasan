@@ -79,8 +79,8 @@ class Number
         $m = date('m');
         $d = date('d');
         $format = str_replace(
-            array('%YY', '%yy', '%Y', '%y', '%M', '%m', '%D', '%d', '%s'),
-            array($Y, $y, substr($Y, 2, 2), substr($y, 2, 2), $m, (int) $m, $d, (int) $d, $prefix),
+            ['%YY', '%yy', '%Y', '%y', '%M', '%m', '%D', '%d', '%s'],
+            [$Y, $y, substr($Y, 2, 2), substr($y, 2, 2), $m, (int) $m, $d, (int) $d, $prefix],
             $format
         );
         return sprintf($format, $value);

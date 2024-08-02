@@ -50,13 +50,7 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var string
      */
-    private $url = null;
-    /**
-     * Array data to be sent to $url when called by Ajax.
-     *
-     * @var array
-     */
-    private $params = [];
+    private $ajax = null;
     /**
      * Database cache.
      *
@@ -360,7 +354,7 @@ class DataTable extends \Kotchasan\KBase
      *
      * @var array
      */
-    public $entriesList = array(10, 20, 30, 40, 50, 100);
+    public $entriesList = [10, 20, 30, 40, 50, 100];
     /**
      * Displays the query on the screen.
      *
@@ -395,6 +389,12 @@ class DataTable extends \Kotchasan\KBase
      * @var string
      */
     public $commentClass = 'comment';
+    /**
+     * Text to display when no data is available.
+     *
+     * @var string
+     */
+    public $emptyTableText = 'No data available in this table.';
 
     /**
      * Constructor.
@@ -421,10 +421,10 @@ class DataTable extends \Kotchasan\KBase
 
         // Pagination: Get the number of entries per page from the table selection
         if ($this->perPage !== null) {
-            $count = self::$request->globals(array('POST', 'GET'), 'count', $this->perPage)->toInt();
+            $count = self::$request->globals(['POST', 'GET'], 'count', $this->perPage)->toInt();
             if (in_array($count, $this->entriesList)) {
                 $this->perPage = $count;
-                $this->uri = $this->uri->withParams(array('count' => $count));
+                $this->uri = $this->uri->withParams(['count' => $count]);
             }
         }
 
@@ -439,9 +439,9 @@ class DataTable extends \Kotchasan\KBase
                 // If the model is a Recordset, create a Recordset object
                 $rs = new \Kotchasan\Orm\Recordset($this->model);
                 // Convert the Recordset to a QueryBuilder object
-                $this->model = $model->from(array($rs->toQueryBuilder(), 'Z9'));
+                $this->model = $model->from([$rs->toQueryBuilder(), 'Z9']);
             } else {
-                $this->model = $model->from(array($this->model, 'Z9'));
+                $this->model = $model->from([$this->model, 'Z9']);
             }
 
             // Read the first item
@@ -454,14 +454,14 @@ class DataTable extends \Kotchasan\KBase
             // Read the columns of the table
             if ($first) {
                 foreach ($first as $k => $v) {
-                    $this->columns[$k] = array('text' => $k);
+                    $this->columns[$k] = ['text' => $k];
                 }
             } elseif (!empty($this->fields)) {
                 foreach ($this->fields as $field) {
                     if (is_array($field)) {
-                        $this->columns[$field[1]] = array('text' => $field[1]);
+                        $this->columns[$field[1]] = ['text' => $field[1]];
                     } elseif (is_string($field) && preg_match('/(.*?[`\s]+)?([a-z0-9_]+)`?$/i', $field, $match)) {
-                        $this->columns[$match[2]] = array('text' => $match[2]);
+                        $this->columns[$match[2]] = ['text' => $match[2]];
                     }
                 }
             }
@@ -470,7 +470,7 @@ class DataTable extends \Kotchasan\KBase
             $this->columns = [];
             if (!empty($this->datas)) {
                 foreach (reset($this->datas) as $key => $value) {
-                    $this->columns[$key] = array('text' => $key);
+                    $this->columns[$key] = ['text' => $key];
                 }
             }
         }
@@ -505,15 +505,15 @@ class DataTable extends \Kotchasan\KBase
 
         // Get the sorting value if sort is specified
         if ($autoSort) {
-            $this->sort = self::$request->globals(array('POST', 'GET'), 'sort', $this->sort)->topic();
+            $this->sort = self::$request->globals(['POST', 'GET'], 'sort', $this->sort)->topic();
         }
 
         if (!empty($this->sort)) {
-            $this->uri = $this->uri->withParams(array('sort' => $this->sort));
+            $this->uri = $this->uri->withParams(['sort' => $this->sort]);
         }
 
         // Search
-        $this->search = self::$request->globals(array('POST', 'GET'), 'search')->text();
+        $this->search = self::$request->globals(['POST', 'GET'], 'search')->text();
     }
 
     /**
@@ -567,7 +567,7 @@ class DataTable extends \Kotchasan\KBase
         }
 
         // Create HTML
-        $content = array('<div class="datatable" id="'.$this->id.'">');
+        $content = ['<div class="datatable" id="'.$this->id.'">'];
 
         // Form
         $form = [];
@@ -581,12 +581,12 @@ class DataTable extends \Kotchasan\KBase
                     $options[$c] = $c.' '.$entries;
                 }
             }
-            $form[] = $this->addFilter(array(
+            $form[] = $this->addFilter([
                 'name' => 'count',
                 'text' => Language::get('Show'),
                 'value' => $this->perPage,
                 'options' => $options
-            ));
+            ]);
         }
         // Iterate through the $this->filters array and add filters to the form
         foreach ($this->filters as $key => $items) {
@@ -605,7 +605,7 @@ class DataTable extends \Kotchasan\KBase
                         $qs[] = $q;
                     }
                 } elseif (is_string($key)) {
-                    $qs[] = array($key, $items['value']);
+                    $qs[] = [$key, $items['value']];
                 }
             }
         }
@@ -618,14 +618,14 @@ class DataTable extends \Kotchasan\KBase
                 if (isset($this->model)) {
                     $sh = [];
                     foreach ($this->searchColumns as $key) {
-                        $sh[] = array($key, 'LIKE', '%'.$this->search.'%');
+                        $sh[] = [$key, 'LIKE', '%'.$this->search.'%'];
                     }
                     $this->model->andWhere($sh, 'OR');
                 } elseif (isset($this->datas)) {
                     // Array filter
                     $this->datas = ArrayTool::filter($this->datas, $this->search);
                 }
-                $this->uri = $this->uri->withParams(array('search' => $this->search));
+                $this->uri = $this->uri->withParams(['search' => $this->search]);
             }
             $form[] = '<fieldset class=search>';
             $form[] = '<label accesskey=f><input type=text name=search value="'.$this->search.'" placeholder="'.Language::get('Search').'"></label>';
@@ -643,7 +643,7 @@ class DataTable extends \Kotchasan\KBase
         if (isset($this->model)) {
             if ($this->explain) {
                 // Explain mode
-                $count = 0;
+                $recordsTotal = 0;
             } else {
                 // Fields select
                 $this->model->select($this->fields);
@@ -651,38 +651,43 @@ class DataTable extends \Kotchasan\KBase
                 $model = new \Kotchasan\Model();
                 $query = $model->db()->createQuery()
                     ->selectCount()
-                    ->from(array($this->model, 'Z'));
+                    ->from([$this->model, 'Z']);
                 if ($this->cache) {
                     $query->cacheOn();
                 }
                 $result = $query->toArray()->execute();
-                $count = empty($result) ? 0 : $result[0]['count'];
+                $recordsTotal = empty($result) ? 0 : $result[0]['count'];
             }
         } elseif (!empty($this->datas)) {
             // Datas count
-            $count = count($this->datas);
+            $recordsTotal = count($this->datas);
         } else {
             // Empty
-            $count = 0;
+            $recordsTotal = 0;
         }
         // Pagination
         if ($this->perPage > 0) {
             // Display page
-            $this->page = max(1, self::$request->globals(array('POST', 'GET'), 'page', 1)->toInt());
+            $this->page = max(1, self::$request->globals(['POST', 'GET'], 'page', 1)->toInt());
             // Max pages
-            $totalpage = round($count / $this->perPage);
-            $totalpage += ($totalpage * $this->perPage < $count) ? 1 : 0;
+            $totalpage = ceil($recordsTotal / $this->perPage);
             $this->page = max(1, $this->page > $totalpage ? $totalpage : $this->page);
-            $start = $this->perPage * ($this->page - 1);
-            // Current page
-            $s = $start < 0 ? 0 : $start + 1;
-            $e = min($count, $s + $this->perPage - 1);
+            if ($recordsTotal == 0) {
+                $start = 0;
+                $s = 0;
+                $e = 0;
+            } else {
+                $start = $this->perPage * ($this->page - 1);
+                // Current page
+                $s = $start < 0 ? 0 : $start + 1;
+                $e = min($recordsTotal, $s + $this->perPage - 1);
+            }
         } else {
             $start = 0;
             $totalpage = 1;
             $this->page = 1;
             $s = 1;
-            $e = $count;
+            $e = $recordsTotal;
             $this->perPage = 0;
         }
 
@@ -693,7 +698,7 @@ class DataTable extends \Kotchasan\KBase
             } else {
                 $caption = Language::get('Search <strong>:search</strong> found :count entries, displayed :start to :end, page :page of :total pages');
             }
-            $caption = str_replace(array(':search', ':count', ':start', ':end', ':page', ':total'), array($this->search, number_format($count), number_format($s), number_format($e), number_format($this->page), number_format($totalpage)), $caption);
+            $caption = str_replace([':search', ':count', ':start', ':end', ':page', ':total'], [$this->search, number_format($recordsTotal), number_format($s), number_format($e), number_format($this->page), number_format($totalpage)], $caption);
         }
 
         // Sort
@@ -832,7 +837,7 @@ class DataTable extends \Kotchasan\KBase
             }
             if ($colspan === 0) {
                 if (!empty($this->buttons)) {
-                    $row[] = $this->th($i, '', array('text' => ''));
+                    $row[] = $this->th($i, '', ['text' => '']);
                     ++$colCount;
                     ++$i;
                 }
@@ -841,7 +846,7 @@ class DataTable extends \Kotchasan\KBase
             }
             if ($colspan === 0) {
                 if ($this->pmButton) {
-                    $row[] = $this->th($i, '', array('text' => ''));
+                    $row[] = $this->th($i, '', ['text' => '']);
                     ++$colCount;
                 }
             } else {
@@ -852,8 +857,11 @@ class DataTable extends \Kotchasan\KBase
         if (!empty($thead) && is_string($thead)) {
             $content[] = '<thead>'.$thead.'</thead>';
         }
-        // tbody
-        if (!empty($this->datas)) {
+        if (empty($this->datas)) {
+            // tbody (empty datas)
+            $content[] = '<tbody><tr><td class="empty-table" colspan=9999>'.Language::get($this->emptyTableText).'</td></tr></tbody>';
+        } else {
+            // tbody (with datas)
             $content[] = '<tbody>'.$this->tbody($start, $end).'</tbody>';
         }
         if (!$this->explain) {
@@ -927,7 +935,7 @@ class DataTable extends \Kotchasan\KBase
         // Check if JavaScript is enabled and the explain flag is not set
         if ($this->enableJavascript && !$this->explain) {
             // Create an array containing various properties to be used in JavaScript
-            $script = array(
+            $script = [
                 'page' => $this->page,
                 'search' => $this->search,
                 'sort' => $this->sort,
@@ -941,11 +949,14 @@ class DataTable extends \Kotchasan\KBase
                 'onChanged' => $this->onChanged,
                 'pmButton' => $this->pmButton,
                 'dragColumn' => $this->dragColumn,
-                'url' => $this->url,
-                'params' => $this->params,
+                'checkCol' => $this->checkCol,
+                'primaryKey' => $this->primaryKey,
+                'ajax' => $this->ajax,
                 'cols' => $this->cols,
-                'debug' => is_string($this->debug) ? $this->debug : ''
-            );
+                'headers' => array_keys($this->headers),
+                'debug' => is_string($this->debug) ? $this->debug : '',
+                'emptyTableText' => Language::get($this->emptyTableText)
+            ];
             // Add JavaScript code to initialize a GTable object with the given properties
             $this->javascript[] = 'var table = new GTable("'.$this->id.'", '.json_encode($script).');';
         }
@@ -979,9 +990,9 @@ class DataTable extends \Kotchasan\KBase
                 $id = isset($items[$this->primaryKey]) ? $items[$this->primaryKey] : $o;
 
                 // Properties of the table row
-                $prop = (object) array(
+                $prop = (object) [
                     'id' => $this->id.'_'.$id
-                );
+                ];
 
                 $buttons = [];
 
@@ -1005,7 +1016,7 @@ class DataTable extends \Kotchasan\KBase
                     }
 
                     // Drag column class
-                    if (isset($this->dragColumn)) {
+                    if ($this->dragColumn > -1) {
                         $prop->class = (empty($prop->class) ? 'sort' : $prop->class.' sort');
                     }
                 }
@@ -1062,9 +1073,9 @@ class DataTable extends \Kotchasan\KBase
                                 }
                             }
                             if (isset($this->cols['buttons']) && isset($this->cols['buttons']['class'])) {
-                                $prop = array('class' => $this->cols['buttons']['class'].' buttons');
+                                $prop = ['class' => $this->cols['buttons']['class'].' buttons'];
                             } else {
-                                $prop = array('class' => 'buttons');
+                                $prop = ['class' => 'buttons'];
                             }
                             $row[] = str_replace($patt, $replace, $this->td($id, $i, $prop, implode('', $buttons), ''));
                         } else {
@@ -1074,7 +1085,7 @@ class DataTable extends \Kotchasan\KBase
 
                     // Plus/minus buttons column
                     if ($this->pmButton) {
-                        $row[] = '<td class="icons"><div><a class="icon-plus" title="'.Language::get('Add').'"></a><a class="icon-minus" title="'.Language::get('Remove').'"></a></div></td>';
+                        $row[] = '<td class="icons"><div><a class="icon-plus" title="'.Language::get('Add').'"></a><a class="icon-minus" title="'.Language::get('Delete').'"></a></div></td>';
                     }
                 }
 
@@ -1129,7 +1140,7 @@ class DataTable extends \Kotchasan\KBase
      */
     private function td($id, $i, $properties, $text, $th)
     {
-        $c = array('data-text' => 'data-text="'.strip_tags($th).'"');
+        $c = ['data-text' => 'data-text="'.strip_tags($th).'"'];
 
         foreach ($properties as $key => $value) {
             $c[$key] = $key.'="'.$value.'"';
@@ -1218,7 +1229,7 @@ class DataTable extends \Kotchasan\KBase
             if (!empty($properties['class']) && preg_match('/(.*)\s?(icon\-[a-z0-9\-_]+)($|\s(.*))/', $properties['class'], $match)) {
                 $class = [];
 
-                foreach (array(1, 4) as $i) {
+                foreach ([1, 4] as $i) {
                     if (!empty($match[$i])) {
                         $class[] = $match[$i];
                     }
@@ -1268,12 +1279,12 @@ class DataTable extends \Kotchasan\KBase
                 return null;
             }
         } elseif (isset($item['type'])) {
-            $prop = array(
+            $prop = [
                 'type="'.$item['type'].'"'
-            );
-            $prop2 = array(
+            ];
+            $prop2 = [
                 'button' => 'class="button action"'
-            );
+            ];
 
             foreach ($item as $key => $value) {
                 if ($key == 'id') {
@@ -1281,7 +1292,7 @@ class DataTable extends \Kotchasan\KBase
                     $prop2[] = 'for="'.$value.'"';
                 } elseif ($key == 'class') {
                     $prop2['button'] = 'class="button '.$value.' action"';
-                } elseif (!in_array($key, array('type', 'text'))) {
+                } elseif (!in_array($key, ['type', 'text'])) {
                     $prop[] = $key.'="'.$value.'"';
                 }
             }

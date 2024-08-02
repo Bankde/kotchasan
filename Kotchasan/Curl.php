@@ -55,19 +55,19 @@ class Curl
             throw new \Exception('cURL library is not loaded');
         }
         // Default parameters
-        $this->headers = array(
+        $this->headers = [
             'Connection' => 'keep-alive',
             'Keep-Alive' => '300',
             'Accept-Charset' => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
             'Accept-Language' => 'en-us,en;q=0.5'
-        );
-        $this->options = array(
+        ];
+        $this->options = [
             CURLOPT_TIMEOUT => 30,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_USERAGENT => 'Googlebot/2.1 (+http://www.google.com/bot.html)',
             CURLOPT_SSL_VERIFYHOST => false,
             CURLOPT_SSL_VERIFYPEER => false
-        );
+        ];
     }
 
     /**

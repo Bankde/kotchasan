@@ -83,7 +83,7 @@ class Field extends \Kotchasan\Database\Db
     public function delete()
     {
         $rs = new Recordset(get_called_class());
-        return $rs->delete(array($this->primaryKey, (int) $this->{$this->primaryKey}), 1);
+        return $rs->delete([$this->primaryKey, (int) $this->{$this->primaryKey}], 1);
     }
 
     /**
@@ -176,7 +176,7 @@ class Field extends \Kotchasan\Database\Db
     {
         $rs = new Recordset(get_called_class());
         if ($this->exists) {
-            $rs->update(array($this->primaryKey, (int) $this->{$this->primaryKey}), $this);
+            $rs->update([$this->primaryKey, (int) $this->{$this->primaryKey}], $this);
         } else {
             $rs->insert($this);
         }

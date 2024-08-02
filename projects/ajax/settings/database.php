@@ -2,14 +2,14 @@
 
 /* database.php */
 
-return array(
-    'mysql' => array(
+return [
+    'mysql' => [
         'dbdriver' => 'mysql',
         'username' => '',
         'password' => '',
         'dbname' => '',
-        'prefix' => '',
-    ),
-    'tables' => array(
-    ),
-);
+        'prefix' => ''
+    ],
+    'tables' => [
+    ]
+];

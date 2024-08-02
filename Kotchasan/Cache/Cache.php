@@ -55,7 +55,7 @@ abstract class Cache extends \Kotchasan\KBase implements CacheItemPoolInterface
      */
     public function deleteItem($key)
     {
-        return $this->deleteItems(array($key));
+        return $this->deleteItems([$key]);
     }
 
     /**
@@ -67,7 +67,7 @@ abstract class Cache extends \Kotchasan\KBase implements CacheItemPoolInterface
      */
     public function getItem($key)
     {
-        $items = $this->getItems(array($key));
+        $items = $this->getItems([$key]);
         return isset($items[$key]) ? $items[$key] : new Item($key);
     }
 

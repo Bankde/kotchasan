@@ -32,8 +32,8 @@ class View extends \Kotchasan\View
     public function render($module)
     {
         // Menu items
-        $menus['home'] = array('Home', 'index.php');
-        $menus['about'] = array('About Us', 'index.php?module=about');
+        $menus['home'] = ['Home', 'index.php'];
+        $menus['about'] = ['About Us', 'index.php?module=about'];
 
         // Generate the menu HTML
         $menu = '';

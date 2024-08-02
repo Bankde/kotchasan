@@ -77,10 +77,10 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
     public function createToken()
     {
         $token = \Kotchasan\Password::uniqid(32);
-        $_SESSION[$token] = array(
+        $_SESSION[$token] = [
             'times' => 0,
             'expired' => time() + TOKEN_AGE
-        );
+        ];
         return $token;
     }
 
@@ -96,7 +96,7 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      */
     public function get($name, $default = null, $cookie = null)
     {
-        $from = array('GET');
+        $from = ['GET'];
         if ($cookie !== null) {
             $from[] = 'COOKIE';
         }

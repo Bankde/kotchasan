@@ -304,7 +304,7 @@ class UploadedFile implements UploadedFileInterface
         if (is_numeric($val)) {
             return $val;
         } elseif ($return_byte && preg_match('/^([0-9]+)([gmk])$/', strtolower($val), $match)) {
-            $units = array('k' => 1024, 'm' => 1048576, 'g' => 1073741824);
+            $units = ['k' => 1024, 'm' => 1048576, 'g' => 1073741824];
             $val = (int) $match[1] * $units[$match[2]];
         }
         return $val;

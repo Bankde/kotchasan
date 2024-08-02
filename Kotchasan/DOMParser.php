@@ -33,7 +33,7 @@ class DOMParser
     public function __construct($html, $charset = 'utf-8')
     {
         // Remove unnecessary elements and normalize the HTML code.
-        $patt = array(
+        $patt = [
             '/^(.*)<body[^>]{0,}>(.*)<\/body>(.*)$/is' => '\\2',
             '#<(style|script)(.*?)>(.*?)</\\1>#is' => '',
             '@<!--.*-->@is' => '',
@@ -41,7 +41,7 @@ class DOMParser
             '@>[\s\t]{0,}[\r\n]+[\s\t]{0,}<@' => '><',
             '@[\s\t\r\n]{0,}<(\/?(br|hr|figure|figcaption|p|div|footer|article|section|blockquote|code|aside|navy|table|tr|td|th|thead|tbody|tfoot|caption|ul|ol|li|dl|dt|dd|h[1-6])[^>]{0,})>[\s\t\r\n]{0,}@i' => '<\\1>',
             '@[\s\t]{0,}[\r\n]+[\s\t]{0,}@' => ' '
-        );
+        ];
         $html = preg_replace(array_keys($patt), array_values($patt), $html);
 
         // Convert the HTML code to the specified charset.

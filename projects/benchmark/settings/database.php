@@ -1,14 +1,14 @@
 <?php
 /* settings/database.php */
-return array(
-    'mysql' => array(
+return [
+    'mysql' => [
         'dbdriver' => 'mysql',
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '1234',
         'dbname' => 'test',
-        'prefix' => '',
-    ),
-    'tables' => array(
-    ),
-);
+        'prefix' => ''
+    ],
+    'tables' => [
+    ]
+];

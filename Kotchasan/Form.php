@@ -416,6 +416,7 @@ class Form extends \Kotchasan\KBase
                 case 'autofocus':
                 case 'result':
                 case 'checked':
+                case 'checkbox':
                 case 'datalist':
                 case 'button':
                     $$k = $v;
@@ -518,7 +519,7 @@ class Form extends \Kotchasan\KBase
             }
         } elseif (isset($value)) {
             if ($this->tag === 'textarea') {
-                $value = str_replace(array('{', '}', '&amp;'), array('&#x007B;', '&#x007D;', '&'), htmlspecialchars($value));
+                $value = str_replace(['{', '}', '&amp;'], ['&#x007B;', '&#x007D;', '&'], htmlspecialchars($value));
             } elseif ($this->tag != 'button') {
                 if (is_numeric($value) || is_bool($value)) {
                     $prop['value'] = 'value='.$value;
@@ -564,12 +565,12 @@ class Form extends \Kotchasan\KBase
         if (!empty($class)) {
             $prop['class'] = 'class="'.implode(' ', $class).'"';
         }
-        if (empty($prop['checkbox']) || $this->tag === 'select') {
-            $w_checkbox = '';
-        } else {
+        if (isset($checkbox) && $this->tag !== 'select') {
             $itemClass = empty($itemClass) ? 'w_checkbox' : $itemClass.' w_checkbox';
-            $checked = empty($value) ? '' : ' checked';
-            $w_checkbox = '<input type=checkbox id="checkbox_'.$id.'" name="checkbox_'.$name.'" value=1'.$checked.'>';
+            $chk = $checkbox ? ' checked' : '';
+            $w_checkbox = '<input type=checkbox id="checkbox_'.$id.'" name="checkbox_'.$name.'" value=1'.$chk.'>';
+        } else {
+            $w_checkbox = '';
         }
         if ($this->tag == 'input') {
             $element = '<'.$this->tag.' '.implode(' ', $prop).'>';
@@ -618,7 +619,7 @@ class Form extends \Kotchasan\KBase
                     if (isset($previewSrc)) {
                         if (preg_match_all('/\.([a-z0-9]+)(\?|$)/i', $previewSrc, $match)) {
                             $ext = strtoupper($match[1][0]);
-                            if (in_array($ext, array('JPG', 'JPEG', 'GIF', 'PNG', 'BMP', 'WEBP', 'TIFF', 'ICO'))) {
+                            if (in_array($ext, ['JPG', 'JPEG', 'GIF', 'PNG', 'BMP', 'WEBP', 'TIFF', 'ICO'])) {
                                 $input .= '<a href="'.$previewSrc.'" target="preview" class="file-thumb" style="background-image:url('.$previewSrc.')"></a>';
                             } else {
                                 $input .= '<a href="'.$previewSrc.'" target="preview" class="file-thumb">'.$ext.'</a>';

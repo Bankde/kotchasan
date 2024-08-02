@@ -332,14 +332,24 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
         } else {
             $start = 1;
         }
-        $url = '<a href="'.$this->withParams(array('page' => ':page'), true).'" title="{LNG_go to page} :page">:page</a>';
-        $splitpage = ($start > 2) ? str_replace(':page', 1, $url) : '';
-        for ($i = $start; $i <= $totalpage && $maxlink > 0; ++$i) {
-            $splitpage .= ($i == $page) ? '<strong title="{LNG_Showing page} '.$i.'">'.$i.'</strong>' : str_replace(':page', $i, $url);
-            --$maxlink;
+        $splitpage = '';
+        $url = '<a href="'.$this->withParams(['page' => ':page'], true).'" title="{LNG_go to page} :page">:page</a>';
+        $end = $start + $maxlink - 1;
+        for ($i = $start; $i <= $totalpage && $maxlink > 0; $i++) {
+            if ($i == $page) {
+                $splitpage .= '<strong title="{LNG_showing page} '.$i.'">'.$i.'</strong>';
+            } else {
+                if ($i == $start) {
+                    $splitpage .= str_replace(':page', 1, $url);
+                } elseif ($i == $end) {
+                    $splitpage .= str_replace(':page', $totalpage, $url);
+                } else {
+                    $splitpage .= str_replace(':page', $i, $url);
+                }
+            }
+            $maxlink--;
         }
-        $splitpage .= ($i < $totalpage) ? str_replace(':page', $totalpage, $url) : '';
-        return empty($splitpage) ? '<strong>1</strong>' : $splitpage;
+        return $splitpage === '' ? '<strong title="{LNG_showing page} 1">1</strong>' : $splitpage;
     }
 
     /**
@@ -714,7 +724,7 @@ class Uri extends \Kotchasan\KBase implements \Psr\Http\Message\UriInterface
      */
     private function filterScheme($scheme)
     {
-        $schemes = array('' => '', 'http' => 'http', 'https' => 'https');
+        $schemes = ['' => '', 'http' => 'http', 'https' => 'https'];
         $scheme = rtrim(strtolower($scheme), ':/');
         if (isset($schemes[$scheme])) {
             return $scheme;

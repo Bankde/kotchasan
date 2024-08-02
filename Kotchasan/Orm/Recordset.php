@@ -235,10 +235,10 @@ class Recordset extends Query implements \Iterator
     public function delete($condition = [], $all = false, $operator = 'AND')
     {
         $ret = $this->buildWhereValues($condition, $operator, $this->field->getPrimarykey());
-        $sqls = array(
+        $sqls = [
             'delete' => $this->field->table_name,
             'where' => $ret[0]
-        );
+        ];
         if (!$all) {
             $sqls['limit'] = 1;
         }
@@ -320,10 +320,10 @@ class Recordset extends Query implements \Iterator
      */
     public function first($fields = null)
     {
-        $sqls = array(
+        $sqls = [
             'from' => $this->field->getTableWithAlias(),
             'limit' => 1
-        );
+        ];
         if (!empty($fields)) {
             $qs = [];
             foreach (func_get_args() as $item) {

@@ -56,7 +56,7 @@ class Text
      */
     public static function formatFileSize($bytes, $precision = 2)
     {
-        $units = array('Bytes', 'KB', 'MB', 'GB', 'TB');
+        $units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
         if ($bytes <= 0) {
             return '0 Byte';
         }
@@ -124,8 +124,8 @@ class Text
 
         // Replace special characters with their HTML entities
         $str = preg_replace(
-            array('/&/', '/"/', "/'/", '/</', '/>/', '/\\\/', '/\{/', '/\}/', '/\$/'),
-            array('&amp;', '&quot;', '&#039;', '&lt;', '&gt;', '&#92;', '&#x007B;', '&#x007D;', '&#36;'),
+            ['/&/', '/"/', "/'/", '/</', '/>/', '/\\\/', '/\{/', '/\}/', '/\$/'],
+            ['&amp;', '&quot;', '&#039;', '&lt;', '&gt;', '&#92;', '&#x007B;', '&#x007D;', '&#36;'],
             $text
         );
 
@@ -265,8 +265,8 @@ class Text
         }
 
         // Define arrays for search and replacement patterns
-        $searchPatterns = array('/&/', '/"/', "/'/", '/</', '/>/', '/{/', '/}/', '/&(amp;([\#a-z0-9]+));/');
-        $replacePatterns = array('&amp;', '&quot;', '&#039;', '&lt;', '&gt;', '&#x007B;', '&#x007D;', '&\\2;');
+        $searchPatterns = ['/&/', '/"/', "/'/", '/</', '/>/', '/{/', '/}/', '/&(amp;([\#a-z0-9]+));/'];
+        $replacePatterns = ['&amp;', '&quot;', '&#039;', '&lt;', '&gt;', '&#x007B;', '&#x007D;', '&\\2;'];
 
         // Replace special characters with their corresponding HTML entities
         $text = preg_replace($searchPatterns, $replacePatterns, $text);
@@ -319,8 +319,8 @@ class Text
 
         // Convert HTML entities back to characters
         $decodedText = str_replace(
-            array('&amp;', '&quot;', '&#039;', '&lt;', '&gt;', '&#92;', '&#x007B;', '&#x007D;', '&#36;'),
-            array('&', '"', "'", '<', '>', '\\', '{', '}', '$'),
+            ['&amp;', '&quot;', '&#039;', '&lt;', '&gt;', '&#92;', '&#x007B;', '&#x007D;', '&#36;'],
+            ['&', '"', "'", '<', '>', '\\', '{', '}', '$'],
             $text
         );
 
@@ -377,14 +377,14 @@ class Text
         return $sanitizedText;
     }
 
-/**
- * Generates a random string of specified length using the given characters.
- *
- * @param int $length The length of the generated string.
- * @param string $characters The characters to use for generating the random string.
- *
- * @return string The randomly generated string.
- */
+    /**
+     * Generates a random string of specified length using the given characters.
+     *
+     * @param int $length The length of the generated string.
+     * @param string $characters The characters to use for generating the random string.
+     *
+     * @return string The randomly generated string.
+     */
     public static function generateRandomString($length = 4, $characters = '0123456789')
     {
         // Initialize an empty string to store the generated random string

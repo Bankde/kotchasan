@@ -13,9 +13,9 @@
   GTable.prototype = {
     initialize: function(id, o) {
       this.options = {
-        url: null,
-        params: [],
+        ajax: null,
         cols: [],
+        headers: [],
         action: null,
         actionCallback: null,
         actionConfirm: null,
@@ -25,7 +25,11 @@
         onInitRow: null,
         onChanged: null,
         pmButton: false,
-        dragColumn: -1
+        dragColumn: -1,
+        checkCol: -1,
+        primaryKey: 'id',
+        maxLinks: 9,
+        emptyTableText: 'No data available in this table.'
       };
       for (var prop in o) {
         if (prop == "debug" && o.debug != "") {
@@ -38,6 +42,7 @@
       this.search = o["search"] || "";
       this.sort = o["sort"] || null;
       this.page = o["page"] || 1;
+      this.sort_patt = /sort_(none|asc|desc)\s(col_([\w]+))(|\s.*)$/;
       this.submit = null;
       if (this.options.onAddRow) {
         this.options.onAddRow = window[this.options.onAddRow];
@@ -71,70 +76,11 @@
       }
 
       var hs,
-        sort_patt = /sort_(none|asc|desc)\s(col_([\w]+))(|\s.*)$/,
         action_patt = /button[\s][a-z]+[\s]action/,
         temp = this;
 
-      function _send() {
-        var params = [],
-          sort = [];
-        if (temp.options.params) {
-          for (var key in temp.options.params) {
-            params.push(key + '=' + encodeURIComponent(temp.options.params[key]));
-          }
-        }
-        forEach($G(temp.table).elems("th"), function() {
-          hs = sort_patt.exec(this.className);
-          if (hs) {
-            if (hs[1] == "asc") {
-              sort.push(hs[3] + "%20asc");
-            } else if (hs[1] == "desc") {
-              sort.push(hs[3] + "%20desc");
-            }
-          }
-        });
-        if (sort.length > 0) {
-          params.push('sort=' + sort.join(','));
-        }
-        send(temp.options.url, params.join('&'), function(xhr) {
-          var ds = xhr.responseText.toJSON();
-          if (ds) {
-            var td,
-              tr,
-              tbody,
-              tbodies = temp.table.getElementsByTagName('tbody');
-            if (tbodies.length == 0) {
-              tbody = document.createElement('tbody');
-              temp.table.getElementsByTagName('table')[0].appendChild(tbody);
-            } else {
-              tbody = tbodies[0];
-              tbody.innerHTML = '';
-            }
-            for (var row in ds) {
-              tr = document.createElement('tr');
-              for (var item in ds[row]) {
-                td = document.createElement('td');
-                if (temp.options.cols[item]) {
-                  for (var el in temp.options.cols[item]) {
-                    if (el == 'class') {
-                      td.className = temp.options.cols[item][el];
-                    }
-                  }
-                }
-                td.innerHTML = ds[row][item];
-                tr.appendChild(td);
-              }
-              tbody.appendChild(tr);
-            }
-            temp.initTBODY(tbody, null);
-          }
-          if (temp.options.onChanged) {
-            temp.options.onChanged.call(temp, tbody, ds);
-          }
-        }, this);
-      }
       var _doSort = function(e) {
-        if ((hs = sort_patt.exec(this.className))) {
+        if ((hs = temp.sort_patt.exec(this.className))) {
           var sort = [];
           if (GEvent.isCtrlKey(e)) {
             var patt = new RegExp(hs[3] + "[\\s](asc|desc|none)");
@@ -147,7 +93,7 @@
             }
           } else {
             forEach($G(temp.table).elems("th"), function() {
-              var ds = sort_patt.exec(this.className);
+              var ds = temp.sort_patt.exec(this.className);
               if (ds) {
                 this.className = 'sort_none col_' + ds[3] + (ds[4] ? ds[4] : '');
               }
@@ -163,8 +109,8 @@
             this.className = 'sort_none col_' + hs[3] + (hs[4] ? hs[4] : '');
             sort.push(hs[3] + "%20none");
           }
-          if (temp.options.url) {
-            _send();
+          if (temp.options.ajax) {
+            temp.callAjax();
           } else {
             temp.sort = sort.join(",");
             window.location = temp.redirect();
@@ -207,78 +153,23 @@
         }
       };
       if (this.table) {
-        if (this.options.url) {
-          _send();
+        if (this.options.ajax) {
+          this.callAjax();
         }
         forEach($G(this.table).elems("th"), function() {
-          if (sort_patt.test(this.className)) {
+          if (temp.sort_patt.test(this.className)) {
             callClick(this, _doSort);
           }
         });
-        this.initTR(this.table);
-        forEach(this.table.elems("tbody"), function() {
-          temp.initTBODY(this, null);
-        });
+        this.initTABLE();
         forEach(this.table.elems("label"), function() {
           if (action_patt.test(this.className)) {
             callClick(this, doAction);
           }
         });
-        if (this.options.dragColumn > -1) {
-          new GDragDrop(this.table, {
-            dragClass: "icon-move",
-            endDrag: function() {
-              var trs = new Array();
-              forEach(temp.table.elems("tr"), function() {
-                if (this.id) {
-                  trs.push(this.id.replace(id + "_", ""));
-                }
-              });
-              if (trs.length > 1) {
-                temp.callAction(this, "action=move&data=" + trs.join(","));
-              }
-            }
-          });
-        }
-        forEach(this.table.elems("button"), function() {
-          if (this.className == "clear_search") {
-            temp.clear_search = this;
-            temp.input_search = this.parentNode.firstChild.firstChild;
-            callClick(this, function() {
-              temp.input_search.value = "";
-              if (temp.submit) {
-                temp.submit.click();
-              }
-            });
-          } else if (this.type == "submit") {
-            temp.submit = this;
-          } else if (this.id != "") {
-            callClick(this, function() {
-              temp._doButton(this);
-            });
-          }
-        });
-        if (this.options.action) {
-          window.setTimeout(function() {
-            if ($E(temp.table)) {
-              forEach(temp.table.elems("tbody"), function() {
-                forEach(
-                  this.querySelectorAll("select,input,textarea"),
-                  function() {
-                    if (this.id != "") {
-                      $G(this).addEvent("change", function() {
-                        temp._doButton(this);
-                      });
-                    }
-                  }
-                );
-              });
-            }
-          }, 1000);
-        }
-        if (temp.input_search) {
-          $G(temp.input_search).addEvent("change", doSearchChanged);
-          doSearchChanged.call(temp);
+        if (this.input_search) {
+          $G(this.input_search).addEvent("change", doSearchChanged);
+          doSearchChanged.call(this);
         }
         if (typeof loader !== "undefined") {
           forEach(this.table.querySelectorAll("form.table_nav"), function() {
@@ -310,6 +201,255 @@
             };
           });
         }
+      }
+    },
+    showCaption: function(message) {
+      const captions = this.table.getElementsByTagName('caption');
+      if (captions.length > 0) {
+        captions[0].innerHTML = message;
+      }
+    },
+    callAjax: function(page) {
+      var filterObj = {},
+        sortObj = {},
+        params = [],
+        sort = [],
+        hs,
+        tbody = this.getTBODY(),
+        form = $E(this.table).getElementsByTagName('form')[0],
+        formData = new FormData(form),
+        temp = this;
+      formData.forEach(function(value, key) {
+        if (key != 'sort') {
+          filterObj[key] = encodeURIComponent(value);
+        }
+      });
+      forEach($G(this.table).elems("th"), function() {
+        hs = temp.sort_patt.exec(this.className);
+        if (hs) {
+          if (hs[1] == "asc" || hs[1] == "desc") {
+            sortObj[hs[3]] = hs[1];
+          }
+        }
+      });
+      for (const key in sortObj) {
+        sort.push(key + ' ' + sortObj[key]);
+      }
+      if (sort.length > 0) {
+        let value = sort.join(','),
+          elem = form.elements['sort'];
+        if (elem) {
+          elem.value = value;
+        }
+        filterObj['sort'] = encodeURIComponent(value);
+      }
+      for (const key in filterObj) {
+        params.push(key + '=' + filterObj[key]);
+      }
+      if (page && page > 0) {
+        params.push('page=' + page);
+      }
+      this.msgRow(tbody, '&nbsp;', 'wait');
+      send(this.options.ajax, params.join('&'), function(xhr) {
+        console.log(xhr.responseText);
+        tbody.innerHTML = '';
+        let headers = temp.options.headers,
+          cols = temp.options.cols,
+          primaryKey = temp.options.primaryKey,
+          tableId = temp.table.id,
+          ds = xhr.responseText.toJSON();
+        if (ds) {
+          if (ds.datas && ds.datas.length > 0) {
+            for (const index in ds.datas) {
+              let td,
+                header,
+                data = ds.datas[index],
+                id = typeof data[primaryKey] == 'undefined' ? null : data[primaryKey],
+                tr = document.createElement('tr');
+              tr.id = tableId + '_' + id;
+              if (temp.options.dragColumn > -1) {
+                tr.className = 'sort';
+              }
+              for (const col in headers) {
+                header = headers[col];
+                if (col == temp.options.checkCol) {
+                  td = document.createElement('td');
+                  td.className = 'check-column';
+                  let a = document.createElement('a');
+                  a.className = 'icon-uncheck';
+                  if (id != null) {
+                    a.id = 'check_' + id;
+                  }
+                  td.appendChild(a);
+                  tr.appendChild(td);
+                } else if (col == temp.options.dragColumn) {
+                  td = document.createElement('td');
+                  td.className = 'center';
+                  let a = document.createElement('a');
+                  a.className = 'icon-move';
+                  if (id != null) {
+                    a.id = 'move_' + id;
+                  }
+                  td.title = trans('Drag and drop to reorder');
+                  td.appendChild(a);
+                  tr.appendChild(td);
+                }
+                td = document.createElement('td');
+                if (typeof data[header] != 'undefined') {
+                  if (cols[header] && cols[header]['class']) {
+                    td.className = cols[header]['class'];
+                  }
+                  td.innerHTML = data[header];
+                }
+                tr.appendChild(td);
+              }
+              if (temp.options.pmButton) {
+                td = document.createElement('td');
+                td.className = 'icons';
+                let div = document.createElement('div');
+                td.appendChild(div);
+                let a = document.createElement('a');
+                a.className = 'icon-plus';
+                a.title = trans('Add');
+                div.appendChild(a);
+                a = document.createElement('a');
+                a.className = 'icon-minus';
+                a.title = trans('Delete');
+                div.appendChild(a);
+                tr.appendChild(td);
+              }
+              tbody.appendChild(tr);
+            }
+            temp.generateSplitpage(ds.totalPage, ds.page);
+            temp.initTABLE();
+          } else if (ds.error) {
+            temp.msgRow(tbody, ds.error, 'error-table');
+          } else {
+            temp.msgRow(tbody, temp.options.emptyTableText, 'empty-table');
+          }
+          if (temp.options.onChanged) {
+            temp.options.onChanged.call(temp, tbody, ds.datas);
+          }
+          if (ds.caption) {
+            temp.showCaption(ds.caption);
+          }
+        } else if (xhr.responseText != '') {
+          console.log(xhr.responseText);
+        }
+      });
+    },
+    generateSplitpage: function(totalPage, page) {
+      let temp = this,
+        elem,
+        start = 1,
+        maxLinks = this.options.maxLinks,
+        splitpage = this.table.querySelector('.splitpage');
+      splitpage.innerHTML = '';
+
+      if (totalPage > maxLinks) {
+        start = page - Math.floor(maxLinks / 2);
+        if (start < 1) {
+          start = 1;
+        } else if (start + maxLinks > totalPage) {
+          start = totalPage - maxLinks + 1;
+        }
+      }
+      let end = start + maxLinks - 1;
+      for (let i = start; i <= totalPage && maxLinks > 0; i++) {
+        if (i == page) {
+          elem = document.createElement('strong');
+          elem.title = trans('showing page') + ' ' + i;
+          elem.innerHTML = i;
+        } else {
+          elem = document.createElement('a');
+          if (i == start) {
+            elem.innerHTML = 1;
+            elem.title = trans('go to page') + ' ' + 1;
+          } else if (i == end) {
+            elem.innerHTML = totalPage;
+            elem.title = trans('go to page') + ' ' + totalPage;
+          } else {
+            elem.innerHTML = i;
+            elem.title = trans('go to page') + ' ' + i;
+          }
+          elem.onclick = function(e) {
+            temp.callAjax(this.innerHTML);
+          };
+        }
+
+        splitpage.appendChild(elem);
+        maxLinks--;
+      }
+    },
+    msgRow: function(tbody, message, className) {
+      const tr = document.createElement('tr'),
+        td = document.createElement('td');
+      td.innerHTML = message;
+      td.className = className;
+      td.colSpan = this.options.headers.length;
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    },
+    initTABLE: function() {
+      var temp = this;
+
+      this.initTR(this.table);
+
+      forEach(this.table.elems("tbody"), function() {
+        temp.initTBODY(this, null);
+      });
+
+      if (this.options.dragColumn > -1) {
+        new GDragDrop(this.table, {
+          dragClass: "icon-move",
+          endDrag: function() {
+            var trs = new Array();
+            forEach(temp.table.elems("tr"), function() {
+              if (this.id) {
+                trs.push(this.id.replace(temp.table.id + "_", ""));
+              }
+            });
+            if (trs.length > 1) {
+              temp.callAction(this, "action=move&data=" + trs.join(","));
+            }
+          }
+        });
+      }
+      forEach(this.table.elems("button"), function() {
+        if (this.className == "clear_search") {
+          temp.clear_search = this;
+          temp.input_search = this.parentNode.firstChild.firstChild;
+          callClick(this, function() {
+            temp.input_search.value = "";
+            if (temp.submit) {
+              temp.submit.click();
+            }
+          });
+        } else if (this.type == "submit") {
+          temp.submit = this;
+        } else if (this.id != "") {
+          callClick(this, function() {
+            temp._doButton(this);
+          });
+        }
+      });
+      if (this.options.action) {
+        window.setTimeout(function() {
+          if ($E(temp.table)) {
+            forEach(temp.table.elems("tbody"), function() {
+              forEach(
+                this.querySelectorAll("select,input,textarea"),
+                function() {
+                  if (this.id != "") {
+                    $G(this).addEvent("change", function() {
+                      temp._doButton(this);
+                    });
+                  }
+                }
+              );
+            });
+          }
+        }, 1000);
       }
     },
     getCheck: function() {
@@ -394,6 +534,18 @@
         }
         this.callAction(input, action);
       }
+    },
+    getTBODY: function() {
+      let tbody,
+        tbodies = this.table.getElementsByTagName('tbody');
+      if (tbodies.length == 0) {
+        tbody = document.createElement('tbody');
+        this.table.getElementsByTagName('table')[0].appendChild(tbody);
+      } else {
+        tbody = tbodies[0];
+        tbody.innerHTML = '';
+      }
+      return tbody;
     },
     initTBODY: function(tbody, tr) {
       var row = 0,

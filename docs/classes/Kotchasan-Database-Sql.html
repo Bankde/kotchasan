@@ -185,14 +185,14 @@
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>คำสั่ง SQL ที่เก็บไว้</dd>
+<dd>SQL statement stored here</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Kotchasan-Database-Sql.html#property_values">$values</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>ตัวแปรเก็บพารามิเตอร์สำหรับการ bind</dd>
+<dd>Array to store parameters for binding</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method___construct">__construct()</a>
@@ -206,28 +206,28 @@
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>หาค่าเฉลี่ยของคอลัมน์ที่เลือก</dd>
+<dd>Calculate the average of the selected column</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_BETWEEN">BETWEEN()</a>
     <span>
-                        &nbsp;: <abbr title="\self">self</abbr>    </span>
+                        &nbsp;: static    </span>
 </dt>
-<dd>สร้างคำสั่ง BETWEEN ... AND .</dd>
+<dd>Generate a SQL BETWEEN ... AND ... clause</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_CONCAT">CONCAT()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>สร้างคำสั่ง CONCAT หรือ CONCAT_WS</dd>
+<dd>Generate a SQL CONCAT or CONCAT_WS clause</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_COUNT">COUNT()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>นับจำนวนเร็คคอร์ดของคอลัมน์ที่เลือก</dd>
+<dd>Count the number of records for the selected column</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_create">create()</a>
@@ -241,222 +241,224 @@
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>แยกวันที่ออกจากคอลัมน์ชนิด DATETIME</dd>
+<dd>Extract date from a DATETIME column</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_DATE_FORMAT">DATE_FORMAT()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>จัดรูปแบบของวันที่ตอนแสดงผล</dd>
+<dd>Format a date column for display</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_DATEDIFF">DATEDIFF()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>หาความแตกต่างระหว่างวัน (คืนค่าเป็นจำนวนวันที่แตกต่างกัน)</dd>
+<dd>Calculate the difference in days between two dates or between a date and NOW()</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_DAY">DAY()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>แยกวันที่ออกจากคอลัมน์ชนิด DATE DATETIME</dd>
+<dd>Extract the day from a DATE or DATETIME column</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_DISTINCT">DISTINCT()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>คืนค่าข้ออมูลที่ไม่ซ้ำกัน</dd>
+<dd>Return distinct values of a column</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Kotchasan-Database-Sql.html#method_extractSort">extractSort()</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;|string    </span>
+</dt>
+<dd>Extract sorting information and return as an array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_fieldName">fieldName()</a>
     <span>
-                        &nbsp;: string    </span>
+                        &nbsp;: string|int    </span>
 </dt>
-<dd>ใส่ `` ครอบชื่อคอลัมน์
-ชื่อคอลัมน์ต้องเป็น ภาษาอังกฤษ ตัวเลข และ _ เท่านั้น
-ถ้ามีอักขระอื่นนอกจากนี้ คืนค่า ข้อความที่ส่งมา ครอบด้วย &#039;&#039;</dd>
+<dd>Wraps a column name with backticks (`) for SQL identifiers.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_FORMAT">FORMAT()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>จัดรูปแบบของคอลัมน์ตอนแสดงผล</dd>
+<dd>Format a column for display</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_getValues">getValues()</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>คืนค่าแอเร์ยเก็บพารามิเตอร์สำหรับการ bind รวมกับ $values</dd>
+<dd>Retrieves or merges bind parameters ($values) used for prepared statements in SQL queries.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_GROUP_CONCAT">GROUP_CONCAT()</a>
     <span>
-                        &nbsp;: <abbr title="\self">self</abbr>    </span>
+                        &nbsp;: static    </span>
 </dt>
-<dd>สร้างคำสั่ง GROUP_CONCAT</dd>
+<dd>Create a GROUP_CONCAT SQL statement</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_HOUR">HOUR()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>แยกชั่วโมงออกจากคอลัมน์ชนิด DATETIME</dd>
+<dd>Extract the hour from a DATETIME column</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_IFNULL">IFNULL()</a>
     <span>
-                        &nbsp;: <abbr title="\self">self</abbr>    </span>
+                        &nbsp;: static    </span>
 </dt>
-<dd>ฟังก์ชั่นสร้างคำสั่ง IFNULL</dd>
+<dd>Create an IFNULL SQL statement</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_ISNOTNULL">ISNOTNULL()</a>
     <span>
-                        &nbsp;: <abbr title="\self">self</abbr>    </span>
+                        &nbsp;: static    </span>
 </dt>
-<dd>ฟังก์ชั่นสร้างคำสั่ง IS NOT NULL</dd>
+<dd>Create an IS NOT NULL SQL statement</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_ISNULL">ISNULL()</a>
     <span>
-                        &nbsp;: <abbr title="\self">self</abbr>    </span>
+                        &nbsp;: static    </span>
 </dt>
-<dd>ฟังก์ชั่นสร้างคำสั่ง IS NULL</dd>
+<dd>Create an IS NULL SQL statement</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_MAX">MAX()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>หาค่าสูงสุด</dd>
+<dd>Find the maximum value of a column</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_MIN">MIN()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>หาค่าต่ำสุด</dd>
+<dd>Find the minimum value of a column</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_MINUTE">MINUTE()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>แยกนาทีออกจากคอลัมน์ชนิด DATETIME</dd>
+<dd>Extract minutes from a DATETIME column</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_MONTH">MONTH()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>แยกเดือนออกจากคอลัมน์ชนิด DATE DATETIME</dd>
+<dd>Extract month from a DATE or DATETIME column</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_NEXT">NEXT()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>ฟังก์ชั่นสร้าง SQL สำหรับหาค่าสูงสุด + 1
-ใช้ในการหาค่า id ถัดไป</dd>
+<dd>Generate SQL to find the next value in a sequence (MAX + 1)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_NOW">NOW()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>คืนค่าวันที่และเวลาปัจจุบัน</dd>
+<dd>Returns the current date and time as a SQL function NOW().</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_POSITION">POSITION()</a>
     <span>
-                        &nbsp;: <abbr title="\self">self</abbr>    </span>
+                        &nbsp;: static    </span>
 </dt>
-<dd>ค้นหาข้อความ ไม่พบคืนค่า 0, ตัวแรกคือ 1</dd>
+<dd>Searches for a substring in a string and returns its position. If not found, returns 0; indexing starts from 1.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_quoteValue">quoteValue()</a>
     <span>
-                        &nbsp;: string    </span>
+                        &nbsp;: string|int    </span>
 </dt>
-<dd>แปลงค่า Value สำหรับใช้ใน query</dd>
+<dd>Quotes and prepares a value for use in SQL queries, handling various data types and formats.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_RAND">RAND()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>สุ่มตัวเลข</dd>
+<dd>Generates a random number.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_SECOND">SECOND()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>แยกวินาทีออกจากคอลัมน์ชนิด DATETIME</dd>
+<dd>Extracts the seconds from a DATETIME column.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_strValue">strValue()</a>
     <span>
-                        &nbsp;: <abbr title="\self">self</abbr>    </span>
+                        &nbsp;: static    </span>
 </dt>
-<dd>ฟังก์ชั่นสำหรับรับค่าเป็นสตริงค์เท่านั้น
-ผลลัพท์จะถูกครอบด้วย &#039;&#039; (ฟันหนู)</dd>
+<dd>Creates a SQL string literal by wrapping the given value in single quotes (&#039;&#039;).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_SUM">SUM()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>ผลรวมของคอลัมน์ที่เลือก</dd>
+<dd>Calculates the sum of values in a selected column.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_text">text()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>คืนค่าคำสั่ง SQL เป็น string
-ถ้า $sql เป็น null จะคืนค่า :$key ใช้สำหรับการ bind</dd>
+<dd>Returns the SQL command as a string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_TIMEDIFF">TIMEDIFF()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>หาความแตกต่างระหว่างเวลา (คืนค่าเป็น H:m:i ที่แตกต่างกัน)</dd>
+<dd>Calculates the time difference between two datetime columns or values.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_TIMESTAMPDIFF">TIMESTAMPDIFF()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>หาความแตกต่างระหว่างเวลา (คืนค่าตามรูปแบบ $unit)</dd>
+<dd>Calculates the difference between two datetime columns or values in specified units.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_WHERE">WHERE()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>สร้างคำสั่ง WHERE</dd>
+<dd>Constructs a WHERE clause based on the provided conditions.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Kotchasan-Database-Sql.html#method_YEAR">YEAR()</a>
     <span>
                         &nbsp;: static    </span>
 </dt>
-<dd>แยกปีออกจากคอลัมน์ชนิด DATE DATETIME</dd>
+<dd>Extracts the year from a DATE or DATETIME column.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Kotchasan-Database-Sql.html#method_buildWhere">buildWhere()</a>
     <span>
                         &nbsp;: string    </span>
 </dt>
-<dd>create SQL WHERE command</dd>
+<dd>Constructs SQL WHERE command based on given conditions.</dd>
 
         </dl>
 
@@ -490,7 +492,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">คำสั่ง SQL ที่เก็บไว้</p>
+        <p class="phpdocumentor-summary">SQL statement stored here</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -519,11 +521,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ตัวแปรเก็บพารามิเตอร์สำหรับการ bind</p>
+        <p class="phpdocumentor-summary">Array to store parameters for binding</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -556,7 +558,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">577</span>
+    <span class="phpdocumentor-element-found-in__line">927</span>
 
     </aside>
 
@@ -599,17 +601,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">หาค่าเฉลี่ยของคอลัมน์ที่เลือก</p>
+        <p class="phpdocumentor-summary">Calculate the average of the selected column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">AVG</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$distinct</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL expression to calculate the average of a specified column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -617,7 +621,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อคอลัมน์</p>
+                    <section class="phpdocumentor-description"><p>The name of the column to calculate the average for</p>
 </section>
 
             </dd>
@@ -626,7 +630,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting column, optional</p>
 </section>
 
             </dd>
@@ -635,7 +639,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false (default) นับทุกคอลัมน์, true นับเฉพาะคอลัมน์ที่ไม่ซ้ำ</p>
+                    <section class="phpdocumentor-description"><p>If true, calculates the average of distinct values only; default is false</p>
 </section>
 
             </dd>
@@ -653,6 +657,17 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
                                                  <section class="phpdocumentor-description"><p>('id')-&gt;text() [==] 'AVG(<code class="prettyprint">id</code>)'</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">demo</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$result = \Kotchasan\Database\Sql::AVG('id')-&gt;text();
+echo $result; // Outputs: AVG(`id`)
+</code></pre>
 </section>
 
                                     </dd>
@@ -677,17 +692,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างคำสั่ง BETWEEN ... AND .</p>
+        <p class="phpdocumentor-summary">Generate a SQL BETWEEN ... AND ... clause</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">BETWEEN</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$min</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">BETWEEN</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$min</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-        <section class="phpdocumentor-description"><p>..</p>
+        <section class="phpdocumentor-description"><p>This function creates a SQL BETWEEN clause for a specified column and range.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -697,21 +712,27 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the column for the BETWEEN clause</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$min</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The minimum value for the range</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$max</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The maximum value for the range</p>
+</section>
+
             </dd>
             </dl>
 
@@ -757,10 +778,21 @@
 </section>
 
                                     </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">demo</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$result = \Kotchasan\Database\Sql::BETWEEN('create_date', 'create_date', 'U.create_date')-&gt;text();
+echo $result; // Outputs: `create_date` BETWEEN `create_date` AND U.`create_date`
+</code></pre>
+</section>
+
+                                    </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span>
+    <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
         
     
@@ -778,17 +810,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างคำสั่ง CONCAT หรือ CONCAT_WS</p>
+        <p class="phpdocumentor-summary">Generate a SQL CONCAT or CONCAT_WS clause</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">CONCAT</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fields</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$separator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function creates a SQL CONCAT or CONCAT_WS clause with optional alias and separator.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -796,7 +830,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>รายชื่อฟิลด์</p>
+                    <section class="phpdocumentor-description"><p>List of fields to concatenate</p>
 </section>
 
             </dd>
@@ -805,7 +839,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting concatenation, optional</p>
 </section>
 
             </dd>
@@ -814,7 +848,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>null (defailt) คืนค่าคำสั่ง CONCAT, ถ้าระบุเป็นค่าอื่นคืนค่าคำสั่ง CONCAT_WS</p>
+                    <section class="phpdocumentor-description"><p>Null (default) to use CONCAT, specify a separator to use CONCAT_WS</p>
 </section>
 
             </dd>
@@ -854,12 +888,23 @@
 
                                     </dd>
                                                 <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">demo</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$result = \Kotchasan\Database\Sql::CONCAT(['fname', 'lname'])-&gt;text();
+echo $result; // Outputs: CONCAT(`fname`, `lname`)
+</code></pre>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้ารูปแบบของ $fields ไม่ใช่แอเรย์</p>
+                                                 <section class="phpdocumentor-description"><p>If $fields is not an array</p>
 </section>
 
                                     </dd>
@@ -884,17 +929,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">168</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">นับจำนวนเร็คคอร์ดของคอลัมน์ที่เลือก</p>
+        <p class="phpdocumentor-summary">Count the number of records for the selected column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">COUNT</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;*&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$distinct</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL COUNT expression for a specified column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -902,21 +949,25 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;*&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the column to count, defaults to '*'</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The alias for the resulting count, optional</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$distinct</span>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false (default) นับทุกคอลัมน์, true นับเฉพาะคอลัมน์ที่ไม่ซ้ำ</p>
+                    <section class="phpdocumentor-description"><p>If true, counts only distinct values; default is false</p>
 </section>
 
             </dd>
@@ -934,6 +985,17 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
                                                  <section class="phpdocumentor-description"><p>('id')-&gt;text() [==] 'COUNT(<code class="prettyprint">id</code>)'</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">demo</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$result = \Kotchasan\Database\Sql::COUNT('id')-&gt;text();
+echo $result; // Outputs: COUNT(`id`)
+</code></pre>
 </section>
 
                                     </dd>
@@ -958,7 +1020,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">588</span>
+    <span class="phpdocumentor-element-found-in__line">938</span>
 
     </aside>
 
@@ -1001,17 +1063,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">124</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แยกวันที่ออกจากคอลัมน์ชนิด DATETIME</p>
+        <p class="phpdocumentor-summary">Extract date from a DATETIME column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">DATE</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL DATE expression to extract the date part from a DATETIME column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1019,14 +1083,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the DATETIME column</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting date, optional</p>
 </section>
 
             </dd>
@@ -1056,6 +1122,17 @@
 </section>
 
                                     </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">demo</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$result = \Kotchasan\Database\Sql::DATE('create_date')-&gt;text();
+echo $result; // Outputs: DATE(`create_date`)
+</code></pre>
+</section>
+
+                                    </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -1077,17 +1154,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">158</span>
+    <span class="phpdocumentor-element-found-in__line">272</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">จัดรูปแบบของวันที่ตอนแสดงผล</p>
+        <p class="phpdocumentor-summary">Format a date column for display</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">DATE_FORMAT</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL DATE_FORMAT expression to format a date column for display.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1095,21 +1174,25 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the date column</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$format</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The format string for date formatting</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting formatted date, optional</p>
 </section>
 
             </dd>
@@ -1139,6 +1222,17 @@
 </section>
 
                                     </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">demo</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$result = \Kotchasan\Database\Sql::DATE_FORMAT(Sql::NOW(), '%h:%i')-&gt;text();
+echo $result; // Outputs: DATE_FORMAT(NOW(), '%h:%i')
+</code></pre>
+</section>
+
+                                    </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -1160,17 +1254,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">141</span>
+    <span class="phpdocumentor-element-found-in__line">238</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">หาความแตกต่างระหว่างวัน (คืนค่าเป็นจำนวนวันที่แตกต่างกัน)</p>
+        <p class="phpdocumentor-summary">Calculate the difference in days between two dates or between a date and NOW()</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">DATEDIFF</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name2</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL DATEDIFF expression to calculate the difference in days between two dates.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1178,21 +1274,27 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The first date column or a specific date string</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$column_name2</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The second date column or a specific date string</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The alias for the resulting difference, optional</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1220,6 +1322,17 @@
 </section>
 
                                     </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">demo</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$result = \Kotchasan\Database\Sql::DATEDIFF('create_date', Sql::NOW())-&gt;text();
+echo $result; // Outputs: DATEDIFF(`create_date`, NOW())
+</code></pre>
+</section>
+
+                                    </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -1241,17 +1354,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">299</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แยกวันที่ออกจากคอลัมน์ชนิด DATE DATETIME</p>
+        <p class="phpdocumentor-summary">Extract the day from a DATE or DATETIME column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">DAY</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL DAY expression to extract the day from a DATE or DATETIME column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1259,14 +1374,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the DATE or DATETIME column</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting day, optional</p>
 </section>
 
             </dd>
@@ -1317,17 +1434,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">325</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าข้ออมูลที่ไม่ซ้ำกัน</p>
+        <p class="phpdocumentor-summary">Return distinct values of a column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">DISTINCT</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL DISTINCT expression to return unique values of a column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1335,14 +1454,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the column to retrieve distinct values from</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting distinct values, optional</p>
 </section>
 
             </dd>
@@ -1377,6 +1498,113 @@
             -public
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_extractSort">
+        extractSort()
+        <a href="classes/Kotchasan-Database-Sql.html#method_extractSort" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">354</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Extract sorting information and return as an array.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">extractSort</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$columns</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sort</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|string</span></code>
+
+        <section class="phpdocumentor-description"><p>This function processes sorting parameters and returns an array of valid sorting instructions.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$columns</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>List of columns that are valid for sorting.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$sort</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Sorting instructions in the format 'column_name direction'.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$default</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Default sorting array if no valid sort instructions are provided.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(['order_date', 'order_no', 'project_type', 'company', 'delivery'], 'order_date desc,order_no ASC,project_type none') [==] array('order_date desc', 'order_no ASC')</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(['order_date', 'order_no', 'project_type', 'company', 'delivery'], 'order_date desc,order_no ASC,project_type') [==] array('order_date desc', 'order_no ASC', 'project_type')</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(['order_date', 'order_no', 'project_type', 'company', 'delivery'], '', ['order_date']) [==] array('order_date')</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">assert</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(['order_date', 'order_no', 'project_type', 'company', 'delivery'], '', 'order_date') [==] 'order_date'</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|string</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
     <h4 class="phpdocumentor-element__name" id="method_fieldName">
         fieldName()
         <a href="classes/Kotchasan-Database-Sql.html#method_fieldName" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1384,27 +1612,30 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">630</span>
+    <span class="phpdocumentor-element-found-in__line">980</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ใส่ `` ครอบชื่อคอลัมน์
-ชื่อคอลัมน์ต้องเป็น ภาษาอังกฤษ ตัวเลข และ _ เท่านั้น
-ถ้ามีอักขระอื่นนอกจากนี้ คืนค่า ข้อความที่ส่งมา ครอบด้วย &#039;&#039;</p>
+        <p class="phpdocumentor-summary">Wraps a column name with backticks (`) for SQL identifiers.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">fieldName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">fieldName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|int</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Column names should consist of English letters, numbers, and underscores only.
+If the column name contains any other characters, returns it wrapped in single quotes ('').</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$column_name</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The column name or value to be formatted for SQL.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1645,14 +1876,14 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้ารูปแบบของ $column_name ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the column name format is invalid.</p>
 </section>
 
                                     </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
+    <span class="phpdocumentor-signature__response_type">string|int</span>
             &mdash;
         
     
@@ -1670,17 +1901,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">206</span>
+    <span class="phpdocumentor-element-found-in__line">401</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">จัดรูปแบบของคอลัมน์ตอนแสดงผล</p>
+        <p class="phpdocumentor-summary">Format a column for display</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">FORMAT</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL FORMAT expression to format a column for display.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1688,21 +1921,25 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the column to format</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$format</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The format string for formatting</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting formatted column, optional</p>
 </section>
 
             </dd>
@@ -1753,11 +1990,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">664</span>
+    <span class="phpdocumentor-element-found-in__line">1018</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าแอเร์ยเก็บพารามิเตอร์สำหรับการ bind รวมกับ $values</p>
+        <p class="phpdocumentor-summary">Retrieves or merges bind parameters ($values) used for prepared statements in SQL queries.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1771,7 +2008,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Optional. An array of bind parameters to merge or retrieve.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1796,17 +2035,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">224</span>
+    <span class="phpdocumentor-element-found-in__line">430</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างคำสั่ง GROUP_CONCAT</p>
+        <p class="phpdocumentor-summary">Create a GROUP_CONCAT SQL statement</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">GROUP_CONCAT</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$separator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;,&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$distinct</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">GROUP_CONCAT</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$separator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;,&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$distinct</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL GROUP_CONCAT expression to concatenate values of a column within a group.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1814,14 +2055,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the column to concatenate</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting concatenated column, optional</p>
 </section>
 
             </dd>
@@ -1830,7 +2073,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;,&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความเชื่อมฟิลด์เข้าด้วยกัน ค่าเริมต้นคือ ,</p>
+                    <section class="phpdocumentor-description"><p>The separator to use between concatenated values, default is ','</p>
 </section>
 
             </dd>
@@ -1839,7 +2082,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false (default) คืนค่ารายการที่ไม่ซ้ำ</p>
+                    <section class="phpdocumentor-description"><p>If true, returns only distinct values; default is false</p>
 </section>
 
             </dd>
@@ -1848,7 +2091,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>เรียงลำดับ</p>
+                    <section class="phpdocumentor-description"><p>The order in which concatenated values should appear</p>
 </section>
 
             </dd>
@@ -1872,7 +2115,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span>
+    <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
         
     
@@ -1890,17 +2133,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">251</span>
+    <span class="phpdocumentor-element-found-in__line">471</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แยกชั่วโมงออกจากคอลัมน์ชนิด DATETIME</p>
+        <p class="phpdocumentor-summary">Extract the hour from a DATETIME column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">HOUR</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL HOUR expression to extract the hour from a DATETIME column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1908,14 +2153,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the DATETIME column</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting hour, optional</p>
 </section>
 
             </dd>
@@ -1966,17 +2213,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">268</span>
+    <span class="phpdocumentor-element-found-in__line">499</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นสร้างคำสั่ง IFNULL</p>
+        <p class="phpdocumentor-summary">Create an IFNULL SQL statement</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">IFNULL</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name2</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">IFNULL</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name2</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL IFNULL expression to return the first non-null value from two columns.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1984,21 +2233,25 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The first column name</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$column_name2</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The second column name</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ถ้าระบุจะมีการเติม alias ให้กับคำสั่ง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting expression, optional</p>
 </section>
 
             </dd>
@@ -2031,7 +2284,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span>
+    <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
         
     
@@ -2049,17 +2302,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">282</span>
+    <span class="phpdocumentor-element-found-in__line">524</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นสร้างคำสั่ง IS NOT NULL</p>
+        <p class="phpdocumentor-summary">Create an IS NOT NULL SQL statement</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">ISNOTNULL</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">ISNOTNULL</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL IS NOT NULL expression to check if a column is not null.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2067,7 +2322,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The column name to check for not null</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2089,7 +2346,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span>
+    <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
         
     
@@ -2107,17 +2364,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">296</span>
+    <span class="phpdocumentor-element-found-in__line">544</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นสร้างคำสั่ง IS NULL</p>
+        <p class="phpdocumentor-summary">Create an IS NULL SQL statement</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">ISNULL</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">ISNULL</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL IS NULL expression to check if a column is null.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2125,7 +2384,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The column name to check for null</p>
+</section>
+
             </dd>
             </dl>
 
@@ -2147,7 +2408,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span>
+    <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
         
     
@@ -2165,17 +2426,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">311</span>
+    <span class="phpdocumentor-element-found-in__line">565</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">หาค่าสูงสุด</p>
+        <p class="phpdocumentor-summary">Find the maximum value of a column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">MAX</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL MAX expression to find the maximum value of a column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2183,14 +2446,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The column name to find the maximum value</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting maximum value, optional</p>
 </section>
 
             </dd>
@@ -2232,17 +2497,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">326</span>
+    <span class="phpdocumentor-element-found-in__line">591</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">หาค่าต่ำสุด</p>
+        <p class="phpdocumentor-summary">Find the minimum value of a column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">MIN</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL MIN expression to find the minimum value of a column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2250,14 +2517,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The column name to find the minimum value</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting minimum value, optional</p>
 </section>
 
             </dd>
@@ -2299,17 +2568,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">342</span>
+    <span class="phpdocumentor-element-found-in__line">618</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แยกนาทีออกจากคอลัมน์ชนิด DATETIME</p>
+        <p class="phpdocumentor-summary">Extract minutes from a DATETIME column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">MINUTE</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL MINUTE expression to extract minutes from a DATETIME column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2317,14 +2588,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The column name to extract minutes from</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting minutes, optional</p>
 </section>
 
             </dd>
@@ -2375,17 +2648,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">358</span>
+    <span class="phpdocumentor-element-found-in__line">645</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แยกเดือนออกจากคอลัมน์ชนิด DATE DATETIME</p>
+        <p class="phpdocumentor-summary">Extract month from a DATE or DATETIME column</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">MONTH</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function generates a SQL MONTH expression to extract the month from a DATE or DATETIME column.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2393,14 +2668,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The column name to extract the month from</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>The alias for the resulting month, optional</p>
 </section>
 
             </dd>
@@ -2451,18 +2728,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">382</span>
+    <span class="phpdocumentor-element-found-in__line">677</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นสร้าง SQL สำหรับหาค่าสูงสุด + 1
-ใช้ในการหาค่า id ถัดไป</p>
+        <p class="phpdocumentor-summary">Generate SQL to find the next value in a sequence (MAX + 1)</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">NEXT</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$field</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Used to find the next ID in a table.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2470,7 +2748,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อฟิลด์ที่ต้องการหาค่าสูงสุด</p>
+                    <section class="phpdocumentor-description"><p>The field name to find the maximum value</p>
 </section>
 
             </dd>
@@ -2479,7 +2757,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อตาราง</p>
+                    <section class="phpdocumentor-description"><p>The table name</p>
 </section>
 
             </dd>
@@ -2488,7 +2766,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) query WHERE</p>
+                    <section class="phpdocumentor-description"><p>(optional) WHERE condition for the query</p>
 </section>
 
             </dd>
@@ -2497,7 +2775,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) ชื่อฟิลด์ที่ใช้คืนค่า ไม่ระบุ (null) หมายถึงไม่ต้องการชื่อฟิลด์</p>
+                    <section class="phpdocumentor-description"><p>(optional) Alias for the resulting field, null means no alias</p>
 </section>
 
             </dd>
@@ -2506,7 +2784,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) เช่น AND หรือ OR</p>
+                    <section class="phpdocumentor-description"><p>(optional) Logical operator like AND or OR</p>
 </section>
 
             </dd>
@@ -2515,7 +2793,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional )ชื่อฟิลด์ที่เป็น key</p>
+                    <section class="phpdocumentor-description"><p>(optional) Key field name</p>
 </section>
 
             </dd>
@@ -2575,11 +2853,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">407</span>
+    <span class="phpdocumentor-element-found-in__line">708</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าวันที่และเวลาปัจจุบัน</p>
+        <p class="phpdocumentor-summary">Returns the current date and time as a SQL function NOW().</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2593,37 +2871,14 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>Optional alias for the NOW() function result in SQL.
+If provided, formats the SQL as NOW() AS <code class="prettyprint">$alias</code>.</p>
 </section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">assert</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>()-&gt;text() [==] 'NOW()'</p>
-</section>
-
-                                    </dd>
-                            <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">assert</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>('id')-&gt;text() [==] 'NOW() AS <code class="prettyprint">id</code>'</p>
-</section>
-
-                                    </dd>
-                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">static</span>
@@ -2644,15 +2899,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">424</span>
+    <span class="phpdocumentor-element-found-in__line">730</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ค้นหาข้อความ ไม่พบคืนค่า 0, ตัวแรกคือ 1</p>
+        <p class="phpdocumentor-summary">Searches for a substring in a string and returns its position. If not found, returns 0; indexing starts from 1.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">POSITION</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$substr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$str</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pos</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">POSITION</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$substr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$str</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pos</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -2662,7 +2917,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความที่ค้นหา ถ้าเป็นชื่อฟิลด์ต้องครอบด้วย ``</p>
+                    <section class="phpdocumentor-description"><p>The substring to search for. If it's a field name, it should be enclosed in ``.</p>
 </section>
 
             </dd>
@@ -2671,7 +2926,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ข้อความต้นฉบับ ถ้าเป็นชื่อฟิลด์ต้องครอบด้วย ``</p>
+                    <section class="phpdocumentor-description"><p>The original string to search within. If it's a field name, it should be enclosed in ``.</p>
 </section>
 
             </dd>
@@ -2680,7 +2935,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>Optional alias for the result of the LOCATE() function in SQL.
+If provided, formats the SQL as LOCATE(...) AS <code class="prettyprint">$alias</code>.</p>
 </section>
 
             </dd>
@@ -2689,7 +2945,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ตำแหน่งเริ่มต้นค้นหา (default) หรือไม่ระบุ ค้นหาตั้งแต่ตัวแรก</p>
+                    <section class="phpdocumentor-description"><p>Optional starting position for the search. Defaults to 0 (search from the beginning).</p>
 </section>
 
             </dd>
@@ -2713,7 +2969,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span>
+    <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
         
     
@@ -2731,25 +2987,28 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">705</span>
+    <span class="phpdocumentor-element-found-in__line">1065</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แปลงค่า Value สำหรับใช้ใน query</p>
+        <p class="phpdocumentor-summary">Quotes and prepares a value for use in SQL queries, handling various data types and formats.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">quoteValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$values</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">quoteValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$values</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|int</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Updates the $values array with bind parameters for prepared statements.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$column_name</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The column name or identifier to associate with the value.</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2757,14 +3016,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The value to quote and prepare for the query.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$values</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์สำหรับรับค่า value สำหรับการ bind</p>
+                    <section class="phpdocumentor-description"><p>Reference to an array to store bind parameters for prepared statements.</p>
 </section>
 
             </dd>
@@ -2953,14 +3214,14 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>ถ้ารูปแบบของ $value ไม่ถูกต้อง</p>
+                                                 <section class="phpdocumentor-description"><p>If the value format is invalid or not handled.</p>
 </section>
 
                                     </dd>
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
+    <span class="phpdocumentor-signature__response_type">string|int</span>
             &mdash;
         
     
@@ -2978,11 +3239,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">442</span>
+    <span class="phpdocumentor-element-found-in__line">754</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สุ่มตัวเลข</p>
+        <p class="phpdocumentor-summary">Generates a random number.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2996,7 +3257,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>Optional alias for the RAND() function result in SQL.
+If provided, formats the SQL as RAND() AS <code class="prettyprint">$alias</code>.</p>
 </section>
 
             </dd>
@@ -3047,11 +3309,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">458</span>
+    <span class="phpdocumentor-element-found-in__line">775</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แยกวินาทีออกจากคอลัมน์ชนิด DATETIME</p>
+        <p class="phpdocumentor-summary">Extracts the seconds from a DATETIME column.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -3065,14 +3327,17 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the DATETIME column to extract seconds from.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>Optional alias for the SECOND() function result in SQL.
+If provided, formats the SQL as SECOND(...) AS <code class="prettyprint">$alias</code>.</p>
 </section>
 
             </dd>
@@ -3123,16 +3388,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">775</span>
+    <span class="phpdocumentor-element-found-in__line">1144</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ฟังก์ชั่นสำหรับรับค่าเป็นสตริงค์เท่านั้น
-ผลลัพท์จะถูกครอบด้วย &#039;&#039; (ฟันหนู)</p>
+        <p class="phpdocumentor-summary">Creates a SQL string literal by wrapping the given value in single quotes (&#039;&#039;).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">strValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">strValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -3142,14 +3406,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The string value to be wrapped in single quotes.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\self">self</abbr></span>
+    <span class="phpdocumentor-signature__response_type">static</span>
             &mdash;
         
     
@@ -3167,15 +3433,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">477</span>
+    <span class="phpdocumentor-element-found-in__line">800</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">ผลรวมของคอลัมน์ที่เลือก</p>
+        <p class="phpdocumentor-summary">Calculates the sum of values in a selected column.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">SUM</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$distinct</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">SUM</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$column_name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$distinct</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -3185,21 +3451,27 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the column to sum. If it's a field name, it should be enclosed in ``.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Optional alias for the SUM() function result in SQL.
+If provided, formats the SQL as SUM(...) AS <code class="prettyprint">$alias</code>.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$distinct</span>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>false (default) รวมทุกคอลัมน์, true รวมเฉพาะคอลัมน์ที่ไม่ซ้ำ</p>
+                    <section class="phpdocumentor-description"><p>Optional. If true, sums only distinct values in the column.
+Defaults to false, summing all values in the column.</p>
 </section>
 
             </dd>
@@ -3268,30 +3540,49 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">788</span>
+    <span class="phpdocumentor-element-found-in__line">1159</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">คืนค่าคำสั่ง SQL เป็น string
-ถ้า $sql เป็น null จะคืนค่า :$key ใช้สำหรับการ bind</p>
+        <p class="phpdocumentor-summary">Returns the SQL command as a string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">text</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">text</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If $sql is null, returns :$key for binding purposes.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The key used for binding (optional).</p>
+</section>
+
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>When $key is provided but empty.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
@@ -3312,11 +3603,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">494</span>
+    <span class="phpdocumentor-element-found-in__line">822</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">หาความแตกต่างระหว่างเวลา (คืนค่าเป็น H:m:i ที่แตกต่างกัน)</p>
+        <p class="phpdocumentor-summary">Calculates the time difference between two datetime columns or values.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -3330,21 +3621,28 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The first datetime column or value. If it's a column name, it should be enclosed in ``.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$column_name2</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The second datetime column or value. If it's a column name, it should be enclosed in ``.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Optional alias for the TIMEDIFF() function result in SQL.
+If provided, formats the SQL as TIMEDIFF(...) AS <code class="prettyprint">$alias</code>.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -3393,11 +3691,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">512</span>
+    <span class="phpdocumentor-element-found-in__line">846</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">หาความแตกต่างระหว่างเวลา (คืนค่าตามรูปแบบ $unit)</p>
+        <p class="phpdocumentor-summary">Calculates the difference between two datetime columns or values in specified units.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -3411,7 +3709,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>FRAC_SECOND (microseconds), SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, or YEAR</p>
+                    <section class="phpdocumentor-description"><p>The unit of time difference to calculate:
+FRAC_SECOND (microseconds), SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, or YEAR.</p>
 </section>
 
             </dd>
@@ -3420,21 +3719,28 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The first datetime column or value. If it's a column name, it should be enclosed in ``.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$column_name2</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The second datetime column or value. If it's a column name, it should be enclosed in ``.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Optional alias for the TIMESTAMPDIFF() function result in SQL.
+If provided, formats the SQL as TIMESTAMPDIFF(...) AS <code class="prettyprint">$alias</code>.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -3483,11 +3789,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">549</span>
+    <span class="phpdocumentor-element-found-in__line">893</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">สร้างคำสั่ง WHERE</p>
+        <p class="phpdocumentor-summary">Constructs a WHERE clause based on the provided conditions.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -3501,14 +3807,27 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The condition(s) to build the WHERE clause. Can be:</p>
+<ul>
+<li>A scalar value for simple comparisons.</li>
+<li>An array for more complex conditions:
+<ul>
+<li>[column, operator, value]</li>
+<li>[column, 'IN', array(values)]</li>
+<li>[column, 'NOT IN', Sql::create(subquery)]</li>
+<li>Nested arrays for complex logical conditions.</li>
+</ul>
+</li>
+</ul>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$operator</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;AND&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional) เช่น AND หรือ OR</p>
+                    <section class="phpdocumentor-description"><p>(optional) The logical operator to combine multiple conditions ('AND' or 'OR'). Defaults to 'AND'.</p>
 </section>
 
             </dd>
@@ -3517,7 +3836,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>(optional )ชื่อฟิลด์ที่เป็น key</p>
+                    <section class="phpdocumentor-description"><p>(optional) The key field name. Defaults to 'id' if not specified.</p>
 </section>
 
             </dd>
@@ -3748,11 +4067,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">567</span>
+    <span class="phpdocumentor-element-found-in__line">913</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">แยกปีออกจากคอลัมน์ชนิด DATE DATETIME</p>
+        <p class="phpdocumentor-summary">Extracts the year from a DATE or DATETIME column.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -3766,14 +4085,17 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the DATE or DATETIME column. Should be enclosed in `` if it's a column name.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$alias</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อรองที่ต้องการ ถ้าไม่ระบุไม่มีชื่อรอง</p>
+                    <section class="phpdocumentor-description"><p>Optional alias for the YEAR() function result in SQL.
+If provided, formats the SQL as YEAR(...) AS <code class="prettyprint">$alias</code>.</p>
 </section>
 
             </dd>
@@ -3824,11 +4146,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Kotchasan/Database/Sql.php"><a href="files/kotchasan-database-sql.html"><abbr title="Kotchasan/Database/Sql.php">Sql.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">811</span>
+    <span class="phpdocumentor-element-found-in__line">1182</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">create SQL WHERE command</p>
+        <p class="phpdocumentor-summary">Constructs SQL WHERE command based on given conditions.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -3842,14 +4164,16 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The condition(s) to build into WHERE clause.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$values</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>แอเรย์สำหรับรับค่า value สำหรับการ bind</p>
+                    <section class="phpdocumentor-description"><p>Array to collect values for parameter binding.</p>
 </section>
 
             </dd>
@@ -3858,7 +4182,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>เช่น AND หรือ OR</p>
+                    <section class="phpdocumentor-description"><p>Logical operator (e.g., AND, OR) to combine multiple conditions.</p>
 </section>
 
             </dd>
@@ -3867,7 +4191,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ชื่อฟิลด์ที่เป็น key</p>
+                    <section class="phpdocumentor-description"><p>Field name used as key in conditions.</p>
 </section>
 
             </dd>

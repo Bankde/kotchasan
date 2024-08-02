@@ -178,7 +178,7 @@ hgroup,
 nav,
 section,
 summary,
-code,
+code.block-code,
 blockquote {
   display: block;
 }
@@ -548,6 +548,9 @@ mark {
 body.wide .gcss-wrapper {
   width: 1390px;
 }
+body.fullwidth .gcss-wrapper {
+  width: 95vw;
+}
 .leftsidebar,
 .rightsidebar {
   display: grid;
@@ -563,19 +566,24 @@ body.wide .gcss-wrapper {
   grid-area: sidebar;
 }
 .rightsidebar {
-  grid-template-columns: auto 230px;
+  grid-template-columns: auto 240px;
   grid-template-areas: "content sidebar";
 }
+body.wide .rightsidebar {
+  grid-template-columns: auto minmax(240px, 320px);
+}
 .rightsidebar.wide {
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "content content sidebar";
+  grid-template-columns: auto 33vw;
 }
 .leftsidebar {
-  grid-template-columns: 230px auto;
+  grid-template-columns: 240px auto;
   grid-template-areas: "sidebar content";
 }
+body.wide .leftsidebar {
+  grid-template-columns: minmax(240px, 320px) auto;
+}
 .leftsidebar.wide {
-  grid-template-columns: 33% auto;
+  grid-template-columns: 33vw auto;
 }
 @media only screen and (max-width: 940px) {
   .leftsidebar.wide,
@@ -1087,6 +1095,7 @@ input[type=password].showpassword + span:after {
 .g-input[class^="icon-"]:before {
   position: absolute;
   width: 2.3rem;
+  line-height: 2.3rem;
   left: 0;
   top: 0;
   bottom: 0;
@@ -1133,6 +1142,7 @@ textarea.valid,
 .install li.valid {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAK8AAACvABQqw0mAAAABh0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzT7MfTgAAAcRJREFUOI2lk7trlFEQxX9zv+vuohFRFC3sDIJCYvCBzdooNgEhCIIa0ylsQBG1sbaJFqZIEcGsgpjCRgnW/gUR90V8EAtRNBBZNm50H9/jfmORBytZZWWnnJlzOHNmRlSVbsJ0hQbs/zQ/KaRnQHds8vZkLvY9fwcgnY7wKJee9qMvw6oR1tuJanwgc2zuQ0cKpt6cvl4PF4dd7AAP35WL1pjvGxRkc0MHgejy4Zn5tdzj/Lm+H835UhAtIWIBPinJgdvp98vQYmI2f+FE1S+Xlv1yaSp//shqWpaaC89qQY1QUwTOBmGcHFwDryuYfD2SqtQ/1hphxQD0JHfXdvX0Hq82Fs5Um9/GYo0AwYi5cufk22zreBbgc2XWDyOZhMRVUOp+eUszMIXQNWwjdAgWEV7dH5z7A7zBg9EX/ROqXBMBxQGCYFDwBdv74Gzu6z8JAEam+ydcvEICgIIx5tbTS4XxdhtqewdDDw+NO8cNVcUYKb7MFAfagdc9sCJbgW1AIgZP4d7Rm/v3JrcnTi3OVu7KqOzzIAE4IAICoBqp/hRVxYokgdQqoedAgF9gN0MUeSs1BeIWkmak6nd8yn+Lrr/xN4yjzwehHQW9AAAAAElFTkSuQmCC) !important;
 }
+td.wait,
 .input-select.wait,
 .show[type="submit"],
 input.wait,
@@ -1141,6 +1151,9 @@ textarea.wait,
 .button.wait {
   background-size: 2rem;
   background-image: url('data:image/svg+xml,<svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="var(--disabled-text)"><circle cx="15" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="60" cy="15" r="9" fill-opacity="0.3"><animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="105" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle></svg>') !important;
+}
+td.wait {
+  background-position: center;
 }
 @keyframes hightlight_red {
   0% {
@@ -1244,6 +1257,12 @@ html .button:before,
 .button [class*=" icon-"]:before,
 .button [class^="icon-"]:before {
   color: inherit;
+}
+.button[class*=" icon-"]:before,
+.button[class^="icon-"]:before,
+.button > [class*=" icon-"]:before,
+.button > [class^="icon-"]:before {
+  line-height: inherit;
 }
 .button.notext {
   min-width: auto;
@@ -2980,6 +2999,10 @@ div.gcalendar tbody a:before {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
+.event-calendar td [class^="icon-"]:before,
+.event-calendar td [class*=" icon-"]:before {
+  line-height: 1;
+}
 /* drop down color select */
 #gddcolor_div {
   min-width: 12rem;
@@ -3396,6 +3419,7 @@ blockquote {
   margin-top: 10px;
   margin-bottom: 10px;
   transition: all 0.2s ease-in-out;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
 }
 code + br,
 blockquote + br {
@@ -3592,8 +3616,12 @@ th[scope="rowgroup"],
   min-width: auto;
   padding: 0;
 }
-.datatable .table_nav.action {
-  padding: 0 0 10px;
+.error-table {
+  color: var(--red);
+}
+.error-table,
+.empty-table {
+  text-align: center;
 }
 .table_nav > .button,
 .table_nav > fieldset,
@@ -3666,9 +3694,6 @@ table p,
 .count {
   text-align: center;
 }
-.icons a {
-  margin: 0 10px;
-}
 .table_nav .buttons .button {
   margin: 0 0 0 -1px;
 }
@@ -3681,10 +3706,10 @@ table p,
   display: inline-block;
   vertical-align: middle;
 }
-.icons :before {
-  margin-right: 0;
+td.icons > div {
+  display: flex;
+  justify-content: space-evenly;
 }
-td.icons,
 td.buttons {
   white-space: nowrap;
 }
@@ -4356,10 +4381,6 @@ td.buttons .button:last-child {
     text-align: center;
     padding: 5px;
     background-color: var(--th-background-color);
-  }
-  body.responsive table.responsive > tbody > tr > td.icons a,
-  body.responsive table.responsive-v > tbody > tr > td.icons a {
-    margin: 0 10px;
   }
   body.responsive table.responsive-v > tbody > tr > :before {
     content: attr(data-text);

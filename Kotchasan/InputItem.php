@@ -165,7 +165,7 @@ class InputItem
      */
     public function description($len = 0)
     {
-        $patt = array(
+        $patt = [
             /* style */
             '@<(script|style)[^>]*?>.*?</\\1>@isu' => '',
             /* tag */
@@ -178,7 +178,7 @@ class InputItem
             '/\[([a-z]+)([\s=].*)?\](.*?)\[\/\\1\]/ui' => '\\3',
             /* ตัวอักษรที่ไม่ต้องการ */
             '/(&rdquo;|&quot;|&nbsp;|&amp;|[\r\n\s\t\"\']){1,}/isu' => ' '
-        );
+        ];
 
         $text = trim(preg_replace(array_keys($patt), array_values($patt), $this->value));
 
@@ -196,8 +196,8 @@ class InputItem
     public function detail()
     {
         return $this->checkValue(preg_replace(
-            array('#<\?(.*?)\?>#is', '#\{#', '#\}#', '#\\\#'),
-            array('', '&#x007B;', '&#x007D;', '&#92;'),
+            ['#<\?(.*?)\?>#is', '#\{#', '#\}#', '#\\\#'],
+            ['', '&#x007B;', '&#x007D;', '&#92;'],
             $this->value
         ));
     }
@@ -379,8 +379,8 @@ class InputItem
         }
 
         return $this->checkValue(trim(preg_replace(
-            array('/</s', '/>/s', '/\\\/s', '/\{/', '/\}/', '/\$/'),
-            array('&lt;', '&gt;', '&#92;', '&#x007B;', '&#x007D;', '&#36;'),
+            ['/</s', '/>/s', '/\\\/s', '/\{/', '/\}/', '/\$/'],
+            ['&lt;', '&gt;', '&#92;', '&#x007B;', '&#x007D;', '&#36;'],
             $this->value
         ), " \n\r\0\x0B"));
     }

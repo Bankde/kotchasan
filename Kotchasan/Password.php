@@ -77,10 +77,7 @@ class Password
         // Sort the parameters by key
         ksort($params);
         // Concatenate the data
-        $data = '';
-        foreach ($params as $k => $v) {
-            $data .= $k.$v;
-        }
+        $data = http_build_query($params, '', '&');
         // Return the hashed string
         return strtoupper(hash_hmac('sha256', $data, $secret));
     }

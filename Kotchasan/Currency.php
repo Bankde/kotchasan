@@ -75,9 +75,9 @@ class Currency
             $isNegative = $match[1] == '-';
             $thb = $match[2];
             $ths = !empty($match[4]) ? substr($match[4].'00', 0, 2) : '';
-            $thaiNum = array('', 'หนึ่ง', 'สอง', 'สาม', 'สี่', 'ห้า', 'หก', 'เจ็ด', 'แปด', 'เก้า');
-            $unitBaht = array('บาท', 'สิบ', 'ร้อย', 'พัน', 'หมื่น', 'แสน', 'ล้าน', 'สิบ', 'ร้อย', 'พัน', 'หมื่น', 'แสน', 'ล้าน');
-            $unitSatang = array('สตางค์', 'สิบ');
+            $thaiNum = ['', 'หนึ่ง', 'สอง', 'สาม', 'สี่', 'ห้า', 'หก', 'เจ็ด', 'แปด', 'เก้า'];
+            $unitBaht = ['บาท', 'สิบ', 'ร้อย', 'พัน', 'หมื่น', 'แสน', 'ล้าน', 'สิบ', 'ร้อย', 'พัน', 'หมื่น', 'แสน', 'ล้าน'];
+            $unitSatang = ['สตางค์', 'สิบ'];
             $THB = '';
             $j = 0;
             for ($i = strlen($thb) - 1; $i >= 0; $i--, $j++) {
@@ -190,7 +190,7 @@ class Currency
     private static function engFormat($number)
     {
         // Define an array of English words for numbers 0 to 90
-        $amount_words = array(
+        $amount_words = [
             0 => 'zero',
             1 => 'one',
             2 => 'two',
@@ -219,7 +219,7 @@ class Currency
             70 => 'seventy',
             80 => 'eighty',
             90 => 'ninety'
-        );
+        ];
 
         // Check if the number exists in the $amount_words array
         if (isset($amount_words[$number])) {
@@ -235,13 +235,13 @@ class Currency
         }
 
         // Handle numbers from 100 to 999,999,999,999,999
-        $amount_units = array(
+        $amount_units = [
             1000 => [100, ' hundred'],
             1000000 => [1000, ' thousand'],
             1000000000 => [1000000, ' million'],
             1000000000000 => [1000000000, ' billion'],
             1000000000000000 => [1000000000000, ' trillion']
-        );
+        ];
         foreach ($amount_units as $amount => $units) {
             if ($number < $amount) {
                 // Recursively format the whole part and the remaining part
