@@ -276,7 +276,7 @@ abstract class Driver extends Query
      */
     public function fieldExists($table_name, $column_name)
     {
-        $result = $this->customQuery("SHOW COLUMNS FROM `$table_name` LIKE '$column_name'");
+        $result = $this->customQuery("SHOW COLUMNS FROM $table_name LIKE '$column_name'");
         return !empty($result);
     }
 
@@ -366,8 +366,31 @@ abstract class Driver extends Query
      */
     public function indexExists($database_name, $table_name, $index)
     {
-        $result = $this->customQuery("SELECT * FROM information_schema.statistics WHERE table_schema='$database_name' AND table_name = '$table_name' AND column_name = '$index'");
+        $sql = "SELECT * FROM information_schema.statistics WHERE table_schema='$database_name' AND table_name = '$table_name' AND column_name = '$index'";
+        $result = $this->customQuery($sql);
         return empty($result) ? false : true;
+    }
+
+    /**
+     * Retrieves the data type of a specific column in a given table within a database.
+     *
+     * @param string $database_name The name of the database.
+     * @param string $table_name The name of the table.
+     * @param string $column The name of the column to check.
+     *
+     * @return mixed Returns the data type of the column (DATA_TYPE) if found, or false if the column is not found.
+     */
+    public function columnType($database_name, $table_name, $column)
+    {
+        // SQL query to fetch the data type of the specified column
+        $sql = "SELECT DATA_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = :database_name AND TABLE_NAME = :table_name AND COLUMN_NAME = :column";
+        $result = $this->customQuery($sql, false, [
+            ':database_name' => $database_name,
+            ':table_name' => $table_name,
+            ':column' => $column
+        ]);
+        // Return the data type if found, otherwise return false
+        return empty($result) ? false : $result[0]->DATA_TYPE;
     }
 
     /**
@@ -499,6 +522,35 @@ abstract class Driver extends Query
     {
         $result = $this->doCustomQuery("SHOW TABLES LIKE '$table_name'");
         return empty($result) ? false : true;
+    }
+
+    /**
+     * Copies a table to a new table if the new table does not already exist.
+     *
+     * This function first checks if the new table already exists. If it does not exist,
+     * it creates a new table with the same structure as the existing table and then copies
+     * all data from the existing table to the new table.
+     *
+     * @param string $table_name The name of the existing table to copy.
+     * @param string $new_table_name The name of the new table to create.
+     * @return bool Returns true if the new table already existed, otherwise false.
+     */
+    public function copyTableIfNotExists($table_name, $new_table_name)
+    {
+        // Check if the new table already exists
+        $table_exists = $this->tableExists($new_table_name);
+
+        // If the new table does not exist
+        if (!$table_exists) {
+            // Create a new table with the same structure as the existing table
+            $this->query("CREATE TABLE `$new_table_name` LIKE `$table_name`");
+
+            // Copy all data from the existing table to the new table
+            $this->query("INSERT INTO `$new_table_name` SELECT * FROM `$table_name`");
+        }
+
+        // Return whether the new table already existed
+        return $table_exists;
     }
 
     /**

@@ -311,17 +311,6 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
      */
     public function initSession()
     {
-        // Get the sessid from the query string
-        $sessid = $this->get('sess')->toString();
-        // If sessid is valid, set it as the session ID
-        if (!empty($sessid) && preg_match('/^[a-zA-Z0-9]{20,}/', $sessid)) {
-            session_id($sessid);
-            session_start();
-            // Redirect to the same URI without the sess parameter
-            $redirect = $this->getUri()->withoutParams('sess');
-            header('Location: '.$redirect);
-            exit;
-        }
         // If USE_SESSION_DATABASE is defined and true, set the custom session handler
         if (defined('USE_SESSION_DATABASE') && USE_SESSION_DATABASE === true) {
             $sess = new \Kotchasan\Session();

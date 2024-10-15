@@ -484,15 +484,16 @@ class Html extends \Kotchasan\KBase
         if (isset($attributes['value']) && is_array($attributes['value'])) {
             if (isset($attributes['options'])) {
                 // If options are provided, create li elements for each value and its corresponding option
-                foreach ($attributes['value'] as $value) {
-                    if (isset($attributes['options'][$value])) {
-                        $li .= '<li id="'.$id.'_item_'.$value.'"><span>'.$attributes['options'][$value].'</span><button type="button">x</button><input type="hidden" name="'.$id.'[]" value="'.$value.'"></li>';
+                foreach ($attributes['value'] as $key) {
+                    if (isset($attributes['options'][$key])) {
+                        $value = $attributes['options'][$key];
+                        $li .= '<li id="'.$id.'_item_'.$key.'"><span>'.$value.'</span><button type="button">x</button><input type="hidden" name="'.$id.'['.$key.']" value="'.$value.'"></li>';
                     }
                 }
             } else {
                 // If options are not provided, create li elements with the values directly
-                foreach ($attributes['value'] as $k => $value) {
-                    $li .= '<li id="'.$id.'_item_'.$k.'"><span>'.$value.'</span><button type="button">x</button><input type="hidden" name="'.$id.'[]" value="'.$k.'"></li>';
+                foreach ($attributes['value'] as $key => $value) {
+                    $li .= '<li id="'.$id.'_item_'.$key.'"><span>'.$value.'</span><button type="button">x</button><input type="hidden" name="'.$id.'['.$key.']" value="'.$value.'"></li>';
                 }
             }
         }

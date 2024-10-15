@@ -543,7 +543,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
      * @assert select("'email' name", '0 AS id', '0 AS ไอดี')->text() [==] "SELECT 'email' AS `name`,0 AS `id`,0 AS `ไอดี`"
      * @assert select()->text()  [==] "SELECT *"
      * @assert select()->where(array('domain', Sql::strValue('kotchasan.com')))->text() [==] "SELECT * WHERE `domain` = 'kotchasan.com'"
-     * @assert select('name `ชื่อ นามสกุล`', 'U.`idcard` AS `เลขประชาชน`')->text() [==] "SELECT `name` AS `ชื่อ นามสกุล`,U.`idcard` AS `เลขประชาชน`"
+     * @assert select('name `ชื่อ นามสกุล`', 'U.`id_card` AS `เลขประชาชน`')->text() [==] "SELECT `name` AS `ชื่อ นามสกุล`,U.`id_card` AS `เลขประชาชน`"
      * @assert select('table.field', '`table`.`field`')->text() [==] "SELECT `table`.`field`,`table`.`field`"
      * @assert select('table.field field', '`table`.`field` `field`')->text() [==] "SELECT `table`.`field` AS `field`,`table`.`field` AS `field`"
      * @assert select('table.field AS field', '`table`.`field` AS `field`')->text() [==] "SELECT `table`.`field` AS `field`,`table`.`field` AS `field`"

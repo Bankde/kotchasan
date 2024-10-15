@@ -565,10 +565,13 @@ class Form extends \Kotchasan\KBase
         if (!empty($class)) {
             $prop['class'] = 'class="'.implode(' ', $class).'"';
         }
-        if (isset($checkbox) && $this->tag !== 'select') {
+        if (isset($checkbox)) {
             $itemClass = empty($itemClass) ? 'w_checkbox' : $itemClass.' w_checkbox';
             $chk = $checkbox ? ' checked' : '';
             $w_checkbox = '<input type=checkbox id="checkbox_'.$id.'" name="checkbox_'.$name.'" value=1'.$chk.'>';
+            if ($this->tag === 'select' && $checkbox) {
+                $prop['checkbox'] = 'checkbox=1';
+            }
         } else {
             $w_checkbox = '';
         }

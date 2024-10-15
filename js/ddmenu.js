@@ -34,10 +34,7 @@
             this.menu.insertBefore(label, chk);
           } else {
             if ($E("slidemenu_content")) {
-              $E("slidemenu_content").parentNode.insertBefore(
-                chk,
-                $E("slidemenu_content")
-              );
+              $E("slidemenu_content").parentNode.insertBefore(chk, $E("slidemenu_content"));
             } else {
               this.menu.parentNode.insertBefore(chk, this.menu);
             }

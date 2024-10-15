@@ -2282,7 +2282,14 @@ window.$K = (function() {
         scrollto: 'top'
       };
       this.container = $G(container);
+      const height = this.container.getHeight();
+      this.container.style.position = 'relative';
+      this.container.style.overflow = 'hidden';
       this.scroller = $G(scroller);
+      this.scroller.style.position = 'absolute';
+      this.scroller.style.left = 0;
+      this.scroller.style.top = 0;
+      this.container.style.height = height + 'px';
       this.container.addEvent('mouseover', function() {
         this.rel = 'pause';
       });
@@ -2295,6 +2302,9 @@ window.$K = (function() {
     play: function(options) {
       for (var property in options) {
         this.options[property] = options[property];
+      }
+      if (this.options.scrollto == 'left' || this.options.scrollto == 'right') {
+        this.scroller.style.whiteSpace = 'nowrap';
       }
       this.scrollerTop = 0;
       this.scrollerLeft = 0;
@@ -3818,7 +3828,7 @@ window.$K = (function() {
     },
     _setText: function(value) {
       this.display.innerHTML = value;
-      this.placeholder.style.display = value == '' && this.placeholder.innerHTML != '' ? 'block' : 'none';
+      this.placeholder.style.display = value == '' && this.placeholder.innerHTML != '' ? '-webkit-box' : 'none';
     },
     _moveDate: function(days) {
       let d;

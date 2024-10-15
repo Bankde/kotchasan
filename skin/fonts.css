@@ -825,3 +825,6 @@ a.icon-edit:before {
   content: "A";
   font-family: Arial !important;
 }
+.icon-amp:before {
+  content: "⚡";
+}

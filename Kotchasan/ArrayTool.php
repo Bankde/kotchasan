@@ -380,18 +380,17 @@ class ArrayTool
      */
     public static function unserialize($str, $source = [], $replace = true)
     {
-        try {
+        $datas = json_decode($str, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
             $datas = unserialize($str);
+        }
 
-            if (is_array($datas)) {
-                foreach ($datas as $key => $value) {
-                    if ($replace || !isset($source[$key])) {
-                        $source[$key] = $value;
-                    }
+        if (is_array($datas)) {
+            foreach ($datas as $key => $value) {
+                if ($replace || !isset($source[$key])) {
+                    $source[$key] = $value;
                 }
             }
-        } catch (\Throwable $th) {
-            // Handle any exceptions thrown during unserialization
         }
 
         return $source;

@@ -40,7 +40,7 @@ class JwtTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiXHUwZTIwXHUwZTMyXHUwZTI5XHUwZTMyXHUwZTQ0XHUwZTE3XHUwZTIyIiwiaWQiOjEyMzQ1Njc4OTB9.fAdzmsl4AIGAyNGt7MfNum9DUIxn6DGMhdn1hw4PwwE',
-            $this->object->encode(array('name' => 'ภาษาไทย', 'id' => 1234567890))
+            $this->object->encode(['name' => 'ภาษาไทย', 'id' => 1234567890])
         );
     }
 
@@ -53,7 +53,7 @@ class JwtTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            array('name' => 'ภาษาไทย', 'id' => 1234567890),
+            ['name' => 'ภาษาไทย', 'id' => 1234567890],
             $this->object->decode('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiXHUwZTIwXHUwZTMyXHUwZTI5XHUwZTMyXHUwZTQ0XHUwZTE3XHUwZTIyIiwiaWQiOjEyMzQ1Njc4OTB9.fAdzmsl4AIGAyNGt7MfNum9DUIxn6DGMhdn1hw4PwwE')
         );
     }
@@ -67,7 +67,7 @@ class JwtTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            array('name' => 'ภาษาไทย', 'id' => 1234567890),
+            ['name' => 'ภาษาไทย', 'id' => 1234567890],
             $this->object->verify('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiXHUwZTIwXHUwZTMyXHUwZTI5XHUwZTMyXHUwZTQ0XHUwZTE3XHUwZTIyIiwiaWQiOjEyMzQ1Njc4OTB9.fAdzmsl4AIGAyNGt7MfNum9DUIxn6DGMhdn1hw4PwwE')
         );
     }
@@ -82,5 +82,35 @@ class JwtTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->object->verify('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiXHUwZTIwXHUwZTMyXHUwZTI5XHUwZTMyXHUwZTQ0XHAwZTE3XHUwZTIyIiwiaWQiOjEyMzQ1Njc4OTB9.fAdzmsl4AIGAyNGt7MfNum9DUIxn6DGMhdn1hw4PwwE');
+    }
+
+    /**
+     * Test JWT expiration (should throw an exception).
+     *
+     * @covers Kotchasan\Jwt::verify
+     * @expectedException \Exception
+     */
+    public function testTokenExpiration()
+    {
+        // สร้าง JWT ที่หมดอายุใน 1 วินาที
+        $jwt = Jwt::create('my_secret_key', 1, 'HS256');
+        $token = $jwt->encode(['name' => 'ภาษาไทย', 'id' => 1234567890]);
+
+        // รอให้ token หมดอายุ
+        sleep(2);
+
+        // ทดสอบการตรวจสอบ JWT ที่หมดอายุ
+        $jwt->verify($token);
+    }
+
+    /**
+     * Test invalid algorithm that should throw an exception.
+     *
+     * @covers Kotchasan\Jwt::create
+     * @expectedException \Exception
+     */
+    public function testInvalidAlgorithm()
+    {
+        Jwt::create('my_secret_key', 3600, 'invalid_algo');
     }
 }

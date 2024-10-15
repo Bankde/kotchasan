@@ -140,16 +140,17 @@ class UploadedFile implements UploadedFileInterface
      * @param int    $width      ความกว้างของรูปภาพที่ต้องการ
      * @param int    $height     ความสูงของรูปภาพที่ต้องการ
      * @param string $watermark  (optional) ข้อความลายน้ำ
+     * @param bool $fit  (optional)  true: ปรับขนาดภาพให้พอดีกับพื้นที่, false: ครอบภาพ
      *
      * @throws \InvalidArgumentException ข้อผิดพลาดหากที่อยู่ปลายทางไม่สามารถเขียนได้
      * @throws \RuntimeException         ข้อผิดพลาดไม่สามารถสร้างรูปภาพได้
      *
      * @return bool|string
      */
-    public function cropImage($exts, $targetPath, $width, $height, $watermark = '')
+    public function cropImage($exts, $targetPath, $width, $height, $watermark = '', $fit = false)
     {
         $this->check($exts, dirname($targetPath));
-        $ret = Image::crop($this->tmp_name, $targetPath, $width, $height, $watermark);
+        $ret = Image::crop($this->tmp_name, $targetPath, $width, $height, $watermark, $fit);
         if ($ret === false) {
             throw new \RuntimeException(Language::get('Unable to create image'));
         }
@@ -372,23 +373,45 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * Resizes an image.
+     * Resizes an uploaded image, applies an optional watermark, and saves it to the target directory.
      *
-     * @param array $exts An array of valid file extensions.
-     * @param string $target The target directory for saving the resized image.
-     * @param string $name The name of the resized image.
-     * @param int $width The desired width of the resized image.
-     * @param string $watermark Optional watermark to be applied on the resized image.
+     * This method checks if the provided file extension and target directory are valid,
+     * then resizes the image to the specified width while maintaining the aspect ratio.
+     * An optional text watermark can be applied to the image. The resized image is saved
+     * with the given name in the specified target directory. The function uses the `Image::resize`
+     * method to perform the resizing and conversion.
      *
-     * @return string The path to the resized image.
+     * @param array $exts The allowed file extensions for the image (e.g., ['jpg', 'png', 'webp']).
+     * @param string $target The directory where the resized image will be saved.
+     * @param string $name The desired name of the resized image file.
+     * @param int $width Optional. The desired width of the resized image in pixels. If set to 0, the image retains its original dimensions.
+     * @param string $watermark Optional. A text string to be applied as a watermark on the image. If not provided, no watermark is applied.
+     * @param bool $forceConvert Optional. Whether to force the conversion of the image to the target format even if no resizing is needed. Default is true.
      *
-     * @throws \RuntimeException If unable to create the image.
-     * @throws \InvalidArgumentException If the file extension or target directory is invalid.
+     * @return array Returns an array with the resized image's details (name, width, height, mime type) if successful.
+     *
+     * The returned array contains the following keys:
+     *  - 'name': The new name of the resized image file, including the extension.
+     *  - 'width': The width of the resized image in pixels.
+     *  - 'height': The height of the resized image in pixels.
+     *  - 'mime': The MIME type of the resized image.
+     *
+     * @throws \RuntimeException If the image resizing or saving fails, or if the target directory or file extension is invalid.
+     *
+     * Example usage:
+     * ```
+     * try {
+     *     $result = $file->resizeImage(['jpg', 'png'], '/path/to/target/', 'resized_image.jpg', 800, 'Sample Watermark');
+     *     echo "Image resized and saved successfully: " . $result['name'];
+     * } catch (\RuntimeException $e) {
+     *     echo "Error: " . $e->getMessage();
+     * }
+     * ```
      */
-    public function resizeImage($exts, $target, $name, $width, $watermark = '')
+    public function resizeImage($exts, $target, $name, $width = 0, $watermark = '', $forceConvert = true)
     {
         $this->check($exts, $target);
-        $ret = Image::resize($this->tmp_name, $target, $name, $width, $watermark);
+        $ret = Image::resize($this->tmp_name, $target, $name, $width, $watermark, $forceConvert);
         if ($ret === false) {
             throw new \RuntimeException(Language::get('Unable to create image'));
         } else {
