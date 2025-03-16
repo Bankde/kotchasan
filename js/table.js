@@ -163,7 +163,7 @@
         });
         this.initTABLE();
         forEach(this.table.elems("label"), function() {
-          if (action_patt.test(this.className)) {
+          if (action_patt.test(this.className) || this.getAttribute('for') == 'action') {
             callClick(this, doAction);
           }
         });

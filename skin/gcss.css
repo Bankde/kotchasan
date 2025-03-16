@@ -508,13 +508,16 @@ mark {
   padding: 0 0.4rem;
   text-shadow: none;
   white-space: nowrap;
+}
+td.center [class^="term"],
+td.center [class*=" term"] {
+  margin: 0 auto;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
   min-width: 10em;
   max-width: fit-content;
-  margin: 0 auto;
 }
 .term0 {
   background-color: var(--color-0);
@@ -1243,6 +1246,10 @@ html .button:before,
 .button [class^="icon-"]:before {
   color: inherit;
 }
+.button [class*=" icon-"]:before,
+.button [class^="icon-"]:before {
+  line-height: 1;
+}
 .button.notext {
   min-width: auto;
   padding: 0 0.7rem;
@@ -1834,7 +1841,7 @@ html[dir="rtl"] .gdpanel-arrow {
 .menubutton.uppermenu:hover:after {
   content: "\25B2";
 }
-/* top menu, side menu, group-button */
+/* topmenu, sidemenu, group-button */
 .topmenu {
   position: relative;
 }
@@ -2930,6 +2937,9 @@ div.gcalendar tbody a:before {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
+.event-calendar td > div > a span::before {
+  line-height: 1;
+}
 /* drop down color select */
 #gddcolor_div {
   min-width: 12rem;
@@ -3560,10 +3570,23 @@ th[scope="rowgroup"],
 .table_nav {
   padding: 10px;
 }
+.table_nav > div {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.table_nav > div > .right {
+  margin-left: auto;
+}
+.table_nav > div > fieldset {
+  padding: 0;
+}
 .table_nav .button.go {
   width: 36px;
   min-width: auto;
   padding: 0;
+  line-height: 1;
 }
 .error-table {
   color: var(--red);
@@ -3572,27 +3595,13 @@ th[scope="rowgroup"],
 .empty-table {
   text-align: center;
 }
-.table_nav > .button,
-.table_nav > fieldset,
-.table_nav > div > .button,
-.table_nav > div > fieldset {
-  margin: 2px 5px 2px 0;
-  display: inline-block;
-  position: relative;
-  padding-bottom: 0 !important;
-  vertical-align: middle;
-}
-.table_nav label {
-  display: inline-block;
-  vertical-align: middle;
-}
 .table_nav select {
   max-width: 10rem;
 }
 .table_nav > div > fieldset:not(.search) {
   background-color: inherit;
 }
-.table_nav fieldset .button {
+.table_nav fieldset select + .button {
   margin-left: 5px;
 }
 fieldset.search {

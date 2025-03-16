@@ -638,7 +638,7 @@ class DataTable extends \Kotchasan\KBase
             $form[] = '<button type=submit class="button go circle">'.Language::get('Go').'</button>';
             $form[] = implode('', $hidden_fields);
             $form[] = '</fieldset>';
-            $content[] = '<form class="table_nav clear" method="get" action="'.$this->uri.'"><div>'.implode('', $form).'</div></form>';
+            $content[] = '<form class="table_nav" method="get" action="'.$this->uri.'"><div>'.implode('', $form).'</div></form>';
         }
         if (isset($this->model)) {
             if ($this->explain) {
@@ -924,7 +924,7 @@ class DataTable extends \Kotchasan\KBase
         }
         if (!$this->explain) {
             if (!empty($table_nav)) {
-                $content[] = '<div class="table_nav clear action">'.implode('', $table_nav).'</div>';
+                $content[] = '<div class="table_nav action"><div>'.implode('', $table_nav).'</div></div>';
             }
             // Pagination
             if ($this->perPage > 0) {
