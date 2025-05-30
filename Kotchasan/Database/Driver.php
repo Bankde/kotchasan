@@ -59,11 +59,101 @@ abstract class Driver extends Query
     protected $sqls;
 
     /**
+     * @var bool transaction state
+     */
+    protected $in_transaction = false;
+
+    /**
      * Class constructor
      */
     public function __construct()
     {
         $this->cache = Cache::create();
+    }
+
+    /**
+     * Begin transaction
+     *
+     * @return bool True on success, false on failure
+     */
+    public function beginTransaction()
+    {
+        if ($this->in_transaction) {
+            return false;
+        }
+
+        try {
+            $result = $this->connection->beginTransaction();
+            if ($result) {
+                $this->in_transaction = true;
+                $this->log('Transaction', 'BEGIN TRANSACTION');
+            }
+            return $result;
+        } catch (\Exception $e) {
+            $this->error_message = $e->getMessage();
+            $this->log('Transaction Error', 'BEGIN TRANSACTION failed: '.$e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Commit transaction
+     *
+     * @return bool True on success, false on failure
+     */
+    public function commit()
+    {
+        if (!$this->in_transaction) {
+            return false;
+        }
+
+        try {
+            $result = $this->connection->commit();
+            if ($result) {
+                $this->in_transaction = false;
+                $this->log('Transaction', 'COMMIT');
+            }
+            return $result;
+        } catch (\Exception $e) {
+            $this->error_message = $e->getMessage();
+            $this->log('Transaction Error', 'COMMIT failed: '.$e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Rollback transaction
+     *
+     * @return bool True on success, false on failure
+     */
+    public function rollback()
+    {
+        if (!$this->in_transaction) {
+            return false;
+        }
+
+        try {
+            $result = $this->connection->rollback();
+            if ($result) {
+                $this->in_transaction = false;
+                $this->log('Transaction', 'ROLLBACK');
+            }
+            return $result;
+        } catch (\Exception $e) {
+            $this->error_message = $e->getMessage();
+            $this->log('Transaction Error', 'ROLLBACK failed: '.$e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Check if currently in transaction
+     *
+     * @return bool True if in transaction, false otherwise
+     */
+    public function inTransaction()
+    {
+        return $this->in_transaction;
     }
 
     /**
@@ -115,6 +205,7 @@ abstract class Driver extends Query
     public function close()
     {
         $this->connection = null;
+        $this->in_transaction = false;
     }
 
     /**
@@ -167,11 +258,7 @@ abstract class Driver extends Query
      *
      * @return bool Returns true if the database exists, false otherwise
      */
-    public function databaseExists($database)
-    {
-        $search = $this->doCustomQuery("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='$database'");
-        return $search && count($search) == 1;
-    }
+    abstract public function databaseExists($database);
 
     /**
      * Deletes records from a table based on the given condition.
@@ -183,21 +270,7 @@ abstract class Driver extends Query
      *
      * @return bool Returns true if the delete operation is successful, false otherwise
      */
-    public function delete($table_name, $condition, $limit = 1, $operator = 'AND')
-    {
-        $condition = $this->buildWhere($condition, $operator);
-        if (is_array($condition)) {
-            $values = $condition[1];
-            $condition = $condition[0];
-        } else {
-            $values = [];
-        }
-        $sql = 'DELETE FROM '.$table_name.' WHERE '.$condition;
-        if (is_int($limit) && $limit > 0) {
-            $sql .= ' LIMIT '.$limit;
-        }
-        return $this->doQuery($sql, $values);
-    }
+    abstract public function delete($table_name, $condition, $limit = 1, $operator = 'AND');
 
     /**
      * Empties a table by deleting all its records.
@@ -206,10 +279,7 @@ abstract class Driver extends Query
      *
      * @return bool Returns true if the table is successfully emptied, false otherwise
      */
-    public function emptyTable($table_name)
-    {
-        return $this->query("TRUNCATE TABLE $table_name") === false ? false : true;
-    }
+    abstract public function emptyTable($table_name);
 
     /**
      * Executes one or multiple SQL queries and returns the result.
@@ -274,11 +344,7 @@ abstract class Driver extends Query
      *
      * @return bool True if the column exists, false otherwise
      */
-    public function fieldExists($table_name, $column_name)
-    {
-        $result = $this->customQuery("SHOW COLUMNS FROM $table_name LIKE '$column_name'");
-        return !empty($result);
-    }
+    abstract public function fieldExists($table_name, $column_name);
 
     /**
      * Queries data and returns all items matching the condition.
@@ -339,21 +405,7 @@ abstract class Driver extends Query
      *
      * @return int The next ID for the specified table.
      */
-    public function getNextId($table_name, $condition = [], $operator = 'AND', $primary_key = 'id')
-    {
-        $sql = "SELECT MAX(`$primary_key`) AS `Auto_increment` FROM `$table_name`";
-        $values = [];
-        if (!empty($condition)) {
-            $condition = $this->buildWhere($condition, $operator);
-            if (is_array($condition)) {
-                $values = $condition[1];
-                $condition = $condition[0];
-            }
-            $sql .= ' WHERE '.$condition;
-        }
-        $result = $this->doCustomQuery($sql, $values);
-        return (int) $result[0]['Auto_increment'] + 1;
-    }
+    abstract public function getNextId($table_name, $condition = [], $operator = 'AND', $primary_key = 'id');
 
     /**
      * Check if an index exists in a table.
@@ -364,12 +416,7 @@ abstract class Driver extends Query
      *
      * @return bool Returns true if the index exists, false otherwise.
      */
-    public function indexExists($database_name, $table_name, $index)
-    {
-        $sql = "SELECT * FROM information_schema.statistics WHERE table_schema='$database_name' AND table_name = '$table_name' AND column_name = '$index'";
-        $result = $this->customQuery($sql);
-        return empty($result) ? false : true;
-    }
+    abstract public function indexExists($database_name, $table_name, $index);
 
     /**
      * Retrieves the data type of a specific column in a given table within a database.
@@ -380,18 +427,7 @@ abstract class Driver extends Query
      *
      * @return mixed Returns the data type of the column (DATA_TYPE) if found, or false if the column is not found.
      */
-    public function columnType($database_name, $table_name, $column)
-    {
-        // SQL query to fetch the data type of the specified column
-        $sql = "SELECT DATA_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = :database_name AND TABLE_NAME = :table_name AND COLUMN_NAME = :column";
-        $result = $this->customQuery($sql, false, [
-            ':database_name' => $database_name,
-            ':table_name' => $table_name,
-            ':column' => $column
-        ]);
-        // Return the data type if found, otherwise return false
-        return empty($result) ? false : $result[0]->DATA_TYPE;
-    }
+    abstract public function columnType($database_name, $table_name, $column);
 
     /**
      * Insert new data into a table.
@@ -450,10 +486,7 @@ abstract class Driver extends Query
      *
      * @return bool Returns true if successful.
      */
-    public function optimizeTable($table_name)
-    {
-        return $this->query("OPTIMIZE TABLE $table_name") === false ? false : true;
-    }
+    abstract public function optimizeTable($table_name);
 
     /**
      * Execute an SQL query that does not require a result, such as CREATE, INSERT, or UPDATE.
@@ -476,18 +509,6 @@ abstract class Driver extends Query
     public static function queryCount()
     {
         return self::$query_count;
-    }
-
-    /**
-     * Repair a table.
-     *
-     * @param string $table_name The table name.
-     *
-     * @return bool Returns true if successful.
-     */
-    public function repairTable($table_name)
-    {
-        return $this->query("REPAIR TABLE $table_name") === false ? false : true;
     }
 
     /**
@@ -518,11 +539,7 @@ abstract class Driver extends Query
      *
      * @return bool Returns true if the table exists, false otherwise.
      */
-    public function tableExists($table_name)
-    {
-        $result = $this->doCustomQuery("SHOW TABLES LIKE '$table_name'");
-        return empty($result) ? false : true;
-    }
+    abstract public function tableExists($table_name);
 
     /**
      * Copies a table to a new table if the new table does not already exist.
@@ -543,10 +560,10 @@ abstract class Driver extends Query
         // If the new table does not exist
         if (!$table_exists) {
             // Create a new table with the same structure as the existing table
-            $this->query("CREATE TABLE `$new_table_name` LIKE `$table_name`");
+            $this->query("CREATE TABLE ".$this->quoteTableName($new_table_name)." LIKE ".$this->quoteTableName($table_name));
 
             // Copy all data from the existing table to the new table
-            $this->query("INSERT INTO `$new_table_name` SELECT * FROM `$table_name`");
+            $this->query("INSERT INTO ".$this->quoteTableName($new_table_name)." SELECT * FROM ".$this->quoteTableName($table_name));
         }
 
         // Return whether the new table already existed
@@ -587,7 +604,7 @@ abstract class Driver extends Query
      */
     protected function log($type, $sql, $values = [])
     {
-        if (DB_LOG == true) {
+        if (defined('DB_LOG') && DB_LOG == true) {
             $datas = ['<b>'.$type.' :</b> '.Text::replace($sql, $values)];
             foreach (debug_backtrace() as $a => $item) {
                 if (isset($item['file']) && isset($item['line'])) {
@@ -600,5 +617,23 @@ abstract class Driver extends Query
             // Log the data
             Logger::create()->info(implode('', $datas));
         }
+    }
+
+    /**
+     * Set error message
+     *
+     * @param string $message Error message
+     */
+    protected function setError($message)
+    {
+        $this->error_message = $message;
+    }
+
+    /**
+     * Increment query count
+     */
+    protected function incrementQueryCount()
+    {
+        self::$query_count++;
     }
 }

@@ -208,7 +208,7 @@ class QueryBuilderTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->assertEquals(
-            "INSERT INTO `user` (`id`, `name`) VALUES (1, (SELECT username FROM user WHERE id=1))",
+            'INSERT INTO `user` (`id`, `name`) VALUES (1, (SELECT username FROM user WHERE id=1))',
             $this->object->insert('user', array('id' => 1, 'name' => 'SQL(SELECT username FROM user WHERE id=1)'))->text()
         );
     }

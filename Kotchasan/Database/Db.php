@@ -36,6 +36,15 @@ abstract class Db extends \Kotchasan\KBase
     public function __construct($conn)
     {
         $this->db = Database::create($conn);
+
+        // Set database type context for SQL generation
+        if ($this->db instanceof PdoMysqlDriver) {
+            Sql::setDatabaseType('mysql');
+        } elseif ($this->db instanceof PdoMssqlDriver) {
+            Sql::setDatabaseType('mssql');
+        } elseif ($this->db instanceof PdoPostgresqlDriver) {
+            Sql::setDatabaseType('postgresql');
+        }
     }
 
     /**
@@ -46,6 +55,46 @@ abstract class Db extends \Kotchasan\KBase
     public function db()
     {
         return $this->db;
+    }
+
+    /**
+     * Begin database transaction
+     *
+     * @return bool True on success, false on failure
+     */
+    public function beginTransaction()
+    {
+        return $this->db->beginTransaction();
+    }
+
+    /**
+     * Commit database transaction
+     *
+     * @return bool True on success, false on failure
+     */
+    public function commit()
+    {
+        return $this->db->commit();
+    }
+
+    /**
+     * Rollback database transaction
+     *
+     * @return bool True on success, false on failure
+     */
+    public function rollback()
+    {
+        return $this->db->rollback();
+    }
+
+    /**
+     * Check if currently in transaction
+     *
+     * @return bool True if in transaction, false otherwise
+     */
+    public function inTransaction()
+    {
+        return $this->db->inTransaction();
     }
 
     /**
@@ -60,6 +109,7 @@ abstract class Db extends \Kotchasan\KBase
         if (isset($this->db->settings->$key)) {
             return $this->db->settings->$key;
         }
+        return null;
     }
 
     /**
@@ -70,5 +120,60 @@ abstract class Db extends \Kotchasan\KBase
     public function getAllSettings()
     {
         return $this->db->settings;
+    }
+
+    /**
+     * Get database type
+     *
+     * @return string Database type (mysql, mssql, postgresql)
+     */
+    public function getDatabaseType()
+    {
+        if ($this->db instanceof PdoMysqlDriver) {
+            return 'mysql';
+        } elseif ($this->db instanceof PdoMssqlDriver) {
+            return 'mssql';
+        } elseif ($this->db instanceof PdoPostgresqlDriver) {
+            return 'postgresql';
+        }
+        return 'unknown';
+    }
+
+    /**
+     * Get database error message
+     *
+     * @return string Error message
+     */
+    public function getError()
+    {
+        return $this->db->getError();
+    }
+
+    /**
+     * Get query count
+     *
+     * @return int Number of executed queries
+     */
+    public function getQueryCount()
+    {
+        return $this->db->queryCount();
+    }
+
+    /**
+     * Check if database connection is active
+     *
+     * @return bool True if connected, false otherwise
+     */
+    public function isConnected()
+    {
+        return $this->db->connection() !== null;
+    }
+
+    /**
+     * Close database connection
+     */
+    public function close()
+    {
+        $this->db->close();
     }
 }

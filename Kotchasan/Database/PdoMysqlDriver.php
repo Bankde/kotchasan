@@ -20,10 +20,20 @@ namespace Kotchasan\Database;
 class PdoMysqlDriver extends Driver
 {
     /**
+     * Connection options
+     *
+     * @var array
+     */
+    protected $options = [];
+
+    /**
      * Close the database connection.
      */
     public function close()
     {
+        if ($this->in_transaction) {
+            $this->rollback();
+        }
         $this->connection = null;
     }
 
@@ -66,6 +76,7 @@ class PdoMysqlDriver extends Driver
                     $this->connection->query("SET SESSION sql_mode='".constant('SQL_MODE')."'");
                 }
             } catch (\PDOException $e) {
+                $this->setError($e->getMessage());
                 throw new \Exception($e->getMessage(), 500, $e);
             }
         } else {
@@ -73,6 +84,57 @@ class PdoMysqlDriver extends Driver
         }
 
         return $this;
+    }
+
+    /**
+     * Checks if a database exists.
+     *
+     * @param string $database The name of the database to check
+     *
+     * @return bool Returns true if the database exists, false otherwise
+     */
+    public function databaseExists($database)
+    {
+        $search = $this->doCustomQuery("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = ?", [$database]);
+        return $search && count($search) == 1;
+    }
+
+    /**
+     * Deletes records from a table based on the given condition.
+     *
+     * @param string       $table_name The name of the table to delete records from
+     * @param array|string $condition  The condition for deleting records (can be an array or a string)
+     * @param int          $limit      Optional. The maximum number of records to delete (default: 1)
+     * @param string       $operator   Optional. The operator used to combine multiple conditions (default: 'AND')
+     *
+     * @return bool Returns true if the delete operation is successful, false otherwise
+     */
+    public function delete($table_name, $condition, $limit = 1, $operator = 'AND')
+    {
+        $condition = $this->buildWhere($condition, $operator);
+        if (is_array($condition)) {
+            $values = $condition[1];
+            $condition = $condition[0];
+        } else {
+            $values = [];
+        }
+        $sql = 'DELETE FROM '.$this->quoteTableName($table_name).' WHERE '.$condition;
+        if (is_int($limit) && $limit > 0) {
+            $sql .= ' LIMIT '.$limit;
+        }
+        return $this->doQuery($sql, $values);
+    }
+
+    /**
+     * Empties a table by deleting all its records.
+     *
+     * @param string $table_name The name of the table to empty
+     *
+     * @return bool Returns true if the table is successfully emptied, false otherwise
+     */
+    public function emptyTable($table_name)
+    {
+        return $this->query("TRUNCATE TABLE ".$this->quoteTableName($table_name)) !== false;
     }
 
     /**
@@ -87,6 +149,20 @@ class PdoMysqlDriver extends Driver
         } else {
             return 0;
         }
+    }
+
+    /**
+     * Checks if a column exists in the table.
+     *
+     * @param string $table_name  The table name
+     * @param string $column_name The column name
+     *
+     * @return bool True if the column exists, false otherwise
+     */
+    public function fieldExists($table_name, $column_name)
+    {
+        $result = $this->customQuery("SHOW COLUMNS FROM ".$this->quoteTableName($table_name)." LIKE ?", true, [$column_name]);
+        return !empty($result);
     }
 
     /**
@@ -109,10 +185,70 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
+     * Gets the next ID for the specified table based on the primary key.
+     *
+     * @param string $table_name The name of the table.
+     * @param array $condition An array of conditions for the query (default is empty).
+     * @param string $operator The logical operator for combining conditions (default is 'AND').
+     * @param string $primary_key The primary key column name (default is 'id').
+     *
+     * @return int The next ID for the specified table.
+     */
+    public function getNextId($table_name, $condition = [], $operator = 'AND', $primary_key = 'id')
+    {
+        $sql = "SELECT MAX(".$this->quoteIdentifier($primary_key).") AS `Auto_increment` FROM ".$this->quoteTableName($table_name);
+        $values = [];
+        if (!empty($condition)) {
+            $condition = $this->buildWhere($condition, $operator);
+            if (is_array($condition)) {
+                $values = $condition[1];
+                $condition = $condition[0];
+            }
+            $sql .= ' WHERE '.$condition;
+        }
+        $result = $this->doCustomQuery($sql, $values);
+        return (int) $result[0]['Auto_increment'] + 1;
+    }
+
+    /**
+     * Check if an index exists in a table.
+     *
+     * @param string $database_name The database name.
+     * @param string $table_name    The table name.
+     * @param string $index         The index name.
+     *
+     * @return bool Returns true if the index exists, false otherwise.
+     */
+    public function indexExists($database_name, $table_name, $index)
+    {
+        $sql = "SELECT * FROM information_schema.statistics WHERE table_schema=? AND table_name = ? AND column_name = ?";
+        $result = $this->customQuery($sql, true, [$database_name, $table_name, $index]);
+        return !empty($result);
+    }
+
+    /**
+     * Retrieves the data type of a specific column in a given table within a database.
+     *
+     * @param string $database_name The name of the database.
+     * @param string $table_name The name of the table.
+     * @param string $column The name of the column to check.
+     *
+     * @return mixed Returns the data type of the column (DATA_TYPE) if found, or false if the column is not found.
+     */
+    public function columnType($database_name, $table_name, $column)
+    {
+        // SQL query to fetch the data type of the specified column
+        $sql = "SELECT DATA_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ? AND COLUMN_NAME = ?";
+        $result = $this->customQuery($sql, false, [$database_name, $table_name, $column]);
+        // Return the data type if found, otherwise return false
+        return empty($result) ? false : $result[0]->DATA_TYPE;
+    }
+
+    /**
      * Insert a new row into a table.
      *
-     * @param string $table The name of the table.
-     * @param $data  The data to be inserted. Format array('key1'=>'value1', 'key2'=>'value2', ...)
+     * @param string $table_name The name of the table.
+     * @param array $save The data to be inserted. Format array('key1'=>'value1', 'key2'=>'value2', ...)
      *
      * @return int|bool The ID of the inserted row or false on failure.
      */
@@ -124,9 +260,10 @@ class PdoMysqlDriver extends Driver
             $query = $this->connection->prepare($sql);
             $query->execute($params);
             $this->log('insert', $sql, $params);
-            ++self::$query_count;
+            $this->incrementQueryCount();
             return (int) $this->connection->lastInsertId();
         } catch (\PDOException $e) {
+            $this->setError($e->getMessage());
             throw new \Exception($e->getMessage(), 500, $e);
         }
     }
@@ -146,8 +283,7 @@ class PdoMysqlDriver extends Driver
         $params = [];
 
         foreach ($save as $key => $value) {
-            $updates[] = '`'.$key.'`=:U'.$key;
-            $params[':U'.$key] = $value;
+            $updates[] = $this->quoteIdentifier($key).'=VALUES('.$this->quoteIdentifier($key).')';
         }
 
         $sql = $this->makeInsert($table_name, $save, $params);
@@ -156,23 +292,17 @@ class PdoMysqlDriver extends Driver
         try {
             $query = $this->connection->prepare($sql);
             $query->execute($params);
-            $this->log(__FUNCTION__, $sql);
-            ++self::$query_count;
+            $this->log(__FUNCTION__, $sql, $params);
+            $this->incrementQueryCount();
             return (int) $this->connection->lastInsertId();
         } catch (\PDOException $e) {
+            $this->setError($e->getMessage());
             throw new \Exception($e->getMessage(), 500, $e);
         }
     }
 
     /**
      * Generate an SQL query command based on the given query builder parameters.
-     *
-     * @assert (array('update' => '`user`', 'where' => '`id` = 1', 'set' => array('`id` = 1', "`email` = 'admin@localhost'"))) [==] "UPDATE `user` SET `id` = 1, `email` = 'admin@localhost' WHERE `id` = 1"
-     * @assert (array('insert' => '`user`', 'keys' => array('id' => ':id', 'email' => ':email'))) [==] "INSERT INTO `user` (`id`, `email`) VALUES (:id, :email)"
-     * @assert (array('insert' => '`user`', 'keys' => array('id' => ':id'), 'orupdate' => array('`id`=VALUES(`id`)'))) [==] "INSERT INTO `user` (`id`) VALUES (:id) ON DUPLICATE KEY UPDATE `id`=VALUES(`id`)"
-     * @assert (array('select'=>'*', 'from'=>'`user`','where'=>'`id` = 1', 'order' => '`id`', 'start' => 1, 'limit' => 10, 'join' => array(" INNER JOIN ..."))) [==] "SELECT * FROM `user` INNER JOIN ... WHERE `id` = 1 ORDER BY `id` LIMIT 1,10"
-     * @assert (array('select'=>'*', 'from'=>'`user`','where'=>'`id` = 1', 'order' => '`id`', 'start' => 1, 'limit' => 10, 'group' => '`id`')) [==] "SELECT * FROM `user` WHERE `id` = 1 GROUP BY `id` ORDER BY `id` LIMIT 1,10"
-     * @assert (array('delete' => '`user`', 'where' => '`id` = 1')) [==] "DELETE FROM `user` WHERE `id` = 1"
      *
      * @param array $sqls The SQL commands from the query builder.
      *
@@ -194,13 +324,13 @@ class PdoMysqlDriver extends Driver
             if (isset($sqls['select'])) {
                 $sql .= 'INSERT INTO '.$sqls['insert'];
                 if (!empty($sqls['keys'])) {
-                    $sql .= ' (`'.implode('`, `', $sqls['keys']).'`)';
+                    $sql .= ' ('.$this->quoteIdentifier(implode('`, `', $sqls['keys'])).')';
                 }
                 $sql .= ' '.$sqls['select'];
             } else {
                 $keys = array_keys($sqls['keys']);
-                $sql .= 'INSERT INTO '.$sqls['insert'].' (`'.implode('`, `', $keys);
-                $sql .= '`) VALUES ('.implode(', ', $sqls['keys']).')';
+                $sql .= 'INSERT INTO '.$sqls['insert'].' ('.$this->quoteIdentifier(implode('`, `', $keys));
+                $sql .= ') VALUES ('.implode(', ', $sqls['keys']).')';
             }
 
             if (isset($sqls['orupdate'])) {
@@ -273,6 +403,70 @@ class PdoMysqlDriver extends Driver
     }
 
     /**
+     * Optimize a table.
+     *
+     * @param string $table_name The table name.
+     *
+     * @return bool Returns true if successful.
+     */
+    public function optimizeTable($table_name)
+    {
+        return $this->query("OPTIMIZE TABLE ".$this->quoteTableName($table_name)) !== false;
+    }
+
+    /**
+     * Returns a random value for use in SQL queries.
+     *
+     * @return string The SQL command to generate a random value.
+     */
+    public function random()
+    {
+        return 'RAND()';
+    }
+
+    /**
+     * Quote an identifier (table name, column name) for MySQL.
+     *
+     * @param string $name The identifier.
+     * @return string The quoted identifier.
+     */
+    public function quoteIdentifier($name)
+    {
+        return '`'.$name.'`';
+    }
+
+    /**
+     * Quote a table name for use in a query for MySQL.
+     *
+     * @param string $name The table name.
+     * @return string The quoted table name.
+     */
+    public function quoteTableName($name)
+    {
+        if (strpos($name, '`') !== false && strpos($name, '.') === false) {
+            // Already quoted and not schema.table
+            return $name;
+        }
+        if (strpos($name, '.') !== false) {
+            list($database, $table) = explode('.', $name, 2);
+            return $this->quoteIdentifier(trim($database)).'.'.$this->quoteIdentifier(trim($table));
+        }
+        return $this->quoteIdentifier(trim($name));
+    }
+
+    /**
+     * Repair a table.
+     *
+     * @param string $table_name The table name.
+     *
+     * @return bool Returns true if successful.
+     */
+    public function repairTable($table_name)
+    {
+        return $this->query("REPAIR TABLE ".$this->quoteTableName($table_name)) !== false;
+    }
+
+    /**
      * Retrieve data from the specified table.
      *
      * @param string $table_name The table name.
@@ -285,7 +479,7 @@ class PdoMysqlDriver extends Driver
     public function select($table_name, $condition = [], $sort = [], $limit = 0)
     {
         $values = [];
-        $sql = 'SELECT * FROM '.$table_name;
+        $sql = 'SELECT * FROM '.$this->quoteTableName($table_name);
 
         if (!empty($condition)) {
             $condition = $this->buildWhere($condition);
@@ -300,13 +494,13 @@ class PdoMysqlDriver extends Driver
 
         if (!empty($sort)) {
             if (is_string($sort) && preg_match('/^([a-z0-9_]+)(\s(asc|desc))?$/i', trim($sort), $match)) {
-                $sql .= ' ORDER BY `'.$match[1].'`'.(empty($match[3]) ? ' ASC' : ' '.$match[3]);
+                $sql .= ' ORDER BY '.$this->quoteIdentifier($match[1]).(empty($match[3]) ? ' ASC' : ' '.$match[3]);
             } elseif (is_array($sort)) {
                 $qs = [];
 
                 foreach ($sort as $item) {
                     if (preg_match('/^([a-z0-9_]+)(\s(asc|desc))?$/i', trim($item), $match)) {
-                        $qs[] = '`'.$match[1].'`'.(empty($match[3]) ? ' ASC' : ' '.$match[3]);
+                        $qs[] = $this->quoteIdentifier($match[1]).(empty($match[3]) ? ' ASC' : ' '.$match[3]);
                     }
                 }
 
@@ -333,9 +527,22 @@ class PdoMysqlDriver extends Driver
     public function selectDB($database)
     {
         $this->settings->dbname = $database;
-        $result = $this->connection->query("USE $database");
-        ++self::$query_count;
-        return $result === false ? false : true;
+        $result = $this->connection->query("USE ".$this->quoteIdentifier($database));
+        $this->incrementQueryCount();
+        return $result !== false;
+    }
+
+    /**
+     * Check if a table exists.
+     *
+     * @param string $table_name The table name.
+     *
+     * @return bool Returns true if the table exists, false otherwise.
+     */
+    public function tableExists($table_name)
+    {
+        $result = $this->doCustomQuery("SHOW TABLES LIKE ?", [str_replace($this->quoteIdentifier(''), '', $table_name)]);
+        return !empty($result);
     }
 
     /**
@@ -354,28 +561,29 @@ class PdoMysqlDriver extends Driver
 
         foreach ($save as $key => $value) {
             if ($value instanceof QueryBuilder) {
-                $sets[] = '`'.$key.'` = ('.$value->text().')';
+                $sets[] = $this->quoteIdentifier($key).' = ('.$value->text().')';
             } elseif ($value instanceof Sql) {
-                $sets[] = '`'.$key.'` = '.$value->text();
+                $sets[] = $this->quoteIdentifier($key).' = '.$value->text();
                 $values = $value->getValues($values);
             } else {
                 $k = ':'.$key.count($values);
-                $sets[] = '`'.$key.'` = '.$k;
+                $sets[] = $this->quoteIdentifier($key).' = '.$k;
                 $values[$k] = $value;
             }
         }
 
         $q = Sql::WHERE($condition);
-        $sql = 'UPDATE '.$table_name.' SET '.implode(', ', $sets).' WHERE '.$q->text();
+        $sql = 'UPDATE '.$this->quoteTableName($table_name).' SET '.implode(', ', $sets).' WHERE '.$q->text();
         $values = $q->getValues($values);
 
         try {
             $query = $this->connection->prepare($sql);
             $query->execute($values);
             $this->log(__FUNCTION__, $sql, $values);
-            ++self::$query_count;
-            return true;
+            $this->incrementQueryCount();
+            return $query->rowCount() > 0;
         } catch (\PDOException $e) {
+            $this->setError($e->getMessage());
             throw new \Exception($e->getMessage(), 500, $e);
         }
     }
@@ -405,7 +613,7 @@ class PdoMysqlDriver extends Driver
                     $this->result_id = $this->connection->prepare($sql);
                     $this->result_id->execute($values);
                 }
-                ++self::$query_count;
+                $this->incrementQueryCount();
                 $result = $this->result_id->fetchAll(\PDO::FETCH_ASSOC);
                 if ($action == 1) {
                     $this->cache->save($cache, $result);
@@ -413,6 +621,7 @@ class PdoMysqlDriver extends Driver
                     $this->cache_item = $cache;
                 }
             } catch (\PDOException $e) {
+                $this->setError($e->getMessage());
                 throw new \Exception($e->getMessage(), 500, $e);
             }
             $this->log('Database', $sql, $values);
@@ -441,10 +650,11 @@ class PdoMysqlDriver extends Driver
                 $query = $this->connection->prepare($sql);
                 $query->execute($values);
             }
-            ++self::$query_count;
+            $this->incrementQueryCount();
             $this->log(__FUNCTION__, $sql, $values);
             return $query->rowCount();
         } catch (\PDOException $e) {
+            $this->setError($e->getMessage());
             throw new \Exception($e->getMessage(), 500, $e);
         }
     }
@@ -476,6 +686,6 @@ class PdoMysqlDriver extends Driver
                 $params[':'.$key] = $value;
             }
         }
-        return 'INSERT INTO '.$table_name.' (`'.implode('`,`', $keys).'`) VALUES ('.implode(',', $values).')';
+        return 'INSERT INTO '.$this->quoteTableName($table_name).' ('.$this->quoteIdentifier(implode('`,`', $keys)).') VALUES ('.implode(',', $values).')';
     }
 }

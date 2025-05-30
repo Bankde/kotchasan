@@ -618,4 +618,43 @@ class Request extends AbstractRequest implements \Psr\Http\Message\RequestInterf
         }
         return $result;
     }
+
+    /**
+     * Retrieves the JSON-decoded request body.
+     *
+     * @param bool $assoc   When true, JSON objects will be returned as associative arrays; when false, JSON objects will be returned as objects.
+     * @param int  $depth   User specified recursion depth.
+     * @param int  $flags   Bitmask of JSON decode options.
+     *
+     * @return mixed Returns the JSON-decoded data (array or object), or null if the Content-Type is not 'application/json',
+     *               the request body is empty, or JSON decoding fails.
+     */
+    public function json($assoc = true, $depth = 512, $flags = 0)
+    {
+        // Get the Content-Type header
+        $contentType = $this->getHeaderLine('Content-Type');
+
+        // Check if Content-Type is application/json
+        if (stripos($contentType, 'application/json') === false) {
+            return null;
+        }
+
+        // Get the raw request body
+        $body = (string) $this->getBody();
+
+        // If body is empty, return null
+        if (empty($body)) {
+            return null;
+        }
+
+        // Decode the JSON string
+        $decoded = json_decode($body, $assoc, $depth, $flags);
+
+        // Check for JSON errors
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return null;
+        }
+
+        return $decoded;
+    }
 }

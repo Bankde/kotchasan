@@ -47,6 +47,17 @@ class DbCache
     private static $instance = null;
 
     /**
+     * Cache statistics
+     *
+     * @var array
+     */
+    private $stats = [
+        'hits' => 0,
+        'misses' => 0,
+        'saves' => 0
+    ];
+
+    /**
      * Enable caching.
      *
      * Cache will be checked before querying data.
@@ -61,13 +72,28 @@ class DbCache
     }
 
     /**
+     * Disable caching.
+     *
+     * @return void
+     */
+    public function cacheOff()
+    {
+        $this->action = 0;
+    }
+
+    /**
      * Clear the cache.
      *
      * @return bool|array True if the cache is cleared successfully, or an array of failed items.
      */
     public function clear()
     {
-        return $this->db_cache->clear();
+        try {
+            return $this->db_cache->clear();
+        } catch (\Exception $e) {
+            error_log('Database cache clear failed: '.$e->getMessage());
+            return false;
+        }
     }
 
     /**
@@ -94,7 +120,19 @@ class DbCache
      */
     public function get(Item $item)
     {
-        return $item->isHit() ? $item->get() : false;
+        try {
+            if ($item->isHit()) {
+                $this->stats['hits']++;
+                return $item->get();
+            } else {
+                $this->stats['misses']++;
+                return false;
+            }
+        } catch (\Exception $e) {
+            error_log('Database cache get failed: '.$e->getMessage());
+            $this->stats['misses']++;
+            return false;
+        }
     }
 
     /**
@@ -112,6 +150,27 @@ class DbCache
     }
 
     /**
+     * Get cache statistics
+     *
+     * @return array Array containing hits, misses, and saves counts
+     */
+    public function getStats()
+    {
+        return $this->stats;
+    }
+
+    /**
+     * Get cache hit ratio
+     *
+     * @return float Cache hit ratio between 0 and 1
+     */
+    public function getHitRatio()
+    {
+        $total = $this->stats['hits'] + $this->stats['misses'];
+        return $total > 0 ? $this->stats['hits'] / $total : 0.0;
+    }
+
+    /**
      * Initialize a cache item based on the SQL query and its values.
      *
      * @param string $sql The SQL query.
@@ -121,7 +180,38 @@ class DbCache
      */
     public function init($sql, $values)
     {
-        return $this->db_cache->getItem(Text::replace($sql, $values));
+        try {
+            $cache_key = $this->generateCacheKey($sql, $values);
+            return $this->db_cache->getItem($cache_key);
+        } catch (\Exception $e) {
+            error_log('Database cache init failed: '.$e->getMessage());
+            // Return a dummy cache item that always misses
+            return new Item('dummy_key', null, false);
+        }
+    }
+
+    /**
+     * Check if caching is enabled
+     *
+     * @return bool True if caching is enabled, false otherwise
+     */
+    public function isEnabled()
+    {
+        return $this->action > 0;
+    }
+
+    /**
+     * Reset cache statistics
+     *
+     * @return void
+     */
+    public function resetStats()
+    {
+        $this->stats = [
+            'hits' => 0,
+            'misses' => 0,
+            'saves' => 0
+        ];
     }
 
     /**
@@ -138,9 +228,20 @@ class DbCache
      */
     public function save(Item $item, $data)
     {
-        $this->action = 0;
-        $item->set($data);
-        return $this->db_cache->save($item);
+        try {
+            $this->action = 0;
+            $item->set($data);
+            $result = $this->db_cache->save($item);
+
+            if ($result) {
+                $this->stats['saves']++;
+            }
+
+            return $result;
+        } catch (\Exception $e) {
+            error_log('Database cache save failed: '.$e->getMessage());
+            return false;
+        }
     }
 
     /**
@@ -156,6 +257,10 @@ class DbCache
      */
     public function setAction($value)
     {
+        if (!in_array($value, [0, 1, 2])) {
+            throw new \InvalidArgumentException('Cache action must be 0, 1, or 2');
+        }
+
         $this->action = $value;
         return $this;
     }
@@ -177,6 +282,51 @@ class DbCache
      */
     private function __construct()
     {
-        $this->db_cache = new Cache();
+        try {
+            $this->db_cache = new Cache();
+        } catch (\Exception $e) {
+            error_log('Database cache initialization failed: '.$e->getMessage());
+            // Create a dummy cache that always fails gracefully
+            $this->db_cache = new class {
+                /**
+                 * @param $key
+                 */
+                public function getItem($key)
+                {
+                    return new Item($key, null, false);
+                }
+                /**
+                 * @param $item
+                 */
+                public function save($item)
+                {
+                    return false;
+                }
+                public function clear()
+                {
+                    return true;
+                }
+            };
+        }
+    }
+
+    /**
+     * Generate a cache key from SQL and values
+     *
+     * @param string $sql The SQL query
+     * @param array $values The query values
+     * @return string The generated cache key
+     */
+    private function generateCacheKey($sql, $values)
+    {
+        // Use Text::replace if available, otherwise fallback to basic replacement
+        if (class_exists('Kotchasan\Text') && method_exists('Kotchasan\Text', 'replace')) {
+            $key = Text::replace($sql, $values);
+        } else {
+            $key = $sql.serialize($values);
+        }
+
+        // Generate a shorter, more cache-friendly key
+        return 'db_'.md5($key);
     }
 }

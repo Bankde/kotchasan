@@ -23,13 +23,14 @@ use Kotchasan\ArrayTool;
 class QueryBuilder extends \Kotchasan\Database\Query
 {
     /**
-     * ส่งออกผลลัพท์เป็น Array
+     * Return results as Array
      *
      * @var bool
      */
     protected $toArray = false;
+
     /**
-     * ตัวแปรเก็บพารามิเตอร์สำหรับการ bind
+     * Array to store parameters for binding
      *
      * @var array
      */
@@ -38,7 +39,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * Class constructor
      *
-     * @param object $db database driver
+     * @param Driver $db database driver
      */
     public function __construct(Driver $db)
     {
@@ -47,22 +48,18 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง WHERE ถ้ามีข้อมูล Where ก่อนหน้าจะ AND กับข้อมูลก่อนหน้า
+     * Create WHERE condition with AND operator if previous WHERE exists
      *
-     * @assert where(array('U.id', 1))->andWhere([])->text() [==] " WHERE U.`id` = 1"
-     * @assert where(array('U.id', 1))->andWhere(array('U.id', 2))->text() [==] " WHERE (U.`id` = 1) AND (U.`id` = 2)"
-     * @assert where(array('U.id', 1))->andWhere(array(Sql::BETWEEN('id', 0, 1), Sql::BETWEEN('id', 0, 1)), 'OR')->text() [==] " WHERE (U.`id` = 1) AND (`id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1)"
-     *
-     * @param mixed  $condition query string หรือ array
-     * @param string $oprator   defaul AND
-     * @param string $id        Primary Key เช่น id (default)
+     * @param mixed  $condition query string or array
+     * @param string $operator  default AND
+     * @param string $id        Primary Key like id (default)
      *
      * @return static
      */
-    public function andWhere($condition, $oprator = 'AND', $id = 'id')
+    public function andWhere($condition, $operator = 'AND', $id = 'id')
     {
         if (!empty($condition)) {
-            $ret = $this->buildWhere($condition, $oprator, $id);
+            $ret = $this->buildWhere($condition, $operator, $id);
             if (is_array($ret)) {
                 $this->sqls['where'] = empty($this->sqls['where']) ? $ret[0] : '('.$this->sqls['where'].') AND ('.$ret[0].')';
                 $this->values = ArrayTool::replace($this->values, $ret[1]);
@@ -74,7 +71,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * นำเข้า property จาก Class อื่น
+     * Import properties from another class
      *
      * @param \Kotchasan\Orm\Recordset $src
      *
@@ -97,10 +94,10 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * เปิดการใช้งานแคช
-     * จะมีการตรวจสอบจากแคชก่อนการสอบถามข้อมูล
+     * Enable caching
+     * Will check cache before querying data
      *
-     * @param bool $auto_save (options) true (default) บันทึกผลลัพท์อัตโนมัติ, false ต้องบันทึกแคชเอง
+     * @param bool $auto_save (optional) true (default) automatically save results, false must save cache manually
      *
      * @return static
      */
@@ -111,7 +108,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * สำเนา Class เป็นอันใหม่
+     * Copy this class as new instance
      *
      * @return static
      */
@@ -121,8 +118,8 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ประมวลผลคำสั่ง SQL และคืนค่าจำนวนแถวของผลลัพท์
-     * คืนค่า จำนวนแถว
+     * Execute SQL command and return number of result rows
+     * Returns number of rows
      *
      * @return int
      */
@@ -136,12 +133,10 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง DELETE
-     *
-     * @assert delete('user', array(array('id', 1), array('name', 'test')))->text() [==] "DELETE FROM `user` WHERE (`id` = 1 AND `name` = 'test')"
+     * Create DELETE command
      *
      * @param string $table
-     * @param mixed  $condition query string หรือ array
+     * @param mixed  $condition query string or array
      *
      * @return static
      */
@@ -154,8 +149,8 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ประมวลผลคำสั่ง SQL
-     * สำเร็จ คืนค่าแอเรย์ของผลลัพท์
+     * Execute SQL command
+     * Returns array of results on success
      *
      * @return mixed
      */
@@ -173,13 +168,10 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นสร้าง SQL EXISTS
+     * Create SQL EXISTS
      *
-     * @param string $table     ชื่อตาราง
+     * @param string $table     table name
      * @param mixed  $condition query WHERE
-     *
-     * @assert select()->from('user U')->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE EXISTS (SELECT 1 FROM `useronline` WHERE `member_id` = U.`id`)'
-     * @assert select()->from('user U')->where(array('U.id', 1))->exists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE U.`id` = 1 AND EXISTS (SELECT 1 FROM `useronline` WHERE `member_id` = U.`id`)'
      *
      * @return static
      */
@@ -198,7 +190,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * คำสั่งสำหรับดูรายละเอียดการ Query
+     * Command for viewing Query details
      *
      * @return static
      */
@@ -209,9 +201,9 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * คำสั่งสร้าง View
+     * Create View command
      *
-     * @param string $table     ชื่อตาราง
+     * @param string $table     table name
      *
      * @return static
      */
@@ -222,9 +214,9 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * คำสั่งสร้างตารางชั่วคราว
+     * Create temporary table command
      *
-     * @param string $table     ชื่อตาราง
+     * @param string $table     table name
      *
      * @return static
      */
@@ -235,10 +227,10 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นประมวลผลคำสั่ง SQL ข้อมูลต้องการผลลัพท์เพียงรายการเดียว
-     * คืนค่าผลลัพท์ที่พบเพียงรายการเดียว ไม่พบข้อมูลคืนค่า false
+     * Execute SQL command that requires only one result
+     * Returns the single result found, or false if not found
      *
-     * @param string $fields (option) รายชื่อฟิลด์ field1, field2, field3, ...
+     * @param string $fields (option) field names field1, field2, field3, ...
      *
      * @return mixed
      */
@@ -248,11 +240,11 @@ class QueryBuilder extends \Kotchasan\Database\Query
             $fields = func_get_args();
         }
         if (!empty($fields)) {
-            // ถ้ามีการระบุฟิลด์มา
+            // If fields are specified
             call_user_func([$this, 'select'], $fields);
         }
         if (empty($this->sqls['select'])) {
-            // เลือกทุกฟิลด์ ถ้ายังไม่มีฟิลด์ที่ถูกเลือก
+            // Select all fields if no field is selected
             call_user_func([$this, 'select'], '*');
         }
         $this->sqls['limit'] = 1;
@@ -261,12 +253,9 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง FROM
+     * Create FROM command
      *
-     * @assert select()->from('user')->text() [==] "SELECT * FROM `user`"
-     * @assert select()->from('user a', 'user b')->text() [==] "SELECT * FROM `user` AS `a`, `user` AS `b`"
-     *
-     * @param string $tables ชื่อตาราง table1, table2, table3, ...
+     * @param string $tables table names table1, table2, table3, ...
      *
      * @return static
      */
@@ -283,7 +272,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * คืนค่าแอเร์ยเก็บพารามิเตอร์สำหรับการ bind รวมกับ $values
+     * Get array storing parameters for binding combined with $values
      *
      * @param array $values
      *
@@ -303,11 +292,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * GROUP BY
      *
-     * @assert select()->from('user')->groupBy('SQL(MONTH(`date`))', 'SQL(YEAR(`date`))')->text() [==] 'SELECT * FROM `user` GROUP BY MONTH(`date`), YEAR(`date`)'
-     * @assert select()->from('user')->groupBy('U.id')->text() [==] 'SELECT * FROM `user` GROUP BY U.`id`'
-     * @assert select()->from('user')->groupBy(array('id', 'username'))->text() [==] 'SELECT * FROM `user` GROUP BY `id`, `username`'
-     *
-     * @param string $fields รายชื่อฟิล์ด เช่น field1, field2, ..
+     * @param string $fields field names like field1, field2, ..
      *
      * @return static
      */
@@ -323,7 +308,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
                 $sqls[] = $match[1];
             } elseif (preg_match('/^(([a-z0-9]+)\.)?([a-z0-9_]+)?$/i', $item, $match)) {
                 // column.alias
-                $sqls[] = "$match[1]`$match[3]`";
+                $sqls[] = "$match[1]".$this->db->quoteIdentifier($match[3]);
             }
         }
         if (count($sqls) > 0) {
@@ -335,15 +320,15 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * HAVING
      *
-     * @param mixed  $condition query string หรือ array
-     * @param string $oprator   defaul AND
+     * @param mixed  $condition query string or array
+     * @param string $operator   default AND
      *
      * @return static
      */
-    public function having($condition, $oprator = 'AND')
+    public function having($condition, $operator = 'AND')
     {
         if (!empty($condition)) {
-            $ret = $this->buildWhere($condition, $oprator);
+            $ret = $this->buildWhere($condition, $operator);
             if (is_array($ret)) {
                 $this->sqls['having'] = $ret[0];
                 $this->values = ArrayTool::replace($this->values, $ret[1]);
@@ -355,16 +340,12 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง INSERT INTO
-     * สามารถกำหนดค่า value เป็น query string ได้
+     * Create INSERT INTO command
+     * Can set value as query string
      *
-     * @assert insert('user', array('id' => 1, 'name' => 'test'))->text() [==] "INSERT INTO `user` (`id`, `name`) VALUES (1, 'test')"
-     * @assert insert('user', array('id' => 1, 'name' => 'SQL(SELECT username FROM user WHERE id=1)'))->text() [==] "INSERT INTO `user` (`id`, `name`) VALUES (1, (SELECT username FROM user WHERE id=1))"
-     * @assert insert('user', array('id' => 1, 'name' => 'SQL()'))->text() [==] "INSERT INTO `user` (`id`, `name`) VALUES (1, 'SQL()')"
-     *
-     * @param string $table ชื่อตาราง
-     * @param mixed  $datas รูปแบบ array(key1=>value1, key2=>value2)
-     * @param array  $fields ระบุคอลัมน์ที่ต้องการ หาก $datas เป็น QueryBuilder
+     * @param string $table table name
+     * @param mixed  $datas format array(key1=>value1, key2=>value2)
+     * @param array  $fields specify columns if $datas is QueryBuilder
      *
      * @return static
      */
@@ -390,13 +371,11 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง INSERT INTO
-     * โดยทำการตรวจสอบ KEY ถ้ามีอยู่แล้วจะเป็นการ UPDATE ข้อมูล
+     * Create INSERT INTO command
+     * Check KEY if exists it will UPDATE data
      *
-     * @assert insertOrUpdate('user', array('id' => 1, 'name' => 'test'))->text() [==] "INSERT INTO `user` (`id`, `name`) VALUES (1, 'test') ON DUPLICATE KEY UPDATE `id`=VALUES(`id`), `name`=VALUES(`name`)"
-     *
-     * @param string $table ชื่อตาราง
-     * @param array  $datas รูปแบบ array(key1=>value1, key2=>value2)
+     * @param string $table table name
+     * @param array  $datas format array(key1=>value1, key2=>value2)
      *
      * @return static
      */
@@ -411,18 +390,11 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * สร้างคำสั่ง JOIN
+     * Create JOIN command
      *
-     * @assert join('user U', 'INNER', 1)->text() [==] " INNER JOIN `user` AS U ON `id` = 1"
-     * @assert join('user U', 'INNER', array('U.id', 'A.id'))->text() [==] " INNER JOIN `user` AS U ON U.`id` = A.`id`"
-     * @assert join('user U', 'INNER', array('U.id', '=', 'A.id'))->text() [==] " INNER JOIN `user` AS U ON U.`id` = A.`id`"
-     * @assert join('user U', 'INNER', array('id', '=', 1))->text() [==] " INNER JOIN `user` AS U ON `id` = 1"
-     * @assert join('user U', 'INNER', array(array('U.id', 'A.id'), array('U.id', 'A.id')))->text() [==] " INNER JOIN `user` AS U ON U.`id` = A.`id` AND U.`id` = A.`id`"
-     *
-     * @param string       $table ชื่อตารางที่ต้องการ join เช่น table alias
-     * @param string|array $table ชื่อตารางที่ต้องการ join เช่น table alias หรือ (QueryBuilder, alias)
-     * @param string       $type  เข่น INNER OUTER LEFT RIGHT
-     * @param mixed        $on    query string หรือ array
+     * @param string|array $table table name must have alias or (QueryBuilder, alias)
+     * @param string       $type  like INNER OUTER LEFT RIGHT
+     * @param mixed        $on    query string or array
      *
      * @return static
      */
@@ -439,13 +411,10 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * จำกัดผลลัพท์ และกำหนดรายการเริ่มต้น
+     * Limit results and set starting record
      *
-     * @assert limit(10)->text() [==] " LIMIT 10"
-     * @assert limit(10, 1)->text() [==] " LIMIT 1,10"
-     *
-     * @param int $count จำนวนผลลัท์ที่ต้องการ
-     * @param int $start รายการเริ่มต้น
+     * @param int $count number of results needed
+     * @param int $start starting record
      *
      * @return static
      */
@@ -461,14 +430,11 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นสร้าง SQL NOT EXISTS
+     * Create SQL NOT EXISTS
      *
-     * @assert select()->from('user U')->notExists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE NOT EXISTS (SELECT 1 FROM `useronline` WHERE `member_id` = U.`id`)'
-     * @assert select()->from('user U')->where(array('U.id', 1))->notExists('useronline', array('member_id', 'U.id'))->text() [==] 'SELECT * FROM `user` AS U WHERE U.`id` = 1 AND NOT EXISTS (SELECT 1 FROM `useronline` WHERE `member_id` = U.`id`)'
-     *
-     * @param string $table     ชื่อตาราง
+     * @param string $table     table name
      * @param mixed  $condition query WHERE
-     * @param string $operator  (optional) เช่น AND หรือ OR
+     * @param string $operator  (optional) like AND or OR
      *
      * @return static
      */
@@ -487,22 +453,18 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง WHERE ถ้ามีข้อมูล Where ก่อนหน้าจะ OR กับข้อมูลก่อนหน้า
+     * Create WHERE condition with OR operator if previous WHERE exists
      *
-     * @assert where(array('U.id', 1))->orWhere([])->text() [==] " WHERE U.`id` = 1"
-     * @assert where(array('U.id', 1))->orWhere(array('U.id', 2))->text() [==] " WHERE (U.`id` = 1) OR (U.`id` = 2)"
-     * @assert where(array('U.id', 1))->orWhere(array(Sql::BETWEEN('id', 0, 1), Sql::BETWEEN('id', 0, 1)), 'OR')->text() [==] " WHERE (U.`id` = 1) OR (`id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1)"
-     *
-     * @param mixed  $condition query string หรือ array
-     * @param string $oprator   defaul AND
-     * @param string $id        Primary Key เช่น id (default)
+     * @param mixed  $condition query string or array
+     * @param string $operator   default AND
+     * @param string $id        Primary Key like id (default)
      *
      * @return static
      */
-    public function orWhere($condition, $oprator = 'AND', $id = 'id')
+    public function orWhere($condition, $operator = 'AND', $id = 'id')
     {
         if (!empty($condition)) {
-            $ret = $this->buildWhere($condition, $oprator, $id);
+            $ret = $this->buildWhere($condition, $operator, $id);
             if (is_array($ret)) {
                 $this->sqls['where'] = empty($this->sqls['where']) ? $ret[0] : '('.$this->sqls['where'].') OR ('.$ret[0].')';
                 $this->values = ArrayTool::replace($this->values, $ret[1]);
@@ -514,14 +476,9 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * สร้าง query เรียงลำดับ
+     * Create ORDER BY query
      *
-     * @assert order('id', 'id ASC')->text() [==] " ORDER BY `id`, `id` ASC"
-     * @assert order('id ASC')->text() [==] " ORDER BY `id` ASC"
-     * @assert order('user.id DESC')->text() [==] " ORDER BY `user`.`id` DESC"
-     * @assert order('id ASCD')->text() [==] ""
-     *
-     * @param mixed $columns array('field ASC','field DESC') หรือ 'field ASC', 'field DESC', ...
+     * @param mixed $columns array('field ASC','field DESC') or 'field ASC', 'field DESC', ...
      *
      * @return static
      */
@@ -538,22 +495,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * SELECT `field1`, `field2`, `field3`, ...
      *
-     * @assert select('U.id', 'email name', 'module')->text() [==] "SELECT U.`id`,`email` AS `name`,`module`"
-     * @assert select('"email" name', '0 id', '0 `ไอดี`')->text() [==] "SELECT 'email' AS `name`,0 AS `id`,0 AS `ไอดี`"
-     * @assert select("'email' name", '0 AS id', '0 AS ไอดี')->text() [==] "SELECT 'email' AS `name`,0 AS `id`,0 AS `ไอดี`"
-     * @assert select()->text()  [==] "SELECT *"
-     * @assert select()->where(array('domain', Sql::strValue('kotchasan.com')))->text() [==] "SELECT * WHERE `domain` = 'kotchasan.com'"
-     * @assert select('name `ชื่อ นามสกุล`', 'U.`id_card` AS `เลขประชาชน`')->text() [==] "SELECT `name` AS `ชื่อ นามสกุล`,U.`id_card` AS `เลขประชาชน`"
-     * @assert select('table.field', '`table`.`field`')->text() [==] "SELECT `table`.`field`,`table`.`field`"
-     * @assert select('table.field field', '`table`.`field` `field`')->text() [==] "SELECT `table`.`field` AS `field`,`table`.`field` AS `field`"
-     * @assert select('table.field AS field', '`table`.`field` AS `field`')->text() [==] "SELECT `table`.`field` AS `field`,`table`.`field` AS `field`"
-     * @assert select('U.field', 'U1.`field`', 'NULL id')->text() [==] "SELECT U.`field`,U1.`field`,NULL AS `id`"
-     * @assert select('U.field field', 'U1.`field` `field`')->text() [==] "SELECT U.`field` AS `field`,U1.`field` AS `field`"
-     * @assert select('U.field AS field', 'U1.`field` AS `field`')->text() [==] "SELECT U.`field` AS `field`,U1.`field` AS `field`"
-     * @assert select(Sql::YEAR('create_date', 'year'), Sql::MONTH('create_date', 'month'))->text() [==] "SELECT YEAR(`create_date`) AS `year`,MONTH(`create_date`) AS `month`"
-     * @assert select(array(Sql::YEAR('create_date', 'year'), Sql::MONTH('create_date', 'month')))->text() [==] "SELECT YEAR(`create_date`) AS `year`,MONTH(`create_date`) AS `month`"
-     *
-     * @param string $fields (option) รายชื่อฟิลด์ field1, field2, field3, ...
+     * @param string $fields (option) field names field1, field2, field3, ...
      *
      * @return static
      */
@@ -577,23 +519,19 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * สร้าง query สำหรับการนับจำนวน record
+     * Create query for counting records
      *
-     * @assert selectCount()->from('user')->text() [==] "SELECT COUNT(*) AS `count` FROM `user`"
-     * @assert selectCount('id ids')->from('user')->text() [==] "SELECT COUNT(`id`) AS `ids` FROM `user`"
-     * @assert selectCount('id ids', 'field alias')->from('user')->text() [==] "SELECT COUNT(`id`) AS `ids`, COUNT(`field`) AS `alias` FROM `user`"
-     *
-     * @param mixed $fileds (option) 'field alias'
+     * @param mixed $fields (option) 'field alias'
      *
      * @return static
      */
-    public function selectCount($fileds = '* count')
+    public function selectCount($fields = '* count')
     {
-        $args = func_num_args() == 0 ? [$fileds] : func_get_args();
+        $args = func_num_args() == 0 ? [$fields] : func_get_args();
         $sqls = [];
         foreach ($args as $item) {
             if (preg_match('/^([a-z0-9_\*]+)([\s]+([a-z0-9_]+))?$/', trim($item), $match)) {
-                $sqls[] = 'COUNT('.($match[1] == '*' ? '*' : '`'.$match[1].'`').')'.(isset($match[3]) ? ' AS `'.$match[3].'`' : '');
+                $sqls[] = 'COUNT('.($match[1] == '*' ? '*' : $this->db->quoteIdentifier($match[1])).')'.(isset($match[3]) ? ' AS '.$this->db->quoteIdentifier($match[3]) : '');
             }
         }
         if (count($sqls) > 0) {
@@ -606,9 +544,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * SELECT DISTINCT `field1`, `field2`, `field3`, ...
      *
-     * @assert selectDistinct('id')->from('user')->text() [==] "SELECT DISTINCT `id` FROM `user`"
-     *
-     * @param string $fields (option) รายชื่อฟิลด์ field1, field2, field3, ...
+     * @param string $fields (option) field names field1, field2, field3, ...
      *
      * @return static
      */
@@ -622,19 +558,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * UPDATE ..... SET
      *
-     * @assert update('user')->set(array('key1' => 'value1', 'key2' => 2))->where(1)->text() [==] "UPDATE `user` SET `key1`=:Skey1, `key2`=:Skey2 WHERE `id` = 1"
-     * @assert update('user U')->set(array('U.key1' => 'value1', 'U.key2' => 2))->where(array('U.id', 1))->text() [==] "UPDATE `user` AS U SET U.`key1`=:SUkey1, U.`key2`=:SUkey2 WHERE U.`id` = 1"
-     * @assert update('user')->set(array('key1' => '(...)'))->text() [==] "UPDATE `user` SET `key1`=(...)"
-     * @assert update('user')->set(array('key1' => 'test (...)'))->text() [==] "UPDATE `user` SET `key1`=:Skey1"
-     * @assert update('user')->set('`reply`=`reply`+1')->text() [==] "UPDATE `user` SET `reply`=`reply`+1"
-     * @assert update('user')->set(array('id' => 1, '`reply`=`reply`+1'))->text() [==] "UPDATE `user` SET `id`=:Sid, `reply`=`reply`+1"
-     * @assert update('user')->set(array('create_date' => Sql::NOW()))->text() [==] "UPDATE `user` SET `create_date`=NOW()"
-     * @assert update('user')->set(array('create_date' => Sql::create('SELECT * FROM `a`')))->text() [==] "UPDATE `user` SET `create_date`=SELECT * FROM `a`"
-     * @assert update('user')->set(array('create_date' => 'U.id'))->text() [==] "UPDATE `user` SET `create_date`=U.`id`"
-     * @assert update('user')->set(array('create_date' => '111.11'))->text() [==] "UPDATE `user` SET `create_date`=:Screatedate"
-     * @assert update('user')->set(array('create_date' => 'user.user'))->text() [==] "UPDATE `user` SET `create_date`=:Screatedate"
-     *
-     * @param array|string $datas รูปแบบ array(key1 => value1, query_string) หรือ query_string
+     * @param array|string $datas format array(key1 => value1, query_string) or query_string
      *
      * @return static
      */
@@ -653,7 +577,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
                         $this->sqls['set'][$key] = $field.'='.$value->text();
                     } elseif (is_string($value)) {
                         if (preg_match('/^([A-Z][0-9]{0,2})\.`?([A-Za-z0-9_]+)`?$/', $value, $match)) {
-                            $this->sqls['set'][$key] = $field.'='.$match[1].'.`'.$match[2].'`';
+                            $this->sqls['set'][$key] = $field.'='.$match[1].'.'.$this->db->quoteIdentifier($match[2]);
                         } elseif (mb_strlen($value) > 2 && $value[0] === '(' && $value[mb_strlen($value) - 1] === ')') {
                             $this->sqls['set'][$key] = $field.'='.$value;
                         } else {
@@ -673,8 +597,8 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * คืนค่าข้อมูลเป็น Array
-     * ฟังก์ชั่นนี้ใช้เรียกก่อนการสอบถามข้อมูล
+     * Return data as Array
+     * This function is used before querying data
      *
      * @return static
      */
@@ -687,10 +611,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * UNION
      *
-     * @assert (Sql::create('SELECT * FROM `a`'), Sql::create('SELECT * FROM `b`'))->text() [==] "(SELECT * FROM `a`) UNION (SELECT * FROM `b`)"
-     * @assert (array(Sql::create('SELECT * FROM `a`'), Sql::create('SELECT * FROM `b`')))->text() [==] "(SELECT * FROM `a`) UNION (SELECT * FROM `b`)"
-     *
-     * @param array $querys แอเรย์ของ QueryBuilder หรือ Query String ที่จะนำม่า UNION
+     * @param array $querys array of QueryBuilder or Query String for UNION
      *
      * @return static
      */
@@ -714,10 +635,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * UNION ALL
      *
-     * @assert (Sql::create('SELECT * FROM `a`'), Sql::create('SELECT * FROM `b`'))->text() [==] "(SELECT * FROM `a`) UNION ALL (SELECT * FROM `b`)"
-     * @assert (array(Sql::create('SELECT * FROM `a`'), Sql::create('SELECT * FROM `b`')))->text() [==] "(SELECT * FROM `a`) UNION ALL (SELECT * FROM `b`)"
-     *
-     * @param array $querys แอเรย์ของ QueryBuilder หรือ Query String ที่จะนำม่า UNION ALL
+     * @param array $querys array of QueryBuilder or Query String for UNION ALL
      *
      * @return static
      */
@@ -741,9 +659,7 @@ class QueryBuilder extends \Kotchasan\Database\Query
     /**
      * UPDATE
      *
-     * @assert update('user')->set(array('key1'=>'value1', 'key2'=>2))->where(array(array('id', 1), array('id', 1)))->text() [==] "UPDATE `user` SET `key1`=:Skey1, `key2`=:Skey2 WHERE (`id` = 1 AND `id` = 1)"
-     *
-     * @param string $table [$table1, $table2, ....] ชื่อตาราง
+     * @param string $table table name
      *
      * @return static
      */
@@ -759,9 +675,9 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ล้างตาราง
+     * Empty table
      *
-     * @param string $table ชื่อตาราง
+     * @param string $table table name
      *
      * @return static
      */
@@ -772,46 +688,48 @@ class QueryBuilder extends \Kotchasan\Database\Query
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง WHERE
+     * Create WHERE command
      *
-     * @assert where([])->text() [==] ""
-     * @assert where(1)->text() [==] " WHERE `id` = 1"
-     * @assert where(array('id', 1))->text() [==] " WHERE `id` = 1"
-     * @assert where(array('id', '1'))->text() [==] " WHERE `id` = '1'"
-     * @assert where(array('domain', 'domain.tld'))->text() [==] " WHERE `domain` = 'domain.tld'"
-     * @assert where(array(1, 1))->text() [==] " WHERE 1 = 1"
-     * @assert where(array('U.id', 'G.id'))->text() [==] " WHERE U.`id` = G.`id`"
-     * @assert where(array('date', '2016-1-1 30:30'))->text() [==] " WHERE `date` = '2016-1-1 30:30'"
-     * @assert where(array('id', '=', 1))->text() [==] " WHERE `id` = 1"
-     * @assert where(Sql::create('`id`=1 OR (SELECT ....)'))->text() [==] " WHERE `id`=1 OR (SELECT ....)"
-     * @assert where(array('id', '=', 1))->text() [==] " WHERE `id` = 1"
-     * @assert where(array('id', 'IN', array(1, 2, '3')))->text() [==] " WHERE `id` IN (1, 2, '3')"
-     * @assert where(array(array('social', '0'), Sql::create('(...)')))->text() [==] " WHERE (`social` = '0' AND (...))"
-     * @assert where(array(array(Sql::MONTH('create_date'), 1), array(Sql::YEAR('create_date'), 1)))->text() [==] " WHERE (MONTH(`create_date`) = 1 AND YEAR(`create_date`) = 1)"
-     * @assert where(array(array('id', array(1, 'a')), array('id', array('G.id', 'G.`id2`'))))->text() [==] " WHERE (`id` IN (1, 'a') AND `id` IN (G.`id`, G.`id2`))"
-     * @assert where(array(array('id', array(1, 'a')), array('id', array('', 'th'))))->text() [==] " WHERE (`id` IN (1, 'a') AND `id` IN ('', 'th'))"
-     * @assert where(array('ip', 'NOT IN', array('', '192.168.1.104')))->text() [==] " WHERE `ip` NOT IN ('', '192.168.1.104')"
-     * @assert where(array('U.id', '(SELECT CASE END)'))->text() [==] " WHERE U.`id` = '(SELECT CASE END)'"
-     * @assert where(array(array(Sql::YEAR('create_date'), Sql::YEAR('S.`create_date`'))))->text() [==] " WHERE YEAR(`create_date`) = YEAR(S.`create_date`)"
-     * @assert where(array('U.id', Sql::strValue('G.id')))->text() [==] " WHERE U.`id` = 'G.id'"
-     * @assert where(Sql::ISNULL('U.id'))->text() [==] " WHERE U.`id` IS NULL"
-     * @assert where(array(array('create_date', 'A'), Sql::BETWEEN('id', 'ทดสอบ', 'ทดสอบ')))->text() [==] " WHERE (`create_date` = 'A' AND `id` BETWEEN 'ทดสอบ' AND 'ทดสอบ')"
-     * @assert where(array(array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1)), array(Sql::BETWEEN('id', 0, 1), 'OR', Sql::BETWEEN('id', 0, 1))), 'OR')->text() [==] " WHERE (`id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1 OR `id` BETWEEN 0 AND 1)"
-     * @assert where(array(array('username', NULL), array('username', '=', NULL), array('username', '!=', NULL)))->text() [==] " WHERE (`username` IS NULL AND `username` IS NULL AND `username` IS NOT NULL)"
-     *
-     * @param mixed  $condition query string หรือ array
-     * @param string $oprator   defaul AND
-     * @param string $id        Primary Key เช่น id (default)
+     * @param mixed  $condition query string or array
+     * @param string $operator   default AND
+     * @param string $id        Primary Key like id (default)
      *
      * @return static
      */
-    public function where($condition, $oprator = 'AND', $id = 'id')
+    public function where($condition, $operator = 'AND', $id = 'id')
     {
         if (!empty($condition)) {
-            $sql = Sql::WHERE($condition, $oprator, $id);
+            $sql = Sql::WHERE($condition, $operator, $id);
             $this->sqls['where'] = $sql->text();
             $this->values = $sql->getValues($this->values);
         }
         return $this;
+    }
+
+    /**
+     * Execute SQL command with special handling for insertOrUpdate
+     *
+     * @return mixed
+     */
+    protected function executeSpecial()
+    {
+        if (isset($this->sqls['function']) && $this->sqls['function'] === 'insertOrUpdate') {
+            // Call driver's insertOrUpdate method directly
+            return $this->db->insertOrUpdate($this->sqls['table'], $this->sqls['datas']);
+        }
+        return $this->execute();
+    }
+
+    /**
+     * Enhanced execute method that handles special cases
+     *
+     * @return mixed
+     */
+    public function save()
+    {
+        if (isset($this->sqls['function']) && $this->sqls['function'] === 'insertOrUpdate') {
+            return $this->executeSpecial();
+        }
+        return $this->execute();
     }
 }

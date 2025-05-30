@@ -20,24 +20,33 @@ use Kotchasan\ArrayTool;
 abstract class Query extends \Kotchasan\Database\Db
 {
     /**
-     * 1 แสดง Query ข้อความอย่างเดียวสำหรับใส่ลงใน console
-     * 2 แสดง Query ด้านล่างจอภาพ
+     * Debug mode
+     * 1 Show Query text only for console
+     * 2 Show Query at bottom of screen
      *
      * @var int
      */
     protected $debugger = 0;
+
     /**
-     * ตัวแปรเก็บคำสั่ง SQL
+     * Variable to store SQL commands
      *
      * @var array
      */
     protected $sqls;
 
     /**
-     * คำสั่งสำหรับแสดง Query ออกทางหน้าจอ
-     * ใช้ในการ debug Query
-     * 1 แสดง Query ข้อความอย่างเดียวสำหรับใส่ลงใน console
-     * 2 แสดง Query ด้านล่างจอภาพ
+     * Database Driver
+     *
+     * @var mixed
+     */
+    protected $db;
+
+    /**
+     * Command to display Query on screen
+     * Used for debugging Query
+     * 1 Show Query text only for console
+     * 2 Show Query at bottom of screen
      *
      * @param int $value
      */
@@ -48,24 +57,24 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * ฟังก์ชั่นอ่านชื่อตารางจากการตั้งค่าฐานข้อมุล
-     * คืนค่า ชื่อตารางรวม prefix ถ้าไม่มีชื่อกำหนดไว้ จะคืนค่า $table ครอบชื่อตารางด้วย ``
+     * Function to read table name from database settings
+     * Returns table name with prefix. If no name is defined, returns $table wrapped with table quotes
      *
-     * @param string $table ชื่อตารางตามที่กำหนดใน settings/datasbase.php
+     * @param string $table table name as defined in settings/database.php
      *
      * @return string
      */
     public function getFullTableName($table)
     {
-        $dbname = empty($this->db->settings->dbname) ? '' : '`'.$this->db->settings->dbname.'`.';
-        return $dbname.'`'.$this->getTableName($table).'`';
+        $dbname = empty($this->db->settings->dbname) ? '' : $this->db->quoteIdentifier($this->db->settings->dbname).'.';
+        return $dbname.$this->db->quoteTableName($this->getTableName($table));
     }
 
     /**
-     * ฟังก์ชั่นอ่านชื่อตารางจากการตั้งค่าฐานข้อมุล
-     * คืนค่า ชื่อตารางรวม prefix ถ้าไม่มีชื่อกำหนดไว้ จะคืนค่า $table
+     * Function to read table name from database settings
+     * Returns table name with prefix. If no name is defined, returns $table
      *
-     * @param string $table ชื่อตารางตามที่กำหนดใน settings/datasbase.php
+     * @param string $table table name as defined in settings/database.php
      *
      * @return string
      */
@@ -76,7 +85,7 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง SQL เป็นข้อความ
+     * Function to create SQL command as text
      *
      * @return string
      */
@@ -93,10 +102,10 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * ฟังก์ชั่นสร้างคีย์ สำหรับการ execute
+     * Function to create key for execution
      *
-     * @param string $name   ชื่อฟิลด์
-     * @param string $prefix คำนำหน้าชื่อฟิลด์ ใช้เพื่อป้องกันการใช้ตัวแปรซ้ำ
+     * @param string $name   field name
+     * @param string $prefix prefix for field name to prevent duplicate variables
      *
      * @return string
      */
@@ -106,9 +115,9 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * สร้าง query สำหรับ GROUP BY
+     * Create query for GROUP BY
      *
-     * @param array|string $fields array('U.id', 'U.username') หรือ string U.id
+     * @param array|string $fields array('U.id', 'U.username') or string U.id
      *
      * @return string
      */
@@ -122,12 +131,12 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * สร้างคำสั่ง JOIN
-     * ถ้าไม่มี alias คืนค่าว่าง
+     * Create JOIN command
+     * Returns empty if no alias
      *
-     * @param string|array $table ชื่อตารางต้องมี alias ด้วย หรือ (QueryBuilder, alias)
-     * @param string       $type  เข่น INNER OUTER LEFT RIGHT
-     * @param mixed        $on    query string หรือ array
+     * @param string|array $table table name must have alias or (QueryBuilder, alias)
+     * @param string       $type  like INNER OUTER LEFT RIGHT
+     * @param mixed        $on    query string or array
      *
      * @return string
      */
@@ -140,7 +149,7 @@ abstract class Query extends \Kotchasan\Database\Db
         } elseif (preg_match('/^([a-zA-Z0-9_]+)([\s]+(as|AS))?[\s]+([A-Z0-9]{1,3})$/', $table, $match)) {
             $sql = ' '.$type.' JOIN '.$this->getFullTableName($match[1]).' AS '.$match[4].' ON '.$sql;
         } elseif (preg_match('/^([a-z0-9_]+)([\s]+(as|AS))?[\s]+([a-z0-9_]+)$/', $table, $match)) {
-            $sql = ' '.$type.' JOIN '.$this->getFullTableName($match[1]).' AS `'.$match[4].'` ON '.$sql;
+            $sql = ' '.$type.' JOIN '.$this->getFullTableName($match[1]).' AS '.$this->db->quoteIdentifier($match[4]).' ON '.$sql;
         } else {
             $sql = ' '.$type.' JOIN '.$table.' ON '.$sql;
         }
@@ -152,9 +161,9 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * สร้าง query เรียงลำดับ
+     * Create order query
      *
-     * @param array|string $fields array('field ASC','field DESC') หรือ 'field ASC', 'field DESC', ...
+     * @param array|string $fields array('field ASC','field DESC') or 'field ASC', 'field DESC', ...
      *
      * @return string
      */
@@ -170,20 +179,20 @@ abstract class Query extends \Kotchasan\Database\Db
                 $sqls[] = $match[1];
             } elseif (preg_match('/^([A-Z][A-Z0-9]{0,2}\.)([a-zA-Z0-9_]+)([\s]{1,}(ASC|DESC|asc|desc))?$/', $item, $match)) {
                 // U.id DESC
-                $sqls[] = $match[1].'`'.$match[2].'`'.(isset($match[4]) ? " $match[4]" : '');
+                $sqls[] = $match[1].$this->db->quoteIdentifier($match[2]).(isset($match[4]) ? " $match[4]" : '');
             } elseif (preg_match('/^([a-zA-Z0-9_]+)(\.([a-zA-Z0-9_]+))?(([\s]+)?(ASC|DESC|asc|desc))?$/', $item, $match)) {
                 // field.id DESC
-                $sqls[] = '`'.$match[1].'`'.(empty($match[3]) ? '' : '.`'.$match[3].'`').(isset($match[6]) ? " $match[6]" : '');
+                $sqls[] = $this->db->quoteIdentifier($match[1]).(empty($match[3]) ? '' : '.'.$this->db->quoteIdentifier($match[3])).(isset($match[6]) ? " $match[6]" : '');
             } elseif (strtoupper($item) === 'RAND()') {
-                // RAND()
-                $sqls[] = 'RAND()';
+                // RAND() - handle database specific random functions
+                $sqls[] = $this->db->random();
             }
         }
         return implode(', ', $sqls);
     }
 
     /**
-     * ฟังก์ชั่นสร้าง query string สำหรับคำสั่ง SELECT
+     * Function to create query string for SELECT command
      *
      * @param string|array|QueryBuilder $fields
      * @param mixed $alias
@@ -196,10 +205,10 @@ abstract class Query extends \Kotchasan\Database\Db
             if (isset($fields[0])) {
                 if ($fields[0] instanceof QueryBuilder) {
                     // QueryBuilder
-                    $ret = '('.$fields[0]->text().') AS `'.$fields[1].'`';
+                    $ret = '('.$fields[0]->text().') AS '.$this->db->quoteIdentifier($fields[1]);
                 } elseif (is_string($fields[0]) && preg_match('/^([a-zA-Z0-9\\\]+)::([a-zA-Z0-9]+)$/', $fields[0], $match)) {
                     // Recordset
-                    $ret = '\''.addslashes($fields[0]).'\' AS `'.$fields[1].'`';
+                    $ret = '\''.addslashes($fields[0]).'\' AS '.$this->db->quoteIdentifier($fields[1]);
                 } else {
                     // multiples
                     $rets = [];
@@ -220,38 +229,38 @@ abstract class Query extends \Kotchasan\Database\Db
             $ret = '*';
         } elseif (preg_match('/^(NULL|[0-9]+)([\s]+as)?[\s]+`?([^`]+)`?$/i', $fields, $match)) {
             // 0 as alias, NULL as alias
-            $ret = $match[1].' AS `'.$match[3].'`';
+            $ret = $match[1].' AS '.$this->db->quoteIdentifier($match[3]);
         } elseif (preg_match('/^([\'"])(.*)\\1([\s]+as)?[\s]+`?([^`]+)`?$/i', $fields, $match)) {
             // 'string' as alias
-            $ret = "'$match[2]' AS `$match[4]`";
+            $ret = "'$match[2]' AS ".$this->db->quoteIdentifier($match[4]);
         } elseif (preg_match('/^([A-Z][A-Z0-9]{0,2})\.`?([\*a-zA-Z0-9_]+)`?(([\s]+(as|AS))?[\s]+`?([^`]+)`?)?$/', $fields, $match)) {
             if (is_string($alias)) {
                 // U.id alias U.* AS $alias
-                $ret = $match[1].'.'.($match[2] == '*' ? '*' : '`'.$match[2].'`').' AS `'.$alias.'`';
+                $ret = $match[1].'.'.($match[2] == '*' ? '*' : $this->db->quoteIdentifier($match[2])).' AS '.$this->db->quoteIdentifier($alias);
             } else {
                 // U.id alias U.* AS alias
-                $ret = $match[1].'.'.($match[2] == '*' ? '*' : '`'.$match[2].'`').(isset($match[6]) ? ' AS `'.$match[6].'`' : '');
+                $ret = $match[1].'.'.($match[2] == '*' ? '*' : $this->db->quoteIdentifier($match[2])).(isset($match[6]) ? ' AS '.$this->db->quoteIdentifier($match[6]) : '');
             }
         } elseif (preg_match('/^`?([a-z0-9_]+)`?\.`?([\*a-z0-9_]+)`?(([\s]+as)?[\s]+`?([^`]+)`?)?$/i', $fields, $match)) {
             // table.field alias
-            $ret = '`'.$match[1].'`.'.($match[2] == '*' ? '*' : '`'.$match[2].'`').(isset($match[5]) ? ' AS `'.$match[5].'`' : '');
+            $ret = $this->db->quoteIdentifier($match[1]).'.'.($match[2] == '*' ? '*' : $this->db->quoteIdentifier($match[2])).(isset($match[5]) ? ' AS '.$this->db->quoteIdentifier($match[5]) : '');
         } elseif (preg_match('/^`?([a-z0-9_]+)`?([\s]+as)?[\s]+`?([^`]+)`?$/i', $fields, $match)) {
-            // table.field
-            $ret = '`'.$match[1].'` AS `'.$match[3].'`';
+            // field AS alias
+            $ret = $this->db->quoteIdentifier($match[1]).' AS '.$this->db->quoteIdentifier($match[3]);
         } elseif (preg_match('/^SQL\((.+)\)$/', $fields, $match)) {
             // SQL command
             $ret = $match[1];
         } elseif (preg_match('/([a-z0-9_]+)/i', $fields, $match)) {
-            // field name เช่น id
-            $ret = '`'.$fields.'`';
+            // field name like id
+            $ret = $this->db->quoteIdentifier($fields);
         }
         return isset($ret) ? $ret : '';
     }
 
     /**
-     * แปลงข้อมูลรูปแบบ SQL
-     * รูปแบบ array('field1', 'condition', 'field2')
-     * ไม่ระบุ condition หมายถึง = หรือ IN
+     * Convert data to SQL format
+     * Format array('field1', 'condition', 'field2')
+     * No condition specified means = or IN
      *
      * @param array $params
      *
@@ -267,10 +276,10 @@ abstract class Query extends \Kotchasan\Database\Db
             }
             $key = $this->fieldName($params[0]);
             if (is_numeric($params[2]) || is_bool($params[2])) {
-                // value เป็นตัวเลข หรือ boolean
+                // value is number or boolean
                 $value = $params[2];
             } elseif (is_array($params[2])) {
-                // value เป็น array
+                // value is array
                 if ($params[1] == '=') {
                     $params[1] = 'IN';
                 }
@@ -284,16 +293,16 @@ abstract class Query extends \Kotchasan\Database\Db
                 }
                 $value = '('.implode(', ', $qs).')';
             } elseif (preg_match('/^\((.*)\)([\s]+as)?[\s]+([a-z0-9_]+)$/i', $params[2], $match)) {
-                // value เป็น query string
-                $value = "($match[1]) AS `$match[3]`";
+                // value is query string
+                $value = "($match[1]) AS ".$this->db->quoteIdentifier($match[3]);
             } elseif (preg_match('/^([A-Z][A-Z0-9]{0,2})\.([a-zA-Z0-9_]+)$/', $params[2], $match)) {
                 // U.id
-                $value = $match[1].'.`'.$match[2].'`';
+                $value = $match[1].'.'.$this->db->quoteIdentifier($match[2]);
             } elseif (preg_match('/^([a-z0-9_]+)\.([a-z0-9_]+)$/i', $params[2], $match)) {
-                // value เป็น table.field
-                $value = '`'.$match[1].'`.`'.$match[2].'`';
+                // value is table.field
+                $value = $this->db->quoteIdentifier($match[1]).'.'.$this->db->quoteIdentifier($match[2]);
             } else {
-                // value เป็น string
+                // value is string
                 $value = "'".$params[2]."'";
             }
             $params = $key.' '.$params[1].' '.$value;
@@ -302,12 +311,12 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง WHERE
-     * คืนค่า string สำหรับคำสั่ง WHERE หรือคืนค่า array(where, values) สำหรับใช้กับการ bind
+     * Function to create WHERE command
+     * Returns string for WHERE command or returns array(where, values) for use with bind
      *
      * @param mixed  $condition
-     * @param string $operator  (optional) เช่น AND หรือ OR
-     * @param string $id        (optional )ชื่อฟิลด์ที่เป็น key
+     * @param string $operator  (optional) like AND or OR
+     * @param string $id        (optional) field name that is key
      *
      * @return string|array
      */
@@ -335,7 +344,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 $ps = [];
                 foreach ($condition as $i => $item) {
                     $qs[] = $item->text();
-                    $ps += $item->getValues();
+                    $ps = array_merge($ps, $item->getValues([]));
                 }
                 $ret = implode(' '.$operator.' ', $qs);
                 if (!empty($ps)) {
@@ -345,7 +354,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 $ret = $this->whereValue($condition);
             }
         } elseif ($condition instanceof Sql) {
-            $values = $condition->getValues();
+            $values = $condition->getValues([]);
             if (empty($values)) {
                 $ret = $condition->text();
             } else {
@@ -355,19 +364,19 @@ abstract class Query extends \Kotchasan\Database\Db
             // primaryKey
             $ret = $this->fieldName($id).' = '.$condition;
         } else {
-            // พารามิเตอร์ ไม่ถูกต้อง
+            // Invalid parameters
             trigger_error('Invalid arguments in buildWhere('.var_export($condition, true).')', E_USER_ERROR);
         }
         return $ret;
     }
 
     /**
-     * ฟังก์ชั่นสร้างคำสั่ง WHERE และ values ไม่ใส่ alias ให้กับชื่อฟิลด์
-     * คืนค่า ($condition, $values)
+     * Function to create WHERE command and values without alias for field names
+     * Returns ($condition, $values)
      *
      * @param mixed  $condition
-     * @param string $operator  (optional) เช่น AND หรือ OR
-     * @param string $id        (optional )ชื่อฟิลด์ที่เป็น key
+     * @param string $operator  (optional) like AND or OR
+     * @param string $id        (optional) field name that is key
      *
      * @return array
      */
@@ -407,7 +416,7 @@ abstract class Query extends \Kotchasan\Database\Db
         } elseif (is_numeric($condition)) {
             // primaryKey
             $values = [":$id" => $condition];
-            $condition = "`$id` = :$id";
+            $condition = $this->db->quoteIdentifier($id)." = :$id";
         } else {
             $values = [];
         }
@@ -415,7 +424,7 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * แปลงข้อความสำหรับชื่อฟิลด์หรือชื่อตาราง
+     * Convert text for field name or table name
      *
      * @param string $name
      *
@@ -425,7 +434,7 @@ abstract class Query extends \Kotchasan\Database\Db
     {
         if (is_array($name)) {
             if ($name[0] instanceof QueryBuilder) {
-                $ret = '('.$name[0]->text().') AS `'.$name[1].'`';
+                $ret = '('.$name[0]->text().') AS '.$this->db->quoteIdentifier($name[1]);
             } else {
                 $rets = [];
                 foreach ($name as $item) {
@@ -439,30 +448,30 @@ abstract class Query extends \Kotchasan\Database\Db
             $name = trim($name);
             if (strpos($name, '(') !== false && preg_match('/^(.*?)(\s{0,}(as)?\s{0,}`?([a-z0-9_]+)`?)?$/i', $name, $match)) {
                 // (...) as pos
-                $ret = $match[1].(isset($match[4]) ? " AS `$match[4]`" : '');
+                $ret = $match[1].(isset($match[4]) ? " AS ".$this->db->quoteIdentifier($match[4]) : '');
             } elseif (preg_match('/^([A-Z][A-Z0-9]{0,2})\.([\*a-zA-Z0-9_]+)((\s+(as|AS))?\s+([a-zA-Z0-9_]+))?$/', $name, $match)) {
                 // U.id as user_id U.*
-                $ret = $match[1].'.'.($match[2] == '*' ? '*' : '`'.$match[2].'`').(isset($match[6]) ? ' AS `'.$match[6].'`' : '');
+                $ret = $match[1].'.'.($match[2] == '*' ? '*' : $this->db->quoteIdentifier($match[2])).(isset($match[6]) ? ' AS '.$this->db->quoteIdentifier($match[6]) : '');
             } elseif (preg_match('/^`?([a-z0-9_]+)`?\.([\*a-z0-9_]+)(([\s]+as)?[\s]+([a-z0-9_]+))?$/i', $name, $match)) {
                 // `user`.id, user.id as user_id
-                $ret = '`'.$match[1].'`.'.($match[2] == '*' ? '*' : '`'.$match[2].'`').(isset($match[5]) ? ' AS `'.$match[5].'`' : '');
+                $ret = $this->db->quoteIdentifier($match[1]).'.'.($match[2] == '*' ? '*' : $this->db->quoteIdentifier($match[2])).(isset($match[5]) ? ' AS '.$this->db->quoteIdentifier($match[5]) : '');
             } elseif (preg_match('/^([a-z0-9_]+)(([\s]+as)?[\s]+([a-z0-9_]+))?$/i', $name, $match)) {
                 // user as user_id
-                $ret = '`'.$match[1].'`'.(isset($match[4]) ? ' AS `'.$match[4].'`' : '');
+                $ret = $this->db->quoteIdentifier($match[1]).(isset($match[4]) ? ' AS '.$this->db->quoteIdentifier($match[4]) : '');
             } else {
-                $ret = $name == '*' ? '*' : '`'.$name.'`';
+                $ret = $name == '*' ? '*' : $this->db->quoteIdentifier($name);
             }
         } elseif ($name instanceof QueryBuilder || $name instanceof Sql) {
             $ret = $name->text();
         } else {
-            // พารามิเตอร์ ไม่ถูกต้อง
+            // Invalid parameters
             trigger_error('Invalid arguments in fieldName('.var_export($name, true).')', E_USER_ERROR);
         }
         return $ret;
     }
 
     /**
-     * แปลงข้อความสำหรับ value
+     * Convert text for value
      *
      * @param string $value
      *
@@ -479,7 +488,7 @@ abstract class Query extends \Kotchasan\Database\Db
         } elseif (is_numeric($value)) {
             $ret = $value;
         } elseif (preg_match('/^([a-z0-9_]+)\.([a-z0-9_]+)(([\s]+as)?[\s]+([a-z0-9]+))?$/i', $value, $match)) {
-            $ret = "`$match[1]`.`$match[2]`".(isset($match[5]) ? ' AS `'.$match[5].'`' : '');
+            $ret = $this->db->quoteIdentifier($match[1]).'.'.$this->db->quoteIdentifier($match[2]).(isset($match[5]) ? ' AS '.$this->db->quoteIdentifier($match[5]) : '');
         } else {
             $ret = '\''.$value.'\'';
         }
@@ -487,9 +496,9 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * ฟังก์ชั่นสำหรับจัดกลุ่มคำสั่ง และ เชื่อมแต่ละกลุ่มด้วย AND
+     * Function to group commands and connect each group with AND
      *
-     * @param array $params คำสั่ง รูปแบบ array('field1', 'condition', 'field2')
+     * @param array $params commands format array('field1', 'condition', 'field2')
      *
      * @return \Sql
      */
@@ -506,9 +515,9 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * ฟังก์ชั่นสำหรับจัดกลุ่มคำสั่ง และ เชื่อมแต่ละกลุ่มด้วย OR
+     * Function to group commands and connect each group with OR
      *
-     * @param array $params คำสั่ง รูปแบบ array('field1', 'condition', 'field2')
+     * @param array $params commands format array('field1', 'condition', 'field2')
      *
      * @return \Sql
      */
@@ -525,9 +534,9 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * ฟังก์ชั่นอ่านชื่อตารางและชื่อรอง และใส่ ` ครอบชื่อตารางด้วย
+     * Function to read table name and alias and wrap table name with quotes
      *
-     * @param string $table ชื่อตารางตามที่กำหนดใน settings/datasbase.php
+     * @param string $table table name as defined in settings/database.php
      *
      * @return string
      */
@@ -542,7 +551,7 @@ abstract class Query extends \Kotchasan\Database\Db
         } elseif (preg_match('/^([a-zA-Z0-9_]+)(\s+(as|AS))?[\s]+([A-Z0-9]{1,3})$/', $table, $match)) {
             $table = $this->getFullTableName($match[1]).' AS '.$match[4];
         } elseif (preg_match('/^([a-zA-Z0-9_]+)(\s+(as|AS))?[\s]+([a-zA-Z0-9]+)$/', $table, $match)) {
-            $table = $this->getFullTableName($match[1]).' AS `'.$match[4].'`';
+            $table = $this->getFullTableName($match[1]).' AS '.$this->db->quoteIdentifier($match[4]);
         } else {
             $table = $this->getFullTableName($table);
         }
@@ -550,7 +559,24 @@ abstract class Query extends \Kotchasan\Database\Db
     }
 
     /**
-     * สร้างคำสั่ง WHERE
+     * Get database type from driver
+     *
+     * @return string
+     */
+    public function getDatabaseType()
+    {
+        if ($this->db instanceof PdoMysqlDriver) {
+            return 'mysql';
+        } elseif ($this->db instanceof PdoMssqlDriver) {
+            return 'mssql';
+        } elseif ($this->db instanceof PdoPostgresqlDriver) {
+            return 'postgresql';
+        }
+        return 'mysql'; // default
+    }
+
+    /**
+     * Create WHERE command
      *
      * @param array    $params
      * @param int|null $i
@@ -573,7 +599,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 if ($operator == '=') {
                     $operator = 'IN';
                 }
-                $values = $value->getValues();
+                $values = $value->getValues([]);
                 if (empty($values)) {
                     $result = $key.' '.$operator.' ('.$value->text().')';
                 } else {
@@ -583,7 +609,7 @@ abstract class Query extends \Kotchasan\Database\Db
                 if ($operator == '=') {
                     $operator = 'IN';
                 }
-                $values = $value->getValues();
+                $values = $value->getValues([]);
                 if (empty($values)) {
                     $result = $key.' '.$operator.' ('.$value->text().')';
                 } else {
@@ -605,9 +631,9 @@ abstract class Query extends \Kotchasan\Database\Db
                         }
                     } elseif (is_string($item)) {
                         if (preg_match('/^([A-Z][A-Z0-9]{0,2})\.`?([a-zA-Z0-9_\-]+)`?$/', $item, $match)) {
-                            $qs[] = "$match[1].`$match[2]`";
+                            $qs[] = "$match[1].".$this->db->quoteIdentifier($match[2]);
                         } elseif (preg_match('/^`([a-zA-Z0-9_\-]+)`$/', $item, $match)) {
-                            $qs[] = "`$match[1]`";
+                            $qs[] = $this->db->quoteIdentifier($match[1]);
                         } else {
                             $k = $q.($i === null ? '' : $i).$a;
                             $qs[] = $k;
@@ -627,39 +653,39 @@ abstract class Query extends \Kotchasan\Database\Db
                     $result = $key.' IS NOT NULL';
                 }
             } elseif (empty($value)) {
-                // value เป็น string ว่าง, 0
+                // value is empty string, 0
                 $result = $key.' '.$operator.' '.(is_string($value) ? "'$value'" : $value);
             } elseif (preg_match('/^(\-?[0-9\s\.]+|true|false)$/i', $value)) {
-                // value เป็น ตัวเลข จุดทศนิยม เครื่องหมาย - / , และ true, false
-                // เช่น ตัวเลข, จำนวนเงิน, boolean
+                // value is number, decimal, -, /, , and true, false
+                // like number, money, boolean
                 $result = "$key $operator ".(is_string($value) ? "'$value'" : $value);
             } elseif (preg_match('/^SQL\((.+)\)$/', $value, $match)) {
                 // SQL()
                 $result = "$key $operator ($match[1])";
             } elseif (preg_match('/^[0-9\s\-:]+$/', $value)) {
-                // วันที่
+                // date
                 $result = "$key $operator '$value'";
             } elseif (preg_match('/^([A-Z][A-Z0-9]{0,2})\.([a-zA-Z0-9_\-]+)$/', $value, $match)) {
                 // U.id
                 if ($operator == 'IN' || $operator == 'NOT IN') {
-                    $result = "$key $operator ($match[1].`$match[2]`)";
+                    $result = "$key $operator ($match[1].".$this->db->quoteIdentifier($match[2]).")";
                 } else {
-                    $result = "$key $operator $match[1].`$match[2]`";
+                    $result = "$key $operator $match[1].".$this->db->quoteIdentifier($match[2]);
                 }
             } elseif (preg_match('/^`([a-zA-Z0-9_\-]+)`$/', $value, $match)) {
                 // `id`
                 if ($operator == 'IN' || $operator == 'NOT IN') {
-                    $result = "$key $operator (`$match[1]`)";
+                    $result = "$key $operator (".$this->db->quoteIdentifier($match[1]).")";
                 } else {
-                    $result = "$key $operator `$match[1]`";
+                    $result = "$key $operator ".$this->db->quoteIdentifier($match[1]);
                 }
             } else {
-                // value เป็น string
+                // value is string
                 $q = ':'.preg_replace('/[\.`]/', '', strtolower($key)).($i === null ? '' : $i);
                 $result = [$key.' '.$operator.' '.$q, [$q => $value]];
             }
         } elseif ($params instanceof QueryBuilder) {
-            $values = $params->getValues();
+            $values = $params->getValues([]);
             if (empty($values)) {
                 $result = '('.$params->text().')';
             } else {
