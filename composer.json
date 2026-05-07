@@ -1,6 +1,6 @@
 {
     "name": "goragodwiriya/kotchasan",
-    "description": "Kotchasan Web Framework",
+    "description": "Kotchasan PHP Framework",
     "keywords": ["framework", "php", "kotchasan"],
     "type": "library",
     "license": "MIT",

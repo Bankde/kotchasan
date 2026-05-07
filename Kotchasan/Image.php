@@ -1,22 +1,15 @@
 <?php
-/**
- * @filesource Kotchasan/Image.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * Class Image
+ * Kotchasan Image Class
  *
- * A utility class for image manipulation such as loading images from files or Base64 strings, resizing, cropping,
- * adding watermarks, and saving images in various formats.
+ * This class provides methods for loading, processing, and saving images.
+ * It supports various image formats and includes functionality for cropping,
+ * resizing, flipping, and adding watermarks to images.
  *
- * @see https://www.kotchasan.com/
+ * @package Kotchasan
  */
 class Image
 {

@@ -8,7 +8,7 @@ if (isset($_GET['fid']) && isset($_GET['w']) && isset($_GET['h'])) {
     Kotchasan::createWebApplication();
     // hotfix: these checks need to be changed later
     $ext = explode('.', $_GET['fid']);
-    if (Kotchasan\Login::isMember() && strpos($_GET['fid'], '..') === false && in_array(strtolower(end($ext)), array('jpg', 'jpeg', 'gif', 'png'))) {
+    if (Kotchasan\Login::isMember() && strpos($_GET['fid'], '..') === false && in_array(strtolower(end($ext)), ['jpg', 'jpeg', 'gif', 'png', 'webp'])) {
         // ค่าที่ส่งมา
         $id = ROOT_PATH.$_GET['fid'];
         $idW = $_GET['w'];

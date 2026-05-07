@@ -4,7 +4,7 @@
  * This class handles the rendering of the default view for the Index module.
  * For more information, please visit: https://www.kotchasan.com/
  *
- * @copyright 2016 Goragod.com
+ * @copyright 2024 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
  */

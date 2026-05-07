@@ -1,19 +1,13 @@
 <?php
-/**
- * @filesource Kotchasan/ArrayTool.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * Array function class
+ * Kotchasan ArrayTool Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides utility methods for manipulating arrays and objects.
+ *
+ * @package Kotchasan
  */
 class ArrayTool
 {

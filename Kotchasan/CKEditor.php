@@ -1,19 +1,13 @@
 <?php
-/**
- * @filesource Kotchasan/CKEditor.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * This class provides functions to work with CKEditor.
+ * Kotchasan CKEditor Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides a CKEditor component for rich text editing.
+ *
+ * @package Kotchasan
  */
 class CKEditor extends Html
 {

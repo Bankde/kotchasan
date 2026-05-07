@@ -1,15 +1,4 @@
 <?php
-/**
- * @filesource Kotchasan/load.php
- *
- * Main file for setting default configurations during framework loading
- * This file must be included before anything else.
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 /**
  * Error reporting level.
@@ -31,7 +20,7 @@ if (DEBUG > 0) {
     error_reporting(-1);
 } else {
     /* During production */
-    error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
+    error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 }
 
 /*
@@ -134,10 +123,13 @@ if (defined('HTTPS')) {
 if (defined('HOST')) {
     $host = HOST;
 } else {
-    if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+    if (PHP_SAPI === 'cli') {
+        // Set a default host when running from CLI
+        $host = 'localhost';
+    } elseif (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
         $host = trim(current(explode(',', $_SERVER['HTTP_X_FORWARDED_HOST'])));
     } elseif (empty($_SERVER['HTTP_HOST'])) {
-        $host = $_SERVER['SERVER_NAME'];
+        $host = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost';
     } else {
         $host = $_SERVER['HTTP_HOST'];
     }
@@ -256,7 +248,7 @@ if (DEBUG != 2) {
         }
 
         // Create a log entry with the error information
-        \Kotchasan\Log\Logger::create()->error('<br>'.$type.' : <em>'.$errstr.'</em> in <b>'.$errfile.'</b> on line <b>'.$errline.'</b>');
+        \Kotchasan\Logger::create()->error('<br>'.$type.' : <em>'.$errstr.'</em> in <b>'.$errfile.'</b> on line <b>'.$errline.'</b>');
     });
 
     set_exception_handler(function ($e) {
@@ -275,7 +267,7 @@ if (DEBUG != 2) {
         }
 
         // Create a log entry with the exception information
-        \Kotchasan\Log\Logger::create()->error($error);
+        \Kotchasan\Logger::create()->error($error);
     });
 }
 
@@ -318,43 +310,79 @@ function getClassPath($className)
  */
 spl_autoload_register(function ($className) {
     $files = [
-        'Kotchasan\Cache\ApcCache' => 'Cache/ApcCache.php',
-        'Kotchasan\Cache\Cache' => 'Cache/Cache.php',
-        'Kotchasan\Cache\CacheItem' => 'Cache/CacheItem.php',
-        'Kotchasan\Cache\Exception' => 'Cache/Exception.php',
+        'Kotchasan\Cache\CacheFactory' => 'Cache/CacheFactory.php',
+        'Kotchasan\Cache\CacheInterface' => 'Cache/CacheInterface.php',
         'Kotchasan\Cache\FileCache' => 'Cache/FileCache.php',
-        'Kotchasan\Database\Db' => 'Database/Db.php',
-        'Kotchasan\Database\DbCache' => 'Database/DbCache.php',
-        'Kotchasan\Database\Driver' => 'Database/Driver.php',
-        'Kotchasan\Database\Exception' => 'Database/Exception.php',
-        'Kotchasan\Database\PdoMysqlDriver' => 'Database/PdoMysqlDriver.php',
-        'Kotchasan\Database\Query' => 'Database/Query.php',
-        'Kotchasan\Database\QueryBuilder' => 'Database/QueryBuilder.php',
-        'Kotchasan\Database\Schema' => 'Database/Schema.php',
+        'Kotchasan\Cache\MemoryCache' => 'Cache/MemoryCache.php',
+        'Kotchasan\Cache\QueryCache' => 'Cache/QueryCache.php',
+        'Kotchasan\Cache\RedisCache' => 'Cache/RedisCache.php',
+        'Kotchasan\Connection\Connection' => 'Connection/Connection.php',
+        'Kotchasan\Connection\ConnectionInterface' => 'Connection/ConnectionInterface.php',
+        'Kotchasan\Connection\ConnectionManager' => 'Connection/ConnectionManager.php',
+        'Kotchasan\Connection\DriverInterface' => 'Connection/DriverInterface.php',
+        'Kotchasan\Connection\MSSQLDriver' => 'Connection/MSSQLDriver.php',
+        'Kotchasan\Connection\MySQLDriver' => 'Connection/MySQLDriver.php',
+        'Kotchasan\Connection\PostgreSQLDriver' => 'Connection/PostgreSQLDriver.php',
+        'Kotchasan\Connection\SQLiteDriver' => 'Connection/SQLiteDriver.php',
+        'Kotchasan\Database\TableConfiguration' => 'Database/TableConfiguration.php',
         'Kotchasan\Database\Sql' => 'Database/Sql.php',
-        'Kotchasan\Http\Message' => 'Http/Message.php',
-        'Kotchasan\Http\NotFound' => 'Http/NotFound.php',
+        'Kotchasan\Exception\ConfigurationException' => 'Exception/ConfigurationException.php',
+        'Kotchasan\Exception\DatabaseException' => 'Exception/DatabaseException.php',
+        'Kotchasan\Execution\PDOStatement' => 'Execution/PDOStatement.php',
+        'Kotchasan\Execution\StatementInterface' => 'Execution/StatementInterface.php',
+        'Kotchasan\Http\Application' => 'Http/Application.php',
+        'Kotchasan\Http\Auth\AuthFactory' => 'Http/Auth/AuthFactory.php',
+        'Kotchasan\Http\Controller\ApiController' => 'Http/Controller/ApiController.php',
+        'Kotchasan\Http\InputItem' => 'Http/InputItem.php',
+        'Kotchasan\Http\Inputs' => 'Http/Inputs.php',
+        'Kotchasan\Http\Request' => 'Http/Request.php',
         'Kotchasan\Http\Response' => 'Http/Response.php',
+        'Kotchasan\Http\Router' => 'Http/Router.php',
         'Kotchasan\Http\Stream' => 'Http/Stream.php',
         'Kotchasan\Http\UploadedFile' => 'Http/UploadedFile.php',
-        'Kotchasan\Log\AbstractLogger' => 'Log/AbstractLogger.php',
-        'Kotchasan\Log\Logger' => 'Log/Logger.php',
-        'Kotchasan\Orm\Field' => 'Orm/Field.php',
-        'Kotchasan\Orm\Recordset' => 'Orm/Recordset.php',
-        'Kotchasan\PHPMailer\class' => 'PHPMailer/class.php',
-        'Kotchasan\PHPMailer\class.smtp' => 'PHPMailer/class.smtp.php',
-        'Psr\Cache\CacheItemInterface' => 'Psr/Cache/CacheItemInterface.php',
-        'Psr\Cache\CacheItemPoolInterface' => 'Psr/Cache/CacheItemPoolInterface.php',
+        'Kotchasan\Http\Uri' => 'Http/Uri.php',
+        'Kotchasan\Http\Middleware\AuthorizationMiddleware' => 'Http/Middleware/AuthorizationMiddleware.php',
+        'Kotchasan\Http\Middleware\BasicAuthMiddleware' => 'Http/Middleware/BasicAuthMiddleware.php',
+        'Kotchasan\Http\Middleware\BearerTokenAuthMiddleware' => 'Http/Middleware/BearerTokenAuthMiddleware.php',
+        'Kotchasan\Http\Middleware\DigestAuthMiddleware' => 'Http/Middleware/DigestAuthMiddleware.php',
+        'Kotchasan\Http\Middleware\JwtMiddleware' => 'Http/Middleware/JwtMiddleware.php',
+        'Kotchasan\Http\Middleware\MiddlewareInterface' => 'Http/Middleware/MiddlewareInterface.php',
+        'Kotchasan\Http\Middleware\BaseMiddleware' => 'Http/Middleware/BaseMiddleware.php',
+        'Kotchasan\Http\Middleware\SecurityMiddleware' => 'Http/Middleware/SecurityMiddleware.php',
+        'Kotchasan\Logger\ConsoleLogger' => 'Logger/ConsoleLogger.php',
+        'Kotchasan\Logger\FileLogger' => 'Logger/FileLogger.php',
+        'Kotchasan\Logger\Logger' => 'Logger/Logger.php',
+        'Kotchasan\Logger\LoggerInterface' => 'Logger/LoggerInterface.php',
+        'Kotchasan\Logger\QueryLogger' => 'Logger/QueryLogger.php',
+        'Kotchasan\Logger\QueryLoggerInterface' => 'Logger/QueryLoggerInterface.php',
+        'Kotchasan\Psr\Http\Message\UploadedFileInterface' => 'Psr/Http/Message/UploadedFileInterface.php',
         'Psr\Http\Message\ResponseInterface' => 'Psr/Http/Message/ResponseInterface.php',
-        'Psr\Http\Message\ServerRequestInterface' => 'Psr/Http/Message/ServerRequestInterface.php',
-        'Psr\Http\Message\StreamInterface' => 'Psr/Http/Message/StreamInterface.php',
         'Psr\Http\Message\UploadedFileInterface' => 'Psr/Http/Message/UploadedFileInterface.php',
-        'Psr\Log\AbstractLogger' => 'Psr/Log/AbstractLogger.php',
-        'Psr\Log\LogLevel' => 'Psr/Log/LogLevel.php',
-        'Psr\Log\LoggerAwareInterface' => 'Psr/Log/LoggerAwareInterface.php',
-        'Psr\Log\LoggerInterface' => 'Psr/Log/LoggerInterface.php',
-        'Psr\Log\LoggerTrait' => 'Psr/Log/LoggerTrait.php',
-        'Psr\Log\NullLogger' => 'Psr/Log/NullLogger.php',
+        'Kotchasan\QueryBuilder\DeleteBuilder' => 'QueryBuilder/DeleteBuilder.php',
+        'Kotchasan\QueryBuilder\Factory\SqlBuilderFactory' => 'QueryBuilder/Factory/SqlBuilderFactory.php',
+        'Kotchasan\QueryBuilder\Functions\AbstractSQLFunctionBuilder' => 'QueryBuilder/Functions/AbstractSQLFunctionBuilder.php',
+        'Kotchasan\QueryBuilder\Functions\FunctionBuilderFactory' => 'QueryBuilder/Functions/FunctionBuilderFactory.php',
+        'Kotchasan\QueryBuilder\Functions\JSONFunctions' => 'QueryBuilder/Functions/JSONFunctions.php',
+        'Kotchasan\QueryBuilder\Functions\MySQLFunctionBuilder' => 'QueryBuilder/Functions/MySQLFunctionBuilder.php',
+        'Kotchasan\QueryBuilder\Functions\PostgreSQLFunctionBuilder' => 'QueryBuilder/Functions/PostgreSQLFunctionBuilder.php',
+        'Kotchasan\QueryBuilder\Functions\SQLFunctionBuilderInterface' => 'QueryBuilder/Functions/SQLFunctionBuilderInterface.php',
+        'Kotchasan\QueryBuilder\Functions\SQLiteFunctionBuilder' => 'QueryBuilder/Functions/SQLiteFunctionBuilder.php',
+        'Kotchasan\QueryBuilder\Functions\SQLServerFunctionBuilder' => 'QueryBuilder/Functions/SQLServerFunctionBuilder.php',
+        'Kotchasan\QueryBuilder\SqlBuilder\AbstractSqlBuilder' => 'QueryBuilder/SqlBuilder/AbstractSqlBuilder.php',
+        'Kotchasan\QueryBuilder\SqlBuilder\MySqlSqlBuilder' => 'QueryBuilder/SqlBuilder/MySqlSqlBuilder.php',
+        'Kotchasan\QueryBuilder\SqlBuilder\PostgreSqlSqlBuilder' => 'QueryBuilder/SqlBuilder/PostgreSqlSqlBuilder.php',
+        'Kotchasan\QueryBuilder\SqlBuilder\SqlBuilderInterface' => 'QueryBuilder/SqlBuilder/SqlBuilderInterface.php',
+        'Kotchasan\QueryBuilder\SqlBuilder\SqliteSqlBuilder' => 'QueryBuilder/SqlBuilder/SqliteSqlBuilder.php',
+        'Kotchasan\QueryBuilder\SqlBuilder\SqlServerSqlBuilder' => 'QueryBuilder/SqlBuilder/SqlServerSqlBuilder.php',
+        'Kotchasan\QueryBuilder\InsertBuilder' => 'QueryBuilder/InsertBuilder.php',
+        'Kotchasan\QueryBuilder\MySQLFunctionBuilder' => 'QueryBuilder/MySQLFunctionBuilder.php',
+        'Kotchasan\QueryBuilder\QueryBuilderInterface' => 'QueryBuilder/QueryBuilderInterface.php',
+        'Kotchasan\QueryBuilder\QueryBuilder' => 'QueryBuilder/QueryBuilder.php',
+        'Kotchasan\QueryBuilder\RawExpression' => 'QueryBuilder/RawExpression.php',
+        'Kotchasan\QueryBuilder\SelectBuilder' => 'QueryBuilder/SelectBuilder.php',
+        'Kotchasan\QueryBuilder\UpdateBuilder' => 'QueryBuilder/UpdateBuilder.php',
+        'Kotchasan\Result\PDOResult' => 'Result/PDOResult.php',
+        'Kotchasan\Result\ResultInterface' => 'Result/ResultInterface.php',
         'Kotchasan\Accordion' => 'Accordion.php',
         'Kotchasan\ArrayTool' => 'ArrayTool.php',
         'Kotchasan\Barcode' => 'Barcode.php',
@@ -364,25 +392,26 @@ spl_autoload_register(function ($className) {
         'Kotchasan\Csv' => 'Csv.php',
         'Kotchasan\Curl' => 'Curl.php',
         'Kotchasan\Currency' => 'Currency.php',
+        'Kotchasan\Database' => 'Database.php',
+        'Kotchasan\DataTable' => 'DataTable.php',
+        'Kotchasan\Date' => 'Date.php',
         'Kotchasan\DOMNode' => 'DOMNode.php',
         'Kotchasan\DOMParser' => 'DOMParser.php',
-        'Kotchasan\DataTable' => 'DataTable.php',
-        'Kotchasan\Database' => 'Database.php',
-        'Kotchasan\Date' => 'Date.php',
         'Kotchasan\Email' => 'Email.php',
         'Kotchasan\File' => 'File.php',
         'Kotchasan\Files' => 'Files.php',
         'Kotchasan\Form' => 'Form.php',
         'Kotchasan\Grid' => 'Grid.php',
+        'Kotchasan\Htmldoc' => 'Htmldoc.php',
         'Kotchasan\Html' => 'Html.php',
         'Kotchasan\HtmlTable' => 'HtmlTable.php',
-        'Kotchasan\Htmldoc' => 'Htmldoc.php',
         'Kotchasan\Image' => 'Image.php',
-        'Kotchasan\InputItem' => 'InputItem.php',
-        'Kotchasan\Inputs' => 'Inputs.php',
+        'Kotchasan\Input' => 'Input.php',
+        'Kotchasan\JwtMiddleware' => 'JwtMiddleware.php',
         'Kotchasan\Jwt' => 'Jwt.php',
         'Kotchasan\Language' => 'Language.php',
         'Kotchasan\ListItem' => 'ListItem.php',
+        'Kotchasan\Logger' => 'Logger.php',
         'Kotchasan\Login' => 'Login.php',
         'Kotchasan\Menu' => 'Menu.php',
         'Kotchasan\Mime' => 'Mime.php',
@@ -392,14 +421,13 @@ spl_autoload_register(function ($className) {
         'Kotchasan\Pdf' => 'Pdf.php',
         'Kotchasan\Promptpay' => 'Promptpay.php',
         'Kotchasan\Province' => 'Province.php',
+        'Kotchasan\Session' => 'Session.php',
         'Kotchasan\Singleton' => 'Singleton.php',
         'Kotchasan\Tab' => 'Tab.php',
         'Kotchasan\Template' => 'Template.php',
         'Kotchasan\Text' => 'Text.php',
         'Kotchasan\Validator' => 'Validator.php',
         'Kotchasan\View' => 'View.php',
-        'Kotchasan\load' => 'load.php',
-        'Kotchasan\InputItemException' => 'InputItemException.php',
         'Kotchasan\Xls' => 'Xls.php'
     ];
 
@@ -417,15 +445,23 @@ spl_autoload_register(function ($className) {
 /**
  * Load initial classes
  */
-require VENDOR_DIR.'KBase.php';
-require VENDOR_DIR.'Config.php';
-require VENDOR_DIR.'Psr/Http/Message/MessageInterface.php';
-require VENDOR_DIR.'Psr/Http/Message/RequestInterface.php';
-require VENDOR_DIR.'Psr/Http/Message/UriInterface.php';
-require VENDOR_DIR.'Http/AbstractMessage.php';
-require VENDOR_DIR.'Http/AbstractRequest.php';
-require VENDOR_DIR.'Http/Request.php';
-require VENDOR_DIR.'Http/Uri.php';
-require VENDOR_DIR.'Router.php';
-require VENDOR_DIR.'Kotchasan.php';
-require VENDOR_DIR.'Controller.php';
+require_once VENDOR_DIR.'KBase.php';
+require_once VENDOR_DIR.'Config.php';
+require_once VENDOR_DIR.'Http/Traits/RequestParametersTrait.php';
+require_once VENDOR_DIR.'Http/Traits/RequestSecurityTrait.php';
+require_once VENDOR_DIR.'Http/Traits/RequestMethodTrait.php';
+require_once VENDOR_DIR.'Http/Traits/RequestInfoTrait.php';
+require_once VENDOR_DIR.'Http/Traits/RequestCookieTrait.php';
+require_once VENDOR_DIR.'Psr/Http/Message/MessageInterface.php';
+require_once VENDOR_DIR.'Psr/Http/Message/RequestInterface.php';
+require_once VENDOR_DIR.'Psr/Http/Message/UriInterface.php';
+require_once VENDOR_DIR.'Psr/Http/Message/ServerRequestInterface.php';
+require_once VENDOR_DIR.'Psr/Http/Message/StreamInterface.php';
+require_once VENDOR_DIR.'Http/AbstractMessage.php';
+require_once VENDOR_DIR.'Http/AbstractRequest.php';
+require_once VENDOR_DIR.'Http/Request.php';
+require_once VENDOR_DIR.'Http/Uri.php';
+require_once VENDOR_DIR.'Http/Stream.php';
+require_once VENDOR_DIR.'Router.php';
+require_once VENDOR_DIR.'Kotchasan.php';
+require_once VENDOR_DIR.'Controller.php';

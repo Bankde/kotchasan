@@ -119,8 +119,8 @@ $onfig['ImageThumbnail']['Folder'] = $config['UserFilesAbsolutePath'].'thumb/';
 $onfig['ImageThumbnail']['Size'] = 100;
 // ไฟล์อัปโหลด
 $config['AllowedExtensions']['File'] = array(
-    '7z', 'aiff', 'asf', 'avi', 'bmp', 'csv', 'doc', 'fla', 'flv', 'gif', 'gz', 'gzip', 'jpeg', 'jpg', 'mid', 'mov', 'mp3', 'mp4', 'mpc', 'mpeg', 'mpg', 'ods', 'odt', 'pdf', 'png', 'ppt', 'pxd', 'qt', 'ram', 'rar', 'rm', 'rmi', 'rmvb', 'rtf', 'sdc', 'sitd', 'swf',
-    'sxc', 'sxw', 'tar', 'tgz', 'tif', 'tiff', 'txt', 'vsd', 'wav', 'wma', 'wmv', 'xls', 'xml', 'zip',
+    '7z', 'aiff', 'asf', 'avi', 'bmp', 'csv', 'doc', 'fla', 'flv', 'gif', 'gz', 'gzip', 'jpeg', 'jpg', 'webp', 'mid', 'mov', 'mp3', 'mp4', 'mpc', 'mpeg', 'mpg', 'ods', 'odt', 'pdf', 'png', 'ppt', 'pxd', 'qt', 'ram', 'rar', 'rm', 'rmi', 'rmvb', 'rtf', 'sdc', 'sitd', 'swf',
+    'sxc', 'sxw', 'tar', 'tgz', 'tif', 'tiff', 'txt', 'vsd', 'wav', 'wma', 'wmv', 'xls', 'xml', 'zip'
 );
 $config['DeniedExtensions']['File'] = [];
 $config['FileTypesPath']['File'] = $config['UserFilesPath'].'file/';
@@ -128,7 +128,7 @@ $config['FileTypesAbsolutePath']['File'] = ($config['UserFilesAbsolutePath'] == 
 $config['QuickUploadPath']['File'] = $config['UserFilesPath'].'file/';
 $config['QuickUploadAbsolutePath']['File'] = $config['UserFilesAbsolutePath'].'file/';
 // รูปภาพอัปโหลด
-$config['AllowedExtensions']['Image'] = array('gif', 'jpeg', 'jpg', 'png');
+$config['AllowedExtensions']['Image'] = array('gif', 'jpeg', 'jpg', 'png', 'webp');
 $config['DeniedExtensions']['Image'] = [];
 $config['FileTypesPath']['Image'] = $config['UserFilesPath'].'image/';
 $config['FileTypesAbsolutePath']['Image'] = ($config['UserFilesAbsolutePath'] == '') ? '' : $config['UserFilesAbsolutePath'].'image/';

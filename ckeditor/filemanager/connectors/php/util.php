@@ -150,7 +150,7 @@ function IsImageValid($filePath, $extension)
     if (!@is_readable($filePath)) {
         return -1;
     }
-    $imageCheckExtensions = array('gif', 'jpeg', 'jpg', 'png', 'swf', 'psd', 'bmp', 'iff');
+    $imageCheckExtensions = array('gif', 'jpeg', 'jpg', 'png', 'swf', 'psd', 'bmp', 'iff', 'webp');
     // version_compare is available since PHP4 >= 4.0.7
     if (function_exists('version_compare')) {
         $sCurrentVersion = phpversion();
@@ -168,6 +168,7 @@ function IsImageValid($filePath, $extension)
             $imageCheckExtensions[] = "jb2";
             $imageCheckExtensions[] = "xbm";
             $imageCheckExtensions[] = "wbmp";
+            $imageCheckExtensions[] = "webp";
         }
     }
     if (!in_array($extension, $imageCheckExtensions)) {

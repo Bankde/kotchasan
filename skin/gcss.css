@@ -1398,6 +1398,7 @@ html .button:before,
   border-color: var(--red);
   color: var(--red);
 }
+.button.active:not(.border),
 .float_bottom_menu button:hover,
 .float_bottom_menu a:hover,
 .float_button:hover,
@@ -1405,11 +1406,12 @@ html .button:before,
 .button.border:not(:hover) {
   background-color: var(--background);
 }
+.button.active.border:hover,
 .float_bottom_menu button:not(:hover),
 .float_bottom_menu a:not(:hover),
 .float_button:not(:hover),
 .button.border:hover,
-.button:not(.border):not(:hover) {
+.button:not(.border):not(.active):not(:hover) {
   color: var(--white);
 }
 .button.circle {
@@ -1423,6 +1425,7 @@ html .button:before,
   border-color: var(--disabled-text) !important;
   color: var(--disabled-text) !important;
 }
+.button.active,
 .button:active,
 .button:focus {
   box-shadow: 0 0 10px 0 var(--highlight-bg);
@@ -2941,50 +2944,63 @@ div.gcalendar tbody a:before {
   line-height: 1;
 }
 /* drop down color select */
-#gddcolor_div {
+.gddcolor_div {
   min-width: 12rem;
   border-color: var(--border);
   background-color: var(--background);
   box-shadow: 1px 1px 10px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
 }
-#gddcolor_div a.item {
-  float: left;
-  width: 16.666666667%;
-  height: 2rem;
-  line-height: 2rem;
+.gddcolor_div a.item {
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border: 1px solid #DDD;
+  border-radius: 3px;
   cursor: pointer;
-  text-align: center;
+  transition: transform 0.1s;
 }
-.mobile_fixed #gddcolor_div a.item {
+.gddcolor_div a.item:hover {
+  transform: scale(1.1);
+  border-color: #999;
+}
+.mobile_fixed .gddcolor_div a.item {
   height: 3rem;
   line-height: 3rem;
 }
-#gddcolor_div p {
+.gddcolor_div p {
   overflow: hidden;
   margin: 0;
-  text-align: center;
   min-height: 1rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: calc(2rem * 9 - 0.5rem);
 }
-#gddcolor_div a.item:focus,
-#gddcolor_div a.item:hover {
+.gddcolor_div a.item:focus,
+.gddcolor_div a.item:hover {
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
 }
-#gddcolor_div a.item.dark:focus,
-#gddcolor_div a.item.dark:hover {
+.gddcolor_div a.item.dark:focus,
+.gddcolor_div a.item.dark:hover {
   box-shadow: 0 0 0 1px var(--shadow) inset;
 }
-#gddcolor_div > p.gddcolor_p > span {
+.gddcolor_div > p.gddcolor_p > span {
   float: right;
   width: 80px;
   padding: 2px 0;
-  text-align: center;
 }
-#gddcolor_div > p.gddcolor_p > a {
+.gddcolor_div > p.gddcolor_p > a {
   padding: 2px 5px;
   margin-right: 5px;
   text-decoration: none;
 }
-#gddcolor_div > p.gddcolor_p > a:hover {
+.gddcolor_div > p.gddcolor_p > a:hover {
   background-color: #ddf4ff;
 }
 :not(input).gddcolor {
@@ -3569,6 +3585,10 @@ th[scope="rowgroup"],
 }
 .table_nav {
   padding: 10px;
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .table_nav > div {
   display: flex;
@@ -3576,7 +3596,7 @@ th[scope="rowgroup"],
   flex-wrap: wrap;
   gap: 10px;
 }
-.table_nav > div > .right {
+.table_nav .right {
   margin-left: auto;
 }
 .table_nav > div > fieldset {

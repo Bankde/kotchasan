@@ -1,19 +1,13 @@
 <?php
-/**
- * @filesource Kotchasan/Curl.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * Curl Class
+ * Kotchasan Curl Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides methods for making HTTP requests using cURL.
+ *
+ * @package Kotchasan
  */
 class Curl
 {

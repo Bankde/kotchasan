@@ -1,14 +1,8 @@
 <?php
-/**
- * @filesource Kotchasan/Database/Sql.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan\Database;
+
+use Kotchasan\QueryBuilder\QueryBuilder;
 
 /**
  * SQL Function Helper
@@ -65,15 +59,14 @@ class Sql
      * @param string|null $alias       The alias for the resulting column, optional
      * @param bool        $distinct    If true, calculates the average of distinct values only; default is false
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function AVG($column_name, $alias = null, $distinct = false)
     {
-        $expression = 'AVG('.($distinct ? 'DISTINCT ' : '').self::fieldName($column_name).')';
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('AVG', [
+            'column' => $column_name,
+            'distinct' => $distinct
+        ], $alias);
     }
 
     /**
@@ -87,7 +80,7 @@ class Sql
      */
     public static function BETWEEN($column_name, $min, $max)
     {
-        $expression = self::fieldName($column_name).' BETWEEN '.self::fieldName($min).' AND '.self::fieldName($max);
+        $expression = self::column($column_name).' BETWEEN '.self::column($min).' AND '.self::column($max);
         return self::create($expression);
     }
 
@@ -100,7 +93,7 @@ class Sql
      *
      * @throws \InvalidArgumentException If $fields is not an array
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function CONCAT($fields, $alias = null, $separator = null)
     {
@@ -108,36 +101,10 @@ class Sql
             throw new \InvalidArgumentException('$fields must be an array');
         }
 
-        $fs = [];
-        foreach ($fields as $item) {
-            $fs[] = self::fieldName($item);
-        }
-
-        // Handle database-specific CONCAT syntax
-        switch (self::$database_type) {
-            case 'mssql':
-                // SQL Server uses + operator for concatenation
-                if ($separator !== null) {
-                    // Simulate CONCAT_WS behavior
-                    $expression = implode(" + '$separator' + ", $fs);
-                } else {
-                    $expression = implode(' + ', $fs);
-                }
-                break;
-            case 'postgresql':
-                // PostgreSQL has CONCAT function
-                $expression = ($separator === null ? 'CONCAT(' : "CONCAT_WS('$separator', ").implode(', ', $fs).')';
-                break;
-            default: // mysql
-                $expression = ($separator === null ? 'CONCAT(' : "CONCAT_WS('$separator', ").implode(', ', $fs).')';
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('CONCAT', [
+            'fields' => $fields,
+            'separator' => $separator
+        ], $alias);
     }
 
     /**
@@ -147,18 +114,14 @@ class Sql
      * @param string|null $alias       The alias for the resulting count, optional
      * @param bool        $distinct    If true, counts only distinct values; default is false
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function COUNT($column_name = '*', $alias = null, $distinct = false)
     {
-        $column_name = $column_name == '*' ? '*' : self::fieldName($column_name);
-        $expression = 'COUNT('.($distinct ? 'DISTINCT ' : '').$column_name.')';
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('COUNT', [
+            'column' => $column_name,
+            'distinct' => $distinct
+        ], $alias);
     }
 
     /**
@@ -167,27 +130,13 @@ class Sql
      * @param string      $column_name The name of the DATETIME column
      * @param string|null $alias       The alias for the resulting date, optional
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function DATE($column_name, $alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $expression = 'CAST('.self::fieldName($column_name).' AS DATE)';
-                break;
-            case 'postgresql':
-                $expression = self::fieldName($column_name).'::DATE';
-                break;
-            default: // mysql
-                $expression = 'DATE('.self::fieldName($column_name).')';
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('DATE', [
+            'column' => $column_name
+        ], $alias);
     }
 
     /**
@@ -201,23 +150,10 @@ class Sql
      */
     public static function DATEDIFF($column_name1, $column_name2, $alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $expression = 'DATEDIFF(DAY, '.self::fieldName($column_name2).', '.self::fieldName($column_name1).')';
-                break;
-            case 'postgresql':
-                $expression = '('.self::fieldName($column_name1).' - '.self::fieldName($column_name2).')';
-                break;
-            default: // mysql
-                $expression = 'DATEDIFF('.self::fieldName($column_name1).', '.self::fieldName($column_name2).')';
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('DATEDIFF', [
+            'column1' => $column_name1,
+            'column2' => $column_name2
+        ], $alias);
     }
 
     /**
@@ -231,23 +167,10 @@ class Sql
      */
     public static function DATE_FORMAT($column_name, $format, $alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $expression = 'FORMAT('.self::fieldName($column_name).", '$format')";
-                break;
-            case 'postgresql':
-                $expression = 'TO_CHAR('.self::fieldName($column_name).", '$format')";
-                break;
-            default: // mysql
-                $expression = 'DATE_FORMAT('.self::fieldName($column_name).", '$format')";
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('DATE_FORMAT', [
+            'column' => $column_name,
+            'format' => $format
+        ], $alias);
     }
 
     /**
@@ -256,27 +179,13 @@ class Sql
      * @param string      $column_name The name of the DATE or DATETIME column
      * @param string|null $alias       The alias for the resulting day, optional
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function DAY($column_name, $alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $expression = 'DAY('.self::fieldName($column_name).')';
-                break;
-            case 'postgresql':
-                $expression = 'EXTRACT(DAY FROM '.self::fieldName($column_name).')';
-                break;
-            default: // mysql
-                $expression = 'DAY('.self::fieldName($column_name).')';
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('DAY', [
+            'column' => $column_name
+        ], $alias);
     }
 
     /**
@@ -289,10 +198,24 @@ class Sql
      */
     public static function DISTINCT($column_name, $alias = null)
     {
-        $expression = 'DISTINCT '.self::fieldName($column_name);
+        $expression = 'DISTINCT '.self::column($column_name);
 
         if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
+            // Use database-specific quoting based on current database type
+            $dbType = self::getDatabaseType();
+            switch ($dbType) {
+                case 'mssql':
+                    $expression .= ' AS ['.$alias.']';
+                    break;
+                case 'postgresql':
+                case 'sqlite':
+                    $expression .= ' AS "'.$alias.'"';
+                    break;
+                case 'mysql':
+                default:
+                    $expression .= ' AS `'.$alias.'`';
+                    break;
+            }
         }
 
         return self::create($expression);
@@ -342,7 +265,7 @@ class Sql
     public static function FORMAT($column_name, $format, $alias = null)
     {
         // Build the SQL FORMAT expression
-        $expression = 'FORMAT('.self::fieldName($column_name).", '$format')";
+        $expression = 'FORMAT('.self::column($column_name).", '$format')";
 
         // Add an alias if provided
         if ($alias) {
@@ -366,70 +289,29 @@ class Sql
      */
     public static function GROUP_CONCAT($column_name, $alias = null, $separator = ',', $distinct = false, $order = null)
     {
-        // Handle ordering if specified
-        $order_clause = '';
-        if (!empty($order)) {
-            $orders = [];
-            if (is_array($order)) {
-                foreach ($order as $item) {
-                    $orders[] = self::fieldName($item);
-                }
-            } else {
-                $orders[] = self::fieldName($order);
-            }
-            $order_clause = empty($orders) ? '' : ' ORDER BY '.implode(',', $orders);
-        }
-
-        switch (self::$database_type) {
-            case 'mssql':
-                // SQL Server uses STRING_AGG (2017+) or XML PATH for older versions
-                $expression = 'STRING_AGG('.($distinct ? 'DISTINCT ' : '').self::fieldName($column_name).", '$separator')";
-                if ($order_clause) {
-                    $expression .= ' WITHIN GROUP ('.$order_clause.')';
-                }
-                break;
-            case 'postgresql':
-                $expression = 'STRING_AGG('.($distinct ? 'DISTINCT ' : '').self::fieldName($column_name).", '$separator'".$order_clause.')';
-                break;
-            default: // mysql
-                $expression = 'GROUP_CONCAT('.($distinct ? 'DISTINCT ' : '').self::fieldName($column_name).$order_clause." SEPARATOR '$separator')";
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('GROUP_CONCAT', [
+            'column' => $column_name,
+            'alias' => $alias,
+            'separator' => $separator,
+            'distinct' => $distinct,
+            'order' => $order
+        ], $alias);
     }
 
     /**
      * Extract the hour from a DATETIME column
      *
-     * @param string      $column_name The name of the DATETIME column
-     * @param string|null $alias       The alias for the resulting hour, optional
+     * @param string      $column_name The name of the DATETIME column to extract hours from.
+     * @param string|null $alias       Optional alias for the HOUR() function result in SQL.
+     *                                 If provided, formats the SQL as HOUR(...) AS `$alias`.
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function HOUR($column_name, $alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $expression = 'DATEPART(HOUR, '.self::fieldName($column_name).')';
-                break;
-            case 'postgresql':
-                $expression = 'EXTRACT(HOUR FROM '.self::fieldName($column_name).')';
-                break;
-            default: // mysql
-                $expression = 'HOUR('.self::fieldName($column_name).')';
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('HOUR', [
+            'column' => $column_name
+        ], $alias);
     }
 
     /**
@@ -439,27 +321,14 @@ class Sql
      * @param string      $column_name2 The second column name
      * @param string|null $alias        The alias for the resulting expression, optional
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function IFNULL($column_name1, $column_name2, $alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $expression = 'ISNULL('.self::fieldName($column_name1).', '.self::fieldName($column_name2).')';
-                break;
-            case 'postgresql':
-                $expression = 'COALESCE('.self::fieldName($column_name1).', '.self::fieldName($column_name2).')';
-                break;
-            default: // mysql
-                $expression = 'IFNULL('.self::fieldName($column_name1).', '.self::fieldName($column_name2).')';
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('IFNULL', [
+            'column1' => $column_name1,
+            'column2' => $column_name2
+        ], $alias);
     }
 
     /**
@@ -471,7 +340,7 @@ class Sql
      */
     public static function ISNOTNULL($column_name)
     {
-        $expression = self::fieldName($column_name).' IS NOT NULL';
+        $expression = self::column($column_name).' IS NOT NULL';
         return self::create($expression);
     }
 
@@ -484,7 +353,7 @@ class Sql
      */
     public static function ISNULL($column_name)
     {
-        $expression = self::fieldName($column_name).' IS NULL';
+        $expression = self::column($column_name).' IS NULL';
         return self::create($expression);
     }
 
@@ -492,38 +361,30 @@ class Sql
      * Find the maximum value of a column
      *
      * @param string      $column_name The column name to find the maximum value
-     * @param string|null $alias       The alias for the resulting maximum value, optional
+     * @param string|null $alias       Optional alias for the result
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function MAX($column_name, $alias = null)
     {
-        $expression = 'MAX('.self::fieldName($column_name).')';
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('MAX', [
+            'column' => $column_name
+        ], $alias);
     }
 
     /**
      * Find the minimum value of a column
      *
      * @param string      $column_name The column name to find the minimum value
-     * @param string|null $alias       The alias for the resulting minimum value, optional
+     * @param string|null $alias       Optional alias for the result
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function MIN($column_name, $alias = null)
     {
-        $expression = 'MIN('.self::fieldName($column_name).')';
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('MIN', [
+            'column' => $column_name
+        ], $alias);
     }
 
     /**
@@ -531,52 +392,31 @@ class Sql
      *
      * This function generates a SQL MINUTE expression to extract minutes from a DATETIME column.
      *
-     * @param string      $column_name The column name to extract minutes from
-     * @param string|null $alias       The alias for the resulting minutes, optional
+     * @param string      $column_name The name of the column to extract minutes from
+     * @param string|null $alias       Optional alias for the result
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function MINUTE($column_name, $alias = null)
     {
-        // Build the SQL MINUTE expression
-        $expression = 'MINUTE('.self::fieldName($column_name).')';
-
-        // Add an alias if provided
-        if ($alias) {
-            $expression .= " AS `$alias`";
-        }
-
-        // Create and return the SQL expression
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('MINUTE', [
+            'column' => $column_name
+        ], $alias);
     }
 
     /**
      * Extract month from a DATE or DATETIME column
      *
-     * @param string      $column_name The column name to extract the month from
-     * @param string|null $alias       The alias for the resulting month, optional
+     * @param string      $column_name The name of the column to extract the month from
+     * @param string|null $alias       Optional alias for the result
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function MONTH($column_name, $alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $expression = 'MONTH('.self::fieldName($column_name).')';
-                break;
-            case 'postgresql':
-                $expression = 'EXTRACT(MONTH FROM '.self::fieldName($column_name).')';
-                break;
-            default: // mysql
-                $expression = 'MONTH('.self::fieldName($column_name).')';
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('MONTH', [
+            'column' => $column_name
+        ], $alias);
     }
 
     /**
@@ -595,7 +435,7 @@ class Sql
      */
     public static function NEXT($field, $table_name, $condition = null, $alias = null, $operator = 'AND', $id = 'id')
     {
-        $obj = new static;
+        $obj = new static();
 
         // Build the WHERE clause if condition is provided
         if (!empty($condition)) {
@@ -621,27 +461,36 @@ class Sql
      *
      * @param string|null $alias Optional alias for the NOW() function result in SQL.
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function NOW($alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $sql = 'GETDATE()';
-                break;
-            case 'postgresql':
-                $sql = 'NOW()';
-                break;
-            default: // mysql
-                $sql = 'NOW()';
-                break;
-        }
+        return new \Kotchasan\QueryBuilder\SqlFunction('NOW', [], $alias);
+    }
 
-        if ($alias) {
-            $sql .= ' AS '.self::quoteIdentifier($alias);
-        }
+    /**
+     * Create a raw expression wrapper for QueryBuilder usage
+     *
+     * @param string $sql
+     * @return \Kotchasan\QueryBuilder\RawExpression
+     */
+    public static function raw(string $sql)
+    {
+        return new \Kotchasan\QueryBuilder\RawExpression($sql);
+    }
 
-        return self::create($sql);
+    /**
+     * Create a column reference wrapper for QueryBuilder usage
+     * Uses SqlFunction to handle database-specific identifier quoting
+     *
+     * @param string $column
+     * @return \Kotchasan\QueryBuilder\SqlFunction
+     */
+    public static function column(string $column)
+    {
+        return new \Kotchasan\QueryBuilder\SqlFunction('COLUMN', [
+            'column' => $column
+        ]);
     }
 
     /**
@@ -662,7 +511,7 @@ class Sql
         $str = strpos($str, '`') === false ? "'$str'" : $str;
 
         // Build the SQL expression for LOCATE() with optional alias and position
-        $sql = "LOCATE($substr, $str".(empty($pos) ? ')' : ", $pos)").($alias ? " AS `$alias`" : '');
+        $sql = "LOCATE($substr, $str".(empty($pos) ? ')' : ", $pos").($alias ? " AS `$alias`" : '');
 
         // Assuming self::create() constructs or modifies a query or model object
         return self::create($sql);
@@ -673,27 +522,11 @@ class Sql
      *
      * @param string|null $alias Optional alias for the RAND() function result in SQL.
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function RAND($alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $sql = 'NEWID()'; // SQL Server uses NEWID() for random
-                break;
-            case 'postgresql':
-                $sql = 'RANDOM()';
-                break;
-            default: // mysql
-                $sql = 'RAND()';
-                break;
-        }
-
-        if ($alias) {
-            $sql .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($sql);
+        return new \Kotchasan\QueryBuilder\SqlFunction('RAND', [], $alias);
     }
 
     /**
@@ -708,7 +541,7 @@ class Sql
     public static function SECOND($column_name, $alias = null)
     {
         // Build the SQL expression for SECOND() with optional alias
-        $sql = 'SECOND('.self::fieldName($column_name).')'.($alias ? " AS `$alias`" : '');
+        $sql = 'SECOND('.self::column($column_name).')'.($alias ? " AS `$alias`" : '');
 
         // Assuming self::create() constructs or modifies a query or model object
         return self::create($sql);
@@ -721,17 +554,14 @@ class Sql
      * @param string|null $alias       Optional alias for the SUM() function result in SQL
      * @param bool        $distinct    Optional. If true, sums only distinct values in the column
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function SUM($column_name, $alias = null, $distinct = false)
     {
-        $sql = 'SUM('.($distinct ? 'DISTINCT ' : '').self::fieldName($column_name).')';
-
-        if ($alias) {
-            $sql .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($sql);
+        return new \Kotchasan\QueryBuilder\SqlFunction('SUM', [
+            'column' => $column_name,
+            'distinct' => $distinct
+        ], $alias);
     }
 
     /**
@@ -747,7 +577,7 @@ class Sql
     public static function TIMEDIFF($column_name1, $column_name2, $alias = null)
     {
         // Build the SQL expression for TIMEDIFF() with optional alias
-        $sql = 'TIMEDIFF('.self::fieldName($column_name1).', '.self::fieldName($column_name2).')'.($alias ? " AS `$alias`" : '');
+        $sql = 'TIMEDIFF('.self::column($column_name1).', '.self::column($column_name2).')'.($alias ? " AS `$alias`" : '');
 
         // Assuming self::create() constructs or modifies a query or model object
         return self::create($sql);
@@ -768,7 +598,7 @@ class Sql
     public static function TIMESTAMPDIFF($unit, $column_name1, $column_name2, $alias = null)
     {
         // Build the SQL expression for TIMESTAMPDIFF() with optional alias
-        $sql = 'TIMESTAMPDIFF('.$unit.', '.self::fieldName($column_name1).', '.self::fieldName($column_name2).')'.($alias ? " AS `$alias`" : '');
+        $sql = 'TIMESTAMPDIFF('.$unit.', '.self::column($column_name1).', '.self::column($column_name2).')'.($alias ? " AS `$alias`" : '');
 
         // Assuming self::create() constructs or modifies a query or model object
         return self::create($sql);
@@ -780,27 +610,13 @@ class Sql
      * @param string      $column_name The name of the DATE or DATETIME column
      * @param string|null $alias       Optional alias for the YEAR() function result in SQL
      *
-     * @return static
+     * @return \Kotchasan\QueryBuilder\SqlFunction
      */
     public static function YEAR($column_name, $alias = null)
     {
-        switch (self::$database_type) {
-            case 'mssql':
-                $expression = 'YEAR('.self::fieldName($column_name).')';
-                break;
-            case 'postgresql':
-                $expression = 'EXTRACT(YEAR FROM '.self::fieldName($column_name).')';
-                break;
-            default: // mysql
-                $expression = 'YEAR('.self::fieldName($column_name).')';
-                break;
-        }
-
-        if ($alias) {
-            $expression .= ' AS '.self::quoteIdentifier($alias);
-        }
-
-        return self::create($expression);
+        return new \Kotchasan\QueryBuilder\SqlFunction('YEAR', [
+            'column' => $column_name
+        ], $alias);
     }
 
     /**
@@ -825,57 +641,6 @@ class Sql
     }
 
     /**
-     * Wraps a column name with appropriate quotes for SQL identifiers.
-     * Handles database-specific quoting.
-     *
-     * @param string|int $column_name The column name or value to be formatted for SQL.
-     *
-     * @throws \InvalidArgumentException If the column name format is invalid.
-     *
-     * @return string|int
-     */
-    public static function fieldName($column_name)
-    {
-        if ($column_name instanceof self || $column_name instanceof QueryBuilder) {
-            return $column_name->text();
-        } elseif (is_string($column_name)) {
-            if (preg_match('/^SQL\((.+)\)$/', $column_name, $match)) {
-                return $match[1];
-            } elseif (preg_match('/^`?([a-z0-9_]{2,})`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
-                return self::quoteIdentifier($match[1]).(empty($match[3]) ? '' : $match[2]);
-            } elseif (preg_match('/^([A-Z][0-9]{0,2}\.)`?([a-zA-Z0-9_]+)`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
-                return $match[1].self::quoteIdentifier($match[2]).(empty($match[4]) ? '' : $match[3]);
-            } elseif (preg_match('/^`?([a-zA-Z0-9_]+)`?\.`?([a-zA-Z0-9_]+)`?(\s(ASC|DESC|asc|desc))?$/', $column_name, $match)) {
-                return self::quoteIdentifier($match[1]).'.'.self::quoteIdentifier($match[2]).(empty($match[4]) ? '' : $match[3]);
-            } else {
-                return "'$column_name'";
-            }
-        } elseif (is_numeric($column_name)) {
-            return $column_name;
-        }
-
-        throw new \InvalidArgumentException('Invalid arguments in fieldName');
-    }
-
-    /**
-     * Quote identifier based on database type
-     *
-     * @param string $name
-     * @return string
-     */
-    protected static function quoteIdentifier($name)
-    {
-        switch (self::$database_type) {
-            case 'mssql':
-                return '['.$name.']';
-            case 'postgresql':
-                return '"'.$name.'"';
-            default: // mysql
-                return '`'.$name.'`';
-        }
-    }
-
-    /**
      * Retrieves or merges bind parameters ($values) used for prepared statements in SQL queries.
      *
      * @param array $values Optional. An array of bind parameters to merge or retrieve.
@@ -884,15 +649,296 @@ class Sql
      */
     public function getValues($values = [])
     {
+        // If no existing values provided, return this object's values directly
         if (empty($values)) {
             return $this->values;
         }
 
+        // Merge values: preserve named placeholders (string keys), append numeric keys
         foreach ($this->values as $key => $value) {
-            $values[$key] = $value;
+            if (is_int($key)) {
+                $values[] = $value;
+            } else {
+                $values[$key] = $value;
+            }
         }
 
         return $values;
+    }
+
+    /**
+     * Merge bindings from a source into the target $values array.
+     * Preserves named (string) keys and appends numeric keys in order.
+     *
+     * @param array $values  Reference to target values array.
+     * @param array $bindings Source bindings to merge.
+     * @return void
+     */
+    protected static function mergeBindings(array &$values, array $bindings)
+    {
+        foreach ($bindings as $k => $v) {
+            // If binding is a QueryBuilder, expand its bindings recursively
+            if ($v instanceof \Kotchasan\QueryBuilder\QueryBuilder) {
+                $subOriginal = $v->toSql();
+                $subFrag = $subOriginal;
+                // first, extract any column subquery bindings inside this QueryBuilder
+                self::extractQueryBuilderColumnBindings($v, $values, $subFrag);
+                // then get its own bindings and merge them
+                $subBindings = $v->getBindings();
+                if (!empty($subBindings)) {
+                    // merge positional bindings
+                    $allBindings = [];
+                    foreach ($subBindings as $b) {
+                        $allBindings[] = $b;
+                    }
+                    // Also include namedBindings and embeddedBindings from QueryBuilder via reflection
+                    try {
+                        $refQB = new \ReflectionObject($v);
+                        if ($refQB->hasProperty('namedBindings')) {
+                            $p = $refQB->getProperty('namedBindings');
+                            $p->setAccessible(true);
+                            $nb = $p->getValue($v);
+                            if (!empty($nb)) {
+                                foreach ($nb as $k => $vv) {
+                                    // ensure key starts with ':'
+                                    $name = is_string($k) && strpos($k, ':') === 0 ? $k : ':'.$k;
+                                    $allBindings[$name] = $vv;
+                                }
+                            }
+                        }
+                        if ($refQB->hasProperty('embeddedBindings')) {
+                            $p2 = $refQB->getProperty('embeddedBindings');
+                            $p2->setAccessible(true);
+                            $eb = $p2->getValue($v);
+                            if (!empty($eb)) {
+                                foreach ($eb as $k => $vv) {
+                                    $name = is_string($k) && strpos($k, ':') === 0 ? $k : ':'.$k;
+                                    $allBindings[$name] = $vv;
+                                }
+                            }
+                        }
+                    } catch (\ReflectionException $e) {
+                        // ignore
+                    }
+
+                    // rewrite placeholder names in $subFrag if necessary
+                    $frag = $subFrag;
+                    self::mergeBindingsWithNamespace($values, $allBindings, $frag);
+                    $subFrag = $frag;
+                }
+                // Sql object binding: handled above (recursive merge) in the caller contexts
+            }
+            if (is_int($k)) {
+                $values[] = $v;
+            } else {
+                $values[$k] = $v;
+            }
+        }
+    }
+
+    /**
+     * Counter for generating unique placeholder namespaces
+     *
+     * @var int
+     */
+    protected static $placeholderCounter = 0;
+
+    /**
+     * Merge bindings and optionally rename named placeholders in the provided SQL fragment to avoid collisions.
+     * If $sqlFragment is provided, named placeholders appearing in $bindings will be replaced with namespaced ones
+     * and the mapping will be applied to the fragment.
+     *
+     * Implementation notes:
+     * - Numeric (positional) bindings are appended in order.
+     * - Named placeholders are preserved where possible; when a name collision is detected we
+     *   generate a stable namespaced replacement (eg. :s1_id) and rewrite the SQL fragment
+     *   so the new placeholder name is used.
+     * - When a binding value is itself an `Sql` object, we recursively extract its inner values and
+     *   rewrite the parent fragment to substitute the embedded sub-fragment with its rewritten version.
+     *
+     * Caveats:
+     * - Placeholder renaming relies on regex-based token replacement; extremely unusual token
+     *   patterns may require additional tests.
+     * - This routine is intentionally conservative: it only rewrites fragments when a mapping
+     *   is required to avoid collisions.
+     *
+     * @param array $values Reference to target values
+     * @param array $bindings Source bindings
+     * @param string|null $sqlFragment Reference to SQL fragment string to rewrite (optional)
+     * @return void
+     */
+    protected static function mergeBindingsWithNamespace(array &$values, array $bindings,  ? string &$sqlFragment = null)
+    {
+        // mapping oldName => newName for replacements
+        $mapping = [];
+        foreach ($bindings as $k => $v) {
+            // If the binding itself is an Sql object, expand it: merge its inner values and
+            // rewrite occurrences of the embedded fragment inside the parent fragment.
+            if ($v instanceof self) {
+                // original fragment produced by the Sql object
+                $subOriginal = $v->toSql();
+                $subFrag = $subOriginal;
+                $subBindings = $v->getValues([]);
+                if (!empty($subBindings)) {
+                    // recursively merge inner bindings; this will populate $values and rewrite $subFrag
+                    self::mergeBindingsWithNamespace($values, $subBindings, $subFrag);
+                    // replace occurrences of the original subfragment in parent fragment with rewritten one
+                    if ($sqlFragment !== null && $subFrag !== $subOriginal) {
+                        $sqlFragment = str_replace($subOriginal, $subFrag, $sqlFragment);
+                    }
+                }
+                // nothing else to append for the Sql object itself (its values were merged)
+                continue;
+            }
+
+            if (is_int($k)) {
+                $values[] = $v;
+            } else {
+                // ensure placeholder format starts with :
+                $name = $k;
+                if ($name[0] !== ':') {
+                    $name = ':'.$name;
+                }
+
+                if (array_key_exists($name, $values)) {
+                    // collision - generate a new namespaced name
+                    $ns = 's'.(++self::$placeholderCounter).'_';
+                    $newName = ':'.$ns.substr($name, 1);
+                    // avoid collisions for newName as well
+                    while (array_key_exists($newName, $values) || isset($mapping[$newName])) {
+                        $ns = 's'.(++self::$placeholderCounter).'_';
+                        $newName = ':'.$ns.substr($name, 1);
+                    }
+                    $mapping[$name] = $newName;
+                    $values[$newName] = $v;
+                } else {
+                    // no collision
+                    $values[$name] = $v;
+                }
+            }
+        }
+
+        // if we need to rewrite SQL fragment, apply mapping
+        if ($sqlFragment !== null && !empty($mapping)) {
+            // replace placeholders using regex to match token boundaries
+            foreach ($mapping as $old => $new) {
+                $pattern = '/'.preg_quote($old, '/').'(?![A-Za-z0-9_])/';
+                $sqlFragment = preg_replace($pattern, $new, $sqlFragment);
+            }
+        }
+    }
+
+    /**
+     * Inspect a QueryBuilder's columns for nested QueryBuilder or Sql objects and merge their bindings.
+     * This does not modify the QueryBuilder itself; it only merges nested column bindings into $values
+     * and rewrites $sqlFragment occurrences if needed.
+     *
+     * @param \Kotchasan\QueryBuilder\QueryBuilder $qb
+     * @param array $values
+     * @param string|null $sqlFragment
+     * @return void
+     */
+    protected static function extractQueryBuilderColumnBindings(\Kotchasan\QueryBuilder\QueryBuilder $qb, array &$values,  ? string &$sqlFragment = null)
+    {
+        try {
+            $ref = new \ReflectionObject($qb);
+            if ($ref->hasProperty('columns')) {
+                $prop = $ref->getProperty('columns');
+                $prop->setAccessible(true);
+                $cols = $prop->getValue($qb);
+                if (!empty($cols) && is_array($cols)) {
+                    foreach ($cols as $col) {
+                        $expr = is_array($col) && count($col) > 0 ? $col[0] : $col;
+                        if (is_object($expr)) {
+                            if (method_exists($expr, 'getBindings')) {
+                                // Merge any bindings directly present on the expression
+                                $subFrag = $expr->toSql();
+                                $subBindings = $expr->getBindings();
+                                // also include namedBindings and embeddedBindings from QueryBuilder/Sql-like objects
+                                try {
+                                    $refExpr = new \ReflectionObject($expr);
+                                    if ($refExpr->hasProperty('namedBindings')) {
+                                        $p = $refExpr->getProperty('namedBindings');
+                                        $p->setAccessible(true);
+                                        $nb = $p->getValue($expr);
+                                        if (!empty($nb)) {
+                                            foreach ($nb as $k => $v) {
+                                                $subBindings[$k] = $v;
+                                            }
+                                        }
+                                    }
+                                    if ($refExpr->hasProperty('embeddedBindings')) {
+                                        $p2 = $refExpr->getProperty('embeddedBindings');
+                                        $p2->setAccessible(true);
+                                        $eb = $p2->getValue($expr);
+                                        if (!empty($eb)) {
+                                            foreach ($eb as $k => $v) {
+                                                $subBindings[$k] = $v;
+                                            }
+                                        }
+                                    }
+                                } catch (\ReflectionException $e) {
+                                    // ignore
+                                }
+                                if (!empty($subBindings)) {
+                                    // Iterate each binding item: expand nested QueryBuilder/Sql objects too
+                                    foreach ($subBindings as $sbk => $sbv) {
+                                        if ($sbv instanceof self) {
+                                            // Sql object -> merge its values and rewrite subFrag
+                                            $innerFrag = $sbv->toSql();
+                                            $innerBindings = $sbv->getValues([]);
+                                            if (!empty($innerBindings)) {
+                                                self::mergeBindingsWithNamespace($values, $innerBindings, $innerFrag);
+                                                if ($sqlFragment !== null && $innerFrag !== $expr->toSql()) {
+                                                    $pattern = '/'.preg_quote($expr->toSql(), '/').'(?![A-Za-z0-9_])/';
+                                                    $replacement = str_replace($innerFrag, $innerFrag, $expr->toSql());
+                                                    $sqlFragment = preg_replace($pattern, $replacement, $sqlFragment);
+                                                }
+                                            }
+                                        } elseif ($sbv instanceof \Kotchasan\QueryBuilder\QueryBuilder) {
+                                            // QueryBuilder inside bindings: extract its columns and merge its bindings recursively
+                                            self::extractQueryBuilderColumnBindings($sbv, $values, $subFrag);
+                                            $innerBindings = $sbv->getBindings();
+                                            if (!empty($innerBindings)) {
+                                                self::mergeBindingsWithNamespace($values, $innerBindings, $subFrag);
+                                            }
+                                        } else {
+                                            // primitive value -> merge directly
+                                            if (is_int($sbk)) {
+                                                $values[] = $sbv;
+                                            } else {
+                                                $name = $sbk;
+                                                if ($name[0] !== ':') {
+                                                    $name = ':'.$name;
+                                                }
+                                                $values[$name] = $sbv;
+                                            }
+                                        }
+                                    }
+                                    // after processing bindings, if subFrag changed, replace in parent SQL fragment
+                                    if ($sqlFragment !== null && $subFrag !== $expr->toSql()) {
+                                        $pattern = '/'.preg_quote($expr->toSql(), '/').'(?![A-Za-z0-9_])/';
+                                        $sqlFragment = preg_replace($pattern, $subFrag, $sqlFragment);
+                                    }
+                                }
+                            } elseif (method_exists($expr, 'getValues')) {
+                                $subFrag = $expr->toSql();
+                                $subBindings = $expr->getValues([]);
+                                if (!empty($subBindings)) {
+                                    self::mergeBindingsWithNamespace($values, $subBindings, $subFrag);
+                                    if ($sqlFragment !== null && $subFrag !== $expr->toSql()) {
+                                        $pattern = '/'.preg_quote($expr->toSql(), '/').'(?![A-Za-z0-9_])/';
+                                        $sqlFragment = preg_replace($pattern, $subFrag, $sqlFragment);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (\ReflectionException $e) {
+            // ignore reflection errors
+        }
     }
 
     /**
@@ -931,10 +977,10 @@ class Sql
                 $values[$sql] = $value;
             } else {
                 if (preg_match('/^(([A-Z][0-9]{0,2})|`([a-zA-Z0-9_]+)`)\.`?([a-zA-Z0-9_]+)`?$/', $value, $match)) {
-                    $sql = $match[3] == '' ? "$match[2].".self::quoteIdentifier($match[4]) : self::quoteIdentifier($match[3]).'.'.self::quoteIdentifier($match[4]);
+                    $sql = $match[3] == '' ? "$match[2].".self::column($match[4]) : self::column($match[3]).'.'.self::column($match[4]);
                 } elseif (preg_match('/^([a-zA-Z0-9_]+)\.`([a-zA-Z0-9_]+)`$/', $value, $match)) {
-                    $sql = self::quoteIdentifier($match[1]).'.'.self::quoteIdentifier($match[2]);
-                } elseif (!preg_match('/[\s\r\n\t`;\(\)\*\=<>\/\'"]+/s', $value) && !preg_match('/(UNION|INSERT|DELETE|TRUNCATE|DROP|0x[0-9]+)/is', $value)) {
+                    $sql = self::column($match[1]).'.'.self::column($match[2]);
+                } elseif (!preg_match('/[\s\r\n\t`;\(\)\*=<>\/\'\"]+/s', $value) && !preg_match('/(UNION|INSERT|DELETE|TRUNCATE|DROP|0x[0-9]+)/is', $value)) {
                     $sql = "'$value'";
                 } else {
                     $sql = ':'.strtolower(preg_replace('/[`\.\s\-_]+/', '', $column_name));
@@ -949,11 +995,23 @@ class Sql
         } elseif (is_numeric($value)) {
             $sql = $value;
         } elseif ($value instanceof self) {
-            $sql = $value->text($column_name);
-            $values = $value->getValues($values);
+            $sql = $value->toSql($column_name);
+            $frag = $sql;
+            $bindings = $value->getValues([]);
+            if (!empty($bindings)) {
+                self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                $sql = $frag;
+            }
         } elseif ($value instanceof QueryBuilder) {
-            $sql = '('.$value->text().')';
-            $values = $value->getValues($values);
+            // Return parenthesized subquery SQL so quoteValue produces a SQL literal
+            $sql = '('.$value->toSql().')';
+            // For quoteValue we want the subquery's bindings as positional values
+            $posBindings = $value->getBindings();
+            if (!empty($posBindings)) {
+                foreach ($posBindings as $b) {
+                    $values[] = $b;
+                }
+            }
         } else {
             throw new \InvalidArgumentException('Invalid arguments in quoteValue');
         }
@@ -968,7 +1026,7 @@ class Sql
      *
      * @return static
      */
-    public static function strValue($value)
+    public static function _strValue($value)
     {
         return self::create("'$value'");
     }
@@ -983,7 +1041,7 @@ class Sql
      *
      * @throws \InvalidArgumentException When $key is provided but empty.
      */
-    public function text($key = null)
+    public function toSql($key = null)
     {
         if ($this->sql === null) {
             if (is_string($key) && $key != '') {
@@ -994,22 +1052,6 @@ class Sql
         } else {
             return $this->sql;
         }
-    }
-
-    /**
-     * Constructs WHERE clause based on given conditions.
-     *
-     * @param mixed  $condition The condition(s) to build into WHERE clause.
-     * @param string $operator  Logical operator (e.g., AND, OR) to combine multiple conditions.
-     * @param string $id        Field name used as key in conditions.
-     *
-     * @return static
-     */
-    public static function WHERE($condition, $operator = 'AND', $id = 'id')
-    {
-        $obj = new static;
-        $obj->sql = $obj->buildWhere($condition, $obj->values, $operator, $id);
-        return $obj;
     }
 
     /**
@@ -1030,11 +1072,57 @@ class Sql
             if (is_array($condition[0])) {
                 foreach ($condition as $item) {
                     if ($item instanceof QueryBuilder) {
-                        $qs[] = '('.$item->text().')';
-                        $values = $item->getValues($values);
+                        // include potential bindings from columns inside the QueryBuilder before merging
+                        // avoid adding an extra pair of parentheses here; let the outer builder decide grouping
+                        $frag = $item->toSql();
+                        self::extractQueryBuilderColumnBindings($item, $values, $frag);
+                        $bindings = $item->getBindings();
+                        // also include namedBindings and embeddedBindings via reflection and merge them explicitly
+                        try {
+                            $refItem = new \ReflectionObject($item);
+                            if ($refItem->hasProperty('namedBindings')) {
+                                $p = $refItem->getProperty('namedBindings');
+                                $p->setAccessible(true);
+                                $nb = $p->getValue($item);
+                                if (!empty($nb)) {
+                                    // merge named bindings (may require placeholder renaming)
+                                    self::mergeBindingsWithNamespace($values, $nb, $frag);
+                                }
+                            }
+                            if ($refItem->hasProperty('embeddedBindings')) {
+                                $p2 = $refItem->getProperty('embeddedBindings');
+                                $p2->setAccessible(true);
+                                $eb = $p2->getValue($item);
+                                if (!empty($eb)) {
+                                    // merge embedded bindings as well
+                                    self::mergeBindingsWithNamespace($values, $eb, $frag);
+                                }
+                            }
+                        } catch (\ReflectionException $e) {
+                            // ignore
+                        }
+
+                        // finally merge positional/named from getBindings()
+                        if (!empty($bindings)) {
+                            self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                            // update fragment in place for this item (no extra parentheses)
+                            $qs[] = $frag;
+                            continue;
+                        }
+
+                        // if only column-extracted changes made, replace fragment
+                        if ($frag !== $item->toSql()) {
+                            $qs[] = $frag;
+                            continue;
+                        }
+
                     } elseif ($item instanceof self) {
-                        $qs[] = $item->text();
-                        $values = $item->getValues($values);
+                        $frag = $item->toSql();
+                        $bindings = $item->getValues([]);
+                        if (!empty($bindings)) {
+                            self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                        }
+                        $qs[] = $frag;
                     } else {
                         $qs[] = $this->buildWhere($item, $values, $operator, $id);
                     }
@@ -1042,15 +1130,58 @@ class Sql
                 $sql = count($qs) > 1 ? '('.implode(' '.$operator.' ', $qs).')' : implode(' '.$operator.' ', $qs);
             } else {
                 if ($condition[0] instanceof QueryBuilder) {
-                    $key = $condition[0]->text();
-                    $values = $condition[0]->getValues($values);
+                    $key = $condition[0]->toSql();
+                    $frag = $condition[0]->toSql();
+                    // extract bindings from any column subqueries inside this QueryBuilder
+                    self::extractQueryBuilderColumnBindings($condition[0], $values, $frag);
+                    $bindings = $condition[0]->getBindings();
+                    // include named/embedded bindings from nested QueryBuilder
+                    try {
+                        $refC = new \ReflectionObject($condition[0]);
+                        if ($refC->hasProperty('namedBindings')) {
+                            $p = $refC->getProperty('namedBindings');
+                            $p->setAccessible(true);
+                            $nb = $p->getValue($condition[0]);
+                            if (!empty($nb)) {
+                                foreach ($nb as $k => $v) {
+                                    $bindings[$k] = $v;
+                                }
+                            }
+                        }
+                        if ($refC->hasProperty('embeddedBindings')) {
+                            $p2 = $refC->getProperty('embeddedBindings');
+                            $p2->setAccessible(true);
+                            $eb = $p2->getValue($condition[0]);
+                            if (!empty($eb)) {
+                                foreach ($eb as $k => $v) {
+                                    $bindings[$k] = $v;
+                                }
+                            }
+                        }
+                    } catch (\ReflectionException $e) {
+                        // ignore
+                    }
+                    if (!empty($bindings)) {
+                        self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                        $key = $frag;
+                    } else {
+                        // if only column extractions rewrote the fragment
+                        if ($frag !== $condition[0]->toSql()) {
+                            $key = $frag;
+                        }
+                    }
                 } elseif ($condition[0] instanceof self) {
-                    $key = $condition[0]->text();
-                    $values = $condition[0]->getValues($values);
-                } elseif (preg_match('/^SQL(\(.*\))$/', $condition[0], $match)) {
-                    $key = $match[1];
+                    $frag = $condition[0]->toSql();
+                    $bindings = $condition[0]->getValues([]);
+                    if (!empty($bindings)) {
+                        self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                    }
+                    $key = $frag;
+                } elseif ($condition[0] instanceof \Kotchasan\QueryBuilder\SqlFunction) {
+                    // Handle SqlFunction objects (including our COLUMN function)
+                    $key = $condition[0]->toSql();
                 } else {
-                    $key = self::fieldName($condition[0]);
+                    $key = self::column($condition[0])->toSql();
                 }
 
                 $c = count($condition);
@@ -1058,12 +1189,46 @@ class Sql
                 if ($c == 2) {
                     if ($condition[1] instanceof QueryBuilder) {
                         $operator = 'IN';
-                        $value = '('.$condition[1]->text().')';
-                        $values = $condition[1]->getValues($values);
+                        $value = $condition[1]->toSql();
+                        $bindings = $condition[1]->getBindings();
+                        try {
+                            $refC = new \ReflectionObject($condition[1]);
+                            if ($refC->hasProperty('namedBindings')) {
+                                $p = $refC->getProperty('namedBindings');
+                                $p->setAccessible(true);
+                                $nb = $p->getValue($condition[1]);
+                                if (!empty($nb)) {
+                                    foreach ($nb as $k => $v) {
+                                        $bindings[$k] = $v;
+                                    }
+                                }
+                            }
+                            if ($refC->hasProperty('embeddedBindings')) {
+                                $p2 = $refC->getProperty('embeddedBindings');
+                                $p2->setAccessible(true);
+                                $eb = $p2->getValue($condition[1]);
+                                if (!empty($eb)) {
+                                    foreach ($eb as $k => $v) {
+                                        $bindings[$k] = $v;
+                                    }
+                                }
+                            }
+                        } catch (\ReflectionException $e) {
+                            // ignore
+                        }
+                        if (!empty($bindings)) {
+                            $frag = $condition[1]->toSql();
+                            self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                            $value = '('.$frag.')';
+                        }
                     } elseif ($condition[1] instanceof self) {
                         $operator = '=';
-                        $value = $condition[1]->text();
-                        $values = $condition[1]->getValues($values);
+                        $frag = $condition[1]->toSql();
+                        $bindings = $condition[1]->getValues([]);
+                        if (!empty($bindings)) {
+                            self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                        }
+                        $value = $frag;
                     } elseif ($condition[1] === null) {
                         $operator = 'IS';
                         $value = 'NULL';
@@ -1077,12 +1242,46 @@ class Sql
                 } elseif ($c == 3) {
                     if ($condition[2] instanceof QueryBuilder) {
                         $operator = trim($condition[1]);
-                        $value = '('.$condition[2]->text().')';
-                        $values = $condition[2]->getValues($values);
+                        $value = $condition[2]->toSql();
+                        $bindings = $condition[2]->getBindings();
+                        try {
+                            $refC = new \ReflectionObject($condition[2]);
+                            if ($refC->hasProperty('namedBindings')) {
+                                $p = $refC->getProperty('namedBindings');
+                                $p->setAccessible(true);
+                                $nb = $p->getValue($condition[2]);
+                                if (!empty($nb)) {
+                                    foreach ($nb as $k => $v) {
+                                        $bindings[$k] = $v;
+                                    }
+                                }
+                            }
+                            if ($refC->hasProperty('embeddedBindings')) {
+                                $p2 = $refC->getProperty('embeddedBindings');
+                                $p2->setAccessible(true);
+                                $eb = $p2->getValue($condition[2]);
+                                if (!empty($eb)) {
+                                    foreach ($eb as $k => $v) {
+                                        $bindings[$k] = $v;
+                                    }
+                                }
+                            }
+                        } catch (\ReflectionException $e) {
+                            // ignore
+                        }
+                        if (!empty($bindings)) {
+                            $frag = $condition[2]->toSql();
+                            self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                            $value = '('.$frag.')';
+                        }
                     } elseif ($condition[2] instanceof self) {
                         $operator = trim($condition[1]);
-                        $value = $condition[2]->text();
-                        $values = $condition[2]->getValues($values);
+                        $frag = $condition[2]->toSql();
+                        $bindings = $condition[2]->getValues([]);
+                        if (!empty($bindings)) {
+                            self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                        }
+                        $value = $frag;
                     } elseif ($condition[2] === null) {
                         $operator = trim($condition[1]);
                         if ($operator == '=') {
@@ -1107,17 +1306,83 @@ class Sql
                 }
             }
         } elseif ($condition instanceof QueryBuilder) {
-            $sql = '('.$condition->text().')';
-            $values = $condition->getValues($values);
+            $sql = $condition->toSql();
+            $bindings = $condition->getBindings();
+            // also include named and embedded bindings from the QueryBuilder instance
+            try {
+                $refC = new \ReflectionObject($condition);
+                if ($refC->hasProperty('namedBindings')) {
+                    $p = $refC->getProperty('namedBindings');
+                    $p->setAccessible(true);
+                    $nb = $p->getValue($condition);
+                    if (!empty($nb)) {
+                        foreach ($nb as $k => $v) {
+                            $bindings[$k] = $v;
+                        }
+                    }
+                }
+                if ($refC->hasProperty('embeddedBindings')) {
+                    $p2 = $refC->getProperty('embeddedBindings');
+                    $p2->setAccessible(true);
+                    $eb = $p2->getValue($condition);
+                    if (!empty($eb)) {
+                        foreach ($eb as $k => $v) {
+                            $bindings[$k] = $v;
+                        }
+                    }
+                }
+            } catch (\ReflectionException $e) {
+                // ignore
+            }
+            if (!empty($bindings)) {
+                // debug
+                $frag = $condition->toSql();
+                self::mergeBindingsWithNamespace($values, $bindings, $frag);
+                $sql = '('.$frag.')';
+            }
         } elseif ($condition instanceof self) {
-            $sql = $condition->text();
-            $values = $condition->getValues($values);
-        } elseif (preg_match('/^SQL\((.+)\)$/', $condition, $match)) {
-            $sql = $match[1];
+            $frag = $condition->toSql();
+            $bindings = $condition->getValues([]);
+            if (!empty($bindings)) {
+                self::mergeBindingsWithNamespace($values, $bindings, $frag);
+            }
+            $sql = $frag;
         } else {
-            $sql = self::fieldName($id).' = '.self::quoteValue($id, $condition, $values);
+            $sql = self::column($id).' = '.self::quoteValue($id, $condition, $values);
         }
 
         return $sql;
     }
+
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->toSql();
+    }
+
+    /**
+     * Indicates whether this SQL expression needs to be wrapped in parentheses
+     * when used in SELECT clauses. SQL functions typically don't need parentheses,
+     * while subqueries do.
+     *
+     * @return bool
+     */
+    public function needsParentheses() : bool
+    {
+        return false; // SQL functions don't need parentheses in SELECT
+    }
+
+    /**
+     * Create a field name (column identifier) - alias for column()
+     *
+     * @param string $name The field/column name
+     * @return \Kotchasan\QueryBuilder\SqlFunction
+     */
+    public static function fieldName($name)
+    {
+        return self::column($name);
+    }
+
 }

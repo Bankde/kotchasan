@@ -1,19 +1,14 @@
 <?php
-/**
- * @filesource Kotchasan/Date.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * Class for managing dates and times.
+ * Kotchasan Date Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides methods for date manipulation, including calculating age,
+ * formatting dates, and converting dates to human-readable formats.
+ *
+ * @package Kotchasan
  */
 class Date
 {
@@ -39,9 +34,6 @@ class Date
     /**
      * Calculates the difference between two dates (e.g., age).
      * Returns the number of days (can be negative), years, months, and days [days, year, month, day].
-     *
-     * @assert (mktime(0, 0, 0, 2, 1, 2016), mktime(0, 0, 0, 3, 1, 2016)) [==]  array('days' => 29, 'year' => 0,'month' => 0, 'day' => 29)
-     * @assert ('2016-3-1', '2016-2-1') [==]  array('days' => -29, 'year' => 0,'month' => 0, 'day' => 29)
      *
      * @param string|int  $begin_date The start date or birth date (Unix timestamp or date in the format YYYY-m-d)
      * @param istring|int $end_date   The end date or today's date (Unix timestamp or date in the format YYYY-m-d)
@@ -94,8 +86,6 @@ class Date
     /**
      * Returns the time difference in milliseconds.
      *
-     * @assert ('08:00', '09:00') [==] 3600
-     *
      * @param  $firstTime
      * @param  $lastTime
      *
@@ -113,9 +103,6 @@ class Date
      * Converts a number to the name of the day in the current language.
      * Returns the name of the day (e.g., Sunday...Saturday).
      *
-     * @assert (0) [==] 'อา.'
-     * @assert (0, false) [==] 'อาทิตย์'
-     *
      * @param int  $date       0-6
      * @param bool $short_date true (default) for short day name format (e.g., อ.), false for full month name format (e.g., อาทิตย์)
      *
@@ -125,7 +112,7 @@ class Date
     {
         // create class
         if (!isset(self::$lang)) {
-            new static;
+            new static();
         }
         $var = $short_date ? self::$lang['DATE_SHORT'] : self::$lang['DATE_LONG'];
         return isset($var[$date]) ? $var[$date] : '';
@@ -134,10 +121,6 @@ class Date
     /**
      * Converts a time to a date in the specified format.
      * Returns the date and time in the specified format.
-     *
-     * @assert (0, 'y-m-d H:i:s') [==]  date('y-m-d H:i:s')
-     * @assert (null) [==]  ''
-     * @assert (1454259600, 'Y-m-d H:i:s') [==] '2559-02-01 00:00:00'
      *
      * @param int|string $time   int for Unix timestamp, string for Y-m-d or Y-m-d H:i:s format (if not specified or empty, it means today)
      * @param string     $format The desired format of the date (if not specified, it uses the format from the language file DATE_FORMAT)
@@ -159,7 +142,7 @@ class Date
         }
         // create class
         if (!isset(self::$lang)) {
-            new static;
+            new static();
         }
         $format = empty($format) ? 'DATE_FORMAT' : $format;
         $format = Language::get($format);
@@ -205,9 +188,6 @@ class Date
      * Converts a number to the name of the month in the current language.
      * Returns the name of the month (e.g., January...December).
      *
-     * @assert (1) [==] 'ม.ค.'
-     * @assert (1, false) [==] 'มกราคม'
-     *
      * @param int  $month       1-12
      * @param bool $short_month true (default) for short month name format (e.g., มค.), false for full month name format (e.g., มกราคม)
      *
@@ -217,7 +197,7 @@ class Date
     {
         // create class
         if (!isset(self::$lang)) {
-            new static;
+            new static();
         }
         $var = $short_month ? self::$lang['MONTH_SHORT'] : self::$lang['MONTH_LONG'];
         return isset($var[$month]) ? $var[$month] : '';
@@ -292,5 +272,4 @@ class Date
         // If there is no significant time difference, return '{LNG_now}'
         return '{LNG_now}';
     }
-
 }

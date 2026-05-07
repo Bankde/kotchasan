@@ -1,21 +1,16 @@
 <?php
-/**
- * @filesource Kotchasan/DataTable.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 use Kotchasan\Http\Uri;
+use Kotchasan\QueryBuilder\SelectBuilder;
 
 /**
- * Class for managing data presentation from a Model in table format.
+ * Kotchasan DataTable Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides methods for creating and managing data tables.
+ *
+ * @package Kotchasan
  */
 class DataTable extends \Kotchasan\KBase
 {
@@ -34,7 +29,7 @@ class DataTable extends \Kotchasan\KBase
     /**
      * Name of the Model to retrieve data from.
      *
-     * @var \Kotchasan\Database\QueryBuilder
+     * @var \Kotchasan\QueryBuilder\QueryBuilderInterface
      */
     private $model;
     /**
@@ -405,6 +400,11 @@ class DataTable extends \Kotchasan\KBase
     {
         $this->id = 'datatable';
 
+        // Initialize request if not set
+        if (self::$request === null) {
+            self::$request = \Kotchasan\Http\Request::createFromGlobals();
+        }
+
         // Assign the values from the $param array to the class properties
         foreach ($param as $key => $value) {
             $this->{$key} = $value;
@@ -421,7 +421,7 @@ class DataTable extends \Kotchasan\KBase
 
         // Pagination: Get the number of entries per page from the table selection
         if ($this->perPage !== null) {
-            $count = self::$request->globals(['POST', 'GET'], 'count', $this->perPage)->toInt();
+            $count = self::$request->request('count', $this->perPage)->toInt();
             if (in_array($count, $this->entriesList)) {
                 $this->perPage = $count;
                 $this->uri = $this->uri->withParams(['count' => $count]);
@@ -429,22 +429,7 @@ class DataTable extends \Kotchasan\KBase
         }
 
         // Table header: Get the header from the model, data, or manual configuration
-        if (isset($this->model)) {
-            // Convert the database to a Model object
-            $model = new \Kotchasan\Model();
-            $model = $model->db()->createQuery()->select();
-
-            // Read the first item to use its field names as table headers
-            if (is_string($this->model)) {
-                // If the model is a Recordset, create a Recordset object
-                $rs = new \Kotchasan\Orm\Recordset($this->model);
-                // Convert the Recordset to a QueryBuilder object
-                $this->model = $model->from([$rs->toQueryBuilder(), 'Z9']);
-            } else {
-                $this->model = $model->from([$this->model, 'Z9']);
-            }
-
-            // Read the first item
+        if (isset($this->model) && $this->model instanceof SelectBuilder) {
             if ($this->explain) {
                 $first = $this->model->copy()->explain()->first();
             } else {
@@ -505,7 +490,7 @@ class DataTable extends \Kotchasan\KBase
 
         // Get the sorting value if sort is specified
         if ($autoSort) {
-            $this->sort = self::$request->globals(['POST', 'GET'], 'sort', $this->sort)->topic();
+            $this->sort = self::$request->request('sort', $this->sort)->topic();
         }
 
         if (!empty($this->sort)) {
@@ -513,7 +498,7 @@ class DataTable extends \Kotchasan\KBase
         }
 
         // Search
-        $this->search = self::$request->globals(['POST', 'GET'], 'search')->text();
+        $this->search = self::$request->request('search', '')->topic();
     }
 
     /**
@@ -599,18 +584,13 @@ class DataTable extends \Kotchasan\KBase
             }
             // Add query items to the main query list (AND) if they meet certain conditions
             if (!empty($items['options']) && isset($items['value']) && $items['value'] !== $items['default'] && in_array($items['value'], array_keys($items['options']), true)) {
-                if (isset($items['onFilter'])) {
-                    $q = call_user_func($items['onFilter'], $key, $items['value']);
-                    if ($q) {
-                        $qs[] = $q;
-                    }
-                } elseif (is_string($key)) {
+                if (is_string($key)) {
                     $qs[] = [$key, $items['value']];
                 }
             }
         }
         if ($this->model && !empty($qs)) {
-            $this->model->andWhere($qs);
+            $this->model->where($qs);
         }
         // Search
         if ($this->searchForm === true || ($this->searchForm === 'auto' && !empty($this->searchColumns))) {
@@ -620,7 +600,7 @@ class DataTable extends \Kotchasan\KBase
                     foreach ($this->searchColumns as $key) {
                         $sh[] = [$key, 'LIKE', '%'.$this->search.'%'];
                     }
-                    $this->model->andWhere($sh, 'OR');
+                    $this->model->where($sh, 'OR');
                 } elseif (isset($this->datas)) {
                     // Array filter
                     $this->datas = ArrayTool::filter($this->datas, $this->search);
@@ -648,15 +628,13 @@ class DataTable extends \Kotchasan\KBase
                 // Fields select
                 $this->model->select($this->fields);
                 // Datas count (Query Builder)
-                $model = new \Kotchasan\Model();
-                $query = $model->db()->createQuery()
-                    ->selectCount()
-                    ->from([$this->model, 'Z']);
+                $countQuery = $this->model->copy()
+                    ->select('COUNT(*) as count');
                 if ($this->cache) {
-                    $query->cacheOn();
+                    $countQuery->cacheOn();
                 }
-                $result = $query->toArray()->execute();
-                $recordsTotal = empty($result) ? 0 : $result[0]['count'];
+                $data = $countQuery->first();
+                $recordsTotal = empty($data) ? 0 : $data->count;
             }
         } elseif (!empty($this->datas)) {
             // Datas count
@@ -668,7 +646,7 @@ class DataTable extends \Kotchasan\KBase
         // Pagination
         if ($this->perPage > 0) {
             // Display page
-            $this->page = max(1, self::$request->globals(['POST', 'GET'], 'page', 1)->toInt());
+            $this->page = max(1, self::$request->request('page', 1)->toInt());
             // Max pages
             $totalpage = ceil($recordsTotal / $this->perPage);
             $this->page = max(1, $this->page > $totalpage ? $totalpage : $this->page);
@@ -705,10 +683,11 @@ class DataTable extends \Kotchasan\KBase
         $orders = [];
         if (!empty($this->defaultSort)) {
             foreach (explode(',', $this->defaultSort) as $sort) {
-                if (preg_match('/^([a-z0-9_\-]+)([\s]+(desc|asc))?$/i', trim($sort), $match)) {
+                if (preg_match('/^([a-z0-9_\-\.]+)([\s]+(desc|asc))?$/i', trim($sort), $match)) {
                     $sortType = isset($match[3]) && strtolower($match[3]) == 'desc' ? 'desc' : 'asc';
-                    $orders[] = $match[1].' '.$sortType;
+                    $orders[$match[1]] = $sortType;
                     $this->sorts[$match[1]] = $sortType;
+                    $this->model->orderBy($match[1], $sortType);
                 }
             }
         }
@@ -716,7 +695,7 @@ class DataTable extends \Kotchasan\KBase
         if (!empty($this->sort)) {
             $sorts = [];
             foreach (explode(',', $this->sort) as $sort) {
-                if (preg_match('/^([a-z0-9_\-]+)([\s]+(desc|asc))?$/i', trim($sort), $match)) {
+                if (preg_match('/^([a-z0-9_\-\.]+)([\s]+(desc|asc))?$/i', trim($sort), $match)) {
                     if (isset($this->headers[$match[1]]['sort'])) {
                         $sort = $this->headers[$match[1]]['sort'];
                     } elseif (isset($this->columns[$match[1]])) {
@@ -729,21 +708,17 @@ class DataTable extends \Kotchasan\KBase
                     if ($sort) {
                         $sortType = isset($match[3]) && strtolower($match[3]) == 'desc' ? 'desc' : 'asc';
                         $this->sorts[$sort] = $sortType;
+                        $this->model->orderBy($sort, $sortType);
                         foreach (explode(',', $sort) as $sort_item) {
-                            $sorts[] = $sort_item.' '.$sortType;
+                            $sorts[$sort_item] = $sortType;
                         }
                     }
                 }
             }
             $this->sort = implode(',', $sorts);
-            $orders = array_merge($orders, $sorts);
         }
 
-        if (isset($this->model)) {
-            if (!empty($orders)) {
-                $this->model->order($orders);
-            }
-        } elseif (!empty($this->sorts)) {
+        if (!isset($this->model) && !empty($this->sorts)) {
             reset($this->sorts);
             $sort = key($this->sorts);
             $this->datas = ArrayTool::sort($this->datas, $sort, $this->sorts[$sort]);
@@ -753,13 +728,15 @@ class DataTable extends \Kotchasan\KBase
             if ($this->explain) {
                 $this->model->explain();
             }
+            $this->model->limit($this->perPage, $start);
             // Database debugger
             if ($this->debug === true) {
-                $this->debug = $this->model->toArray()->limit($this->perPage, $start)->text();
+                $this->debug = $this->model->toSql();
             }
 
             // Execute model
-            $this->datas = $this->model->toArray()->limit($this->perPage, $start)->execute();
+            $this->datas = $this->model
+                ->fetchAll(true);
 
             // first and last item index
             $end = $this->perPage + 1;
@@ -1065,10 +1042,9 @@ class DataTable extends \Kotchasan\KBase
                             $patt = [];
                             $replace = [];
                             $keys = array_keys($src_items);
-                            rsort($keys);
                             foreach ($keys as $k) {
                                 if (!is_array($src_items[$k])) {
-                                    $patt[] = ":$k";
+                                    $patt[] = "%3A$k";
                                     $replace[] = $src_items[$k];
                                 }
                             }

@@ -1,14 +1,14 @@
 /**
  * GCSS for Print
  * design by Goragod.com (Goragod Wiriya)
- * 18-05-2025
+ * 18-05-2024
 */
 @page {
   margin: 0.5cm 1cm;
 }
 body {
   margin: 0 auto;
-  font-family: Tahoma, Loma, "Times New Roman", Times, serif;
+  font-family: THSarabunNew, Tahoma, Loma, "Times New Roman", Times, serif;
   font-size: 12pt;
   color: #000;
   max-width: 210mm;

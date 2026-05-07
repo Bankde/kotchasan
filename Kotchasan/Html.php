@@ -1,19 +1,15 @@
 <?php
-/**
- * @filesource Kotchasan/Html.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * HTML class
+ * Kotchasan Html Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides methods for creating and manipulating HTML elements.
+ * It supports adding various types of elements, including input groups,
+ * radio groups, checkbox groups, and more.
+ *
+ * @package Kotchasan
  */
 class Html extends \Kotchasan\KBase
 {

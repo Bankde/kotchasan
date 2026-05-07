@@ -1,19 +1,14 @@
 <?php
-/**
- * @filesource Kotchasan/Menu.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * This class is responsible for rendering the standard menu of Kotchasan.
+ * Kotchasan Menu Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides methods for rendering a menu from an array of items.
+ * It supports nested submenus and allows for customization of menu items.
+ *
+ * @package Kotchasan
  */
 class Menu
 {

@@ -6,7 +6,7 @@
  * This file initializes the Kotchasan Framework and starts the web application.
  * For more information, please visit: https://www.kotchasan.com/
  *
- * @copyright 2016 Goragod.com
+ * @copyright 2024 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
  */

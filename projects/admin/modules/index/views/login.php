@@ -2,7 +2,7 @@
 /**
  * @filesource modules/index/views/login.php
  *
- * @copyright 2016 Goragod.com
+ * @copyright 2024 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya <admin@goragod.com>
  */

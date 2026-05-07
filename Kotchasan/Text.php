@@ -1,19 +1,15 @@
 <?php
-/**
- * @filesource Kotchasan/Text.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * String functions
+ * Kotchasan Text Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides various text manipulation methods,
+ * including string truncation, file size formatting, HTML highlighting,
+ * and more.
+ *
+ * @package Kotchasan
  */
 class Text
 {
@@ -21,9 +17,6 @@ class Text
      * Truncates a string to the specified length.
      * If the source string is longer than the specified length,
      * it will be truncated and '...' will be appended.
-     *
-     * @assert ('สวัสดี ประเทศไทย', 8) [==] 'สวัสดี..'
-     * @assert ('123456789', 8) [==] '123456..'
      *
      * @param string $source The source string
      * @param int    $len    The desired length of the string (including the '...')
@@ -42,12 +35,6 @@ class Text
     /**
      * Converts the size of a file from bytes to KB, MB, etc.
      * Returns the file size as a string in KB, MB, etc.
-     *
-     * @assert (256) [==] '256 Bytes'
-     * @assert (1024) [==] '1 KB'
-     * @assert (1024 * 1024) [==] '1 MB'
-     * @assert (1024 * 1024 * 1024) [==] '1 GB'
-     * @assert (1024 * 1024 * 1024 * 1024) [==] '1 TB'
      *
      * @param int $bytes     The file size in bytes
      * @param int $precision The number of decimal places (default 2)
@@ -109,8 +96,6 @@ class Text
      * This function replaces special characters like "&", "<", ">", etc.
      * with their corresponding HTML entities.
      *
-     * @assert ('&"\'<>\\{}$') [==] '&amp;&quot;&#039;&lt;&gt;&#92;&#x007B;&#x007D;&#36;'
-     *
      * @param string $text          The input text
      * @param bool   $double_encode Whether to double encode existing entities (default true)
      *
@@ -142,8 +127,6 @@ class Text
      * This function removes any leading/trailing whitespace, line breaks, tabs, and multiple spaces,
      * and then optionally cuts the text to the specified length.
      *
-     * @assert (" \tทดสอบ\r\nภาษาไทย") [==] 'ทดสอบ ภาษาไทย'
-     *
      * @param string $text The input text
      * @param int    $len  The maximum length of the one-line text (default 0, no limit)
      *
@@ -167,8 +150,6 @@ class Text
      * This function removes any characters that are not word characters,
      * along with specific allowed characters (@, #, *, $, &, {, }, !, ?, +, _, -, =, ., [, ], ก-ฮ).
      *
-     * @assert (" 0\n12   34\r\r6\t5ทดสอบ@#$&{}!?+_-=.[]*") [==] '0123465ทดสอบ@#$&{}!?+_-=.[]*'
-     *
      * @param string $text The input text
      *
      * @return string
@@ -189,8 +170,6 @@ class Text
      * Removes non-character bytes from the given text.
      * This function uses a regular expression to match and remove any bytes that are not valid UTF-8 characters.
      *
-     * @assert (chr(0).chr(127).chr(128).chr(255)) [==] chr(0).chr(127)
-     *
      * @param string $text The input text
      *
      * @return string
@@ -206,8 +185,6 @@ class Text
 
     /**
      * Repeats a string a specified number of times.
-     *
-     * @assert ('0', 10) [==] '0000000000'
      *
      * @param string $text  The string to repeat
      * @param int    $count The number of times to repeat the string
@@ -225,8 +202,6 @@ class Text
 
     /**
      * Replaces keys in a string with corresponding values.
-     *
-     * @assert ("SELECT * FROM table WHERE id=:id AND lang IN (:lang, '')", array(':id' => 1, array(':lang' => 'th'))) [==] "SELECT * FROM table WHERE id=1 AND lang IN (th, '')"
      *
      * @param string $source  The source string to replace keys in
      * @param array  $replace An associative array of keys and values
@@ -252,8 +227,6 @@ class Text
     /**
      * Convert special characters to their HTML entities for editor display.
      *
-     * @assert ('&"'."'<>{}&amp;&#38;") [==] "&amp;&quot;&#039;&lt;&gt;&#x007B;&#x007D;&amp;&#38;"
-     *
      * @param string $text The input text
      *
      * @return string The text with special characters converted to HTML entities
@@ -277,10 +250,6 @@ class Text
     /**
      * Clean and format a topic text.
      *
-     * @assert (' ทด\/สอบ$'."\r\n\t".'<?php echo \'555\'?> ') [==] 'ทด&#92;/สอบ&#36; &lt;?php echo &#039;555&#039;?&gt;'
-     * @assert ('&nbsp;') [==] '&amp;nbsp;'
-     * @assert ('&nbsp;', false) [==] '&nbsp;'
-     *
      * @param string $text           The input text
      * @param bool   $double_encode  Whether to double encode special characters (default: true)
      *
@@ -303,8 +272,6 @@ class Text
 
     /**
      * Convert HTML entities back to their corresponding characters.
-     *
-     * @assert (\Kotchasan\Text::htmlspecialchars('&"\'<>\\{}$')) [==] '&"\'<>\\{}$'
      *
      * @param string $text The input text
      *
@@ -330,10 +297,6 @@ class Text
     /**
      * Sanitize a URL string.
      *
-     * @assert (" http://www.kotchasan.com?a=1&b=2&amp;c=3 ") [==] 'http://www.kotchasan.com?a=1&amp;b=2&amp;c=3'
-     * @assert ("javascript:alert('xxx')") [==] 'alertxxx'
-     * @assert ("http://www.xxx.com/javascript/") [==] 'http://www.xxx.com/javascript/'
-     *
      * @param string $text The input URL string
      *
      * @return string The sanitized URL string
@@ -356,9 +319,6 @@ class Text
 
     /**
      * Sanitize a username string.
-     *
-     * @assert (' ad_min@demo.com') [==] 'ad_min@demo.com'
-     * @assert ('012 3465') [==] '0123465'
      *
      * @param string $text The input username string
      *

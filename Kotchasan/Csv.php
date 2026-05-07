@@ -1,19 +1,13 @@
 <?php
-/**
- * @filesource Kotchasan/Csv.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * CSV Utility Class
+ * Kotchasan CSV Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides methods for importing and exporting CSV data.
+ *
+ * @package Kotchasan
  */
 class Csv
 {
@@ -46,7 +40,7 @@ class Csv
      */
     public static function import($csv, $columns, $keys = null, $charset = 'UTF-8')
     {
-        $obj = new static;
+        $obj = new static();
         $obj->columns = $columns;
         $obj->datas = [];
         $obj->charset = strtoupper($charset);

@@ -1,21 +1,16 @@
 <?php
-/**
- * @filesource Kotchasan/Login.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 use Kotchasan\Http\Request;
 
 /**
- * This class is responsible for handling user login functionality.
+ * Kotchasan Login Class
  *
- * @see https://www.kotchasan.com/
+ * This class handles user login functionality, including login validation,
+ * session management, and user authentication.
+ *
+ * @package Kotchasan
  */
 class Login extends KBase
 {
@@ -28,7 +23,7 @@ class Login extends KBase
 
     /**
      * The name of the input field to be focused.
-     * Can be 'login_username' or 'login_password'.
+     * Can be 'username' or 'password'.
      *
      * @var string
      */
@@ -49,50 +44,50 @@ class Login extends KBase
     public static $login_params = [];
 
     /**
-     * Validates the login request and performs the login process.
+     * Creates a new instance of the Login class.
      *
      * @param Request $request The HTTP request object.
-     * @return static
+     *
+     * @return static A new instance of the Login class.
      */
     public static function create(Request $request)
     {
-        try {
-            $obj = new static;
-            self::$login_params['username'] = $request->post('login_username')->username();
+        $key = static::sessionKey();
 
-            if (empty(self::$login_params['username'])) {
-                if (isset($_SESSION['login'])) {
-                    if (isset($_SESSION['login']['username'])) {
-                        self::$login_params['username'] = Text::username($_SESSION['login']['username']);
-                    }
-                    if (isset($_SESSION['login']['password'])) {
-                        self::$login_params['password'] = Text::password($_SESSION['login']['password']);
-                    }
+        $obj = new static();
+
+        self::$login_params['username'] = $request->post('username')->username();
+
+        if (empty(self::$login_params['username'])) {
+            if (isset($_SESSION[$key])) {
+                if (isset($_SESSION[$key]['username'])) {
+                    self::$login_params['username'] = Text::username($_SESSION[$key]['username']);
                 }
-                self::$from_submit = $request->post('login_username')->exists();
-            } elseif ($request->post('login_password')->exists()) {
-                self::$login_params['password'] = $request->post('login_password')->password();
-                self::$from_submit = true;
-            }
-
-            $action = $request->request('action')->toString();
-            if ($action === 'logout' && !self::$from_submit) {
-                $obj->logout($request);
-            } elseif ($action === 'forgot') {
-                $obj->forgot($request);
-            } else {
-                if (empty(self::$login_params['username']) && self::$from_submit) {
-                    self::$login_message = Language::get('Please fill up this form');
-                    self::$login_input = 'login_username';
-                } elseif (empty(self::$login_params['password']) && self::$from_submit) {
-                    self::$login_message = Language::get('Please fill up this form');
-                    self::$login_input = 'login_password';
-                } elseif (!self::$from_submit || (self::$from_submit && $request->isReferer())) {
-                    $obj->login($request, self::$login_params);
+                if (isset($_SESSION[$key]['password'])) {
+                    self::$login_params['password'] = Text::password($_SESSION[$key]['password']);
                 }
             }
-        } catch (InputItemException $e) {
-            self::$login_message = $e->getMessage();
+            self::$from_submit = $request->post('username')->exists();
+        } elseif ($request->post('password')->exists()) {
+            self::$login_params['password'] = $request->post('password')->password();
+            self::$from_submit = true;
+        }
+
+        $action = $request->request('action')->toString();
+        if ($action === 'logout' && !self::$from_submit) {
+            $obj->logout($request);
+        } elseif ($action === 'forgot') {
+            $obj->forgot($request);
+        } else {
+            if (empty(self::$login_params['username']) && self::$from_submit) {
+                self::$login_message = Language::get('Please fill up this form');
+                self::$login_input = 'username';
+            } elseif (empty(self::$login_params['password']) && self::$from_submit) {
+                self::$login_message = Language::get('Please fill up this form');
+                self::$login_input = 'password';
+            } elseif (!self::$from_submit || (self::$from_submit && $request->isReferer())) {
+                $obj->login($request, self::$login_params);
+            }
         }
 
         return $obj;
@@ -106,7 +101,8 @@ class Login extends KBase
      */
     public function logout(Request $request)
     {
-        unset($_SESSION['login']);
+        $key = static::sessionKey();
+        unset($_SESSION[$key]);
         self::$login_message = Language::get('Logout successful');
         self::$login_params = [];
     }
@@ -119,7 +115,8 @@ class Login extends KBase
      */
     public function forgot(Request $request)
     {
-        // Password recovery logic goes here
+        // Password recovery logic
+        // Implementation depends on your application's requirements
     }
 
     /**
@@ -132,24 +129,29 @@ class Login extends KBase
      */
     public function login(Request $request, $loginParams)
     {
+        $key = static::sessionKey();
+
         // Check login against the database
         $login_result = $this->checkLogin($loginParams);
+
         if (is_array($login_result)) {
             // Save login session
-            $_SESSION['login'] = $login_result;
+            $_SESSION[$key] = $login_result;
         } else {
+            // Login failed
             if (is_string($login_result)) {
                 // Error message
-                self::$login_input = self::$login_input == 'password' ? 'login_password' : 'login_username';
+                self::$login_input = self::$login_input === 'password' ? 'password' : 'username';
                 self::$login_message = $login_result;
             }
             // Logout: remove session and cookie
-            unset($_SESSION['login']);
+            unset($_SESSION[$key]);
         }
     }
 
     /**
      * Validates the login credentials against the configured username and password.
+     * Override this method in your implementation to check against a database.
      *
      * @param array $loginParams The login parameters. e.g., array('username' => '', 'password' => '');
      *
@@ -191,7 +193,8 @@ class Login extends KBase
      */
     public static function isMember()
     {
-        return empty($_SESSION['login']) ? null : $_SESSION['login'];
+        $key = static::sessionKey();
+        return empty($_SESSION[$key]) ? null : $_SESSION[$key];
     }
 
     /**
@@ -221,5 +224,25 @@ class Login extends KBase
         }
         // No privileges
         return null;
+    }
+
+    /**
+     * Session key used to store login information.
+     * Can be overridden by configuration (e.g. self::$cfg->session_key) or
+     * by subclasses overriding this method.
+     *
+     * @return string
+     */
+    public static function sessionKey()
+    {
+        if (isset(self::$cfg)) {
+            if (!empty(self::$cfg->session_key)) {
+                return (string) self::$cfg->session_key;
+            }
+            if (!empty(self::$cfg->session_prefix)) {
+                return (string) self::$cfg->session_prefix.'login';
+            }
+        }
+        return 'login';
     }
 }

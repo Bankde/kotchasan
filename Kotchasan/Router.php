@@ -1,19 +1,14 @@
 <?php
-/**
- * @filesource Kotchasan/Router.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * Router class for website page routing.
+ * Kotchasan Router Class
  *
- * @see https://www.kotchasan.com/
+ * This class handles routing for the Kotchasan framework,
+ * allowing for flexible URL patterns and module handling.
+ *
+ * @package Kotchasan
  */
 class Router extends \Kotchasan\KBase
 {
@@ -23,8 +18,10 @@ class Router extends \Kotchasan\KBase
      * @var array
      */
     protected $rules = [
-        // index.php/module/model/folder/_dir/_method
-        '/^[a-z0-9]+\.php\/([a-z]+)\/(model)(\/([\/a-z0-9_]+)\/([a-z0-9_]+))?$/i' => ['module', '_mvc', '', '_dir', '_method'],
+        // /api/v1/auth/login
+        '/api\.php\/([a-z0-9]+)\/([a-z]+)\/([a-z]+)/i' => ['module', 'method', 'action'],
+        // index.php/module/controller|model/folder/_dir/_method
+        '/^[a-z0-9]+\.php\/([a-z]+)\/(controller|model)(\/([\/a-z0-9_]+)\/([a-z0-9_]+))?$/i' => ['module', '_mvc', '', '_dir', '_method'],
         // index/model/_dir
         '/([a-z]+)\/(model|controller|view)\/([a-z0-9_]+)/i' => ['module', '_mvc', '_dir'],
         // module/alias
@@ -66,8 +63,12 @@ class Router extends \Kotchasan\KBase
         } elseif (method_exists($className, $method)) {
             // Create the class
             $obj = new $className();
-            // Call the method
-            $obj->$method(self::$request->withQueryParams($modules));
+            // Call the method and get response
+            $response = $obj->$method(self::$request->withQueryParams($modules));
+            // Send the response if it's a Response object
+            if ($response instanceof \Kotchasan\Http\Response) {
+                $response->send();
+            }
         } else {
             throw new \InvalidArgumentException('Method '.$method.' not found in '.$className);
         }
@@ -77,17 +78,6 @@ class Router extends \Kotchasan\KBase
 
     /**
      * Parse the path and return it as a query string.
-     *
-     * @assert ('/print.php/css/view/index', []) [==] array( '_mvc' => 'view', '_dir' => 'index', 'module' => 'css')
-     * @assert ('/index/model/updateprofile.php', []) [==] array( '_mvc' => 'model', '_dir' => 'updateprofile', 'module' => 'index')
-     * @assert ('/index.php/alias/model/admin/settings/save', []) [==] array('module' => 'alias', '_mvc' => 'model', '_dir' => 'admin/settings', '_method' => 'save')
-     * @assert ('/css/view/index.php', []) [==] array('module' => 'css', '_mvc' => 'view', '_dir' => 'index')
-     * @assert ('/module/ทดสอบ.html', []) [==] array('alias' => 'ทดสอบ', 'module' => 'module')
-     * @assert ('/module.html', []) [==] array('module' => 'module')
-     * @assert ('/ทดสอบ.html', []) [==] array('alias' => 'ทดสอบ')
-     * @assert ('/ทดสอบ.html', array('module' => 'test')) [==] array('alias' => 'ทดสอบ', 'module' => 'test')
-     * @assert ('/index.php', array('_action' => 'one')) [==] array('_action' => 'one')
-     * @assert ('/admin_index.php', array('_action' => 'one')) [==] array('_action' => 'one', 'module' => 'admin_index')
      *
      * @param string $path The path, e.g., /a/b/c.html
      * @param array $modules Query string

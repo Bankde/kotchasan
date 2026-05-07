@@ -1,19 +1,14 @@
 <?php
-/**
- * @filesource Kotchasan/Province.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * This class provides a list of provinces in Thailand and Laos.
+ * Kotchasan Province Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides methods to retrieve province data based on the selected country.
+ * It supports multiple countries and allows fetching province names in different languages.
+ *
+ * @package Kotchasan
  */
 class Province
 {

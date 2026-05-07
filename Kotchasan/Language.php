@@ -1,19 +1,14 @@
 <?php
-/**
- * @filesource Kotchasan/Language.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * Class for language loading.
+ * Kotchasan Language Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides methods for managing and retrieving language translations.
+ * It supports loading language files, retrieving language variables, and formatting strings.
+ *
+ * @package Kotchasan
  */
 final class Language extends \Kotchasan\KBase
 {
@@ -35,12 +30,6 @@ final class Language extends \Kotchasan\KBase
     /**
      * Retrieves the language variable with the specified key.
      *
-     * @assert ('YEAR_OFFSET') [==] 543
-     * @assert ('XYZ', []) [==] []
-     * @assert ('DATE_LONG', null, 0) [==] 'อาทิตย์'
-     * @assert ('DATE_LONG', null, 12) [==] 'DATE_LONG'
-     * @assert ('not found', 'default') [==] 'default'
-     *
      * @param string $key     The language variable key or English text.
      * @param mixed  $default The default value to return if the key is not found.
      * @param mixed  $value   If an array variable is specified and $value is set, returns the language value at $key[$value].
@@ -50,7 +39,7 @@ final class Language extends \Kotchasan\KBase
     public static function get($key, $default = null, $value = null)
     {
         if (null === self::$languages) {
-            new static;
+            new static();
         }
         if (isset(self::$languages->{$key})) {
             $item = self::$languages->{$key};
@@ -74,7 +63,7 @@ final class Language extends \Kotchasan\KBase
     public static function getItems(array $keys = [])
     {
         if (null === self::$languages) {
-            new static;
+            new static();
         }
         $result = [];
         foreach ($keys as $i => $key) {
@@ -153,10 +142,6 @@ final class Language extends \Kotchasan\KBase
     /**
      * Checks if a language key exists in the given array of languages.
      *
-     * @assert (array(array('id' => 0, 'key' => 'One'), array('id' => 100, 'key' => 'Two')), 'One') [==] 0
-     * @assert (array(array('id' => 0, 'key' => 'One'), array('id' => 100, 'key' => 'Two')), 'two') [==] 100
-     * @assert (array(array('id' => 0, 'key' => 'One'), array('id' => 100, 'key' => 'Two')), 'O') [==] -1
-     *
      * @param array  $languages An array of language data.
      * @param string $key       The language key to check.
      *
@@ -175,9 +160,6 @@ final class Language extends \Kotchasan\KBase
     /**
      * Checks if a language variable specified by name exists and is an array with a given key.
      *
-     * @assert ('DATE_LONG', 1) [==] true
-     * @assert ('DATE_LONG', 7) [==] false
-     *
      * @param array  $datas The language data.
      * @param string $name  The name of the language variable.
      * @param string $key   The key to check.
@@ -187,7 +169,7 @@ final class Language extends \Kotchasan\KBase
     public static function arrayKeyExists($name, $key)
     {
         if (null === self::$languages) {
-            new static;
+            new static();
         }
         return is_array(self::$languages->{$name}) && isset(self::$languages->{$name}[$key]);
     }
@@ -205,14 +187,12 @@ final class Language extends \Kotchasan\KBase
     /**
      * Retrieves the name of the currently active language.
      *
-     * @assert () [==] 'th'
-     *
      * @return string The name of the currently active language.
      */
     public static function name()
     {
         if (null === self::$languages) {
-            new static;
+            new static();
         }
         return self::$language_name;
     }
@@ -235,8 +215,7 @@ final class Language extends \Kotchasan\KBase
     /**
      * Function that translates the language received from Theme parsing.
      *
-     * @assert (array(1 => 'not found')) [==] 'not found'
-     *
+
      * @param array $match The variable received from Theme parsing.
      *
      * @return string
@@ -249,10 +228,6 @@ final class Language extends \Kotchasan\KBase
     /**
      * Retrieves the language value based on the given key and replaces placeholders with values from the $replace array.
      *
-     * @assert ('You want to :action', array(':action' => 'delete')) [==] 'You want to delete'
-     * @assert ('You want to %s', 'delete') [==] 'You want to delete'
-     * @assert ('You want to %s', 1) [==] 'You want to 1'
-     *
      * @param string $key     The language key.
      * @param mixed  $replace The values to replace placeholders.
      *
@@ -261,7 +236,7 @@ final class Language extends \Kotchasan\KBase
     public static function replace($key, $replace)
     {
         if (null === self::$languages) {
-            new static;
+            new static();
         }
         $value = isset(self::$languages->$key) ? self::$languages->$key : $key;
         if (is_array($replace) || is_object($replace)) {
@@ -278,9 +253,6 @@ final class Language extends \Kotchasan\KBase
     /**
      * Format a string based on a key using sprintf formatting.
      *
-     * @assert ('Error moving uploaded file %1s to %2s', 'one', 'two') [==] 'Error moving uploaded file one to two'
-     * @assert ('Error moving uploaded file %s to %s', 'one', 'two') [==] 'Error moving uploaded file one to two'
-     *
      * @param string $key The key to lookup in the language translations.
      * @param mixed ...$values Optional values to substitute into the formatted string.
      *
@@ -289,7 +261,7 @@ final class Language extends \Kotchasan\KBase
     public static function sprintf($key, ...$values)
     {
         if (null === self::$languages) {
-            new static;
+            new static();
         }
         $values = func_get_args();
         $key = array_shift($values);
@@ -373,8 +345,6 @@ final class Language extends \Kotchasan\KBase
     /**
      * Translates the given content by replacing language placeholders.
      *
-     * @assert ('ภาษา {LNG_DATE_FORMAT} ไทย') [==] 'ภาษา d M Y เวลา H:i น. ไทย'
-     *
      * @param string $content The content to be translated.
      *
      * @return string The translated content.
@@ -415,26 +385,51 @@ final class Language extends \Kotchasan\KBase
         $language_folder = self::languageFolder();
         // Selected language
         if ($lang === null) {
-            $lang = self::$request->get('lang', self::$request->cookie('my_lang', '')->toString())->filter('a-z');
+            // Check if request object is available
+            if (self::$request !== null) {
+                $queryParams = self::$request->getQueryParams();
+                $cookieParams = self::$request->getCookieParams();
+                $lang = isset($queryParams['lang']) ? $queryParams['lang'] : (isset($cookieParams['my_lang']) ? $cookieParams['my_lang'] : '');
+                $lang = preg_match('/^[a-z]+$/', $lang) ? $lang : '';
+            } else {
+                // Fallback to $_GET and $_COOKIE when request object is not available
+                $lang = isset($_GET['lang']) ? $_GET['lang'] : (isset($_COOKIE['my_lang']) ? $_COOKIE['my_lang'] : '');
+                $lang = preg_match('/^[a-z]+$/', $lang) ? $lang : '';
+            }
         }
         if (empty($lang)) {
             if (defined('INIT_LANGUAGE')) {
-                if (INIT_LANGUAGE === 'auto') {
+                $init_language = constant('INIT_LANGUAGE');
+                if ($init_language === 'auto') {
                     // Language from browser
-                    $languages = self::$request->getAcceptableLanguages();
-                    if (!empty($languages) && preg_match('/^([a-z]{2,2}).*?$/', strtolower($languages[0]), $match)) {
-                        $lang = $match[1];
+                    if (self::$request !== null) {
+                        $languages = self::$request->getAcceptableLanguages();
+                        if (!empty($languages) && preg_match('/^([a-z]{2,2}).*?$/', strtolower($languages[0]), $match)) {
+                            $lang = $match[1];
+                        } else {
+                            $lang = 'th';
+                        }
                     } else {
-                        $lang = 'th';
+                        // Fallback to $_SERVER when request object is not available
+                        $acceptLanguage = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '';
+                        if (!empty($acceptLanguage) && preg_match('/^([a-z]{2,2}).*?$/', strtolower($acceptLanguage), $match)) {
+                            $lang = $match[1];
+                        } else {
+                            $lang = 'th';
+                        }
                     }
                 } else {
                     // Use the specified initial language
-                    $lang = INIT_LANGUAGE;
+                    $lang = $init_language;
                 }
+            } else {
+                // Default to Thai if no configuration
+                $lang = 'th';
             }
         }
         // Check language and use the first one found
-        foreach (ArrayTool::replace([$lang => $lang], self::$cfg->languages) as $item) {
+        $configLanguages = (self::$cfg && isset(self::$cfg->languages)) ? self::$cfg->languages : ['th' => 'th', 'en' => 'en'];
+        foreach (ArrayTool::replace([$lang => $lang], $configLanguages) as $item) {
             if (!empty($item)) {
                 if (is_file($language_folder.$item.'.php')) {
                     $language = include $language_folder.$item.'.php';

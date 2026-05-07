@@ -4041,32 +4041,62 @@ window.$K = (function() {
   GDDColor.prototype = {
     initialize: function(id, onchanged) {
       this.Colors = Array(
-        'B71C1C',
-        '880E4F',
-        '4A148C',
-        '311B92',
-        '1A237E',
-        '0D47A1',
-        '304FFE',
-        '01579B',
-        '2387CA',
-        '006064',
-        '004D40',
-        '1B5E20',
-        '33691E',
-        '827717',
-        'FFD600',
-        'FF6F00',
-        'E65100',
-        'BF360C',
-        '3E2723',
-        '263238',
+        'FF0000',
+        '00FF00',
+        '0000FF',
+        'FFFF00',
+        'FF00FF',
+        '00FFFF',
+        'FFA500',
+        '800080',
+        '008000',
+        '800000',
+        '000080',
+        '808000',
+        '008080',
+        '808080',
+        'A52A2A',
+        'FA8072',
+        '4682B4',
+        'D2691E',
+        '2E8B57',
+        'FFD700',
+        'DA70D6',
+        'C71585',
+        '40E0D0',
+        'F0E68C',
+        'ADD8E6',
+        '90EE90',
+        'FF69B4',
+        'B0C4DE',
+        'EEE8AA',
+        '98FB98',
+        'F5F5DC',
+        'FFE4E1',
+        'F08080',
+        'E0FFFF',
+        'D8BFD8',
+        'F4A460',
+        'BC8F8F',
+        'CD5C5C',
+        '6B8E23',
+        '556B2F',
+        '8FBC8F',
+        '483D8B',
+        'B8860B',
+        'A9A9A9',
+        '3CB371',
+        'BA55D3',
+        '9370DB',
+        '66CDAA',
+        '7B68EE',
+        '708090',
         'FFFFFF',
         '000000',
         'T',
         'C'
       );
-      this.cols = 6;
+      this.cols = 9;
       this.input = $G(id);
       this.input.addClass('gddcolor');
       if ($K.isMobile()) {
@@ -4093,7 +4123,7 @@ window.$K = (function() {
         if (key == 38 || key == 39 || key == 40 || /^(Arrow)?(Up|Down|Right)$/.test(e.key)) {
           self.createColors();
           self.ddcolor.show();
-          $E('gddcolor_div').firstChild.firstChild.focus();
+          document.querySelector('.gddcolor_div').firstChild.firstChild.focus();
           GEvent.stop(e);
           return false;
         } else if (GEvent.isCtrlKey(e)) {
@@ -4125,7 +4155,7 @@ window.$K = (function() {
       }
       $G(document.body).addEvent('click', function(e) {
         let elem = GEvent.element(e),
-          gddcolor = $G(elem).hasClass('gddcolor');
+          gddcolor = $G(elem).hasClass('gddcolor_div');
         if (!gddcolor) {
           self.ddcolor.hide();
         }
@@ -4161,8 +4191,7 @@ window.$K = (function() {
         self = this,
         patt = /((color_)([0-9]+)_)([0-9]+)/;
       dropdown.innerHTML = '';
-      ddcolor.className = 'gddcolor';
-      ddcolor.id = 'gddcolor_div';
+      ddcolor.className = 'gddcolor_div';
       dropdown.appendChild(ddcolor);
       var _dokeydown = function(e) {
         var key = GEvent.keyCode(e),

@@ -1,19 +1,14 @@
 <?php
-/**
- * @filesource Kotchasan/Template.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
- * @package Kotchasan
- */
 
 namespace Kotchasan;
 
 /**
- * Template engine
+ * Kotchasan Template Class
  *
- * @see https://www.kotchasan.com/
+ * This class provides methods to create and manage templates,
+ * allowing for dynamic content rendering and variable replacement.
+ *
+ * @package Kotchasan
  */
 class Template
 {
@@ -76,8 +71,6 @@ class Template
      * Loads a template
      * It checks the module's file first, if not found, it uses the owner's file
      *
-     * @assert ('', '', 'FileNotFound')->isEmpty() [==] true
-     *
      * @param string $owner  The name of the installed module
      * @param string $module The name of the module
      * @param string $name   The name of the template without the file extension
@@ -91,8 +84,6 @@ class Template
 
     /**
      * Loads a template from a file
-     *
-     * @assert ('FileNotFound') [throws] InvalidArgumentException
      *
      * @param string $filename The filename
      *
@@ -118,7 +109,7 @@ class Template
      */
     public static function createFromHTML($html)
     {
-        $obj = new static;
+        $obj = new static();
         $obj->skin = $html;
         $obj->items = [];
         $obj->num = -1;
@@ -206,9 +197,6 @@ class Template
 
     /**
      * Executes the preg_replace function
-     *
-     * @assert ('/{TITLE}/', 'Title', '<b>{TITLE}</b>') [==] '<b>Title</b>'
-     * @assert ('/{LNG_([\w\s\.\-\'\(\),%\/:&\#;]+)}/e', '\Kotchasan\Language::parse(array(1=>"$1"))', '<b>{LNG_Language test}</b>') [==] '<b>Language test</b>'
      *
      * @param array  $patt    The keys in the template
      * @param array  $replace The text to replace the keys

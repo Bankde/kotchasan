@@ -4,7 +4,7 @@
  *
  * @filesource js/uploads.js
  * @link https://www.kotchasan.com/
- * @copyright 2016 Goragod.com
+ * @copyright 2024 Goragod.com
  * @license https://www.kotchasan.com/license/
  */
 (function() {

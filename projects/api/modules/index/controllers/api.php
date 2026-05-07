@@ -7,7 +7,7 @@
  * This file is part of the Kotchasan CMS package.
  * It is used to handle API requests.
  *
- * @copyright 2016 Goragod.com
+ * @copyright 2024 Goragod.com
  * @license https://www.kotchasan.com/license/
  * @author Goragod Wiriya
  */
