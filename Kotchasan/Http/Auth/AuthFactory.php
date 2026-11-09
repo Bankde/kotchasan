@@ -17,73 +17,6 @@ use Kotchasan\Http\Middleware\JwtMiddleware;
 class AuthFactory
 {
     /**
-     * Generate a CSRF token (unified with Request::createToken)
-     *
-     * @param string $sessionKey The session key to store the token in
-     * @return string The generated token
-     */
-    public static function generateCsrfToken(string $sessionKey = 'csrf_token'): string
-    {
-        // Use unified token system
-        $token = bin2hex(random_bytes(32));
-        $_SESSION[$sessionKey] = $token;
-        $_SESSION[$sessionKey.'_meta'] = [
-            'times' => 0,
-            'expired' => time() + (defined('TOKEN_AGE') ? TOKEN_AGE : 3600),
-            'created' => time()
-        ];
-        return $token;
-    }
-
-    /**
-     * Validate a CSRF token (unified with Request::isSafe)
-     *
-     * @param string $token The token to validate
-     * @param string $sessionKey The session key where the token is stored
-     * @return bool True if the token is valid
-     */
-    public static function validateCsrfToken(string $token, string $sessionKey = 'csrf_token'): bool
-    {
-        // Check if token matches stored CSRF token
-        if (!isset($_SESSION[$sessionKey]) || !hash_equals($_SESSION[$sessionKey], $token)) {
-            return false;
-        }
-
-        // Check token metadata for flood protection
-        $metaKey = $sessionKey.'_meta';
-        if (!isset($_SESSION[$metaKey])) {
-            return false;
-        }
-
-        $meta = $_SESSION[$metaKey];
-
-        // Check if token is expired
-        if ($meta['expired'] < time()) {
-            unset($_SESSION[$sessionKey], $_SESSION[$metaKey]);
-            return false;
-        }
-
-        // Check usage limit for flood protection
-        $tokenLimit = defined('TOKEN_LIMIT') ? TOKEN_LIMIT : 10;
-        if ($meta['times'] >= $tokenLimit) {
-            return false;
-        }
-
-        // Increment usage counter
-        $_SESSION[$metaKey]['times']++;
-
-        // Generate new token for one-time use (security best practice)
-        $newToken = bin2hex(random_bytes(32));
-        $_SESSION[$sessionKey] = $newToken;
-        $_SESSION[$metaKey] = [
-            'times' => 0,
-            'expired' => time() + (defined('TOKEN_AGE') ? TOKEN_AGE : 3600),
-            'created' => time()
-        ];
-
-        return true;
-    }
-    /**
      * Create Basic Authentication middleware
      *
      * @param callable $callback Function to validate username and password
@@ -187,18 +120,7 @@ class AuthFactory
      */
     public static function createJwtToken(array $payload, string $secretKey, string $algorithm = 'HS256'): string
     {
-        $header = [
-            'typ' => 'JWT',
-            'alg' => $algorithm
-        ];
-
-        $headerEncoded = rtrim(strtr(base64_encode(json_encode($header)), '+/', '-_'), '=');
-        $payloadEncoded = rtrim(strtr(base64_encode(json_encode($payload)), '+/', '-_'), '=');
-
-        $signature = hash_hmac('sha256', "$headerEncoded.$payloadEncoded", $secretKey, true);
-        $signatureEncoded = rtrim(strtr(base64_encode($signature), '+/', '-_'), '=');
-
-        return "$headerEncoded.$payloadEncoded.$signatureEncoded";
+        return \Kotchasan\Jwt::encode($payload, $secretKey, $algorithm);
     }
 
     /**
@@ -211,30 +133,9 @@ class AuthFactory
      */
     public static function validateJwtToken(string $token, string $secretKey, string $algorithm = 'HS256')
     {
-        $parts = explode('.', $token);
-        if (count($parts) !== 3) {
-            return false;
-        }
+        $payload = \Kotchasan\Jwt::decode($token, $secretKey, [$algorithm]);
 
-        list($headerEncoded, $payloadEncoded, $signatureEncoded) = $parts;
-
-        // Verify signature
-        $signature = hash_hmac('sha256', "$headerEncoded.$payloadEncoded", $secretKey, true);
-        $expectedSignature = base64_decode(strtr($signatureEncoded, '-_', '+/').str_repeat('=', 3 - (3 + strlen($signatureEncoded)) % 4));
-
-        if (!self::compareHashes($signature, $expectedSignature)) {
-            return false;
-        }
-
-        // Decode payload
-        $payload = json_decode(base64_decode(strtr($payloadEncoded, '-_', '+/').str_repeat('=', 3 - (3 + strlen($payloadEncoded)) % 4)), true);
-
-        // Check expiration
-        if (isset($payload['exp']) && $payload['exp'] < time()) {
-            return false;
-        }
-
-        return $payload;
+        return $payload === null ? false : $payload;
     }
 
     /**

@@ -1,5 +1,4 @@
 <?php
-
 namespace Kotchasan;
 
 /**
@@ -169,9 +168,6 @@ class DOMParser
                         $html .= $this->drawNode($child);
                     }
                 }
-                if ($node->previousSibling) {
-                    $html .= '('.$node->previousSibling->nodeName.')';
-                }
                 $html .= '</'.$node->nodeName.'>';
             }
         }
@@ -188,12 +184,10 @@ class DOMParser
         $currentNode = null;
         foreach ($node->childNodes as $item) {
             $item->previousSibling = $currentNode;
-            foreach ($item->childNodes as $child) {
-                $this->populate($child);
-                if ($node->previousSibling) {
-                    $node->previousSibling->nextSibling = $node;
-                }
+            if ($currentNode) {
+                $currentNode->nextSibling = $item;
             }
+            $this->populate($item);
             $currentNode = $item;
         }
     }

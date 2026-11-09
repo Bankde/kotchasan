@@ -1,54 +1,169 @@
 # Kotchasan Web Framework
-The elephant, besides being a symbol of PHP, is also our national symbol.
-So I chose to use this name as the name of a framework designed by 100% Thai people.
 
-## Features
-* MMVC (Modules Model View Controller) architecture, making module addition or removal easy and independent of each other.
-* Supports multi-project work.
-* Adheres to standards such as PSR-1, PSR-2, PSR-3, PSR-4, PSR-6, PSR-7.
-* A PHP Framework optimized for both speed and performance, including memory usage, providing the best efficiency. This allows for faster execution and supports a larger number of concurrent visitors.
+[ภาษาไทย](README.th.md)
 
-## Components of Kotchasan
-Kotchasan consists of three main frameworks designed to work together: PHP, CSS, and Javascript.
-* Kotchasan PHP Framework
-* GCSS CSS Framework
-* GAjax Javascript Framework
+Kotchasan (คชสาร) is a lightweight PHP framework for websites and JSON APIs. It needs nothing but PHP: no other Composer packages and no build step.
+
+- **MVC by folders.** `Product\List\Controller` is `modules/product/controllers/list.php`. Nothing is registered by hand.
+- **Router.** Turns `/product`, `/product/controller/list` and `/api/product/item/show` into a controller and a method.
+- **Database.** A query builder and a `DB` helper that write the SQL for MySQL/MariaDB, PostgreSQL, SQLite and SQL Server. Values given to the builder are bound as parameters, and you get table prefixes, transactions and an optional query cache (file, memory or Redis).
+- **HTTP.** PSR-7 style `Request`, `Response`, `Uri`, `Stream` and `UploadedFile`, plus typed input helpers (`$request->post('id')->toInt()`, `->topic()`, `->date()`), CSRF tokens and secure sessions.
+- **JSON API.** `ApiController` gives the same response shape on every endpoint and checks Bearer tokens, IP allow lists and the HTTP method. `Http\Application` is a router with middleware for standalone APIs.
+- **Views.** `Template` and `View` render HTML files from a theme folder. `Language` handles i18n with `{LNG_...}` placeholders.
+- **Utilities.** Thai and English dates with the Buddhist year, baht amounts in words (Thai and English), number and currency formats, a validator, password hashing, JWT, PromptPay QR payloads, Code 128 barcodes, image resizing, CSV, email over SMTP, cURL and logging.
 
 ## Requirements
-* PHP 5.6 or higher
-* ext-mbstring
-* PDO Mysql
 
-## Installation and Usage
-I designed Kotchasan to avoid the complex installation process commonly associated with PHP frameworks. You can download the entire source code from GitHub and start using it immediately without any installation or configuration. Alternatively, you can install it via Composer using the command: ```composer require goragod/kotchasan``` https://packagist.org/packages/goragod/kotchasan (Installing via composer will decrease the performance of the framework.)
+- PHP 7.4 or newer (tested on PHP 8.3 and 8.4)
+- The `json`, `mbstring` and `pdo` extensions, plus the PDO driver of your database
+- Optional extensions: `gd` (images and barcodes), `curl`, `openssl`, `fileinfo`, `iconv`, `intl`, `redis`. `composer suggest` lists them all.
 
-## Usage Conditions (License)
-* You can use it for free without any conditions.
-* You can modify it and develop it further under your own copyright using a different name.
+## Installation
+
+```bash
+composer require goragod/kotchasan
+```
+
+`vendor/autoload.php` loads the framework. Without Composer, copy the `Kotchasan/` folder into your project and include `Kotchasan/load.php` instead.
+
+## Quick start
+
+```text
+mysite/
+├── composer.json
+├── index.php
+├── settings/
+│   └── config.php
+└── modules/
+    └── index/
+        └── controllers/
+            └── index.php
+```
+
+`index.php` receives every request. Define the settings constants **before** `vendor/autoload.php`, because the framework reads them while it loads:
+
+```php
+<?php
+define('DATA_FOLDER', 'datas/'); // writable folder for logs and cache
+define('DEBUG', 0);              // 2 shows errors on the page while developing
+
+require __DIR__.'/vendor/autoload.php';
+
+Kotchasan::createWebApplication()->run();
+```
+
+`settings/config.php` holds the site settings. `self::$cfg` reads them in every controller, model and view:
+
+```php
+<?php
+return [
+    'web_title' => 'My site',
+    'languages' => ['en'],
+    'timezone' => 'Asia/Bangkok',
+];
+```
+
+`Index\Index\Controller` is the default controller. It answers every URL that does not name another controller:
+
+```php
+<?php
+namespace Index\Index;
+
+use Kotchasan\Http\Request;
+use Kotchasan\Http\Response;
+
+class Controller extends \Kotchasan\Controller
+{
+    public function index(Request $request)
+    {
+        $name = $request->get('name', 'world')->text();
+
+        return (new Response())->html('<h1>Hello '.$name.'</h1><p>'.self::$cfg->web_title.'</p>');
+    }
+}
+```
+
+```bash
+php -S localhost:8000
+```
+
+`http://localhost:8000/?name=Kotchasan` shows `Hello Kotchasan`.
+
+### A query
+
+`settings/database.php` holds the connections. `Database::config()` sets them in code:
+
+```php
+use Kotchasan\Database;
+use Kotchasan\DB;
+use Kotchasan\Model;
+
+Database::config(['default' => ['driver' => 'sqlite', 'database' => ':memory:', 'prefix' => 'app']]);
+
+$db = DB::create();
+$db->raw('CREATE TABLE app_product (id INTEGER PRIMARY KEY, name TEXT, price REAL)');
+$db->insert('product', ['name' => 'Tea', 'price' => 45]);
+$db->insert('product', ['name' => 'Coffee', 'price' => 60]);
+
+$rows = Model::createQuery()
+    ->select('name', 'price')
+    ->from('product')          // the table app_product
+    ->where(['price', '>', 50])
+    ->orderBy('name')
+    ->fetchAll();
+
+echo $rows[0]->name; // Coffee
+```
+
+## Settings constants
+
+Define these before the framework loads. Each one has a default.
+
+| Constant | Default | Purpose |
+|---|---|---|
+| `ROOT_PATH` | the project folder | Where `settings/`, `modules/`, `language/` and `themes/` are. With Composer it is the folder that holds `vendor/` |
+| `DATA_FOLDER` | none | Writable folder under `ROOT_PATH` for the file cache and logs, e.g. `datas/` |
+| `DEBUG` | `0` | `0` logs serious errors, `1` logs warnings too, `2` shows errors on the page |
+| `LOG_DESTINATION` | `LOG_BOTH` | `LOG_FILE` (`error_log.php`), `LOG_SYSTEM` (PHP's error log) or `LOG_BOTH` |
+| `INIT_LANGUAGE` | first language | Language for visitors without a choice: a code or `auto` |
+| `DB_LOG` | `false` | Log every SQL query, for development |
+| `DB_CACHE` / `CACHE_DRIVER` | `false` / `file` | Query cache and its storage: `file`, `memory` or `redis` |
+| `TRUSTED_PROXIES` | none | IPs of reverse proxies whose `X-Forwarded-For` is trusted |
+
+`APP_PATH`, `BASE_PATH`, `WEB_URL`, `HOST` and `HTTPS` are worked out from the request. Define them yourself only when the server reports the wrong values.
 
 ## Examples
-All sample codes are located in the "projects/" directory. You can test them there. For the "recordset" project, database settings in "settings/database.php" must be correctly configured, and the corresponding database table must be created as mentioned in "projects/orm/modules/index/models/world.php".
 
-* https://projects.kotchasan.com/welcome/: Kotchasan welcome page.
-* https://projects.kotchasan.com/site/: Website creation using a simple template and menu.
-* https://projects.kotchasan.com/recordset/: Example of using a database (Recordset).
-* https://projects.kotchasan.com/admin/: Example of using a login form.
-* https://projects.kotchasan.com/youtube/: Example of using the YouTube API.
-* https://projects.kotchasan.com/api/: Example of creating and using an API with Kotchasan.
-* https://projects.kotchasan.com/pdf/: Example of converting HTML to PDF.
-* https://adminframework.kotchasan.com: Example website created using Kotchasan.
+[`projects/`](projects/README.md) holds eight small examples that load the `Kotchasan/` folder of this repository directly, with no Composer and no setup: Hello World, a website with templates and Thai/English, a form with validation, CRUD on SQLite, login, Ajax, a REST API and the Thai utilities. Run this in the repository folder and open <http://localhost:8000/projects/>:
 
-## Acknowledgments
-* CKEditor https://ckeditor.com/
-* PHPMailer https://github.com/PHPMailer/PHPMailer
-* FPDF http://www.fpdf.org/
-* IcoMoon https://icomoon.io/
-
-## Support
-You can support the developers by making a donation to the following bank account
+```bash
+php -S localhost:8000
 ```
-Kasikorn Bank, Kanchanaburi Branch, Thailand
-Account No. 221-2-78341-5
-Account Name: Goragod Wiriya
 
+[goragod/kotchasan-example](https://github.com/goragod/kotchasan-example) is one complete site in the same spirit, installed with Composer: MVC pages, a task list on SQLite with forms, a JSON API, Thai and English.
+
+## Documentation
+
+The manual, in Thai and English, is at [kotchasan.com](https://www.kotchasan.com).
+
+## Maintainers
+
+The framework is developed in the `Kotchasan/` folder of adminframework, which the application projects copy. This repository publishes that same folder, byte for byte. Never edit `Kotchasan/` here: change it at the source, then copy it with `rsync`, which also removes the files deleted at the source:
+
+```bash
+# list what differs; prints nothing when the two are the same (-c compares contents)
+rsync -rc --delete --dry-run --itemize-changes ../now.js/adminframework/Kotchasan/ Kotchasan/
+# copy it here
+rsync -rc --delete ../now.js/adminframework/Kotchasan/ Kotchasan/
 ```
+
+To release, update `VERSION` in `Kotchasan/load.php` (at the source), sync, add the changes to `CHANGELOG.md`, commit, then tag and push. Packagist reads the tag:
+
+```bash
+git tag v7.0.0
+git push origin main --tags
+```
+
+## License
+
+[MIT](LICENSE)

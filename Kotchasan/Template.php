@@ -1,5 +1,4 @@
 <?php
-
 namespace Kotchasan;
 
 /**
@@ -40,6 +39,13 @@ class Template
      * @var string
      */
     protected static $src;
+
+    /**
+     * URL base for the currently selected template source.
+     *
+     * @var string
+     */
+    protected static $url = '';
 
     /**
      * Template data
@@ -128,6 +134,16 @@ class Template
     }
 
     /**
+     * Returns the URL base for the current template source.
+     *
+     * @return string
+     */
+    public static function getUrl()
+    {
+        return self::$url;
+    }
+
+    /**
      * Checks if data has been added to the template
      *
      * @return bool Returns true if the add function has been called before, false otherwise
@@ -140,11 +156,28 @@ class Template
     /**
      * Sets the template to be used
      *
-     * @param string $skin The directory of the template starting from DOCUMENT_ROOT without a trailing slash, e.g., skin/default
+     * @param string $theme Theme slug. A personal theme in the site's own data
+     *                      folder (DATA_FOLDER.themes/{slug}/ — DATA_FOLDER is
+     *                      already per-user, e.g. datas/users/{username}/) wins
+     *                      over a shared theme of the same slug in themes/.
      */
-    public static function init($skin)
+    public static function init($theme)
     {
-        self::$src = ($skin == '') ? '' : $skin.'/';
+        if ($theme == '') {
+            self::$src = '';
+            self::$url = '';
+            return;
+        }
+
+        $privateSrc = defined('DATA_FOLDER') ? DATA_FOLDER.'themes/'.$theme.'/' : '';
+        if ($privateSrc !== '' && is_dir(ROOT_PATH.$privateSrc)) {
+            self::$src = $privateSrc;
+            self::$url = WEB_URL.$privateSrc;
+            return;
+        }
+
+        self::$src = 'themes/'.$theme.'/';
+        self::$url = WEB_URL.self::$src;
     }
 
     /**
@@ -174,25 +207,36 @@ class Template
     /**
      * Loads a template
      * It checks the module's file first, if not found, it uses the owner's file
-     * If not found, it returns an empty string
+     * If not found, uses Hybrid approach (exception in dev, graceful error in production)
      *
      * @param string $owner  The name of the installed module
      * @param string $module The name of the registered module
      * @param string $name   The name of the template without the file extension
+     *
+     * @throws \Kotchasan\Exception\TemplateNotFoundException in development mode
      *
      * @return string
      */
     public static function load($owner, $module, $name)
     {
         $src = APP_PATH.self::$src;
-        if ($module != '' && is_file($src.$module.'/'.$name.'.html')) {
-            return file_get_contents($src.$module.'/'.$name.'.html');
-        } elseif ($owner != '' && is_file($src.$owner.'/'.$name.'.html')) {
-            return file_get_contents($src.$owner.'/'.$name.'.html');
-        } elseif (is_file($src.$name.'.html')) {
-            return file_get_contents($src.$name.'.html');
+        $paths = [
+            $module != '' ? $src.$module.'/'.$name.'.html' : null,
+            $owner != '' ? $src.$owner.'/'.$name.'.html' : null,
+            $src.$name.'.html'
+        ];
+
+        // Try to load template from possible paths
+        foreach ($paths as $path) {
+            if ($path && is_file($path)) {
+                return file_get_contents($path);
+            }
         }
-        return '';
+
+        // Template not found
+        $attemptedPaths = array_filter($paths);
+
+        throw new \Kotchasan\Exception\TemplateNotFoundException($name, $attemptedPaths);
     }
 
     /**
@@ -206,6 +250,7 @@ class Template
      */
     public static function pregReplace($patt, $replace, $skin)
     {
+        $skin = (string) $skin;
         if (!is_array($patt)) {
             $patt = [$patt];
         }
@@ -214,8 +259,12 @@ class Template
         }
         foreach ($patt as $i => $item) {
             $text = ($replace[$i] === null) ? '' : $replace[$i];
-            if (preg_match('/(.*\/(.*?))[e](.*?)$/', $item, $patt) && preg_match('/^([\\\\a-z0-9]+)::([a-z0-9_\\\\]+).*/i', $text, $func)) {
-                $skin = preg_replace_callback($patt[1].$patt[3], [$func[1], $func[2]], $skin);
+            // '/{LNG_([^}]+)}/e' => 'Class::method' calls the method for every match.
+            // The e must be one of the modifiers after the last /: an e inside the
+            // pattern ('/{name}/', '/(<head.*)(<\/head>)/isu') is not one, and a value
+            // that happened to read like Class::method used to be called.
+            if (preg_match('/^(.*\/)([a-zA-Z]*)e([a-zA-Z]*)$/', $item, $parts) && preg_match('/^([\\\\a-z0-9]+)::([a-z0-9_\\\\]+).*/i', $text, $func)) {
+                $skin = preg_replace_callback($parts[1].$parts[2].$parts[3], [$func[1], $func[2]], $skin);
             } else {
                 $skin = preg_replace($item, $text, $skin);
             }

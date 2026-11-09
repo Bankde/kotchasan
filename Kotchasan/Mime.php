@@ -1,5 +1,4 @@
 <?php
-
 namespace Kotchasan;
 
 /**
@@ -57,7 +56,7 @@ class Mime
     {
         $mime_types = self::getMimeTypes();
         foreach ($typies as $t) {
-            if ($mime == $mime_types[$t]) {
+            if (isset($mime_types[$t]) && $mime == $mime_types[$t]) {
                 return true;
             }
         }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Kotchasan;
 
 /**
@@ -121,10 +120,11 @@ class Barcode
         if (!empty($this->datas)) {
             if ($this->fontSize > 0) {
                 // Get the dimensions of the code
-                $p = imagettfbbox($this->fontSize, 0, $this->font, $this->code);
+                $font = Image::fontFile($this->font);
+                $p = imagettfbbox($this->fontSize, 0, $font, $this->code);
                 $barHeight = $this->height + $p[5] - 3;
                 // Display the code
-                imagettftext($img, $this->fontSize, 0, floor(($this->width - $p[2]) / 2), $this->height, $black, $this->font, $this->code);
+                imagettftext($img, $this->fontSize, 0, (int) floor(($this->width - $p[2]) / 2), (int) $this->height, $black, $font, $this->code);
             } else {
                 $barHeight = $this->height;
             }
@@ -144,7 +144,7 @@ class Barcode
     }
 
     /**
-     * แปลงข้อมูล Barcode 128
+     * Encode data into Code 128 barcode format
      *
      * @param $code
      */

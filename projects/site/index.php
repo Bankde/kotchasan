@@ -1,33 +1,20 @@
 <?php
 /**
- * @filesource projects/site/index.php.
- *
- * Main entry point for the Site project.
- * This file initializes the Kotchasan Framework and starts the web application.
- * For more information, please visit: https://www.kotchasan.com/
- *
- * @copyright 2024 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
+ * site/index.php
+ * Every page of this example comes in here: index.php, index.php?module=about
  */
 
-/**
- * Debug mode:
- * 0 (default): Log severe errors to error_log.php.
- * 1: Log errors and warnings to error_log.php.
- * 2: Display errors and warnings on the screen (only for development purposes).
- */
+// The project folder. Kotchasan reads settings/, modules/, language/ and themes/ from here.
+define('ROOT_PATH', str_replace('\\', '/', __DIR__).'/');
+
+// 0 = log errors only, 2 = show errors on the page while developing
 define('DEBUG', 0);
 
-/**
- * Database query logging:
- * false (default): Do not log database queries.
- * true: Log database queries to log file (only for development purposes).
- */
-define('DB_LOG', false);
+// Language for visitors who have not picked one (th, en or auto)
+define('INIT_LANGUAGE', 'th');
 
-// Load Kotchasan Framework
-include '../../Kotchasan/load.php';
+// Load Kotchasan straight from the repository, no Composer needed
+require __DIR__.'/../../Kotchasan/load.php';
 
-// Initialize Kotchasan Framework and start the web application
+// Reads settings/config.php, then calls Index\Index\Controller::index()
 Kotchasan::createWebApplication()->run();

@@ -104,7 +104,7 @@ class Htmldoc
         }
 
         // Extract the HTML body and process special spans
-        if (preg_match('/<body[^>]+>(.*)<\/body>/isU', $html, $matches)) {
+        if (preg_match('/<body[^>]*>(.*)<\/body>/isU', $html, $matches)) {
             $html = $matches[1];
         }
         $this->htmlBody = preg_replace_callback('/<span[^>]+class="line([0-9]{0,})">([^>]+)<\/span>/isuU', function ($items) {

@@ -1,5 +1,4 @@
 <?php
-
 namespace Kotchasan;
 
 /**
@@ -154,15 +153,15 @@ class DOMNode
         foreach ($this->childNodes as $node) {
             if ($node->hasChildNodes()) {
                 // Recursively call nodeText() to concatenate text from child nodes.
-                $txt .= $this->nodeText();
+                $txt .= $node->nodeText();
             } else {
                 switch ($node->nodeName) {
-                    case 'BR':
-                        $txt .= "\n";
-                        break;
-                    case '':
-                        $txt .= $node->nodeValue;
-                        break;
+                case 'BR':
+                    $txt .= "\n";
+                    break;
+                case '':
+                    $txt .= $node->nodeValue;
+                    break;
                 }
             }
         }

@@ -1,37 +1,42 @@
 <?php
 /**
- * @filesource modules/index/controllers/index.php
- *
- * Controller for the Index module.
- * This class handles the default actions for the Index module, including rendering the index page.
- * For more information, please visit: https://www.kotchasan.com/
- *
- * @copyright 2024 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
+ * @filesource api/modules/index/controllers/index.php
  */
 
 namespace Index\Index;
 
 use Kotchasan\Http\Request;
+use Kotchasan\Http\Response;
+use Kotchasan\Template;
+use Kotchasan\Text;
+use Kotchasan\View;
 
 /**
- * Render the index page.
- *
- * This method is responsible for rendering the index page of the Index module.
+ * The page index.php: what the API does, and a console that calls it with
+ * fetch() (themes/default/script.js). The API itself is api.php.
  */
 class Controller extends \Kotchasan\Controller
 {
     /**
-     * Render the index page.
+     * @param Request $request
      *
-     * This method is responsible for rendering the index page of the Index module.
-     *
-     * @param Request $request The HTTP request object.
+     * @return Response
      */
     public function index(Request $request)
     {
-        // Create and render the view for the index page.
-        \Index\Index\View::create()->render();
+        Template::init(self::$cfg->skin);
+
+        // The demo token is printed so the console can use it.
+        // A real site never shows a token on a public page.
+        $tokens = (array) self::$cfg->get('api_tokens', []);
+
+        $view = View::create();
+        $view->setContents([
+            '/{API_URL}/' => WEB_URL.'api.php/v1/books',
+            '/{TOKEN}/' => Text::htmlspecialchars((string) reset($tokens)),
+            '/{VERSION}/' => VERSION
+        ]);
+
+        return (new Response())->html($view->renderHTML());
     }
 }

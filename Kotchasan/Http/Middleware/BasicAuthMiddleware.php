@@ -79,7 +79,7 @@ class BasicAuthMiddleware extends BaseMiddleware
 
         $credentials = base64_decode($matches[1]);
 
-        if ($credentials === false || !str_contains($credentials, ':')) {
+        if ($credentials === false || strpos($credentials, ':') === false) {
             return null;
         }
 

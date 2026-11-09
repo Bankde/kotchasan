@@ -12,6 +12,30 @@ namespace Kotchasan\QueryBuilder\Functions;
 class JSONFunctions
 {
     /**
+     * Escapes a value placed inside a single-quoted SQL string literal, preventing
+     * literal breakout / injection. Both the quote and the backslash are doubled
+     * because MySQL treats the backslash as an escape character.
+     *
+     * @param mixed $value
+     * @return string
+     */
+    private static function escapeLiteral($value): string
+    {
+        return str_replace(['\\', "'"], ['\\\\', "''"], (string) $value);
+    }
+
+    /**
+     * Sanitizes a JSON path to safe characters only.
+     *
+     * @param string $path
+     * @return string
+     */
+    private static function escapeJsonPath(string $path): string
+    {
+        return preg_replace('/[^A-Za-z0-9_$.\[\]*]/', '', $path);
+    }
+
+    /**
      * Creates a JSON_EXTRACT function call.
      *
      * @param string $column The JSON column.
@@ -20,6 +44,7 @@ class JSONFunctions
      */
     public static function extract(string $column, string $path): string
     {
+        $path = self::escapeJsonPath($path);
         return "JSON_EXTRACT({$column}, '{$path}')";
     }
 
@@ -34,13 +59,14 @@ class JSONFunctions
     public static function contains(string $column, $value, ?string $path = null): string
     {
         if (is_string($value)) {
-            $value = "'{$value}'";
+            $value = "'".self::escapeLiteral($value)."'";
         }
 
         if ($path === null) {
             return "JSON_CONTAINS({$column}, {$value})";
         }
 
+        $path = self::escapeJsonPath($path);
         return "JSON_CONTAINS({$column}, {$value}, '{$path}')";
     }
 
@@ -56,11 +82,12 @@ class JSONFunctions
 
         foreach ($keyValues as $key => $value) {
             if (is_string($value)) {
-                $value = "'{$value}'";
+                $value = "'".self::escapeLiteral($value)."'";
             } elseif (is_array($value) || is_object($value)) {
-                $value = "'".json_encode($value)."'";
+                $value = "'".self::escapeLiteral(json_encode($value))."'";
             }
 
+            $key = self::escapeLiteral($key);
             $parts[] = "'{$key}', {$value}";
         }
 
@@ -79,9 +106,9 @@ class JSONFunctions
 
         foreach ($values as $value) {
             if (is_string($value)) {
-                $value = "'{$value}'";
+                $value = "'".self::escapeLiteral($value)."'";
             } elseif (is_array($value) || is_object($value)) {
-                $value = "'".json_encode($value)."'";
+                $value = "'".self::escapeLiteral(json_encode($value))."'";
             }
 
             $parts[] = $value;
@@ -131,12 +158,12 @@ class JSONFunctions
 
         foreach ($pathValues as $path => $value) {
             if (is_string($value)) {
-                $value = "'{$value}'";
+                $value = "'".self::escapeLiteral($value)."'";
             } elseif (is_array($value) || is_object($value)) {
-                $value = "'".json_encode($value)."'";
+                $value = "'".self::escapeLiteral(json_encode($value))."'";
             }
 
-            $parts[] = "'{$path}', {$value}";
+            $parts[] = "'".self::escapeJsonPath($path)."', {$value}";
         }
 
         return "JSON_SET({$column}, ".implode(', ', $parts).")";
@@ -155,12 +182,12 @@ class JSONFunctions
 
         foreach ($pathValues as $path => $value) {
             if (is_string($value)) {
-                $value = "'{$value}'";
+                $value = "'".self::escapeLiteral($value)."'";
             } elseif (is_array($value) || is_object($value)) {
-                $value = "'".json_encode($value)."'";
+                $value = "'".self::escapeLiteral(json_encode($value))."'";
             }
 
-            $parts[] = "'{$path}', {$value}";
+            $parts[] = "'".self::escapeJsonPath($path)."', {$value}";
         }
 
         return "JSON_INSERT({$column}, ".implode(', ', $parts).")";
@@ -179,12 +206,12 @@ class JSONFunctions
 
         foreach ($pathValues as $path => $value) {
             if (is_string($value)) {
-                $value = "'{$value}'";
+                $value = "'".self::escapeLiteral($value)."'";
             } elseif (is_array($value) || is_object($value)) {
-                $value = "'".json_encode($value)."'";
+                $value = "'".self::escapeLiteral(json_encode($value))."'";
             }
 
-            $parts[] = "'{$path}', {$value}";
+            $parts[] = "'".self::escapeJsonPath($path)."', {$value}";
         }
 
         return "JSON_REPLACE({$column}, ".implode(', ', $parts).")";
@@ -200,7 +227,7 @@ class JSONFunctions
     public static function remove(string $column, string ...$paths): string
     {
         $quotedPaths = array_map(function ($path) {
-            return "'{$path}'";
+            return "'".self::escapeJsonPath($path)."'";
         }, $paths);
 
         return "JSON_REMOVE({$column}, ".implode(', ', $quotedPaths).")";
@@ -241,6 +268,7 @@ class JSONFunctions
             return "JSON_LENGTH({$column})";
         }
 
+        $path = self::escapeJsonPath($path);
         return "JSON_LENGTH({$column}, '{$path}')";
     }
 

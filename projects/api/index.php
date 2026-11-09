@@ -1,33 +1,20 @@
 <?php
 /**
- * @filesource projects/api/index.php
- *
- * Main entry point for the API project.
- * This file initializes the Kotchasan Framework and starts the web application.
- * For more information, please visit: https://www.kotchasan.com/
- *
- * @copyright 2024 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
+ * api/index.php
+ * The page that explains the API and lets you call it. The API itself is api.php.
  */
 
-/**
- * Debug mode:
- * 0 (default): Log severe errors to error_log.php.
- * 1: Log errors and warnings to error_log.php.
- * 2: Display errors and warnings on the screen (only for development purposes).
- */
+// The project folder. Kotchasan reads settings/, modules/ and themes/ from here.
+define('ROOT_PATH', str_replace('\\', '/', __DIR__).'/');
+
+// Writable folder under ROOT_PATH for the SQLite file and the logs
+define('DATA_FOLDER', 'datas/');
+
+// 0 = log errors only, 2 = show errors on the page while developing
 define('DEBUG', 0);
 
-/**
- * Database query logging:
- * false (default): Do not log database queries.
- * true: Log database queries to log file (only for development purposes).
- */
-define('DB_LOG', false);
+// Load Kotchasan straight from the repository, no Composer needed
+require __DIR__.'/../../Kotchasan/load.php';
 
-// Load Kotchasan Framework
-include '../../Kotchasan/load.php';
-
-// Initialize Kotchasan Framework and start the web application
+// Calls Index\Index\Controller::index()
 Kotchasan::createWebApplication()->run();

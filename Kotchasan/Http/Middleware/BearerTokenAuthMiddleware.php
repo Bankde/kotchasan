@@ -11,7 +11,7 @@ use Kotchasan\Http\Response;
  *
  * @package Kotchasan\Http\Middleware
  */
-class BearerTokenAuthMiddleware
+class BearerTokenAuthMiddleware implements MiddlewareInterface
 {
     /**
      * Authentication callback

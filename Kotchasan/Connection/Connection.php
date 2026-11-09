@@ -50,6 +50,13 @@ class Connection implements ConnectionInterface
     protected ?QueryCache $queryCache = null;
 
     /**
+     * The SQL most recently sent through this connection.
+     *
+     * @var string|null
+     */
+    protected ?string $lastQuery = null;
+
+    /**
      * Connection constructor.
      *
      * @param DriverInterface $driver The driver instance.
@@ -238,6 +245,28 @@ class Connection implements ConnectionInterface
     public function getLogger(): ?LoggerInterface
     {
         return $this->logger;
+    }
+
+    /**
+     * Remember the SQL most recently sent through this connection, by a query
+     * builder or by Database::raw().
+     *
+     * @param string $sql
+     * @return void
+     */
+    public function setLastQuery(string $sql): void
+    {
+        $this->lastQuery = $sql;
+    }
+
+    /**
+     * The SQL most recently sent through this connection.
+     *
+     * @return string|null
+     */
+    public function getLastQuery(): ?string
+    {
+        return $this->lastQuery;
     }
 
     /**

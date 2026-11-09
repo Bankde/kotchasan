@@ -1,5 +1,4 @@
 <?php
-
 namespace Kotchasan;
 
 use Kotchasan\Database;
@@ -32,8 +31,21 @@ class Session extends \Kotchasan\Model
      */
     public function _open()
     {
-        $this->database = Database::create();
+        $this->connection();
         return true;
+    }
+
+    /**
+     * Get the database connection, opening it on first use.
+     *
+     * @return Database
+     */
+    private function connection()
+    {
+        if ($this->database === null) {
+            $this->database = Database::create();
+        }
+        return $this->database;
     }
 
     /**
@@ -55,13 +67,12 @@ class Session extends \Kotchasan\Model
      */
     public function _read($sess_id)
     {
-        $result = $this->database->select('data')
+        $row = $this->connection()->select('data')
             ->from($this->table)
-            ->where('sess_id', $sess_id)
-            ->execute();
+            ->where(['sess_id', $sess_id])
+            ->first();
 
-        $row = $result->fetch();
-        return $row ? $row['data'] : '';
+        return $row ? (string) $row->data : '';
     }
 
     /**
@@ -74,26 +85,26 @@ class Session extends \Kotchasan\Model
      */
     public function _write($sess_id, $data)
     {
-        $result = $this->database->select('sess_id')
+        $row = $this->connection()->select('sess_id')
             ->from($this->table)
-            ->where('sess_id', $sess_id)
-            ->execute();
+            ->where(['sess_id', $sess_id])
+            ->first();
 
-        if ($result->fetch()) {
-            $this->database->update($this->table)
+        if ($row) {
+            $this->connection()->update($this->table)
                 ->set([
                     'access' => time(),
                     'data' => $data
                 ])
-                ->where('sess_id', $sess_id)
+                ->where(['sess_id', $sess_id])
                 ->execute();
         } else {
-            $this->database->insert($this->table)
+            $this->connection()->insert($this->table)
                 ->values([
                     'sess_id' => $sess_id,
                     'access' => time(),
                     'data' => $data,
-                    'create_date' => date('Y-m-d H:i:s')
+                    'created_at' => date('Y-m-d H:i:s')
                 ])
                 ->execute();
         }
@@ -109,8 +120,8 @@ class Session extends \Kotchasan\Model
      */
     public function _destroy($sess_id)
     {
-        $this->database->delete($this->table)
-            ->where('sess_id', $sess_id)
+        $this->connection()->delete($this->table)
+            ->where(['sess_id', $sess_id])
             ->execute();
         return true;
     }
@@ -125,8 +136,8 @@ class Session extends \Kotchasan\Model
     public function _gc($max)
     {
         $old = time() - $max;
-        $this->database->delete($this->table)
-            ->where('access', '<', $old)
+        $this->connection()->delete($this->table)
+            ->where(['access', '<', $old])
             ->execute();
         return true;
     }
@@ -138,23 +149,23 @@ class Session extends \Kotchasan\Model
      */
     public function createTable()
     {
-        $sql = "CREATE TABLE IF NOT EXISTS `{$this->table}` (
-            `sess_id` varchar(32) NOT NULL,
+        $table = $this->connection()->getTableName($this->table);
+        $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
+            `sess_id` varchar(128) NOT NULL,
             `data` longtext,
             `access` int(11) NOT NULL,
-            `create_date` datetime NOT NULL,
+            `created_at` datetime NOT NULL,
             PRIMARY KEY (`sess_id`),
             KEY `access` (`access`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
         try {
-            $this->database->raw($sql);
+            $this->connection()->raw($sql);
             return true;
         } catch (\Exception $e) {
             return false;
         }
     }
-
 
     /**
      * Get a value from session.

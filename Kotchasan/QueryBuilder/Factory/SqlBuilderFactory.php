@@ -39,11 +39,7 @@ class SqlBuilderFactory
         'sqlite' => SqliteSqlBuilder::class,
         'sqlsrv' => SqlServerSqlBuilder::class,
         'mssql' => SqlServerSqlBuilder::class,
-        'sqlserver' => SqlServerSqlBuilder::class,
-        // Test drivers - use MySQL builder as fallback
-        'dummy' => MySqlSqlBuilder::class,
-        'dummy2' => MySqlSqlBuilder::class,
-        'testdummy' => MySqlSqlBuilder::class
+        'sqlserver' => SqlServerSqlBuilder::class
     ];
 
     /**

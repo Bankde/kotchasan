@@ -12,7 +12,7 @@ use Kotchasan\Http\Response;
  *
  * @package Kotchasan\Http\Middleware
  */
-class JwtMiddleware
+class JwtMiddleware implements MiddlewareInterface
 {
     /**
      * Secret key for JWT validation
@@ -77,7 +77,7 @@ class JwtMiddleware
 
         // If no token in header and tokenParam is set, try to get from query parameter
         if ($token === null && $this->options['tokenParam'] !== null) {
-            $token = $request->get($this->options['tokenParam']);
+            $token = $request->get($this->options['tokenParam'])->toString();
         }
 
         // If no token found, return unauthorized

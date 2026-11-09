@@ -9,7 +9,7 @@ namespace Kotchasan\Result;
  *
  * @package Kotchasan\Result
  */
-interface ResultInterface
+interface ResultInterface extends \IteratorAggregate, \Countable
 {
     /**
      * Fetches the next row from the result set.

@@ -1,5 +1,4 @@
 <?php
-
 namespace Kotchasan;
 
 /**
@@ -15,7 +14,7 @@ class ListItem
     /**
      * @var array The data.
      */
-    public $datas;
+    public $datas = [];
 
     /**
      * @var string The source file path.
@@ -41,7 +40,7 @@ class ListItem
      */
     public function clear()
     {
-        unset($this->datas);
+        $this->datas = [];
     }
 
     /**
@@ -119,42 +118,60 @@ class ListItem
 
     /**
      * Inserts a new item after the specified key.
+     * The item is appended when the key is not found.
      *
      * @param mixed $key  The key after which the new item will be inserted.
      * @param mixed $item The new item.
      */
     public function insert($key, $item)
     {
-        if (is_int($key) && $key == count($this->datas)) {
-            $this->datas[] = $item;
-        } else {
-            $temp = $this->datas;
-            $this->datas = [];
-            foreach ($temp as $k => $value) {
-                $this->datas[$k] = $value;
-                if ($k == $key) {
-                    $this->datas[$key] = $item;
-                }
-            }
-        }
+        $position = $this->position($key);
+        $this->insertAt($position === null ? count($this->datas) : $position + 1, $item);
     }
 
     /**
      * Inserts a new item before the specified key.
+     * The item is appended when the key is not found.
      *
      * @param mixed $key  The key before which the new item will be inserted.
      * @param mixed $item The new item.
      */
     public function insertBefore($key, $item)
     {
-        $temp = $this->datas;
-        $this->datas = [];
-        foreach ($temp as $k => $value) {
-            if ($k == $key) {
-                $this->datas[$key] = $item;
+        $position = $this->position($key);
+        $this->insertAt($position === null ? count($this->datas) : $position, $item);
+    }
+
+    /**
+     * Finds the position of a key in the list.
+     *
+     * @param mixed $key
+     *
+     * @return int|null The position, or null if the key is not found.
+     */
+    private function position($key)
+    {
+        foreach (array_keys($this->datas) as $position => $k) {
+            if ((string) $k === (string) $key) {
+                return $position;
             }
-            $this->datas[$k] = $value;
         }
+        return null;
+    }
+
+    /**
+     * Places an item at a position. String keys are kept and integer keys are renumbered.
+     *
+     * @param int   $position
+     * @param mixed $item
+     */
+    private function insertAt($position, $item)
+    {
+        $this->datas = array_merge(
+            array_slice($this->datas, 0, $position, true),
+            [$item],
+            array_slice($this->datas, $position, null, true)
+        );
     }
 
     /**
@@ -217,9 +234,9 @@ class ListItem
             $datas = [];
             foreach ($this->datas as $key => $value) {
                 if (is_array($value)) {
-                    $datas[] = (is_int($key) ? $key : "'".strtolower($key)."'")." => array(\n".$this->arrayToString(1, $value)."\n\t)";
+                    $datas[] = var_export(is_int($key) ? $key : strtolower($key), true)." => array(\n".$this->arrayToString(1, $value)."\n\t)";
                 } else {
-                    $datas[] = (is_int($key) ? $key : "'".strtolower($key)."'").' => '.(is_int($value) ? $value : "'".addslashes($value)."'");
+                    $datas[] = var_export(is_int($key) ? $key : strtolower($key), true).' => '.var_export(is_int($value) ? $value : (string) $value, true);
                 }
             }
             $file = str_replace(ROOT_PATH, '', $this->source);
@@ -268,9 +285,9 @@ class ListItem
         $t = str_repeat("\t", $indent + 1);
         foreach ($array as $key => $value) {
             if (is_array($value)) {
-                $datas[] = (is_int($key) ? $key : "'$key'")." => array(\n".$this->arrayToString($indent + 1, $value)."\n$t)";
+                $datas[] = var_export($key, true)." => array(\n".$this->arrayToString($indent + 1, $value)."\n$t)";
             } else {
-                $datas[] = (is_int($key) ? $key : "'$key'").' => '.(is_int($value) ? $value : "'".addslashes($value)."'");
+                $datas[] = var_export($key, true).' => '.var_export(is_int($value) ? $value : (string) $value, true);
             }
         }
         return $t.implode(",\n$t", $datas);

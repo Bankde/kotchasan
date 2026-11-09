@@ -1,15 +1,7 @@
-# Kotchasan
-
-.vscode
-.git
-.github
-.phpdoc
-robots.txt
-datas/
-settings/*
-projects/test/
-nbproject/*
-phpdoc.xml
-phpdocumenter
-docs/
-CLAUDE.md
+/vendor/
+/composer.lock
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.tmp.*

@@ -1,49 +1,41 @@
 <?php
 /**
- * @filesource modules/index/controllers/index.php
- *
- * Controller for the Index module.
- * This class handles the default actions for the Index module, including rendering the index page.
- * For more information, please visit: https://www.kotchasan.com/
- *
- * @copyright 2024 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
+ * @filesource ajax/modules/index/controllers/index.php
  */
 
 namespace Index\Index;
 
 use Kotchasan\Http\Request;
+use Kotchasan\Http\Response;
+use Kotchasan\Template;
+use Kotchasan\View;
 
 /**
- * Render the index page.
- *
- * This method is responsible for rendering the index page of the Index module.
+ * The page with the three demos. The JavaScript in themes/default/script.js
+ * calls the methods of Index\Ajax\Controller (modules/index/controllers/ajax.php).
  */
 class Controller extends \Kotchasan\Controller
 {
     /**
-     * Render the index page.
+     * @param Request $request
      *
-     * This method is responsible for rendering the index page of the Index module.
-     *
-     * @param Request $request The HTTP request object.
+     * @return Response
      */
     public function index(Request $request)
     {
-        // Get the requested URL, default to 'index' if not provided
-        $module = $request->get('module', 'index')->filter('a-z');
-        // Check if the selected template exists
-        if (file_exists('modules/index/views/'.$module.'.html')) {
-            // Load the $module.html template
-            $template = file_get_contents('modules/index/views/'.$module.'.html');
-        } else {
-            // If the template does not exist, use the index.html template
-            $template = file_get_contents('modules/index/views/index.html');
-        }
-        // Create a View object
-        $view = new \Kotchasan\View();
-        // Render and output the HTML template
-        echo $view->renderHTML($template);
+        // The comment form sends a CSRF token, which is kept in the session
+        Request::startSecureSession();
+        Template::init(self::$cfg->skin);
+
+        $view = View::create();
+        $view->setContents([
+            // index.php/{module}/controller/{file}/{method} calls a method of a controller:
+            // index.php/index/controller/ajax/time is Index\Ajax\Controller::time()
+            '/{ENDPOINT}/' => WEB_URL.'index.php/index/controller/ajax/',
+            '/{TOKEN}/' => $request->generateCsrfToken(),
+            '/{VERSION}/' => VERSION
+        ]);
+
+        return (new Response())->html($view->renderHTML());
     }
 }

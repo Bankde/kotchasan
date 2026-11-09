@@ -11,7 +11,7 @@ use Kotchasan\Http\Response;
  *
  * @package Kotchasan\Http\Middleware
  */
-class DigestAuthMiddleware
+class DigestAuthMiddleware implements MiddlewareInterface
 {
     /**
      * Authentication callback

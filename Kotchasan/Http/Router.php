@@ -3,6 +3,7 @@
 namespace Kotchasan\Http;
 
 use Kotchasan\Exception\ConfigurationException;
+use Kotchasan\Http\Middleware\MiddlewareInterface;
 
 /**
  * Class Router
@@ -279,13 +280,13 @@ class Router
             list($controller, $method) = explode('@', $handler, 2);
 
             if (!class_exists($controller)) {
-                throw new ConfigurationException("Controller class '$controller' not found");
+                throw new ConfigurationException("Controller class $controller not found");
             }
 
             $instance = new $controller();
 
-            if (!method_exists($instance, $method)) {
-                throw new ConfigurationException("Method '$method' not found in controller '$controller'");
+            if (!$this->isCallableAction($instance, $method)) {
+                throw new ConfigurationException("Method $method is not a public action of controller $controller");
             }
 
             $result = call_user_func_array([$instance, $method], [$request, $this->params]);
@@ -303,8 +304,8 @@ class Router
                 $instance = $controller;
             }
 
-            if (!method_exists($instance, $method)) {
-                throw new ConfigurationException("Method '$method' not found in controller");
+            if (!$this->isCallableAction($instance, $method)) {
+                throw new ConfigurationException("Method $method is not a public action of the controller");
             }
 
             $result = call_user_func_array([$instance, $method], [$request, $this->params]);
@@ -317,7 +318,11 @@ class Router
             return $result;
         }
 
-        return new Response($result);
+        if (is_array($result) || is_object($result)) {
+            return Response::makeJson($result);
+        }
+
+        return Response::create($result === null ? null : (string) $result);
     }
 
     /**
@@ -333,6 +338,8 @@ class Router
         foreach ($middleware as $mw) {
             if (is_callable($mw)) {
                 $result = $mw($request);
+            } elseif ($mw instanceof MiddlewareInterface) {
+                $result = $mw->handle($request);
             } elseif (is_string($mw)) {
                 if (!class_exists($mw)) {
                     throw new ConfigurationException("Middleware class '$mw' not found");
@@ -341,7 +348,7 @@ class Router
                 $instance = new $mw();
 
                 if (!method_exists($instance, 'handle')) {
-                    throw new ConfigurationException("Method 'handle' not found in middleware '$mw'");
+                    throw new ConfigurationException("Method handle not found in middleware $mw");
                 }
 
                 $result = $instance->handle($request);
@@ -366,14 +373,16 @@ class Router
      */
     protected function pathToPattern(string $path): string
     {
-        // Replace named parameters with regex patterns
-        $pattern = preg_replace('/{([a-zA-Z0-9_]+)}/', '(?<$1>[^/]+)', $path);
+        // Replace the wildcard first: the patterns added below contain '*' themselves
+        $pattern = str_replace('*', '.*', $path);
 
-        // Replace optional parameters
+        // Replace optional parameters. The slash in front of one is optional too,
+        // so /users/{id?} matches both /users and /users/7
+        $pattern = preg_replace('#/{([a-zA-Z0-9_]+)\?}#', '(?:/(?<$1>[^/]*))?', $pattern);
         $pattern = preg_replace('/{([a-zA-Z0-9_]+)\?}/', '(?<$1>[^/]*)?', $pattern);
 
-        // Replace wildcard pattern
-        $pattern = str_replace('*', '.*', $pattern);
+        // Replace named parameters with regex patterns
+        $pattern = preg_replace('/{([a-zA-Z0-9_]+)}/', '(?<$1>[^/]+)', $pattern);
 
         // Escape forward slashes
         $pattern = str_replace('/', '\/', $pattern);
@@ -421,5 +430,38 @@ class Router
     public function getCurrentRoute(): ?array
     {
         return $this->currentRoute;
+    }
+
+    /**
+     * เมธอดนี้ใช้เป็น handler ของเส้นทางได้หรือไม่
+     *
+     * ⚠️ method_exists() เป็นจริงกับ private/protected/static และเมธอดมหัศจรรย์
+     * อย่าง __construct ด้วย ถ้าเช็คแค่นั้นแล้วเรียกเลย เส้นทางที่ตั้งค่าพลาดจะได้
+     * fatal error ที่ไม่บอกอะไร แทนที่จะได้ ConfigurationException ที่บอกว่าผิดตรงไหน
+     *
+     * เมธอดแบบ static ยังใช้เป็น handler ได้ตามปกติ เพียงแต่เข้าทาง is_callable()
+     * ด้านบน (เช่น 'Foo::bar' หรือ [Foo::class, 'bar']) ไม่ใช่ทางที่ต้อง new ก่อน
+     *
+     * คู่กับ Kotchasan\Router::isCallableAction() ให้ตัวจัดเส้นทางทั้งสองตัวใช้
+     * เกณฑ์เดียวกัน
+     *
+     * @param object|string $controller
+     * @param string $method
+     *
+     * @return bool
+     */
+    protected function isCallableAction($controller, string $method): bool
+    {
+        if ($method === '' || strpos($method, '__') === 0 || !method_exists($controller, $method)) {
+            return false;
+        }
+
+        try {
+            $reflection = new \ReflectionMethod($controller, $method);
+        } catch (\ReflectionException $e) {
+            return false;
+        }
+
+        return $reflection->isPublic() && !$reflection->isStatic();
     }
 }

@@ -1,29 +1,23 @@
 <?php
 /**
- * @filesource projects/api/api.php.
+ * api/api.php
+ * Every call of the JSON API comes in here: api.php/v1/books, api.php/v1/books/3
  *
- * @copyright 2024 Goragod.com
- * @license https://www.kotchasan.com/license/
- * @author Goragod Wiriya <admin@goragod.com>
+ * Kotchasan\Router sees "api" in the path and sends the call to
+ * Kotchasan\ApiController, which calls V1\Books\Controller::index()
+ * (modules/v1/controllers/books.php).
  */
 
-/**
- * 0 (default) - Log severe errors to error_log.php.
- * 1 - Log errors and warnings to error_log.php.
- * 2 - Display errors and warnings on the screen (for development purposes only).
- */
-// define('DEBUG', 0);
+// The project folder. Kotchasan reads settings/ and modules/ from here.
+define('ROOT_PATH', str_replace('\\', '/', __DIR__).'/');
 
-/**
- * false (default) - Do not log database queries.
- * true - Log database queries to the log (for development purposes only).
- */
-// define('DB_LOG', false);
+// Writable folder under ROOT_PATH for the SQLite file and the logs
+define('DATA_FOLDER', 'datas/');
 
-// Load Kotchasan
-include '../../Kotchasan/load.php';
+// 0 = log errors only, 2 = also put the error in the JSON answer while developing
+define('DEBUG', 0);
 
-// Initialize Kotchasan Framework
-$request = Kotchasan::createWebApplication();
-$request->defaultController = 'Index\Api\Controller';
-$request->run();
+// Load Kotchasan straight from the repository, no Composer needed
+require __DIR__.'/../../Kotchasan/load.php';
+
+Kotchasan::createWebApplication()->run();
