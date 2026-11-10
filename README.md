@@ -21,7 +21,7 @@ Kotchasan (คชสาร) is a lightweight PHP framework for websites and JSON
 ## Installation
 
 ```bash
-composer require goragod/kotchasan
+composer require goragodwiriya/kotchasan
 ```
 
 `vendor/autoload.php` loads the framework. Without Composer, copy the `Kotchasan/` folder into your project and include `Kotchasan/load.php` instead.
@@ -140,7 +140,7 @@ Define these before the framework loads. Each one has a default.
 php -S localhost:8000
 ```
 
-[goragod/kotchasan-example](https://github.com/goragod/kotchasan-example) is one complete site in the same spirit, installed with Composer: MVC pages, a task list on SQLite with forms, a JSON API, Thai and English.
+Every example also runs with Composer: [`projects/README.md`](projects/README.md) shows the one line to change.
 
 ## Documentation
 

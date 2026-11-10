@@ -5,7 +5,7 @@
 This is the first release of Kotchasan as a Composer package on its own. The
 framework code is the same as the `Kotchasan/` folder of adminframework.
 
-- `composer require goragod/kotchasan` installs only the framework. The old
+- `composer require goragodwiriya/kotchasan` installs only the framework. The old
   repository also carried a demo site, CKEditor, a PDF library and skins.
 - Composer loads the classes from a classmap. The old `"psr-4": {"": "Kotchasan/"}`
   mapping could not find any class, so only `Kotchasan/load.php` loaded them.
@@ -14,7 +14,7 @@ framework code is the same as the `Kotchasan/` folder of adminframework.
   an application. `Kotchasan\Email` still includes its own PHPMailer copy.
 - `load.php` finds the project folder when the framework is installed in
   `vendor/`. `ROOT_PATH` and `WEB_URL` used to point at
-  `vendor/goragod/kotchasan/` unless the application defined `ROOT_PATH`.
+  `vendor/goragodwiriya/kotchasan/` unless the application defined `ROOT_PATH`.
 - Including `load.php` a second time does nothing. Composer's `vendor/autoload.php`
   already includes it, and an application that also included it by path used
   to stop with "Cannot redeclare function".

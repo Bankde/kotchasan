@@ -122,7 +122,7 @@ $appPath = '';
  * Project root, e.g., D:/htdocs/kotchasan
  * The application usually defines ROOT_PATH before it loads the framework.
  * Otherwise it is the folder that holds Kotchasan/ or, when Kotchasan was
- * installed with Composer (vendor/goragod/kotchasan/Kotchasan/), the folder
+ * installed with Composer (vendor/goragodwiriya/kotchasan/Kotchasan/), the folder
  * that holds vendor/.
  * $docRoot becomes the server's document root further down.
  */

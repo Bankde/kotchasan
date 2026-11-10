@@ -21,7 +21,7 @@
 ## การติดตั้ง
 
 ```bash
-composer require goragod/kotchasan
+composer require goragodwiriya/kotchasan
 ```
 
 `vendor/autoload.php` จะโหลดเฟรมเวิร์กให้ ถ้าไม่ใช้ Composer ให้คัดลอกโฟลเดอร์ `Kotchasan/` ไปไว้ในโปรเจ็คแล้ว include `Kotchasan/load.php` แทน
@@ -140,7 +140,7 @@ echo $rows[0]->name; // Coffee
 php -S localhost:8000
 ```
 
-[goragod/kotchasan-example](https://github.com/goragod/kotchasan-example) เป็นเว็บไซต์ที่สมบูรณ์หนึ่งชุดในแนวเดียวกัน ติดตั้งด้วย Composer มีหน้าแบบ MVC, รายการงานบน SQLite พร้อมฟอร์ม, JSON API และภาษาไทยกับอังกฤษ
+ทุกตัวอย่างใช้กับ Composer ได้ด้วย [`projects/README.th.md`](projects/README.th.md) บอกบรรทัดที่ต้องเปลี่ยน
 
 ## คู่มือ
 

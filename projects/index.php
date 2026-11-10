@@ -236,7 +236,7 @@ $version = VERSION;
     <a class="brand" href="./"><span class="logo-mark"><img src="assets/kotchasan-vector.svg" alt="" width="64" height="64"></span>Kotchasan <small>ตัวอย่าง</small></a>
     <nav class="nav" aria-label="ลิงก์">
       <a href="https://www.kotchasan.com">คู่มือ</a>
-      <a href="https://github.com/goragod/kotchasan">GitHub</a>
+      <a href="https://github.com/goragodwiriya/kotchasan">GitHub</a>
     </nav>
   </div>
 </header>

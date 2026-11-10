@@ -57,4 +57,4 @@ URL ใช้ query string (`index.php?module=about`) และ path ต่อ�
 3. คัดลอก `assets/style.css` ไปด้วยถ้าต้องการหน้าตาแบบเดียวกัน แล้วแก้ลิงก์ stylesheet ในเลย์เอาต์
 4. ก่อนขึ้นเว็บจริง ให้เปลี่ยน `password_key` และ token ของ API ใน `settings/config.php` และตั้ง `DEBUG` เป็น `0`
 
-โปรเจ็คเดียวกันนี้ใช้กับ Composer ได้ด้วย: `composer require goragod/kotchasan` แล้วใช้ `require __DIR__.'/vendor/autoload.php';` แทน `Kotchasan/load.php`
+โปรเจ็คเดียวกันนี้ใช้กับ Composer ได้ด้วย: `composer require goragodwiriya/kotchasan` แล้วใช้ `require __DIR__.'/vendor/autoload.php';` แทน `Kotchasan/load.php`

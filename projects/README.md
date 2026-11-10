@@ -57,4 +57,4 @@ URLs use the query string (`index.php?module=about`) and the path after `index.p
 3. Copy `assets/style.css` too if you want the same look, and change the stylesheet link in the layout.
 4. Before going online, change `password_key` and the API tokens in `settings/config.php`, and keep `DEBUG` at `0`.
 
-The same project also runs with Composer: `composer require goragod/kotchasan`, then `require __DIR__.'/vendor/autoload.php';` instead of `Kotchasan/load.php`.
+The same project also runs with Composer: `composer require goragodwiriya/kotchasan`, then `require __DIR__.'/vendor/autoload.php';` instead of `Kotchasan/load.php`.
