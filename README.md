@@ -148,19 +148,20 @@ The manual, in Thai and English, is at [kotchasan.com](https://www.kotchasan.com
 
 ## Maintainers
 
-The framework is developed in the `Kotchasan/` folder of adminframework, which the application projects copy. This repository publishes that same folder, byte for byte. Never edit `Kotchasan/` here: change it at the source, then copy it with `rsync`, which also removes the files deleted at the source:
+The framework is developed in the `Kotchasan/` folder of adminframework, which the application projects copy. This repository publishes that same folder, byte for byte. Never edit `Kotchasan/` here: change it at the source, commit it there, then copy it to this repository and to every application project with adminframework's sync script, which also removes the files deleted at the source:
 
 ```bash
-# list what differs; prints nothing when the two are the same (-c compares contents)
-rsync -rc --delete --dry-run --itemize-changes ../now.js/adminframework/Kotchasan/ Kotchasan/
+cd ../adminframework
+# list what differs; changes nothing
+php install/cli-framework-sync.php kotchasan
 # copy it here
-rsync -rc --delete ../now.js/adminframework/Kotchasan/ Kotchasan/
+php install/cli-framework-sync.php --apply kotchasan
 ```
 
-To release, update `VERSION` in `Kotchasan/load.php` (at the source), sync, add the changes to `CHANGELOG.md`, commit, then tag and push. Packagist reads the tag:
+`VERSION` in `Kotchasan/load.php` is the version of this package (2.0.0), not of an application. To release, update it at the source, sync, add the changes to `CHANGELOG.md`, commit, then tag and push. Packagist reads the tag:
 
 ```bash
-git tag v7.0.0
+git tag v2.0.0
 git push origin main --tags
 ```
 

@@ -60,8 +60,10 @@ class BearerTokenAuthMiddleware implements MiddlewareInterface
         }
 
         // Try to get token from query parameter
-        $token = $request->get('access_token');
-        if (!empty($token)) {
+        // get() is an InputItem even when the parameter is missing (never empty()),
+        // so the callback used to receive an object, or '' with no token at all
+        $token = $request->get('access_token')->toString();
+        if (is_string($token) && $token !== '') {
             return $token;
         }
 

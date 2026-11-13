@@ -59,12 +59,15 @@ trait RequestSecurityTrait
      */
     public static function validateCsrfToken(string $token): bool
     {
-        if (empty($token)) {
+        // The token is a key of $_SESSION, so only the form generateCsrfToken() makes
+        // (64 hex) is looked up: a token "login" used to find the login entry and,
+        // having no expiry, unset it — any request could empty any array in the session
+        if (!self::isCsrfTokenFormat($token)) {
             return false;
         }
 
         // Preferred path: token metadata stored keyed by token
-        if (isset($_SESSION[$token]) && is_array($_SESSION[$token])) {
+        if (isset($_SESSION[$token]) && is_array($_SESSION[$token]) && isset($_SESSION[$token]['expired'], $_SESSION[$token]['times'])) {
             $meta = $_SESSION[$token];
 
             // Check expiration
@@ -96,7 +99,20 @@ trait RequestSecurityTrait
      */
     public function removeCsrfToken($token): void
     {
-        unset($_SESSION[$token]);
+        if (is_string($token) && self::isCsrfTokenFormat($token)) {
+            unset($_SESSION[$token]);
+        }
+    }
+
+    /**
+     * Whether $token has the form of a token from generateCsrfToken() (64 hex characters)
+     *
+     * @param string $token
+     * @return bool
+     */
+    public static function isCsrfTokenFormat(string $token): bool
+    {
+        return preg_match('/^[a-f0-9]{64}$/', $token) === 1;
     }
 
     /**
@@ -222,7 +238,7 @@ trait RequestSecurityTrait
                 return $isEmpty ? null : (filter_var($value, FILTER_VALIDATE_INT) === false ? "{$field} must be an integer" : null);
 
             case 'url':
-                return $isEmpty ? null : (!filter_var($value, FILTER_VALIDATE_URL) ? "{$field} must be a valid URL" : null);
+                return $isEmpty ? null : (!\Kotchasan\Validator::url($value) ? "{$field} must be a valid URL" : null);
 
             default:
                 return null;

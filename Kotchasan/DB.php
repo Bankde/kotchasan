@@ -304,8 +304,10 @@ class DB
      */
     public function nextId(string $table, $where = [], $column = 'id'): int
     {
+        // MySQL has no INT in CAST (only SIGNED/UNSIGNED; MariaDB takes both)
+        $cast = $this->database->getDriverName() === 'mysql' ? 'SIGNED' : 'INT';
         $result = $this->database->createQuery()
-            ->select(['MAX(CAST('.$this->quoteName($column).' AS INT)) as id'])
+            ->select(['MAX(CAST('.$this->quoteName($column).' AS '.$cast.')) as id'])
             ->from($table)
             ->where($where)
             ->execute()

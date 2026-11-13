@@ -185,6 +185,13 @@ abstract class QueryBuilder implements QueryBuilderInterface
     protected ?int $cacheTtl = null;
 
     /**
+     * false: this write leaves the query cache as it is (see keepQueryCache()).
+     *
+     * @var bool
+     */
+    protected bool $invalidatesCache = true;
+
+    /**
      * Whether to automatically save cache after query execution.
      *
      * @var bool
@@ -246,6 +253,29 @@ abstract class QueryBuilder implements QueryBuilderInterface
     }
 
     /**
+     * Quoted name of a column that INSERT or UPDATE writes (a key of values()/set()).
+     *
+     * The key is written into the SQL, so it must be a plain column name (letters,
+     * digits, _; may be wrapped in `` or "; table.column allowed). A key such as "status = 1, role" or
+     * "name) VALUES (..." used to reach the SQL as it was — data whose keys come
+     * from a request could rewrite the statement.
+     *
+     * @param mixed $column
+     * @return string
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function writableColumn($column): string
+    {
+        $name = (string) preg_replace('/([`"])([^`"]+)\1/', '$2', (string) $column);
+        if (!preg_match('/^[\p{L}\p{N}_]+(\.[\p{L}\p{N}_]+)?$/u', $name)) {
+            throw new \InvalidArgumentException('Invalid column name: '.substr((string) $column, 0, 40));
+        }
+
+        return $this->quoteIdentifier($name);
+    }
+
+    /**
      * Comparison operator for the current driver (LIKE becomes ILIKE on PostgreSQL
      * so text matching is case-insensitive on every driver, as on MySQL).
      *
@@ -254,7 +284,39 @@ abstract class QueryBuilder implements QueryBuilderInterface
      */
     protected function compareOperator($operator): string
     {
-        return $this->getSqlBuilder()->compareOperator((string) $operator);
+        return $this->getSqlBuilder()->compareOperator($this->validateOperator($operator));
+    }
+
+    /**
+     * Comparison operators a condition may use. The operator is written into the
+     * SQL as it is, so anything else (e.g. '= 1 OR 1=1 --') is refused.
+     *
+     * @var array
+     */
+    protected static $allowedOperators = [
+        '=', '!=', '<>', '<', '>', '<=', '>=', '<=>',
+        'LIKE', 'NOT LIKE', 'ILIKE', 'NOT ILIKE',
+        'IN', 'NOT IN', 'IS', 'IS NOT',
+        'BETWEEN', 'NOT BETWEEN',
+        'REGEXP', 'NOT REGEXP', 'RLIKE', 'NOT RLIKE'
+    ];
+
+    /**
+     * The operator in its canonical form (upper case, single spaces).
+     *
+     * @param mixed $operator
+     * @return string
+     *
+     * @throws \InvalidArgumentException When it is not a comparison operator
+     */
+    protected function validateOperator($operator): string
+    {
+        $normalized = is_string($operator) ? strtoupper(trim((string) preg_replace('/\s+/', ' ', $operator))) : '';
+        if (!in_array($normalized, static::$allowedOperators, true)) {
+            throw new \InvalidArgumentException('Invalid comparison operator: '.(is_scalar($operator) ? substr((string) $operator, 0, 20) : gettype($operator)));
+        }
+
+        return $normalized;
     }
 
     /**
@@ -601,6 +663,7 @@ abstract class QueryBuilder implements QueryBuilderInterface
         } else {
             throw new \InvalidArgumentException('Invalid where() array format.');
         }
+        $op = $this->validateOperator($op);
 
         // Process column using unified approach - support both strings and SqlFunction objects
         $processedCol = $this->processColumnReference($col);
@@ -648,18 +711,12 @@ abstract class QueryBuilder implements QueryBuilderInterface
             return $this;
         }
 
-        // Decide if the passed value is a user-provided named placeholder (eg. ':id')
-        // Accept only strictly-formed named placeholders (no spaces, only alnum and _).
-        // Treat colon-prefixed strings containing whitespace as literal values (eg. ':one tow rhree').
+        // A string value is always a value, bound as one. ':name' and '?' used to be
+        // written into the SQL as placeholders: a form field holding ':qb_p0' then
+        // compared the column with the value of another condition (a token check
+        // matched any user's row), and '?' left the condition without a binding.
+        // A placeholder for execute($params) is written as Sql::raw(':name').
         $paramName = null;
-        if (is_string($val) && preg_match('/^:[A-Za-z0-9_]+$/', $val)) {
-            // user provided a named placeholder like ':id'
-            $this->useNamedParameters = true;
-            $paramName = $val;
-        } elseif (is_string($val) && $val === '?') {
-            // user provided positional placeholder
-            $paramName = '?';
-        }
 
         // If value is a QueryBuilder/Sql-like object, treat as subquery/expression
         if (is_object($val) && method_exists($val, 'toSql')) {
@@ -817,20 +874,6 @@ abstract class QueryBuilder implements QueryBuilderInterface
             $paramName = $this->placeholderPrefix.$this->paramCounter++;
             $k = is_string($paramName) && strpos($paramName, ':') === 0 ? substr($paramName, 1) : $paramName;
             $this->namedBindings[$k] = $val;
-        }
-
-        // If the value looks like a colon-prefixed string but contains whitespace
-        // (eg. ':one tow rhree'), force it to be treated as a literal value by
-        // allocating a generated placeholder or positional binding here.
-        if (is_string($val) && strpos($val, ':') === 0 && preg_match('/\s/', $val)) {
-            if ($this->useNamedParameters) {
-                $paramName = $this->placeholderPrefix.$this->paramCounter++;
-                $k = is_string($paramName) && strpos($paramName, ':') === 0 ? substr($paramName, 1) : $paramName;
-                $this->namedBindings[$k] = $val;
-            } else {
-                $paramName = '?';
-                $this->addBinding($val, 'where');
-            }
         }
 
         $this->wheres[] = [
@@ -1563,11 +1606,13 @@ abstract class QueryBuilder implements QueryBuilderInterface
      */
     public function having($column, $operator = null, $value = null): QueryBuilderInterface
     {
-        // If only two parameters are provided, assume equals operator
-        if ($value === null) {
+        // Two arguments: having('col', value) means '='. Counted, not tested for null:
+        // having('col', '=', null) used to become "col = '='"
+        if (func_num_args() < 3) {
             $value = $operator;
             $operator = '=';
         }
+        $operator = $this->validateOperator($operator);
 
         $this->havings[] = [
             'type' => 'basic',
@@ -1734,7 +1779,7 @@ abstract class QueryBuilder implements QueryBuilderInterface
 
         // A write makes every cached SELECT stale. The class decides, because a
         // builder made by SelectBuilder::update() and its siblings has no type set
-        if ($this instanceof InsertBuilder || $this instanceof UpdateBuilder || $this instanceof DeleteBuilder) {
+        if ($this->invalidatesCache && ($this instanceof InsertBuilder || $this instanceof UpdateBuilder || $this instanceof DeleteBuilder)) {
             $writeCache = $this->connection->getQueryCache();
             if ($writeCache !== null) {
                 $writeCache->invalidateTable((string) $this->table);
@@ -1911,6 +1956,21 @@ abstract class QueryBuilder implements QueryBuilderInterface
     {
         $this->useCache = true;
         $this->cacheTtl = $ttl;
+
+        return $this;
+    }
+
+    /**
+     * Run this write without emptying the query cache. Every INSERT, UPDATE and
+     * DELETE empties it, because a cached SELECT may read any table; a write to a
+     * table no cached query reads (Kotchasan\Session's table, written on every
+     * request) can skip that.
+     *
+     * @return static
+     */
+    public function keepQueryCache(): self
+    {
+        $this->invalidatesCache = false;
 
         return $this;
     }

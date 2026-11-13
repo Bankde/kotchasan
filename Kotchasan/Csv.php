@@ -194,11 +194,13 @@ class Csv
      * @param iterable $datas  Array or Iterator of data rows for the CSV file
      * @param string $charset  Character encoding of the CSV file (default: UTF-8)
      * @param bool   $bom      Whether to include the Byte Order Mark (BOM) in the CSV file (default: true)
+     * @param bool   $escapeFormulas Prefix "'" to a cell that a spreadsheet would run as a
+     *                               formula (see escapeFormula()); default true
      *
      * @throws \Exception If headers already sent or invalid input
      * @return void
      */
-    public static function send($file, $header, $datas, $charset = 'UTF-8', $bom = true)
+    public static function send($file, $header, $datas, $charset = 'UTF-8', $bom = true, $escapeFormulas = true)
     {
         // Allow Iterator for large datasets (checking iterable instead of is_array)
         if (!is_array($datas) && !($datas instanceof \Traversable)) {
@@ -217,18 +219,15 @@ class Csv
 
         // Check if headers have already been sent
         if (headers_sent($filename, $line)) {
-            throw new \Exception("Headers already sent in {$filename} on line {$line}");
+            throw new \Exception('Headers already sent in '.basename((string) $filename).' on line '.$line);
         }
-
-        // Sanitizing filename (Optional: Keep basic sanitization but allow Thai if handled by browser)
-        // Usually, modern browsers handle UTF-8 filenames in Content-Disposition better with the filename* syntax
-        $encodedFile = rawurlencode($file.'.csv');
 
         try {
             // Set response headers
             header('Content-Type: text/csv; charset='.$charset);
             // Support UTF-8 Filename correctly
-            header("Content-Disposition: attachment; filename=\"{$file}.csv\"; filename*=UTF-8''{$encodedFile}");
+            // ASCII filename="" (no " to end it early) and the full name in filename*
+            header('Content-Disposition: '.\Kotchasan\Http\Response::contentDisposition($file.'.csv'));
             header('Cache-Control: max-age=0');
             header('Pragma: public');
 
@@ -247,12 +246,13 @@ class Csv
 
             // Write Header
             if (!empty($header)) {
-                fputcsv($f, self::convert($header, $charset), self::DELIMITER, self::ENCLOSURE, self::ESCAPE);
+                fputcsv($f, self::convert($escapeFormulas ? array_map([self::class, 'escapeFormula'], $header) : $header, $charset), self::DELIMITER, self::ENCLOSURE, self::ESCAPE);
             }
 
             // Write Data
             foreach ($datas as $item) {
-                fputcsv($f, self::convert($item, $charset), self::DELIMITER, self::ENCLOSURE, self::ESCAPE);
+                $item = (array) $item;
+                fputcsv($f, self::convert($escapeFormulas ? array_map([self::class, 'escapeFormula'], $item) : $item, $charset), self::DELIMITER, self::ENCLOSURE, self::ESCAPE);
             }
 
             fclose($f);
@@ -272,6 +272,31 @@ class Csv
      *
      * @return string  String with BOM removed
      */
+    /**
+     * A cell that Excel or LibreOffice would run as a formula, with "'" in front.
+     *
+     * Text from users that starts with =, @, a tab or CR (or + / - followed by
+     * something other than a number) becomes a formula when the CSV is opened:
+     * =HYPERLINK(...) or =cmd|' ...'!A1 (CSV injection). A number, a negative
+     * number or a phone number such as +66 81 234 5678 is left as it is.
+     *
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    public static function escapeFormula($value)
+    {
+        if (!is_string($value) || $value === '') {
+            return $value;
+        }
+        if (preg_match('/^[=@\t\r]/', $value)
+            || (preg_match('/^[+\-]/', $value) && !preg_match('/^[+\-][0-9\s().,\-]*$/', $value))) {
+            return "'".$value;
+        }
+
+        return $value;
+    }
+
     private static function removeBomUtf8($s)
     {
         if (substr($s, 0, 3) == chr(hexdec('EF')).chr(hexdec('BB')).chr(hexdec('BF'))) {

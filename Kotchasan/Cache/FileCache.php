@@ -75,7 +75,10 @@ class FileCache implements CacheInterface
             if (defined('ROOT_PATH') && defined('DATA_FOLDER')) {
                 $path = ROOT_PATH.DATA_FOLDER.'cache/';
             } else {
-                $path = sys_get_temp_dir().'/kotchasan_cache/';
+                // A folder of this user only: a shared /tmp/kotchasan_cache let anyone on
+                // the machine plant cache files that unserialize() turns into objects
+                $path = sys_get_temp_dir().'/kotchasan_cache_'.self::processUser().'/';
+                $private = true;
             }
         }
 
@@ -84,7 +87,7 @@ class FileCache implements CacheInterface
 
         // Create cache directory if it doesn't exist
         if (!is_dir($this->path)) {
-            @mkdir($this->path, 0755, true);
+            @mkdir($this->path, empty($private) ? 0755 : 0700, true);
         }
 
         // Run automatic garbage collection
@@ -362,6 +365,16 @@ class FileCache implements CacheInterface
     }
 
     /**
+     * The user this process runs as (for a private fallback folder).
+     *
+     * @return int
+     */
+    protected static function processUser(): int
+    {
+        return function_exists('posix_geteuid') ? posix_geteuid() : (int) getmyuid();
+    }
+
+    /**
      * Read data from a cache file.
      *
      * @param string $filename The filename.
@@ -369,13 +382,20 @@ class FileCache implements CacheInterface
      */
     protected function readFile(string $filename)
     {
+        // A cache file someone else owns is not this process's: never unserialized
+        if (function_exists('posix_geteuid') && @fileowner($filename) !== posix_geteuid()) {
+            return false;
+        }
+
         $content = @file_get_contents($filename);
 
         if ($content === false) {
             return false;
         }
 
-        $data = @unserialize($content);
+        // Cached values are query rows: arrays and stdClass (PDO results). Any other
+        // class in a cache file is not ours, and unserialize() would wake it up
+        $data = @unserialize($content, ['allowed_classes' => ['stdClass']]);
 
         if ($data === false || !is_array($data)) {
             return false;

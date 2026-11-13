@@ -47,11 +47,12 @@ if (DEBUG > 0) {
 }
 
 /*
- * Framework Version
+ * Kotchasan version (the Composer package goragodwiriya/kotchasan). An application
+ * keeps its own version elsewhere: AdminFramework's is "version" in settings/config.php.
  *
  * @var string
  */
-define('VERSION', '7.0.0');
+define('VERSION', '2.0.0');
 
 /*
  * Enable database query logging.
@@ -177,41 +178,6 @@ if (!defined('APP_PATH')) {
 }
 
 /*
- *  http or https
- */
-if (defined('HTTPS')) {
-    $scheme = HTTPS ? 'https://' : 'http://';
-} else {
-    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
-        $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'].'://';
-    } elseif ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) {
-        $scheme = 'https://';
-    } else {
-        $scheme = 'http://';
-    }
-    define('HTTPS', $scheme == 'https://');
-}
-
-/*
- * Host name
- */
-if (defined('HOST')) {
-    $host = HOST;
-} else {
-    if (PHP_SAPI === 'cli') {
-        // Set a default host when running from CLI
-        $host = 'localhost';
-    } elseif (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
-        $host = trim(current(explode(',', $_SERVER['HTTP_X_FORWARDED_HOST'])));
-    } elseif (empty($_SERVER['HTTP_HOST'])) {
-        $host = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost';
-    } else {
-        $host = $_SERVER['HTTP_HOST'];
-    }
-    define('HOST', str_replace('www.', '', $host));
-}
-
-/*
  * Base directory of the website installation starting from DOCUMENT_ROOT
  * For example, kotchasan/
  */
@@ -225,13 +191,6 @@ if (!defined('BASE_PATH')) {
         }
         define('BASE_PATH', rtrim($basePath, '/').'/');
     }
-}
-
-/**
- * URL of the website including the path, e.g., http://domain.tld/folder
- */
-if (!defined('WEB_URL')) {
-    define('WEB_URL', (HTTPS ? 'https://' : $scheme).$host.$contextPrefix.str_replace($docRoot, '', ROOT_PATH));
 }
 
 /*
@@ -283,6 +242,12 @@ if (!function_exists('doShutdown')) {
 if (!function_exists('debug')) {
     function debug()
     {
+        // Only while debugging: with DEBUG 0 a forgotten debug() call printed
+        // <script>console.log(file : line ...)</script> after the page, also after
+        // a JSON body (broken JSON, and the file path shown to visitors)
+        if (!defined('DEBUG') || DEBUG < 1) {
+            return;
+        }
         if (\Kotchasan::$debugger === null) {
             \Kotchasan::$debugger = [];
             register_shutdown_function('doShutdown');
@@ -308,6 +273,11 @@ if (!function_exists('debug')) {
  */
 if (DEBUG != 2) {
     set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+        // Silenced with @ (or below error_reporting): the framework writes @mkdir, @unlink,
+        // @file_get_contents ... on purpose, and every one of them used to land in the log
+        if (!(error_reporting() & $errno)) {
+            return false;
+        }
         switch ($errno) {
         case E_WARNING:
             $type = 'PHP warning';
@@ -609,3 +579,51 @@ require_once VENDOR_DIR.'Http/Stream.php';
 require_once VENDOR_DIR.'Router.php';
 require_once VENDOR_DIR.'Kotchasan.php';
 require_once VENDOR_DIR.'Controller.php';
+
+/*
+ * http or https, the host name and WEB_URL — computed once Http\Request is loaded,
+ * because X-Forwarded-Proto and X-Forwarded-Host count only from a trusted proxy
+ * (Request::forwardedScheme / forwardedHost, TRUSTED_PROXIES of the application's
+ * load.php). Any client can send these headers: believed from everyone, they chose
+ * WEB_URL and HTTPS, and with them the links in e-mails (password reset poisoning).
+ */
+if (defined('HTTPS')) {
+    $scheme = HTTPS ? 'https://' : 'http://';
+} else {
+    $forwardedScheme = \Kotchasan\Http\Request::forwardedScheme();
+    if ($forwardedScheme !== null) {
+        $scheme = $forwardedScheme.'://';
+    } elseif ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) {
+        $scheme = 'https://';
+    } else {
+        $scheme = 'http://';
+    }
+    define('HTTPS', $scheme == 'https://');
+}
+
+if (defined('HOST')) {
+    $host = HOST;
+} else {
+    $forwardedHost = \Kotchasan\Http\Request::forwardedHost();
+    if (PHP_SAPI === 'cli') {
+        // Set a default host when running from CLI
+        $host = 'localhost';
+    } elseif ($forwardedHost !== null) {
+        $host = $forwardedHost;
+    } elseif (empty($_SERVER['HTTP_HOST'])) {
+        $host = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost';
+    } else {
+        // The Host header picks the site of a multi-site installation. Links that
+        // leave the site (e-mails) take their base from the application's config
+        // (Gcms\Api::siteUrl), not from here
+        $host = $_SERVER['HTTP_HOST'];
+    }
+    define('HOST', str_replace('www.', '', $host));
+}
+
+/**
+ * URL of the website including the path, e.g., http://domain.tld/folder
+ */
+if (!defined('WEB_URL')) {
+    define('WEB_URL', (HTTPS ? 'https://' : $scheme).$host.$contextPrefix.str_replace($docRoot, '', ROOT_PATH));
+}

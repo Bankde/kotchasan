@@ -148,19 +148,20 @@ php -S localhost:8000
 
 ## สำหรับผู้ดูแล
 
-เฟรมเวิร์กพัฒนาในโฟลเดอร์ `Kotchasan/` ของ adminframework ซึ่งโปรเจ็คแอปพลิเคชันคัดลอกไปใช้ repository นี้เผยแพร่โฟลเดอร์เดียวกันนั้นทุกไบต์ ห้ามแก้ `Kotchasan/` ที่นี่ ให้แก้ที่ต้นฉบับแล้วคัดลอกมาด้วย `rsync` ซึ่งลบไฟล์ที่ต้นฉบับลบไปแล้วให้ด้วย
+เฟรมเวิร์กพัฒนาในโฟลเดอร์ `Kotchasan/` ของ adminframework ซึ่งโปรเจ็คแอปพลิเคชันคัดลอกไปใช้ repository นี้เผยแพร่โฟลเดอร์เดียวกันนั้นทุกไบต์ ห้ามแก้ `Kotchasan/` ที่นี่ ให้แก้และ commit ที่ต้นฉบับ แล้วคัดลอกมาที่นี่และไปทุกโปรเจ็คแอปพลิเคชันด้วยสคริปต์ sync ของ adminframework ซึ่งลบไฟล์ที่ต้นฉบับลบไปแล้วให้ด้วย
 
 ```bash
-# แสดงไฟล์ที่ต่างกัน ถ้าเหมือนกันจะไม่แสดงอะไร (-c เทียบเนื้อหา)
-rsync -rc --delete --dry-run --itemize-changes ../now.js/adminframework/Kotchasan/ Kotchasan/
+cd ../adminframework
+# แสดงไฟล์ที่ต่างกัน ไม่แก้อะไร
+php install/cli-framework-sync.php kotchasan
 # คัดลอกมาที่นี่
-rsync -rc --delete ../now.js/adminframework/Kotchasan/ Kotchasan/
+php install/cli-framework-sync.php --apply kotchasan
 ```
 
-การออกรุ่น: แก้ `VERSION` ใน `Kotchasan/load.php` (ที่ต้นฉบับ) แล้ว sync, เพิ่มรายการใน `CHANGELOG.md`, commit จากนั้นติด tag แล้ว push โดย Packagist อ่านรุ่นจาก tag
+`VERSION` ใน `Kotchasan/load.php` คือรุ่นของแพ็กเกจนี้ (2.0.0) ไม่ใช่รุ่นของแอปพลิเคชัน การออกรุ่น: แก้ค่านี้ที่ต้นฉบับแล้ว sync, เพิ่มรายการใน `CHANGELOG.md`, commit จากนั้นติด tag แล้ว push โดย Packagist อ่านรุ่นจาก tag
 
 ```bash
-git tag v7.0.0
+git tag v2.0.0
 git push origin main --tags
 ```
 

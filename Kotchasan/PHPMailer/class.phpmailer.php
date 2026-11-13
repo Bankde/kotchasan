@@ -1094,7 +1094,9 @@ class PHPMailer
         if (is_null($patternselect)) {
             $patternselect = self::$validator;
         }
-        if (is_callable($patternselect)) {
+        // Kotchasan patch (CVE-2021-3603): only a callable object (Closure), never a
+        // string — a pattern name such as 'php' would call a global function of that name
+        if (is_callable($patternselect) && !is_string($patternselect)) {
             return call_user_func($patternselect, $address);
         }
         //Reject line breaks in addresses; it's valid RFC5322, but not RFC5321
@@ -1769,6 +1771,23 @@ class PHPMailer
      *
      * @return bool
      */
+    /**
+     * Whether $path names a file of this machine: not a stream wrapper (phar://,
+     * http://, php://) and not a UNC path (\\\\host\\share). Kotchasan patch.
+     *
+     * @param string $path
+     *
+     * @return bool
+     */
+    protected static function isPermittedPath($path)
+    {
+        $path = (string) $path;
+
+        return $path !== '' && strpos($path, "\0") === false
+            && !preg_match('#^[a-z][a-z0-9+.-]*://#i', $path)
+            && strpos($path, '\\\\') !== 0 && strpos($path, '//') !== 0;
+    }
+
     public function setLanguage($langcode = 'en', $lang_path = '')
     {
         // Backwards compatibility for renamed language codes
@@ -1818,8 +1837,9 @@ class PHPMailer
         $lang_file = $lang_path.'phpmailer.lang-'.$langcode.'.php';
         // There is no English translation file
         if ($langcode != 'en') {
-            // Make sure language file path is readable
-            if (!is_readable($lang_file)) {
+            // Make sure language file path is readable (Kotchasan patch, CVE-2021-34551:
+            // and local — a UNC or stream-wrapper path would be included as code)
+            if (!self::isPermittedPath($lang_file) || !is_readable($lang_file)) {
                 $foundlang = false;
             } else {
                 // Overwrite language-specific strings.
@@ -2541,7 +2561,7 @@ class PHPMailer
     public function addAttachment($path, $name = '', $encoding = 'base64', $type = '', $disposition = 'attachment')
     {
         try {
-            if (!@is_file($path)) {
+            if (!self::isPermittedPath($path) || !@is_file($path)) {
                 throw new phpmailerException($this->lang('file_access').$path, self::STOP_CONTINUE);
             }
 
@@ -3082,7 +3102,7 @@ class PHPMailer
      */
     public function addEmbeddedImage($path, $cid, $name = '', $encoding = 'base64', $type = '', $disposition = 'inline')
     {
-        if (!@is_file($path)) {
+        if (!self::isPermittedPath($path) || !@is_file($path)) {
             $this->setError($this->lang('file_access').$path);
 
             return false;
@@ -3465,20 +3485,29 @@ class PHPMailer
                             $images[0][$imgindex], $images[1][$imgindex].'="cid:'.$cid.'"', $message
                         );
                     }
-                } elseif (substr($url, 0, 4) !== 'cid:' && !preg_match('#^[a-z][a-z0-9+.-]*://#i', $url)) {
-                    // Do not change urls for absolute images (thanks to corvuscorax)
-                    // Do not change urls that are already inline images
+                } elseif (substr($url, 0, 4) !== 'cid:' && !preg_match('#^[a-z][a-z0-9+.-]*:?//#i', $url)
+                    && strlen($basedir) > 1 && strpos($url, '..') === false && strpos($url, "\0") === false) {
+                    // Kotchasan patch (CVE-2017-5223): a file of this machine is embedded
+                    // only when the caller names the folder ($basedir) it may come from,
+                    // and only from inside it. Without $basedir, src="/etc/passwd" or
+                    // "../settings/config.php" in the HTML used to be attached to the mail.
                     $filename = basename($url);
                     $directory = dirname($url);
                     if ($directory == '.') {
                         $directory = '';
                     }
                     $cid = md5($url).'@phpmailer.0'; // RFC2392 S 2
-                    if (strlen($basedir) > 1 && substr($basedir, -1) != '/') {
+                    if (substr($basedir, -1) != '/') {
                         $basedir .= '/';
                     }
                     if (strlen($directory) > 1 && substr($directory, -1) != '/') {
                         $directory .= '/';
+                    }
+                    $realBase = realpath($basedir);
+                    $realFile = realpath($basedir.$directory.$filename);
+                    if ($realBase === false || $realFile === false
+                        || strpos($realFile, rtrim($realBase, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR) !== 0) {
+                        continue;
                     }
                     if ($this->addEmbeddedImage(
                         $basedir.$directory.$filename, $cid, $filename, 'base64', self::_mime_types((string) self::mb_pathinfo($filename, PATHINFO_EXTENSION))

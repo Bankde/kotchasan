@@ -28,16 +28,6 @@ class InputItem
     protected $type;
 
     /**
-     * @var array Allowed methods for security
-     */
-    protected static $allowedMethods = [
-        'topic', 'filter', 'toInt', 'username', 'email', 'url', 'text', 'htmlText', 'bool', 'color',
-        'alphanumeric', 'phone', 'date', 'datetime', 'float', 'json', 'base64', 'password', 'oneLine', 'cut',
-        'description', 'detail', 'keywords', 'time', 'quote', 'textarea', 'number',
-        'toBoolean', 'toDouble', 'toFloat', 'toObject', 'toString', 'toArray', 'toJson', 'exists'
-    ];
-
-    /**
      * Constructor
      *
      * @param mixed $value The input value
@@ -364,8 +354,10 @@ class InputItem
             if ($v === null || $v === '') {
                 return $default;
             }
-            $url = filter_var(trim($v), FILTER_VALIDATE_URL);
-            return $url !== false ? $url : '';
+            // A valid URL of an allowed scheme (http, https, ftp, mailto): javascript://
+            // and data:// pass FILTER_VALIDATE_URL and used to be kept
+            $url = trim((string) $v);
+            return \Kotchasan\Validator::url($url) ? $url : '';
         });
     }
 
@@ -479,14 +471,34 @@ class InputItem
     }
 
     /**
-     * Remove PHP tags and escape characters for text input from an editor.
+     * Editor content for storage: PHP tags are removed and { } \ encoded, the
+     * rest is kept as written (scripts, styles, forms and iframes included).
      *
-     * @return mixed The sanitized text or array when input is array
+     * @param bool $allowJs false removes everything that can run JavaScript
+     *                      and keeps the rest (see Text::detail())
+     *
+     * @return mixed The encoded text, or an array when the input is an array
      */
-    public function detail()
+    public function detail(bool $allowJs = true)
     {
-        return $this->map(function ($v) {
-            return Text::detail((string) ($v ?? ''));
+        return $this->map(function ($v) use ($allowJs) {
+            return Text::detail((string) ($v ?? ''), $allowJs);
+        });
+    }
+
+    /**
+     * HTML from a rich-text editor, cleaned with Text::cleanHtml() (what can run
+     * code is removed, the formatting stays) and then encoded like detail().
+     * Use it instead of detail() for HTML that users write.
+     *
+     * @param array|null $iframeHosts host + path prefixes an iframe may load (default: YouTube, Vimeo)
+     *
+     * @return mixed The cleaned text or array when input is array
+     */
+    public function cleanHtml(?array $iframeHosts = null)
+    {
+        return $this->map(function ($v) use ($iframeHosts) {
+            return Text::detail(Text::cleanHtml((string) ($v ?? ''), $iframeHosts));
         });
     }
 

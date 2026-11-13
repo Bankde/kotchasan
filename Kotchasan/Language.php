@@ -299,21 +299,41 @@ final class Language extends \Kotchasan\KBase
     /**
      * Saves the language file.
      *
+     * Keys and values are written as PHP string literals (var_export), so a quote
+     * in a translation stays text: they used to be written between '' as they were,
+     * and a value such as x'.system('id').' ran when the file was loaded. A
+     * language is a two-letter code (the only files installedLanguage() reads);
+     * anything else — e.g. "../settings/x", which named a file outside the folder —
+     * is refused.
+     *
      * @param array  $languages The language data to be saved.
      * @param string $type      The type of file to save ('php' or 'json').
      *
-     * @return string
+     * @return string '' when saved, otherwise the error message
      */
     public static function save($languages, $type)
     {
+        if ($type !== 'php' && $type !== 'json') {
+            return 'Invalid language file type';
+        }
         $datas = [];
         foreach ($languages as $items) {
             foreach ($items as $key => $value) {
-                if (!in_array($key, ['id', 'key', 'array', 'owner', 'type'])) {
+                if (!in_array($key, ['id', 'key', 'array', 'owner', 'type'], true)) {
+                    if (!is_string($key) || !preg_match('/^[a-z]{2}$/', $key)) {
+                        return sprintf(self::get('File %s cannot be created or is read-only.'), (is_scalar($key) ? substr((string) $key, 0, 20) : '?').'.'.$type);
+                    }
                     $datas[$key][$items['key']] = $value;
                 }
             }
         }
+        $literal = function ($value) {
+            if (is_string($value)) {
+                return var_export($value, true);
+            }
+
+            return is_int($value) || is_float($value) || is_bool($value) ? var_export($value, true) : var_export((string) $value, true);
+        };
         $language_folder = self::languageFolder();
         foreach ($datas as $lang => $items) {
             $list = [];
@@ -323,24 +343,13 @@ final class Language extends \Kotchasan\KBase
                 } elseif (is_array($value)) {
                     $save = [];
                     foreach ($value as $k => $v) {
-                        $data = '';
-                        if (preg_match('/^[0-9]+$/', $k)) {
-                            $data = $k.' => ';
-                        } else {
-                            $data = '\''.$k.'\' => ';
-                        }
-                        if (is_string($v)) {
-                            $data .= '\''.$v.'\'';
-                        } else {
-                            $data .= $v;
-                        }
+                        $data = (is_int($k) || preg_match('/^[0-9]+$/', (string) $k) ? (int) $k : var_export((string) $k, true)).' => ';
+                        $data .= $literal($v);
                         $save[] = $data;
                     }
-                    $list[] = '\''.$key."' => array(\n    ".implode(",\n    ", $save)."\n  )";
-                } elseif (is_string($value)) {
-                    $list[] = '\''.$key.'\' => \''.($value).'\'';
+                    $list[] = var_export((string) $key, true)." => array(\n    ".implode(",\n    ", $save)."\n  )";
                 } else {
-                    $list[] = '\''.$key.'\' => '.$value;
+                    $list[] = var_export((string) $key, true).' => '.$literal($value);
                 }
             }
             $file = $language_folder.$lang.'.'.$type;
@@ -416,7 +425,8 @@ final class Language extends \Kotchasan\KBase
                 $queryParams = self::$request->getQueryParams();
                 $cookieParams = self::$request->getCookieParams();
                 $lang = isset($queryParams['lang']) ? $queryParams['lang'] : (isset($cookieParams['my_lang']) ? $cookieParams['my_lang'] : '');
-                $lang = preg_match('/^[a-z]+$/', $lang) ? $lang : '';
+                // ?lang[]=x is an array: a TypeError (HTTP 500) on every page before this check
+                $lang = is_string($lang) && preg_match('/^[a-z]+$/', $lang) ? $lang : '';
             } else {
                 $lang = '';
             }

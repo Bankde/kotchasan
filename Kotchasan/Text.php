@@ -56,6 +56,11 @@ class Text
      * Converts BBCode.
      * Converts URLs to links.
      *
+     * It does not escape the text: give it text that went through htmlspecialchars()
+     * first. Links are checked here whatever the input: a [url] whose address would
+     * run script (javascript:, data: ... also written with entities) stays plain text,
+     * and the address is escaped so it cannot leave its href="".
+     *
      * @param string $detail The input text
      *
      * @return string
@@ -64,6 +69,22 @@ class Text
     {
         $detail = preg_replace_callback('/\[([uo]l)\](.*)\[\/\\1\]/is', function ($match) {
             return '<'.$match[1].'><li>'.preg_replace('/<br(\s\/)?>/is', '</li><li>', $match[2]).'</li></'.$match[1].'>';
+        }, (string) $detail);
+        // [url]address[/url]
+        $detail = preg_replace_callback('/\[url\](.*?)\[\/url\]/i', function ($match) {
+            $href = self::bbcodeHref($match[1]);
+
+            return $href === null ? $match[1] : '<a href="'.$href.'" target="_blank">'.$match[1].'</a>';
+        }, $detail);
+        // [url=address]text[/url] — an address without a scheme is a page of this site
+        $detail = preg_replace_callback('/\[url=([^\]]*)\](.*?)\[\/url\]/i', function ($match) {
+            $url = trim($match[1]);
+            if (!preg_match('#^(ftp|https?)://#i', $url)) {
+                $url = WEB_URL.ltrim($url, '/');
+            }
+            $href = self::bbcodeHref($url);
+
+            return $href === null ? $match[2] : '<a href="'.$href.'" target="_blank">'.$match[2].'</a>';
         }, $detail);
         $patt[] = '/\[(i|dfn|b|strong|u|em|ins|del|sub|sup|small|big)\](.*)\[\/\\1\]/is';
         $replace[] = '<\\1>\\2</\\1>';
@@ -73,12 +94,6 @@ class Text
         $replace[] = '<span style="font-size:\\1\\2">';
         $patt[] = '/\[\/(color|size)\]/i';
         $replace[] = '</span>';
-        $patt[] = '/\[url\](.*)\[\/url\]/i';
-        $replace[] = '<a href="\\1" target="_blank">\\1</a>';
-        $patt[] = '/\[url=(ftp|https?):\/\/(.*)\](.*)\[\/url\]/i';
-        $replace[] = '<a href="\\1://\\2" target="_blank">\\3</a>';
-        $patt[] = '/\[url=(\/)?(.*)\](.*)\[\/url\]/i';
-        $replace[] = '<a href="'.WEB_URL.'\\2" target="_blank">\\3</a>';
         $patt[] = '/([^["]]|\r|\n|\s|\t|^)((ftp|https?):\/\/([a-z0-9\.\-_]+)\/([^\s<>\"\']{1,})([^\s<>\"\']{20,20}))/i';
         $replace[] = '\\1<a href="\\2" target="_blank">\\3://\\4/...\\6</a>';
         $patt[] = '/([^["]]|\r|\n|\s|\t|^)((ftp|https?):\/\/([^\s<>\"\']+))/i';
@@ -88,6 +103,36 @@ class Text
         $patt[] = '/\[youtube\]([a-z0-9-_]+)\[\/youtube\]/i';
         $replace[] = '<div class="youtube"><iframe src="//www.youtube.com/embed/\\1?wmode=transparent"></iframe></div>';
         return preg_replace($patt, $replace, $detail);
+    }
+
+    /**
+     * The href="" value of a BBCode link, or null when the address would run script.
+     *
+     * A browser decodes character references in an attribute before it reads the
+     * scheme, with or without the final ";" (javascript&#58alert(1)), so the check
+     * is made on the decoded address. Entities already in the text are kept as written.
+     *
+     * @param string $url
+     *
+     * @return string|null
+     */
+    private static function bbcodeHref($url)
+    {
+        $url = trim((string) $url);
+        if ($url === '') {
+            return null;
+        }
+        $probe = preg_replace_callback('/&#(x[0-9a-f]+|[0-9]+);?/i', function ($match) {
+            $code = strtolower($match[1][0]) === 'x' ? hexdec(substr($match[1], 1)) : (int) $match[1];
+
+            return $code > 0 && $code < 0x110000 ? mb_chr((int) $code, 'UTF-8') : '';
+        }, $url);
+        $probe = html_entity_decode((string) $probe, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        if (!preg_match('#^ftp://#i', trim($probe)) && !self::isSafeHtmlUrl($probe, false)) {
+            return null;
+        }
+
+        return htmlspecialchars($url, ENT_QUOTES, 'UTF-8', false);
     }
 
     /**
@@ -145,9 +190,7 @@ class Text
     }
 
     /**
-     * Returns a password-safe version of the given text.
-     * This function removes any characters that are not word characters,
-     * along with specific allowed characters (@, #, *, $, &, {, }, !, ?, +, _, -, =, ., [, ], ก-ฮ).
+     * Returns the password as typed, without control characters (U+0000-U+001F, U+007F).
      *
      * @param string $text The input text
      *
@@ -159,10 +202,11 @@ class Text
             return '';
         }
 
-        // Remove characters that are not word characters or specific allowed characters
-        $safeText = preg_replace('/[^\w\@\#\*\$\&\{\}\!\?\+_\-=\.\[\]ก-ฮ]+/', '', $text);
-
-        return $safeText;
+        // Every printable character belongs to the password (spaces, %, ^, ~, any
+        // language); only control characters are removed. It used to keep a short
+        // list only, so a stored hash may be of that shortened text: Password::verify()
+        // refuses it and reports it as outdated (Password::legacyInput()).
+        return (string) preg_replace('/[\x00-\x1F\x7F]+/', '', (string) $text);
     }
 
     /**
@@ -354,6 +398,8 @@ class Text
     /**
      * Generates a random string of specified length using the given characters.
      *
+     * Uses random_int() (CSPRNG), so the result can serve as a one-time code.
+     *
      * @param int $length The length of the generated string.
      * @param string $characters The characters to use for generating the random string.
      *
@@ -361,19 +407,16 @@ class Text
      */
     public static function generateRandomString($length = 4, $characters = '0123456789')
     {
-        // Initialize an empty string to store the generated random string
-        $output = '';
-
-        // Get the length of the character set
+        $characters = (string) $characters;
         $charLength = strlen($characters);
-
-        // Loop through the specified length to generate random characters
+        if ($charLength === 0) {
+            return '';
+        }
+        $output = '';
         for ($i = 0; $i < $length; $i++) {
-            // Append a random character from the character set to the output string
-            $output .= $characters[rand(0, $charLength - 1)];
+            $output .= $characters[random_int(0, $charLength - 1)];
         }
 
-        // Return the generated random string
         return $output;
     }
 
@@ -542,11 +585,28 @@ class Text
         if ($text === null || $text === '') {
             return '';
         }
-        $result = trim(preg_replace('/[\r\n\s\t\"\'\<\>]{1,}/isu', ' ', strip_tags($text)));
+        $result = trim((string) preg_replace('/[\r\n\s\t\"\'\<\>]{1,}/isu', ' ', strip_tags(self::validUtf8($text))));
         if ($len > 0 && mb_strlen($result) > $len) {
             $result = mb_substr($result, 0, $len);
         }
         return $result;
+    }
+
+    /**
+     * The text with byte sequences that are not UTF-8 replaced by "?".
+     *
+     * A pattern with /u returns null for such text, which used to turn a whole
+     * description into an empty string because of one broken byte.
+     *
+     * @param string $text
+     *
+     * @return string
+     */
+    private static function validUtf8($text)
+    {
+        $text = (string) $text;
+
+        return mb_check_encoding($text, 'UTF-8') ? $text : mb_scrub($text, 'UTF-8');
     }
 
     /**
@@ -572,7 +632,7 @@ class Text
             '/(&rdquo;|&quot;|&nbsp;|&amp;|[\r\n\s\t\"\']){1,}/isu' => ' '
         ];
 
-        $result = trim(preg_replace(array_keys($patt), array_values($patt), $text));
+        $result = trim((string) preg_replace(array_keys($patt), array_values($patt), self::validUtf8($text)));
 
         if ($len > 0 && mb_strlen($result) > $len) {
             $result = mb_substr($result, 0, $len);
@@ -582,16 +642,35 @@ class Text
     }
 
     /**
-     * Escape text for editor content.
+     * Encodes editor content for storage: PHP tags are removed and { } \ are
+     * encoded; everything else is kept as written, including <script>,
+     * <style>, forms, iframes and inline handlers. For content that authorised
+     * authors write (articles, pages, mail templates).
      *
-     * @param string|null $text The input text
+     * With $allowJs false, what can run JavaScript is removed first and the
+     * rest (CSS, classes, forms, iframes) is kept. Removed: <script>, <object>,
+     * <embed>, <applet>, <base>, inline <svg> and <math>, <noscript> and the
+     * other elements a browser reads as raw text; every on* attribute, srcdoc
+     * and http-equiv; a URL attribute with a javascript:, vbscript: or data:
+     * scheme (data:image stays on src); a style attribute or <style> block
+     * with expression(), behavior or -moz-binding; comments other than plain
+     * ones. The markup comes back normalised (tags closed, attributes quoted).
+     *
+     * For HTML from people who are not trusted to format a page (comments,
+     * public forms) use cleanHtml(), which keeps formatting only.
+     *
+     * @param string $text    The input text
+     * @param bool   $allowJs false removes everything that can run JavaScript
      *
      * @return string
      */
-    public static function detail(string $text): string
+    public static function detail(string $text, bool $allowJs = true): string
     {
         if ($text === null || $text === '') {
             return '';
+        }
+        if (!$allowJs) {
+            $text = self::filterHtml($text, self::htmlRules(false));
         }
 
         // Remove PHP processing instructions to prevent server-side code injection.
@@ -602,6 +681,388 @@ class Text
             ['&#x007B;', '&#x007D;', '&#92;'],
             preg_replace('#<\?(.*?)\?>#is', '', $text)
         );
+    }
+
+    /**
+     * Cleans HTML from a rich-text editor before it is stored or shown, keeping
+     * its formatting and removing everything that can run code.
+     *
+     * Removed: script, style, template, form controls, object/embed/applet,
+     * meta/link/base, svg, math, noscript and frames with their content; an
+     * iframe whose src does not start with one of $iframeHosts (an allowed one
+     * gets a sandbox); every on* attribute, srcdoc, formaction and http-equiv;
+     * a URL attribute whose scheme is not http, https, mailto or tel (data:image
+     * is kept on src); a style with expression(), behavior, -moz-binding or a
+     * script URL; comments and PHP tags. A target="_blank" link gets
+     * rel="noopener noreferrer".
+     *
+     * Unlike detail() it does not encode { } and \ — use InputItem::cleanHtml()
+     * for a value that goes into the database the way detail() did.
+     *
+     * @param string|null $html        Markup to clean
+     * @param array|null  $iframeHosts host + path prefixes an iframe src may start with
+     *                                 (default: YouTube, YouTube no-cookie, Vimeo players)
+     *
+     * @return string Clean markup
+     */
+    public static function cleanHtml($html, ?array $iframeHosts = null): string
+    {
+        if ($iframeHosts === null) {
+            $iframeHosts = ['www.youtube.com/embed/', 'www.youtube-nocookie.com/embed/', 'player.vimeo.com/video/'];
+        }
+
+        return self::filterHtml((string) $html, self::htmlRules(true, $iframeHosts));
+    }
+
+    /**
+     * The two sets of rules filterHtml() works with.
+     *
+     * strict (cleanHtml): formatting only, URL schemes from an allow list,
+     * iframes from $iframeHosts. Not strict (detail() without JavaScript):
+     * everything stays except what can run script.
+     *
+     * @param bool  $strict
+     * @param array $iframeHosts
+     *
+     * @return array
+     */
+    private static function htmlRules(bool $strict, array $iframeHosts = []): array
+    {
+        // Elements whose content a browser reads as raw text or in another
+        // namespace, where it and libxml do not agree on what is markup
+        $rawText = ['svg', 'math', 'noscript', 'noembed', 'noframes', 'xmp', 'plaintext', 'listing'];
+        $always = ['script', 'frame', 'frameset', 'object', 'embed', 'applet', 'param', 'base'];
+
+        if ($strict) {
+            return [
+                'drop' => array_merge($always, $rawText, [
+                    'style', 'template', 'form', 'input', 'button', 'select', 'option', 'optgroup',
+                    'textarea', 'datalist', 'meta', 'link', 'title', 'head'
+                ]),
+                'comments' => false,
+                'iframeHosts' => $iframeHosts,
+                'iframeSandbox' => 'allow-scripts allow-same-origin allow-presentation allow-popups',
+                'removeAttributes' => ['srcdoc', 'formaction', 'http-equiv'],
+                'urlAllowList' => true,
+                'style' => '/expression\s*\(|javascript:|vbscript:|-moz-binding|behavior\s*:|url\s*\(\s*[\'"]?\s*data:(?!image\/)/i',
+                'relNoopener' => true
+            ];
+        }
+
+        return [
+            'drop' => array_merge($always, $rawText),
+            'comments' => true,
+            'iframeHosts' => null,
+            'iframeSandbox' => null,
+            'removeAttributes' => ['srcdoc', 'http-equiv'],
+            'urlAllowList' => false,
+            'style' => '/expression\s*\(|javascript:|vbscript:|-moz-binding|behavior\s*:/i',
+            'relNoopener' => false
+        ];
+    }
+
+    /**
+     * Parses markup, removes what $rules do not allow and returns the rest.
+     *
+     * @param string $html
+     * @param array  $rules from htmlRules()
+     *
+     * @return string
+     */
+    private static function filterHtml(string $html, array $rules): string
+    {
+        if (trim($html) === '') {
+            return '';
+        }
+
+        // libxml parses HTML 4: a stray html/head/body tag would move what follows
+        // out of the body, and wbr/source/track/embed (void in HTML 5) would swallow
+        // what follows — remove the first and close the second straight away
+        $html = preg_replace('#</?(?:html|head|body)\b[^>]*>#i', '', $html);
+        $html = preg_replace('#<(wbr|source|track|embed)\b([^>]*?)/?>#i', '<$1$2></$1>', $html);
+
+        // It knows the HTML 4 entities only: &dollar; or &colon; would come back as
+        // the text "&dollar;". Those become numeric references (not inside <style>,
+        // where a browser does not read entities either).
+        static $html4 = null;
+        if ($html4 === null) {
+            $html4 = array_flip(get_html_translation_table(HTML_ENTITIES, ENT_QUOTES | ENT_HTML401, 'UTF-8'));
+        }
+        $html = preg_replace_callback('#<(style|script)\b.*?</\1\s*>|&[A-Za-z][A-Za-z0-9]*;#is', function ($match) use ($html4) {
+            if ($match[0][0] === '<' || isset($html4[$match[0]])) {
+                return $match[0];
+            }
+            $text = html_entity_decode($match[0], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            if ($text === $match[0]) {
+                return $match[0];
+            }
+            $refs = '';
+            foreach (preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY) as $char) {
+                $refs .= '&#'.mb_ord($char, 'UTF-8').';';
+            }
+
+            return $refs;
+        }, $html);
+
+        $doc = new \DOMDocument();
+        $previous = libxml_use_internal_errors(true);
+        $doc->loadHTML(
+            '<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>'.$html.'</body></html>',
+            LIBXML_NONET
+        );
+        libxml_clear_errors();
+        libxml_use_internal_errors($previous);
+
+        $body = $doc->getElementsByTagName('body')->item(0);
+        if (!$body) {
+            return '';
+        }
+        self::cleanHtmlNode($body, $rules);
+
+        // libxml percent-encodes href, src, action and <a name> when it writes HTML:
+        // "{WEBURL}img/ภาพ.jpg" would come back as "%7BWEBURL%7Dimg/%E0%B8%A0...".
+        // They are written under another name, which it leaves alone, and renamed back.
+        $mask = 'data-'.bin2hex(random_bytes(8)).'-';
+        self::maskUrlAttributes($body, $mask);
+
+        $out = '';
+        foreach ($body->childNodes as $child) {
+            $out .= $doc->saveHTML($child);
+        }
+        $out = str_replace([' '.$mask.'href=', ' '.$mask.'src=', ' '.$mask.'action=', ' '.$mask.'name='], [' href=', ' src=', ' action=', ' name='], $out);
+
+        // Void elements have no end tag
+        return preg_replace('#</(?:wbr|source|track|embed)>#i', '', $out);
+    }
+
+    /**
+     * Renames the attributes libxml would percent-encode on output (href, src,
+     * action, and name on <a>) to $mask.name, keeping the order of attributes.
+     *
+     * @param \DOMNode $node
+     * @param string   $mask
+     */
+    private static function maskUrlAttributes(\DOMNode $node, string $mask)
+    {
+        foreach ($node->childNodes as $child) {
+            if (!$child instanceof \DOMElement) {
+                continue;
+            }
+            $attributes = [];
+            $masked = false;
+            foreach (iterator_to_array($child->attributes) as $attribute) {
+                $name = $attribute->nodeName;
+                $lower = strtolower($name);
+                if (in_array($lower, ['href', 'src', 'action'], true) || ($lower === 'name' && strtolower($child->nodeName) === 'a')) {
+                    $name = $mask.$lower;
+                    $masked = true;
+                }
+                $attributes[] = [$name, $attribute->nodeValue, $attribute];
+            }
+            if ($masked) {
+                foreach ($attributes as $item) {
+                    $child->removeAttributeNode($item[2]);
+                }
+                foreach ($attributes as $item) {
+                    if ($item[0] === $item[2]->nodeName) {
+                        // The node itself goes back: libxml accepts names when parsing
+                        // (c"false") that setAttribute() refuses
+                        $child->setAttributeNode($item[2]);
+                    } else {
+                        $child->setAttribute($item[0], $item[1]);
+                    }
+                }
+            }
+            self::maskUrlAttributes($child, $mask);
+        }
+    }
+
+    /**
+     * Walks the children of a node for filterHtml().
+     *
+     * @param \DOMNode $node
+     * @param array    $rules
+     */
+    private static function cleanHtmlNode(\DOMNode $node, array $rules)
+    {
+        /**
+         * @var array
+         */
+        static $urlAttributes = ['href', 'src', 'action', 'formaction', 'poster', 'background', 'cite', 'data', 'xlink:href', 'codebase', 'ping', 'longdesc', 'usemap'];
+
+        foreach (iterator_to_array($node->childNodes) as $child) {
+            if ($child instanceof \DOMComment) {
+                // A browser ends a comment at "-->" or "--!>" and reads "<!-->" as an
+                // empty one; only a comment that cannot be read two ways is kept
+                if (!$rules['comments'] || preg_match('/[<>]|--/', $child->nodeValue)) {
+                    $node->removeChild($child);
+                }
+                continue;
+            }
+            if ($child instanceof \DOMProcessingInstruction) {
+                $node->removeChild($child);
+                continue;
+            }
+            if ($child instanceof \DOMCdataSection) {
+                // How libxml holds the text of a <style>; anywhere else it is not HTML
+                if (strtolower($node->nodeName) !== 'style') {
+                    $node->removeChild($child);
+                }
+                continue;
+            }
+            if (!$child instanceof \DOMElement) {
+                continue;
+            }
+            $tag = strtolower($child->nodeName);
+            if (in_array($tag, $rules['drop'], true)) {
+                $node->removeChild($child);
+                continue;
+            }
+            if ($tag === 'iframe') {
+                if ($rules['iframeHosts'] !== null && !self::isAllowedIframe($child->getAttribute('src'), $rules['iframeHosts'])) {
+                    $node->removeChild($child);
+                    continue;
+                }
+                // A browser reads what is inside an iframe as text, never as markup
+                while ($child->firstChild) {
+                    $child->removeChild($child->firstChild);
+                }
+            } elseif ($tag === 'textarea' || $tag === 'title') {
+                // Text only to a browser: keep the text, not what libxml made of it
+                $text = $child->textContent;
+                while ($child->firstChild) {
+                    $child->removeChild($child->firstChild);
+                }
+                $child->appendChild($node->ownerDocument->createTextNode($text));
+            } elseif ($tag === 'style' && (stripos($child->textContent, '</style') !== false || preg_match($rules['style'], $child->textContent))) {
+                $node->removeChild($child);
+                continue;
+            }
+
+            foreach (iterator_to_array($child->attributes) as $attribute) {
+                $name = strtolower($attribute->nodeName);
+                $value = $attribute->nodeValue;
+                $image = $name === 'src' || $name === 'poster';
+                $remove = strpos($name, 'on') === 0
+                    // A stray html/head/body tag hands its attributes to the page's own
+                    || in_array($tag, ['html', 'head', 'body'], true)
+                    || in_array($name, $rules['removeAttributes'], true)
+                    || (in_array($name, $urlAttributes, true) && !($rules['urlAllowList'] ? self::isSafeHtmlUrl($value, $image) : !self::isScriptUrl($value, $image)))
+                    || (($name === 'srcset' || $name === 'imagesrcset') && !self::isSafeSrcset($value, $rules['urlAllowList']))
+                    || ($name === 'style' && preg_match($rules['style'], $value));
+                if ($remove) {
+                    $child->removeAttributeNode($attribute);
+                }
+            }
+
+            if ($tag === 'iframe' && $rules['iframeSandbox'] !== null) {
+                $child->setAttribute('sandbox', $rules['iframeSandbox']);
+            }
+            if ($rules['relNoopener'] && $tag === 'a' && strtolower($child->getAttribute('target')) === '_blank') {
+                $child->setAttribute('rel', 'noopener noreferrer');
+            }
+
+            self::cleanHtmlNode($child, $rules);
+        }
+    }
+
+    /**
+     * Whether a URL from HTML runs script when followed or loaded: javascript:,
+     * vbscript: and data: (a data:image/... picture is not one when $image is
+     * true). Control characters and spaces are ignored the way a browser
+     * ignores them, so "java\tscript:" is javascript:.
+     *
+     * @param string $url
+     * @param bool   $image
+     *
+     * @return bool
+     */
+    private static function isScriptUrl($url, bool $image = false): bool
+    {
+        $probe = preg_replace('/[\x00-\x20\x7f]+/', '', (string) $url);
+        if (!preg_match('/^([a-z][a-z0-9+.\-]*):/i', $probe, $match)) {
+            return false;
+        }
+        $scheme = strtolower($match[1]);
+        if ($scheme === 'data') {
+            return !($image && preg_match('#^data:image/(png|gif|jpe?g|webp|avif|bmp)[;,]#i', $probe) === 1);
+        }
+
+        return in_array($scheme, ['javascript', 'vbscript', 'livescript', 'mocha'], true);
+    }
+
+    /**
+     * Whether a URL from HTML may stay in a link or image for cleanHtml():
+     * no scheme (a path, ../, ?query, #id, //host), or http, https, mailto, tel;
+     * data:image/... too when $image is true. Control characters and spaces are
+     * ignored the way a browser ignores them, so "java\tscript:" is javascript:.
+     *
+     * @param string $url
+     * @param bool   $image
+     *
+     * @return bool
+     */
+    private static function isSafeHtmlUrl($url, bool $image = false): bool
+    {
+        $probe = preg_replace('/[\x00-\x20\x7f]+/', '', (string) $url);
+        if (!preg_match('/^([a-z][a-z0-9+.\-]*):/i', $probe, $match)) {
+            return true;
+        }
+        $scheme = strtolower($match[1]);
+        if (in_array($scheme, ['http', 'https', 'mailto', 'tel'], true)) {
+            return true;
+        }
+
+        return $image && preg_match('#^data:image/(png|gif|jpe?g|webp|avif|bmp)[;,]#i', $probe) === 1;
+    }
+
+    /**
+     * Whether every URL of a srcset passes isSafeHtmlUrl() ($allowList true)
+     * or is not a script URL ($allowList false).
+     *
+     * @param string $value
+     * @param bool   $allowList
+     *
+     * @return bool
+     */
+    private static function isSafeSrcset($value, bool $allowList = true): bool
+    {
+        foreach (explode(',', (string) $value) as $candidate) {
+            $url = preg_split('/\s+/', trim($candidate))[0] ?? '';
+            if ($url !== '' && !($allowList ? self::isSafeHtmlUrl($url, true) : !self::isScriptUrl($url, true))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Whether an iframe src is http(s) and its host + path starts with one of $hosts.
+     *
+     * @param string $src
+     * @param array  $hosts
+     *
+     * @return bool
+     */
+    private static function isAllowedIframe($src, array $hosts): bool
+    {
+        $src = trim((string) $src);
+        if (strpos($src, '//') === 0) {
+            $src = 'https:'.$src;
+        }
+        $parts = parse_url($src);
+        if (empty($parts['host']) || !in_array(strtolower($parts['scheme'] ?? ''), ['http', 'https'], true)) {
+            return false;
+        }
+        $where = strtolower($parts['host']).(isset($parts['port']) ? ':'.$parts['port'] : '').($parts['path'] ?? '');
+        foreach ($hosts as $prefix) {
+            if (strpos($where, strtolower($prefix)) === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

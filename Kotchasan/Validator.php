@@ -220,43 +220,65 @@ class Validator
             return true; // Skip other binary files
         }
 
-        // Read the first 4096 bytes to check for dangerous signatures
+        // The whole file, in overlapping windows. Only the first 4096 bytes used to
+        // be read, so a PHP file padded with 4 KB of text passed.
         $handle = fopen($filePath, 'rb');
         if ($handle === false) {
             return false; // Can't open file
         }
 
-        $content = fread($handle, 4096);
-        fclose($handle);
-
-        // Check for dangerous signatures
-        foreach (self::$dangerousSignatures as $signature => $dummy) {
-            if (stripos($content, $signature) !== false) {
-                return false; // Found potentially malicious code
-            }
+        // Additional checks for specific file types (case-insensitive: ONLOAD=,
+        // JAVASCRIPT: and an unquoted handler used to pass)
+        $dangerousPatterns = [];
+        if (strpos($mimeType, 'text/html') === 0 || strpos($mimeType, 'image/svg+xml') === 0) {
+            $dangerousPatterns = [
+                '/\bon[a-z]+\s*=/i', // Event handlers like onclick, onload
+                '/javascript\s*:/i', // JavaScript protocol
+                '/data\s*:/i', // Data URI scheme which can be used for XSS
+                '/base64/i', // Base64 encoded content
+                '/<script[^>]*>/i', // Script tags
+                '/<iframe[^>]*>/i', // iframes
+                '/<object[^>]*>/i', // object tags
+                '/<embed[^>]*>/i', // embed tags
+                '/<link[^>]*>/i', // link tags
+                '/<meta[^>]*>/i', // meta tags with http-equiv
+                '/<foreignObject[^>]*>/i' // HTML inside SVG
+            ];
         }
 
-        // Additional checks for specific file types
-        if (strpos($mimeType, 'text/html') === 0 || strpos($mimeType, 'image/svg+xml') === 0) {
-            // Check for potentially dangerous HTML/SVG content
-            $dangerousPatterns = [
-                '/on\w+\s*=\s*["\'][^"\']*["\']/', // Event handlers like onclick, onload
-                '/javascript\s*:/', // JavaScript protocol
-                '/data\s*:/', // Data URI scheme which can be used for XSS
-                '/base64/', // Base64 encoded content
-                '/<script[^>]*>/', // Script tags
-                '/<iframe[^>]*>/', // iframes
-                '/<object[^>]*>/', // object tags
-                '/<embed[^>]*>/', // embed tags
-                '/<link[^>]*>/', // link tags
-                '/<meta[^>]*>/' // meta tags with http-equiv
-            ];
+        $chunkSize = 1048576;
+        $overlap = 1024;
+        $tail = '';
+        $safe = true;
+        while (!feof($handle)) {
+            $chunk = fread($handle, $chunkSize);
+            if ($chunk === false) {
+                $safe = false;
+                break;
+            }
+            if ($chunk === '') {
+                break;
+            }
+            $content = $tail.$chunk;
 
-            foreach ($dangerousPatterns as $pattern) {
-                if (preg_match($pattern, $content)) {
-                    return false; // Found potentially malicious HTML/SVG content
+            // Check for dangerous signatures
+            foreach (self::$dangerousSignatures as $signature => $dummy) {
+                if (stripos($content, $signature) !== false) {
+                    $safe = false; // Found potentially malicious code
+                    break 2;
                 }
             }
+            foreach ($dangerousPatterns as $pattern) {
+                if (preg_match($pattern, $content)) {
+                    $safe = false; // Found potentially malicious HTML/SVG content
+                    break 2;
+                }
+            }
+            $tail = substr($content, -$overlap);
+        }
+        fclose($handle);
+        if (!$safe) {
+            return false;
         }
 
         return true;
@@ -449,14 +471,27 @@ class Validator
     }
 
     /**
-     * Validates a URL.
+     * Schemes url() accepts. FILTER_VALIDATE_URL alone accepts any scheme:
+     * javascript://%0aalert(1), data:// and file:/// passed and were stored as links.
+     *
+     * @var array
+     */
+    public static $urlSchemes = ['http', 'https', 'ftp', 'mailto'];
+
+    /**
+     * Validates a URL: a valid absolute URL whose scheme is in $urlSchemes.
      *
      * @param string $url The URL to validate
      * @return bool True if the URL format is correct, false otherwise
      */
     public static function url($url): bool
     {
-        return (bool) filter_var($url, FILTER_VALIDATE_URL);
+        if (!is_string($url) || filter_var($url, FILTER_VALIDATE_URL) === false) {
+            return false;
+        }
+        $scheme = strtolower((string) parse_url($url, PHP_URL_SCHEME));
+
+        return in_array($scheme, self::$urlSchemes, true);
     }
 
     /**
@@ -489,7 +524,7 @@ class Validator
      */
     public static function date($date): bool
     {
-        if (preg_match('/^([0-9]{4,4})\-([0-9]{1,2})\-([0-9]{1,2})$/', $date, $match)) {
+        if (preg_match('/^([0-9]{4,4})\-([0-9]{1,2})\-([0-9]{1,2})$/', (string) $date, $match)) {
             return checkdate((int) $match[2], (int) $match[3], (int) $match[1]);
         }
         return false;
@@ -503,7 +538,7 @@ class Validator
      */
     public static function time($time): bool
     {
-        if (preg_match('/^([0-9]{1,2}):([0-9]{1,2})(:([0-9]{1,2}))?$/', $time, $match)) {
+        if (preg_match('/^([0-9]{1,2}):([0-9]{1,2})(:([0-9]{1,2}))?$/', (string) $time, $match)) {
             $h = (int) $match[1];
             $m = (int) $match[2];
             $s = isset($match[4]) ? (int) $match[4] : 0;
@@ -520,7 +555,7 @@ class Validator
      */
     public static function phone($phone): bool
     {
-        return (bool) preg_match('/^[0-9\-+\s]+$/', $phone);
+        return (bool) preg_match('/^[0-9\-+\s]+$/', (string) $phone);
     }
 
     /**
@@ -531,7 +566,7 @@ class Validator
      */
     public static function username($username): bool
     {
-        return (bool) preg_match('/^[a-zA-Z0-9@\.\-_]+$/', $username);
+        return (bool) preg_match('/^[a-zA-Z0-9@\.\-_]+$/', (string) $username);
     }
 
     /**
@@ -543,7 +578,7 @@ class Validator
      */
     public static function password($password, $minLength = 8): bool
     {
-        return mb_strlen($password) >= $minLength;
+        return mb_strlen((string) $password) >= $minLength;
     }
 
     /**

@@ -183,15 +183,53 @@ class Email extends \Kotchasan\KBase
         $mail->Timeout = $timeout > 0 ? $timeout : 15;
         $mail->getSMTPInstance()->Timelimit = $mail->Timeout;
 
-        $mail->SMTPOptions = [
-            'ssl' => [
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-            ]
-        ];
+        // The SMTP server's certificate is checked: switching it off for every server
+        // let anyone on the path pose as the mail server and read the SMTP password.
+        // A server on this machine (no network to intercept) is not checked, and
+        // email_ssl_verify = false in settings/config.php turns it off for a server
+        // whose certificate is self-signed.
+        if (!self::verifyServerCertificate((string) $mail->Host)) {
+            $mail->SMTPOptions = [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                ]
+            ];
+        }
 
         return $mail;
+    }
+
+    /**
+     * Whether Email checks the certificate of the SMTP server(s) in $host.
+     *
+     * Yes, unless email_ssl_verify is false in settings/config.php, or every host
+     * is this machine (localhost, 127.0.0.1, ::1).
+     *
+     * @param string $host PHPMailer Host ("smtp.example.com", "tls://host:587;backup")
+     *
+     * @return bool
+     */
+    public static function verifyServerCertificate($host)
+    {
+        if (isset(self::$cfg->email_ssl_verify) && !self::$cfg->email_ssl_verify) {
+            return false;
+        }
+        // PHPMailer accepts "tls://host:port" and several hosts separated by ";"
+        foreach (explode(';', strtolower(trim((string) $host))) as $item) {
+            $item = (string) preg_replace('#^[a-z]+://#', '', trim($item));
+            if (substr_count($item, ':') < 2 || $item[0] === '[') {
+                // host:port or [ipv6]:port (a bare IPv6 address has no port to remove)
+                $item = (string) preg_replace('/:[0-9]+$/', '', $item);
+            }
+            $item = trim($item, '[]');
+            if ($item !== '' && !in_array($item, ['localhost', '127.0.0.1', '::1'], true)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

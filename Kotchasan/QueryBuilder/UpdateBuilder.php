@@ -28,16 +28,13 @@ class UpdateBuilder extends QueryBuilder
         // Add SET clause
         $sets = [];
         foreach ($this->values as $column => $value) {
-            $quotedColumn = $sqlBuilder->quoteIdentifier($column);
+            $quotedColumn = $this->writableColumn($column);
 
             // Check if value is a Sql object or SqlFunction (raw SQL expression)
             if ($value instanceof \Kotchasan\Database\Sql) {
-                // Use raw SQL expression directly
-                $sets[] = $quotedColumn.' = '.$value->toSql();
-                // Merge any bindings from the Sql object
-                foreach ($value->getValues([]) as $v) {
-                    $this->namedBindings[':'.$column.'_'.$this->paramCounter++] = $v;
-                }
+                // Raw SQL expression; its bindings get new names, in the SQL too
+                // (they used to be renamed in the bindings only)
+                $sets[] = $quotedColumn.' = '.$this->extractExpressionSql($value);
             } elseif ($value instanceof \Kotchasan\QueryBuilder\SqlFunction) {
                 // Use SqlFunction's toSql method
                 $sets[] = $quotedColumn.' = '.$value->toSql();
@@ -45,30 +42,43 @@ class UpdateBuilder extends QueryBuilder
                 // Use RawExpression's toSql method
                 $sets[] = $quotedColumn.' = '.$value->toSql();
             } else {
-                // Regular value - use placeholder
-                // A placeholder name cannot contain the dot of a table.column key
-                $placeholder = ':'.preg_replace('/[^a-zA-Z0-9_]/', '_', $column);
+                // Regular value - use placeholder. Numbered, not named after the
+                // column: 'a-b' and 'a_b', or a Thai column name, made the same name
+                $placeholder = $this->placeholderPrefix.'s'.$this->paramCounter++;
                 $sets[] = $quotedColumn.' = '.$placeholder;
-                $this->namedBindings[$placeholder] = $value;
+                $this->namedBindings[substr($placeholder, 1)] = $value;
             }
         }
         $query .= implode(', ', $sets);
 
-        // Add WHERE clauses (use existing logic for now)
-        if (!empty($this->wheres)) {
-            $whereSql = $this->buildWhereClauses();
-            if ($whereSql !== '') {
-                $query .= ' WHERE '.$whereSql;
+        $whereSql = empty($this->wheres) ? '' : $this->buildWhereClauses();
+        $orderSql = empty($this->orders) ? '' : $sqlBuilder->buildOrderByClause($this->orders);
+
+        // PostgreSQL has no UPDATE ... LIMIT: the rows go by ctid, as in DeleteBuilder
+        if ($this->limit !== null && $sqlBuilder->getDriverName() === 'pgsql') {
+            return $query.' WHERE ctid IN ('.DeleteBuilder::limitedRows($sqlBuilder->quoteIdentifier($this->table), $whereSql, $orderSql, $this->limit).')';
+        }
+        // SQL Server has no ORDER BY in UPDATE: as in DeleteBuilder
+        if ($sqlBuilder->getDriverName() === 'sqlsrv' && $orderSql !== '') {
+            if ($this->limit === null) {
+                $orderSql = '';
+            } else {
+                return DeleteBuilder::limitedCte($sqlBuilder->quoteIdentifier($this->table), $whereSql, $orderSql, $this->limit)
+                    .' UPDATE [kotchasan_rows] SET '.implode(', ', $sets);
             }
         }
 
-        // Add ORDER BY clause using SqlBuilder
-        if (!empty($this->orders)) {
-            $query .= ' '.$sqlBuilder->buildOrderByClause($this->orders);
+        // Add WHERE clauses (use existing logic for now)
+        if ($whereSql !== '') {
+            $query .= ' WHERE '.$whereSql;
         }
 
-        // Add row LIMIT in the dialect-correct way (MySQL/SQLite LIMIT,
-        // SQL Server TOP, PostgreSQL throws — UPDATE..LIMIT is non-portable).
+        // Add ORDER BY clause using SqlBuilder
+        if ($orderSql !== '') {
+            $query .= ' '.$orderSql;
+        }
+
+        // Add row LIMIT in the dialect-correct way (MySQL/SQLite LIMIT, SQL Server TOP)
         if ($this->limit !== null) {
             $query = $sqlBuilder->applyUpdateDeleteLimit($query, 'UPDATE', $this->limit);
         }

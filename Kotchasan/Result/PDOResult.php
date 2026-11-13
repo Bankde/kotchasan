@@ -54,14 +54,44 @@ class PDOResult implements ResultInterface
     protected string $resultFormat;
 
     /**
+     * Rows read ahead to count a SELECT (see rowCount()), handed out by fetch() next.
+     *
+     * @var array|null
+     */
+    protected ?array $buffer = null;
+
+    /**
+     * Rows handed out so far.
+     *
+     * @var int
+     */
+    protected int $fetched = 0;
+
+    /**
+     * The row count of a SELECT once rowCount() worked it out.
+     *
+     * @var int|null
+     */
+    protected ?int $total = null;
+
+    /**
+     * false: PDOStatement::rowCount() of a SELECT is not its row count (SQLite gives
+     * the rows changed by the last write, SQL Server -1), so rowCount() counts.
+     *
+     * @var bool
+     */
+    protected bool $countsRows = true;
+
+    /**
      * PDOResult constructor.
      *
      * @param \PDOStatement $statement The PDOStatement instance.
      * @param string|null $resultFormat The format of the result (e.g., 'default', 'array', 'object').
      */
-    public function __construct(\PDOStatement $statement, ?string $resultFormat = null)
+    public function __construct(\PDOStatement $statement, ?string $resultFormat = null, bool $countsRows = true)
     {
         $this->statement = $statement;
+        $this->countsRows = $countsRows;
         // normalize null to 'default' to maintain backward compatibility
         $this->resultFormat = $resultFormat ?? 'default';
     }
@@ -85,6 +115,15 @@ class PDOResult implements ResultInterface
      */
     public function fetch()
     {
+        if ($this->buffer !== null) {
+            if (empty($this->buffer)) {
+                $this->isEmpty = true;
+                return null;
+            }
+            $this->fetched++;
+
+            return array_shift($this->buffer);
+        }
         $fetchStyle = $this->resultFormat === 'array' ? \PDO::FETCH_ASSOC : \PDO::FETCH_OBJ;
 
         $row = $this->statement->fetch($fetchStyle);
@@ -93,6 +132,7 @@ class PDOResult implements ResultInterface
             $this->isEmpty = true;
             return null;
         }
+        $this->fetched++;
 
         return $row;
     }
@@ -102,9 +142,14 @@ class PDOResult implements ResultInterface
      */
     public function fetchAll(): array
     {
-        $fetchStyle = $this->resultFormat === 'array' ? \PDO::FETCH_ASSOC : \PDO::FETCH_OBJ;
-
-        $rows = $this->statement->fetchAll($fetchStyle);
+        if ($this->buffer !== null) {
+            $rows = $this->buffer;
+            $this->buffer = [];
+        } else {
+            $fetchStyle = $this->resultFormat === 'array' ? \PDO::FETCH_ASSOC : \PDO::FETCH_OBJ;
+            $rows = $this->statement->fetchAll($fetchStyle);
+        }
+        $this->fetched += count($rows);
         $this->isEmpty = true;
 
         return $rows;
@@ -115,11 +160,27 @@ class PDOResult implements ResultInterface
      */
     public function fetchColumn(int $columnNumber = 0)
     {
+        if ($this->buffer !== null) {
+            if (empty($this->buffer)) {
+                $this->isEmpty = true;
+                return false;
+            }
+            $this->fetched++;
+            $row = array_values((array) array_shift($this->buffer));
+
+            return $row[$columnNumber] ?? false;
+        }
         $value = $this->statement->fetchColumn($columnNumber);
 
         if ($value === false && $this->statement->columnCount() === 0) {
             $this->isEmpty = true;
             return null;
+        }
+        if ($value === false) {
+            // The end of the rows (a column value is never false)
+            $this->isEmpty = true;
+        } else {
+            $this->fetched++;
         }
 
         return $value;
@@ -130,7 +191,22 @@ class PDOResult implements ResultInterface
      */
     public function rowCount(): int
     {
-        return $this->statement->rowCount();
+        // A write, or a driver that counts the rows of a SELECT (MySQL, PostgreSQL)
+        if ($this->countsRows || $this->statement->columnCount() === 0) {
+            return $this->statement->rowCount();
+        }
+        // A SELECT on SQLite (rows changed by the last write) or SQL Server (-1):
+        // count by reading the rest of the rows ahead, which fetch() and fetchAll()
+        // then hand out
+        if ($this->total === null) {
+            $fetchStyle = $this->resultFormat === 'array' ? \PDO::FETCH_ASSOC : \PDO::FETCH_OBJ;
+            // Rows already read to the end: nothing more to fetch (SQL Server throws)
+            $rest = $this->isEmpty ? [] : $this->statement->fetchAll($fetchStyle);
+            $this->buffer = array_merge($this->buffer ?? [], $rest);
+            $this->total = $this->fetched + count($this->buffer);
+        }
+
+        return $this->total;
     }
 
     /**
@@ -168,7 +244,9 @@ class PDOResult implements ResultInterface
      */
     public function isEmpty(): bool
     {
-        return $this->isEmpty && $this->statement->rowCount() === 0;
+        // No row at all (no row changed, for a write). It used to be true only after
+        // reading to the end of a result that MySQL or PostgreSQL counted as empty
+        return $this->rowCount() === 0;
     }
 
     /**
@@ -176,7 +254,7 @@ class PDOResult implements ResultInterface
      */
     public function hasMore(): bool
     {
-        return !$this->isEmpty;
+        return $this->buffer !== null ? !empty($this->buffer) : !$this->isEmpty;
     }
 
     /**
@@ -184,6 +262,11 @@ class PDOResult implements ResultInterface
      */
     public function reset(): bool
     {
+        $this->buffer = null;
+        $this->fetched = 0;
+        $this->total = null;
+        $this->isEmpty = false;
+
         return $this->statement->execute();
     }
 

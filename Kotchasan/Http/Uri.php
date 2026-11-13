@@ -123,9 +123,15 @@ class Uri implements UriInterface
      */
     public static function createFromGlobals()
     {
+        // X-Forwarded-* count only from a trusted proxy (Request::isFromTrustedProxy):
+        // any client can send them
+        $forwardedScheme = Request::forwardedScheme();
+        $forwardedHost = Request::forwardedHost();
+        $forwardedPort = Request::forwardedPort();
+
         // Determine the URI scheme
-        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
-            $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'];
+        if ($forwardedScheme !== null) {
+            $scheme = $forwardedScheme;
         } elseif ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) {
             $scheme = 'https';
         } else {
@@ -133,8 +139,8 @@ class Uri implements UriInterface
         }
 
         // Determine the URI host
-        if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
-            $host = trim(current(explode(',', $_SERVER['HTTP_X_FORWARDED_HOST'])));
+        if ($forwardedHost !== null) {
+            $host = $forwardedHost;
         } elseif (empty($_SERVER['HTTP_HOST'])) {
             if (!empty($_SERVER['SERVER_NAME'])) {
                 $host = $_SERVER['SERVER_NAME'];
@@ -152,9 +158,9 @@ class Uri implements UriInterface
         if ($pos !== false) {
             $port = (int) substr($host, $pos + 1);
             $host = strstr($host, ':', true);
-        } elseif (isset($_SERVER['HTTP_X_FORWARDED_PORT'])) {
-            $port = (int) $_SERVER['HTTP_X_FORWARDED_PORT'];
-        } elseif (!isset($_SERVER['HTTP_X_FORWARDED_HOST']) && empty($_SERVER['HTTP_HOST']) && isset($_SERVER['SERVER_PORT'])) {
+        } elseif ($forwardedPort !== null) {
+            $port = $forwardedPort;
+        } elseif ($forwardedHost === null && empty($_SERVER['HTTP_HOST']) && isset($_SERVER['SERVER_PORT'])) {
             $port = (int) $_SERVER['SERVER_PORT'];
         } else {
             // No port in the Host header means the client used the scheme's default port.
@@ -619,8 +625,21 @@ class Uri implements UriInterface
         foreach ($params as $key => $value) {
             if ($value !== null) {
                 if (is_array($value)) {
+                    $nested = false;
                     foreach ($value as $v) {
-                        $query_str[] = urlencode($key).'[]='.urlencode($v);
+                        if (is_array($v)) {
+                            $nested = true;
+                            break;
+                        }
+                    }
+                    if ($nested) {
+                        // x[a][b]=1: urlencode() of the inner array was a TypeError
+                        // (every page that rebuilt its URL from such a query failed)
+                        $query_str[] = http_build_query([$key => $value]);
+                    } else {
+                        foreach ($value as $v) {
+                            $query_str[] = urlencode($key).'[]='.urlencode((string) $v);
+                        }
                     }
                 } else {
                     $query_str[] = urlencode($key).'='.urlencode($value);

@@ -85,7 +85,9 @@ class SecurityMiddleware implements MiddlewareInterface
         if ($this->csrfProtection && in_array($request->getMethod(), $this->csrfMethods)) {
             $sessionStartedHere = false;
             if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
-                session_start();
+                // The cookie flags of Request::initSession(): a bare session_start()
+                // minted PHPSESSID without HttpOnly/SameSite
+                Request::startSecureSession();
                 $sessionStartedHere = true;
             }
 
@@ -161,27 +163,53 @@ class SecurityMiddleware implements MiddlewareInterface
 
         // For demonstration, if APCu is not available, we'll use a simple
         // file-based storage. In production, use a proper caching solution.
-        $storageDir = sys_get_temp_dir().'/rate_limits';
+        // A folder of this user only (0700), and JSON: the shared /tmp/rate_limits
+        // let anyone on the machine plant a file that unserialize() turned into objects
+        $uid = function_exists('posix_geteuid') ? posix_geteuid() : getmyuid();
+        $storageDir = sys_get_temp_dir().'/rate_limits_'.$uid;
         if (!is_dir($storageDir)) {
-            mkdir($storageDir, 0755, true);
+            @mkdir($storageDir, 0700, true);
+        }
+        // A folder someone else made first (with links to our files in it) is not used
+        if (is_link($storageDir) || !is_dir($storageDir) || (function_exists('posix_geteuid') && @fileowner($storageDir) !== $uid)) {
+            return true;
         }
 
         $file = $storageDir.'/'.$key;
-
-        if (file_exists($file)) {
-            $requests = unserialize(file_get_contents($file)) ?: [];
-        } else {
-            $requests = [];
+        if (is_link($file)) {
+            return true;
         }
 
-        // Filter out requests older than the window
-        $requests = array_filter($requests, fn($timestamp) => $timestamp >= $windowStart);
+        // Read, add and write under one lock: two requests at the same moment used
+        // to read the same list and each write it back with one entry, losing one
+        $handle = @fopen($file, 'c+');
+        if ($handle === false) {
+            return true;
+        }
+        try {
+            if (!flock($handle, LOCK_EX)) {
+                return true;
+            }
+            $requests = json_decode((string) stream_get_contents($handle), true);
+            if (!is_array($requests)) {
+                $requests = [];
+            }
 
-        // Add current request
-        $requests[] = $now;
+            // Filter out requests older than the window
+            $requests = array_filter($requests, fn($timestamp) => is_int($timestamp) && $timestamp >= $windowStart);
 
-        // Store updated requests
-        file_put_contents($file, serialize($requests));
+            // Add current request
+            $requests[] = $now;
+
+            // Store updated requests
+            ftruncate($handle, 0);
+            rewind($handle);
+            fwrite($handle, json_encode(array_values($requests)));
+            fflush($handle);
+            flock($handle, LOCK_UN);
+        } finally {
+            fclose($handle);
+        }
 
         // Check if rate limit is exceeded
         return count($requests) <= $this->maxRequestsPerMinute;

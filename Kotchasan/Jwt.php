@@ -53,13 +53,23 @@ class Jwt
 
     /**
      * Decode JWT
+     *
+     * Returns the payload of a token signed with $secret by one of $allowedAlgos,
+     * not expired (exp) and already valid (nbf), or null. exp and nbf, when
+     * present, must be numbers.
+     *
      * @param string $jwt
      * @param string|null $secret
      * @param array $allowedAlgos
-     * @return mixed
+     * @param int $leeway Seconds of clock difference accepted on exp and nbf
+     * @return array|null
      */
-    public static function decode($jwt, $secret, $allowedAlgos = ['HS256'])
+    public static function decode($jwt, $secret, $allowedAlgos = ['HS256'], $leeway = 0)
     {
+        if (!is_string($jwt)) {
+            return null;
+        }
+        $leeway = max(0, (int) $leeway);
         $parts = explode('.', $jwt);
         if (count($parts) != 3) {
             return null;
@@ -72,7 +82,7 @@ class Jwt
         $header = json_decode(self::b64u_decode($bh), true);
         $payload = json_decode(self::b64u_decode($bp), true);
         $sig = self::b64u_decode($bs);
-        if (empty($header) || empty($payload)) {
+        if (empty($header) || empty($payload) || !is_array($header) || !is_array($payload)) {
             return null;
         }
         $alg = $header['alg'] ?? '';
@@ -91,12 +101,20 @@ class Jwt
         if (!hash_equals($expected, $sig)) {
             return null;
         }
+        // exp/nbf must be numbers: time() >= "soon" is false in PHP 8, so a text
+        // value used to make a token that never expires
+        foreach (['exp', 'nbf'] as $claim) {
+            if (array_key_exists($claim, $payload) && !is_int($payload[$claim]) && !is_float($payload[$claim])) {
+                return null;
+            }
+        }
+        $now = time();
         // check nbf (not before)
-        if (isset($payload['nbf']) && time() < $payload['nbf']) {
+        if (isset($payload['nbf']) && $now + $leeway < $payload['nbf']) {
             return null;
         }
         // check exp
-        if (isset($payload['exp']) && time() >= $payload['exp']) {
+        if (isset($payload['exp']) && $now - $leeway >= $payload['exp']) {
             return null;
         }
         return $payload;

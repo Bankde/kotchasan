@@ -148,7 +148,8 @@ class MSSQLDriver implements DriverInterface
         try {
             $pdoStatement = $this->pdo->prepare($query);
 
-            return new PDOStatement($pdoStatement);
+            // rowCount() of a SELECT does not count its rows here: PDOResult counts them
+            return new PDOStatement($pdoStatement, false);
         } catch (\PDOException $e) {
             $this->lastError = $e->getMessage();
             throw new DatabaseException("Failed to prepare statement: ".$e->getMessage(), 0, $e);

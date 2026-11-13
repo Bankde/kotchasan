@@ -12,8 +12,8 @@ namespace Kotchasan;
 class Config
 {
     /**
-     * Cache expiration time in seconds.
-     * 0 means no caching.
+     * Lifetime in seconds of the query cache that DB_CACHE turns on (CACHE_TTL).
+     * 0, the default, means 3600.
      *
      * @var int
      */
@@ -91,6 +91,14 @@ class Config
      * @var int
      */
     public $email_Timeout = 15;
+
+    /**
+     * Check the certificate of the SMTP server (PHPMailer). false only for a server
+     * with a self-signed certificate; a server on this machine is never checked.
+     *
+     * @var bool
+     */
+    public $email_ssl_verify = true;
 
     /**
      * The list of supported languages (found in the language/ directory). The default language is 'en' (English).

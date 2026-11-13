@@ -208,9 +208,7 @@ class ApiController extends \Kotchasan\KBase
      */
     public static function validateToken($token)
     {
-        $tokens = self::$cfg->api_tokens ?? [];
-
-        if (in_array($token, $tokens, true)) {
+        if (self::isApiToken($token)) {
             return true;
         }
 
@@ -227,15 +225,12 @@ class ApiController extends \Kotchasan\KBase
     public static function validateTokenBearer(Request $request)
     {
         $authHeader = $request->getHeaderLine('Authorization');
-        $tokens = self::$cfg->api_tokens ?? [];
 
         if (!$authHeader || !preg_match('/^Bearer\\s+(.+)$/', $authHeader, $matches)) {
             throw new ApiException('Invalid token', 401);
         }
 
-        $token = $matches[1];
-
-        if (in_array($token, $tokens, true)) {
+        if (self::isApiToken($matches[1])) {
             return true;
         }
 
@@ -243,7 +238,37 @@ class ApiController extends \Kotchasan\KBase
     }
 
     /**
+     * Is $token one of the configured api_tokens?
+     *
+     * An empty token never matches, and neither does an empty entry of
+     * api_tokens: saving the API settings page with a blank token field stores
+     * '' and an empty token sent by anyone used to pass validateToken(). The
+     * comparison takes the same time whatever the token's first characters are.
+     *
+     * @param mixed $token
+     *
+     * @return bool
+     */
+    private static function isApiToken($token)
+    {
+        if (!is_string($token) || trim($token) === '') {
+            return false;
+        }
+        $found = false;
+        foreach ((array) (self::$cfg->api_tokens ?? []) as $configured) {
+            if (is_string($configured) && trim($configured) !== '' && hash_equals($configured, $token)) {
+                $found = true;
+            }
+        }
+
+        return $found;
+    }
+
+    /**
      * Validate the sign.
+     *
+     * Refused when api_secret is not set: with an empty secret the HMAC is a
+     * value anyone can compute, so every request would carry a "valid" sign.
      *
      * @param array $params The parameters to validate.
      *
@@ -251,10 +276,11 @@ class ApiController extends \Kotchasan\KBase
      */
     public static function validateSign($params)
     {
-        if (count($params) > 1 && isset($params['sign'])) {
+        $secret = (string) (self::$cfg->api_secret ?? '');
+        if ($secret !== '' && is_array($params) && count($params) > 1 && isset($params['sign']) && is_string($params['sign'])) {
             $sign = $params['sign'];
             unset($params['sign']);
-            if ($sign === \Kotchasan\Password::generateSign($params, self::$cfg->api_secret)) {
+            if (hash_equals(\Kotchasan\Password::generateSign($params, $secret), $sign)) {
                 return true;
             }
         }
@@ -309,7 +335,9 @@ class ApiController extends \Kotchasan\KBase
      */
     protected function initLanguage(Request $request)
     {
-        $lang = strtolower($request->request('lang')->filter('a-zA-Z_-'));
+        // lang[]=x arrives as an array (Inputs): only a string is a language
+        $requested = $request->request('lang')->toString();
+        $lang = strtolower(is_string($requested) ? Text::filter($requested, 'a-zA-Z_-') : '');
         if ($lang === '') {
             // The language the visitor is on (the page they call from set the
             // my_lang cookie). Going by the browser's Accept-Language instead
@@ -317,7 +345,8 @@ class ApiController extends \Kotchasan\KBase
             // Language::setName() below writes it back into my_lang, so every
             // page after an API call rendered in English.
             $cookies = $request->getCookieParams();
-            $lang = strtolower(preg_replace('/[^a-zA-Z_-]/', '', (string) ($cookies['my_lang'] ?? '')));
+            $cookieLang = $cookies['my_lang'] ?? '';
+            $lang = strtolower(preg_replace('/[^a-zA-Z_-]/', '', is_string($cookieLang) ? $cookieLang : ''));
         }
         if ($lang === '') {
             $acceptableLanguages = $request->getAcceptableLanguages();
@@ -458,6 +487,12 @@ class ApiController extends \Kotchasan\KBase
      */
     protected function errorResponse($message = 'Error', $code = 400, $error = null)
     {
+        // code ที่มาจาก exception ไม่ใช่ HTTP status เสมอ: PDOException ให้ SQLSTATE ('42S02' → 42),
+        // ข้อผิดพลาดของ MySQL ให้ 23000 · status นอก 4xx/5xx เป็น 500
+        $code = (int) $code;
+        if ($code < 400 || $code > 599) {
+            $code = 500;
+        }
         $requestId = $this->getRequestId();
         $response = [
             'success' => false,
@@ -582,15 +617,21 @@ class ApiController extends \Kotchasan\KBase
     /**
      * Convert exceptions into standardized API error responses.
      *
-     * ข้อยกเว้นที่รู้จัก (ApiException · InvalidArgumentException · DomainException ·
-     * RuntimeException) ถูกโยนขึ้นมาเพื่อสื่อสารกับผู้เรียก จึงส่งข้อความออกไปตรง ๆ เสมอ
+     * ข้อยกเว้นที่โค้ดโยนขึ้นมาเพื่อบอกผู้เรียก ส่งข้อความออกไปตรง ๆ เสมอ:
+     * ApiException (code 4xx/5xx ของมัน) · InvalidArgumentException (422) ·
+     * DomainException (409) · RuntimeException (500) · และ \Exception ตัวคลาสเอง
+     * (ไม่ใช่คลาสลูก) ที่โมดูลโยนพร้อมข้อความถึงผู้ใช้ เช่น
+     * throw new \Exception('Please select a file') — status ตาม code ถ้าเป็น 4xx/5xx
+     * ไม่อย่างนั้น 500 แบบเดียวกับ errorResponse($e->getMessage(), $e->getCode() ?: 500)
+     * ที่ controller เคยเขียนเอง
      *
-     * ที่เหลือคือสิ่งที่ไม่ได้ตั้งใจให้เกิด — บั๊กของโค้ด (\Error ของ PHP 8) หรือ
-     * ข้อผิดพลาดของฐานข้อมูล ซึ่งข้อความมักมีชื่อตาราง ชื่อคอลัมน์ พาธของไฟล์ หรือ
-     * ตัว SQL ติดมาด้วย ตอนใช้งานจริง (DEBUG = 0) จึงตอบเป็นข้อความกลางแล้วเก็บ
-     * ของจริงไว้ใน log เท่านั้น
+     * ที่เหลือคือสิ่งที่ไม่ได้ตั้งใจให้เกิด — บั๊กของโค้ด (\Error ของ PHP 8) ข้อผิดพลาด
+     * ของฐานข้อมูล (\PDOException ซึ่งเป็นลูกของ RuntimeException,
+     * Kotchasan\Exception\DatabaseException) และคลาสลูกอื่น ๆ ของ \Exception
+     * ข้อความมักมีชื่อตาราง ชื่อคอลัมน์ พาธของไฟล์ หรือตัว SQL ติดมาด้วย ตอนใช้งานจริง
+     * (DEBUG = 0) จึงตอบเป็นข้อความกลางแล้วเก็บของจริงไว้ใน log เท่านั้น
      *
-     * ระหว่างพัฒนา (DEBUG > 0) ส่งข้อความจริงพร้อมชนิดของข้อผิดพลาดออกไปเลย
+     * เปิด debug (DEBUG > 0) ส่งข้อความจริงพร้อมชนิดของข้อผิดพลาดออกไปเลย
      * จะได้อ่านสาเหตุจากตัวตอบของ API ได้ทันทีโดยไม่ต้องเปิด log ควบคู่ไปด้วย
      * (DEBUG = 2 errorResponse() จะแนบไฟล์ บรรทัด และ trace ให้อีกชั้นหนึ่ง)
      *
@@ -603,25 +644,65 @@ class ApiController extends \Kotchasan\KBase
     {
         if ($e instanceof ApiException) {
             $code = (int) $e->getCode();
-            if ($code < 400 || $code > 599) {
-                $code = 400;
-            }
-            return $this->errorResponse($e->getMessage(), $code, $e);
-        }
 
+            return $this->errorResponse($e->getMessage(), $code >= 400 && $code <= 599 ? $code : 400, $e);
+        }
         if ($e instanceof \InvalidArgumentException) {
             return $this->errorResponse($e->getMessage(), 422, $e);
         }
-
         if ($e instanceof \DomainException) {
             return $this->errorResponse($e->getMessage(), 409, $e);
         }
-
-        if ($e instanceof \RuntimeException) {
-            return $this->errorResponse($e->getMessage(), 500, $e);
+        if (get_class($e) === \Exception::class) {
+            // \Exception ที่โมดูลโยนเองพร้อมข้อความถึงผู้ใช้ — status ตาม code (errorResponse ตัดที่ไม่ใช่ 4xx/5xx เป็น 500)
+            return $this->errorResponse($e->getMessage(), $e->getCode(), $e);
         }
 
-        return $this->errorResponse(self::debugMessage($e, $defaultMessage), 500, $e);
+        // RuntimeException ที่ตั้งใจโยน = ข้อความจริง · ข้อผิดพลาดของระบบ = ข้อความกลาง (เปิด debug = error จริง)
+        return $this->errorResponse(self::exceptionMessage($e, $defaultMessage), 500, $e);
+    }
+
+    /**
+     * ข้อความของ $e ที่ส่งกลับไปให้ผู้เรียกได้ — กฎเดียวกับ handleException()
+     *
+     * ใช้ใน controller ที่กำหนด status ของตัวเอง:
+     *   catch (\Exception $e) { return $this->errorResponse(self::exceptionMessage($e), $e->getCode() ?: 400, $e); }
+     * ข้อยกเว้นที่โค้ดตั้งใจโยน (ดู isIntendedException) คืนข้อความจริง ข้อผิดพลาดของระบบคืน
+     * $defaultMessage เมื่อ DEBUG = 0 และคืนชนิดกับข้อความจริงเมื่อเปิด debug
+     *
+     * @param \Throwable $e
+     * @param string $defaultMessage
+     *
+     * @return string
+     */
+    protected static function exceptionMessage(\Throwable $e, $defaultMessage = 'Failed to process request')
+    {
+        return self::isIntendedException($e) ? $e->getMessage() : self::debugMessage($e, $defaultMessage);
+    }
+
+    /**
+     * ข้อยกเว้นที่โค้ดโยนขึ้นมาเพื่อบอกผู้เรียก (ข้อความเขียนไว้ให้คนอ่าน)
+     *
+     * ApiException · InvalidArgumentException · DomainException · RuntimeException
+     * และ \Exception ตัวคลาสเอง · ไม่ใช่: PDOException (ลูกของ RuntimeException),
+     * Kotchasan\Exception\DatabaseException, \Error ของ PHP และคลาสลูกอื่นของ \Exception
+     * ซึ่งข้อความมักมี SQL ชื่อตาราง หรือพาธของไฟล์
+     *
+     * @param \Throwable $e
+     *
+     * @return bool
+     */
+    protected static function isIntendedException(\Throwable $e)
+    {
+        if ($e instanceof \PDOException || $e instanceof \Kotchasan\Exception\DatabaseException) {
+            return false;
+        }
+
+        return $e instanceof ApiException
+            || $e instanceof \InvalidArgumentException
+            || $e instanceof \DomainException
+            || $e instanceof \RuntimeException
+            || get_class($e) === \Exception::class;
     }
 
     /**
@@ -928,7 +1009,8 @@ class ApiController extends \Kotchasan\KBase
             return (in_array($value, $allowedValues)) ? true : "The $field must be one of: $param.";
 
         case 'date':
-            return (strtotime($value) !== false) ? true : "The $field must be a valid date.";
+            // A field that was not sent is null: strtotime(null) is deprecated (PHP 8.1)
+            return (is_string($value) && $value !== '' && strtotime($value) !== false) ? true : "The $field must be a valid date.";
 
         case 'json':
             if (!is_string($value)) {
@@ -944,7 +1026,7 @@ class ApiController extends \Kotchasan\KBase
             return (preg_match($param, $value)) ? true : "The $field format is invalid.";
 
         case 'url':
-            return (filter_var($value, FILTER_VALIDATE_URL) !== false) ? true : "The $field must be a valid URL.";
+            return Validator::url($value) ? true : "The $field must be a valid URL.";
 
         case 'ip':
             return (filter_var($value, FILTER_VALIDATE_IP) !== false) ? true : "The $field must be a valid IP address.";

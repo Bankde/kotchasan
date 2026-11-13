@@ -442,7 +442,11 @@ class UploadedFile implements UploadedFileInterface
             throw new \RuntimeException(Language::get('The type of file is invalid'));
         }
         if (!is_writable($targetDir)) {
-            throw new \InvalidArgumentException(Language::sprintf('Target directory %s is not writable', $targetDir));
+            // พาธใต้รากของเว็บ (datas/avatar/) ไม่ใช่พาธเต็มของเซิร์ฟเวอร์ — ข้อความนี้ถึงผู้ใช้
+            $shown = defined('ROOT_PATH') && strpos((string) $targetDir, ROOT_PATH) === 0
+                ? substr((string) $targetDir, strlen(ROOT_PATH))
+                : basename(rtrim((string) $targetDir, '/')).'/';
+            throw new \InvalidArgumentException(Language::sprintf('Target directory %s is not writable', $shown));
         }
         return true;
     }

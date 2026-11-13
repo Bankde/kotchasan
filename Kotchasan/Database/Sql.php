@@ -29,12 +29,13 @@ class Sql
      *
      * @var string
      */
-    protected static $database_type = 'mysql';
+    protected static $database_type = null;
 
     /**
-     * Set database type for context-aware SQL generation
+     * Set database type for context-aware SQL generation (overrides the dialect of
+     * the default connection)
      *
-     * @param string $type Database type: mysql, mssql, postgresql
+     * @param string $type Database type: mysql, mssql, postgresql, sqlite
      */
     public static function setDatabaseType($type)
     {
@@ -53,7 +54,18 @@ class Sql
      */
     public static function getDatabaseType()
     {
-        return self::$database_type;
+        if (self::$database_type !== null) {
+            return self::$database_type;
+        }
+        // Not set: the dialect of the default connection, as the SqlFunction methods
+        // (YEAR(), COUNT() ...) use. It was 'mysql' whatever the connection, so NEXT(),
+        // POSITION(), FORMAT() and _strValue() wrote backticks, LOCATE() and MySQL
+        // escapes on PostgreSQL, SQL Server and SQLite
+        $connection = \Kotchasan\Database::getConnection();
+        $driver = $connection === null ? 'mysql' : $connection->getDriver()->getName();
+        $types = ['pgsql' => 'postgresql', 'sqlsrv' => 'mssql', 'sqlite' => 'sqlite'];
+
+        return $types[$driver] ?? 'mysql';
     }
 
     /**
@@ -1540,32 +1552,19 @@ class Sql
         } elseif ($value === '') {
             $sql = "''";
         } elseif (is_string($value)) {
-            if (preg_match('/^([0-9\s\r\n\t\.\_\-:]+)$/', $value)) {
-                $sql = "'$value'";
-            } elseif (preg_match('/0x[0-9]+/is', $value)) {
-                $sql = ':'.strtolower(preg_replace('/[`\.\s\-_]+/', '', $column_name));
-                if (empty($values) || !is_array($values)) {
-                    $sql .= 0;
-                } else {
-                    $sql .= count($values);
-                }
-                $values[$sql] = $value;
+            // A string is always a value. 'U.id' or `user`.`password` used to become a
+            // column reference here, so a value from a form could compare against any
+            // column (Sql::IN('name', ['U.password'])); a column is Sql::column('U.id').
+            $plain = preg_match('/^([0-9\s\r\n\t\.\_\-:]+)$/', $value)
+                || (!preg_match('/[\s\r\n\t`;\(\)\*=<>\/\'\"\\\\]+/s', $value) && !preg_match('/(UNION|INSERT|DELETE|TRUNCATE|DROP|0x[0-9]+)/is', $value));
+            if ($plain) {
+                $sql = "'".self::escapeLiteral($value)."'";
             } else {
-                if (preg_match('/^(([A-Z][0-9]{0,2})|`([a-zA-Z0-9_]+)`)\.`?([a-zA-Z0-9_]+)`?$/', $value, $match)) {
-                    $sql = $match[3] == '' ? "$match[2].".self::column($match[4]) : self::column($match[3]).'.'.self::column($match[4]);
-                } elseif (preg_match('/^([a-zA-Z0-9_]+)\.`([a-zA-Z0-9_]+)`$/', $value, $match)) {
-                    $sql = self::column($match[1]).'.'.self::column($match[2]);
-                } elseif (!preg_match('/[\s\r\n\t`;\(\)\*=<>\/\'\"\\\\]+/s', $value) && !preg_match('/(UNION|INSERT|DELETE|TRUNCATE|DROP|0x[0-9]+)/is', $value)) {
-                    $sql = "'$value'";
-                } else {
-                    $sql = ':'.strtolower(preg_replace('/[`\.\s\-_]+/', '', $column_name));
-                    if (empty($values) || !is_array($values)) {
-                        $sql .= 0;
-                    } else {
-                        $sql .= count($values);
-                    }
-                    $values[$sql] = $value;
-                }
+                // Placeholder named after the column, letters and digits only (an
+                // expression such as DATE(x) as the column used to give ":date(x)0")
+                $name = preg_replace('/[^a-z0-9]+/', '', strtolower((string) $column_name));
+                $sql = ':'.($name === '' ? 'v' : $name).(empty($values) || !is_array($values) ? 0 : count($values));
+                $values[$sql] = $value;
             }
         } elseif (is_numeric($value)) {
             $sql = $value;

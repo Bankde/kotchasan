@@ -597,9 +597,10 @@ class Response implements ResponseInterface
      * Origin resolution (deciding whether to echo the request Origin or use a
      * configured allowlist) must be done by the caller before invoking this
      * method — pass the resolved origin via $options['Access-Control-Allow-Origin'].
+     * Without it no Access-Control-Allow-Origin is sent (it used to default to *).
      *
      * Example (controller layer):
-     *   $origin = \Kotchasan\Cors::resolveOrigin($request, $cfg->api_cors ?? '*');
+     *   $origin = in_array($request->getHeaderLine('Origin'), $allowedOrigins, true) ? $request->getHeaderLine('Origin') : null;
      *   $response->setCorsHeaders(['Access-Control-Allow-Origin' => $origin]);
      *
      * @param array $options Override any default CORS header value.
@@ -607,14 +608,17 @@ class Response implements ResponseInterface
      */
     public function setCorsHeaders(array $options = []): self
     {
+        // No Access-Control-Allow-Origin unless the caller names the origin: a default
+        // of * let every site read the response
         $defaults = [
-            'Access-Control-Allow-Origin' => '*',
             'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
             'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With',
             'Access-Control-Max-Age' => '86400'
         ];
 
-        $headers = array_merge($defaults, $options);
+        $headers = array_filter(array_merge($defaults, $options), function ($value) {
+            return $value !== null && $value !== '';
+        });
         $response = $this;
 
         foreach ($headers as $name => $value) {
@@ -658,7 +662,7 @@ class Response implements ResponseInterface
         $response = $this
             ->withHeader('Content-Type', $mimeType)
             ->withHeader('Content-Length', (string) $fileSize)
-            ->withHeader('Content-Disposition', 'attachment; filename="'.$filename.'"');
+            ->withHeader('Content-Disposition', self::contentDisposition($filename));
 
         foreach ($headers as $name => $value) {
             $response = $response->withHeader($name, $value);
@@ -682,8 +686,37 @@ class Response implements ResponseInterface
         return $this
             ->withHeader('Content-Type', $mimeType)
             ->withHeader('Content-Length', (string) strlen($content))
-            ->withHeader('Content-Disposition', 'attachment; filename="'.$filename.'"')
+            ->withHeader('Content-Disposition', self::contentDisposition($filename))
             ->withContent($content);
+    }
+
+    /**
+     * Content-Disposition value for a download named $filename.
+     *
+     * The name used to go between "" as it was: a " in it ended the parameter and
+     * the rest became parameters of their own. Now filename="" holds an ASCII
+     * fallback (", \ and control characters replaced) and filename* the full
+     * name, UTF-8 encoded (RFC 6266), which browsers prefer.
+     *
+     * @param string $filename
+     * @param string $type 'attachment' or 'inline'
+     *
+     * @return string
+     */
+    public static function contentDisposition(string $filename, string $type = 'attachment'): string
+    {
+        $filename = (string) preg_replace('/[\x00-\x1F\x7F]+/', '', $filename);
+        // One "_" per character (per byte only when the name is not UTF-8)
+        $ascii = preg_replace('/[^\x20-\x7E]|["\\\\]/u', '_', $filename);
+        if ($ascii === null) {
+            $ascii = (string) preg_replace('/[^\x20-\x7E]|["\\\\]/', '_', $filename);
+        }
+        if ($ascii === '' || trim($ascii, '_. ') === '') {
+            $ascii = 'download';
+        }
+        $type = $type === 'inline' ? 'inline' : 'attachment';
+
+        return $type.'; filename="'.$ascii.'"; filename*=UTF-8\'\''.rawurlencode($filename);
     }
 
     /**

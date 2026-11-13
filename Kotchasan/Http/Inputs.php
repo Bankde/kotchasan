@@ -40,14 +40,17 @@ class Inputs implements \Iterator, \Countable, \ArrayAccess
      */
     protected static $securityConfig = [
         'maxDepth' => 5,
-        'maxSize' => 2000,
-        'allowedMethods' => [
-            'topic', 'filter', 'toInt', 'username', 'email', 'url', 'text', 'htmlText', 'bool', 'color',
-            'alphanumeric', 'phone', 'date', 'float', 'json', 'base64', 'password', 'oneLine', 'cut',
-            'description', 'detail', 'keywords', 'time', 'quote', 'textarea', 'number',
-            'toBoolean', 'toDouble', 'toFloat', 'toObject', 'toString', 'toArray', 'toJson', 'exists'
-        ]
+        'maxSize' => 2000
     ];
+
+    /**
+     * Methods of InputItem that __call() forwards to every item: the public,
+     * non-static ones that are not magic methods, keyed by lowercase name.
+     * Read from InputItem itself, so a method added there works here too.
+     *
+     * @var array<string, bool>|null
+     */
+    private static $forwardable = null;
 
     /**
      * Constructor
@@ -129,8 +132,8 @@ class Inputs implements \Iterator, \Countable, \ArrayAccess
      */
     public function __call(string $name, array $arguments)
     {
-        if (!in_array($name, self::$securityConfig['allowedMethods'])) {
-            throw new \BadMethodCallException("Method '{$name}' is not allowed for security reasons");
+        if (!self::isForwardable($name)) {
+            throw new \BadMethodCallException("Method '{$name}' is not a public method of ".InputItem::class.' and cannot be called on '.static::class);
         }
 
         $result = [];
@@ -139,6 +142,32 @@ class Inputs implements \Iterator, \Countable, \ArrayAccess
         }
 
         return $result;
+    }
+
+    /**
+     * Can __call() forward this method to the items?
+     *
+     * True for every public, non-static InputItem method that is not a magic
+     * method (__toString, __set_state ...). Methods Inputs defines itself
+     * (isEmpty, filter, toArray, toJson ...) never reach __call() and keep
+     * their meaning for the whole collection.
+     *
+     * @param string $name Method name
+     *
+     * @return bool
+     */
+    protected static function isForwardable(string $name): bool
+    {
+        if (self::$forwardable === null) {
+            self::$forwardable = [];
+            foreach ((new \ReflectionClass(InputItem::class))->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
+                if (!$method->isStatic() && strpos($method->getName(), '__') !== 0) {
+                    self::$forwardable[strtolower($method->getName())] = true;
+                }
+            }
+        }
+
+        return isset(self::$forwardable[strtolower($name)]);
     }
 
     /**

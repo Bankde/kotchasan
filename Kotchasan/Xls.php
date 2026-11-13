@@ -2,10 +2,9 @@
 namespace Kotchasan;
 
 /**
- * Kotchasan Tab Class
+ * Kotchasan Xls Class
  *
- * This class provides a simple way to create and manage tabs in a web application.
- * It allows adding tab items with titles, URLs, and targets, and generates HTML for rendering.
+ * Sends rows as an Excel-readable HTML table (.xls).
  *
  * @package Kotchasan
  */
@@ -24,7 +23,7 @@ class Xls
     {
         // Set headers
         header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="'.$file.'.xls"');
+        header('Content-Disposition: '.\Kotchasan\Http\Response::contentDisposition($file.'.xls'));
         header("Pragma:no-cache");
 
         // XLS Template
@@ -78,6 +77,10 @@ class Xls
     /**
      * Returns the th or td cell.
      *
+     * The value is text and is escaped, attribute names other than letters, digits
+     * and - are dropped, and attribute values are escaped: they used to be written
+     * as they were, so data could add markup (or formulas) to the sheet.
+     *
      * @param string $type The type of cell (th or td).
      * @param array  $item The cell item.
      *
@@ -92,13 +95,14 @@ class Xls
             foreach ($item as $k => $v) {
                 if ($k === 'value') {
                     $value = $v;
-                } else {
-                    $prop .= ' '.$k.'="'.$v.'"';
+                } elseif (is_string($k) && preg_match('/^[a-zA-Z][a-zA-Z0-9\-:]*$/', $k)) {
+                    $prop .= ' '.$k.'="'.htmlspecialchars((string) $v, ENT_QUOTES, 'UTF-8').'"';
                 }
             }
         } else {
             $value = $item;
         }
-        return '<'.$type.$prop.'>'.$value.'</'.$type.'>';
+        $type = $type === 'th' ? 'th' : 'td';
+        return '<'.$type.$prop.'>'.htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8').'</'.$type.'>';
     }
 }

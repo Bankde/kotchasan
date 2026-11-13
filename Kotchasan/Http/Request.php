@@ -90,13 +90,14 @@ class Request extends AbstractRequest implements ServerRequestInterface
         $method = $originalMethod;
         // 1. X-HTTP-Method-Override header (highest priority)
         if ($originalMethod === 'POST' && isset($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'])) {
-            $override = strtoupper(trim($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']));
+            $override = strtoupper(trim((string) $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']));
             if ($override !== '') {
                 $method = $override;
             }
         }
-        // 2. _method parameter (POST only, lower priority than header)
-        elseif ($originalMethod === 'POST' && isset($_POST['_method'])) {
+        // 2. _method parameter (POST only, lower priority than header).
+        // _method[]=x is an array: trim() of it was a TypeError (HTTP 500)
+        elseif ($originalMethod === 'POST' && isset($_POST['_method']) && is_string($_POST['_method'])) {
             $override = strtoupper(trim($_POST['_method']));
             if ($override !== '') {
                 $method = $override;
@@ -666,6 +667,67 @@ class Request extends AbstractRequest implements ServerRequestInterface
     public static function isTrustedProxy(string $ip): bool
     {
         return $ip !== '' && in_array($ip, self::trustedProxies(), true);
+    }
+
+    /**
+     * Whether the current request came through one of the TRUSTED_PROXIES (its
+     * direct peer, REMOTE_ADDR, is one). Only then are the X-Forwarded-* headers
+     * the proxy's: otherwise whoever sends the request writes them, and they
+     * would pick the scheme and host of WEB_URL — and of every link built from
+     * it, password reset e-mails included.
+     *
+     * @return bool
+     */
+    public static function isFromTrustedProxy(): bool
+    {
+        return self::isTrustedProxy((string) ($_SERVER['REMOTE_ADDR'] ?? ''));
+    }
+
+    /**
+     * Scheme a trusted proxy reports in X-Forwarded-Proto: 'https' or 'http'
+     * (the first value of a list; anything other than https counts as http).
+     *
+     * @return string|null null when the request did not come through a trusted
+     *                     proxy or carries no X-Forwarded-Proto
+     */
+    public static function forwardedScheme(): ?string
+    {
+        if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']) || !self::isFromTrustedProxy()) {
+            return null;
+        }
+        $scheme = strtolower(trim(explode(',', (string) $_SERVER['HTTP_X_FORWARDED_PROTO'])[0]));
+        return $scheme === 'https' ? 'https' : 'http';
+    }
+
+    /**
+     * Host a trusted proxy reports in X-Forwarded-Host (the first host of a list,
+     * with its port if it has one).
+     *
+     * @return string|null null when the request did not come through a trusted
+     *                     proxy or the header is missing or empty
+     */
+    public static function forwardedHost(): ?string
+    {
+        if (!isset($_SERVER['HTTP_X_FORWARDED_HOST']) || !self::isFromTrustedProxy()) {
+            return null;
+        }
+        $host = trim(explode(',', (string) $_SERVER['HTTP_X_FORWARDED_HOST'])[0]);
+        return $host === '' ? null : $host;
+    }
+
+    /**
+     * Port a trusted proxy reports in X-Forwarded-Port.
+     *
+     * @return int|null null when the request did not come through a trusted proxy
+     *                  or the header is not a port number
+     */
+    public static function forwardedPort(): ?int
+    {
+        if (!isset($_SERVER['HTTP_X_FORWARDED_PORT']) || !self::isFromTrustedProxy()) {
+            return null;
+        }
+        $port = (int) trim(explode(',', (string) $_SERVER['HTTP_X_FORWARDED_PORT'])[0]);
+        return $port > 0 && $port < 65536 ? $port : null;
     }
 
     /**

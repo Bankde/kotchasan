@@ -84,47 +84,51 @@ class Logger
     }
 
     /**
-     * Log a debug message
+     * Log a debug message (to the destinations of LOG_DESTINATION)
      *
      * @param string $message The message to log
      * @param array $context Additional context information
      */
     public static function debug($message, $context = [])
     {
-        self::create()->debug($message, $context);
+        // Where LOG_DESTINATION says, as PHP's own errors; it always went to error_log.php
+        self::logToDestination('debug', $message, $context);
     }
 
     /**
-     * Log an info message
+     * Log an info message (to the destinations of LOG_DESTINATION)
      *
      * @param string $message The message to log
      * @param array $context Additional context information
      */
     public static function info($message, $context = [])
     {
-        self::create()->info($message, $context);
+        // Where LOG_DESTINATION says, as PHP's own errors; it always went to error_log.php
+        self::logToDestination('info', $message, $context);
     }
 
     /**
-     * Log a warning message
+     * Log a warning message (to the destinations of LOG_DESTINATION)
      *
      * @param string $message The message to log
      * @param array $context Additional context information
      */
     public static function warning($message, $context = [])
     {
-        self::create()->warning($message, $context);
+        // Where LOG_DESTINATION says, as PHP's own errors; it always went to error_log.php
+        self::logToDestination('warning', $message, $context);
     }
 
     /**
-     * Log an error message
+     * Log an error message (to the destinations of LOG_DESTINATION)
      *
      * @param string $message The message to log
      * @param array $context Additional context information
      */
     public static function error($message, $context = [])
     {
-        self::create()->error($message, $context);
+        // Where LOG_DESTINATION says, as PHP's own errors; it always went to error_log.php
+        self::logToDestination('error', $message, $context);
     }
 
     /**

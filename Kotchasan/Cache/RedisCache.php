@@ -178,7 +178,9 @@ class RedisCache implements CacheInterface
         }
 
         $this->stats['hits']++;
-        return unserialize($value);
+        // Query rows only (arrays, stdClass): a value another client wrote into Redis
+        // must not wake up an object of any other class
+        return unserialize($value, ['allowed_classes' => ['stdClass']]);
     }
 
     /**
@@ -282,7 +284,7 @@ class RedisCache implements CacheInterface
                 $result[$originalKey] = $default;
                 $this->stats['misses']++;
             } else {
-                $result[$originalKey] = unserialize($values[$i]);
+                $result[$originalKey] = unserialize($values[$i], ['allowed_classes' => ['stdClass']]);
                 $this->stats['hits']++;
             }
         }

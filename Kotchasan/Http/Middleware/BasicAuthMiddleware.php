@@ -126,7 +126,8 @@ class BasicAuthMiddleware extends BaseMiddleware
     public static function withCredentials(string $username, string $password, string $realm = 'API'): self
     {
         return new self(
-            fn($user, $pass) => $user === $username && $pass === $password,
+            // hash_equals: the time taken does not tell how much of the value was right
+            fn($user, $pass) => (hash_equals($username, (string) $user) & hash_equals($password, (string) $pass)) === 1,
             $realm
         );
     }
@@ -141,7 +142,8 @@ class BasicAuthMiddleware extends BaseMiddleware
     public static function withUsers(array $users, string $realm = 'API'): self
     {
         return new self(
-            fn($username, $password) => isset($users[$username]) && $users[$username] === $password,
+            fn($username, $password) => isset($users[$username]) && is_string($users[$username])
+                && hash_equals($users[$username], (string) $password),
             $realm
         );
     }
@@ -174,7 +176,18 @@ class BasicAuthMiddleware extends BaseMiddleware
     public static function withTokens(array $tokens, string $realm = 'API'): self
     {
         return new self(
-            fn($username, $password) => in_array($password, $tokens),
+            function ($username, $password) use ($tokens) {
+                // Every token compared, strictly and in constant time (in_array()
+                // was a loose comparison that stopped at the first match)
+                $found = false;
+                foreach ($tokens as $token) {
+                    if (is_string($token) && $token !== '' && hash_equals($token, (string) $password)) {
+                        $found = true;
+                    }
+                }
+
+                return $found;
+            },
             $realm
         );
     }

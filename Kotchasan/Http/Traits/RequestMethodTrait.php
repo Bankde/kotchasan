@@ -33,9 +33,11 @@ trait RequestMethodTrait
             }
         }
 
-        // Check _method parameter (lower priority)
-        $paramOverride = $this->post('_method');
-        if (!empty($paramOverride)) {
+        // Check _method parameter (lower priority). The raw value: post() is an
+        // object even when the field is missing, and _method[]=x (an array) has no
+        // string form — trim() of it was a TypeError (HTTP 500)
+        $paramOverride = $this->postRaw('_method');
+        if (is_string($paramOverride) && $paramOverride !== '') {
             $method = strtoupper(trim($paramOverride));
             if ($this->isValidHttpMethod($method)) {
                 return $method;

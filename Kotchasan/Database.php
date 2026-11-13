@@ -674,7 +674,7 @@ class Database
      *
      * @param callable $callback The callback to execute.
      * @return mixed The callback result.
-     * @throws \Exception If an error occurs.
+     * @throws \Throwable What the callback threw, after the rollback.
      */
     public function transaction(callable $callback)
     {
@@ -685,7 +685,10 @@ class Database
             $this->commit();
 
             return $result;
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
+            // \Throwable, not \Exception: a TypeError or Error thrown by the callback
+            // used to leave the transaction open, so later writes of the request
+            // joined it and a later commit() saved the half-done work
             $this->rollback();
             throw $e;
         }

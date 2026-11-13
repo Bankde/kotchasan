@@ -140,7 +140,10 @@ class Kotchasan extends Kotchasan\KBase
         if (defined('DB_CACHE') && DB_CACHE) {
             // Define cache constants based on configuration if not already defined (default 3600 seconds)
             if (!defined('CACHE_TTL')) {
-                define('CACHE_TTL', self::$cfg->cache_expire ?? 3600);
+                // cache_expire is 0 in Kotchasan\Config unless the site sets it, and a TTL
+                // of 0 is "never expires": cached rows outlived changes made outside Kotchasan
+                $ttl = (int) (self::$cfg->cache_expire ?? 0);
+                define('CACHE_TTL', $ttl > 0 ? $ttl : 3600);
             }
 
             $this->initializeQueryCache();

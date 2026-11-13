@@ -8,6 +8,10 @@ namespace Kotchasan;
  * It supports various image formats and includes functionality for cropping,
  * resizing, flipping, and adding watermarks to images.
  *
+ * Exception messages name the file only, never its full path: they reach the
+ * user through API answers (upload errors, ApiController::exceptionMessage()),
+ * and a full path shows how the server is laid out.
+ *
  * @package Kotchasan
  */
 class Image
@@ -38,7 +42,7 @@ class Image
     {
         $info = getimagesize($source);
         if ($info === false) {
-            throw new \RuntimeException('Invalid image file: '.$source);
+            throw new \RuntimeException('Invalid image file: '.basename((string) $source));
         }
         switch ($info['mime']) {
         case 'image/gif':
@@ -221,7 +225,7 @@ class Image
         }
 
         if ($result === false) {
-            throw new \RuntimeException('Failed to save image to '.$target);
+            throw new \RuntimeException('Failed to save image to '.basename((string) $target));
         }
 
         return true;
@@ -343,7 +347,7 @@ class Image
     {
         $info = getimagesize($source);
         if (!$info) {
-            throw new \RuntimeException('Unable to get image info: '.$source);
+            throw new \RuntimeException('Unable to get image info: '.basename((string) $source));
         }
 
         return [
@@ -365,7 +369,7 @@ class Image
         $im = imagecreatefromjpeg($source);
 
         if (!$im) {
-            throw new \RuntimeException('Failed to create image resource from '.$source);
+            throw new \RuntimeException('Failed to create image resource from '.basename((string) $source));
         }
 
         if (function_exists('exif_read_data')) {
@@ -446,7 +450,7 @@ class Image
     {
         $font = self::fontFile(self::$fontPath);
         if (!file_exists($font)) {
-            throw new \RuntimeException('Font file not found: '.$font);
+            throw new \RuntimeException('Font file not found: '.basename((string) $font));
         }
         $offset = 5;
         $rgb = sscanf($color, "%02x%02x%02x");

@@ -33,11 +33,12 @@ class AuthFactory
      *
      * @param callable $callback Function to retrieve password hash for a username
      * @param string $realm Authentication realm
+     * @param string|null $secret Key that signs the nonces (null: derived from password_key)
      * @return DigestAuthMiddleware
      */
-    public static function createDigestAuth(callable $callback, string $realm = 'API'): DigestAuthMiddleware
+    public static function createDigestAuth(callable $callback, string $realm = 'API', ?string $secret = null): DigestAuthMiddleware
     {
-        return new DigestAuthMiddleware($callback, $realm);
+        return new DigestAuthMiddleware($callback, $realm, $secret);
     }
 
     /**

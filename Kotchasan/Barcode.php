@@ -118,9 +118,12 @@ class Barcode
         // Fill the background
         imagefilledrectangle($img, 0, 0, $this->width, $this->height, $white);
         if (!empty($this->datas)) {
-            if ($this->fontSize > 0) {
+            // The label needs a TrueType font: $font, or the one Image::fontFile() finds
+            // (Now/css/fonts/ beside Kotchasan/). A Kotchasan installed on its own has
+            // neither, and drawing the label then gave four warnings and no text
+            $font = $this->fontSize > 0 ? Image::fontFile($this->font) : '';
+            if ($this->fontSize > 0 && is_file($font)) {
                 // Get the dimensions of the code
-                $font = Image::fontFile($this->font);
                 $p = imagettfbbox($this->fontSize, 0, $font, $this->code);
                 $barHeight = $this->height + $p[5] - 3;
                 // Display the code

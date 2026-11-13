@@ -30,6 +30,14 @@ class PDOStatement implements StatementInterface
     protected string $query;
 
     /**
+     * Whether PDOStatement::rowCount() of a SELECT is the number of its rows:
+     * false on SQLite (the rows changed by the last write) and SQL Server (-1).
+     *
+     * @var bool
+     */
+    protected $countsRows = true;
+
+    /**
      * The last error message.
      *
      * @var string|null
@@ -41,10 +49,11 @@ class PDOStatement implements StatementInterface
      *
      * @param \PDOStatement $statement The PDOStatement instance.
      */
-    public function __construct(\PDOStatement $statement)
+    public function __construct(\PDOStatement $statement, bool $countsRows = true)
     {
         $this->statement = $statement;
         $this->query = $statement->queryString;
+        $this->countsRows = $countsRows;
     }
 
     /**
@@ -111,7 +120,7 @@ class PDOStatement implements StatementInterface
                 throw new DatabaseException("Failed to execute statement: ".$this->lastError);
             }
 
-            return new PDOResult($this->statement, $resultFormat);
+            return new PDOResult($this->statement, $resultFormat, $this->countsRows);
         } catch (\PDOException $e) {
             $this->lastError = $e->getMessage();
             throw new DatabaseException("Failed to execute statement: ".$e->getMessage(), 0, $e);

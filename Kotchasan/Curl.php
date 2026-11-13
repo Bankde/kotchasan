@@ -70,7 +70,12 @@ class Curl
             // credential theft. Use disableSslVerify() only for trusted local
             // testing — never against public endpoints.
             CURLOPT_SSL_VERIFYHOST => 2,
-            CURLOPT_SSL_VERIFYPEER => true
+            CURLOPT_SSL_VERIFYPEER => true,
+            // HTTP and HTTPS only, for the request and for any redirect it follows:
+            // cURL also speaks file://, so a URL that came from a user read files of
+            // the server (file:///etc/passwd). Another protocol needs setOptions()
+            CURLOPT_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS,
+            CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS
         ];
     }
 

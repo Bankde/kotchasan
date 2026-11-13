@@ -37,7 +37,8 @@ class InsertBuilder extends QueryBuilder
     }
 
     /**
-     * Marks the insert as INSERT IGNORE.
+     * Skips rows that would break a unique key: INSERT IGNORE (MySQL), INSERT OR
+     * IGNORE (SQLite), ON CONFLICT DO NOTHING (PostgreSQL). SQL Server throws.
      *
      * @return $this
      */
@@ -79,12 +80,18 @@ class InsertBuilder extends QueryBuilder
         }
 
         $sqlBuilder = $this->getSqlBuilder();
+        $driver = $sqlBuilder->getDriverName();
 
-        // Start building the query
+        // ignore() in each database's own words: INSERT IGNORE (MySQL), INSERT OR
+        // IGNORE (SQLite), ON CONFLICT DO NOTHING (PostgreSQL, after the values).
+        // INSERT IGNORE used to go to every driver, a syntax error on all but MySQL
+        if ($this->ignore && $driver === 'sqlsrv') {
+            throw new \RuntimeException('INSERT ... ignore() is not supported on SQL Server: check for the row first, or catch the duplicate key error');
+        }
         $query = 'INSERT ';
-
-        // Add IGNORE if specified
-        if ($this->ignore) {
+        if ($this->ignore && $driver === 'sqlite') {
+            $query .= 'OR IGNORE ';
+        } elseif ($this->ignore && $driver !== 'pgsql') {
             $query .= 'IGNORE ';
         }
 
@@ -96,7 +103,7 @@ class InsertBuilder extends QueryBuilder
             $columns = array_keys($this->values);
             $quoted = [];
             foreach ($columns as $c) {
-                $quoted[] = $sqlBuilder->quoteIdentifier($c);
+                $quoted[] = $this->writableColumn($c);
             }
             $query .= '('.implode(', ', $quoted).') VALUES (';
 
@@ -104,13 +111,8 @@ class InsertBuilder extends QueryBuilder
             foreach ($this->values as $column => $val) {
                 // Check if value is a Sql object or SqlFunction (raw SQL expression)
                 if ($val instanceof \Kotchasan\Database\Sql) {
-                    // Use raw SQL expression directly
-                    $placeholders[] = $val->toSql();
-                    // Merge any bindings from the Sql object
-                    foreach ($val->getValues([]) as $v) {
-                        $paramName = $this->placeholderPrefix.$this->paramCounter++;
-                        $this->namedBindings[$paramName] = $v;
-                    }
+                    // Raw SQL expression; its bindings get new names, in the SQL too
+                    $placeholders[] = $this->extractExpressionSql($val);
                 } elseif ($val instanceof \Kotchasan\QueryBuilder\SqlFunction) {
                     // Use SqlFunction's toSql method
                     $placeholders[] = $val->toSql();
@@ -136,23 +138,21 @@ class InsertBuilder extends QueryBuilder
             $columns = array_keys($this->rows[0]);
             $quoted = [];
             foreach ($columns as $c) {
-                $quoted[] = $sqlBuilder->quoteIdentifier($c);
+                $quoted[] = $this->writableColumn($c);
             }
             $query .= '('.implode(', ', $quoted).') VALUES ';
 
             $rowPlaceholders = [];
             foreach ($this->rows as $row) {
                 $placeholders = [];
-                foreach ($row as $val) {
+                // In the order of the first row's columns: a row written with its keys
+                // in another order used to put its values in the wrong columns
+                foreach ($columns as $column) {
+                    $val = $row[$column] ?? null;
                     // Check if value is a Sql object or SqlFunction (raw SQL expression)
                     if ($val instanceof \Kotchasan\Database\Sql) {
-                        // Use raw SQL expression directly
-                        $placeholders[] = $val->toSql();
-                        // Merge any bindings from the Sql object
-                        foreach ($val->getValues([]) as $v) {
-                            $paramName = $this->placeholderPrefix.$this->paramCounter++;
-                            $this->namedBindings[$paramName] = $v;
-                        }
+                        // Raw SQL expression; its bindings get new names, in the SQL too
+                        $placeholders[] = $this->extractExpressionSql($val);
                     } elseif ($val instanceof \Kotchasan\QueryBuilder\SqlFunction) {
                         // Use SqlFunction's toSql method
                         $placeholders[] = $val->toSql();
@@ -177,6 +177,9 @@ class InsertBuilder extends QueryBuilder
         } else {
             // No data to insert - return a basic INSERT statement
             $query .= '() VALUES ()';
+        }
+        if ($this->ignore && $driver === 'pgsql') {
+            $query .= ' ON CONFLICT DO NOTHING';
         }
 
         $this->lastQuery = $query;

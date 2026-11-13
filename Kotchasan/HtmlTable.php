@@ -116,8 +116,9 @@ class HtmlTable
     {
         $prop = [];
         foreach ($this->properties as $k => $v) {
-            $prop[] = $k.'="'.$v.'"';
+            $prop[] = self::attribute($k, $v);
         }
+        $prop = array_filter($prop);
         $table = ["\n<table".(empty($prop) ? '' : ' '.implode(' ', $prop)).'>'];
         if (!empty($this->caption)) {
             $table[] = '<caption>'.$this->caption.'</caption>';
@@ -132,9 +133,10 @@ class HtmlTable
                     $prop = ['id' => 'id="c'.$c.'"', 'scope' => 'scope="col"'];
                     foreach ($th as $key => $value) {
                         if ($key != 'text') {
-                            $prop[$key] = $key.'="'.$value.'"';
+                            $prop[$key] = self::attribute($key, $value);
                         }
                     }
+                    $prop = array_filter($prop);
                     $tr[] = '<th '.implode(' ', $prop).'>'.(isset($th['text']) ? $th['text'] : '').'</th>';
                 }
                 if (!empty($tr)) {
@@ -284,6 +286,27 @@ class HtmlTable
      *
      * @return string
      */
+    /**
+     * name="value" of one attribute of a row, a cell or the table: the value is
+     * escaped (an entity already in it is kept, so a value escaped by the caller
+     * stays the same), and a name that is not an attribute name gives ''.
+     * Values were written as they came, so a value with " added attributes
+     * such as onclick.
+     *
+     * @param mixed $name
+     * @param mixed $value
+     *
+     * @return string
+     */
+    public static function attribute($name, $value)
+    {
+        if (!is_string($name) || !preg_match('/^[a-zA-Z_:][a-zA-Z0-9_.:\-]*$/', $name)) {
+            return '';
+        }
+
+        return $name.'="'.htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8', false).'"';
+    }
+
     protected static function attr($v)
     {
         return htmlspecialchars((string) $v, ENT_QUOTES, 'UTF-8');
@@ -376,27 +399,27 @@ class TableRow
     {
         $prop = [];
         foreach ($this->properties as $key => $value) {
-            $prop[$key] = $key.'="'.$value.'"';
+            $prop[$key] = HtmlTable::attribute($key, $value);
         }
-        $row = ['<tr '.implode(' ', $prop).'>'];
+        $row = ['<tr '.implode(' ', array_filter($prop)).'>'];
         foreach ($this->tds as $c => $td) {
             $prop = [];
             $tag = 'td';
             foreach ($td as $key => $value) {
                 if ($key == 'scope') {
                     $tag = 'th';
-                    $prop['scope'] = 'scope="'.$value.'"';
+                    $prop['scope'] = HtmlTable::attribute('scope', $value);
                     if (isset($this->properties['id'])) {
-                        $prop['id'] = 'id="r'.$this->properties['id'].'"';
+                        $prop['id'] = HtmlTable::attribute('id', 'r'.$this->properties['id']);
                     }
                 } elseif ($key != 'text') {
-                    $prop[$key] = $key.'="'.$value.'"';
+                    $prop[$key] = HtmlTable::attribute($key, $value);
                 }
             }
             if (isset($this->properties['id'])) {
-                $prop['headers'] = $tag == 'th' ? 'headers="c'.$c.'"' : 'headers="r'.$this->properties['id'].' c'.$c.'"';
+                $prop['headers'] = HtmlTable::attribute('headers', $tag == 'th' ? 'c'.$c : 'r'.$this->properties['id'].' c'.$c);
             }
-            $row[] = '<'.$tag.' '.implode(' ', $prop).'>'.(empty($td['text']) ? '' : $td['text']).'</'.$tag.'>';
+            $row[] = '<'.$tag.' '.implode(' ', array_filter($prop)).'>'.(empty($td['text']) ? '' : $td['text']).'</'.$tag.'>';
         }
         $row[] = '</tr>';
         return implode("\n", $row);

@@ -102,7 +102,7 @@ class Template
         if (is_file($filename)) {
             return self::createFromHTML(file_get_contents($filename));
         } else {
-            throw new \InvalidArgumentException('File not found '.$filename);
+            throw new \InvalidArgumentException('File not found '.basename((string) $filename));
         }
     }
 
@@ -266,10 +266,43 @@ class Template
             if (preg_match('/^(.*\/)([a-zA-Z]*)e([a-zA-Z]*)$/', $item, $parts) && preg_match('/^([\\\\a-z0-9]+)::([a-z0-9_\\\\]+).*/i', $text, $func)) {
                 $skin = preg_replace_callback($parts[1].$parts[2].$parts[3], [$func[1], $func[2]], $skin);
             } else {
-                $skin = preg_replace($item, $text, $skin);
+                $skin = self::replace($item, $text, $skin);
             }
         }
         return $skin;
+    }
+
+    /**
+     * One pattern of pregReplace().
+     *
+     * A pattern without groups ('/{DETAIL}/') puts the value in as text. Through
+     * preg_replace(), "$1", "\1" or "${1}" in it were read as references to groups
+     * the pattern does not have: a post saying "Price $100" showed "Price 0".
+     * A pattern with groups keeps the references ('/(<head.*)(<\/head>)/' => '$1...$2').
+     *
+     * @param string $pattern
+     * @param mixed  $text
+     * @param string $skin
+     *
+     * @return string
+     */
+    private static function replace($pattern, $text, $skin)
+    {
+        $match = [];
+        $found = @preg_match($pattern, $skin, $match, PREG_UNMATCHED_AS_NULL);
+        if ($found === 0) {
+            return $skin;
+        }
+        if ($found === 1 && count($match) === 1) {
+            $text = (string) $text;
+            $result = preg_replace_callback($pattern, function () use ($text) {
+                return $text;
+            }, $skin);
+
+            return $result === null ? $skin : $result;
+        }
+
+        return preg_replace($pattern, $text, $skin);
     }
 
     /**
