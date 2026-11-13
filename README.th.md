@@ -16,21 +16,32 @@
 
 - PHP 7.4 ขึ้นไป (ทดสอบบน PHP 8.3 และ 8.4)
 - extension `json`, `mbstring`, `pdo` และไดรเวอร์ PDO ของฐานข้อมูลที่ใช้
-- extension ที่ใช้เมื่อต้องการ: `gd` (รูปและบาร์โค้ด), `curl`, `openssl`, `fileinfo`, `iconv`, `intl`, `redis` ดูรายการทั้งหมดได้ด้วย `composer suggest`
+- extension ที่ใช้เมื่อต้องการ: `gd` (รูปและบาร์โค้ด), `curl`, `openssl`, `fileinfo`, `iconv`, `intl`, `redis` ดูรายการทั้งหมดได้ในส่วน `suggest` ของ `composer.json`
 
 ## การติดตั้ง
+
+### ดาวน์โหลดจาก GitHub (แนะนำ)
+
+ดาวน์โหลด repository นี้ (ด้วย `git clone` หรือ **Code > Download ZIP**) แล้วคัดลอกโฟลเดอร์ `Kotchasan/` ไปไว้ในโปรเจ็ค วิธีนี้ให้ประสิทธิภาพสูงสุด เพราะ `Kotchasan/load.php` เป็นตัวโหลดคลาสตัวเดียว ไม่มี autoloader และไฟล์ของ Composer มาเพิ่มในทุกคำขอ ไม่ต้องติดตั้ง Composer บนเซิร์ฟเวอร์ และอัปโหลดขึ้นโฮสต์ด้วย FTP ได้ทันที
+
+```bash
+git clone --depth 1 https://github.com/goragodwiriya/kotchasan.git
+cp -r kotchasan/Kotchasan mysite/
+```
+
+### ติดตั้งด้วย Composer (ทางเลือก)
+
+ถ้าโปรเจ็คใช้ Composer อยู่แล้ว ติดตั้งได้ด้วยคำสั่งนี้ แล้วใช้ `vendor/autoload.php` แทน `Kotchasan/load.php` ในตัวอย่างข้างล่าง
 
 ```bash
 composer require goragodwiriya/kotchasan
 ```
 
-`vendor/autoload.php` จะโหลดเฟรมเวิร์กให้ ถ้าไม่ใช้ Composer ให้คัดลอกโฟลเดอร์ `Kotchasan/` ไปไว้ในโปรเจ็คแล้ว include `Kotchasan/load.php` แทน
-
 ## เริ่มต้นใช้งาน
 
 ```text
 mysite/
-├── composer.json
+├── Kotchasan/
 ├── index.php
 ├── settings/
 │   └── config.php
@@ -40,14 +51,14 @@ mysite/
             └── index.php
 ```
 
-`index.php` รับทุกคำขอ ให้กำหนดค่าคงที่ของการตั้งค่า**ก่อน** `vendor/autoload.php` เพราะเฟรมเวิร์กอ่านค่าเหล่านี้ตอนโหลด
+`index.php` รับทุกคำขอ ให้กำหนดค่าคงที่ของการตั้งค่า**ก่อน**โหลดเฟรมเวิร์ก เพราะเฟรมเวิร์กอ่านค่าเหล่านี้ตอนโหลด
 
 ```php
 <?php
 define('DATA_FOLDER', 'datas/'); // โฟลเดอร์ที่เขียนได้ สำหรับ log และ cache
 define('DEBUG', 0);              // 2 แสดงข้อผิดพลาดบนหน้าจอ ใช้ตอนพัฒนา
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/Kotchasan/load.php'; // ถ้าใช้ Composer: vendor/autoload.php
 
 Kotchasan::createWebApplication()->run();
 ```

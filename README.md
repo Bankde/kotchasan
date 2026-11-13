@@ -16,21 +16,32 @@ Kotchasan (คชสาร) is a lightweight PHP framework for websites and JSON
 
 - PHP 7.4 or newer (tested on PHP 8.3 and 8.4)
 - The `json`, `mbstring` and `pdo` extensions, plus the PDO driver of your database
-- Optional extensions: `gd` (images and barcodes), `curl`, `openssl`, `fileinfo`, `iconv`, `intl`, `redis`. `composer suggest` lists them all.
+- Optional extensions: `gd` (images and barcodes), `curl`, `openssl`, `fileinfo`, `iconv`, `intl`, `redis`. The `suggest` section of `composer.json` lists them all.
 
 ## Installation
+
+### Downloading from GitHub (recommended)
+
+Download this repository (with `git clone` or **Code > Download ZIP**) and copy the `Kotchasan/` folder into your project. This gives the best performance: `Kotchasan/load.php` is the only class loader, with no Composer autoloader and files added to every request. You need no Composer on the server, and the site uploads to any host over FTP as it is.
+
+```bash
+git clone --depth 1 https://github.com/goragodwiriya/kotchasan.git
+cp -r kotchasan/Kotchasan mysite/
+```
+
+### Installing with Composer (optional)
+
+If your project already uses Composer, install it with this command, then use `vendor/autoload.php` in place of `Kotchasan/load.php` in the example below.
 
 ```bash
 composer require goragodwiriya/kotchasan
 ```
 
-`vendor/autoload.php` loads the framework. Without Composer, copy the `Kotchasan/` folder into your project and include `Kotchasan/load.php` instead.
-
 ## Quick start
 
 ```text
 mysite/
-├── composer.json
+├── Kotchasan/
 ├── index.php
 ├── settings/
 │   └── config.php
@@ -40,14 +51,14 @@ mysite/
             └── index.php
 ```
 
-`index.php` receives every request. Define the settings constants **before** `vendor/autoload.php`, because the framework reads them while it loads:
+`index.php` receives every request. Define the settings constants **before** loading the framework, because the framework reads them while it loads:
 
 ```php
 <?php
 define('DATA_FOLDER', 'datas/'); // writable folder for logs and cache
 define('DEBUG', 0);              // 2 shows errors on the page while developing
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/Kotchasan/load.php'; // with Composer: vendor/autoload.php
 
 Kotchasan::createWebApplication()->run();
 ```
