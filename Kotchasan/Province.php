@@ -181,7 +181,7 @@ class Province
             '12' => ['th' => 'นนทบุรี', 'en' => 'Nonthaburi'],
             '96' => ['th' => 'นราธิวาส', 'en' => 'Narathiwat'],
             '55' => ['th' => 'น่าน', 'en' => 'Nan'],
-            '97' => ['th' => 'บึงกาฬ', 'en' => 'buogkan'],
+            '38' => ['th' => 'บึงกาฬ', 'en' => 'BuengKan'],
             '31' => ['th' => 'บุรีรัมย์', 'en' => 'BuriRam'],
             '13' => ['th' => 'ปทุมธานี', 'en' => 'PathumThani'],
             '77' => ['th' => 'ประจวบคีรีขันธ์', 'en' => 'PrachuapKhiriKhan'],

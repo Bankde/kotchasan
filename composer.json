@@ -1,12 +1,13 @@
 {
     "name": "goragodwiriya/kotchasan",
-    "description": "Kotchasan Web Framework: a lightweight PHP MVC framework with a multi-database query builder, PSR-7 HTTP messages, templates, i18n and Thai utilities",
+    "description": "Kotchasan Web Framework: a lightweight PHP MMVC (Modules Model View Controller) framework with a multi-database query builder, PSR-7 HTTP messages, templates, i18n and Thai utilities",
     "type": "library",
     "keywords": [
         "framework",
         "php",
         "kotchasan",
         "mvc",
+        "mmvc",
         "query-builder",
         "psr-7",
         "thai"

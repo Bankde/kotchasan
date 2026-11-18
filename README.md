@@ -4,7 +4,7 @@
 
 Kotchasan (คชสาร) is a lightweight PHP framework for websites and JSON APIs. It needs nothing but PHP: no other Composer packages and no build step.
 
-- **MVC by folders.** `Product\List\Controller` is `modules/product/controllers/list.php`. Nothing is registered by hand.
+- **MMVC (Modules Model View Controller).** An application is a set of modules, each with its own controllers, models and views, so a module is added or removed by its folder without touching the others. `Product\List\Controller` is `modules/product/controllers/list.php`. Nothing is registered by hand.
 - **Router.** Turns `/product`, `/product/controller/list` and `/api/product/item/show` into a controller and a method.
 - **Database.** A query builder and a `DB` helper that write the SQL for MySQL/MariaDB, PostgreSQL, SQLite and SQL Server. Values given to the builder are bound as parameters, and you get table prefixes, transactions and an optional query cache (file, memory or Redis).
 - **HTTP.** PSR-7 style `Request`, `Response`, `Uri`, `Stream` and `UploadedFile`, plus typed input helpers (`$request->post('id')->toInt()`, `->topic()`, `->date()`), CSRF tokens and secure sessions.

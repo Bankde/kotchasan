@@ -4,7 +4,7 @@
 
 คชสารเป็นเฟรมเวิร์ก PHP ขนาดเล็กสำหรับสร้างเว็บไซต์และ JSON API ใช้แค่ PHP ไม่ต้องพึ่งแพ็กเกจ Composer อื่นและไม่ต้อง build
 
-- **MVC ตามโฟลเดอร์** `Product\List\Controller` คือไฟล์ `modules/product/controllers/list.php` ไม่ต้องลงทะเบียนคลาสเอง
+- **MMVC (Modules Model View Controller)** แอปพลิเคชันแบ่งเป็นหลายโมดูล แต่ละโมดูลมี controller, model และ view ของตัวเอง เพิ่มหรือลบโมดูลได้ด้วยโฟลเดอร์โดยไม่กระทบโมดูลอื่น `Product\List\Controller` คือไฟล์ `modules/product/controllers/list.php` ไม่ต้องลงทะเบียนคลาสเอง
 - **Router** แปลง `/product`, `/product/controller/list` และ `/api/product/item/show` เป็น controller กับเมธอด
 - **ฐานข้อมูล** มี query builder และตัวช่วย `DB` ที่เขียน SQL ให้ตรงกับ MySQL/MariaDB, PostgreSQL, SQLite และ SQL Server ค่าที่ส่งให้ builder ถูก bind เป็นพารามิเตอร์ รองรับ prefix ของตาราง, transaction และ cache ของคิวรี (file, memory หรือ Redis)
 - **HTTP** มี `Request`, `Response`, `Uri`, `Stream` และ `UploadedFile` แบบ PSR-7 ตัวช่วยแปลงค่าที่รับเข้ามา (`$request->post('id')->toInt()`, `->topic()`, `->date()`), CSRF token และ session ที่ตั้งค่าความปลอดภัยแล้ว
